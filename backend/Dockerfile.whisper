@@ -1,0 +1,18 @@
+# ---------- backend/Dockerfile.whisper ----------
+FROM python:3.10-slim
+
+# 1. system deps
+RUN apt-get update && apt-get install -y ffmpeg && rm -rf /var/lib/apt/lists/*
+
+# 2. workdir
+WORKDIR /app
+
+# 3. copy requirements and install
+COPY whisper/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 4. copy FastAPI code
+COPY whisper/app ./app
+
+EXPOSE 9000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "9000"]

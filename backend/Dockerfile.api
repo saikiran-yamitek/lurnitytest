@@ -1,0 +1,12 @@
+# Dockerfile.api
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 7700
+CMD ["node", "server.js"]
