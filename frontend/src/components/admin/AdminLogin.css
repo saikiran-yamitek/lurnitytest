@@ -1,0 +1,105 @@
+/* src/pages/AdminLogin.css */
+
+.admin-login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #1d2b64, #f8cdda);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-login-card {
+  background: #ffffffdd;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 0.8s ease-in-out;
+  align-items: center;
+}
+
+.admin-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 10px;
+  animation: zoomIn 1s ease;
+}
+
+.admin-title {
+  font-size: 24px;
+  color: #1d2b64;
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  background-color: #f4f4f4;
+  transition: 0.3s ease;
+}
+
+.admin-input:focus {
+  background-color: #e8e8e8;
+  box-shadow: 0 0 0 2px #1d2b64;
+}
+
+.admin-button {
+  width: 100%;
+  background: #1d2b64;
+  color: white;
+  padding: 12px 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.admin-button:hover {
+  background: #16204d;
+}
+
+.admin-error {
+  color: #d8000c;
+  font-size: 14px;
+  text-align: center;
+  background: #ffd2d2;
+  padding: 8px 12px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

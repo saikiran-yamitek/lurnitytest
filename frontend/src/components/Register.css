@@ -1,0 +1,85 @@
+/* src/components/Register.css */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: #f5f8ff;
+  min-height: 100vh;
+}
+
+.form-logo {
+  width: 130px;
+  margin-bottom: 20px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-card h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.form-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.form-card button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-card button:hover {
+  background-color: #3a7dd8;
+}
+
+.form-msg {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.form-msg.success {
+  color: green;
+}
+
+.form-msg.error {
+  color: red;
+}
+
+.switch-text {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.switch-text a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.switch-text a:hover {
+  text-decoration: underline;
+}

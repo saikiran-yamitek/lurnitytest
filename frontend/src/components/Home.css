@@ -1,0 +1,462 @@
+/* ---------- sidebar layout (dark theme, centered nav) ---------- */
+.sidebarr {
+  width: 260px;
+  height: 100vh;
+  background-color: #111633;     /* original dark blue */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  color: #fff;
+}
+
+/* wrapper that centres logo + nav vertically */
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;       /* vertical centering */
+  gap: 30px;
+}
+
+.logo {
+  height: 80px;                  /* bigger logo */
+  object-fit: contain;
+  margin-top:0px;
+}
+
+/* nav list now centred */
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  color: #dfe4ff;
+  font-size: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #2a2f5b;
+  color: #fff;
+}
+
+.placeholder {
+  visibility: hidden;
+}
+
+/* user bar stays at bottom */
+.profile-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 12px 16px;
+  background: #1a1f3e;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.profile-name {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- popup menu ---------- */
+.popup-menu {
+  position: absolute;
+  bottom: 72px;
+  left: 16px;
+  width: 230px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  padding: 8px 0;
+  color: #323a4b;
+  z-index: 999;
+}
+
+.popup-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.popup-menu li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.popup-menu li:hover {
+  background: #f5f7fa;
+}
+
+.menu-ico {
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+/* ---------- main content offset ---------- */
+.main {
+  margin-left: 260px;
+  padding: 30px;
+}
+
+/* ---------- rest of your existing styles ---------- */
+
+/* course banner */
+.course-banner {
+  background: linear-gradient(
+    90deg,
+    #ffd8b4,
+    #ffb3b3,
+    #d49cff,
+    #59c9ff
+  );
+  padding: 30px;
+  border-radius: 0 0 18px 18px;
+  margin-bottom: 40px;
+}
+.course-banner .upper {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* subcourse / video list */
+.subcourse-block {
+  background: #0f1539;
+  border: 1px solid #202858;
+  border-radius: 12px;
+  padding: 22px 28px;
+  margin-bottom: 35px;
+}
+.sub-title {
+  margin: 0 0 18px 0;
+  font-size: 17px;
+  color: #e5e8ff;
+}
+.video-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #1c2348;
+  cursor: pointer;
+}
+.video-row:last-child {
+  border-bottom: none;
+}
+.video-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.play-ico {
+  color: #8fa3ff;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.video-name {
+  color: #f5f7ff;
+}
+.mins {
+  margin-left: auto;
+  color: #9ba6ff;
+  font-size: 13px;
+}
+
+/* tick mark */
+.tick {
+  color: #21c55d;
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+/* loader & ban screen */
+.loading,
+.ban-full {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* suspended / no‑course */
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #fff;
+}
+.status-main {
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+.status-red {
+  color: #e63737;
+  font-size: 20px;
+  font-weight: 600;
+  max-width: 420px;
+  line-height: 1.4;
+}
+/* ---------- Floating Help button ---------- */
+.help-btn {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1a1f3e;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  z-index: 998;
+  transition: transform 0.18s ease;
+}
+.help-btn:hover {
+  transform: scale(1.06);
+}
+
+/* ---------- Help popup menu ---------- */
+.help-menu {
+  position: fixed;
+  bottom: 108px;          /* help-btn height + margin */
+  right: 28px;
+  width: 220px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  padding: 8px 0;
+  color: #323a4b;
+  z-index: 999;
+}
+.help-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.help-menu li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+.help-menu li:hover {
+  background: #f5f7fa;
+}
+.ticket-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:1100;}
+.ticket-box{background:#fff;border-radius:14px;padding:32px;max-width:480px;width:92%;animation:pop .25s;}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+
+.ticket-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  border-left: 4px solid #28a745;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.ticket-popup h5 {
+  margin-bottom: 0.5rem;
+  color: #28a745;
+}
+
+.ticket-popup strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1.05rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ticket-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 9999;
+  max-width: 300px;
+  border-left: 4px solid #28a745;
+  animation: fadein 0.5s ease;
+}
+
+.ticket-popup h5 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #28a745;
+}
+
+.ticket-popup p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #555;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ✅ Professional popup */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.custom-modal-content {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  max-width: 400px;
+  width: 90%;
+  animation: scaleIn 0.3s ease-out;
+}
+
+.custom-modal-content h2 {
+  margin-bottom: 12px;
+  color: #2ecc71;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.custom-modal-content p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lab-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.lab-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.lab-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.lab-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex-grow: 1;
+}
+
+.lab-date {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.lab-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.badge {
+  padding: 0.3em 0.6em;
+  border-radius: 0.5em;
+  font-size: 0.85rem;
+}
+.profile-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  cursor: pointer;
+  border-top: 1px solid #eee;
+  
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  background-color: none;
+}

@@ -1,0 +1,13 @@
+/* minor cosmetics that Bootstrap doesn't cover */
+.course-card {
+  max-width: 1000px;
+}
+
+.sub-block {
+  background: #f8f9fc;
+}
+
+.video-row video {
+  max-height: 140px;
+  object-fit: cover;
+}

@@ -1,0 +1,137 @@
+/* shared minimalist design */
+body{background:#f8fafc;font-family:"Inter",sans-serif;}
+
+.emp-login{height:100vh;display:flex;align-items:center;justify-content:center;}
+.emp-login-box{background:#fff;padding:40px 50px;border-radius:16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:18px;width:350px;}
+.emp-login-box h2{margin:0 0 10px;font-weight:600;text-align:center;}
+.emp-login-box input{padding:10px 14px;border:1px solid #d1d5db;border-radius:8px;font-size:15px;}
+.emp-login-box button{background:#2563eb;color:#fff;padding:12px;border:none;border-radius:8px;font-weight:600;cursor:pointer;}
+.emp-login-box button:hover{background:#1d4ed8;}
+
+.emp-shell{min-height:100vh;display:flex;flex-direction:column;}
+.emp-header{background:#111827;color:#fff;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;}
+.emp-header h3{margin:0;font-weight:600;font-size:18px;}
+.emp-header span{font-size:15px;}
+.emp-main{flex:1;padding:30px;}
+/* ---------- Content‑Manager shell ---------- */
+.cm-shell       { min-height: 100vh; background: #f5f7fb; display: flex; flex-direction: column; }
+
+/* Header */
+.cm-header      { background: #ffffff; padding: 16px 32px; display: flex; align-items: center; }
+.cm-logo        { height: 46px; margin-right: 18px; }
+.cm-title       { font-weight: 600; font-size: 22px; color: #273045; margin: 0; }
+.cm-user        { font-weight: 500; color: #475467; }
+
+/* Main */
+.cm-main        { flex: 1; }
+
+/* Course cards */
+.cm-card        { background: #ffffff; border-radius: 16px; padding: 24px; transition: transform .15s linear; height: 120px; display: flex; flex-direction: column; justify-content: space-between; }
+.cm-card h5     { font-weight: 600; color: #0f172a; }
+.cm-card.playable:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.08); text-decoration:none; }
+.cm-card.locked { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Welcome overlay ---------- */
+.cm-welcome-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; z-index: 1050;
+  animation: fadeIn .25s ease-out forwards;
+}
+.cm-welcome-box {
+  background: #ffffff; border-radius: 20px; padding: 40px 48px; text-align: center; max-width: 420px; animation: popUp .3s ease-out forwards;
+}
+.cm-welcome-box h2 { font-weight: 700; color: #111827; }
+.cm-welcome-box p  { color: #475467; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popUp  { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* ---------- premium header ---------- */
+.cm-header{
+  background: linear-gradient(90deg,#1e3a8a,#2563eb 60%);
+  padding: 18px 32px;
+  display:flex;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.cm-logo { height:48px; margin-right:20px; }
+.cm-title{ font-weight:700;font-size:24px;color:#ffffff;margin:0;letter-spacing:.3px; }
+
+/* avatar + logout */
+.cm-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:#ffffff20;color:#ffffff;display:flex;align-items:center;justify-content:center;
+}
+.cm-user{ color:#ffffff; font-weight:500; }
+.cm-logout{ color:#ffffff;border-color:#ffffff40;padding:6px 10px; }
+.cm-logout:hover{ background:#ffffff20;border-color:#ffffff20; }
+
+/* rest (unchanged from previous answer) */
+.cm-shell       { min-height:100vh;background:#f5f7fb;display:flex;flex-direction:column; }
+.cm-main        { flex:1; }
+.cm-card        { background:#ffffff;border-radius:16px;padding:24px;transition:transform .15s; height:120px;display:flex;flex-direction:column;justify-content:space-between; }
+.cm-card h5     { font-weight:600;color:#0f172a; }
+.cm-card.playable:hover{ transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.08); }
+.cm-card.locked{ opacity:.6;cursor:not-allowed; }
+
+/* welcome overlay (unchanged) */
+.cm-welcome-overlay{ position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:1050;animation:fadeIn .25s forwards;}
+.cm-welcome-box{ background:#fff;border-radius:20px;padding:40px 48px;text-align:center;max-width:420px;animation:pop .3s forwards;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  background: #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #28a745;
+  color: white;
+  font-weight: bold;
+}
+.modal-backdrop.show {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* darker backdrop */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+/* Overlay to darken the background */
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal content appearance */
+.modal-content {
+  background-color: #ffffff; /* bright white */
+  border-radius: 16px;
+  padding: 1.5rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  animation: popupFade 0.3s ease-in-out;
+}
+
+/* Smooth fade-in */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
