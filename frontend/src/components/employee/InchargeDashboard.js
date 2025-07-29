@@ -54,18 +54,42 @@ export default function InchargeDashboard() {
   };
 
   const handleFieldChange = (studentId, field, value) => {
-    setEditedStudents((prev) => ({
-      ...prev,
-      [studentId]: {
-        ...prev[studentId],
-        [field]: field === "attendance" ? value === "present" : value,
-      },
-    }));
+    setEditedStudents((prev) => {
+      const updated = { ...prev[studentId], [field]: value };
+
+      // Logic: If attendance is 'absent', auto-grade = 'F' and result = 'fail'
+      if (field === "attendance") {
+        const isPresent = value === "present";
+        updated.attendance = isPresent;
+
+        if (!isPresent) {
+          updated.grade = "F";
+          updated.result = "fail";
+        }
+      }
+
+      // If grade manually changed, update result
+      if (field === "grade") {
+        updated.result = value === "F" ? "fail" : "pass";
+      }
+
+      return {
+        ...prev,
+        [studentId]: updated,
+      };
+    });
   };
 
   const handleSaveChanges = async () => {
     try {
       const updates = Object.entries(editedStudents);
+
+      for (const [studentId, fields] of updates) {
+        if (fields.attendance === undefined || !fields.grade) {
+          alert("⚠️ Please mark both attendance and grade for all students.");
+          return;
+        }
+      }
 
       for (const [studentId, fields] of updates) {
         const res = await fetch(
@@ -79,7 +103,7 @@ export default function InchargeDashboard() {
         if (!res.ok) throw new Error("Update failed");
       }
 
-      await handleViewStudents(selectedWorkshop); // Refresh updated data
+      await handleViewStudents(selectedWorkshop); // Refresh data
       setEditedStudents({});
       alert("✅ Changes saved successfully.");
     } catch (error) {
@@ -170,6 +194,7 @@ export default function InchargeDashboard() {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Attendance</th>
+                        <th>Grade</th>
                         <th>Result</th>
                       </tr>
                     </thead>
@@ -182,18 +207,20 @@ export default function InchargeDashboard() {
                               ? "present"
                               : "absent"
                             : student.attendance === true
-                            ? "present"
-                            : "absent";
-                        console.log("student.result", student.result, "edited.result", edited.result);
+                              ? "present"
+                              : "absent";
+
+                        const gradeValue =
+                          edited.grade !== undefined
+                            ? edited.grade
+                            : student.grade || "";
+
                         const resultValue =
-  edited.result !== undefined
-    ? edited.result
-    : typeof student.result === "string" && ["pass", "fail", "pending"].includes(student.result)
-    ? student.result
-    : "pending";
-
-
-
+                          gradeValue === "F"
+                            ? "fail"
+                            : gradeValue !== ""
+                            ? "pass"
+                            : "pending";
 
                         return (
                           <tr key={student._id}>
@@ -219,20 +246,30 @@ export default function InchargeDashboard() {
                             <td>
                               <select
                                 className="form-select form-select-sm"
-                                value={resultValue}
+                                value={gradeValue}
                                 onChange={(e) =>
                                   handleFieldChange(
                                     student._id,
-                                    "result",
+                                    "grade",
                                     e.target.value
                                   )
                                 }
+                                disabled={
+                                  edited.attendance === false ||
+                                  student.attendance === false
+                                }
                               >
-                                <option value="pending">Pending</option>
-                                <option value="pass">Pass</option>
-                                <option value="fail">Fail</option>
+                                <option value="">-- Select --</option>
+                                <option value="S">S</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
                               </select>
                             </td>
+                            <td>{resultValue}</td>
                           </tr>
                         );
                       })}

@@ -86,5 +86,16 @@ router.get('/user/:userId',  async (req, res) => {
 
 
 
+// POST /api/certificates/check-exists
+router.post("/check-exists", async (req, res) => {
+  const { userId, subCourseTitle } = req.body;
+  try {
+    const exists = await Certificate.exists({ userId, subCourseTitle });
+    res.json({ exists: !!exists });
+  } catch (err) {
+    console.error("Error checking certificate existence:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 export default router;

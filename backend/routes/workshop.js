@@ -9,9 +9,11 @@ router.get("/", async (_req, res) => {
   try {
     const list = await Workshop.find()
       .populate("inchargeId", "name")
+      
       .sort({ createdAt: -1 });
     res.json(list);
   } catch (err) {
+    console.error("❌ Failed to fetch workshops:", err.message); 
     res.status(500).json({ error: err.message });
   }
 });
@@ -90,6 +92,10 @@ router.get("/user/:userId/workshops", async (req, res) => {
   res.json(arr);
 });
 
+
+
+
+
 // GET /api/workshops/:id/students
 // GET /api/workshops/:id/students
 // GET /api/workshops/:id/students
@@ -100,7 +106,7 @@ router.get("/:id/students", async (req, res) => {
     if (!workshop) return res.status(404).json({ message: "Workshop not found" });
 
     const students = workshop.registeredStudents.map((entry) => {
-      const { student, attendance, result } = entry; // FIX: include these from entry, not student
+      const { student, attendance, result,grade } = entry; // FIX: include these from entry, not student
 
       return {
         _id: student._id,
@@ -108,7 +114,8 @@ router.get("/:id/students", async (req, res) => {
         email: student.email,
         phone: student.phone,
         attendance, // FIX: read from entry not student
-        result      // FIX: read from entry not student
+        result,
+        grade    // FIX: read from entry not student
       };
     });
 
@@ -146,7 +153,7 @@ router.get("/incharge/:empId", async (req, res) => {
 
 // PUT /api/workshops/:id/attendance
 router.put("/:id/attendance", async (req, res) => {
-  const { studentId, attendance, status,result } = req.body;
+  const { studentId, attendance, status,result ,grade} = req.body;
 
   const workshop = await Workshop.findById(req.params.id);
   const student = workshop.registeredStudents.find(
@@ -158,6 +165,7 @@ router.put("/:id/attendance", async (req, res) => {
   if (attendance !== undefined) student.attendance = attendance;
   if (status !== undefined) student.status = status;
   if (result !== undefined) student.result = result;
+  if (grade !== undefined) student.grade = grade;
 
   await workshop.save();
 

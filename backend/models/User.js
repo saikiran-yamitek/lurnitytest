@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema(
 
       firstName: { type: String },
   lastName: { type: String },
-  ircName: { type: String },
   gender: { type: String, enum: ['Male', 'Female', 'Other', 'Prefer Not to Say'] },
   communicationLanguage: { type: String },
   teachingLanguage: { type: String },
@@ -21,6 +20,12 @@ const userSchema = new mongoose.Schema(
   github: { type: String },
   photoURL: { type: String }, // store image URL or base64 string
   resumeURL: { type: String },
+  projects: [
+  {
+    title: String,
+    points: [String],
+  }
+],
 
   
   isWhatsAppSame: { type: String, enum: ["Yes", "No", "Don't have WhatsApp"], default: "Yes" },
@@ -82,7 +87,95 @@ const userSchema = new mongoose.Schema(
     },
     cgpa: { type: Number },
     percentage: { type: Number }
+  },intermediateOrDiploma: {
+  stream: {
+    type: String,
+    enum: ["Intermediate/12th", "Diploma", "ITI", "Others"]
   },
+  status: {
+    type: String,
+    enum: [
+      "Completed Successfully",
+      "Currently Studying",
+      "Having Backlogs, will clear them soon"
+    ]
+  },
+  institutionName: { type: String },
+  markingScheme: {
+    type: String,
+    enum: ["Grade/CGPA", "Percentage"]
+  },
+  cgpa: { type: Number },
+  percentage: { type: Number },
+  yearOfCompletion: { type: Date }
+},bachelorsDegree: {
+  degreeName: {
+    type: String,
+    enum: [
+      "B Tech (Bachelor of Technology)",
+      "BE (Bachelor of Engineering)",
+      "BSc (Bachelor of Science)",
+      "B Com (Bachelor of Commerce)",
+      "BBA (Bachelor of Business Administration)",
+      "BA (Bachelor of Arts)",
+      "BCA (Bachelor of Computer Applications)",
+      "B Pharm (Bachelor of Pharmacy)",
+      "BHM (Bachelor of Hotel Management)",
+      "BHMCT (Bachelor of Hotel Management & Catering Technology)",
+      "MBBS (Bachelor of Medicine and a Bachelor of Surgery)",
+      "B Arch (Bachelor of Architecture)",
+      "B Des (Bachelor of Design)",
+      "BF Tech (Bachelor of Fashion Technology)",
+      "BVC (Bachelor of Visual Communication)",
+      "Plan (Bachelor of Planning)",
+      "BFSc (Bachelor of Fishery Science)",
+      "BPEd (Bachelor of Physical Education)",
+      "B Voc (Bachelor of Vocation)",
+      "BBI (Bachelor of Banking and Insurance)",
+      "BBM (Bachelor of Business Management)",
+      "BFM (Bachelor of Financial Markets)",
+      "BMS (Bachelor of Management Studies)",
+      "B Text (Bachelor of Textile)",
+      "BFA (Bachelor of Fine Arts)",
+      "BASLP (Bachelor of Audiology & Speech Language Pathology)",
+      "BMLT (Bachelor of Medical Laboratory Technology)",
+      "BNYS (Bachelor of Naturopathy and Yogic Sciences)",
+      "BOPTM (Bachelor of Optometry)",
+      "BOT (Bachelors of Occupational Therapy)",
+      "BPMT (Bachelor of Paramedical Technology)",
+      "BVSc (Bachelor of Veterinary Science)",
+      "Others"
+    ]
+  },
+  status: {
+    type: String,
+    enum: [
+      "Completed Successfully",
+      "Currently Studying",
+      "Having Backlogs, will clear them soon",
+      "Discontinued Degree"
+    ]
+  },
+  department: { type: String },
+  markingScheme: {
+    type: String,
+    enum: ["Grade/CGPA", "Percentage"]
+  },
+  cgpa: { type: Number },
+  percentage: { type: Number },
+  startYear: { type: Date },
+  endYear: { type: Date },
+  instituteCountry: { type: String },
+  instituteName: { type: String },
+  institutePincode: { type: String },
+  instituteState: { type: String },
+  instituteDistrict: { type: String },
+  instituteCity: { type: String }
+},completedSubcourses: {
+  type: [String],
+  default: []
+},
+
 
 
     /* ─── Course enrollment & payments ──────────────── */

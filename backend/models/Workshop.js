@@ -5,12 +5,14 @@ const workshopSchema = new mongoose.Schema({
   labAddress: { type: String, required: true },
   time: { type: Date, required: true },
   memberCount: { type: Number, required: true },
+  subCourseId: { type: mongoose.Schema.Types.ObjectId, ref: "SubCourse", required: true },
   // models/Workshop.js
 registeredStudents: [{
   student: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   registeredAt: { type: Date, default: Date.now },
   attendance: { type: Boolean, default: false },
-  result: { type: String, enum: ['pending', 'pass', 'fail'], default: 'pending' }
+  result: { type: String, enum: ['pending', 'pass', 'fail'], default: 'pending' },
+  grade: { type: String, enum: ['S', 'A', 'B', 'C', 'D', 'E', 'F'], default: 'F' },
 }],
 
   inchargeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee", required: true },

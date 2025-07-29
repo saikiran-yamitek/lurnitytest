@@ -142,8 +142,8 @@ export default function TestWorkshopsPage() {
                   ⛔ Full
                 </button>
               ) : subCourseConflict ? (
-                <button className="registered-btn" disabled>
-                  ✅ Already Registered for this SubCourse
+                <button className="full-btn" disabled>
+                  ✅ Already Registered lab for this Subcourse
                 </button>
               ) : (
                 <button

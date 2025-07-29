@@ -198,6 +198,12 @@ class Users extends Component {
 >
   📜
 </button>
+<button
+  onClick={() => this.props.history.push(`/admin/resume/${u._id}`)}
+  title="Download Resume"
+>
+  📄
+</button>
 
 
 

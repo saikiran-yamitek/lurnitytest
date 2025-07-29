@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logo from "../../assets/LURNITY.jpg";
+import { listCourses } from "../../services/empApi"; // or correct path
+
 import {
   FiUser,
   FiLogOut,
@@ -26,6 +28,8 @@ export default function LabAdminDashboard() {
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [workshopToDelete, setWorkshopToDelete] = useState(null);
   const [showStudentPopup, setShowStudentPopup] = useState(false);
+  const [courses, setCourses] = useState([]);
+
   const history = useHistory();
 
   const emp = JSON.parse(localStorage.getItem("empInfo"));
@@ -42,6 +46,8 @@ export default function LabAdminDashboard() {
       const inchargesOnly = all.filter((e) => e.role === "lab incharge");
       setIncharges(inchargesOnly);
       setWorkshops(await listWorkshops());
+      console.log("📚 Courses from backend:", listCourses()); 
+      setCourses(await listCourses());
     })();
   }, []);
 
@@ -49,18 +55,33 @@ export default function LabAdminDashboard() {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleCreate = async () => {
-    try {
-      const payload = { ...form, createdBy: emp.id };
-      await createWorkshop(payload);
-      setPopup("✅ Workshop scheduled");
-      setForm({});
-      setWorkshops(await listWorkshops());
-      setTimeout(() => setPopup(""), 3000);
-    } catch (err) {
-      console.error("Workshop creation error:", err);
-      alert("❌ Failed to schedule workshop");
+  try {
+    const payload = { ...form, createdBy: emp.id };
+
+    // Find the subCourse title using the selected courseId and labName (subCourseId)
+    const selectedCourse = courses.find((c) => c._id === form.courseId);
+    const selectedSubCourse = selectedCourse?.subCourses?.find((sub) => sub._id === form.labName);
+
+    if (!selectedSubCourse) {
+      alert("Invalid subcourse selected.");
+      return;
     }
-  };
+
+    // Replace labName ID with actual subcourse title
+    payload.labName = selectedSubCourse.title;
+    payload.subCourseId = selectedSubCourse._id;
+
+    await createWorkshop(payload);
+    setPopup("✅ Workshop scheduled");
+    setForm({});
+    setWorkshops(await listWorkshops());
+    setTimeout(() => setPopup(""), 3000);
+  } catch (err) {
+    console.error("Workshop creation error:", err);
+    alert("❌ Failed to schedule workshop");
+  }
+};
+
 
   const confirmDeleteWorkshop = async () => {
     try {
@@ -128,14 +149,45 @@ export default function LabAdminDashboard() {
         <h4 className="fw-semibold mb-4">Schedule Workshop</h4>
         <div className="row g-3 mb-5">
           <div className="col-md-4">
-            <input
-              className="form-control"
-              placeholder="Lab Name"
-              name="labName"
-              value={form.labName || ""}
-              onChange={handleChange}
-            />
-          </div>
+  <select
+    className="form-select"
+    name="courseId"
+    value={form.courseId || ""}
+    onChange={handleChange}
+  >
+    <option value="">Select Course</option>
+    {courses.map((c) => (
+      
+      
+      <option key={c._id} value={c._id}>
+        {c.title}
+        
+      </option>
+      
+    ))}
+  </select>
+</div>
+
+          <div className="col-md-4">
+  <select
+  className="form-select"
+  name="labName"
+  value={form.labName || ""}
+  onChange={handleChange}
+  disabled={!form.courseId}
+>
+  <option value="">Select Lab Name</option>
+  {courses
+    .find((c) => c._id === form.courseId)?.subCourses?.map((sub, idx) => (
+      <option key={sub._id} value={sub._id}>
+  {sub.title}
+</option>
+
+    ))}
+</select>
+
+</div>
+
           <div className="col-md-4">
             <input
               className="form-control"
@@ -145,6 +197,7 @@ export default function LabAdminDashboard() {
               onChange={handleChange}
             />
           </div>
+
           <div className="col-md-2">
             <input
               className="form-control"

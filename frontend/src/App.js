@@ -14,6 +14,8 @@ import CertificateViewer from "./components/CertificateViewer";
 import AdminCertificatesView from "./components/admin/AdminCertificatesView";
 import TestWorkshopsPage from "./components/TestWorkshopsPage";
 import StudentProfilePage from "./components/StudentProfilePage";
+import Resume from "./components/Resume"
+
 
 /* ── Admin ── */
 import AdminLogin         from "./components/admin/AdminLogin";
@@ -59,7 +61,8 @@ function App() {
         <Route path="/intro" component={IntroVideo} />
         <Route path="/test/:courseId/:subCourseIdx" component={TestWorkshopsPage} />
         <Route path="/profile" component={StudentProfilePage} />
-   
+        <Route path="/resume" component={Resume}/>
+            
 
         {/* 🟡 Employee Auth */}
         <Route exact path="/employee/login" component={EmpLogin} />
@@ -129,6 +132,7 @@ function App() {
                 <Route path="/admin/employees/:id" component={EmployeeForm} />
                 <Route path="/admin/certificates/:userId" component={AdminCertificatesView} />
                 <Route path="/admin/workshops" component={AdminWorkshops} />
+                <Route path="/admin/resume/:userId" component={Resume} />
 
 
                 

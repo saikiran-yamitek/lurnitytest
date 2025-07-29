@@ -23,6 +23,7 @@ import demoRoutes from './routes/demo.js';
 import workshopRoutes from "./routes/workshop.js";
 
 
+
 dotenv.config();
 
 const app = express();
@@ -49,6 +50,7 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/gemini', geminiRoutes); 
 app.use('/api/demo', demoRoutes); 
 app.use("/api/workshops", workshopRoutes);
+
 
 
 /* HTTP + Socket.IO Server */
