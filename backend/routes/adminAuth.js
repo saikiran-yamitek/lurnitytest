@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log('🔐 Admin login request:', req.body); // Debug
+    
 
     if (!username || !password) {
       return res.status(400).json({ message: 'All fields are required' });

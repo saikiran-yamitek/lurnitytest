@@ -15,6 +15,7 @@ import AdminCertificatesView from "./components/admin/AdminCertificatesView";
 import TestWorkshopsPage from "./components/TestWorkshopsPage";
 import StudentProfilePage from "./components/StudentProfilePage";
 import Resume from "./components/Resume"
+import StudentPlacementDrives from './components/StudentPlacementDrives'
 
 
 /* ── Admin ── */
@@ -42,6 +43,8 @@ import Certificates from "./components/Certificates";
 import IntroVideo from "./components/IntroVideo";
 import LabAdminDashboard from "./components/employee/LabAdminDashboard";
 import InchargeDashboard from "./components/employee/InchargeDashboard";
+import PlacementDashboard from './components/employee/PlacementDashboard';
+
 
 
 function App() {
@@ -62,6 +65,7 @@ function App() {
         <Route path="/test/:courseId/:subCourseIdx" component={TestWorkshopsPage} />
         <Route path="/profile" component={StudentProfilePage} />
         <Route path="/resume" component={Resume}/>
+        <Route path="/placement" component={StudentPlacementDrives} />
             
 
         {/* 🟡 Employee Auth */}
@@ -113,7 +117,12 @@ function App() {
           component={InstructorHome}
         />
         <EmpRoute path="/employee/labadmin" roles={["lab administrator", "super"]} component={LabAdminDashboard} />
-
+        <EmpRoute
+          exact
+          path="/employee/placement"
+          roles={["placement", "super"]}
+          component={PlacementDashboard}
+        />
         {/* 🔒 Admin Protected Routes */}
         <AdminProtectedRoute
           path="/admin"

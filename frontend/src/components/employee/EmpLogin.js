@@ -16,11 +16,13 @@ export default function EmpLogin() {
       const info = await empLogin(u, p); // {name, role}
       console.log("LOGIN RESPONSE:", info); 
       localStorage.setItem("empInfo", JSON.stringify(info));
+      console.log(JSON.stringify(info))
       if (info.role === "content" || info.role === "super")
         hist.push("/employee/content");
       else if (info.role === "support") hist.push("/employee/support");
       else if (info.role === "lab administrator") hist.push("/employee/labadmin");
       else if (info.role === "lab incharge") hist.push("/employee/labincharge");
+      else if (info.role === "placement") hist.push("/employee/placement");
       else hist.push("/employee/instructor");
     } catch (err) {
       alert(err.message);

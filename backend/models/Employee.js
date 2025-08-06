@@ -9,7 +9,7 @@ const empSchema = new mongoose.Schema(
     password: { type: String, required: true },
     phone:    { type: String },
     gender:   { type: String, enum: ["Male", "Female", "Other"] },
-    role: { type: String, enum: ["super", "content", "support", "instructor","lab administrator", "lab incharge"], default: "content" }
+    role: { type: String, enum: ["super", "content", "support", "instructor","lab administrator", "lab incharge","placement"], default: "content" }
   },
   { timestamps: true }
 );

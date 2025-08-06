@@ -37,6 +37,7 @@ export default function EmployeeForm(){
             <option value="instructor">Instructor</option>
               <option value="lab administrator">Lab Administrator</option>
   <option value="lab incharge">Lab Incharge</option>
+  <option value="placement">Placement</option>
           </select>
         </label>
         <button className="save-btn">Save</button>

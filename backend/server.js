@@ -21,6 +21,8 @@ import certificateRoutes from './routes/certificates.js';
 import geminiRoutes from './routes/gemini.js';
 import demoRoutes from './routes/demo.js';
 import workshopRoutes from "./routes/workshop.js";
+import placementRoutes from './routes/placementRoutes.js';
+import companyRoutes from './routes/companies.js';
 
 
 
@@ -50,6 +52,9 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/gemini', geminiRoutes); 
 app.use('/api/demo', demoRoutes); 
 app.use("/api/workshops", workshopRoutes);
+app.use('/api/placements', placementRoutes);
+app.use('/api/companies', companyRoutes);
+
 
 
 

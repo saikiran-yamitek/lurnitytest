@@ -68,6 +68,8 @@ router.get('/homepage', async (req, res) => {
   }
 });
 
+
+
 router.get("/get-resume-data", async (req, res) => {
   try {
     const raw = req.headers.authorization || "";
@@ -142,7 +144,7 @@ router.put("/:id/profile", async (req, res) => {
 });
 
 // GET /api/user/:id/profile
-// GET /api/user/:id/profile
+// GET /api/user/:id/profile - Updated version
 router.get('/:id/profile', async (req, res) => {
   try {
     const { id } = req.params;
@@ -152,7 +154,17 @@ router.get('/:id/profile', async (req, res) => {
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    res.json(user);
+    // Transform data to match frontend structure
+    const profileData = {
+      ...user,
+      tenthStandard: {
+        ...user.tenthStandard,
+        board: user.tenthStandard?.tenthBoard // Map tenthBoard to board
+      },
+      // Add other transformations as needed
+    };
+
+    res.json(profileData);
   } catch (error) {
     console.error('Fetch Profile Error:', error);
     res.status(500).json({ message: 'Server error.' });

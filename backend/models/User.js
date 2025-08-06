@@ -20,6 +20,19 @@ const userSchema = new mongoose.Schema(
   github: { type: String },
   photoURL: { type: String }, // store image URL or base64 string
   resumeURL: { type: String },
+  // Add these to your userSchema in User.js
+placementStatus: { 
+  type: String, 
+  enum: ['placed', 'not_placed', 'seeking'], 
+  default: 'not_placed' 
+},
+placementDetails: {
+  companyName: { type: String },
+  jobTitle: { type: String },
+  package: { type: Number }, // in LPA
+  joiningDate: { type: Date },
+  offerLetterURL: { type: String }
+},
   projects: [
   {
     title: String,
@@ -29,6 +42,7 @@ const userSchema = new mongoose.Schema(
 
   
   isWhatsAppSame: { type: String, enum: ["Yes", "No", "Don't have WhatsApp"], default: "Yes" },
+  whatsappPhone: { type: String },
   
 
 
@@ -49,7 +63,7 @@ const userSchema = new mongoose.Schema(
     type: String,
     enum: ["Yes", "No", "Don't have WhatsApp"],
     default: "Yes"
-  }
+  },whatsappPhone: { type: String },
 },currentAddress: {
   addressLine1: { type: String },
   addressLine2: { type: String },

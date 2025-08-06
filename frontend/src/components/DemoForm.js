@@ -71,7 +71,6 @@ export default function DemoForm({ onClose }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
 
-      // Show popup and close form
       setShowSuccessPopup(true);
       setTimeout(() => {
         setShowSuccessPopup(false);
