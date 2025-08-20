@@ -5,10 +5,11 @@ import Select from "react-select";
 import {
   FiUser, FiPhone, FiMapPin, FiCode, FiHeart, FiBook,
   FiBriefcase, FiAward, FiChevronDown, FiChevronRight, FiSave,
-  FiUpload, FiCamera, FiTrash2, FiHome, FiArrowLeft, FiCrop, FiCheck, FiX, FiRotateCw, FiZoomIn, FiZoomOut ,
+  FiUpload, FiCamera, FiTrash2, FiHome,   FiCheck, FiX, FiRotateCw, FiZoomIn, FiZoomOut ,
 } from "react-icons/fi";
 import logo from "../assets/LURNITY.jpg";
 import "./StudentProfilePage.css";
+
 
 
 const sections = {
@@ -29,6 +30,8 @@ const sections = {
   "Projects & Achievements": ["Projects", "Achievements"],
 };
 
+
+
 const StudentProfilePage = () => {
   const hist = useHistory();
   const [selectedSection, setSelectedSection] = useState({
@@ -37,6 +40,8 @@ const StudentProfilePage = () => {
   });
   
   const [collapsed, setCollapsed] = useState({});
+  const [showGeminiDisclaimer, setShowGeminiDisclaimer] = useState(false);
+  const [hasShownGeminiDisclaimer, setHasShownGeminiDisclaimer] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -131,6 +136,8 @@ const [cropSettings, setCropSettings] = useState({
 const [isDragging, setIsDragging] = useState(false);
 const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 const cropCanvasRef = useRef(null);
+const [notification, setNotification] = useState(null);
+
 
   const userId = localStorage.getItem("userId");
 
@@ -145,12 +152,15 @@ const cropCanvasRef = useRef(null);
           ...data,
           name: data.name || data.ircName || "",
           geminiApiKey: data.geminiApiKey || "",
-          photo: null,
-          photoURL: data.photoURL || "",
+          photo: data.photoURL, // Store the base64 string here
+          photoURL: data.photoURL ? 
+            (data.photoURL.startsWith('data:image') ? 
+              data.photoURL : 
+              `data:image/jpeg;base64,${data.photoURL}`) : "",
           parentGuardian: {
             ...formData.parentGuardian,
             ...data.parentGuardian,
-            whatsappPhone: data.parentGuardian?.whatsappPhone || "" // Add this line
+            whatsappPhone: data.parentGuardian?.whatsappPhone || ""
           }
         });
       }
@@ -171,63 +181,61 @@ const cropCanvasRef = useRef(null);
   const file = e.target.files[0];
   if (file) {
     const reader = new FileReader();
-    reader.onload = () => {
-      setTempImageForCrop(reader.result);
-      setShowCropper(true);
-      // Reset crop settings
-      setCropSettings({
-        x: 50,
-        y: 50,
-        width: 200,
-        height: 200,
-        zoom: 1,
-        rotation: 0
-      });
+    reader.onload = (event) => {
+      // Create a temporary URL for preview
+      const tempUrl = URL.createObjectURL(file);
+      
+      setFormData(prev => ({
+        ...prev,
+        photo: event.target.result, // This stores the base64 string
+        photoFile: file, // Keep the file reference
+        photoURL: tempUrl // Temporary URL for preview
+      }));
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); // Read as base64
   }
 };
 
   const handleSave = async () => {
-    try {
-      const { email, ...updatableFields } = formData;
-      const response = await fetch(`http://localhost:7700/api/user/${userId}/profile`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatableFields),
-      });
+  try {
+    // Prepare the data to send
+    const dataToSend = {
+      ...formData,
+      // Don't send the temporary photoURL or File object
+      photoURL: formData.photo, // Send the base64 string instead
+    };
+    delete dataToSend.photoFile; // Remove the File object
+    
+    const response = await fetch(`http://localhost:7700/api/user/${userId}/profile`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dataToSend),
+    });
 
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.message || "Save failed");
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message || "Save failed");
 
-      // Show success modal
-      const modal = document.createElement('div');
-      modal.className = 'success-modal';
-      modal.innerHTML = `
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-          <h2>🎉 Success</h2>
-          <p>Profile saved successfully!</p>
-        </div>
-      `;
-      document.body.appendChild(modal);
-      setTimeout(() => document.body.removeChild(modal), 3000);
-    } catch (err) {
-      console.error("Save Error:", err);
-      // Show error modal
-      const modal = document.createElement('div');
-      modal.className = 'success-modal';
-      modal.innerHTML = `
-        <div class="modal-backdrop"></div>
-        <div class="modal-content error">
-          <h2>❌ Error</h2>
-          <p>Failed to save profile. Please try again.</p>
-        </div>
-      `;
-      document.body.appendChild(modal);
-      setTimeout(() => document.body.removeChild(modal), 3000);
-    }
-  };
+    // Show success notification
+    setNotification({
+      type: 'success',
+      title: 'Success',
+      message: 'Profile saved successfully!',
+      icon: '🎉'
+    });
+    
+    // Auto-hide after 3 seconds
+    setTimeout(() => setNotification(null), 3000);
+  } catch (err) {
+    console.error("Save Error:", err);
+    setNotification({
+      type: 'error',
+      title: 'Error',
+      message: 'Failed to save profile. Please try again.',
+      icon: '❌'
+    });
+    setTimeout(() => setNotification(null), 3000);
+  }
+};
 
   const handleCropMouseDown = (e) => {
   setIsDragging(true);
@@ -303,17 +311,39 @@ const getCroppedImage = async () => {
 };
 
 const handleCropComplete = async () => {
-  const croppedBlob = await getCroppedImage();
-  if (croppedBlob) {
-    const croppedUrl = URL.createObjectURL(croppedBlob);
-    setFormData((prev) => ({
-      ...prev,
-      photo: croppedBlob,
-      photoURL: croppedUrl,
-    }));
+  try {
+    const croppedBlob = await getCroppedImage();
+    if (croppedBlob) {
+      // Convert the cropped blob to base64
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64String = event.target.result;
+        
+        // Revoke previous URL if exists
+        if (formData.photoURL.startsWith('blob:')) {
+          URL.revokeObjectURL(formData.photoURL);
+        }
+        
+        setFormData(prev => ({
+          ...prev,
+          photo: base64String, // Store base64 string
+          photoURL: base64String, // Use base64 for preview
+        }));
+      };
+      reader.readAsDataURL(croppedBlob);
+    }
+  } catch (error) {
+    console.error("Error cropping image:", error);
+    setNotification({
+      type: 'error',
+      title: 'Error',
+      message: 'Failed to process image',
+      icon: '❌'
+    });
+  } finally {
+    setShowCropper(false);
+    setTempImageForCrop(null);
   }
-  setShowCropper(false);
-  setTempImageForCrop(null);
 };
 
 const handleCropCancel = () => {
@@ -341,16 +371,24 @@ const handleCropCancel = () => {
 
           <div className="photo-upload-container">
             <div className="photo-preview-wrapper">
-              <div className="photo-preview-container">
-                {formData.photoURL ? (
-                  <img src={formData.photoURL} alt="Preview" className="photo-preview" />
-                ) : (
-                  <div className="photo-placeholder">
-                    <FiUser size={48} />
-                  </div>
-                )}
-                <div className="photo-overlay"></div>
-              </div>
+<div className="photo-preview-container">
+  {formData.photoURL ? (
+    <img 
+      src={formData.photoURL} 
+      alt="Preview" 
+      className="photo-preview" 
+      onError={(e) => {
+        e.target.onerror = null; // Prevent infinite loop
+        e.target.src = ''; // Clear invalid src
+      }}
+    />
+  ) : (
+    <div className="photo-placeholder">
+      <FiUser size={48} />
+    </div>
+  )}
+  <div className="photo-overlay"></div>
+</div>
             </div>
             <div className="photo-actions">
               <label htmlFor="photo-upload" className="glass-btn primary">
@@ -372,51 +410,68 @@ const handleCropCancel = () => {
           </div>
 
           <div className="modern-form-grid">
-            {[
-              ["First Name", "firstName", "text"],
-              ["Last Name", "lastName", "text"],
-              ["Name on IRC Certificate", "name", "text"],
-              ["Gender", "gender", "select"],
-              ["Communication Language", "communicationLanguage", "text"],
-              ["Teaching Language", "teachingLanguage", "text"],
-              ["Date of Birth", "dateOfBirth", "date"],
-              ["LinkedIn", "linkedIn", "text"],
-              ["Twitter", "twitter", "text"],
-              ["GitHub", "github", "text"],
-              ["Gemini API Key", "geminiApiKey", "text"],
-              ["Resume URL", "resumeURL", "text"],
-            ].map(([label, name, type]) => (
-              <div className="glass-form-group" key={name}>
-                <label>{label}</label>
-                {type === "select" ? (
-                  <select 
-                    name={name} 
-                    value={formData[name]} 
-                    onChange={handleInputChange}
-                    className="glass-input"
-                  >
-                    <option value="">Select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                    <option value="Prefer Not to Say">Prefer Not to Say</option>
-                  </select>
-                ) : (
-                  <input
-                    type={type}
-                    name={name}
-                    value={
-                      name === "dateOfBirth" && formData[name]
-                        ? formData[name].substring(0, 10)
-                        : formData[name]
-                    }
-                    onChange={handleInputChange}
-                    className="glass-input"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+  {[
+    ["First Name", "firstName", "text", true], // Added 4th parameter for lock-sensitive fields
+    ["Last Name", "lastName", "text", true],
+    ["Name on IRC Certificate", "name", "text"],
+    ["Gender", "gender", "select"],
+    ["Communication Language", "communicationLanguage", "text"],
+    ["Teaching Language", "teachingLanguage", "text"],
+    ["Date of Birth", "dateOfBirth", "date"],
+    ["LinkedIn", "linkedIn", "text"],
+    ["Twitter", "twitter", "text"],
+    ["GitHub", "github", "text"],
+    ["Resume URL", "resumeURL", "text"],
+  ].map(([label, name, type, isLockable]) => (
+    <div className="glass-form-group" key={name}>
+      <label>{label}</label>
+      {type === "select" ? (
+        <select 
+          name={name} 
+          value={formData[name]} 
+          onChange={handleInputChange}
+          className="glass-input"
+          disabled={isLockable && formData.profileLock === "locked"}
+        >
+          <option value="">Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+          <option value="Prefer Not to Say">Prefer Not to Say</option>
+        </select>
+      ) : (
+        <input
+          type={type}
+          name={name}
+          value={
+            name === "dateOfBirth" && formData[name]
+              ? formData[name].substring(0, 10)
+              : formData[name]
+          }
+          onChange={handleInputChange}
+          className="glass-input"
+          disabled={isLockable && formData.profileLock === "locked"}
+        />
+      )}
+    </div>
+  ))}
+  <div className="glass-form-group" key="geminiApiKey">
+    <label>Gemini API Key</label>
+    <input
+      type="text"
+      name="geminiApiKey"
+      value={formData.geminiApiKey}
+      onChange={handleInputChange}
+      className="glass-input"
+      onFocus={() => {
+        if (!hasShownGeminiDisclaimer) {
+          setShowGeminiDisclaimer(true);
+          setHasShownGeminiDisclaimer(true);
+        }
+      }}
+    />
+  </div>
+</div>
 
           <div className="form-actions">
             <button className="save-btn" onClick={handleSave}>
@@ -508,12 +563,13 @@ if (category === "Basic Details" && item === "Student Contact Details") {
         <div className="glass-form-group">
           <label>Email ID</label>
           <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className="glass-input"
-          />
+  type="email"
+  name="email"
+  value={formData.email}
+  onChange={handleInputChange}
+  className="glass-input"
+  disabled={formData.profileLock === "locked"}
+/>
         </div>
       </div>
 
@@ -2041,6 +2097,90 @@ if (category === "Basic Details" && item === "Student Contact Details") {
         </defs>
       </svg>
     </div>
+    {notification && (
+  <div className="notification-modal">
+    <div className="notification-backdrop" onClick={() => setNotification(null)} />
+    <div className={`notification-content notification-${notification.type}`}>
+      <h2>
+        <span>{notification.icon}</span>
+        {notification.title}
+      </h2>
+      <p>{notification.message}</p>
+      <button 
+        className="glass-btn primary"
+        onClick={() => setNotification(null)}
+        style={{ width: '100%' }}
+      >
+        Dismiss
+      </button>
+    </div>
+  </div>
+)}
+    {showGeminiDisclaimer && (
+  <div className="disclaimer-modal-overlay">
+    <div className="disclaimer-modal">
+      <div className="disclaimer-header">
+        <h3>Gemini API Key Disclaimer</h3>
+      </div>
+      
+      <div className="disclaimer-content">
+        <div className="disclaimer-item">
+          <div className="disclaimer-icon">📜</div>
+          <p>By entering your Gemini API key, you agree to:</p>
+        </div>
+        
+        <ul className="disclaimer-list">
+          <li className="disclaimer-list-item">
+            <div className="list-icon">🔹</div>
+            <a 
+              href="https://developers.google.com/terms" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="disclaimer-link"
+            >
+              Google's API Terms of Service
+            </a>
+          </li>
+          <li className="disclaimer-list-item">
+            <div className="list-icon">🔹</div>
+            <a 
+              href="https://ai.google.dev/gemini-api/terms" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="disclaimer-link"
+            >
+              Gemini API Additional Terms
+            </a>
+          </li>
+          <li className="disclaimer-list-item">
+            <div className="list-icon">🔹</div>
+            <a 
+              href="https://policies.google.com/privacy" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="disclaimer-link"
+            >
+              Google's Privacy Policy
+            </a>
+          </li>
+        </ul>
+        
+        <div className="disclaimer-note">
+          <p>You are responsible for any usage charges and compliance with Google's policies.</p>
+        </div>
+      </div>
+      
+      <div className="disclaimer-actions">
+        <button 
+          className="glass-btn primary" 
+          onClick={() => setShowGeminiDisclaimer(false)}
+        >
+          I Understand
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 };

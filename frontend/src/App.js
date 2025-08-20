@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 /* ── Public Pages ── */
 import LandingPage        from "./components/LandingPage";
-import Register           from "./components/Register";
 import Login              from "./components/Login";
 import Home               from "./components/Home";
 import SandboxPlayground  from "./components/SandboxPlayground";
@@ -16,6 +16,8 @@ import TestWorkshopsPage from "./components/TestWorkshopsPage";
 import StudentProfilePage from "./components/StudentProfilePage";
 import Resume from "./components/Resume"
 import StudentPlacementDrives from './components/StudentPlacementDrives'
+import PracticePage  from "./components/PracticePage";
+import CareersPage from './components/CareersPage'
 
 
 /* ── Admin ── */
@@ -30,6 +32,8 @@ import Settings           from "./components/admin/Settings";
 import EmployeeForm       from "./components/admin/EmployeeForm";
 import Employees          from "./components/admin/Employees";
 import AdminWorkshops from "./components/admin/AdminWorkshops";
+import CohortsManagement from "./components/admin/CohortsManagement"
+import Hiring from "./components/admin/Hiring"
 
 
 /* ── Employee (role‑based) ── */
@@ -40,20 +44,23 @@ import SupportDashboard   from "./components/employee/SupportDashboard";
 import InstructorHome     from "./components/employee/InstructorHome";
 import ContentCourseForm  from "./components/employee/ContentCourseForm";
 import Certificates from "./components/Certificates"; 
-import IntroVideo from "./components/IntroVideo";
+
 import LabAdminDashboard from "./components/employee/LabAdminDashboard";
 import InchargeDashboard from "./components/employee/InchargeDashboard";
 import PlacementDashboard from './components/employee/PlacementDashboard';
 
 
 
+
+
 function App() {
   return (
+    <GoogleOAuthProvider clientId="322821846367-514od8575kmib97gji4q88ntskndmo9b.apps.googleusercontent.com">
     <BrowserRouter>
       <Switch>
         {/* 🟢 Public Routes */}
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/register" component={Register} />
+        <Route exact path="/register" component={Login} />
         <Route exact path="/login" component={Login} />
         <Route path="/home" component={Home} />
         <Route path="/certificates" component={Certificates} />
@@ -61,11 +68,14 @@ function App() {
         <Route path="/watch/:courseId/:subIdx/:vidIdx" component={VideoPlayer} />
         <Route path="/sandbox" component={SandboxPlayground} />
         <Route path="/certificate/view/:certId" component={CertificateViewer} />
-        <Route path="/intro" component={IntroVideo} />
+        
         <Route path="/test/:courseId/:subCourseIdx" component={TestWorkshopsPage} />
         <Route path="/profile" component={StudentProfilePage} />
         <Route path="/resume" component={Resume}/>
         <Route path="/placement" component={StudentPlacementDrives} />
+        <Route path="/practice/:courseId/:subIdx/:vidIdx" component={PracticePage} />
+        <Route path="/careers" component={CareersPage} />
+        
             
 
         {/* 🟡 Employee Auth */}
@@ -142,6 +152,8 @@ function App() {
                 <Route path="/admin/certificates/:userId" component={AdminCertificatesView} />
                 <Route path="/admin/workshops" component={AdminWorkshops} />
                 <Route path="/admin/resume/:userId" component={Resume} />
+                <Route path="/admin/cohorts" component={CohortsManagement} />
+                <Route path="/admin/hiring" component={Hiring} />
 
 
                 
@@ -156,6 +168,7 @@ function App() {
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
+    </GoogleOAuthProvider>
   );
 }
 

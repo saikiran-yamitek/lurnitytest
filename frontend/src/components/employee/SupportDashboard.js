@@ -1,4 +1,4 @@
-// ✅ Updated SupportDashboard.js with Tabs for Tickets and Demos
+// ✅ Updated SupportDashboard.js with Delete Popup Modal for Feedbacks
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { listTickets, updateTicket } from "../../services/ticketApi";
@@ -13,14 +13,32 @@ export default function SupportDashboard({ emp }) {
   const [demos, setDemos] = useState([]);
   const [welcome, setWelcome] = useState(true);
   const [modal, setModal] = useState({ open: false, note: "", ticket: null });
+  const [deleteModal, setDeleteModal] = useState({ open: false, feedbackId: null });
   const [search, setSearch] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
   const history = useHistory();
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     (async () => {
       setTickets(await listTickets());
       setDemos(await listDemos());
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      setTickets(await listTickets());
+      setDemos(await listDemos());
+
+      const feedbackRes = await fetch("http://localhost:7700/api/feedback");
+      const feedbackJson = await feedbackRes.json();
+      setFeedbacks(feedbackJson);
+
+      const courseRes = await fetch("http://localhost:7700/api/courses");
+      const courseJson = await courseRes.json();
+      setCourses(courseJson);
     })();
   }, []);
 
@@ -75,6 +93,48 @@ export default function SupportDashboard({ emp }) {
     history.replace("/employee/login");
   };
 
+  const getCourseDetails = (courseId, subIndex, videoIndex) => {
+    const course = courses.find((c) => c._id === courseId);
+    if (!course) return {};
+
+    const subCourse = course.subCourses?.[subIndex];
+    const video = subCourse?.videos?.[videoIndex];
+
+    return {
+      courseTitle: course.title || "Unknown Course",
+      subCourseTitle: subCourse?.title || "Unknown SubCourse",
+      videoTitle: video?.title || "Unknown Video"
+    };
+  };
+
+  // Open delete modal
+  const openDeleteModal = (id) => {
+    setDeleteModal({ open: true, feedbackId: id });
+  };
+
+  // Confirm delete
+  const confirmDeleteFeedback = async () => {
+    const id = deleteModal.feedbackId;
+    try {
+      const res = await fetch(`http://localhost:7700/api/feedback/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setFeedbacks((prev) => prev.filter((f) => f._id !== id));
+        setPopupMessage("✅ Feedback deleted successfully!");
+        setTimeout(() => setPopupMessage(""), 3000);
+      } else {
+        alert(data.error || "❌ Failed to delete feedback");
+      }
+    } catch (err) {
+      alert("❌ Error deleting feedback");
+    } finally {
+      setDeleteModal({ open: false, feedbackId: null });
+    }
+  };
+
   const openTickets = tickets.filter((t) => t.status !== "Resolved");
   const resolvedTickets = tickets
     .filter((t) => t.status === "Resolved")
@@ -89,6 +149,7 @@ export default function SupportDashboard({ emp }) {
 
   return (
     <div className="cm-shell">
+      {/* HEADER */}
       <header className="cm-header shadow-sm">
         <img src={logo} alt="Lurnity" className="cm-logo" />
         <h3 className="cm-title flex-grow-1">Support Desk</h3>
@@ -107,35 +168,27 @@ export default function SupportDashboard({ emp }) {
         </div>
       </header>
 
+      {/* MAIN */}
       <main className="cm-main container-fluid p-4">
+        {/* TABS */}
         <div className="tabs mb-4">
-          <button
-            className={`tab-btn ${activeTab === "tickets" ? "active" : ""}`}
-            onClick={() => setActiveTab("tickets")}
-          >
-            Tickets
-          </button>
-          <button
-            className={`tab-btn ${activeTab === "demos" ? "active" : ""}`}
-            onClick={() => setActiveTab("demos")}
-          >
-            Demos
-          </button>
+          <button className={`tab-btn ${activeTab === "tickets" ? "active" : ""}`} onClick={() => setActiveTab("tickets")}>Tickets</button>
+          <button className={`tab-btn ${activeTab === "demos" ? "active" : ""}`} onClick={() => setActiveTab("demos")}>Demos</button>
+          <button className={`tab-btn ${activeTab === "feedbacks" ? "active" : ""}`} onClick={() => setActiveTab("feedbacks")}>Feedbacks</button>
         </div>
 
+        {/* TICKETS TAB */}
         {activeTab === "tickets" && (
           <>
             <h4 className="fw-semibold mb-4">Open Tickets</h4>
-            <div className="list-group">
+            <div className="list-group feedback-section">
               {openTickets.map((t) => (
                 <div key={t._id} className="list-group-item">
                   <div className="d-flex justify-content-between">
                     <strong>{t.subject}</strong>
                     <span className="badge bg-warning text-dark">{t.priority}</span>
                   </div>
-                  <small className="text-muted">
-                    {t.category} • {t.userEmail}
-                  </small>
+                  <small className="text-muted">{t.category} • {t.userEmail}</small>
                   <p className="mt-2 mb-3">{t.description}</p>
                   <button className="btn btn-sm btn-success" onClick={() => openModal(t)}>
                     Mark Resolved
@@ -184,6 +237,7 @@ export default function SupportDashboard({ emp }) {
           </>
         )}
 
+        {/* DEMOS TAB */}
         {activeTab === "demos" && (
           <>
             <h4 className="fw-semibold mb-3">New Demo Requests</h4>
@@ -218,15 +272,81 @@ export default function SupportDashboard({ emp }) {
             </div>
           </>
         )}
+
+        {/* FEEDBACK TAB */}
+        {activeTab === "feedbacks" && (
+          <>
+            <h4 className="fw-semibold mb-4">User Feedbacks</h4>
+            <div className="feedback-wrapper">
+              {feedbacks.map((f) => (
+                <div key={f._id} className="list-group-item feedback-section">
+                  <div className="feedback-row d-flex justify-content-between align-items-center">
+                    <div>
+                      <span className="feedback-label">User:</span>
+                      <span>{f.userId?.name || "Unknown User"}</span>
+                    </div>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={() => openDeleteModal(f._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+
+                  {(() => {
+                    const { courseTitle, subCourseTitle, videoTitle } = getCourseDetails(
+                      f.courseId,
+                      f.subIndex,
+                      f.videoIndex
+                    );
+                    return (
+                      <>
+                        <div className="feedback-row">
+                          <span className="feedback-label">Course:</span>
+                          <span>{courseTitle}</span>
+                        </div>
+                        <div className="feedback-row">
+                          <span className="feedback-label">SubCourse:</span>
+                          <span>{subCourseTitle}</span>
+                        </div>
+                        <div className="feedback-row">
+                          <span className="feedback-label">Video:</span>
+                          <span>{videoTitle}</span>
+                        </div>
+                      </>
+                    );
+                  })()}
+
+                  <div className="feedback-row">
+                    <span className="feedback-label">Rating:</span>
+                    <span className="feedback-stars">
+                      {Array.from({ length: f.rating }, (_, i) => (
+                        <span key={i}>⭐</span>
+                      ))}
+                    </span>
+                  </div>
+
+                  <div className="feedback-comment">
+                    <strong>Comment:</strong>
+                    <p className="mb-0 mt-1">{f.comment}</p>
+                  </div>
+                </div>
+              ))}
+
+              {feedbacks.length === 0 && (
+                <div className="text-muted p-4 text-center w-100">No feedbacks available</div>
+              )}
+            </div>
+          </>
+        )}
       </main>
 
+      {/* WELCOME OVERLAY */}
       {welcome && (
         <div className="cm-welcome-overlay" onClick={() => setWelcome(false)}>
           <div className="cm-welcome-box shadow-lg">
             <h2 className="mb-2">Welcome, {emp.name}!</h2>
-            <p className="mb-4">
-              Track open tickets, manage demos, and help students succeed.
-            </p>
+            <p className="mb-4">Track open tickets, manage demos, and help students succeed.</p>
             <button className="btn btn-success px-4" onClick={() => setWelcome(false)}>
               Let’s get started
             </button>
@@ -234,13 +354,10 @@ export default function SupportDashboard({ emp }) {
         </div>
       )}
 
+      {/* RESOLUTION MODAL */}
       {modal.open && (
         <div className="cm-welcome-overlay" onClick={closeModal}>
-          <div
-            className="cm-welcome-box shadow-lg"
-            style={{ maxWidth: 520 }}
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="cm-welcome-box shadow-lg" style={{ maxWidth: 520 }} onClick={(e) => e.stopPropagation()}>
             <h4 className="mb-3">Resolution Note</h4>
             <textarea
               className="form-control mb-3"
@@ -261,11 +378,30 @@ export default function SupportDashboard({ emp }) {
         </div>
       )}
 
+      {/* DELETE CONFIRMATION MODAL */}
+      {deleteModal.open && (
+        <div className="cm-welcome-overlay" onClick={() => setDeleteModal({ open: false, feedbackId: null })}>
+          <div className="cm-welcome-box shadow-lg" style={{ maxWidth: 400 }} onClick={(e) => e.stopPropagation()}>
+            <h4 className="mb-3">Confirm Delete</h4>
+            <p>Are you sure you want to delete this feedback?</p>
+            <div className="d-flex justify-content-end gap-2 mt-3">
+              <button
+                className="btn btn-light"
+                onClick={() => setDeleteModal({ open: false, feedbackId: null })}
+              >
+                Cancel
+              </button>
+              <button className="btn btn-danger" onClick={confirmDeleteFeedback}>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* SUCCESS POPUP */}
       {popupMessage && (
-        <div
-          className="position-fixed bottom-0 end-0 m-4 p-3 bg-success text-white shadow rounded"
-          style={{ zIndex: 1055 }}
-        >
+        <div className="position-fixed bottom-0 end-0 m-4 p-3 bg-success text-white shadow rounded" style={{ zIndex: 1055 }}>
           {popupMessage}
         </div>
       )}

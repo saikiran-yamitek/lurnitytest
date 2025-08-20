@@ -198,7 +198,7 @@ Create a responsive design that adapts gracefully to different screen sizes.
           </p>
         </div>
 
-        <h2>EDUCATION</h2>
+        <h2 className="headings">EDUCATION</h2>
         <div className="edu-entry">
           {user.bachelorsDegree?.degreeName && (
             <div className="edu-row">
@@ -243,7 +243,7 @@ Create a responsive design that adapts gracefully to different screen sizes.
 
         {includeWork && (
           <>
-            <h2>WORK EXPERIENCE</h2>
+            <h2 className="headings">WORK EXPERIENCE</h2>
             {user.experience?.length > 0 ? (
               user.experience.map((exp, i) => (
                 <div key={i}>
@@ -265,7 +265,7 @@ Create a responsive design that adapts gracefully to different screen sizes.
           </>
         )}
 
-        <h2>SKILLS</h2>
+        <h2 className="headings">SKILLS</h2>
         <ul className="ulskills">
           {[...new Set([...(user.currentExpertise?.knownSkills || []), ...(user.completedSubcourses || [])])].map((skill, idx) => (
             <li className="liskills" key={idx}>
@@ -275,7 +275,7 @@ Create a responsive design that adapts gracefully to different screen sizes.
           {user.currentExpertise?.otherSkills && <li>{user.currentExpertise.otherSkills}</li>}
         </ul>
 
-        <h2>PROJECTS</h2>
+        <h2 className="headings">PROJECTS</h2>
         {projects.length > 0 ? (
           projects.map((proj, idx) => (
             <div key={idx} className="project-block">
@@ -291,7 +291,7 @@ Create a responsive design that adapts gracefully to different screen sizes.
           <p>No projects available yet.</p>
         )}
 
-        <h2>CERTIFICATIONS</h2>
+        <h2 className="headings">CERTIFICATIONS</h2>
         <ul>
           {(user.certifications || []).map((cert, idx) => (
             <li key={`cert-${idx}`}>{cert}</li>

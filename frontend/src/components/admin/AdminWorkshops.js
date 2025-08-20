@@ -1,8 +1,22 @@
-// AdminWorkshops.js
+// src/components/admin/AdminWorkshops.js
 import React, { useEffect, useState } from "react";
-import { FiEdit, FiTrash2, FiUsers, FiX } from "react-icons/fi";
+import { 
+  FiEdit, 
+  FiTrash2, 
+  FiUser, 
+  FiUsers, 
+  FiX, 
+  FiSettings,
+  FiMapPin,
+  FiClock,
+  FiUserCheck,
+  FiCalendar,
+  FiActivity,
+  FiBook
+} from "react-icons/fi";
 import { listWorkshops } from "../../services/workshopApi";
 import { listEmployees } from "../../services/adminApi";
+import "./AdminWorkshops.css";
 
 export default function AdminWorkshops() {
   const [workshops, setWorkshops] = useState([]);
@@ -11,25 +25,43 @@ export default function AdminWorkshops() {
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const [showStudentPopup, setShowStudentPopup] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const w = await listWorkshops();
-      const e = await listEmployees();
-      setIncharges(e.filter(emp => emp.role === "lab incharge"));
-      setWorkshops(w);
+      try {
+        const [w, e] = await Promise.all([listWorkshops(), listEmployees()]);
+        setIncharges(e.filter(emp => emp.role === "lab incharge"));
+        setWorkshops(w);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this workshop?")) return;
 
-    await fetch(`http://localhost:7700/api/workshops/${id}`, { method: "DELETE" });
-    setWorkshops(workshops.filter(w => w._id !== id));
+    try {
+      await fetch(`http://localhost:7700/api/workshops/${id}`, { method: "DELETE" });
+      setWorkshops(workshops.filter(w => w._id !== id));
+    } catch (error) {
+      console.error("Failed to delete workshop:", error);
+      alert("Failed to delete workshop. Please try again.");
+    }
   };
 
   const handleUpdate = async () => {
+    if (!editWorkshop.labName || !editWorkshop.labAddress || !editWorkshop.time) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
+      setSaving(true);
       const res = await fetch(`http://localhost:7700/api/workshops/${editWorkshop._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -41,7 +73,10 @@ export default function AdminWorkshops() {
       );
       setEditWorkshop(null);
     } catch (err) {
-      alert("❌ Failed to update");
+      console.error("Failed to update workshop:", err);
+      alert("Failed to update workshop. Please try again.");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -60,124 +95,352 @@ export default function AdminWorkshops() {
       setSelectedWorkshop(workshopId);
       setShowStudentPopup(true);
     } catch (err) {
-      alert("❌ Failed to fetch registered students");
-      console.error(err);
+      console.error("Failed to fetch students:", err);
+      alert("Failed to fetch registered students. Please try again.");
     }
   };
 
+  const formatDateTime = (dateString) => {
+    const date = new Date(dateString);
+    return {
+      date: date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      }),
+      time: date.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      })
+    };
+  };
+
+  if (loading) {
+    return (
+      <div className="workshops-page">
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading workshops...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="container py-4">
-      <h3 className="mb-4">All Scheduled Workshops</h3>
+    <div className="workshops-page">
+      {/* Page Header */}
+      <div className="page-header">
+        <div className="page-title-container">
+          <FiSettings className="page-icon" />
+          <h1 className="page-title">Workshop Management</h1>
+        </div>
+        <p className="page-subtitle">Manage lab workshops and student registrations</p>
+      </div>
 
-      <div className="row">
-        {workshops.map((w) => {
-          const registered = w.registeredStudents?.length || 0;
+      {/* Stats Cards */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <div className="stat-icon total">
+            <FiBook />
+          </div>
+          <div className="stat-content">
+            <h3>{workshops.length}</h3>
+            <p>Total Workshops</p>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon active">
+            <FiActivity />
+          </div>
+          <div className="stat-content">
+            <h3>{workshops.filter(w => new Date(w.time) > new Date()).length}</h3>
+            <p>Upcoming</p>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon registered">
+            <FiUsers />
+          </div>
+          <div className="stat-content">
+            <h3>{workshops.reduce((sum, w) => sum + (w.registeredStudents?.length || 0), 0)}</h3>
+            <p>Total Registrations</p>
+          </div>
+        </div>
+      </div>
 
-          return (
-            <div className="col-md-6 mb-4" key={w._id}>
-              <div className="card shadow-sm">
-                <div className="card-body">
-                  <h5 className="d-flex justify-content-between">
-                    {w.labName}
-                    <div className="d-flex gap-2">
-                      <button className="btn btn-sm btn-outline-primary" onClick={() => setEditWorkshop(w)}>
+      {/* Workshops Grid */}
+      <div className="workshops-container">
+        {workshops.length === 0 ? (
+          <div className="empty-state">
+            <FiBook className="empty-state-icon" />
+            <h3>No workshops scheduled</h3>
+            <p>Workshops will appear here once they are scheduled</p>
+          </div>
+        ) : (
+          <div className="workshops-grid">
+            {workshops.map((w, index) => {
+              const registered = w.registeredStudents?.length || 0;
+              const { date, time } = formatDateTime(w.time);
+              const isUpcoming = new Date(w.time) > new Date();
+
+              return (
+                <div 
+                  key={w._id} 
+                  className={`workshop-card ${isUpcoming ? 'upcoming' : 'past'}`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="workshop-header">
+                    <div className="workshop-title">
+                      <FiBook className="title-icon" />
+                      <h3>{w.labName}</h3>
+                    </div>
+                    <div className="workshop-actions">
+                      <button 
+                        className="action-btn edit-btn" 
+                        onClick={() => setEditWorkshop(w)}
+                        title="Edit Workshop"
+                      >
                         <FiEdit />
                       </button>
-                      <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(w._id)}>
+                      <button 
+                        className="action-btn delete-btn" 
+                        onClick={() => handleDelete(w._id)}
+                        title="Delete Workshop"
+                      >
                         <FiTrash2 />
                       </button>
                     </div>
-                  </h5>
-                  <p><strong>Address:</strong> {w.labAddress}</p>
-                  <p><strong>Time:</strong> {new Date(w.time).toLocaleString()}</p>
-                  <p><strong>Incharge:</strong> {typeof w.inchargeId === "object" ? w.inchargeId.name : incharges.find(i => i._id === w.inchargeId)?.name || "—"}</p>
-                  <p><strong>Registered Students:</strong> {registered}</p>
-                  <button className="btn btn-sm btn-outline-secondary" onClick={() => handleViewStudents(w._id)}>
-                    <FiUsers /> View Students
-                  </button>
+                  </div>
+
+                  <div className="workshop-content">
+                    <div className="workshop-info">
+                      <div className="info-item">
+                        <FiMapPin className="info-icon" />
+                        <div className="info-content">
+                          <span className="info-label">Address</span>
+                          <span className="info-value">{w.labAddress}</span>
+                        </div>
+                      </div>
+
+                      <div className="info-item">
+                        <FiCalendar className="info-icon" />
+                        <div className="info-content">
+                          <span className="info-label">Date</span>
+                          <span className="info-value">{date}</span>
+                        </div>
+                      </div>
+
+                      <div className="info-item">
+                        <FiClock className="info-icon" />
+                        <div className="info-content">
+                          <span className="info-label">Time</span>
+                          <span className="info-value">{time}</span>
+                        </div>
+                      </div>
+
+                      <div className="info-item">
+                        <FiUserCheck className="info-icon" />
+                        <div className="info-content">
+                          <span className="info-label">Incharge</span>
+                          <span className="info-value">
+                            {typeof w.inchargeId === "object" 
+                              ? w.inchargeId.name 
+                              : incharges.find(i => i._id === w.inchargeId)?.name || "Not assigned"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="workshop-stats">
+                      <div className="stat-item">
+                        <span className="stat-number">{registered}</span>
+                        <span className="stat-label">Registered Students</span>
+                      </div>
+                    </div>
+
+                    <button 
+                      className="view-students-btn" 
+                      onClick={() => handleViewStudents(w._id)}
+                    >
+                      <FiUsers />
+                      View Registered Students
+                    </button>
+                  </div>
+
+                  {isUpcoming && (
+                    <div className="upcoming-badge">
+                      <FiClock />
+                      Upcoming
+                    </div>
+                  )}
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        )}
       </div>
 
+      {/* Edit Workshop Modal */}
       {editWorkshop && (
-        <div className="modal-overlay" onClick={() => setEditWorkshop(null)}>
-          <div className="modal-student" onClick={(e) => e.stopPropagation()}>
-            <h5>Reschedule Workshop</h5>
-            <input
-              type="text"
-              className="form-control mb-2"
-              placeholder="Lab Name"
-              value={editWorkshop.labName}
-              onChange={(e) =>
-                setEditWorkshop({ ...editWorkshop, labName: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              className="form-control mb-2"
-              placeholder="Lab Address"
-              value={editWorkshop.labAddress}
-              onChange={(e) =>
-                setEditWorkshop({ ...editWorkshop, labAddress: e.target.value })
-              }
-            />
-            <input
-              type="datetime-local"
-              className="form-control mb-2"
-              value={editWorkshop.time.slice(0, 16)}
-              onChange={(e) =>
-                setEditWorkshop({ ...editWorkshop, time: e.target.value })
-              }
-            />
-            <div className="d-flex justify-content-end gap-2">
-              <button className="btn btn-secondary" onClick={() => setEditWorkshop(null)}>Cancel</button>
-              <button className="btn btn-primary" onClick={handleUpdate}>Update</button>
+        <div className="modal-backdrop">
+          <div className="modal-card edit-modal">
+            {saving && (
+              <div className="saving-overlay">
+                <div className="saving-content">
+                  <div className="saving-spinner"></div>
+                  <p>Updating workshop...</p>
+                </div>
+              </div>
+            )}
+
+            <div className="modal-header">
+              <h3>
+                <FiEdit className="modal-icon" />
+                Edit Workshop
+              </h3>
+              <button 
+                className="close-btn" 
+                onClick={() => setEditWorkshop(null)}
+              >
+                <FiX />
+              </button>
+            </div>
+
+            <div className="modal-content">
+              <div className="form-group">
+                <label className="form-label">
+                  <FiBook className="label-icon" />
+                  Lab Name *
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter lab name"
+                  value={editWorkshop.labName}
+                  onChange={(e) =>
+                    setEditWorkshop({ ...editWorkshop, labName: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <FiMapPin className="label-icon" />
+                  Lab Address *
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter lab address"
+                  value={editWorkshop.labAddress}
+                  onChange={(e) =>
+                    setEditWorkshop({ ...editWorkshop, labAddress: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <FiClock className="label-icon" />
+                  Date & Time *
+                </label>
+                <input
+                  type="datetime-local"
+                  className="form-control"
+                  value={editWorkshop.time.slice(0, 16)}
+                  onChange={(e) =>
+                    setEditWorkshop({ ...editWorkshop, time: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="modal-actions">
+              <button 
+                className="modal-btn cancel-btn" 
+                onClick={() => setEditWorkshop(null)}
+                disabled={saving}
+              >
+                Cancel
+              </button>
+              <button 
+                className="modal-btn save-btn" 
+                onClick={handleUpdate}
+                disabled={saving}
+              >
+                <FiEdit />
+                {saving ? "Updating..." : "Update Workshop"}
+              </button>
             </div>
           </div>
         </div>
       )}
 
+      {/* Students Modal */}
       {showStudentPopup && (
-        <div className="modal-overlay" onClick={() => setShowStudentPopup(false)}>
-          <div className="modal-student" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header-student">
-              <h5>Registered Students</h5>
-              <button
-                className="btn btn-sm btn-outline-dark"
+        <div className="modal-backdrop">
+          <div className="modal-card students-modal">
+            <div className="modal-header">
+              <h3>
+                <FiUsers className="modal-icon" />
+                Registered Students
+              </h3>
+              <button 
+                className="close-btn" 
                 onClick={() => setShowStudentPopup(false)}
               >
                 <FiX />
               </button>
             </div>
-            <div className="modal-body-student">
+
+            <div className="modal-content">
               {selectedStudents.length === 0 ? (
-                <p>No students registered.</p>
+                <div className="empty-students">
+                  <FiUsers className="empty-icon" />
+                  <h4>No students registered</h4>
+                  <p>Students will appear here once they register for this workshop</p>
+                </div>
               ) : (
-                <table className="table table-striped small">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Phone</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {selectedStudents.map((entry) => (
-                      <tr key={entry._id}>
-                        <td>{entry.name}</td>
-                        <td>{entry.email}</td>
-                        <td>{entry.phone}</td>
-                        <td><span className="badge bg-success">Registered</span></td>
+                <div className="students-table-container">
+                  <table className="students-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {selectedStudents.map((entry, index) => (
+                        <tr key={entry._id} style={{ animationDelay: `${index * 0.05}s` }}>
+                          <td className="student-name">
+                            <FiUser className="student-icon" />
+                            {entry.name}
+                          </td>
+                          <td className="student-email">{entry.email}</td>
+                          <td className="student-phone">{entry.phone}</td>
+                          <td>
+                            <span className="status-badge registered">
+                              <FiUserCheck />
+                              Registered
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               )}
             </div>
+
+            {selectedStudents.length > 0 && (
+              <div className="modal-footer">
+                <div className="students-count">
+                  Total: {selectedStudents.length} registered students
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

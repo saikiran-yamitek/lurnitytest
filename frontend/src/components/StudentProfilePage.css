@@ -1560,3 +1560,239 @@ select option {
     transform: scale(1);
   }
 }
+/* Modal Styles */
+.notification-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.notification-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  pointer-events: all;
+}
+
+.notification-content {
+  position: relative;
+  background: rgba(25, 25, 40, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  animation: slideIn 0.3s ease-out forwards;
+  pointer-events: all;
+}
+
+.notification-content h2 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notification-content p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+}
+
+.notification-success {
+  border-top: 4px solid #4ade80;
+}
+
+.notification-error {
+  border-top: 4px solid #f87171;
+}
+
+.notification-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Disclaimer Modal */
+/* Disclaimer Modal */
+.disclaimer-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.disclaimer-modal {
+  background: rgba(25, 25, 40, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: modalPop 0.3s ease-out;
+}
+
+.disclaimer-header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.disclaimer-header h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.disclaimer-content {
+  margin: 1.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.disclaimer-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.disclaimer-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.disclaimer-list {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.disclaimer-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.disclaimer-list-item:last-child {
+  border-bottom: none;
+}
+
+.list-icon {
+  color: #6366f1;
+}
+
+.disclaimer-note {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #6366f1;
+}
+
+.disclaimer-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.disclaimer-link {
+  color: #6366f1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.disclaimer-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #6366f1;
+  transition: width 0.3s ease;
+}
+
+.disclaimer-link:hover {
+  color: #8b5cf6;
+}
+
+.disclaimer-link:hover::after {
+  width: 100%;
+}
+
+.disclaimer-link:active {
+  color: #a855f7;
+}
+
+/* External link indicator */
+.disclaimer-link::before {
+  content: '↗';
+  display: inline-block;
+  margin-left: 0.25rem;
+  font-size: 0.8em;
+  vertical-align: middle;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-5px);
+}
+
+.disclaimer-link:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+.glass-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.05);
+}

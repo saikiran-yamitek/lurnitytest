@@ -21,7 +21,6 @@ router.get("/", async (_req, res) => {
 // ✅ POST /api/workshops - create new workshop
 router.post("/", async (req, res) => {
   try {
-    console.log("Incoming workshop data:", req.body); // 👀 LOG THIS
     const data = req.body;
     const newWorkshop = new Workshop(data);
     await newWorkshop.save();

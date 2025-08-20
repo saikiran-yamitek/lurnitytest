@@ -8,6 +8,17 @@ const authHeaders = () => ({
   'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
 });
 
+export async function listAllSubCourses() {
+  const courses = await listCourses();
+  let subs = [];
+  courses.forEach(c => {
+    c.subCourses.forEach(sc => {
+      subs.push({ ...sc, parentCourse: c.title });
+    });
+  });
+  return subs;
+}
+
 /* ---------- Dashboard ---------- */
 export const getStats = () =>
   fetch(`${API}/stats`, {
@@ -160,6 +171,61 @@ export const deleteTicket = (id) =>
     headers: authHeaders(),
   }).then((r) => (r.status === 204 ? { ok: true } : r.json()));
 
+export async function toggleProfileLock(id, status) {
+  const res = await fetch(`/api/admin/users/${id}/lock`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ lockStatus: status })
+  });
+  if (!res.ok) throw new Error("Failed to update lock");
+  return await res.json();
+}
 
+// services/adminApi.js
+export const listCohorts = async () => {
+  const response = await fetch('/api/admin/landingpage/cohorts');
+  if (!response.ok) {
+    throw new Error('Failed to fetch cohorts');
+  }
+  return response.json();
+};
+
+export const createCohort = async (cohortData) => {
+  const response = await fetch('/api/admin/landingpage/cohorts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(cohortData)
+  });
+  if (!response.ok) {
+    throw new Error('Failed to create cohort');
+  }
+  return response.json();
+};
+
+export const updateCohort = async (id, cohortData) => {
+  const response = await fetch(`/api/admin/landingpage/cohorts/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(cohortData)
+  });
+  if (!response.ok) {
+    throw new Error('Failed to update cohort');
+  }
+  return response.json();
+};
+
+export const deleteCohort = async (id) => {
+  const response = await fetch(`/api/admin/landingpage/cohorts/${id}`, {
+    method: 'DELETE'
+  });
+  if (!response.ok) {
+    throw new Error('Failed to delete cohort');
+  }
+  return response.json();
+};
 
 

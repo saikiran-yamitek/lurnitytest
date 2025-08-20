@@ -10,9 +10,11 @@ import {
   FaUserTie, 
   FaTicketAlt, 
   FaChalkboardTeacher,
-  FaCog 
+  FaCog,
+  FaCalendarAlt,
 } from 'react-icons/fa';
 import logo from '../../assets/LURNITY.jpg';
+import CohortsManagement from './CohortsManagement';
 
 export default function AdminLayout(props) {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -40,7 +42,9 @@ export default function AdminLayout(props) {
     { path: "/admin/employees", name: "Employees", icon: <FaUserTie /> },
     { path: "/admin/tickets", name: "Tickets", icon: <FaTicketAlt /> },
     { path: "/admin/workshops", name: "Workshops", icon: <FaChalkboardTeacher /> },
-    { path: "/admin/settings", name: "Settings", icon: <FaCog /> }
+    { path: "/admin/settings", name: "Settings", icon: <FaCog /> },
+    { path: "/admin/hiring", name: "Hiring", icon: <FaUserTie /> },
+    { path: "/admin/cohorts", name: "Manage Cohorts", icon: <FaCalendarAlt /> }
   ];
 
   return (
@@ -48,7 +52,6 @@ export default function AdminLayout(props) {
       <aside className="admin-sidebar">
         <div className="admin-logo">
           <img src={logo} alt="Lurnity Logo" />
-          <h2>Lurnity Admin</h2>
         </div>
 
         <nav className="admin-nav">
@@ -67,16 +70,11 @@ export default function AdminLayout(props) {
                 })}
               </span>
               <span className="nav-text">{item.name}</span>
-              <span className="nav-highlight"></span>
             </NavLink>
           ))}
         </nav>
 
         <div className="sidebar-footer">
-          <button className="theme-toggle" onClick={toggleTheme}>
-            {theme === 'light' ? <FaMoon /> : <FaSun />}
-            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-          </button>
           <button className="logout-button" onClick={handleLogout}>
             <FaSignOutAlt className="logout-icon" />
             Logout

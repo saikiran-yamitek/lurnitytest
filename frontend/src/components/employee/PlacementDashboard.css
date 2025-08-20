@@ -1,12 +1,16 @@
 /* Placement Dashboard Specific Styles */
-.placement-tabs {
+.placement-dashboard {
+  /* Wrapper class to scope all styles */
+}
+
+.placement-dashboard__tabs {
   display: flex;
   background: #f8f9fa;
   border-bottom: 1px solid #dee2e6;
   padding: 0 1rem;
 }
 
-.tab-btn {
+.placement-dashboard__tab-btn {
   padding: 1rem 1.5rem;
   background: none;
   border: none;
@@ -18,29 +22,43 @@
   transition: all 0.3s ease;
 }
 
-.tab-btn:hover {
+.placement-dashboard__tab-btn:hover {
   color: #0d6efd;
   background: rgba(13, 110, 253, 0.1);
 }
 
-.tab-btn.active {
+.placement-dashboard__tab-btn.active {
   color: #0d6efd;
   border-bottom-color: #0d6efd;
   background: rgba(13, 110, 253, 0.05);
 }
 
-.create-drive-section,
-.scheduled-drives-section {
-  animation: fadeIn 0.3s ease;
+.placement-dashboard__create-drive,
+.placement-dashboard__scheduled-drives {
+  animation: placementFadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
+@keyframes placementFadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Modal styles (existing) */
-.modal-overlay {
+/* Drive card styles */
+.placement-dashboard__drive-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.placement-dashboard__drive-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.placement-dashboard__drive-card .card-title {
+  color: #333 !important;
+}
+
+/* Modal styles */
+.placement-dashboard__modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -53,7 +71,7 @@
   z-index: 1000;
 }
 
-.modal-student {
+.placement-dashboard__modal {
   background: white;
   border-radius: 8px;
   width: 80%;
@@ -63,7 +81,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.modal-header-student {
+.placement-dashboard__modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,33 +89,12 @@
   border-bottom: 1px solid #dee2e6;
 }
 
-.modal-body-student {
+.placement-dashboard__modal-body {
   padding: 1rem;
 }
 
 /* Popup notification */
-
-
-@keyframes slideIn {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-/* Card styles for drives */
-.card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
-}
-
-.card-title{
-    color:black !important;
-}
-/* Popup notification */
-.dashboard-popup {
+.placement-dashboard__popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -111,7 +108,7 @@
   text-align: left;
   z-index: 9999;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  animation: fadeInScale 0.3s ease-out;
+  animation: placementFadeInScale 0.3s ease-out;
   max-width: 90%;
   width: max-content;
   min-width: 280px;
@@ -124,19 +121,19 @@
 }
 
 /* Color variations */
-.dashboard-popup.success {
+.placement-dashboard__popup.success {
   border: 1.5px solid #28a745;
   color: #155724;
   background-color: #e6f4ea;
 }
 
-.dashboard-popup.error {
+.placement-dashboard__popup.error {
   border: 1.5px solid #dc3545;
   color: #721c24;
   background-color: #fcebea;
 }
 
-@keyframes fadeInScale {
+@keyframes placementFadeInScale {
   from {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.95);
@@ -146,28 +143,9 @@
     transform: translate(-50%, -50%) scale(1);
   }
 }
-
-
-/* Color variations */
-.dashboard-popup.success {
-  border: 1.5px solid #28a745;
-  color: #155724;
-  background-color: #e6f4ea;
+h4{
+  color:black;
 }
-
-.dashboard-popup.error {
-  border: 1.5px solid #dc3545;
-  color: #721c24;
-  background-color: #fcebea;
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
+.me-2{
+  color: balck;
 }

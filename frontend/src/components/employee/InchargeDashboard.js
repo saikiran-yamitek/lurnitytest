@@ -54,31 +54,32 @@ export default function InchargeDashboard() {
   };
 
   const handleFieldChange = (studentId, field, value) => {
-    setEditedStudents((prev) => {
-      const updated = { ...prev[studentId], [field]: value };
+  setEditedStudents((prev) => {
+    const studentData = registeredStudents.find(s => s._id === studentId);
+    const currentEdited = prev[studentId] || {};
+    
+    const updated = { 
+      ...currentEdited,
+      [field]: field === "attendance" ? value === "present" : value 
+    };
 
-      // Logic: If attendance is 'absent', auto-grade = 'F' and result = 'fail'
-      if (field === "attendance") {
-        const isPresent = value === "present";
-        updated.attendance = isPresent;
+    // If attendance is set to absent, auto-set grade to F and result to fail
+    if (field === "attendance" && value === "absent") {
+      updated.grade = "F";
+      updated.result = "fail";
+    }
 
-        if (!isPresent) {
-          updated.grade = "F";
-          updated.result = "fail";
-        }
-      }
+    // If grade is changed, update result
+    if (field === "grade") {
+      updated.result = value === "F" ? "fail" : "pass";
+    }
 
-      // If grade manually changed, update result
-      if (field === "grade") {
-        updated.result = value === "F" ? "fail" : "pass";
-      }
-
-      return {
-        ...prev,
-        [studentId]: updated,
-      };
-    });
-  };
+    return {
+      ...prev,
+      [studentId]: updated,
+    };
+  });
+};
 
   const handleSaveChanges = async () => {
     try {
@@ -245,20 +246,17 @@ export default function InchargeDashboard() {
                             </td>
                             <td>
                               <select
-                                className="form-select form-select-sm"
-                                value={gradeValue}
-                                onChange={(e) =>
-                                  handleFieldChange(
-                                    student._id,
-                                    "grade",
-                                    e.target.value
-                                  )
-                                }
-                                disabled={
-                                  edited.attendance === false ||
-                                  student.attendance === false
-                                }
-                              >
+  className="form-select form-select-sm"
+  value={gradeValue}
+  onChange={(e) =>
+    handleFieldChange(
+      student._id,
+      "grade",
+      e.target.value
+    )
+  }
+  disabled={attendanceValue === "absent"}
+>
                                 <option value="">-- Select --</option>
                                 <option value="S">S</option>
                                 <option value="A">A</option>

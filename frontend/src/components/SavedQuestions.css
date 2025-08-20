@@ -1,0 +1,408 @@
+.saved-questions-wrapper {
+  font-family: 'Inter', sans-serif;
+  display: block;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+/* ================== MAIN CONTAINER ================== */
+.saved-questions-wrapper .saved-questions-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+/* ============ HEADER SECTION ============ */
+.saved-questions-wrapper .saved-questions-header {
+  position: relative;
+  background: rgba(15, 15, 35, 0.9);
+  
+  border: 1px solid rgba(255, 149, 0, 0.2);
+  border-radius: 32px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.saved-questions-wrapper .saved-questions-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 149, 0, 0.8), transparent);
+}
+
+.saved-questions-wrapper .saved-questions-header::after {
+  content: '';
+  position: absolute;
+  top: -150px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 149, 0, 0.15), transparent);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: float 6s ease-in-out infinite;
+}
+
+.saved-questions-wrapper .saved-questions-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff, #e0e7ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.saved-questions-wrapper .saved-questions-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(120deg); }
+  66% { transform: translateY(10px) rotate(240deg); }
+}
+
+/* ============ QUESTIONS GRID ============ */
+.saved-questions-wrapper .questions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* ============ QUESTION CARDS ============ */
+.saved-questions-wrapper .question-card {
+  position: relative;
+  background: rgba(15, 15, 35, 0.9);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 149, 0, 0.15);
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.saved-questions-wrapper .question-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 149, 0, 0.6), transparent);
+}
+
+.saved-questions-wrapper .question-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 149, 0, 0.4);
+}
+
+.saved-questions-wrapper .question-card:hover::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 149, 0, 1), transparent);
+}
+
+/* ============ QUESTION CONTENT ============ */
+.saved-questions-wrapper .question-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+/* ============ CORRECT ANSWER SECTION ============ */
+.saved-questions-wrapper .correct-answer {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 1.25rem;
+  border-radius: 16px;
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+.saved-questions-wrapper .correct-answer span {
+  font-weight: 600;
+  color: #10b981;
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.saved-questions-wrapper .correct-answer p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============ DELETE BUTTON ============ */
+.saved-questions-wrapper .delete-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.saved-questions-wrapper .delete-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* ============ NO QUESTIONS MESSAGE ============ */
+.saved-questions-wrapper .no-questions-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(15, 15, 35, 0.9);
+  border-radius: 24px;
+  border: 2px dashed rgba(255, 149, 0, 0.3);
+  margin-top: 2rem;
+}
+
+.saved-questions-wrapper .no-questions-message p {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============ BUTTONS ============ */
+.saved-questions-wrapper .btn-primary {
+  background: linear-gradient(135deg, #FF9500, #FFB347);
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.saved-questions-wrapper .btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 149, 0, 0.3);
+  padding: 0.875rem 2rem;
+  border-radius: 14px;
+  font-weight: 600;
+}
+
+.saved-questions-wrapper .btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 14px;
+  font-weight: 600;
+}
+
+/* ============ DELETE MODAL (No Blur, Brighter) ============ */
+.saved-questions-wrapper .delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.saved-questions-wrapper .modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45); /* just dim, no blur */
+}
+
+.saved-questions-wrapper .modal-content {
+  position: relative;
+  background: #1e1e2f; /* solid background for clarity */
+  border-radius: 28px;
+  border: 1px solid rgba(255, 200, 50, 0.4);
+  padding: 2.5rem;
+  max-width: 440px;
+  width: 90%;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 35px rgba(255, 200, 50, 0.6), 0 0 80px rgba(255, 200, 50, 0.4);
+}
+
+.saved-questions-wrapper .modal-icon {
+  background: rgba(239, 68, 68, 0.15);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1.5rem;
+  color: #ff5555;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+.saved-questions-wrapper {
+  font-family: 'Inter', sans-serif;
+  display: block;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+/* ================== MAIN CONTAINER ================== */
+.saved-questions-wrapper .saved-questions-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+/* ============ HEADER SECTION ============ */
+.saved-questions-wrapper .saved-questions-header {
+  position: relative;
+  background: rgba(15, 15, 35, 0.9);
+  border: 1px solid rgba(255, 149, 0, 0.2);
+  border-radius: 32px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.saved-questions-wrapper .saved-questions-header::before { /* ... */ }
+.saved-questions-wrapper .saved-questions-header::after { /* ... */ }
+
+.saved-questions-wrapper .saved-questions-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff, #e0e7ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.saved-questions-wrapper .saved-questions-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+/* keep all other normal styles (questions grid, cards, buttons, etc.) unchanged */
+/* ... (you can keep your existing rules here) ... */
+
+/* ============ DELETE MODAL (No Blur, Bright + Override) ============ */
+.saved-questions-wrapper .delete-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* high so it's above everything */
+  pointer-events: none; /* children re-enable pointer-events where required */
+}
+
+/* Backdrop must NOT blur the page. Force-disable any backdrop-filter or filter. */
+.saved-questions-wrapper .delete-modal .modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* dim only — no blur */
+  pointer-events: auto;
+  backdrop-filter: none !important; /* override other rules */
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+/* Modal box */
+.saved-questions-wrapper .delete-modal .modal-content {
+  position: relative;
+  pointer-events: auto;
+  background: #1e1e2f; /* solid background for clarity */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 200, 50, 0.28);
+  padding: 2rem;
+  max-width: 480px;
+  width: 92%;
+  text-align: center;
+  color: white;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 8px 30px rgba(255,200,50,0.08);
+}
+
+/* icon */
+.saved-questions-wrapper .modal-icon {
+  background: rgba(239, 68, 68, 0.12);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(239, 68, 68, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  pointer-events: none;
+}
+
+/* ============ STRONG OVERRIDES WHEN MODAL OPEN ============ */
+/* When modal is open (class toggled by JS), forcibly remove any filters/blurs
+   from the rest of the wrapper so the background stays sharp. */
+.saved-questions-wrapper.modal-open .saved-questions-container,
+.saved-questions-wrapper.modal-open .saved-questions-header,
+.saved-questions-wrapper.modal-open .questions-list,
+.saved-questions-wrapper.modal-open .question-card,
+.saved-questions-wrapper.modal-open .no-questions-message {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;        /* remove any filter: blur(...) applied elsewhere */
+  opacity: 1 !important;          /* keep brightness as-is; adjust if you prefer dim */
+  pointer-events: none;           /* optional: prevents interaction with background while modal open */
+}
+
+/* Allow clicks on the modal itself (re-enable pointer events there) */
+.saved-questions-wrapper.modal-open .delete-modal,
+.saved-questions-wrapper.modal-open .delete-modal .modal-content,
+.saved-questions-wrapper.modal-open .delete-modal .modal-backdrop {
+  pointer-events: auto;
+}
+
+/* Accessibility: don't remove keyboard focusability of modal actions */
+.saved-questions-wrapper.modal-open .delete-modal .btn-primary,
+.saved-questions-wrapper.modal-open .delete-modal .btn-secondary,
+.saved-questions-wrapper.modal-open .delete-modal .btn-danger {
+  pointer-events: auto;
+}
+
+/* small responsive tweaks */
+@media (max-width: 768px) {
+  .saved-questions-wrapper .modal-content { padding: 1.5rem; }
+}
+
+/* Optional: if some global rule still forces blur via a high-specificity selector,
+   add this last-resort rule. Use sparingly — it's strong. */
+.saved-questions-wrapper.modal-open * {
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}

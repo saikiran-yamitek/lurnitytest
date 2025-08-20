@@ -23,6 +23,10 @@ import demoRoutes from './routes/demo.js';
 import workshopRoutes from "./routes/workshop.js";
 import placementRoutes from './routes/placementRoutes.js';
 import companyRoutes from './routes/companies.js';
+import feedbackRoutes from './routes/feedback.js';
+import rankingsRoutes from "./routes/rankings.js";
+import adminlandingPageRoutes from './routes/adminLandingPage.js'
+import landingPageRoutes from './routes/landingPageRoutes.js';
 
 
 
@@ -54,7 +58,11 @@ app.use('/api/demo', demoRoutes);
 app.use("/api/workshops", workshopRoutes);
 app.use('/api/placements', placementRoutes);
 app.use('/api/companies', companyRoutes);
-
+app.use('/api/feedback', feedbackRoutes);
+app.use("/api/rankings", rankingsRoutes);
+app.use('/api/admin/landingpage', adminlandingPageRoutes);
+app.use('/api/landingpage', landingPageRoutes);
+app.use('/api', landingPageRoutes);
 
 
 

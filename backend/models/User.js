@@ -1,6 +1,12 @@
 // backend/models/User.js
 import mongoose from 'mongoose';
-
+const savedQuestionSchema = new mongoose.Schema(
+  {
+    question: { type: String, required: true },
+    correctAnswer: { type: String, required: true }
+  },
+  { _id: true } // ✅ ensures each saved question gets its own _id
+);
 const userSchema = new mongoose.Schema(
   {
     /* ─── Basic profile ─────────────────────────────── */
@@ -17,14 +23,28 @@ const userSchema = new mongoose.Schema(
   dateOfBirth: { type: Date },
   linkedIn: { type: String },
   twitter: { type: String },
+  profileLock: {
+      type: String,
+      enum: ["locked", "unlocked"],
+      default: "unlocked"
+    },
   github: { type: String },
   photoURL: { type: String }, // store image URL or base64 string
   resumeURL: { type: String },
+  courseCompletion: {
+  type: Number,
+  default: 0
+},
+  
   // Add these to your userSchema in User.js
 placementStatus: { 
   type: String, 
   enum: ['placed', 'not_placed', 'seeking'], 
   default: 'not_placed' 
+},
+learningHours: {
+  type: Number,
+  default: 3
 },
 placementDetails: {
   companyName: { type: String },
@@ -40,9 +60,12 @@ placementDetails: {
   }
 ],
 
+
+
   
   isWhatsAppSame: { type: String, enum: ["Yes", "No", "Don't have WhatsApp"], default: "Yes" },
   whatsappPhone: { type: String },
+     savedQuestions: [savedQuestionSchema],
   
 
 
@@ -71,6 +94,8 @@ placementDetails: {
   state: { type: String },
   pinCode: { type: String },
   country: { type: String },
+  district:{type:String},
+  
 },currentExpertise: {
   codingLevel: { type: String },
   hasLaptop: { type: String },
@@ -93,7 +118,7 @@ placementDetails: {
     ],
   },
 },tenthStandard: {
-    tenthBoard: { type: String },
+    board: { type: String },
     schoolName: { type: String },
     markingScheme: {
       type: String,
@@ -188,7 +213,18 @@ placementDetails: {
 },completedSubcourses: {
   type: [String],
   default: []
-},
+},practiceHistory: [{
+  courseId: String,
+  subIdx: Number,
+  vidIdx: Number,
+  score: Number,
+  totalQuestions: Number,
+  correctAnswers: Number,
+  wrongAnswers: Number,
+  timeSpent: Number, // in seconds
+  completedAt: { type: Date, default: Date.now }
+}],
+
 
 
 

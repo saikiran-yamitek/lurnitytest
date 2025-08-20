@@ -135,3 +135,68 @@ body{background:#f8fafc;font-family:"Inter",sans-serif;}
     transform: scale(1);
   }
 }
+.list-group-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+/* Feedback section */
+.feedback-section .list-group-item {
+  display: flex;
+  flex-direction: column;
+  
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  width:50%;
+}
+
+.feedback-section .feedback-label {
+  font-weight: 600;
+  color: #374151;
+  min-width: 100px;
+  margin-right: 12px;
+  text-align: right;
+}
+
+.feedback-section .feedback-row {
+  display: flex;
+  justify-content: flex-start; /* align label + value from the start */
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.feedback-section .feedback-stars {
+  color: #facc15; /* yellow-400 */
+  font-size: 18px;
+}
+
+.feedback-section .feedback-comment {
+  margin-top: 8px;
+  padding: 12px;
+  background: #f9fafb;
+  border-left: 4px solid #2563eb;
+  border-radius: 8px;
+  font-style: italic;
+  color: #374151;
+}
+.feedback-section .feedback-value {
+  flex: 1;
+  color: #111827;
+}
+.feedback-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Each feedback takes half the width */
+.feedback-section .list-group-item {
+  width: calc(50% - 8px); /* half width minus half the gap */
+  box-sizing: border-box;
+}

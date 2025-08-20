@@ -137,6 +137,7 @@ export default function Dashboard() {
           color={LUXURY_COLORS.accent}
           trend={trends.revenue}
         />
+        
       </div>
 
       {/* ---------- charts ---------- */}

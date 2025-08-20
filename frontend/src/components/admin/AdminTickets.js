@@ -1,104 +1,262 @@
+// src/components/admin/AdminTickets.js
 import React, { useEffect, useState } from "react";
 import {
-  listTickets,     // GET  /api/tickets
-  updateTicket,    // PATCH /api/tickets/:id
-  deleteTicket     // DELETE /api/tickets/:id     ← see service layer below
+  listTickets,
+  updateTicket,
+  deleteTicket
 } from "../../services/adminApi";
 
-import { FiTrash2, FiRefreshCw } from "react-icons/fi";
-import "./adminLayout.css";   // colours / fonts already defined
+import {
+  FiTrash2,
+  FiRefreshCw,
+  FiHeadphones,
+  FiClock,
+  FiCheckCircle,
+  FiAlertCircle,
+  FiUser,
+  FiMail,
+  FiTag,
+  FiFlag,
+  FiMessageSquare,
+  FiActivity
+} from "react-icons/fi";
+
+import "./AdminTickets.css";
 
 export default function AdminTickets() {
-  /* ---------------- state ---------------- */
   const [tickets, setTickets] = useState([]);
-  const [pending, setPending] = useState(true);   // tab switch
+  const [activeTab, setActiveTab] = useState('pending');
+  const [loading, setLoading] = useState(true);
 
-  /* ---------------- data ---------------- */
-  useEffect(() => { (async () => setTickets(await listTickets()))(); }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const ticketData = await listTickets();
+        setTickets(ticketData);
+      } catch (error) {
+        console.error("Failed to fetch tickets:", error);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
 
-  /* ---------------- helpers ---------------- */
   const del = async (t) => {
-    if (!window.confirm("Delete this ticket permanently?")) return;
-    await deleteTicket(t._id);
-    setTickets((p) => p.filter((x) => x._id !== t._id));
+    if (!window.confirm("Are you sure you want to delete this ticket permanently?")) return;
+    try {
+      await deleteTicket(t._id);
+      setTickets((p) => p.filter((x) => x._id !== t._id));
+    } catch (error) {
+      console.error("Failed to delete ticket:", error);
+    }
   };
 
   const reopen = async (t) => {
-    await updateTicket(t._id, { status: "Open", closedBy: "", resolutionNote: "" });
-    setTickets((p) =>
-      p.map((x) => (x._id === t._id ? { ...x, status: "Open" } : x))
-    );
-    setPending(true);
+    try {
+      await updateTicket(t._id, { status: "Open", closedBy: "", resolutionNote: "" });
+      setTickets((p) =>
+        p.map((x) => (x._id === t._id ? { ...x, status: "Open" } : x))
+      );
+      setActiveTab('pending');
+    } catch (error) {
+      console.error("Failed to reopen ticket:", error);
+    }
   };
 
-  /* ---------------- filters ---------------- */
-  const pendingList   = tickets.filter((t) => t.status !== "Resolved");
-  const resolvedList  = tickets.filter((t) => t.status === "Resolved");
+  const pendingList = tickets.filter((t) => t.status !== "Resolved");
+  const resolvedList = tickets.filter((t) => t.status === "Resolved");
 
-  /* ---------------- ui ---------------- */
+  const getPriorityIcon = (priority) => {
+    switch (priority?.toLowerCase()) {
+      case 'high':
+        return <FiFlag />;
+      case 'medium':
+        return <FiAlertCircle />;
+      case 'low':
+        return <FiClock />;
+      default:
+        return <FiFlag />;
+    }
+  };
+
+  const getCategoryIcon = (category) => {
+    switch (category?.toLowerCase()) {
+      case 'technical':
+        return <FiActivity />;
+      case 'billing':
+        return <FiUser />;
+      case 'general':
+        return <FiMessageSquare />;
+      default:
+        return <FiTag />;
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="tickets-page">
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading tickets...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="p-4">
-      <h2 className="mb-4">Support Tickets</h2>
+    <div className="tickets-page">
+      {/* Page Header */}
+      <div className="page-header">
+        <div className="page-title-container">
+          <FiHeadphones className="page-icon" />
+          <h1 className="page-titlepo">Support Tickets</h1>
+        </div>
+        <p className="page-subtitle">Manage customer support requests and issues</p>
+      </div>
 
-      {/* tab buttons */}
-      <div className="btn-group mb-4">
+      {/* Stats Cards */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <div className="stat-icon pending">
+            <FiClock />
+          </div>
+          <div className="stat-content">
+            <h3>{pendingList.length}</h3>
+            <p>Pending Tickets</p>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon resolved">
+            <FiCheckCircle />
+          </div>
+          <div className="stat-content">
+            <h3>{resolvedList.length}</h3>
+            <p>Resolved Tickets</p>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon total">
+            <FiHeadphones />
+          </div>
+          <div className="stat-content">
+            <h3>{tickets.length}</h3>
+            <p>Total Tickets</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="tickets-tabs">
         <button
-          className={`btn btn-sm ${pending ? "btn-primary" : "btn-outline-primary"}`}
-          onClick={() => setPending(true)}
+          className={`tab-btn ${activeTab === 'pending' ? 'active' : ''}`}
+          onClick={() => setActiveTab('pending')}
         >
+          <FiClock />
           Pending ({pendingList.length})
         </button>
         <button
-          className={`btn btn-sm ${pending ? "btn-outline-secondary" : "btn-primary"}`}
-          onClick={() => setPending(false)}
+          className={`tab-btn ${activeTab === 'resolved' ? 'active' : ''}`}
+          onClick={() => setActiveTab('resolved')}
         >
+          <FiCheckCircle />
           Resolved ({resolvedList.length})
         </button>
       </div>
 
-      {/* list */}
-      <div className="list-group shadow-sm">
-        {(pending ? pendingList : resolvedList).map((t) => (
-          <div key={t._id} className="list-group-item">
-            <div className="d-flex justify-content-between align-items-center">
-              <div>
-                <strong>{t.subject}</strong>
-                <small className="text-muted ms-2">{t.userEmail}</small>
-              </div>
-
-              {/* actions */}
-              <div className="btn-group">
-                {t.status === "Resolved" && (
-                  <button className="btn btn-sm btn-outline-secondary" onClick={() => reopen(t)}
-                          title="Re‑open">
-                    <FiRefreshCw />
-                  </button>
-                )}
-                <button className="btn btn-sm btn-outline-danger" onClick={() => del(t)}
-                        title="Delete">
-                  <FiTrash2 />
-                </button>
-              </div>
+      {/* Tickets List */}
+      <div className="tickets-card">
+        <div className="tickets-container">
+          {(activeTab === 'pending' ? pendingList : resolvedList).length === 0 ? (
+            <div className="empty-state">
+              {activeTab === 'pending' ? (
+                <>
+                  <FiClock className="empty-state-icon" />
+                  <h3>No pending tickets</h3>
+                  <p>All tickets have been resolved. Great work!</p>
+                </>
+              ) : (
+                <>
+                  <FiCheckCircle className="empty-state-icon" />
+                  <h3>No resolved tickets</h3>
+                  <p>Resolved tickets will appear here once you start closing them.</p>
+                </>
+              )}
             </div>
+          ) : (
+            <div className="tickets-list">
+              {(activeTab === 'pending' ? pendingList : resolvedList).map((t, index) => (
+                <div key={t._id} className="ticket-item" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="ticket-header">
+                    <div className="ticket-info">
+                      <div className="ticket-subject">
+                        <FiMessageSquare className="subject-icon" />
+                        {t.subject}
+                      </div>
+                      <div className="ticket-user">
+                        <FiMail className="user-icon" />
+                        {t.userEmail}
+                      </div>
+                    </div>
+                    <div className="ticket-actions">
+                      {t.status === "Resolved" && (
+                        <button
+                          className="action-btn reopen-btn"
+                          onClick={() => reopen(t)}
+                          title="Reopen ticket"
+                        >
+                          <FiRefreshCw />
+                        </button>
+                      )}
+                      <button
+                        className="action-btn delete-btn"
+                        onClick={() => del(t)}
+                        title="Delete ticket"
+                      >
+                        <FiTrash2 />
+                      </button>
+                    </div>
+                  </div>
 
-            <div className="mt-1">
-              <span className="badge bg-info me-2">{t.category}</span>
-              <span className="badge bg-warning text-dark">{t.priority}</span>
+                  <div className="ticket-badges">
+                    <span className={`category-badge ${t.category?.toLowerCase()}`}>
+                      {getCategoryIcon(t.category)}
+                      {t.category}
+                    </span>
+                    <span className={`priority-badge ${t.priority?.toLowerCase()}`}>
+                      {getPriorityIcon(t.priority)}
+                      {t.priority} Priority
+                    </span>
+                    <span className={`status-badge ${t.status?.toLowerCase()}`}>
+                      {t.status === "Resolved" ? <FiCheckCircle /> : <FiClock />}
+                      {t.status}
+                    </span>
+                  </div>
+
+                  <div className="ticket-description">
+                    <p>{t.description}</p>
+                  </div>
+
+                  {t.status === "Resolved" && (
+                    <div className="resolution-info">
+                      <div className="resolution-header">
+                        <FiCheckCircle className="resolution-icon" />
+                        <span>Resolution</span>
+                      </div>
+                      <div className="resolution-content">
+                        <div className="resolved-by">
+                          <strong>Resolved by:</strong> {t.closedBy || "Unknown"}
+                        </div>
+                        <div className="resolution-note">
+                          <strong>Note:</strong> {t.resolutionNote || "No additional notes provided."}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
-
-            <p className="mb-1 mt-2">{t.description}</p>
-
-            {t.status === "Resolved" && (
-              <p className="mb-0 small">
-                <em>Resolved by {t.closedBy}: “{t.resolutionNote || "—"}”</em>
-              </p>
-            )}
-          </div>
-        ))}
-
-        {(pending ? pendingList : resolvedList).length === 0 && (
-          <div className="text-center text-muted p-5">Nothing to show</div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

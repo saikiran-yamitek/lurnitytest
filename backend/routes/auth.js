@@ -1,7 +1,12 @@
+import { OAuth2Client } from "google-auth-library";
 import express from 'express';
 import jwt     from 'jsonwebtoken';
 import bcrypt  from 'bcryptjs';
 import User    from '../models/User.js';
+
+const client = new OAuth2Client(
+  "322821846367-514od8575kmib97gji4q88ntskndmo9b.apps.googleusercontent.com"
+);
 
 const router = express.Router();
 
@@ -58,6 +63,40 @@ router.post('/login', async (req, res) => {
 });
 
 
+router.post("/google-login", async (req, res) => {
+  try {
+    const { token } = req.body;
 
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience:
+        "322821846367-514od8575kmib97gji4q88ntskndmo9b.apps.googleusercontent.com",
+    });
+
+    const payload = ticket.getPayload();
+    const email = payload.email;
+
+    const existingUser = await User.findOne({ email });
+
+    if (!existingUser) {
+      return res.json({ success: false, msg: "User not registered" });
+    }
+
+    const appToken = jwt.sign(
+      { id: existingUser._id, email: existingUser.email },
+      "secretKey",
+      { expiresIn: "1h" }
+    );
+
+    res.json({
+      success: true,
+      token: appToken,
+      user: { id: existingUser._id, email: existingUser.email },
+    });
+  } catch (err) {
+    console.error("Google login error:", err);
+    res.status(400).json({ success: false, msg: "Invalid Google login" });
+  }
+});
 
 export default router;

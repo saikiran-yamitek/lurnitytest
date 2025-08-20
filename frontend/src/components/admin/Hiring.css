@@ -1,0 +1,230 @@
+/* src/components/admin/Hiring.css */
+.hiring-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hiring-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.hiring-content {
+  display: flex;
+  gap: 30px;
+}
+
+.job-form-section, .jobs-list-section {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.job-form-section h3, .jobs-list-section h3 {
+  margin-top: 0;
+  color: #444;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.requirement-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.requirement-input input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.remove-req {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-req {
+  background: none;
+  border: none;
+  color: #4a89dc;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-btn, .cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.submit-btn {
+  background: #4a89dc;
+  color: white;
+}
+
+.cancel-btn {
+  background: #e6e6e6;
+  color: #333;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.job-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.job-header h4 {
+  margin: 0;
+  color: #333;
+}
+
+.status-badge {
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.status-badge.active {
+  background: #a0d468;
+  color: white;
+}
+
+.status-badge.inactive {
+  background: #e9573f;
+  color: white;
+}
+
+.job-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.job-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.job-actions button {
+  padding: 5px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: #4a89dc;
+  color: white;
+}
+
+.status-btn {
+  background: #656d78;
+  color: white;
+}
+
+.status-btn.activate {
+  background: #a0d468;
+}
+
+.status-btn.deactivate {
+  background: #e9573f;
+}
+
+.delete-btn {
+  background: #e9573f;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .hiring-content {
+    flex-direction: column;
+  }
+}
+
+
+/* Add to Hiring.css (example) */
+.applicants-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.applicants-modal {
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.modal-header { display:flex; justify-content:space-between; align-items:center; }
+.modal-close { font-size: 20px; background: transparent; border: none; cursor: pointer; }
+.applicant-card { border-bottom: 1px solid #eee; padding: 12px 0; }
+.applicant-main { display:flex; justify-content:space-between; gap: 12px; align-items:flex-start; }
+.resume-link { text-decoration: none; padding: 8px 10px; border-radius: 6px; border: 1px solid #ddd; }

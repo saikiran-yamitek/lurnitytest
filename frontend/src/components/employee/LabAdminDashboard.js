@@ -24,7 +24,6 @@ export default function LabAdminDashboard() {
   const [incharges, setIncharges] = useState([]);
   const [form, setForm] = useState({});
   const [popup, setPopup] = useState("");
-  const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [workshopToDelete, setWorkshopToDelete] = useState(null);
   const [showStudentPopup, setShowStudentPopup] = useState(false);
@@ -110,7 +109,7 @@ export default function LabAdminDashboard() {
       setSelectedStudents([]); // fallback to empty
     }
 
-    setSelectedWorkshop(workshopId);
+    
     setShowStudentPopup(true);
   } catch (err) {
     alert("❌ Failed to fetch registered students");
@@ -146,7 +145,7 @@ export default function LabAdminDashboard() {
       </header>
 
       <main className="cm-main container py-4">
-        <h4 className="fw-semibold mb-4">Schedule Workshop</h4>
+        <h4  className="fw-semibold mb-4">Schedule Workshop</h4>
         <div className="row g-3 mb-5">
           <div className="col-md-4">
   <select

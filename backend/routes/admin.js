@@ -199,6 +199,20 @@ router.delete('/tickets/:id', async (req, res) => {
   }
 });
 
+router.patch("/users/:id/lock", async (req, res) => {
+  try {
+    const { lockStatus } = req.body; // "locked" or "unlocked"
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      { profileLock: lockStatus },
+      { new: true }
+    );
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 
 

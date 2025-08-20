@@ -409,3 +409,7 @@ input:checked + .slider:before {
     margin-bottom: 10px;
   }
 }
+.headings{
+  font-size: 23px;
+  font-weight: bold;
+}
