@@ -132,7 +132,7 @@ export default function AdminWorkshops() {
       <div className="page-header">
         <div className="page-title-container">
           <FiSettings className="page-icon" />
-          <h1 className="page-title">Workshop Management</h1>
+          <h1 className="page-titlepo">Workshop Management</h1>
         </div>
         <p className="page-subtitle">Manage lab workshops and student registrations</p>
       </div>

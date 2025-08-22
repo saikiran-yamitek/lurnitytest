@@ -1,7 +1,28 @@
 // src/components/admin/Hiring.js
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import './Hiring.css'; // keep your existing styles, add modal styles here if needed
+import {
+  FiEdit,
+  FiTrash2,
+  FiUsers,
+  FiX,
+  FiBriefcase,
+  FiMapPin,
+  FiClock,
+  FiBookOpen,
+  FiPlus,
+  FiMinus,
+  FiSave,
+  FiEye,
+  FiMail,
+  FiPhone,
+  FiCalendar,
+  FiFileText,
+  FiActivity,
+  FiTarget,
+  FiCheck
+} from 'react-icons/fi';
+import './Hiring.css';
 
 export default function Hiring() {
   const [jobs, setJobs] = useState([]);
@@ -20,6 +41,8 @@ export default function Hiring() {
   const [applicantsModalOpen, setApplicantsModalOpen] = useState(false);
   const [selectedApplicants, setSelectedApplicants] = useState([]);
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -28,6 +51,7 @@ export default function Hiring() {
 
   const fetchJobs = async () => {
     try {
+      setLoading(true);
       const response = await fetch('/api/jobs', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('adminToken')}`
@@ -35,7 +59,6 @@ export default function Hiring() {
       });
       const data = await response.json();
       if (response.ok) {
-        // Expecting each job to include an "applications" array (per schema).
         setJobs(data);
       } else {
         throw new Error(data.message || 'Failed to fetch jobs');
@@ -43,6 +66,8 @@ export default function Hiring() {
     } catch (error) {
       console.error('Error fetching jobs:', error);
       alert('Error fetching jobs');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,7 +97,15 @@ export default function Hiring() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.roleName || !formData.location || !formData.experience || !formData.description) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
     try {
+      setSaving(true);
       const url = isEditing ? `/api/jobs/${currentJobId}` : '/api/jobs';
       const method = isEditing ? 'PUT' : 'POST';
 
@@ -96,6 +129,8 @@ export default function Hiring() {
     } catch (error) {
       console.error('Error saving job:', error);
       alert('Error saving job');
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -112,7 +147,6 @@ export default function Hiring() {
     });
     setIsEditing(true);
     setCurrentJobId(job._id);
-    // scroll to form if desired
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -179,9 +213,8 @@ export default function Hiring() {
     setCurrentJobId(null);
   };
 
-  // NEW: open applicants modal for job
   const openApplicantsModal = (job) => {
-    const apps = job.applications || []; // per schema, applications stored in job doc
+    const apps = job.applications || [];
     setSelectedApplicants(apps);
     setSelectedJobTitle(job.roleName || 'Applicants');
     setApplicantsModalOpen(true);
@@ -193,146 +226,277 @@ export default function Hiring() {
     setSelectedJobTitle('');
   };
 
-  // helper to format date
   const formatDate = (dateStr) => {
     if (!dateStr) return '-';
     try {
       const d = new Date(dateStr);
-      return d.toLocaleString(); // localized readable format
+      return d.toLocaleString();
     } catch {
       return dateStr;
     }
   };
 
+  const getDepartmentIcon = (department) => {
+    switch (department) {
+      case 'Engineering':
+        return <FiTarget />;
+      case 'Content':
+        return <FiBookOpen />;
+      case 'Design':
+        return <FiBriefcase />;
+      case 'Business':
+        return <FiActivity />;
+      case 'Marketing':
+        return <FiUsers />;
+      default:
+        return <FiBriefcase />;
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="hiring-page">
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading job postings...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="hiring-container">
-      <h2>Job Postings</h2>
+    <div className="hiring-page">
+      {/* Page Header */}
+      <div className="page-header">
+        <div className="page-title-container">
+          <FiBriefcase className="page-icon" />
+          <h1 className="page-titlepo">Hiring Management</h1>
+        </div>
+        <p className="page-subtitle">Manage job postings and track applications</p>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <div className="stat-icon total">
+            <FiBriefcase />
+          </div>
+          <div className="stat-content">
+            <h3>{jobs.length}</h3>
+            <p>Total Jobs</p>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon active">
+            <FiCheck />
+          </div>
+          <div className="stat-content">
+            <h3>{jobs.filter(job => job.isActive).length}</h3>
+            <p>Active Jobs</p>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon applicants">
+            <FiUsers />
+          </div>
+          <div className="stat-content">
+            <h3>{jobs.reduce((sum, job) => sum + (job.applications?.length || 0), 0)}</h3>
+            <p>Total Applications</p>
+          </div>
+        </div>
+      </div>
 
       <div className="hiring-content">
-        <div className="job-form-section">
-          <h3>{isEditing ? 'Edit Job' : 'Create New Job'}</h3>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Department</label>
-              <select
-                name="department"
-                value={formData.department}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="Engineering">Engineering</option>
-                <option value="Content">Content</option>
-                <option value="Design">Design</option>
-                <option value="Business">Business</option>
-                <option value="Marketing">Marketing</option>
-              </select>
+        {/* Job Form Section */}
+        <div className="job-form-card">
+          {saving && (
+            <div className="saving-overlay">
+              <div className="saving-content">
+                <div className="saving-spinner"></div>
+                <p>{isEditing ? 'Updating job...' : 'Creating job...'}</p>
+              </div>
+            </div>
+          )}
+
+          <div className="form-header">
+            <h3>
+              <FiBriefcase className="form-icon" />
+              {isEditing ? 'Edit Job Posting' : 'Create New Job'}
+            </h3>
+            {isEditing && (
+              <button className="cancel-form-btn" onClick={resetForm}>
+                <FiX />
+              </button>
+            )}
+          </div>
+
+          <form onSubmit={handleSubmit} className="job-form">
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label">
+                  <FiTarget className="label-icon" />
+                  Department *
+                </label>
+                <select
+                  name="department"
+                  value={formData.department}
+                  onChange={handleInputChange}
+                  className="form-select"
+                  required
+                >
+                  <option value="Engineering">Engineering</option>
+                  <option value="Content">Content</option>
+                  <option value="Design">Design</option>
+                  <option value="Business">Business</option>
+                  <option value="Marketing">Marketing</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <FiBriefcase className="label-icon" />
+                  Role Name *
+                </label>
+                <input
+                  type="text"
+                  name="roleName"
+                  value={formData.roleName}
+                  onChange={handleInputChange}
+                  className="form-control"
+                  placeholder="Enter job role"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <FiMapPin className="label-icon" />
+                  Location *
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleInputChange}
+                  className="form-control"
+                  placeholder="e.g., Remote, New York, etc."
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <FiClock className="label-icon" />
+                  Job Type *
+                </label>
+                <select
+                  name="type"
+                  value={formData.type}
+                  onChange={handleInputChange}
+                  className="form-select"
+                  required
+                >
+                  <option value="Full-time">Full-time</option>
+                  <option value="Hybrid">Hybrid</option>
+                  <option value="Internship">Internship</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <FiActivity className="label-icon" />
+                  Experience Required *
+                </label>
+                <input
+                  type="text"
+                  name="experience"
+                  value={formData.experience}
+                  onChange={handleInputChange}
+                  className="form-control"
+                  placeholder="e.g., 2-3 years, Fresher, etc."
+                  required
+                />
+              </div>
             </div>
 
-            <div className="form-group">
-              <label>Role Name</label>
-              <input
-                type="text"
-                name="roleName"
-                value={formData.roleName}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Location</label>
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Job Type</label>
-              <select
-                name="type"
-                value={formData.type}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="Full-time">Full-time</option>
-                <option value="Hybrid">Hybrid</option>
-                <option value="Internship">Internship</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Experience</label>
-              <input
-                type="text"
-                name="experience"
-                value={formData.experience}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Description</label>
+            <div className="form-group full-width">
+              <label className="form-label">
+                <FiFileText className="label-icon" />
+                Job Description *
+              </label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
+                className="form-control textarea"
+                placeholder="Describe the role, responsibilities, and what you're looking for..."
                 required
               />
             </div>
 
-            <div className="form-group">
-              <label>Requirements</label>
-              {formData.requirements.map((req, index) => (
-                <div key={index} className="requirement-input">
-                  <input
-                    type="text"
-                    value={req}
-                    onChange={(e) => handleRequirementChange(index, e.target.value)}
-                    required
-                  />
-                  {formData.requirements.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeRequirementField(index)}
-                      className="remove-req"
-                    >
-                      ×
-                    </button>
-                  )}
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={addRequirementField}
-                className="add-req"
-              >
-                + Add Requirement
-              </button>
+            <div className="form-group full-width">
+              <label className="form-label">
+                <FiBookOpen className="label-icon" />
+                Requirements
+              </label>
+              <div className="requirements-container">
+                {formData.requirements.map((req, index) => (
+                  <div key={index} className="requirement-input">
+                    <input
+                      type="text"
+                      value={req}
+                      onChange={(e) => handleRequirementChange(index, e.target.value)}
+                      className="form-control"
+                      placeholder="Enter a requirement"
+                      required
+                    />
+                    {formData.requirements.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeRequirementField(index)}
+                        className="remove-req-btn"
+                        title="Remove requirement"
+                      >
+                        <FiMinus />
+                      </button>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addRequirementField}
+                  className="add-req-btn"
+                >
+                  <FiPlus />
+                  Add Requirement
+                </button>
+              </div>
             </div>
 
-            <div className="form-group">
-              <label>
+            <div className="form-group checkbox-group">
+              <label className="checkbox-label">
                 <input
                   type="checkbox"
                   name="isActive"
                   checked={formData.isActive}
                   onChange={handleInputChange}
+                  className="checkbox-input"
                 />
-                Active
+                <span className="checkbox-text">Active (visible to applicants)</span>
               </label>
             </div>
 
             <div className="form-actions">
-              <button type="submit" className="submit-btn">
-                {isEditing ? 'Update Job' : 'Create Job'}
+              <button type="submit" className="submit-btn" disabled={saving}>
+                <FiSave />
+                {saving 
+                  ? (isEditing ? 'Updating...' : 'Creating...') 
+                  : (isEditing ? 'Update Job' : 'Create Job')
+                }
               </button>
               {isEditing && (
                 <button type="button" onClick={resetForm} className="cancel-btn">
+                  <FiX />
                   Cancel
                 </button>
               )}
@@ -340,48 +504,98 @@ export default function Hiring() {
           </form>
         </div>
 
-        <div className="jobs-list-section">
-          <h3>Current Job Postings</h3>
+        {/* Jobs List Section */}
+        <div className="jobs-list-card">
+          <div className="list-header">
+            <h3>
+              <FiBriefcase className="list-icon" />
+              Current Job Postings
+            </h3>
+            <span className="jobs-count">{jobs.length} jobs</span>
+          </div>
+
           {jobs.length === 0 ? (
-            <p>No jobs posted yet.</p>
+            <div className="empty-state">
+              <FiBriefcase className="empty-state-icon" />
+              <h4>No job postings yet</h4>
+              <p>Create your first job posting to start hiring</p>
+            </div>
           ) : (
-            <div className="jobs-grid">
-              {jobs.map((job) => (
-                <div key={job._id} className="job-card">
+            <div className="jobs-container">
+              {jobs.map((job, index) => (
+                <div 
+                  key={job._id} 
+                  className={`job-card ${job.isActive ? 'active' : 'inactive'}`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
                   <div className="job-header">
-                    <h4>{job.roleName}</h4>
+                    <div className="job-title-section">
+                      {getDepartmentIcon(job.department)}
+                      <div className="job-title-info">
+                        <h4 className="job-title">{job.roleName}</h4>
+                        <span className="job-department">{job.department}</span>
+                      </div>
+                    </div>
                     <span className={`status-badge ${job.isActive ? 'active' : 'inactive'}`}>
                       {job.isActive ? 'Active' : 'Inactive'}
                     </span>
                   </div>
-                  <div className="job-details">
-                    <p><strong>Department:</strong> {job.department}</p>
-                    <p><strong>Location:</strong> {job.location}</p>
-                    <p><strong>Type:</strong> {job.type}</p>
-                    <p><strong>Experience:</strong> {job.experience}</p>
-                  </div>
-                  <div className="job-actions">
-                    <button onClick={() => editJob(job)} className="edit-btn">
-                      Edit
-                    </button>
 
-                    {/* NEW: Applicants button */}
+                  <div className="job-details">
+                    <div className="detail-item">
+                      <FiMapPin className="detail-icon" />
+                      <span>{job.location}</span>
+                    </div>
+                    <div className="detail-item">
+                      <FiClock className="detail-icon" />
+                      <span>{job.type}</span>
+                    </div>
+                    <div className="detail-item">
+                      <FiActivity className="detail-icon" />
+                      <span>{job.experience}</span>
+                    </div>
+                  </div>
+
+                  <div className="job-description">
+                    <p>{job.description.substring(0, 120)}...</p>
+                  </div>
+
+                  <div className="job-stats">
+                    <div className="stat-item">
+                      <FiUsers className="stat-icon" />
+                      <span>{(job.applications && job.applications.length) || 0} applicants</span>
+                    </div>
+                  </div>
+
+                  <div className="job-actions">
+                    <button 
+                      onClick={() => editJob(job)} 
+                      className="action-btn edit-btn"
+                      title="Edit Job"
+                    >
+                      <FiEdit />
+                    </button>
                     <button
                       onClick={() => openApplicantsModal(job)}
-                      className="applicants-btn"
-                      title="View applicants for this job"
+                      className="action-btn applicants-btn"
+                      title="View Applicants"
                     >
-                      Applicants ({(job.applications && job.applications.length) || 0})
+                      <FiUsers />
+                      <span>({(job.applications && job.applications.length) || 0})</span>
                     </button>
-
                     <button
                       onClick={() => toggleJobStatus(job._id, job.isActive)}
-                      className={`status-btn ${job.isActive ? 'deactivate' : 'activate'}`}
+                      className={`action-btn status-btn ${job.isActive ? 'deactivate' : 'activate'}`}
+                      title={job.isActive ? 'Deactivate Job' : 'Activate Job'}
                     >
-                      {job.isActive ? 'Deactivate' : 'Activate'}
+                      {job.isActive ? <FiX /> : <FiCheck />}
                     </button>
-                    <button onClick={() => deleteJob(job._id)} className="delete-btn">
-                      Delete
+                    <button 
+                      onClick={() => deleteJob(job._id)} 
+                      className="action-btn delete-btn"
+                      title="Delete Job"
+                    >
+                      <FiTrash2 />
                     </button>
                   </div>
                 </div>
@@ -393,28 +607,48 @@ export default function Hiring() {
 
       {/* Applicants Modal */}
       {applicantsModalOpen && (
-        <div className="applicants-modal-overlay" onClick={closeApplicantsModal}>
-          <div className="applicants-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-backdrop">
+          <div className="modal-card applicants-modal">
             <div className="modal-header">
-              <h3>{selectedJobTitle} — Applicants</h3>
-              <button className="modal-close" onClick={closeApplicantsModal}>
-                ×
+              <h3>
+                <FiUsers className="modal-icon" />
+                {selectedJobTitle} — Applicants
+              </h3>
+              <button className="close-btn" onClick={closeApplicantsModal}>
+                <FiX />
               </button>
             </div>
 
-            <div className="modal-body">
+            <div className="modal-content">
               {selectedApplicants.length === 0 ? (
-                <p>No applicants have applied to this job yet.</p>
+                <div className="empty-applicants">
+                  <FiUsers className="empty-icon" />
+                  <h4>No applications yet</h4>
+                  <p>Applications will appear here once candidates apply for this position</p>
+                </div>
               ) : (
                 <div className="applicants-list">
                   {selectedApplicants.map((app, idx) => (
                     <div key={idx} className="applicant-card">
-                      <div className="applicant-main">
-                        <div>
-                          <p className="applicant-name"><strong>{app.name || '-'}</strong></p>
-                          <p><strong>Email:</strong> <a href={`mailto:${app.email}`}>{app.email || '-'}</a></p>
-                          <p><strong>Contact:</strong> {app.contactNumber || '-'}</p>
-                          <p><strong>Applied At:</strong> {formatDate(app.appliedAt)}</p>
+                      <div className="applicant-header">
+                        <div className="applicant-info">
+                          <h4 className="applicant-name">{app.name || 'Unknown'}</h4>
+                          <div className="applicant-contact">
+                            <div className="contact-item">
+                              <FiMail className="contact-icon" />
+                              <a href={`mailto:${app.email}`}>{app.email}</a>
+                            </div>
+                            {app.contactNumber && (
+                              <div className="contact-item">
+                                <FiPhone className="contact-icon" />
+                                <span>{app.contactNumber}</span>
+                              </div>
+                            )}
+                            <div className="contact-item">
+                              <FiCalendar className="contact-icon" />
+                              <span>{formatDate(app.appliedAt)}</span>
+                            </div>
+                          </div>
                         </div>
                         <div className="applicant-actions">
                           {app.resumeUrl ? (
@@ -422,19 +656,20 @@ export default function Hiring() {
                               href={app.resumeUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="resume-link"
+                              className="resume-btn"
                             >
+                              <FiEye />
                               View Resume
                             </a>
                           ) : (
-                            <span className="no-resume">No resume link</span>
+                            <span className="no-resume">No resume</span>
                           )}
                         </div>
                       </div>
 
                       {app.coverLetter && (
-                        <div className="applicant-cover">
-                          <strong>Cover Letter:</strong>
+                        <div className="cover-letter">
+                          <h5>Cover Letter:</h5>
                           <p>{app.coverLetter}</p>
                         </div>
                       )}
@@ -444,9 +679,13 @@ export default function Hiring() {
               )}
             </div>
 
-            <div className="modal-footer">
-              <button className="close-btn" onClick={closeApplicantsModal}>Close</button>
-            </div>
+            {selectedApplicants.length > 0 && (
+              <div className="modal-footer">
+                <div className="applicants-count">
+                  Total: {selectedApplicants.length} applications
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

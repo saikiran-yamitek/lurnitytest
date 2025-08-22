@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logo from "../../assets/LURNITY.jpg";
-import { FiUser, FiLogOut, FiUsers, FiCalendar, FiX, FiPlus, FiList } from "react-icons/fi";
+import { 
+  FiUser, FiLogOut, FiUsers, FiCalendar, FiX, FiPlus, 
+  FiList, FiEdit, FiTrash2, FiEye, FiCheck, FiSearch,
+  FiHome, FiMapPin, FiClock, FiAward, FiBell, FiTrendingUp,
+  FiActivity, FiRefreshCw, FiDownload, FiSave, FiFilter
+} from "react-icons/fi";
 import { listPlacements, createPlacementDrive, getStudentsForDrive, deletePlacementDrive } from "../../services/placementApi";
 import "./PlacementDashboard.css"
 
@@ -12,51 +17,64 @@ export default function PlacementDashboard() {
   const [selectedDrive, setSelectedDrive] = useState(null);
   const [showStudentPopup, setShowStudentPopup] = useState(false);
   const [driveToDelete, setDriveToDelete] = useState(null);
-  const [activeTab, setActiveTab] = useState("create");
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [companies, setCompanies] = useState([]);
   const [newCompany, setNewCompany] = useState({ name: "", about: "", website: "", linkedin: "" });
   const [scheduledDrives, setScheduledDrives] = useState([]);
   const [completedDrives, setCompletedDrives] = useState([]);
   const [rankings, setRankings] = useState([]);
-const [rankingSortBy, setRankingSortBy] = useState("lab");
-const [searchTerm, setSearchTerm] = useState("");
+  const [rankingSortBy, setRankingSortBy] = useState("lab");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
   
   const emp = JSON.parse(localStorage.getItem("empInfo"));
   const history = useHistory();
 
   const fetchCompanies = async () => {
-    const res = await fetch("/api/companies");
-    const data = await res.json();
-    setCompanies(data);
+    try {
+      const res = await fetch("/api/companies");
+      if (!res.ok) throw new Error("Failed to load companies");
+      const data = await res.json();
+      setCompanies(data);
+    } catch (err) {
+      console.error("fetchCompanies:", err);
+    }
   };
 
   useEffect(() => {
-  if (activeTab === "rankings") {
-    fetchRankings(rankingSortBy);
-  }
-}, [activeTab, rankingSortBy]);
-
+    if (activeTab === "rankings") {
+      fetchRankings(rankingSortBy);
+    }
+  }, [activeTab, rankingSortBy]);
 
   useEffect(() => {
-  if (!emp || !emp.id) {
-    alert("Session expired. Please login again.");
-    history.replace("/employee/login");
-    return;
-  }
-  fetchDrives();
-  fetchCompanies();
-}, [emp, history]);
-
+    if (!emp || !emp.id) {
+      alert("Session expired. Please login again.");
+      history.replace("/employee/login");
+      return;
+    }
+    fetchDrives();
+    fetchCompanies();
+  }, []);
 
   const fetchDrives = async () => {
-    const all = await listPlacements();
-    setScheduledDrives(all.filter((d) => d.status === 'SCHEDULED'));
-    setCompletedDrives(all.filter((d) => d.status === 'COMPLETED'));
+    setLoading(true);
+    try {
+      const all = await listPlacements();
+      setScheduledDrives(all.filter((d) => d.status === 'SCHEDULED'));
+      setCompletedDrives(all.filter((d) => d.status === 'COMPLETED'));
+    } catch (error) {
+      setPopup("❌ Failed to fetch drives");
+      setTimeout(() => setPopup(""), 3000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleCreate = async () => {
+    setLoading(true);
     try {
       const payload = { ...form, createdBy: emp.id };
 
@@ -66,10 +84,10 @@ const [searchTerm, setSearchTerm] = useState("");
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-        setPopup("✅ Drive Updated");
+        setPopup("✅ Drive Updated Successfully");
       } else {
         await createPlacementDrive(payload);
-        setPopup("✅ Drive Created");
+        setPopup("✅ Drive Created Successfully");
       }
 
       setForm({});
@@ -77,8 +95,11 @@ const [searchTerm, setSearchTerm] = useState("");
       setActiveTab("scheduled");
       setTimeout(() => setPopup(""), 3000);
     } catch (err) {
-      alert("❌ Failed to save drive");
+      setPopup("❌ Failed to save drive");
+      setTimeout(() => setPopup(""), 3000);
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -88,9 +109,9 @@ const [searchTerm, setSearchTerm] = useState("");
       setStudents(data);
       setSelectedDrive(driveId);
       setShowStudentPopup(true);
-      console.log(data)
     } catch (err) {
-      alert("❌ Failed to fetch students");
+      setPopup("❌ Failed to fetch students");
+      setTimeout(() => setPopup(""), 3000);
       console.error(err);
     }
   };
@@ -98,12 +119,13 @@ const [searchTerm, setSearchTerm] = useState("");
   const handleDelete = async () => {
     try {
       await deletePlacementDrive(driveToDelete);
-      setPopup("🗑️ Drive deleted");
+      setPopup("🗑️ Drive deleted successfully");
       fetchDrives();
       setDriveToDelete(null);
       setTimeout(() => setPopup(""), 3000);
     } catch (err) {
-      alert("❌ Failed to delete drive");
+      setPopup("❌ Failed to delete drive");
+      setTimeout(() => setPopup(""), 3000);
       console.error(err);
     }
   };
@@ -112,7 +134,7 @@ const [searchTerm, setSearchTerm] = useState("");
     setForm({
       ...drive,
       lastDateToApply: drive.lastDateToApply?.split("T")[0],
-      driveDate: drive.driveDate?.split("T")[0],
+      driveDate: drive.driveDate?.split("T"),
     });
     setActiveTab("create");
   };
@@ -121,535 +143,1312 @@ const [searchTerm, setSearchTerm] = useState("");
     localStorage.removeItem("empInfo");
     history.replace("/employee/login");
   };
+
   const fetchRankings = async (sortBy = "lab") => {
-  const res = await fetch(`/api/rankings?sortBy=${sortBy}`);
-  const data = await res.json();
-  setRankings(data);
-};
+    const res = await fetch(`/api/rankings?sortBy=${sortBy}`);
+    const data = await res.json();
+    setRankings(data);
+  };
+
+  // Calculate dashboard statistics
+  const totalDrives = scheduledDrives.length + completedDrives.length;
+  const totalApplications = [...scheduledDrives, ...completedDrives].reduce((sum, drive) => 
+    sum + (drive.registered?.length || 0), 0
+  );
+  const totalPlacements = completedDrives.reduce((sum, drive) => 
+    sum + (drive.registered?.filter(s => s.status === "PLACED").length || 0), 0
+  );
+  const placementRate = totalApplications > 0 ? ((totalPlacements / totalApplications) * 100).toFixed(1) : 0;
 
   return (
-    <div className="placement-dashboard cm-shell">
-      <header className="cm-header shadow-sm">
-        <img src={logo} alt="Lurnity" className="cm-logo" />
-        <h3 className="cm-title flex-grow-1">Placement Cell Dashboard</h3>
-        <div className="d-flex align-items-center gap-3">
-          <div className="cm-avatar"><FiUser size={20} /></div>
-          <span className="cm-user">{emp.name}</span>
-          <button className="cm-logout btn btn-outline-light btn-sm" onClick={doLogout}><FiLogOut /></button>
-        </div>
-      </header>
-
-      <div className="placement-dashboard__tabs">
-        <button className={`placement-dashboard__tab-btn ${activeTab === 'create' ? 'active' : ''}`} onClick={() => setActiveTab('create')}>
-          <FiPlus className="me-2" /> Create Drive
-        </button>
-        <button className={`placement-dashboard__tab-btn ${activeTab === 'scheduled' ? 'active' : ''}`} onClick={() => setActiveTab('scheduled')}>
-          <FiList className="me-2" /> Scheduled Drives
-        </button>
-        <button className={`placement-dashboard__tab-btn ${activeTab === 'companies' ? 'active' : ''}`} onClick={() => setActiveTab('companies')}>
-          <FiList className="me-2" /> Companies
-        </button>
-        <button className={`placement-dashboard__tab-btn ${activeTab === 'completed' ? 'active' : ''}`} onClick={() => setActiveTab('completed')}>
-          <FiList className="me-2" /> Completed Drives
-        </button>
-        <button
-  className={`placement-dashboard__tab-btn ${activeTab === 'rankings' ? 'active' : ''}`}
-  onClick={() => setActiveTab('rankings')}
->
-  <FiList className="me-2" /> Rankings
-</button>
-      </div>
-
-      <main className="placement-dashboard__main container py-4">
-        {activeTab === 'create' && (
-          <div className="placement-dashboard__create-drive">
-            <h4 className="fw-semibold mb-4">Create New Placement Drive</h4>
-            <div className="row g-3 mb-5">
-              <div className="col-md-4">
-                <select className="form-control" onChange={(e) => {
-                  const selected = companies.find(c => c._id === e.target.value);
-                  if (!selected) return;
-                  setForm({
-                    ...form,
-                    companyId: selected._id,
-                    company: selected.name,
-                    aboutCompany: selected.about,
-                    companyWebsite: selected.website,
-                    companyLinkedin: selected.linkedin
-                  });
-                }}>
-                  <option value="">Select Company</option>
-                  {companies.map((c) => (
-                    <option key={c._id} value={c._id}>{c.name}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="col-md-4">
-                <input className="form-control" name="role" placeholder="Role" value={form.role || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-4">
-                <input className="form-control" type="number" name="seats" placeholder="No. of Positions" value={form.seats || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-4">
-                <input className="form-control" name="ctc" placeholder="CTC" value={form.ctc || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-4">
-                <input className="form-control" name="serviceAgreement" placeholder="Service Agreement" value={form.serviceAgreement || ""} onChange={handleChange} />
-              </div>
-
-              <div className="col-md-4">
-                <label className="form-label">Last Date to Apply</label>
-                <input
-                  className="form-control"
-                  type="date"
-                  name="lastDateToApply"
-                  value={form.lastDateToApply || ""}
-                  min={new Date().toISOString().split("T")[0]}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="col-md-4">
-                <label className="form-label">Drive Date</label>
-                <input
-                  className="form-control"
-                  type="date"
-                  name="driveDate"
-                  value={form.driveDate || ""}
-                  min={
-                    form.lastDateToApply
-                      ? new Date(new Date(form.lastDateToApply).getTime() + 86400000)
-                          .toISOString()
-                          .split("T")[0]
-                      : ""
-                  }
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <textarea className="form-control" name="eligibilityCriteria" placeholder="Eligibility Criteria" value={form.eligibilityCriteria || ""} onChange={handleChange}></textarea>
-              </div>
-              <div className="col-md-6">
-                <textarea className="form-control" name="note" placeholder="Note (Optional)" value={form.note || ""} onChange={handleChange}></textarea>
-              </div>
-              <div className="col-md-4">
-                <input className="form-control" name="jobLocation" placeholder="Job Location" value={form.jobLocation || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-4">
-                <input className="form-control" name="skillsRequired" placeholder="Skills Required (comma-separated)" value={form.skillsRequired || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-4">
-                <input className="form-control" name="aboutCompany" placeholder="About Company" value={form.aboutCompany || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-6">
-                <input className="form-control" name="companyWebsite" placeholder="Company Website Link" value={form.companyWebsite || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-6">
-                <input className="form-control" name="companyLinkedin" placeholder="Company LinkedIn Profile Link" value={form.companyLinkedin || ""} onChange={handleChange} />
-              </div>
-              <div className="col-md-3">
-                <button className="btn btn-success w-100" onClick={handleCreate}><FiCalendar /> Create Drive</button>
-              </div>
+    <div className="placement-dashboard-wrapper">
+      {/* Sidebar */}
+      <aside className="placement-sidebar">
+        <div className="placement-sidebar-header">
+          <div className="placement-logo-container">
+            <img src={logo} alt="Lurnity" className="placement-logo" />
+            <div className="placement-brand-info">
+              <h2 className="placement-brand-title">Placement Portal</h2>
+              <p className="placement-brand-subtitle">Career Management</p>
             </div>
           </div>
-        )}
+        </div>
+        
+        <nav className="placement-sidebar-nav">
+          <div className="placement-nav-section">
+            <span className="placement-nav-section-title">Main</span>
+            <button 
+              className={`placement-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('dashboard')}
+            >
+              <FiTrendingUp />
+              <span>Dashboard</span>
+            </button>
+            <button 
+              className={`placement-nav-item ${activeTab === 'create' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('create')}
+            >
+              <FiPlus />
+              <span>Create Drive</span>
+            </button>
+          </div>
 
-        {activeTab === 'scheduled' && (
-          <div className="placement-dashboard__scheduled-drives">
-            <h4 className="fw-semibold mb-3">Upcoming Drives</h4>
-            <div className="row">
-              {scheduledDrives.map((d) => (
-                <div className="col-md-6 mb-4" key={d._id}>
-                  <div className="placement-dashboard__drive-card card shadow-sm border-0">
-                    <div className="card-body">
-                      <h5 className="card-title d-flex justify-content-between align-items-center">
-                        {d.company} - {d.role}
-                        <div>
-                          <button className="btn btn-sm btn-warning me-2" onClick={() => handleEditDrive(d)}>
-                            Edit
-                          </button>
-                          <button className="btn btn-sm btn-danger" onClick={() => setDriveToDelete(d._id)}>
-                            <FiX />
-                          </button>
-                          <button
-                            className="btn btn-sm btn-success me-2"
-                            onClick={async () => {
-                              try {
-                                const studentRes = await fetch(`/api/placements/${d._id}/students`);
-                                const studentList = await studentRes.json();
+          <div className="placement-nav-section">
+            <span className="placement-nav-section-title">Management</span>
+            <button 
+              className={`placement-nav-item ${activeTab === 'scheduled' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('scheduled')}
+            >
+              <FiClock />
+              <span>Scheduled</span>
+              {scheduledDrives.length > 0 && (
+                <span className="placement-nav-badge">{scheduledDrives.length}</span>
+              )}
+            </button>
+            <button 
+              className={`placement-nav-item ${activeTab === 'companies' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('companies')}
+            >
+              <FiHome />
+              <span>Companies</span>
+            </button>
+            <button 
+              className={`placement-nav-item ${activeTab === 'completed' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('completed')}
+            >
+              <FiCheck />
+              <span>Completed</span>
+            </button>
+            <button
+              className={`placement-nav-item ${activeTab === 'rankings' ? 'active' : ''}`}
+              onClick={() => setActiveTab('rankings')}
+            >
+              <FiAward />
+              <span>Rankings</span>
+            </button>
+          </div>
+        </nav>
 
-                                let hasError = false;
-                                let errorMsg = "";
+        <div className="placement-sidebar-footer">
+          <div className="placement-user-card">
+            <div className="placement-user-avatar">
+              <FiUser />
+            </div>
+            <div className="placement-user-info">
+              <span className="placement-user-name">{emp?.name}</span>
+              <span className="placement-user-role">Placement Officer</span>
+            </div>
+          </div>
+        </div>
+      </aside>
 
-                                for (let s of studentList) {
-                                  if (!s.remarks || s.remarks.trim() === "") {
-                                    hasError = true;
-                                    errorMsg = `❌ Cannot end drive: ${s.name} is missing remarks.`;
-                                    break;
-                                  }
-                                  if (s.status === "PLACED" && (!s.offerLetterURL || s.offerLetterURL.trim() === "")) {
-                                    hasError = true;
-                                    errorMsg = `❌ Cannot end drive: ${s.name} is marked as PLACED but missing offer letter URL.`;
-                                    break;
-                                  }
-                                  if (s.status === "PENDING") {
-                                    hasError = true;
-                                    errorMsg = `❌ Cannot end drive: ${s.name} has status set to PENDING.`;
-                                    break;
-                                  }
-                                }
+      {/* Main Content */}
+      <div className="placement-main-content">
+        {/* Top Header */}
+        <header className="placement-header">
+          <div className="placement-header-left">
+            <div className="placement-page-info">
+              <h1 className="placement-page-title">
+                {activeTab === 'dashboard' && 'Placement Dashboard'}
+                {activeTab === 'create' && (form._id ? 'Edit Placement Drive' : 'Create New Drive')}
+                {activeTab === 'scheduled' && 'Scheduled Drives'}
+                {activeTab === 'companies' && 'Company Management'}
+                {activeTab === 'completed' && 'Completed Drives'}
+                {activeTab === 'rankings' && 'Student Rankings'}
+              </h1>
+              <p className="placement-page-subtitle">
+                {activeTab === 'dashboard' && 'Manage campus placement drives and track student progress'}
+                {activeTab === 'create' && 'Fill in the details to create a new campus placement opportunity'}
+                {activeTab === 'scheduled' && `Managing ${scheduledDrives.length} upcoming drives`}
+                {activeTab === 'companies' && 'Add and manage company profiles for placement drives'}
+                {activeTab === 'completed' && `View results of ${completedDrives.length} completed drives`}
+                {activeTab === 'rankings' && 'View and manage student performance rankings'}
+              </p>
+            </div>
+          </div>
+          <div className="placement-header-right">
+            <button className="placement-header-btn" onClick={fetchDrives}>
+              <FiRefreshCw />
+            </button>
+            <button className="placement-header-btn">
+              <FiBell />
+            </button>
+            <button className="placement-logout-btn" onClick={doLogout} title="Logout">
+              <FiLogOut />
+              <span>Logout</span>
+            </button>
+          </div>
+        </header>
 
-                                if (hasError) {
-                                  setPopup(errorMsg);
-                                  setTimeout(() => setPopup(""), 4000);
-                                  return;
-                                }
+        {/* Content Area */}
+        <main className="placement-content">
+          {loading && (
+            <div className="placement-loading-overlay">
+              <div className="placement-loading-spinner">
+                <div className="placement-spinner"></div>
+                <p>Loading...</p>
+              </div>
+            </div>
+          )}
 
-                                await fetch(`/api/placements/${d._id}/complete`, { method: "PUT" });
-                                fetchDrives();
-                                setPopup("✅ Drive marked as completed");
-                                setTimeout(() => setPopup(""), 2000);
-                              } catch (err) {
-                                console.error(err);
-                                setPopup("❌ Failed to end drive");
-                                setTimeout(() => setPopup(""), 3000);
-                              }
-                            }}
+          {activeTab === 'dashboard' && (
+            <div className="placement-dashboard">
+              {/* Statistics Cards */}
+              <div className="placement-stats-grid">
+                <div className="placement-stat-card placement-stat-primary">
+                  <div className="placement-stat-header">
+                    <div className="placement-stat-icon">
+                      <FiCalendar />
+                    </div>
+                    <div className="placement-stat-info">
+                      <h3 className="placement-stat-value">{totalDrives}</h3>
+                      <p className="placement-stat-label">Total Drives</p>
+                    </div>
+                  </div>
+                  <div className="placement-stat-footer">
+                    <span className="placement-stat-trend positive">
+                      <FiTrendingUp />
+                      All placement activities
+                    </span>
+                  </div>
+                </div>
+
+                <div className="placement-stat-card placement-stat-success">
+                  <div className="placement-stat-header">
+                    <div className="placement-stat-icon">
+                      <FiUsers />
+                    </div>
+                    <div className="placement-stat-info">
+                      <h3 className="placement-stat-value">{totalPlacements}</h3>
+                      <p className="placement-stat-label">Students Placed</p>
+                    </div>
+                  </div>
+                  <div className="placement-stat-footer">
+                    <span className="placement-stat-trend positive">
+                      <FiTrendingUp />
+                      Successful placements
+                    </span>
+                  </div>
+                </div>
+
+                <div className="placement-stat-card placement-stat-warning">
+                  <div className="placement-stat-header">
+                    <div className="placement-stat-icon">
+                      <FiActivity />
+                    </div>
+                    <div className="placement-stat-info">
+                      <h3 className="placement-stat-value">{placementRate}%</h3>
+                      <p className="placement-stat-label">Placement Rate</p>
+                    </div>
+                  </div>
+                  <div className="placement-stat-footer">
+                    <span className="placement-stat-trend positive">
+                      <FiTrendingUp />
+                      Success percentage
+                    </span>
+                  </div>
+                </div>
+
+                <div className="placement-stat-card placement-stat-info">
+                  <div className="placement-stat-header">
+                    <div className="placement-stat-icon">
+                      <FiHome />
+                    </div>
+                    <div className="placement-stat-info">
+                      <h3 className="placement-stat-value">{companies.length}</h3>
+                      <p className="placement-stat-label">Partner Companies</p>
+                    </div>
+                  </div>
+                  <div className="placement-stat-footer">
+                    <span className="placement-stat-trend neutral">
+                      <FiActivity />
+                      Registered partners
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="placement-quick-actions-section">
+                <div className="placement-section-header">
+                  <h2 className="placement-section-title">Quick Actions</h2>
+                  <p className="placement-section-subtitle">Frequently used placement management tools</p>
+                </div>
+                <div className="placement-quick-actions">
+                  <button 
+                    className="placement-quick-action-card primary"
+                    onClick={() => setActiveTab('create')}
+                  >
+                    <div className="placement-action-icon">
+                      <FiPlus />
+                    </div>
+                    <div className="placement-action-content">
+                      <h3>Create Drive</h3>
+                      <p>Schedule new placement drive</p>
+                    </div>
+                  </button>
+
+                  <button 
+                    className="placement-quick-action-card secondary"
+                    onClick={() => setActiveTab('companies')}
+                  >
+                    <div className="placement-action-icon">
+                      <FiHome />
+                    </div>
+                    <div className="placement-action-content">
+                      <h3>Manage Companies</h3>
+                      <p>Add and edit company profiles</p>
+                    </div>
+                  </button>
+
+                  <button 
+                    className="placement-quick-action-card tertiary"
+                    onClick={() => setActiveTab('rankings')}
+                  >
+                    <div className="placement-action-icon">
+                      <FiAward />
+                    </div>
+                    <div className="placement-action-content">
+                      <h3>View Rankings</h3>
+                      <p>Student performance analytics</p>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Recent Activities */}
+              <div className="placement-recent-section">
+                <div className="placement-section-header">
+                  <h2 className="placement-section-title">Recent Drives</h2>
+                  <button 
+                    className="placement-view-all-btn"
+                    onClick={() => setActiveTab('scheduled')}
+                  >
+                    View All
+                  </button>
+                </div>
+                <div className="placement-recent-drives">
+                  {[...scheduledDrives, ...completedDrives].slice(0, 3).map((drive) => (
+                    <div key={drive._id} className="placement-recent-drive-item">
+                      <div className="placement-recent-drive-header">
+                        <div className="placement-drive-icon">
+                          <FiHome />
+                        </div>
+                        <div className="placement-drive-info">
+                          <h4 className="placement-drive-title">{drive.company}</h4>
+                          <p className="placement-drive-role">{drive.role}</p>
+                        </div>
+                        <div className="placement-drive-status">
+                          <span className={`placement-status-badge ${drive.status.toLowerCase()}`}>
+                            {drive.status}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="placement-recent-drive-meta">
+                        <span className="placement-drive-date">
+                          <FiCalendar />
+                          {new Date(drive.driveDate).toLocaleDateString()}
+                        </span>
+                        <span className="placement-drive-applications">
+                          <FiUsers />
+                          {drive.registered?.length || 0}/{drive.seats}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'create' && (
+            <div className="placement-create-section">
+              <div className="placement-form-container">
+                <div className="placement-form-header">
+                  <h2 className="placement-form-title">
+                    {form._id ? 'Edit Placement Drive' : 'Drive Details'}
+                  </h2>
+                  <p className="placement-form-subtitle">
+                    Fill in the information to {form._id ? 'update' : 'create'} a placement opportunity
+                  </p>
+                </div>
+
+                <form className="placement-form">
+                  <div className="placement-form-row">
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">
+                        Select Company <span className="placement-required">*</span>
+                      </label>
+                      <select 
+                        className="placement-form-input placement-form-select" 
+                        onChange={(e) => {
+                          const selected = companies.find(c => c._id === e.target.value);
+                          if (!selected) return;
+                          setForm({
+                            ...form,
+                            companyId: selected._id,
+                            company: selected.name,
+                            aboutCompany: selected.about,
+                            companyWebsite: selected.website,
+                            companyLinkedin: selected.linkedin
+                          });
+                        }}
+                        required
+                      >
+                        <option value="">Choose a company...</option>
+                        {companies.map((c) => (
+                          <option key={c._id} value={c._id}>{c.name}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">
+                        Job Role <span className="placement-required">*</span>
+                      </label>
+                      <input 
+                        className="placement-form-input" 
+                        name="role" 
+                        placeholder="e.g. Software Engineer" 
+                        value={form.role || ""} 
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">
+                        Number of Positions <span className="placement-required">*</span>
+                      </label>
+                      <input 
+                        className="placement-form-input" 
+                        type="number" 
+                        name="seats" 
+                        placeholder="Enter number of seats" 
+                        value={form.seats || ""} 
+                        onChange={handleChange}
+                        min="1"
+                        required
+                      />
+                    </div>
+
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">
+                        CTC Package <span className="placement-required">*</span>
+                      </label>
+                      <input 
+                        className="placement-form-input" 
+                        name="ctc" 
+                        placeholder="e.g. 8-12 LPA" 
+                        value={form.ctc || ""} 
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">Service Agreement</label>
+                      <input 
+                        className="placement-form-input" 
+                        name="serviceAgreement" 
+                        placeholder="e.g. 2 years" 
+                        value={form.serviceAgreement || ""} 
+                        onChange={handleChange} 
+                      />
+                    </div>
+
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">
+                        Job Location <span className="placement-required">*</span>
+                      </label>
+                      <input 
+                        className="placement-form-input" 
+                        name="jobLocation" 
+                        placeholder="e.g. Bangalore, Mumbai" 
+                        value={form.jobLocation || ""} 
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">
+                        Last Date to Apply <span className="placement-required">*</span>
+                      </label>
+                      <input
+                        className="placement-form-input"
+                        type="date"
+                        name="lastDateToApply"
+                        value={form.lastDateToApply || ""}
+                        min={new Date().toISOString().split("T")[0]}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">
+                        Drive Date <span className="placement-required">*</span>
+                      </label>
+                      <input
+                        className="placement-form-input"
+                        type="date"
+                        name="driveDate"
+                        value={form.driveDate || ""}
+                        min={
+                          form.lastDateToApply
+                            ? new Date(new Date(form.lastDateToApply).getTime() + 86400000)
+                                .toISOString()
+                                .split("T")[0]
+                            : ""
+                        }
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group placement-form-group-full">
+                      <label className="placement-form-label">Skills Required</label>
+                      <input 
+                        className="placement-form-input" 
+                        name="skillsRequired" 
+                        placeholder="e.g. Java, React, Node.js (comma-separated)" 
+                        value={form.skillsRequired || ""} 
+                        onChange={handleChange} 
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group placement-form-group-full">
+                      <label className="placement-form-label">
+                        Eligibility Criteria <span className="placement-required">*</span>
+                      </label>
+                      <textarea 
+                        className="placement-form-textarea" 
+                        name="eligibilityCriteria" 
+                        placeholder="Enter eligibility requirements..." 
+                        value={form.eligibilityCriteria || ""} 
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group placement-form-group-full">
+                      <label className="placement-form-label">About Company</label>
+                      <textarea 
+                        className="placement-form-textarea" 
+                        name="aboutCompany" 
+                        placeholder="Brief description about the company..." 
+                        value={form.aboutCompany || ""} 
+                        onChange={handleChange}
+                        readOnly={!!form.companyId}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">Company Website</label>
+                      <input 
+                        className="placement-form-input" 
+                        name="companyWebsite" 
+                        placeholder="https://company.com" 
+                        value={form.companyWebsite || ""} 
+                        onChange={handleChange}
+                        type="url"
+                        readOnly={!!form.companyId}
+                      />
+                    </div>
+
+                    <div className="placement-form-group">
+                      <label className="placement-form-label">Company LinkedIn</label>
+                      <input 
+                        className="placement-form-input" 
+                        name="companyLinkedin" 
+                        placeholder="https://linkedin.com/company/..." 
+                        value={form.companyLinkedin || ""} 
+                        onChange={handleChange}
+                        type="url"
+                        readOnly={!!form.companyId}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-row">
+                    <div className="placement-form-group placement-form-group-full">
+                      <label className="placement-form-label">Additional Notes</label>
+                      <textarea 
+                        className="placement-form-textarea" 
+                        name="note" 
+                        placeholder="Any additional information for students..." 
+                        value={form.note || ""} 
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="placement-form-actions">
+                    <button 
+                      type="button"
+                      className="placement-btn placement-btn-secondary" 
+                      onClick={() => setForm({})}
+                    >
+                      <FiX />
+                      Clear Form
+                    </button>
+                    <button 
+                      type="button"
+                      className="placement-btn placement-btn-primary" 
+                      onClick={handleCreate}
+                      disabled={loading}
+                    >
+                      <FiCalendar />
+                      {form._id ? 'Update Drive' : 'Create Drive'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'scheduled' && (
+            <div className="placement-drives-section">
+              {scheduledDrives.length === 0 ? (
+                <div className="placement-empty-state">
+                  <div className="placement-empty-icon">
+                    <FiCalendar />
+                  </div>
+                  <h3 className="placement-empty-title">No Scheduled Drives</h3>
+                  <p className="placement-empty-description">
+                    Create your first placement drive to get started
+                  </p>
+                  <button 
+                    className="placement-btn placement-btn-primary" 
+                    onClick={() => setActiveTab('create')}
+                  >
+                    <FiPlus />
+                    Create Drive
+                  </button>
+                </div>
+              ) : (
+                <div className="placement-drives-grid">
+                  {scheduledDrives.map((drive) => (
+                    <div className="placement-drive-card" key={drive._id}>
+                      <div className="placement-drive-card-header">
+                        <div className="placement-drive-main-info">
+                          <div className="placement-drive-badge">
+                            <FiHome />
+                          </div>
+                          <div className="placement-drive-details">
+                            <h3 className="placement-drive-name">{drive.company}</h3>
+                            <p className="placement-drive-role">{drive.role}</p>
+                          </div>
+                        </div>
+                        <div className="placement-drive-actions">
+                          <button 
+                            className="placement-action-btn placement-action-btn-edit" 
+                            onClick={() => handleEditDrive(drive)}
+                            title="Edit Drive"
                           >
-                            End Drive
+                            <FiEdit />
+                          </button>
+                          <button 
+                            className="placement-action-btn placement-action-btn-delete" 
+                            onClick={() => setDriveToDelete(drive._id)}
+                            title="Delete Drive"
+                          >
+                            <FiTrash2 />
                           </button>
                         </div>
-                      </h5>
+                      </div>
 
-                      <p><strong>Drive Date:</strong> {new Date(d.driveDate).toLocaleDateString()}</p>
-                      <p><strong>Last Date to Apply:</strong> {new Date(d.lastDateToApply).toLocaleDateString()}</p>
-                      <p><strong>Location:</strong> {d.jobLocation}</p>
-                      <p><strong>Positions:</strong> {d.seats}</p>
-                      <p><strong>Registered:</strong> {d.registered?.length || 0}</p>
-                      <p><strong>Placed:</strong> {
-                        d.registered?.filter((s) => s.status === "PLACED").length || 0
-                      }</p>
+                      <div className="placement-drive-card-body">
+                        <div className="placement-drive-meta">
+                          <div className="placement-meta-item">
+                            <FiCalendar className="placement-meta-icon" />
+                            <div className="placement-meta-content">
+                              <span className="placement-meta-label">Drive Date</span>
+                              <span className="placement-meta-value">{new Date(drive.driveDate).toLocaleDateString()}</span>
+                            </div>
+                          </div>
+                          <div className="placement-meta-item">
+                            <FiClock className="placement-meta-icon" />
+                            <div className="placement-meta-content">
+                              <span className="placement-meta-label">Apply by</span>
+                              <span className="placement-meta-value">{new Date(drive.lastDateToApply).toLocaleDateString()}</span>
+                            </div>
+                          </div>
+                          <div className="placement-meta-item">
+                            <FiMapPin className="placement-meta-icon" />
+                            <div className="placement-meta-content">
+                              <span className="placement-meta-label">Location</span>
+                              <span className="placement-meta-value">{drive.jobLocation}</span>
+                            </div>
+                          </div>
+                        </div>
 
-                      <p><strong>Unplaced:</strong> {
-                        d.registered?.filter((s) => s.status === "NOT PLACED").length || 0
-                      }</p>
-                      <button className="btn btn-outline-primary btn-sm" onClick={() => handleViewStudents(d._id)}>
-                        <FiUsers className="me-1" /> View Students
-                      </button>
+                        <div className="placement-drive-stats">
+                          <div className="placement-stat-row">
+                            <div className="placement-stat-item">
+                              <span className="placement-stat-number">{drive.seats}</span>
+                              <span className="placement-stat-text">Positions</span>
+                            </div>
+                            <div className="placement-stat-item">
+                              <span className="placement-stat-number">{drive.registered?.length || 0}</span>
+                              <span className="placement-stat-text">Registered</span>
+                            </div>
+                            <div className="placement-stat-item">
+                              <span className="placement-stat-number">{drive.registered?.filter(s => s.status === "PLACED").length || 0}</span>
+                              <span className="placement-stat-text">Placed</span>
+                            </div>
+                          </div>
+                          <div className="placement-progress-container">
+                            <div className="placement-progress-bar">
+                              <div 
+                                className="placement-progress-fill" 
+                                style={{ width: `${((drive.registered?.length || 0) / drive.seats) * 100}%` }}
+                              ></div>
+                            </div>
+                            <span className="placement-progress-text">
+                              {Math.round(((drive.registered?.length || 0) / drive.seats) * 100)}% Applied
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="placement-drive-card-footer">
+                        <button 
+                          className="placement-btn placement-btn-outline" 
+                          onClick={() => handleViewStudents(drive._id)}
+                        >
+                          <FiUsers />
+                          View Students ({drive.registered?.length || 0})
+                        </button>
+                        <button
+                          className="placement-btn placement-btn-success"
+                          onClick={async () => {
+                            try {
+                              const studentRes = await fetch(`/api/placements/${drive._id}/students`);
+                              const studentList = await studentRes.json();
+
+                              let hasError = false;
+                              let errorMsg = "";
+
+                              for (let s of studentList) {
+                                if (!s.remarks || s.remarks.trim() === "") {
+                                  hasError = true;
+                                  errorMsg = `❌ Cannot end drive: ${s.name} is missing remarks.`;
+                                  break;
+                                }
+                                if (s.status === "PLACED" && (!s.offerLetterURL || s.offerLetterURL.trim() === "")) {
+                                  hasError = true;
+                                  errorMsg = `❌ Cannot end drive: ${s.name} is marked as PLACED but missing offer letter URL.`;
+                                  break;
+                                }
+                                if (s.status === "PENDING") {
+                                  hasError = true;
+                                  errorMsg = `❌ Cannot end drive: ${s.name} has status set to PENDING.`;
+                                  break;
+                                }
+                              }
+
+                              if (hasError) {
+                                setPopup(errorMsg);
+                                setTimeout(() => setPopup(""), 4000);
+                                return;
+                              }
+
+                              await fetch(`/api/placements/${drive._id}/complete`, { method: "PUT" });
+                              fetchDrives();
+                              setPopup("✅ Drive marked as completed");
+                              setTimeout(() => setPopup(""), 2000);
+                            } catch (err) {
+                              console.error(err);
+                              setPopup("❌ Failed to end drive");
+                              setTimeout(() => setPopup(""), 3000);
+                            }
+                          }}
+                        >
+                          <FiCheck />
+                          Complete Drive
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'completed' && (
-          <div className="placement-dashboard__completed-drives">
-            <h4 className="fw-semibold mb-3">Completed Drives</h4>
-            <div className="row">
-              {completedDrives.map((d) => (
-                <div className="col-md-6 mb-4" key={d._id}>
-                  <div className="placement-dashboard__drive-card card shadow-sm border-0">
-                    <div className="card-body">
-                      <h5 className="card-title">{d.company} - {d.role}</h5>
-                      <p><strong>Drive Date:</strong> {new Date(d.driveDate).toLocaleDateString()}</p>
-                      <p><strong>Location:</strong> {d.jobLocation}</p>
-                      <p><strong>Positions:</strong> {d.seats}</p>
-                      <p><strong>Registered:</strong> {d.registered?.length || 0}</p>
-                      <p className="text-success fw-semibold">Status: COMPLETED</p>
-                      <button
-                        className="btn btn-sm btn-warning mt-2"
-                        onClick={async () => {
-                          await fetch(`/api/placements/${d._id}/revoke`, { method: "PUT" });
-                          fetchDrives();
-                          setPopup("🔄 Drive status reverted to Scheduled");
-                          setTimeout(() => setPopup(""), 2000);
-                        }}
-                      >
-                        Revoke Drive
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'companies' && (
-          <div className="placement-dashboard__companies">
-            <h4 className="fw-semibold mb-4">Manage Companies</h4>
-
-            <div className="row g-3 mb-3">
-              <div className="col-md-4">
-                <input className="form-control" name="name" placeholder="Company Name"
-                  value={newCompany.name} onChange={(e) => setNewCompany({ ...newCompany, name: e.target.value })} />
-              </div>
-              <div className="col-md-8">
-                <input className="form-control" name="website" placeholder="Website"
-                  value={newCompany.website} onChange={(e) => setNewCompany({ ...newCompany, website: e.target.value })} />
-              </div>
-              <div className="col-md-6">
-                <input className="form-control" name="linkedin" placeholder="LinkedIn"
-                  value={newCompany.linkedin} onChange={(e) => setNewCompany({ ...newCompany, linkedin: e.target.value })} />
-              </div>
-              <div className="col-md-6">
-                <textarea className="form-control" placeholder="About"
-                  value={newCompany.about} onChange={(e) => setNewCompany({ ...newCompany, about: e.target.value })}></textarea>
-              </div>
-              <div className="col-md-3">
-                <button className="btn btn-primary w-100" onClick={async () => {
-                  if (newCompany._id) {
-                    await fetch(`/api/companies/${newCompany._id}`, {
-                      method: "PUT",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify(newCompany)
-                    });
-                    setPopup("✅ Company Updated");
-                  } else {
-                    await fetch("/api/companies", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify(newCompany)
-                    });
-                    setPopup("✅ Company Added");
-                  }
-
-                  setNewCompany({ name: "", about: "", website: "", linkedin: "" });
-                  fetchCompanies();
-                  setTimeout(() => setPopup(""), 3000);
-                }}>
-                  {newCompany._id ? "Update Company" : "Add Company"}
-                </button>
-              </div>
-            </div>
-
-            <div className="row mt-4">
-              <table className="table table-bordered mt-4">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Website</th>
-                    <th>LinkedIn</th>
-                    <th>About</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {companies.map((c) => (
-                    <tr key={c._id}>
-                      <td>{c.name}</td>
-                      <td><a href={c.website} target="_blank" rel="noreferrer">{c.website}</a></td>
-                      <td><a href={c.linkedin} target="_blank" rel="noreferrer">{c.linkedin}</a></td>
-                      <td>{c.about}</td>
-                      <td>
-                        <button className="btn btn-sm btn-outline-primary" onClick={() => setNewCompany(c)}>Edit</button>
-                      </td>
-                    </tr>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          )}
 
-        {activeTab === "rankings" && (
-  <div className="placement-dashboard__rankings">
-    <h4 className="fw-semibold mb-3">Student Rankings</h4>
+          {activeTab === 'companies' && (
+            <div className="placement-companies-section">
+              <div className="placement-company-form-card">
+                <h3>{newCompany._id ? 'Edit Company' : 'Add New Company'}</h3>
+                
+                <div className="placement-form-grid">
+                  <div className="placement-form-group">
+                    <label className="placement-form-label">
+                      Company Name <span className="placement-required">*</span>
+                    </label>
+                    <input 
+                      className="placement-form-input" 
+                      name="name" 
+                      placeholder="Enter company name"
+                      value={newCompany.name} 
+                      onChange={(e) => setNewCompany({ ...newCompany, name: e.target.value })}
+                      required
+                    />
+                  </div>
 
-    <div className="mb-3 d-flex align-items-center gap-3">
-      <div>
-        <label className="me-2 fw-bold">Sort By:</label>
-        <select
-          value={rankingSortBy}
-          onChange={(e) => {
-            setRankingSortBy(e.target.value);
-            fetchRankings(e.target.value);
-          }}
-          className="form-select w-auto d-inline-block"
-        >
-          <option value="lab">Lab Grades</option>
-          <option value="degree">Bachelor's CGPA / Percentage</option>
-        </select>
-      </div>
+                  <div className="placement-form-group">
+                    <label className="placement-form-label">Website URL</label>
+                    <input 
+                      className="placement-form-input" 
+                      name="website" 
+                      placeholder="https://company.com"
+                      value={newCompany.website} 
+                      onChange={(e) => setNewCompany({ ...newCompany, website: e.target.value })}
+                      type="url"
+                    />
+                  </div>
 
-      {/* 🔍 Search Box */}
-      <div>
-        <input
-          type="text"
-          placeholder="Search by student name..."
-          className="form-control"
-          style={{ width: "250px" }}
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-    </div>
+                  <div className="placement-form-group placement-form-group-full">
+                    <label className="placement-form-label">LinkedIn Profile</label>
+                    <input 
+                      className="placement-form-input" 
+                      name="linkedin" 
+                      placeholder="https://linkedin.com/company/..."
+                      value={newCompany.linkedin} 
+                      onChange={(e) => setNewCompany({ ...newCompany, linkedin: e.target.value })}
+                      type="url"
+                    />
+                  </div>
 
-    <table className="table table-bordered">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Lab Grade</th>
-          <th>CGPA / %</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rankings
-          .filter((s) =>
-            s.name?.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-          .map((s, idx) => (
-            <tr key={s._id}>
-              <td>{idx + 1}</td>
-              <td>{s.name}</td>
-              <td>{s.email}</td>
-              <td>{s.labGrade}</td>
-              <td>{s.bachelors?.cgpa || s.bachelors?.percentage || "-"}</td>
-            </tr>
-          ))}
-      </tbody>
-    </table>
-  </div>
-)}
+                  <div className="placement-form-group placement-form-group-full">
+                    <label className="placement-form-label">About Company</label>
+                    <textarea 
+                      className="placement-form-textarea" 
+                      placeholder="Brief description about the company..."
+                      value={newCompany.about} 
+                      onChange={(e) => setNewCompany({ ...newCompany, about: e.target.value })}
+                    />
+                  </div>
+                </div>
 
+                <div className="placement-form-actions">
+                  <button 
+                    className="placement-btn placement-btn-secondary" 
+                    onClick={() => setNewCompany({ name: "", about: "", website: "", linkedin: "" })}
+                  >
+                    Clear
+                  </button>
+                  <button 
+                    className="placement-btn placement-btn-primary" 
+                    onClick={async () => {
+                      try {
+                        if (newCompany._id) {
+                          await fetch(`/api/companies/${newCompany._id}`, {
+                            method: "PUT",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(newCompany)
+                          });
+                          setPopup("✅ Company Updated Successfully");
+                        } else {
+                          await fetch("/api/companies", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(newCompany)
+                          });
+                          setPopup("✅ Company Added Successfully");
+                        }
 
-      </main>
+                        setNewCompany({ name: "", about: "", website: "", linkedin: "" });
+                        fetchCompanies();
+                        setTimeout(() => setPopup(""), 3000);
+                      } catch (err) {
+                        setPopup("❌ Failed to save company");
+                        setTimeout(() => setPopup(""), 3000);
+                      }
+                    }}
+                  >
+                    <FiHome />
+                    {newCompany._id ? "Update Company" : "Add Company"}
+                  </button>
+                </div>
+              </div>
 
-      {popup && (
-        <div className={`placement-dashboard__popup ${popup.startsWith("✅") ? "success" : "error"}`}>
-          {popup}
-        </div>
-      )}
-
-      {/* Confirmation Modal */}
-      {driveToDelete && (
-        <div className="placement-dashboard__modal-overlay">
-          <div className="placement-dashboard__modal">
-            <div className="placement-dashboard__modal-header">
-              <h5 className="text-danger">Confirm Delete</h5>
-              <button className="btn btn-sm btn-outline-dark" onClick={() => setDriveToDelete(null)}><FiX /></button>
-            </div>
-            <div className="placement-dashboard__modal-body">
-              <p>Are you sure you want to delete this drive?</p>
-              <div className="d-flex justify-content-end gap-2">
-                <button className="btn btn-secondary" onClick={() => setDriveToDelete(null)}>Cancel</button>
-                <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+              <div className="placement-companies-list">
+                <h3>Registered Companies</h3>
+                <div className="placement-table-container">
+                  <table className="placement-table">
+                    <thead>
+                      <tr>
+                        <th>Company</th>
+                        <th>Website</th>
+                        <th>LinkedIn</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {companies.map((company) => (
+                        <tr key={company._id}>
+                          <td>
+                            <div className="placement-company-cell">
+                              <div className="placement-company-avatar">
+                                <FiHome />
+                              </div>
+                              <span className="placement-company-name">{company.name}</span>
+                            </div>
+                          </td>
+                          <td>
+                            {company.website && (
+                              <a 
+                                href={company.website} 
+                                target="_blank" 
+                                rel="noreferrer"
+                                className="placement-link"
+                              >
+                                Visit Website
+                              </a>
+                            )}
+                          </td>
+                          <td>
+                            {company.linkedin && (
+                              <a 
+                                href={company.linkedin} 
+                                target="_blank" 
+                                rel="noreferrer"
+                                className="placement-link"
+                              >
+                                View LinkedIn
+                              </a>
+                            )}
+                          </td>
+                          <td className="placement-company-description">
+                            {company.about ? company.about.substring(0, 100) + (company.about.length > 100 ? '...' : '') : '-'}
+                          </td>
+                          <td>
+                            <button 
+                              className="placement-action-btn placement-action-btn-primary" 
+                              onClick={() => setNewCompany(company)}
+                              title="Edit Company"
+                            >
+                              <FiEdit />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
 
-      {/* Students Modal */}
-      {showStudentPopup && (
-        <div className="placement-dashboard__modal-overlay" onClick={() => setShowStudentPopup(false)}>
-          <div className="placement-dashboard__modal" onClick={(e) => e.stopPropagation()}>
-            <div className="placement-dashboard__modal-header">
-              <h5>Registered Students</h5>
-              <button className="btn btn-sm btn-outline-dark" onClick={() => setShowStudentPopup(false)}><FiX /></button>
-            </div>
-            <div className="placement-dashboard__modal-body">
-              {students.length === 0 ? (
-                <p>No students registered.</p>
+          {activeTab === 'completed' && (
+            <div className="placement-drives-section">
+              {completedDrives.length === 0 ? (
+                <div className="placement-empty-state">
+                  <div className="placement-empty-icon">
+                    <FiCheck />
+                  </div>
+                  <h3 className="placement-empty-title">No Completed Drives</h3>
+                  <p className="placement-empty-description">
+                    Completed placement drives will appear here
+                  </p>
+                </div>
               ) : (
-                <table className="table table-striped small">
+                <div className="placement-drives-grid">
+                  {completedDrives.map((drive) => (
+                    <div className="placement-drive-card placement-drive-card-completed" key={drive._id}>
+                      <div className="placement-drive-card-header">
+                        <div className="placement-drive-main-info">
+                          <div className="placement-drive-badge">
+                            <FiHome />
+                          </div>
+                          <div className="placement-drive-details">
+                            <h3 className="placement-drive-name">{drive.company}</h3>
+                            <p className="placement-drive-role">{drive.role}</p>
+                          </div>
+                        </div>
+                        <div className="placement-status-badge placement-status-completed">
+                          <FiCheck />
+                          COMPLETED
+                        </div>
+                      </div>
+
+                      <div className="placement-drive-card-body">
+                        <div className="placement-drive-meta">
+                          <div className="placement-meta-item">
+                            <FiCalendar className="placement-meta-icon" />
+                            <div className="placement-meta-content">
+                              <span className="placement-meta-label">Completed</span>
+                              <span className="placement-meta-value">{new Date(drive.driveDate).toLocaleDateString()}</span>
+                            </div>
+                          </div>
+                          <div className="placement-meta-item">
+                            <FiMapPin className="placement-meta-icon" />
+                            <div className="placement-meta-content">
+                              <span className="placement-meta-label">Location</span>
+                              <span className="placement-meta-value">{drive.jobLocation}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="placement-drive-stats">
+                          <div className="placement-stat-row">
+                            <div className="placement-stat-item">
+                              <span className="placement-stat-number">{drive.seats}</span>
+                              <span className="placement-stat-text">Positions</span>
+                            </div>
+                            <div className="placement-stat-item">
+                              <span className="placement-stat-number">{drive.registered?.length || 0}</span>
+                              <span className="placement-stat-text">Applied</span>
+                            </div>
+                            <div className="placement-stat-item placement-stat-success">
+                              <span className="placement-stat-number">{drive.registered?.filter(s => s.status === "PLACED").length || 0}</span>
+                              <span className="placement-stat-text">Placed</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="placement-drive-card-footer">
+                        <button 
+                          className="placement-btn placement-btn-outline" 
+                          onClick={() => handleViewStudents(drive._id)}
+                        >
+                          <FiEye />
+                          View Results
+                        </button>
+                        <button
+                          className="placement-btn placement-btn-warning"
+                          onClick={async () => {
+                            await fetch(`/api/placements/${drive._id}/revoke`, { method: "PUT" });
+                            fetchDrives();
+                            setPopup("🔄 Drive status reverted to Scheduled");
+                            setTimeout(() => setPopup(""), 2000);
+                          }}
+                        >
+                          Revoke Status
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === "rankings" && (
+            <div className="placement-rankings-section">
+              <div className="placement-section-header">
+                <div className="placement-section-info">
+                  <h2 className="placement-section-title">Student Rankings</h2>
+                  <p className="placement-section-subtitle">View and manage student performance rankings</p>
+                </div>
+                <div className="placement-section-actions">
+                  <button className="placement-btn placement-btn-outline">
+                    <FiDownload />
+                    Export Rankings
+                  </button>
+                </div>
+              </div>
+
+              <div className="placement-rankings-controls">
+                <div className="placement-filter-controls">
+                  <div className="placement-filter-group">
+                    <label className="placement-form-label">Sort By:</label>
+                    <select
+                      value={rankingSortBy}
+                      onChange={(e) => {
+                        setRankingSortBy(e.target.value);
+                        fetchRankings(e.target.value);
+                      }}
+                      className="placement-form-select"
+                    >
+                      <option value="lab">Lab Grades</option>
+                      <option value="degree">Bachelor's CGPA / Percentage</option>
+                    </select>
+                  </div>
+
+                  <div className="placement-search-group">
+                    <div className="placement-search-input-wrapper">
+                      <FiSearch className="placement-search-icon" />
+                      <input
+                        type="text"
+                        placeholder="Search by student name..."
+                        className="placement-search-input"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="placement-table-container">
+                <table className="placement-table placement-rankings-table">
                   <thead>
                     <tr>
-                      <th>Name</th>
+                      <th>Rank</th>
+                      <th>Student</th>
                       <th>Email</th>
-                      <th>Phone</th>
-                      <th>Status</th>
-                      <th>Remarks</th>
-                      <th>Offer Letter URL</th>
-                      <th>Actions</th>
+                      <th>Lab Grade</th>
+                      <th>CGPA / Percentage</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {students.map((s, index) => (
-                      <tr key={s._id}>
-                        <td>{s.name}</td>
-                        <td>{s.email}</td>
-                        <td>{s.phone}</td>
-                        <td>
-                          <select
-                            className="form-select form-select-sm"
-                            value={s.status}
-                            onChange={(e) => {
-                              const updated = [...students];
-                              updated[index].status = e.target.value;
-                              if (e.target.value !== "PLACED") {
-                                updated[index].offerLetterURL = "";
-                              }
-                              setStudents(updated);
-                            }}
-                          >
-                            <option value="PLACED">PLACED</option>
-                            <option value="PENDING">PENDING</option>
-                            <option value="NOT PLACED">NOT PLACED</option>
-                          </select>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            className="form-control form-control-sm"
-                            value={s.remarks || ""}
-                            onChange={(e) => {
-                              const updated = [...students];
-                              updated[index].remarks = e.target.value;
-                              setStudents(updated);
-                            }}
-                          />
-                        </td>
-                        <td>
-                          {s.status === "PLACED" && (
-                            <input
-                              type="text"
-                              className="form-control form-control-sm"
-                              value={s.offerLetterURL || ""}
-                              onChange={(e) => {
-                                const updated = [...students];
-                                updated[index].offerLetterURL = e.target.value;
-                                setStudents(updated);
-                              }}
-                            />
-                          )}
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-sm btn-primary"
-                            onClick={async () => {
-                              try {
-                                await fetch(`/api/placements/${selectedDrive}/students/${s._id}`, {
-                                  method: "PUT",
-                                  headers: {
-                                    "Content-Type": "application/json",
-                                  },
-                                  body: JSON.stringify({
-                                    status: s.status,
-                                    remarks: s.remarks,
-                                    offerLetterURL: s.offerLetterURL,
-                                  }),
-                                });
-                                setPopup("✅ Student updated");
-                                setTimeout(() => setPopup(""), 2000);
-                              } catch (err) {
-                                console.error("Update failed", err);
-                                alert("❌ Failed to update student");
-                              }
-                            }}
-                          >
-                            Save
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                    {rankings
+                      .filter((student) =>
+                        student.name?.toLowerCase().includes(searchTerm.toLowerCase())
+                      )
+                      .map((student, index) => (
+                        <tr key={student._id}>
+                          <td>
+                            <div className={`placement-rank-badge ${index < 3 ? 'placement-rank-top' : ''}`}>
+                              #{index + 1}
+                            </div>
+                          </td>
+                          <td>
+                            <div className="placement-student-info">
+                              <div className="placement-student-avatar">
+                                <FiUser />
+                              </div>
+                              <span className="placement-student-name">{student.name}</span>
+                            </div>
+                          </td>
+                          <td className="placement-student-email">{student.email}</td>
+                          <td>
+                            <span className={`placement-grade-badge placement-grade-${student.labGrade?.toLowerCase()}`}>
+                              {student.labGrade}
+                            </span>
+                          </td>
+                          <td>{student.bachelors?.cgpa || student.bachelors?.percentage || "-"}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
+              </div>
+            </div>
+          )}
+        </main>
+      </div>
+
+      {/* Toast Notifications */}
+      {popup && (
+        <div className={`placement-toast ${popup.startsWith("✅") ? "success" : popup.startsWith("❌") ? "error" : "info"}`}>
+          <div className="placement-toast-content">
+            {popup}
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {driveToDelete && (
+        <div className="placement-modal-overlay">
+          <div className="placement-modal">
+            <div className="placement-modal-header">
+              <h3 className="placement-modal-title">Confirm Deletion</h3>
+              <button 
+                className="placement-modal-close" 
+                onClick={() => setDriveToDelete(null)}
+              >
+                <FiX />
+              </button>
+            </div>
+            <div className="placement-modal-body">
+              <div className="placement-modal-icon warning">
+                <FiTrash2 />
+              </div>
+              <p className="placement-modal-text">
+                Are you sure you want to delete this placement drive? This action cannot be undone and will permanently remove all associated data.
+              </p>
+            </div>
+            <div className="placement-modal-footer">
+              <button 
+                className="placement-btn placement-btn-outline" 
+                onClick={() => setDriveToDelete(null)}
+              >
+                Cancel
+              </button>
+              <button 
+                className="placement-btn placement-btn-danger" 
+                onClick={handleDelete}
+              >
+                <FiTrash2 />
+                Delete Drive
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Students Management Modal */}
+      {showStudentPopup && (
+        <div className="placement-modal-overlay">
+          <div className="placement-modal placement-modal-large">
+            <div className="placement-modal-header">
+              <h3 className="placement-modal-title">Student Management</h3>
+              <button 
+                className="placement-modal-close" 
+                onClick={() => setShowStudentPopup(false)}
+              >
+                <FiX />
+              </button>
+            </div>
+            <div className="placement-modal-body">
+              {students.length === 0 ? (
+                <div className="placement-empty-state">
+                  <div className="placement-empty-icon">
+                    <FiUsers />
+                  </div>
+                  <h3 className="placement-empty-title">No Students Registered</h3>
+                  <p className="placement-empty-description">
+                    Students who register for this drive will appear here
+                  </p>
+                </div>
+              ) : (
+                <div className="placement-students-section">
+                  <div className="placement-students-header">
+                    <div className="placement-students-info">
+                      <h4 className="placement-students-title">
+                        Registered Students ({students.length})
+                      </h4>
+                      <p className="placement-students-subtitle">
+                        Manage student applications and placement status
+                      </p>
+                    </div>
+                    <div className="placement-students-actions">
+                      <button className="placement-btn placement-btn-outline placement-btn-sm">
+                        <FiDownload />
+                        Export List
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="placement-students-table-container">
+                    <table className="placement-students-table">
+                      <thead>
+                        <tr>
+                          <th>Student</th>
+                          <th>Contact</th>
+                          <th>Status</th>
+                          <th>Remarks</th>
+                          <th>Offer Letter</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {students.map((student, index) => (
+                          <tr key={student._id}>
+                            <td>
+                              <div className="placement-student-info">
+                                <div className="placement-student-avatar">
+                                  <FiUser />
+                                </div>
+                                <div className="placement-student-details">
+                                  <span className="placement-student-name">{student.name}</span>
+                                  <span className="placement-student-email">{student.email}</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="placement-student-phone">{student.phone}</span>
+                            </td>
+                            <td>
+                              <select
+                                className="placement-form-select placement-form-select-sm"
+                                value={student.status}
+                                onChange={(e) => {
+                                  const updated = [...students];
+                                  updated[index].status = e.target.value;
+                                  if (e.target.value !== "PLACED") {
+                                    updated[index].offerLetterURL = "";
+                                  }
+                                  setStudents(updated);
+                                }}
+                              >
+                                <option value="PLACED">PLACED</option>
+                                <option value="PENDING">PENDING</option>
+                                <option value="NOT PLACED">NOT PLACED</option>
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                className="placement-form-input placement-form-input-sm"
+                                placeholder="Enter remarks..."
+                                value={student.remarks || ""}
+                                onChange={(e) => {
+                                  const updated = [...students];
+                                  updated[index].remarks = e.target.value;
+                                  setStudents(updated);
+                                }}
+                              />
+                            </td>
+                            <td>
+                              {student.status === "PLACED" && (
+                                <input
+                                  type="url"
+                                  className="placement-form-input placement-form-input-sm"
+                                  placeholder="Offer letter URL..."
+                                  value={student.offerLetterURL || ""}
+                                  onChange={(e) => {
+                                    const updated = [...students];
+                                    updated[index].offerLetterURL = e.target.value;
+                                    setStudents(updated);
+                                  }}
+                                />
+                              )}
+                            </td>
+                            <td>
+                              <button
+                                className="placement-btn placement-btn-primary placement-btn-sm"
+                                onClick={async () => {
+                                  try {
+                                    await fetch(`/api/placements/${selectedDrive}/students/${student._id}`, {
+                                      method: "PUT",
+                                      headers: {
+                                        "Content-Type": "application/json",
+                                      },
+                                      body: JSON.stringify({
+                                        status: student.status,
+                                        remarks: student.remarks,
+                                        offerLetterURL: student.offerLetterURL,
+                                      }),
+                                    });
+                                    setPopup("✅ Student updated successfully");
+                                    setTimeout(() => setPopup(""), 2000);
+                                  } catch (err) {
+                                    console.error("Update failed", err);
+                                    setPopup("❌ Failed to update student");
+                                    setTimeout(() => setPopup(""), 3000);
+                                  }
+                                }}
+                              >
+                                <FiSave />
+                                Save
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               )}
             </div>
           </div>

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import './adminLayout.css';
-import { FaSignOutAlt, FaMoon, FaSun } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa';
 import { 
   FaChartLine, 
   FaBook, 
@@ -14,7 +14,7 @@ import {
   FaCalendarAlt,
 } from 'react-icons/fa';
 import logo from '../../assets/LURNITY.jpg';
-import CohortsManagement from './CohortsManagement';
+
 
 export default function AdminLayout(props) {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -26,9 +26,7 @@ export default function AdminLayout(props) {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');

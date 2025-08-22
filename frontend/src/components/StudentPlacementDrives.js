@@ -25,6 +25,7 @@ import {
   FiFileText
 } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
+import MockInterview from './MockInterview';
 import "./StudentPlacementDrives.css";
 
 const API = "http://localhost:7700";
@@ -46,6 +47,8 @@ const StudentPlacementDrives = () => {
   const [appliedDriveIds, setAppliedDriveIds] = useState([]);
   const [isPlaced, setIsPlaced] = useState(false);
 const [placementInfo, setPlacementInfo] = useState(null); // for showing offer letter
+const [showMock, setShowMock] = useState(false);
+const [mockCompany, setMockCompany] = useState(null);
 
 
 
@@ -155,6 +158,11 @@ const [placementInfo, setPlacementInfo] = useState(null); // for showing offer l
     setSelectedDrive(drive);
     setShowDetailsModal(true);
   };
+
+  const handleStartMock = (company) => {
+  setMockCompany(company);
+  setShowMock(true);
+};
 
   const handleCloseModal = () => {
     setShowDetailsModal(false);
@@ -488,6 +496,12 @@ const [placementInfo, setPlacementInfo] = useState(null); // for showing offer l
           : 'Apply Now'
     }
   </button>
+  <button
+  className="secondary-button"
+  onClick={() => handleStartMock(drive.company)}
+>
+  🎮 Mock Interview
+</button>
 </div>
 
                   </div>
@@ -549,6 +563,20 @@ const [placementInfo, setPlacementInfo] = useState(null); // for showing offer l
           </div>
         </div>
       )}
+
+      {showMock && (
+  <div className="popup-overlay" style={{ zIndex: 9999 }}>
+    <div className="popup-card" style={{ width: '95%', maxWidth: '1100px', padding: 0 }}>
+      <MockInterview
+        companyName={mockCompany}
+        user={user}
+        skills={user?.currentExpertise?.knownSkills || []}
+        onExit={() => { setShowMock(false); setMockCompany(null); }}
+      />
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
