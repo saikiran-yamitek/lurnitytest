@@ -198,7 +198,7 @@ export default class CourseForm extends Component {
             <div className="title-section">
               <div className="page-title-container">
                 <FiBook className="page-icon" />
-                <h1 className="page-title">
+                <h1 className="page-titlepo">
                   {isEdit ? "Edit Course" : "Create New Course"}
                 </h1>
               </div>

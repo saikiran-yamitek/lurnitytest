@@ -1,14 +1,17 @@
-// ✅ Updated SupportDashboard.js with Delete Popup Modal for Feedbacks
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { listTickets, updateTicket } from "../../services/ticketApi";
 import { listDemos, markDemoAsBooked } from "../../services/demoApi";
 import logo from "../../assets/LURNITY.jpg";
-import { FiUser, FiLogOut, FiX, FiSave } from "react-icons/fi";
-import "./Layout.css";
+import { 
+  FiUser, FiLogOut, FiX, FiSave, FiHeadphones, FiCalendar,
+  FiMessageSquare, FiBell, FiRefreshCw, FiCheckCircle, FiAlertTriangle,
+  FiTrash2, FiSearch, FiTrendingUp, FiActivity, FiDownload
+} from "react-icons/fi";
+import "./SupportDashboard.css";
 
 export default function SupportDashboard({ emp }) {
-  const [activeTab, setActiveTab] = useState("tickets");
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [tickets, setTickets] = useState([]);
   const [demos, setDemos] = useState([]);
   const [welcome, setWelcome] = useState(true);
@@ -16,19 +19,19 @@ export default function SupportDashboard({ emp }) {
   const [deleteModal, setDeleteModal] = useState({ open: false, feedbackId: null });
   const [search, setSearch] = useState("");
   const [popupMessage, setPopupMessage] = useState("");
-  const history = useHistory();
   const [feedbacks, setFeedbacks] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
-    (async () => {
-      setTickets(await listTickets());
-      setDemos(await listDemos());
-    })();
+    fetchAllData();
   }, []);
 
-  useEffect(() => {
-    (async () => {
+  const fetchAllData = async () => {
+    setLoading(true);
+    try {
       setTickets(await listTickets());
       setDemos(await listDemos());
 
@@ -39,15 +42,24 @@ export default function SupportDashboard({ emp }) {
       const courseRes = await fetch("http://localhost:7700/api/courses");
       const courseJson = await courseRes.json();
       setCourses(courseJson);
-    })();
-  }, []);
+    } catch (error) {
+      setPopupMessage("❌ Failed to load data");
+      setTimeout(() => setPopupMessage(""), 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const openModal = (t) => setModal({ open: true, note: "", ticket: t });
   const closeModal = () => setModal({ open: false, note: "", ticket: null });
 
   const saveResolution = async () => {
     const { ticket, note } = modal;
-    if (!note.trim()) return alert("Resolution note required.");
+    if (!note.trim()) {
+      setPopupMessage("⚠️ Resolution note required.");
+      setTimeout(() => setPopupMessage(""), 3000);
+      return;
+    }
 
     await updateTicket(ticket._id, {
       status: "Resolved",
@@ -84,7 +96,8 @@ export default function SupportDashboard({ emp }) {
       setPopupMessage("✅ Demo marked as booked");
       setTimeout(() => setPopupMessage(""), 3000);
     } catch (err) {
-      alert("❌ Failed to mark demo as booked");
+      setPopupMessage("❌ Failed to mark demo as booked");
+      setTimeout(() => setPopupMessage(""), 3000);
     }
   };
 
@@ -107,12 +120,10 @@ export default function SupportDashboard({ emp }) {
     };
   };
 
-  // Open delete modal
   const openDeleteModal = (id) => {
     setDeleteModal({ open: true, feedbackId: id });
   };
 
-  // Confirm delete
   const confirmDeleteFeedback = async () => {
     const id = deleteModal.feedbackId;
     try {
@@ -126,10 +137,12 @@ export default function SupportDashboard({ emp }) {
         setPopupMessage("✅ Feedback deleted successfully!");
         setTimeout(() => setPopupMessage(""), 3000);
       } else {
-        alert(data.error || "❌ Failed to delete feedback");
+        setPopupMessage(data.error || "❌ Failed to delete feedback");
+        setTimeout(() => setPopupMessage(""), 3000);
       }
     } catch (err) {
-      alert("❌ Error deleting feedback");
+      setPopupMessage("❌ Error deleting feedback");
+      setTimeout(() => setPopupMessage(""), 3000);
     } finally {
       setDeleteModal({ open: false, feedbackId: null });
     }
@@ -140,269 +153,710 @@ export default function SupportDashboard({ emp }) {
     .filter((t) => t.status === "Resolved")
     .filter(
       (t) =>
-        t.userEmail.toLowerCase().includes(search.toLowerCase()) ||
-        t.subject.toLowerCase().includes(search.toLowerCase())
+        t.userEmail?.toLowerCase().includes(search.toLowerCase()) ||
+        t.subject?.toLowerCase().includes(search.toLowerCase())
     );
 
   const bookedDemos = demos.filter((d) => d.booked);
   const newDemos = demos.filter((d) => !d.booked);
 
+  // Calculate statistics
+  const totalTickets = tickets.length;
+  const openCount = openTickets.length;
+  const resolvedCount = totalTickets - openCount;
+  const totalDemos = demos.length;
+  const bookedCount = bookedDemos.length;
+  const resolutionRate = totalTickets > 0 ? ((resolvedCount / totalTickets) * 100).toFixed(1) : 0;
+
   return (
-    <div className="cm-shell">
-      {/* HEADER */}
-      <header className="cm-header shadow-sm">
-        <img src={logo} alt="Lurnity" className="cm-logo" />
-        <h3 className="cm-title flex-grow-1">Support Desk</h3>
-        <div className="d-flex align-items-center gap-3">
-          <div className="cm-avatar">
-            <FiUser size={20} />
+    <div className="support-dashboard-wrapper">
+      {/* Sidebar */}
+      <aside className="support-sidebar">
+        <div className="support-sidebar-header">
+          <div className="support-logo-container">
+            <img src={logo} alt="Lurnity" className="support-logo" />
+            <div className="support-brand-info">
+              <h2 className="support-brand-title">Support Center</h2>
+              <p className="support-brand-subtitle">Service & Help Desk</p>
+            </div>
           </div>
-          <span className="cm-user">{emp.name}</span>
-          <button
-            className="cm-logout btn btn-outline-light btn-sm"
-            title="Log out"
-            onClick={doLogout}
-          >
-            <FiLogOut />
-          </button>
         </div>
-      </header>
-
-      {/* MAIN */}
-      <main className="cm-main container-fluid p-4">
-        {/* TABS */}
-        <div className="tabs mb-4">
-          <button className={`tab-btn ${activeTab === "tickets" ? "active" : ""}`} onClick={() => setActiveTab("tickets")}>Tickets</button>
-          <button className={`tab-btn ${activeTab === "demos" ? "active" : ""}`} onClick={() => setActiveTab("demos")}>Demos</button>
-          <button className={`tab-btn ${activeTab === "feedbacks" ? "active" : ""}`} onClick={() => setActiveTab("feedbacks")}>Feedbacks</button>
-        </div>
-
-        {/* TICKETS TAB */}
-        {activeTab === "tickets" && (
-          <>
-            <h4 className="fw-semibold mb-4">Open Tickets</h4>
-            <div className="list-group feedback-section">
-              {openTickets.map((t) => (
-                <div key={t._id} className="list-group-item">
-                  <div className="d-flex justify-content-between">
-                    <strong>{t.subject}</strong>
-                    <span className="badge bg-warning text-dark">{t.priority}</span>
-                  </div>
-                  <small className="text-muted">{t.category} • {t.userEmail}</small>
-                  <p className="mt-2 mb-3">{t.description}</p>
-                  <button className="btn btn-sm btn-success" onClick={() => openModal(t)}>
-                    Mark Resolved
-                  </button>
-                </div>
-              ))}
-              {openTickets.length === 0 && (
-                <div className="text-muted p-4 text-center">No open tickets</div>
+        
+        <nav className="support-sidebar-nav">
+          <div className="support-nav-section">
+            <span className="support-nav-section-title">Main</span>
+            <button 
+              className={`support-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('dashboard')}
+            >
+              <FiTrendingUp />
+              <span>Dashboard</span>
+            </button>
+            <button 
+              className={`support-nav-item ${activeTab === 'tickets' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('tickets')}
+            >
+              <FiHeadphones />
+              <span>Tickets</span>
+              {openCount > 0 && (
+                <span className="support-nav-badge">{openCount}</span>
               )}
-            </div>
-
-            <hr className="my-5" />
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h5 className="fw-semibold mb-0">Recently Resolved</h5>
-              <input
-                className="form-control w-auto"
-                style={{ maxWidth: 260 }}
-                placeholder="Search by email / subject"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
-            <div className="list-group">
-              {resolvedTickets.map((t) => (
-                <div key={t._id} className="list-group-item">
-                  <div className="d-flex justify-content-between">
-                    <strong>{t.subject}</strong>
-                    <small className="text-muted">Closed by {t.closedBy}</small>
-                  </div>
-                  <small className="text-muted">{t.userEmail}</small>
-                  {t.resolutionNote && (
-                    <p className="mb-0 mt-2" title={t.resolutionNote}>
-                      <em>
-                        {t.resolutionNote.length > 80
-                          ? t.resolutionNote.slice(0, 80) + "…"
-                          : t.resolutionNote}
-                      </em>
-                    </p>
-                  )}
-                </div>
-              ))}
-              {resolvedTickets.length === 0 && (
-                <div className="text-muted p-4 text-center">No matches</div>
-              )}
-            </div>
-          </>
-        )}
-
-        {/* DEMOS TAB */}
-        {activeTab === "demos" && (
-          <>
-            <h4 className="fw-semibold mb-3">New Demo Requests</h4>
-            <div className="list-group mb-5">
-              {newDemos.map((demo) => (
-                <div key={demo._id} className="list-group-item">
-                  <strong>{demo.name}</strong> • {demo.email} • {demo.phone}
-                  <p>{demo.education} • {demo.currentEducation}</p>
-                  <p>{demo.city}, {demo.collegeAddress}</p>
-                  <button
-                    className="btn btn-sm btn-primary mt-2"
-                    onClick={() => handleMarkBooked(demo._id)}
-                  >
-                    Mark as Booked
-                  </button>
-                </div>
-              ))}
-              {newDemos.length === 0 && <div className="text-muted p-3">No new demo bookings</div>}
-            </div>
-
-            <h4 className="fw-semibold mb-3">Booked Demos</h4>
-            <div className="list-group">
-              {bookedDemos.map((demo) => (
-                <div key={demo._id} className="list-group-item">
-                  <strong>{demo.name}</strong> • {demo.email} • {demo.phone}
-                  <p>{demo.education} • {demo.currentEducation}</p>
-                  <p>{demo.city}, {demo.collegeAddress}</p>
-                  <span className="badge bg-success">Booked</span>
-                </div>
-              ))}
-              {bookedDemos.length === 0 && <div className="text-muted p-3">No demos marked as booked</div>}
-            </div>
-          </>
-        )}
-
-        {/* FEEDBACK TAB */}
-        {activeTab === "feedbacks" && (
-          <>
-            <h4 className="fw-semibold mb-4">User Feedbacks</h4>
-            <div className="feedback-wrapper">
-              {feedbacks.map((f) => (
-                <div key={f._id} className="list-group-item feedback-section">
-                  <div className="feedback-row d-flex justify-content-between align-items-center">
-                    <div>
-                      <span className="feedback-label">User:</span>
-                      <span>{f.userId?.name || "Unknown User"}</span>
-                    </div>
-                    <button
-                      className="btn btn-sm btn-danger"
-                      onClick={() => openDeleteModal(f._id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-
-                  {(() => {
-                    const { courseTitle, subCourseTitle, videoTitle } = getCourseDetails(
-                      f.courseId,
-                      f.subIndex,
-                      f.videoIndex
-                    );
-                    return (
-                      <>
-                        <div className="feedback-row">
-                          <span className="feedback-label">Course:</span>
-                          <span>{courseTitle}</span>
-                        </div>
-                        <div className="feedback-row">
-                          <span className="feedback-label">SubCourse:</span>
-                          <span>{subCourseTitle}</span>
-                        </div>
-                        <div className="feedback-row">
-                          <span className="feedback-label">Video:</span>
-                          <span>{videoTitle}</span>
-                        </div>
-                      </>
-                    );
-                  })()}
-
-                  <div className="feedback-row">
-                    <span className="feedback-label">Rating:</span>
-                    <span className="feedback-stars">
-                      {Array.from({ length: f.rating }, (_, i) => (
-                        <span key={i}>⭐</span>
-                      ))}
-                    </span>
-                  </div>
-
-                  <div className="feedback-comment">
-                    <strong>Comment:</strong>
-                    <p className="mb-0 mt-1">{f.comment}</p>
-                  </div>
-                </div>
-              ))}
-
-              {feedbacks.length === 0 && (
-                <div className="text-muted p-4 text-center w-100">No feedbacks available</div>
-              )}
-            </div>
-          </>
-        )}
-      </main>
-
-      {/* WELCOME OVERLAY */}
-      {welcome && (
-        <div className="cm-welcome-overlay" onClick={() => setWelcome(false)}>
-          <div className="cm-welcome-box shadow-lg">
-            <h2 className="mb-2">Welcome, {emp.name}!</h2>
-            <p className="mb-4">Track open tickets, manage demos, and help students succeed.</p>
-            <button className="btn btn-success px-4" onClick={() => setWelcome(false)}>
-              Let’s get started
             </button>
           </div>
-        </div>
-      )}
 
-      {/* RESOLUTION MODAL */}
-      {modal.open && (
-        <div className="cm-welcome-overlay" onClick={closeModal}>
-          <div className="cm-welcome-box shadow-lg" style={{ maxWidth: 520 }} onClick={(e) => e.stopPropagation()}>
-            <h4 className="mb-3">Resolution Note</h4>
-            <textarea
-              className="form-control mb-3"
-              rows="4"
-              placeholder="How did you resolve the issue?"
-              value={modal.note}
-              onChange={(e) => setModal({ ...modal, note: e.target.value })}
-            />
-            <div className="d-flex justify-content-end gap-2">
-              <button className="btn btn-light" onClick={closeModal}>
-                <FiX /> Cancel
-              </button>
-              <button className="btn btn-success" onClick={saveResolution}>
-                <FiSave /> Save & Resolve
+          <div className="support-nav-section">
+            <span className="support-nav-section-title">Management</span>
+            <button 
+              className={`support-nav-item ${activeTab === 'demos' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('demos')}
+            >
+              <FiCalendar />
+              <span>Demos</span>
+              {newDemos.length > 0 && (
+                <span className="support-nav-badge">{newDemos.length}</span>
+              )}
+            </button>
+            <button 
+              className={`support-nav-item ${activeTab === 'feedbacks' ? 'active' : ''}`} 
+              onClick={() => setActiveTab('feedbacks')}
+            >
+              <FiMessageSquare />
+              <span>Feedbacks</span>
+            </button>
+          </div>
+        </nav>
+
+        <div className="support-sidebar-footer">
+          <div className="support-user-card">
+            <div className="support-user-avatar">
+              <FiUser />
+            </div>
+            <div className="support-user-info">
+              <span className="support-user-name">{emp?.name}</span>
+              <span className="support-user-role">Support Executive</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <div className="support-main-content">
+        {/* Top Header */}
+        <header className="support-header">
+          <div className="support-header-left">
+            <div className="support-page-info">
+              <h1 className="support-page-title">
+                {activeTab === 'dashboard' && 'Support Dashboard'}
+                {activeTab === 'tickets' && 'Ticket Management'}
+                {activeTab === 'demos' && 'Demo Requests'}
+                {activeTab === 'feedbacks' && 'User Feedbacks'}
+              </h1>
+              <p className="support-page-subtitle">
+                {activeTab === 'dashboard' && 'Monitor support activities and track performance metrics'}
+                {activeTab === 'tickets' && 'Manage and resolve support tickets'}
+                {activeTab === 'demos' && 'Handle demo booking requests'}
+                {activeTab === 'feedbacks' && 'Review and manage user feedback'}
+              </p>
+            </div>
+          </div>
+          <div className="support-header-right">
+            <button className="support-header-btn" onClick={fetchAllData}>
+              <FiRefreshCw />
+            </button>
+            <button className="support-header-btn">
+              <FiBell />
+            </button>
+            <button className="support-logout-btn" onClick={doLogout} title="Logout">
+              <FiLogOut />
+              <span>Logout</span>
+            </button>
+          </div>
+        </header>
+
+        {/* Content Area */}
+        <main className="support-content">
+          {loading && (
+            <div className="support-loading-overlay">
+              <div className="support-loading-spinner">
+                <div className="support-spinner"></div>
+                <p>Loading...</p>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'dashboard' && (
+            <div className="support-dashboard">
+              {/* Statistics Cards */}
+              <div className="support-stats-grid">
+                <div className="support-stat-card support-stat-primary">
+                  <div className="support-stat-header">
+                    <div className="support-stat-icon">
+                      <FiHeadphones />
+                    </div>
+                    <div className="support-stat-info">
+                      <h3 className="support-stat-value">{totalTickets}</h3>
+                      <p className="support-stat-label">Total Tickets</p>
+                    </div>
+                  </div>
+                  <div className="support-stat-footer">
+                    <span className="support-stat-trend positive">
+                      <FiTrendingUp />
+                      All support requests
+                    </span>
+                  </div>
+                </div>
+
+                <div className="support-stat-card support-stat-warning">
+                  <div className="support-stat-header">
+                    <div className="support-stat-icon">
+                      <FiAlertTriangle />
+                    </div>
+                    <div className="support-stat-info">
+                      <h3 className="support-stat-value">{openCount}</h3>
+                      <p className="support-stat-label">Open Tickets</p>
+                    </div>
+                  </div>
+                  <div className="support-stat-footer">
+                    <span className="support-stat-trend neutral">
+                      <FiActivity />
+                      Pending resolution
+                    </span>
+                  </div>
+                </div>
+
+                <div className="support-stat-card support-stat-success">
+                  <div className="support-stat-header">
+                    <div className="support-stat-icon">
+                      <FiCheckCircle />
+                    </div>
+                    <div className="support-stat-info">
+                      <h3 className="support-stat-value">{resolvedCount}</h3>
+                      <p className="support-stat-label">Resolved</p>
+                    </div>
+                  </div>
+                  <div className="support-stat-footer">
+                    <span className="support-stat-trend positive">
+                      <FiTrendingUp />
+                      {resolutionRate}% resolved
+                    </span>
+                  </div>
+                </div>
+
+                <div className="support-stat-card support-stat-info">
+                  <div className="support-stat-header">
+                    <div className="support-stat-icon">
+                      <FiCalendar />
+                    </div>
+                    <div className="support-stat-info">
+                      <h3 className="support-stat-value">{totalDemos}</h3>
+                      <p className="support-stat-label">Demo Requests</p>
+                    </div>
+                  </div>
+                  <div className="support-stat-footer">
+                    <span className="support-stat-trend neutral">
+                      <FiActivity />
+                      {bookedCount} booked
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="support-quick-actions-section">
+                <div className="support-section-header">
+                  <h2 className="support-section-title">Quick Actions</h2>
+                  <p className="support-section-subtitle">Common support management tasks</p>
+                </div>
+                <div className="support-quick-actions">
+                  <button 
+                    className="support-quick-action-card primary"
+                    onClick={() => setActiveTab('tickets')}
+                  >
+                    <div className="support-action-icon">
+                      <FiHeadphones />
+                    </div>
+                    <div className="support-action-content">
+                      <h3>Manage Tickets</h3>
+                      <p>Resolve support issues</p>
+                    </div>
+                  </button>
+
+                  <button 
+                    className="support-quick-action-card secondary"
+                    onClick={() => setActiveTab('demos')}
+                  >
+                    <div className="support-action-icon">
+                      <FiCalendar />
+                    </div>
+                    <div className="support-action-content">
+                      <h3>Handle Demos</h3>
+                      <p>Process demo requests</p>
+                    </div>
+                  </button>
+
+                  <button 
+                    className="support-quick-action-card tertiary"
+                    onClick={() => setActiveTab('feedbacks')}
+                  >
+                    <div className="support-action-icon">
+                      <FiMessageSquare />
+                    </div>
+                    <div className="support-action-content">
+                      <h3>Review Feedback</h3>
+                      <p>Manage user feedback</p>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Recent Activities */}
+              <div className="support-recent-section">
+                <div className="support-section-header">
+                  <h2 className="support-section-title">Recent Activities</h2>
+                  <button 
+                    className="support-view-all-btn"
+                    onClick={() => setActiveTab('tickets')}
+                  >
+                    View All
+                  </button>
+                </div>
+                <div className="support-recent-activities">
+                  {[...openTickets, ...resolvedTickets.slice(0, 2)].slice(0, 3).map((ticket) => (
+                    <div key={ticket._id} className="support-recent-activity-item">
+                      <div className="support-recent-activity-header">
+                        <div className="support-activity-icon">
+                          <FiHeadphones />
+                        </div>
+                        <div className="support-activity-info">
+                          <h4 className="support-activity-title">{ticket.subject}</h4>
+                          <p className="support-activity-user">{ticket.userEmail}</p>
+                        </div>
+                        <div className="support-activity-status">
+                          <span className={`support-status-badge ${ticket.status === 'Resolved' ? 'resolved' : 'open'}`}>
+                            {ticket.status || 'Open'}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="support-recent-activity-meta">
+                        <span className="support-activity-category">{ticket.category}</span>
+                        <span className="support-activity-priority">
+                          Priority: {ticket.priority || 'Normal'}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'tickets' && (
+            <div className="support-tickets-section">
+              <div className="support-section-header">
+                <div className="support-section-info">
+                  <h2 className="support-section-title">Open Tickets</h2>
+                  <p className="support-section-subtitle">Tickets requiring attention ({openCount} open)</p>
+                </div>
+              </div>
+
+              {openTickets.length === 0 ? (
+                <div className="support-empty-state">
+                  <div className="support-empty-icon">
+                    <FiHeadphones />
+                  </div>
+                  <h3 className="support-empty-title">No Open Tickets</h3>
+                  <p className="support-empty-description">
+                    All tickets have been resolved. Great job!
+                  </p>
+                </div>
+              ) : (
+                <div className="support-tickets-grid">
+                  {openTickets.map((ticket) => (
+                    <div className="support-ticket-card" key={ticket._id}>
+                      <div className="support-ticket-card-header">
+                        <div className="support-ticket-main-info">
+                          <div className="support-ticket-badge">
+                            <FiHeadphones />
+                          </div>
+                          <div className="support-ticket-details">
+                            <h3 className="support-ticket-subject">{ticket.subject}</h3>
+                            <p className="support-ticket-user">{ticket.userEmail}</p>
+                          </div>
+                        </div>
+                        <div className="support-ticket-priority">
+                          <span className={`support-priority-badge ${ticket.priority?.toLowerCase() || 'normal'}`}>
+                            {ticket.priority || 'Normal'}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="support-ticket-card-body">
+                        <div className="support-ticket-meta">
+                          <span className="support-ticket-category">{ticket.category}</span>
+                        </div>
+                        <div className="support-ticket-description">
+                          <p>{ticket.description}</p>
+                        </div>
+                      </div>
+
+                      <div className="support-ticket-card-footer">
+                        <button 
+                          className="support-btn support-btn-success" 
+                          onClick={() => openModal(ticket)}
+                        >
+                          <FiCheckCircle />
+                          Mark Resolved
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="support-divider"></div>
+
+              <div className="support-section-header">
+                <div className="support-section-info">
+                  <h3 className="support-section-title">Recently Resolved</h3>
+                  <p className="support-section-subtitle">Previously closed tickets</p>
+                </div>
+                <div className="support-section-actions">
+                  <div className="support-search-container">
+                    <FiSearch className="support-search-icon" />
+                    <input
+                      type="text"
+                      placeholder="Search by email or subject..."
+                      className="support-search-input"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="support-resolved-tickets">
+                {resolvedTickets.length === 0 ? (
+                  <div className="support-empty-state">
+                    <p>No resolved tickets match your search.</p>
+                  </div>
+                ) : (
+                  <div className="support-resolved-list">
+                    {resolvedTickets.map((ticket) => (
+                      <div key={ticket._id} className="support-resolved-item">
+                        <div className="support-resolved-header">
+                          <div className="support-resolved-info">
+                            <h4 className="support-resolved-subject">{ticket.subject}</h4>
+                            <p className="support-resolved-user">{ticket.userEmail}</p>
+                          </div>
+                          <div className="support-resolved-meta">
+                            <span className="support-resolved-by">Closed by {ticket.closedBy}</span>
+                          </div>
+                        </div>
+                        {ticket.resolutionNote && (
+                          <div className="support-resolved-note">
+                            <p title={ticket.resolutionNote}>
+                              <em>
+                                {ticket.resolutionNote.length > 100
+                                  ? ticket.resolutionNote.slice(0, 100) + "…"
+                                  : ticket.resolutionNote}
+                              </em>
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'demos' && (
+            <div className="support-demos-section">
+              <div className="support-section-header">
+                <div className="support-section-info">
+                  <h2 className="support-section-title">New Demo Requests</h2>
+                  <p className="support-section-subtitle">Pending demo bookings ({newDemos.length} new)</p>
+                </div>
+              </div>
+
+              {newDemos.length === 0 ? (
+                <div className="support-empty-state">
+                  <div className="support-empty-icon">
+                    <FiCalendar />
+                  </div>
+                  <h3 className="support-empty-title">No New Demo Requests</h3>
+                  <p className="support-empty-description">
+                    All demo requests have been processed.
+                  </p>
+                </div>
+              ) : (
+                <div className="support-demos-grid">
+                  {newDemos.map((demo) => (
+                    <div className="support-demo-card" key={demo._id}>
+                      <div className="support-demo-card-header">
+                        <div className="support-demo-main-info">
+                          <div className="support-demo-badge">
+                            <FiCalendar />
+                          </div>
+                          <div className="support-demo-details">
+                            <h3 className="support-demo-name">{demo.name}</h3>
+                            <p className="support-demo-contact">{demo.email} • {demo.phone}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="support-demo-card-body">
+                        <div className="support-demo-info">
+                          <div className="support-demo-education">
+                            <p><strong>Education:</strong> {demo.education}</p>
+                            <p><strong>Current:</strong> {demo.currentEducation}</p>
+                          </div>
+                          <div className="support-demo-location">
+                            <p><strong>Location:</strong> {demo.city}</p>
+                            <p><strong>College:</strong> {demo.collegeAddress}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="support-demo-card-footer">
+                        <button 
+                          className="support-btn support-btn-primary" 
+                          onClick={() => handleMarkBooked(demo._id)}
+                        >
+                          <FiCheckCircle />
+                          Mark as Booked
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="support-divider"></div>
+
+              <div className="support-section-header">
+                <div className="support-section-info">
+                  <h3 className="support-section-title">Booked Demos</h3>
+                  <p className="support-section-subtitle">Successfully processed demos ({bookedCount} booked)</p>
+                </div>
+              </div>
+
+              <div className="support-booked-demos">
+                {bookedDemos.length === 0 ? (
+                  <div className="support-empty-state">
+                    <p>No demos have been marked as booked yet.</p>
+                  </div>
+                ) : (
+                  <div className="support-booked-list">
+                    {bookedDemos.map((demo) => (
+                      <div key={demo._id} className="support-booked-item">
+                        <div className="support-booked-header">
+                          <div className="support-booked-info">
+                            <h4 className="support-booked-name">{demo.name}</h4>
+                            <p className="support-booked-contact">{demo.email} • {demo.phone}</p>
+                          </div>
+                          <span className="support-status-badge booked">BOOKED</span>
+                        </div>
+                        <div className="support-booked-details">
+                          <p>{demo.education} • {demo.currentEducation}</p>
+                          <p>{demo.city}, {demo.collegeAddress}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'feedbacks' && (
+            <div className="support-feedbacks-section">
+              <div className="support-section-header">
+                <div className="support-section-info">
+                  <h2 className="support-section-title">User Feedbacks</h2>
+                  <p className="support-section-subtitle">Course and video feedback from students</p>
+                </div>
+                <div className="support-section-actions">
+                  <button className="support-btn support-btn-outline">
+                    <FiDownload />
+                    Export Feedback
+                  </button>
+                </div>
+              </div>
+
+              {feedbacks.length === 0 ? (
+                <div className="support-empty-state">
+                  <div className="support-empty-icon">
+                    <FiMessageSquare />
+                  </div>
+                  <h3 className="support-empty-title">No Feedbacks Available</h3>
+                  <p className="support-empty-description">
+                    User feedback will appear here when submitted.
+                  </p>
+                </div>
+              ) : (
+                <div className="support-feedbacks-grid">
+                  {feedbacks.map((feedback) => {
+                    const { courseTitle, subCourseTitle, videoTitle } = getCourseDetails(
+                      feedback.courseId,
+                      feedback.subIndex,
+                      feedback.videoIndex
+                    );
+
+                    return (
+                      <div className="support-feedback-card" key={feedback._id}>
+                        <div className="support-feedback-card-header">
+                          <div className="support-feedback-main-info">
+                            <div className="support-feedback-badge">
+                              <FiMessageSquare />
+                            </div>
+                            <div className="support-feedback-details">
+                              <h3 className="support-feedback-user">{feedback.userId?.name || "Unknown User"}</h3>
+                              <p className="support-feedback-course">{courseTitle}</p>
+                            </div>
+                          </div>
+                          <div className="support-feedback-actions">
+                            <button 
+                              className="support-action-btn support-action-btn-delete" 
+                              onClick={() => openDeleteModal(feedback._id)}
+                              title="Delete Feedback"
+                            >
+                              <FiTrash2 />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="support-feedback-card-body">
+                          <div className="support-feedback-meta">
+                            <div className="support-feedback-item">
+                              <span className="support-feedback-label">SubCourse:</span>
+                              <span className="support-feedback-value">{subCourseTitle}</span>
+                            </div>
+                            <div className="support-feedback-item">
+                              <span className="support-feedback-label">Video:</span>
+                              <span className="support-feedback-value">{videoTitle}</span>
+                            </div>
+                            <div className="support-feedback-item">
+                              <span className="support-feedback-label">Rating:</span>
+                              <div className="support-feedback-stars">
+                                {Array.from({ length: feedback.rating }, (_, i) => (
+                                  <span key={i}>⭐</span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="support-feedback-comment">
+                            <span className="support-feedback-label">Comment:</span>
+                            <p className="support-feedback-text">{feedback.comment}</p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+        </main>
+      </div>
+
+      {/* Welcome Modal */}
+      {welcome && (
+        <div className="support-modal-overlay" onClick={() => setWelcome(false)}>
+          <div className="support-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="support-modal-header">
+              <h2 className="support-modal-title">Welcome, {emp.name}!</h2>
+            </div>
+            <div className="support-modal-body">
+              <p>Track open tickets, manage demos, and help students succeed with their learning journey.</p>
+            </div>
+            <div className="support-modal-footer">
+              <button className="support-btn support-btn-success" onClick={() => setWelcome(false)}>
+                Let's get started
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* DELETE CONFIRMATION MODAL */}
+      {/* Resolution Modal */}
+      {modal.open && (
+        <div className="support-modal-overlay" onClick={closeModal}>
+          <div className="support-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="support-modal-header">
+              <h3 className="support-modal-title">Resolution Note</h3>
+              <button 
+                className="support-modal-close" 
+                onClick={closeModal}
+              >
+                <FiX />
+              </button>
+            </div>
+            <div className="support-modal-body">
+              <textarea
+                className="support-textarea"
+                rows="4"
+                placeholder="How did you resolve the issue?"
+                value={modal.note}
+                onChange={(e) => setModal({ ...modal, note: e.target.value })}
+              />
+            </div>
+            <div className="support-modal-footer">
+              <button className="support-btn support-btn-outline" onClick={closeModal}>
+                <FiX />
+                Cancel
+              </button>
+              <button className="support-btn support-btn-success" onClick={saveResolution}>
+                <FiSave />
+                Save & Resolve
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
       {deleteModal.open && (
-        <div className="cm-welcome-overlay" onClick={() => setDeleteModal({ open: false, feedbackId: null })}>
-          <div className="cm-welcome-box shadow-lg" style={{ maxWidth: 400 }} onClick={(e) => e.stopPropagation()}>
-            <h4 className="mb-3">Confirm Delete</h4>
-            <p>Are you sure you want to delete this feedback?</p>
-            <div className="d-flex justify-content-end gap-2 mt-3">
-              <button
-                className="btn btn-light"
+        <div className="support-modal-overlay" onClick={() => setDeleteModal({ open: false, feedbackId: null })}>
+          <div className="support-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="support-modal-header">
+              <h3 className="support-modal-title">Confirm Delete</h3>
+              <button 
+                className="support-modal-close" 
+                onClick={() => setDeleteModal({ open: false, feedbackId: null })}
+              >
+                <FiX />
+              </button>
+            </div>
+            <div className="support-modal-body">
+              <div className="support-modal-icon warning">
+                <FiTrash2 />
+              </div>
+              <p>Are you sure you want to delete this feedback? This action cannot be undone.</p>
+            </div>
+            <div className="support-modal-footer">
+              <button 
+                className="support-btn support-btn-outline" 
                 onClick={() => setDeleteModal({ open: false, feedbackId: null })}
               >
                 Cancel
               </button>
-              <button className="btn btn-danger" onClick={confirmDeleteFeedback}>
-                Delete
+              <button className="support-btn support-btn-danger" onClick={confirmDeleteFeedback}>
+                <FiTrash2 />
+                Delete Feedback
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* SUCCESS POPUP */}
+      {/* Toast Notifications */}
       {popupMessage && (
-        <div className="position-fixed bottom-0 end-0 m-4 p-3 bg-success text-white shadow rounded" style={{ zIndex: 1055 }}>
-          {popupMessage}
+        <div className={`support-toast ${popupMessage.startsWith("✅") ? "success" : popupMessage.startsWith("❌") ? "error" : "info"}`}>
+          <div className="support-toast-content">
+            {popupMessage}
+          </div>
         </div>
       )}
     </div>
