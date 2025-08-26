@@ -1,173 +1,722 @@
-.ticket-overlay {
+/* ============ LUXURY HELP TICKET FORM WRAPPER - COMPLETE ISOLATION ============ */
+
+.luxury-ticket-form-wrapper {
+  /* Complete CSS reset for this component only */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Luxury Color Palette - Same as AskDoubtModal */
+  --ltf-luxury-gold: #d4af37;
+  --ltf-luxury-gold-light: #f4e4b3;
+  --ltf-luxury-gold-dark: #b8941f;
+  --ltf-luxury-white: #ffffff;
+  --ltf-luxury-cream: #faf9f7;
+  --ltf-luxury-pearl: #f5f4f2;
+  --ltf-luxury-silver: #e8e6e3;
+  --ltf-luxury-charcoal: #2c2c2c;
+  --ltf-luxury-dark-charcoal: #1a1a1a;
+  --ltf-luxury-medium-charcoal: #404040;
+  --ltf-luxury-light-charcoal: #666666;
+  
+  /* Enhanced Gradients */
+  --ltf-luxury-gradient-gold: linear-gradient(135deg, var(--ltf-luxury-gold) 0%, #e6c547 50%, var(--ltf-luxury-gold-light) 100%);
+  --ltf-luxury-gradient-elegant: linear-gradient(135deg, #fefefe 0%, #f9f8f6 50%, #f5f4f2 100%);
+  --ltf-luxury-gradient-pearl: linear-gradient(135deg, var(--ltf-luxury-pearl) 0%, var(--ltf-luxury-cream) 100%);
+  
+  /* Luxury Shadows */
+  --ltf-luxury-shadow-soft: 0 4px 20px rgba(212, 175, 55, 0.08);
+  --ltf-luxury-shadow-medium: 0 8px 32px rgba(212, 175, 55, 0.12);
+  --ltf-luxury-shadow-strong: 0 16px 64px rgba(212, 175, 55, 0.16);
+  --ltf-luxury-shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
+
+  /* Apply base styles only to this wrapper */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ltf-luxury-charcoal);
   position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+/* ============ OVERLAY AND BACKDROP ============ */
+.luxury-ticket-form-wrapper .ltf-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-backdrop-blur {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, 
+    rgba(250, 249, 247, 0.8) 0%, 
+    rgba(255, 255, 255, 0.6) 100%
+  );
+}
+
+/* ============ MAIN CONTAINER ============ */
+.luxury-ticket-form-wrapper .ltf-container {
+  position: relative;
+  background: var(--ltf-luxury-gradient-elegant);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: var(--ltf-luxury-shadow-strong);
+  backdrop-filter: blur(24px);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 10000;
+  animation: ltf-modal-enter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-ticket-form-wrapper .ltf-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes ltf-modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ============ HEADER SECTION ============ */
+.luxury-ticket-form-wrapper .ltf-header {
+  position: relative;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.98) 0%, 
+    rgba(250, 249, 247, 0.95) 100%
+  );
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.15);
+  z-index: 2;
+}
+
+.luxury-ticket-form-wrapper .ltf-header-glow {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
+  height: 4px;
+  background: var(--ltf-luxury-gradient-gold);
+  box-shadow: var(--ltf-luxury-shadow-glow);
+}
+
+.luxury-ticket-form-wrapper .ltf-header-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease;
-}
-
-.ticket-box {
+  gap: 2rem;
+  padding: 2.5rem 3rem;
   position: relative;
-  background: #1e1e2d;
-  border-radius: 16px;
-  padding: 30px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 3;
 }
 
-.ticket-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 24px;
-  cursor: pointer;
-  transition: color 0.2s;
+/* Brand Section */
+.luxury-ticket-form-wrapper .ltf-brand-section {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.75rem;
 }
 
-.ticket-close-btn:hover {
-  color: #fff;
+.luxury-ticket-form-wrapper .ltf-brand-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: var(--ltf-luxury-gradient-gold);
+  border-radius: 20px;
+  box-shadow: var(--ltf-luxury-shadow-medium);
 }
 
-.ticket-box h3 {
-  color: #fff;
-  margin-bottom: 25px;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-}
-
-.form-group select,
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: #fff;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-}
-
-.form-group select:focus,
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #6366f1;
-  background: rgba(99, 102, 241, 0.1);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+.luxury-ticket-form-wrapper .ltf-brand-svg {
+  font-size: 1.75rem;
   color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+  position: relative;
+  z-index: 2;
 }
 
-.submit-btn:hover {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+.luxury-ticket-form-wrapper .ltf-brand-glow {
+  position: absolute;
+  inset: -4px;
+  background: var(--ltf-luxury-gradient-gold);
+  border-radius: 24px;
+  opacity: 0.3;
+  filter: blur(12px);
+  z-index: 1;
+}
+
+.luxury-ticket-form-wrapper .ltf-brand-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--ltf-luxury-dark-charcoal);
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--ltf-luxury-dark-charcoal) 0%, var(--ltf-luxury-gold-dark) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-ticket-form-wrapper .ltf-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ltf-luxury-medium-charcoal);
+  opacity: 0.8;
+}
+
+/* Close Button */
+.luxury-ticket-form-wrapper .ltf-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--ltf-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ltf-luxury-shadow-soft);
+}
+
+.luxury-ticket-form-wrapper .ltf-close-btn:hover {
+  border-color: var(--ltf-luxury-gold);
+  background: rgba(212, 175, 55, 0.1);
+  transform: scale(1.1);
+  box-shadow: var(--ltf-luxury-shadow-medium);
+}
+
+.luxury-ticket-form-wrapper .ltf-close-icon {
+  font-size: 1.25rem;
+  color: var(--ltf-luxury-medium-charcoal);
+  transition: color 0.3s ease;
+}
+
+.luxury-ticket-form-wrapper .ltf-close-btn:hover .ltf-close-icon {
+  color: var(--ltf-luxury-gold);
+}
+
+/* ============ FORM SECTION ============ */
+.luxury-ticket-form-wrapper .ltf-form-section {
+  padding: 2.5rem 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-ticket-form-wrapper .ltf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Form Rows */
+.luxury-ticket-form-wrapper .ltf-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Form Groups */
+.luxury-ticket-form-wrapper .ltf-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ltf-luxury-dark-charcoal);
+}
+
+.luxury-ticket-form-wrapper .ltf-label-icon {
+  font-size: 1.1rem;
+  color: var(--ltf-luxury-gold);
+}
+
+.luxury-ticket-form-wrapper .ltf-optional {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ltf-luxury-light-charcoal);
+  font-style: italic;
+}
+
+/* Input Wrappers */
+.luxury-ticket-form-wrapper .ltf-input-wrapper,
+.luxury-ticket-form-wrapper .ltf-select-wrapper {
+  position: relative;
+  background: var(--ltf-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--ltf-luxury-shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.luxury-ticket-form-wrapper .ltf-input-wrapper:focus-within,
+.luxury-ticket-form-wrapper .ltf-select-wrapper:focus-within {
+  border-color: var(--ltf-luxury-gold);
+  box-shadow: var(--ltf-luxury-shadow-medium);
   transform: translateY(-2px);
 }
 
-.submit-btn:disabled {
-  background: #4b5563;
+.luxury-ticket-form-wrapper .ltf-textarea-wrapper {
+  position: relative;
+  background: var(--ltf-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--ltf-luxury-shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.luxury-ticket-form-wrapper .ltf-textarea-wrapper:focus-within {
+  border-color: var(--ltf-luxury-gold);
+  box-shadow: var(--ltf-luxury-shadow-medium);
+  transform: translateY(-2px);
+}
+
+/* Inputs */
+.luxury-ticket-form-wrapper .ltf-input {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ltf-luxury-dark-charcoal);
+  line-height: 1.5;
+  font-family: inherit;
+}
+
+.luxury-ticket-form-wrapper .ltf-input::placeholder {
+  color: var(--ltf-luxury-light-charcoal);
+  opacity: 0.7;
+}
+
+/* Select Inputs */
+.luxury-ticket-form-wrapper .ltf-select-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.luxury-ticket-form-wrapper .ltf-select-icon {
+  position: absolute;
+  left: 1.5rem;
+  font-size: 1.1rem;
+  color: var(--ltf-luxury-gold);
+  z-index: 2;
+}
+
+.luxury-ticket-form-wrapper .ltf-select {
+  width: 100%;
+  padding: 1.25rem 1.5rem 1.25rem 3.25rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ltf-luxury-dark-charcoal);
+  line-height: 1.5;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.luxury-ticket-form-wrapper .ltf-select option {
+  background: var(--ltf-luxury-white);
+  color: var(--ltf-luxury-dark-charcoal);
+  padding: 0.75rem;
+}
+
+/* Textarea */
+.luxury-ticket-form-wrapper .ltf-textarea {
+  width: 100%;
+  padding: 1.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ltf-luxury-dark-charcoal);
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.luxury-ticket-form-wrapper .ltf-textarea::placeholder {
+  color: var(--ltf-luxury-light-charcoal);
+  opacity: 0.7;
+}
+
+.luxury-ticket-form-wrapper .ltf-textarea-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 1.5rem;
+  background: var(--ltf-luxury-gradient-pearl);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.luxury-ticket-form-wrapper .ltf-char-count {
+  font-size: 0.8rem;
+  color: var(--ltf-luxury-light-charcoal);
+  font-weight: 600;
+}
+
+/* ============ ACTION BUTTONS ============ */
+.luxury-ticket-form-wrapper .ltf-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-submit-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  background: var(--ltf-luxury-gradient-gold);
+  border: 2px solid var(--ltf-luxury-gold-dark);
+  border-radius: 16px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ltf-luxury-shadow-medium);
+  overflow: hidden;
+}
+
+.luxury-ticket-form-wrapper .ltf-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--ltf-luxury-gold-dark), var(--ltf-luxury-gold));
+  transform: translateY(-3px);
+  box-shadow: var(--ltf-luxury-shadow-strong);
+}
+
+.luxury-ticket-form-wrapper .ltf-submit-btn:disabled {
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
-.success-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
+.luxury-ticket-form-wrapper .ltf-submit-icon {
+  font-size: 1.1rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-submit-icon.loading {
+  animation: ltf-spin 1s linear infinite;
+}
+
+@keyframes ltf-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============ FOOTER SECTION ============ */
+.luxury-ticket-form-wrapper .ltf-footer {
+  background: var(--ltf-luxury-gradient-pearl);
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-ticket-form-wrapper .ltf-footer-content {
+  display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
-  z-index: 1001;
-  animation: fadeIn 0.3s ease;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
 }
 
-.success-content {
-  background: rgba(25, 25, 40, 0.95);
+.luxury-ticket-form-wrapper .ltf-footer-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-footer-text {
+  color: var(--ltf-luxury-medium-charcoal);
+  font-weight: 500;
+}
+
+.luxury-ticket-form-wrapper .ltf-footer-highlight {
+  color: var(--ltf-luxury-gold-dark);
+  font-weight: 700;
+}
+
+.luxury-ticket-form-wrapper .ltf-footer-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
   border-radius: 16px;
-  padding: 30px;
-  max-width: 400px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ltf-luxury-gold-dark);
+}
+
+.luxury-ticket-form-wrapper .ltf-footer-icon {
+  font-size: 0.9rem;
+}
+
+/* ============ SUCCESS MODAL ============ */
+.luxury-ticket-form-wrapper .ltf-success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  animation: ltf-fade-in 0.3s ease-out;
+  padding: 2rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-success-backdrop {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(135deg, 
+    rgba(250, 249, 247, 0.9) 0%, 
+    rgba(255, 255, 255, 0.7) 100%
+  );
+}
+
+.luxury-ticket-form-wrapper .ltf-success-container {
+  position: relative;
+  background: var(--ltf-luxury-gradient-elegant);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  border-radius: 24px;
+  padding: 3rem;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 500px;
+  width: 100%;
+  box-shadow: var(--ltf-luxury-shadow-strong);
+  animation: ltf-success-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.success-content h4 {
-  color: #10b981;
-  margin-bottom: 15px;
-  font-size: 1.3rem;
-}
-
-.success-content p {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
-}
-
-@keyframes fadeIn {
+@keyframes ltf-fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes slideUp {
-  from { 
+@keyframes ltf-success-enter {
+  from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: scale(0.8) translateY(20px);
   }
-  to { 
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }
 
-@keyframes scaleIn {
-  from { 
-    opacity: 0;
-    transform: scale(0.9);
+.luxury-ticket-form-wrapper .ltf-success-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  box-shadow: var(--ltf-luxury-shadow-medium);
+}
+
+.luxury-ticket-form-wrapper .ltf-success-icon {
+  font-size: 2rem;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-ticket-form-wrapper .ltf-success-icon-glow {
+  position: absolute;
+  inset: -8px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  opacity: 0.3;
+  filter: blur(16px);
+  z-index: 1;
+}
+
+.luxury-ticket-form-wrapper .ltf-success-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-success-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #059669;
+  margin: 0;
+}
+
+.luxury-ticket-form-wrapper .ltf-success-message {
+  font-size: 1rem;
+  color: var(--ltf-luxury-medium-charcoal);
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.luxury-ticket-form-wrapper .ltf-success-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.luxury-ticket-form-wrapper .ltf-success-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ltf-luxury-dark-charcoal);
+}
+
+.luxury-ticket-form-wrapper .ltf-success-detail-icon {
+  font-size: 1rem;
+  color: #059669;
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media (max-width: 768px) {
+  .luxury-ticket-form-wrapper .ltf-overlay {
+    padding: 1rem;
   }
-  to { 
-    opacity: 1;
-    transform: scale(1);
+  
+  .luxury-ticket-form-wrapper .ltf-container {
+    border-radius: 24px;
+    max-height: 95vh;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-header-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-brand-section {
+    justify-content: center;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-form-section {
+    padding: 2rem;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-form-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-footer-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.5rem 2rem;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-success-container {
+    padding: 2rem;
   }
 }
+
+@media (max-width: 480px) {
+  .luxury-ticket-form-wrapper .ltf-brand-section {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-title {
+    font-size: 1.6rem;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-subtitle {
+    font-size: 1rem;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-success-details {
+    gap: 0.75rem;
+  }
+  
+  .luxury-ticket-form-wrapper .ltf-success-item {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* ============ SCROLLBAR STYLES ============ */
+.luxury-ticket-form-wrapper ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.luxury-ticket-form-wrapper ::-webkit-scrollbar-track {
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 4px;
+}
+
+.luxury-ticket-form-wrapper ::-webkit-scrollbar-thumb {
+  background: var(--ltf-luxury-gradient-gold);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.luxury-ticket-form-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--ltf-luxury-gold-dark), var(--ltf-luxury-gold));
+}
+
+/* ============ FOCUS STYLES ============ */
+.luxury-ticket-form-wrapper .ltf-input:focus,
+.luxury-ticket-form-wrapper .ltf-select:focus,
+.luxury-ticket-form-wrapper .ltf-textarea:focus,
+.luxury-ticket-form-wrapper .ltf-submit-btn:focus,
+.luxury-ticket-form-wrapper .ltf-close-btn:focus {
+  outline: 3px solid var(--ltf-luxury-gold);
+  outline-offset: 2px;
+}
+
+/* End of Luxury Ticket Form Wrapper */

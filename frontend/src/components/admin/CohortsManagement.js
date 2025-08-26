@@ -2,12 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   FaPlus, 
-  FaEdit, 
-  FaTrash, 
-  FaCalendarAlt,
-  FaClock,
-  FaUsers,
-  FaTags,
   FaCheck,
   FaTimes
 } from 'react-icons/fa';

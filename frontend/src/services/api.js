@@ -1,5 +1,6 @@
 // src/services/api.js
-const API = 'http://localhost:7700/api';
+
+const API = `${process.env.REACT_APP_API_URL}/api`;
 
 export const register = (data) =>
   fetch(`${API}/register`, {

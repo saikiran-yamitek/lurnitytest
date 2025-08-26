@@ -15,7 +15,7 @@ import {
 } from 'react-icons/fi';
 import './AdminLogin.css';
 import logo from '../../assets/LURNITY.jpg';
-
+const API = process.env.REACT_APP_API_URL;
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -47,7 +47,7 @@ export default function AdminLogin() {
       setIsLoading(true);
       setShowAuthWarning(false);
       
-      const res = await fetch('http://localhost:7700/api/admin/login', {
+      const res = await fetch(`${API}/api/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pendingCredentials),

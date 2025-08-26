@@ -6,7 +6,8 @@ import CodeSandboxEmbed from "./CodeSandboxEmbed";
 
 import logo from "../assets/LURNITY.jpg";
 
-const API = "http://localhost:7700";
+
+const API = process.env.REACT_APP_API_URL;
 
 export default function SandboxPlayground() {
   const history = useHistory();

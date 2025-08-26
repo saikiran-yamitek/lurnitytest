@@ -11,18 +11,17 @@ import {
   FiUser,
   FiClock,
   FiCheckCircle,
-  FiX,
   FiAward,
   FiTarget,
   FiRefreshCw,
   FiEye,
-  FiEyeOff,
   FiMaximize,
   FiShield
 } from "react-icons/fi";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
 
-const API = "http://localhost:7700";
+
+const API = process.env.REACT_APP_API_URL;
 
 export default function PracticePage() {
   const { courseId, subIdx, vidIdx } = useParams();

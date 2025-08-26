@@ -14,11 +14,16 @@ import {
   FiMessageSquare,
   FiStar,
   FiCheckCircle,
-  FiX
+  FiX,
+  
+  FiBookmark,
+  FiThumbsUp
 } from "react-icons/fi";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
 
-const API = "http://localhost:7700";
+
+const API = process.env.REACT_APP_API_URL;
+
 const idOf = (cId, sIdx, vIdx) => `${cId}|${sIdx}|${vIdx}`;
 
 export default function VideoPlayer() {
@@ -37,6 +42,8 @@ export default function VideoPlayer() {
   const [rating, setRating] = useState(0);
   const [feedbackText, setFeedbackText] = useState("");
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const [isVideoBookmarked, setIsVideoBookmarked] = useState(false);
+  const [videoProgress, setVideoProgress] = useState(0);
 
   const userId = localStorage.getItem("userId");
 
@@ -154,22 +161,50 @@ export default function VideoPlayer() {
     }
   };
 
+  const handleVideoProgress = (e) => {
+    const progress = (e.target.currentTime / e.target.duration) * 100;
+    setVideoProgress(progress || 0);
+  };
+
+  const toggleBookmark = async () => {
+    // Implement bookmark functionality
+    setIsVideoBookmarked(!isVideoBookmarked);
+  };
+
   if (err) return (
-    <div className="video-player-wrapper">
-      <div className="modern-error">
-        <div className="error-content">
-          <h2>Something went wrong</h2>
+    <div className="videoplayer-luxury-wrapper">
+      <div className="vp-error-container">
+        <div className="vp-error-backdrop"></div>
+        <div className="vp-error-content">
+          <div className="vp-error-icon">
+            <FiX />
+          </div>
+          <h2>Unable to Load Video</h2>
           <p>{err}</p>
+          <button className="vp-btn-primary" onClick={() => history.push("/home")}>
+            <FiHome />
+            Return to Dashboard
+          </button>
         </div>
       </div>
     </div>
   );
   
   if (!course) return (
-    <div className="video-player-wrapper">
-      <div className="modern-loading">
-        <div className="loading-spinner"></div>
-        <span>Loading your content...</span>
+    <div className="videoplayer-luxury-wrapper">
+      <div className="vp-loading-container">
+        <div className="vp-loading-backdrop">
+          <div className="vp-loading-aurora"></div>
+        </div>
+        <div className="vp-loading-content">
+          <div className="vp-loading-spinner">
+            <div className="vp-spinner-ring"></div>
+            <div className="vp-spinner-ring"></div>
+            <div className="vp-spinner-ring"></div>
+          </div>
+          <h3>Preparing Your Learning Experience</h3>
+          <p>Setting up your premium video player...</p>
+        </div>
       </div>
     </div>
   );
@@ -180,123 +215,207 @@ export default function VideoPlayer() {
   const play = (i) => history.replace(`/watch/${courseId}/${sIdx}/${i}`);
 
   return (
-    <div className="video-player-wrapper">
-      <div className="modern-vp-root">
-        {/* Modern Header */}
-        <header className="modern-vp-header">
-          <div className="header-glow"></div>
-          <div className="header-content">
-            <div className="header-left">
-              <div className="logo-container">
+    <div className="videoplayer-luxury-wrapper">
+      <div className="vp-app-container">
+        {/* Premium Header */}
+        <header className="vp-header">
+          <div className="vp-header-shimmer"></div>
+          <div className="vp-header-content">
+            <div className="vp-header-left">
+              <div className="vp-logo-container">
                 <img
                   src={logo}
                   alt="Lurnity"
-                  className="modern-vp-logo"
+                  className="vp-logo"
                   onClick={() => history.push("/home")}
                 />
-                <div className="logo-shine"></div>
+                <div className="vp-logo-glow"></div>
               </div>
             </div>
             
-            <nav className="header-nav">
-              <Link to="/home" className="nav-link">
-                <FiHome className="nav-icon" />
-                <span>Home</span>
+            <nav className="vp-header-nav">
+              <Link to="/home" className="vp-nav-link">
+                <div className="vp-nav-icon-wrapper">
+                  <FiHome className="vp-nav-icon" />
+                </div>
+                <span>Dashboard</span>
               </Link>
-              <Link to="/sandbox" className="nav-link">
-                <FiCode className="nav-icon" />
+              <Link to="/sandbox" className="vp-nav-link">
+                <div className="vp-nav-icon-wrapper">
+                  <FiCode className="vp-nav-icon" />
+                </div>
                 <span>CodeSandbox</span>
               </Link>
-              <div className="user-profile">
-                <FiUser className="user-icon" />
-                <span>{localStorage.getItem("userName") || "User"}</span>
+              <div className="vp-user-profile">
+                <div className="vp-profile-avatar">
+                  <FiUser className="vp-user-icon" />
+                </div>
+                <span className="vp-user-name">{localStorage.getItem("userName") || "Student"}</span>
               </div>
             </nav>
           </div>
         </header>
 
-        <div className="modern-vp-body">
-          {/* Modern Sidebar */}
+        <div className="vp-body">
+          {/* Premium Sidebar */}
           {showList ? (
-            <aside className="modern-vp-playlist">
-              <div className="sidebar-glow"></div>
-              <div className="playlist-content">
-                <div className="playlist-header">
-                  <button className="back-btn" onClick={() => history.push("/home")}>
-                    <FiChevronLeft />
-                    <span>Back</span>
+            <aside className="vp-sidebar">
+              <div className="vp-sidebar-backdrop"></div>
+              <div className="vp-sidebar-content">
+                <div className="vp-sidebar-header">
+                  <button className="vp-back-btn" onClick={() => history.push("/home")}>
+                    <FiChevronLeft className="vp-back-icon" />
+                    <span>Back to Course</span>
                   </button>
-                  <h3 className="playlist-title">Course Contents</h3>
-                  <button className="collapse-btn" onClick={() => setShow(false)}>
+                  <h3 className="vp-sidebar-title">Course Content</h3>
+                  <button className="vp-collapse-btn" onClick={() => setShow(false)}>
                     <TbLayoutSidebarLeftCollapse />
                   </button>
                 </div>
                 
-                <div className="playlist-scroll">
-                  {sub.videos.map((v, i) => (
-                    <div
-                      key={i}
-                      className={`playlist-item ${i === vIdx ? 'active' : ''}`}
-                      onClick={() => play(i)}
-                    >
-                      <div className="item-icon">
-                        <FiPlayCircle />
+                <div className="vp-playlist-container">
+                  <div className="vp-playlist-scroll">
+                    {sub.videos.map((v, i) => (
+                      <div
+                        key={i}
+                        className={`vp-playlist-item ${i === vIdx ? 'active' : ''} ${i < vIdx ? 'completed' : ''}`}
+                        onClick={() => play(i)}
+                      >
+                        <div className="vp-item-backdrop"></div>
+                        <div className="vp-item-icon">
+                          {i < vIdx ? <FiCheckCircle /> : <FiPlayCircle />}
+                        </div>
+                        <div className="vp-item-content">
+                          <h4 className="vp-item-title">{v.title}</h4>
+                          <span className="vp-item-meta">Video {i + 1}</span>
+                        </div>
+                        {i === vIdx && (
+                          <div className="vp-progress-indicator">
+                            <div className="vp-progress-ring">
+                              <div 
+                                className="vp-progress-fill" 
+                                style={{ 
+                                  background: `conic-gradient(#d4af37 ${videoProgress}%, transparent ${videoProgress}%)` 
+                                }}
+                              ></div>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <span className="item-title">{v.title}</span>
-                      {i < vIdx && <FiCheckCircle className="completed-icon" />}
-                      <div className="item-glow"></div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </aside>
           ) : (
-            <button className="modern-expand-btn" onClick={() => setShow(true)}>
+            <button className="vp-expand-btn" onClick={() => setShow(true)}>
               <TbLayoutSidebarLeftExpand />
-              <div className="expand-glow"></div>
+              <div className="vp-expand-pulse"></div>
             </button>
           )}
 
-          {/* Modern Player Area */}
-          <main className={`modern-vp-player ${!showList ? 'full-width' : ''}`}>
-            <div className="player-content">
-              <div className="video-header">
-                <h1 className="video-title">{vid.title}</h1>
-                <div className="video-meta">
-                  <span className="video-number">Video {vIdx + 1} of {sub.videos.length}</span>
+          {/* Premium Player Area */}
+          <main className={`vp-player ${!showList ? 'full-width' : ''}`}>
+            <div className="vp-player-container">
+              {/* Video Header */}
+              <div className="vp-video-header">
+                <div className="vp-video-info">
+                  <div className="vp-video-badge">
+                    <FiPlayCircle className="vp-badge-icon" />
+                    <span>Video Lesson</span>
+                  </div>
+                  <h1 className="vp-video-title">{vid.title}</h1>
+                  <div className="vp-video-meta">
+                    <span className="vp-video-number">Lesson {vIdx + 1} of {sub.videos.length}</span>
+                    <span className="vp-video-separator">•</span>
+                    <span className="vp-video-course">{course.title}</span>
+                  </div>
+                </div>
+                
+                <div className="vp-video-actions">
+                  <button 
+                    className={`vp-action-btn ${isVideoBookmarked ? 'active' : ''}`}
+                    onClick={toggleBookmark}
+                    title="Bookmark this video"
+                  >
+                    <FiBookmark />
+                  </button>
                 </div>
               </div>
               
-              <div className="video-container">
+              {/* Premium Video Container */}
+              <div className="vp-video-container">
+                <div className="vp-video-backdrop"></div>
                 <video
                   src={vid.url}
                   controls
-                  className="modern-video"
+                  className="vp-luxury-video"
                   onEnded={markWatched}
                   onPause={handlePause}
                   onPlay={handlePlay}
+                  onTimeUpdate={handleVideoProgress}
                 />
-                <div className="video-overlay"></div>
+                <div className="vp-video-overlay">
+                  <div className="vp-video-gradient"></div>
+                </div>
               </div>
 
-              <div className="action-buttons">
-                <button className="action-btn primary" onClick={askDoubt}>
-                  <FiHelpCircle className="btn-icon" />
-                  <span>Ask a Doubt</span>
-                  <div className="btn-glow"></div>
-                </button>
-                
-                <button className="action-btn secondary" onClick={() => setShowFeedbackModal(true)}>
-                  <FiMessageSquare className="btn-icon" />
-                  <span>Give Feedback</span>
-                  <div className="btn-glow"></div>
-                </button>
+              {/* Premium Action Buttons */}
+              <div className="vp-action-section">
+                <div className="vp-action-grid">
+                  <button className="vp-btn-primary large" onClick={askDoubt}>
+                    <FiHelpCircle className="vp-btn-icon" />
+                    <div className="vp-btn-content">
+                      <span className="vp-btn-title">Ask AI Assistant</span>
+                      <span className="vp-btn-subtitle">Get instant help</span>
+                    </div>
+                  </button>
+                  
+                  <button className="vp-btn-secondary large" onClick={() => setShowFeedbackModal(true)}>
+                    <FiMessageSquare className="vp-btn-icon" />
+                    <div className="vp-btn-content">
+                      <span className="vp-btn-title">Share Feedback</span>
+                      <span className="vp-btn-subtitle">Help us improve</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Navigation Controls */}
+              <div className="vp-navigation-section">
+                <div className="vp-nav-controls">
+                  {vIdx > 0 && (
+                    <button 
+                      className="vp-nav-btn previous"
+                      onClick={() => play(vIdx - 1)}
+                    >
+                      <FiChevronLeft className="vp-nav-btn-icon" />
+                      <div className="vp-nav-btn-content">
+                        <span className="vp-nav-btn-label">Previous</span>
+                        <span className="vp-nav-btn-title">{sub.videos[vIdx - 1]?.title}</span>
+                      </div>
+                    </button>
+                  )}
+                  
+                  {vIdx < sub.videos.length - 1 && (
+                    <button 
+                      className="vp-nav-btn next"
+                      onClick={() => play(vIdx + 1)}
+                    >
+                      <div className="vp-nav-btn-content">
+                        <span className="vp-nav-btn-label">Next</span>
+                        <span className="vp-nav-btn-title">{sub.videos[vIdx + 1]?.title}</span>
+                      </div>
+                      <FiChevronLeft className="vp-nav-btn-icon next" />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </main>
         </div>
 
-        {/* Modern Modals */}
+        {/* Premium Modals */}
         {showDoubtModal && (
           <AskDoubtModal
             geminiKey={geminiKey}
@@ -305,76 +424,84 @@ export default function VideoPlayer() {
         )}
 
         {showKeyModal && (
-          <div className="modern-modal-overlay">
-            <div className="modal-backdrop" onClick={() => setShowKeyModal(false)}></div>
-            <div className="modern-modal">
-              <div className="modal-glow"></div>
-              <div className="modal-content">
-                <h2>🚀 Ready to Learn Smarter?</h2>
-                <p>Enter your Gemini API key to unlock AI-powered doubt solving!</p>
-                
-                <div className="input-group">
+          <div className="vp-modal-overlay">
+            <div className="vp-modal-backdrop" onClick={() => setShowKeyModal(false)}></div>
+            <div className="vp-luxury-modal">
+              <div className="vp-modal-header">
+                <div className="vp-modal-icon">
+                  <FiHelpCircle />
+                </div>
+                <h2>🚀 Unlock AI-Powered Learning</h2>
+                <p>Enter your Gemini API key to access our intelligent doubt-solving assistant</p>
+              </div>
+              
+              <div className="vp-modal-body">
+                <div className="vp-input-group">
+                  <label className="vp-input-label">Gemini API Key</label>
                   <input
-                    className="modern-input"
+                    className="vp-luxury-input"
                     value={newKey}
                     onChange={(e) => setNewKey(e.target.value)}
-                    placeholder="Paste your Gemini API key here..."
+                    placeholder="Paste your API key here..."
+                    type="password"
                   />
                 </div>
-                
-                <div className="modal-buttons">
-                  <button onClick={saveGeminiKey} className="btn-primary">
-                    <span>Save & Continue</span>
-                    <div className="btn-glow"></div>
-                  </button>
-                  <button onClick={() => setShowKeyModal(false)} className="btn-secondary">
-                    <span>Cancel</span>
-                  </button>
-                </div>
+              </div>
+              
+              <div className="vp-modal-actions">
+                <button onClick={() => setShowKeyModal(false)} className="vp-btn-secondary">
+                  Cancel
+                </button>
+                <button onClick={saveGeminiKey} className="vp-btn-primary">
+                  Save & Continue
+                </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* NEW FEEDBACK MODAL WITH UNIQUE CLASS NAMES */}
+        {/* Premium Feedback Modal */}
         {showFeedbackModal && (
-          <div className="feedback-popup-overlay">
-            <div className="feedback-popup-backdrop" onClick={() => setShowFeedbackModal(false)}></div>
-            <div className="feedback-popup-container">
-              <div className="feedback-popup-glow"></div>
-              
-              <div className="feedback-popup-header">
-                <h2 className="feedback-popup-title">🎯 Share Your Feedback</h2>
+          <div className="vp-feedback-modal-overlay">
+            <div className="vp-feedback-modal-backdrop" onClick={() => setShowFeedbackModal(false)}></div>
+            <div className="vp-luxury-feedback-modal">
+              <div className="vp-feedback-header">
+                <div className="vp-feedback-icon">
+                  <FiThumbsUp />
+                </div>
+                <h2>Share Your Learning Experience</h2>
                 <button 
-                  className="feedback-popup-close"
+                  className="vp-feedback-close"
                   onClick={() => setShowFeedbackModal(false)}
                 >
                   <FiX />
                 </button>
               </div>
               
-              <div className="feedback-popup-body">
-                <p className="feedback-popup-subtitle">Help us improve your learning experience</p>
+              <div className="vp-feedback-body">
+                <p className="vp-feedback-subtitle">Help us create better learning experiences for everyone</p>
                 
-                <div className="feedback-popup-form">
-                  <div className="feedback-rating-container">
-                    <label className="feedback-rating-label">How would you rate this video?</label>
-                    <div className="feedback-star-container">
+                <div className="vp-feedback-form">
+                  <div className="vp-rating-section">
+                    <label className="vp-rating-label">How would you rate this video?</label>
+                    <div className="vp-star-container">
                       {[1, 2, 3, 4, 5].map((star) => (
-                        <FiStar
+                        <button
                           key={star}
-                          className={`feedback-star ${rating >= star ? 'feedback-star-active' : ''}`}
+                          className={`vp-star-btn ${rating >= star ? 'active' : ''}`}
                           onClick={() => setRating(star)}
-                        />
+                        >
+                          <FiStar className="vp-star" />
+                        </button>
                       ))}
                     </div>
                   </div>
                   
-                  <div className="feedback-comment-container">
-                    <label className="feedback-comment-label">Your thoughts and suggestions</label>
+                  <div className="vp-comment-section">
+                    <label className="vp-comment-label">Share your thoughts and suggestions</label>
                     <textarea
-                      className="feedback-textarea"
-                      placeholder="Share your experience with this video. What did you like? What could be improved?"
+                      className="vp-luxury-textarea"
+                      placeholder="What did you like about this video? How could we make it better?"
                       value={feedbackText}
                       onChange={(e) => setFeedbackText(e.target.value)}
                       rows="4"
@@ -383,18 +510,19 @@ export default function VideoPlayer() {
                 </div>
               </div>
               
-              <div className="feedback-popup-footer">
+              <div className="vp-feedback-footer">
                 <button 
-                  className="feedback-submit-btn"
-                  onClick={submitFeedback}
-                >
-                  <span>Submit Feedback</span>
-                </button>
-                <button 
-                  className="feedback-cancel-btn"
+                  className="vp-btn-secondary"
                   onClick={() => setShowFeedbackModal(false)}
                 >
-                  <span>Cancel</span>
+                  Maybe Later
+                </button>
+                <button 
+                  className="vp-btn-primary"
+                  onClick={submitFeedback}
+                >
+                  <FiThumbsUp />
+                  Submit Feedback
                 </button>
               </div>
             </div>

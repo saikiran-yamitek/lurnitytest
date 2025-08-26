@@ -1,232 +1,851 @@
-:root {
-  --primary: #1e3a8a;
-  --accent: #3b82f6;
-  --light: #f9fafb;
-  --text: #111827;
-  --muted: #6b7280;
-  --bg-muted: #f3f4f6;
-  --success: #16a34a;
-  --error: #dc2626;
-}
+/* ============ LUXURY DRIVE MODAL WRAPPER - COMPLETE ISOLATION ============ */
 
-.modal-overlay {
+.luxury-drive-modal-wrapper {
+  /* Complete CSS reset for this component only */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Luxury Color Palette - Same as homepage */
+  --ldrive-luxury-gold: #d4af37;
+  --ldrive-luxury-gold-light: #f4e4b3;
+  --ldrive-luxury-gold-dark: #b8941f;
+  --ldrive-luxury-white: #ffffff;
+  --ldrive-luxury-cream: #faf9f7;
+  --ldrive-luxury-pearl: #f5f4f2;
+  --ldrive-luxury-silver: #e8e6e3;
+  --ldrive-luxury-charcoal: #2c2c2c;
+  --ldrive-luxury-dark-charcoal: #1a1a1a;
+  --ldrive-luxury-medium-charcoal: #404040;
+  --ldrive-luxury-light-charcoal: #666666;
+  
+  /* Enhanced Gradients */
+  --ldrive-luxury-gradient-gold: linear-gradient(135deg, var(--ldrive-luxury-gold) 0%, #e6c547 50%, var(--ldrive-luxury-gold-light) 100%);
+  --ldrive-luxury-gradient-elegant: linear-gradient(135deg, #fefefe 0%, #f9f8f6 50%, #f5f4f2 100%);
+  --ldrive-luxury-gradient-pearl: linear-gradient(135deg, var(--ldrive-luxury-pearl) 0%, var(--ldrive-luxury-cream) 100%);
+  
+  /* Luxury Shadows */
+  --ldrive-luxury-shadow-soft: 0 4px 20px rgba(212, 175, 55, 0.08);
+  --ldrive-luxury-shadow-medium: 0 8px 32px rgba(212, 175, 55, 0.12);
+  --ldrive-luxury-shadow-strong: 0 16px 64px rgba(212, 175, 55, 0.16);
+  --ldrive-luxury-shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
+
+  /* Apply base styles only to this wrapper */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ldrive-luxury-charcoal);
   position: fixed;
-  top: 0;
-  left: 240px;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.45);
+  inset: 0;
+  z-index: 9999;
+}
+
+/* ============ OVERLAY AND BACKDROP ============ */
+.luxury-drive-modal-wrapper .ldrive-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  z-index: 999;
-  padding: 30px 20px;
+  padding: 2rem;
 }
 
-.drive-modal-container {
-  background: #fff;
-  width: calc(100% - 280px);
+.luxury-drive-modal-wrapper .ldrive-backdrop {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, 
+    rgba(250, 249, 247, 0.8) 0%, 
+    rgba(255, 255, 255, 0.6) 100%
+  );
+}
+
+/* ============ MAIN CONTAINER ============ */
+.luxury-drive-modal-wrapper .ldrive-container {
+  position: relative;
+  background: var(--ldrive-luxury-gradient-elegant);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: var(--ldrive-luxury-shadow-strong);
+  backdrop-filter: blur(24px);
+  width: 100%;
+  max-width: 1200px;
   max-height: 90vh;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  font-family: 'Inter', sans-serif;
-}
-
-.drive-modal-header {
-  background-color: var(--primary);
-  color: #fff;
-  padding: 20px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-close-btn {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-.drive-modal-content {
-  display: flex;
-  overflow: hidden;
-  flex: 1;
-}
-
-.drive-modal-left {
-  flex: 3;
-  padding: 24px;
-  overflow-y: auto;
-}
-
-.drive-modal-right {
-  flex: 1;
-  background: var(--light);
-  padding: 24px;
-  border-left: 1px solid #e5e7eb;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.drive-details-grid {
+  z-index: 10000;
+  animation: ldrive-modal-enter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-bottom: 24px;
+  grid-template-rows: auto 1fr;
 }
 
-.detail-block {
-  display: flex;
-  gap: 12px;
+.luxury-drive-modal-wrapper .ldrive-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.detail-block label {
-  font-size: 13px;
-  color: var(--muted);
+@keyframes ldrive-modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
-.detail-block p {
-  font-weight: 500;
-  color: var(--text);
-  font-size: 14px;
-  margin: 2px 0 0;
+/* ============ HEADER SECTION ============ */
+.luxury-drive-modal-wrapper .ldrive-header {
+  position: relative;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.98) 0%, 
+    rgba(250, 249, 247, 0.95) 100%
+  );
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.15);
+  z-index: 2;
 }
 
-.icon {
-  color: var(--accent);
-  margin-top: 4px;
-  flex-shrink: 0;
+.luxury-drive-modal-wrapper .ldrive-header-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--ldrive-luxury-gradient-gold);
+  box-shadow: var(--ldrive-luxury-shadow-glow);
 }
 
-.skills-block h3,
-.description-block h3 {
-  margin: 20px 0 10px;
-  font-size: 16px;
-  color: var(--text);
+.luxury-drive-modal-wrapper .ldrive-header-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+  position: relative;
+  z-index: 3;
 }
 
-.skills-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+/* Company Brand Section */
+.luxury-drive-modal-wrapper .ldrive-company-brand {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2rem;
 }
 
-.skill-pill {
-  background: #e0f2fe;
-  color: #0284c7;
-  padding: 6px 12px;
-  border-radius: 9999px;
-  font-size: 13px;
-}
-
-.description-block p {
-  font-size: 14px;
-  color: #374151;
-  margin-bottom: 16px;
-  line-height: 1.6;
-}
-
-.external-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.external-links a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
+.luxury-drive-modal-wrapper .ldrive-company-icon {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  background: var(--ldrive-luxury-gradient-gold);
+  border-radius: 24px;
+  box-shadow: var(--ldrive-luxury-shadow-medium);
 }
 
-.status-block {
-  margin-bottom: 20px;
-}
-
-.badge {
-  padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 999px;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.badge.open {
-  background: #dcfce7;
-  color: var(--success);
-}
-
-.badge.expired {
-  background: #fee2e2;
-  color: var(--error);
-}
-
-.status-block p {
-  color: var(--muted);
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.primary-btn {
-  background: var(--primary);
+.luxury-drive-modal-wrapper .ldrive-company-svg {
+  font-size: 2rem;
   color: white;
-  padding: 12px;
-  font-size: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-drive-modal-wrapper .ldrive-company-glow {
+  position: absolute;
+  inset: -4px;
+  background: var(--ldrive-luxury-gradient-gold);
+  border-radius: 28px;
+  opacity: 0.3;
+  filter: blur(12px);
+  z-index: 1;
+}
+
+.luxury-drive-modal-wrapper .ldrive-company-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-company-name {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--ldrive-luxury-dark-charcoal);
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--ldrive-luxury-dark-charcoal) 0%, var(--ldrive-luxury-gold-dark) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-drive-modal-wrapper .ldrive-role-title {
+  font-size: 1.3rem;
   font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: background 0.3s ease;
+  color: var(--ldrive-luxury-medium-charcoal);
+  opacity: 0.8;
 }
 
-.primary-btn:hover {
-  background: var(--accent);
-}
-
-.primary-btn.disabled {
-  background: #d1d5db;
-  cursor: not-allowed;
-}
-
-.outline-btn {
-  background: white;
-  border: 1px solid #d1d5db;
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-  border-radius: 10px;
-  cursor: pointer;
+/* Header Actions */
+.luxury-drive-modal-wrapper .ldrive-header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 2rem;
 }
 
-@media (max-width: 768px) {
-  .drive-modal-content {
-    flex-direction: column;
-  }
+.luxury-drive-modal-wrapper .ldrive-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
 
-  .drive-modal-right {
-    border-left: none;
-    border-top: 1px solid #e5e7eb;
-    margin-top: 16px;
-  }
+.luxury-drive-modal-wrapper .ldrive-status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: relative;
+}
 
-  .drive-details-grid {
+.luxury-drive-modal-wrapper .ldrive-status-dot.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  animation: ldrive-pulse-green 2s ease-in-out infinite;
+}
+
+.luxury-drive-modal-wrapper .ldrive-status-dot.expired {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+@keyframes ldrive-pulse-green {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+}
+
+.luxury-drive-modal-wrapper .ldrive-status-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ldrive-luxury-dark-charcoal);
+}
+
+.luxury-drive-modal-wrapper .ldrive-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-close-btn:hover {
+  border-color: var(--ldrive-luxury-gold);
+  background: rgba(212, 175, 55, 0.1);
+  transform: scale(1.1);
+  box-shadow: var(--ldrive-luxury-shadow-medium);
+}
+
+.luxury-drive-modal-wrapper .ldrive-close-icon {
+  font-size: 1.25rem;
+  color: var(--ldrive-luxury-medium-charcoal);
+  transition: color 0.3s ease;
+}
+
+.luxury-drive-modal-wrapper .ldrive-close-btn:hover .ldrive-close-icon {
+  color: var(--ldrive-luxury-gold);
+}
+
+/* ============ MAIN CONTENT ============ */
+.luxury-drive-modal-wrapper .ldrive-main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Left Content */
+.luxury-drive-modal-wrapper .ldrive-content-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding-right: 1rem;
+}
+
+/* Section Headers */
+.luxury-drive-modal-wrapper .ldrive-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--ldrive-luxury-gradient-gold);
+  border-radius: 12px;
+  color: white;
+  font-size: 1.1rem;
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ldrive-luxury-dark-charcoal);
+}
+
+/* Details Grid */
+.luxury-drive-modal-wrapper .ldrive-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-detail-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.15);
+  border-radius: 20px;
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-drive-modal-wrapper .ldrive-detail-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--ldrive-luxury-shadow-medium);
+}
+
+.luxury-drive-modal-wrapper .ldrive-detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-detail-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ldrive-luxury-light-charcoal);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxury-drive-modal-wrapper .ldrive-detail-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ldrive-luxury-dark-charcoal);
+  line-height: 1.3;
+}
+
+/* Skills Section */
+.luxury-drive-modal-wrapper .ldrive-skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-skill-tag {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.luxury-drive-modal-wrapper .ldrive-skill-tag:hover {
+  border-color: var(--ldrive-luxury-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-skill-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ldrive-luxury-gold-dark);
+}
+
+/* Description Sections */
+.luxury-drive-modal-wrapper .ldrive-description-block {
+  margin-bottom: 2rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-description-content {
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-description-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ldrive-luxury-dark-charcoal);
+  font-weight: 500;
+}
+
+/* External Links */
+.luxury-drive-modal-wrapper .ldrive-external-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.luxury-drive-modal-wrapper .ldrive-external-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  color: var(--ldrive-luxury-dark-charcoal);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-external-link:hover {
+  border-color: var(--ldrive-luxury-gold);
+  background: rgba(212, 175, 55, 0.05);
+  transform: translateY(-2px);
+  box-shadow: var(--ldrive-luxury-shadow-medium);
+}
+
+.luxury-drive-modal-wrapper .ldrive-link-icon {
+  font-size: 1.1rem;
+  color: var(--ldrive-luxury-gold);
+}
+
+.luxury-drive-modal-wrapper .ldrive-link-arrow {
+  font-size: 1rem;
+  color: var(--ldrive-luxury-medium-charcoal);
+  transition: transform 0.3s ease;
+}
+
+.luxury-drive-modal-wrapper .ldrive-external-link:hover .ldrive-link-arrow {
+  transform: translate(4px, -4px);
+}
+
+/* Right Content */
+.luxury-drive-modal-wrapper .ldrive-content-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Application Card */
+.luxury-drive-modal-wrapper .ldrive-application-card {
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--ldrive-luxury-shadow-medium);
+  position: relative;
+}
+
+.luxury-drive-modal-wrapper .ldrive-application-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--ldrive-luxury-gradient-gold);
+  border-radius: 26px;
+  opacity: 0.1;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.luxury-drive-modal-wrapper .ldrive-app-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-app-status {
+  text-align: center;
+}
+
+.luxury-drive-modal-wrapper .ldrive-status-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.luxury-drive-modal-wrapper .ldrive-status-indicator.open {
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid rgba(16, 185, 129, 0.2);
+  color: #059669;
+}
+
+.luxury-drive-modal-wrapper .ldrive-status-indicator.expired {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgba(239, 68, 68, 0.2);
+  color: #dc2626;
+}
+
+.luxury-drive-modal-wrapper .ldrive-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.luxury-drive-modal-wrapper .ldrive-seats-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--ldrive-luxury-gradient-pearl);
+  border-radius: 16px;
+  font-weight: 600;
+  color: var(--ldrive-luxury-dark-charcoal);
+}
+
+.luxury-drive-modal-wrapper .ldrive-seats-icon {
+  font-size: 1.1rem;
+  color: var(--ldrive-luxury-gold);
+}
+
+.luxury-drive-modal-wrapper .ldrive-urgency-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-radius: 16px;
+  color: #d97706;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  animation: ldrive-pulse-orange 2s ease-in-out infinite;
+}
+
+@keyframes ldrive-pulse-orange {
+  0%, 100% { 
+    background: rgba(245, 158, 11, 0.1);
+  }
+  50% { 
+    background: rgba(245, 158, 11, 0.2);
+  }
+}
+
+.luxury-drive-modal-wrapper .ldrive-urgency-icon {
+  font-size: 1.1rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-app-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-primary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  background: var(--ldrive-luxury-gradient-gold);
+  border: 2px solid var(--ldrive-luxury-gold-dark);
+  border-radius: 16px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ldrive-luxury-shadow-medium);
+}
+
+.luxury-drive-modal-wrapper .ldrive-primary-btn:hover:not(.disabled) {
+  background: linear-gradient(135deg, var(--ldrive-luxury-gold-dark), var(--ldrive-luxury-gold));
+  transform: translateY(-3px);
+  box-shadow: var(--ldrive-luxury-shadow-strong);
+}
+
+.luxury-drive-modal-wrapper .ldrive-primary-btn.disabled {
+  background: var(--ldrive-luxury-silver);
+  border-color: var(--ldrive-luxury-silver);
+  color: var(--ldrive-luxury-medium-charcoal);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-secondary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  color: var(--ldrive-luxury-dark-charcoal);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-secondary-btn:hover {
+  border-color: var(--ldrive-luxury-gold);
+  background: rgba(212, 175, 55, 0.05);
+  transform: translateY(-2px);
+  box-shadow: var(--ldrive-luxury-shadow-medium);
+}
+
+.luxury-drive-modal-wrapper .ldrive-btn-icon {
+  font-size: 1.1rem;
+}
+
+/* Stats Card */
+.luxury-drive-modal-wrapper .ldrive-stats-card {
+  background: var(--ldrive-luxury-white);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--ldrive-luxury-shadow-soft);
+}
+
+.luxury-drive-modal-wrapper .ldrive-stats-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.1);
+}
+
+.luxury-drive-modal-wrapper .ldrive-stats-icon {
+  font-size: 1.2rem;
+  color: var(--ldrive-luxury-gold);
+}
+
+.luxury-drive-modal-wrapper .ldrive-stats-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ldrive-luxury-dark-charcoal);
+}
+
+.luxury-drive-modal-wrapper .ldrive-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.luxury-drive-modal-wrapper .ldrive-stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+}
+
+.luxury-drive-modal-wrapper .ldrive-stat-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ldrive-luxury-medium-charcoal);
+}
+
+.luxury-drive-modal-wrapper .ldrive-stat-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ldrive-luxury-dark-charcoal);
+}
+
+.luxury-drive-modal-wrapper .ldrive-stat-value.open {
+  color: #059669;
+}
+
+.luxury-drive-modal-wrapper .ldrive-stat-value.expired {
+  color: #dc2626;
+}
+
+/* ============ SCROLLBAR STYLES ============ */
+.luxury-drive-modal-wrapper ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.luxury-drive-modal-wrapper ::-webkit-scrollbar-track {
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 4px;
+}
+
+.luxury-drive-modal-wrapper ::-webkit-scrollbar-thumb {
+  background: var(--ldrive-luxury-gradient-gold);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.luxury-drive-modal-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--ldrive-luxury-gold-dark), var(--ldrive-luxury-gold));
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media (max-width: 1024px) {
+  .luxury-drive-modal-wrapper .ldrive-main-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-content-left {
+    max-height: none;
+    overflow-y: visible;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-details-grid {
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  .luxury-drive-modal-wrapper .ldrive-overlay {
+    padding: 1rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-container {
+    border-radius: 24px;
+    max-height: 95vh;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-header-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-company-brand {
+    justify-content: center;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-header-actions {
+    justify-content: center;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-main-content {
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-external-links {
+    flex-direction: column;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-external-link {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .luxury-drive-modal-wrapper .ldrive-company-brand {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-company-name {
+    font-size: 1.8rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-role-title {
+    font-size: 1.1rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-header-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-main-content {
+    padding: 1.5rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-detail-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-skills-container {
+    justify-content: center;
+  }
+}
+
+/* ============ FOCUS STYLES ============ */
+.luxury-drive-modal-wrapper .ldrive-close-btn:focus,
+.luxury-drive-modal-wrapper .ldrive-primary-btn:focus,
+.luxury-drive-modal-wrapper .ldrive-secondary-btn:focus,
+.luxury-drive-modal-wrapper .ldrive-external-link:focus {
+  outline: 3px solid var(--ldrive-luxury-gold);
+  outline-offset: 2px;
+}
+
+/* ============ PRINT STYLES ============ */
+@media print {
+  .luxury-drive-modal-wrapper .ldrive-backdrop,
+  .luxury-drive-modal-wrapper .ldrive-close-btn,
+  .luxury-drive-modal-wrapper .ldrive-app-actions {
+    display: none !important;
+  }
+  
+  .luxury-drive-modal-wrapper .ldrive-container {
+    box-shadow: none;
+    border: 2px solid #333;
+  }
+}
+
+/* End of Luxury Drive Modal Wrapper */
+

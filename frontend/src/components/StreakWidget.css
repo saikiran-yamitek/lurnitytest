@@ -1,265 +1,615 @@
-/* StreakWidget.css */
-.streak-widget {
+/* ============ LUXURY STREAK WIDGET WRAPPER - COMPLETE ISOLATION ============ */
+
+.luxury-streak-widget-wrapper {
+  /* Complete CSS reset for this component only */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Luxury Color Palette - Same as other components */
+  --lsw-luxury-gold: #d4af37;
+  --lsw-luxury-gold-light: #f4e4b3;
+  --lsw-luxury-gold-dark: #b8941f;
+  --lsw-luxury-white: #ffffff;
+  --lsw-luxury-cream: #faf9f7;
+  --lsw-luxury-pearl: #f5f4f2;
+  --lsw-luxury-silver: #e8e6e3;
+  --lsw-luxury-charcoal: #2c2c2c;
+  --lsw-luxury-dark-charcoal: #1a1a1a;
+  --lsw-luxury-medium-charcoal: #404040;
+  --lsw-luxury-light-charcoal: #666666;
+  
+  /* Success Colors */
+  --lsw-success-500: #10b981;
+  --lsw-success-100: #d1fae5;
+  
+  /* Enhanced Gradients */
+  --lsw-luxury-gradient-gold: linear-gradient(135deg, var(--lsw-luxury-gold) 0%, #e6c547 50%, var(--lsw-luxury-gold-light) 100%);
+  --lsw-luxury-gradient-elegant: linear-gradient(135deg, #fefefe 0%, #f9f8f6 50%, #f5f4f2 100%);
+  --lsw-luxury-gradient-pearl: linear-gradient(135deg, var(--lsw-luxury-pearl) 0%, var(--lsw-luxury-cream) 100%);
+  
+  /* Luxury Shadows */
+  --lsw-luxury-shadow-soft: 0 4px 20px rgba(212, 175, 55, 0.08);
+  --lsw-luxury-shadow-medium: 0 8px 32px rgba(212, 175, 55, 0.12);
+  --lsw-luxury-shadow-strong: 0 16px 64px rgba(212, 175, 55, 0.16);
+  --lsw-luxury-shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
+
+  /* Apply base styles only to this wrapper */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--lsw-luxury-charcoal);
+  position: relative;
+}
+
+/* ============ MAIN CONTAINER ============ */
+.luxury-streak-widget-wrapper .lsw-container {
+  position: relative;
+  background: var(--lsw-luxury-gradient-elegant);
+  border: 2px solid var(--lsw-luxury-silver);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: var(--lsw-luxury-shadow-strong);
+  overflow: hidden;
+  max-width: 350px;
+  width: 100%;
+  backdrop-filter: blur(20px);
+}
+
+.luxury-streak-widget-wrapper .lsw-background-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+  animation: lsw-rotate 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes lsw-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============ HEADER SECTION ============ */
+.luxury-streak-widget-wrapper .lsw-header {
   display: flex;
   align-items: center;
-  background: #fff3e0;
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 14px;
-  margin-left: 12px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
-.streak-icon {
-  color: orange;
-  font-size: 18px;
-  margin-right: 6px;
+.luxury-streak-widget-wrapper .lsw-header-icon-wrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background: var(--lsw-luxury-gradient-gold);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--lsw-luxury-shadow-medium);
+  flex-shrink: 0;
 }
 
-.streak-current {
-  font-weight: bold;
+.luxury-streak-widget-wrapper .lsw-header-icon {
+  font-size: 1.25rem;
+  color: white;
+  position: relative;
+  z-index: 2;
 }
 
-.streak-max {
-  font-size: 12px;
-  color: #555;
+.luxury-streak-widget-wrapper .lsw-header-icon-glow {
+  position: absolute;
+  inset: -4px;
+  background: var(--lsw-luxury-gradient-gold);
+  border-radius: 20px;
+  opacity: 0.3;
+  filter: blur(8px);
+  z-index: 1;
+  animation: lsw-header-glow 3s ease-in-out infinite;
 }
-.streak-container{
-    width:90%;
-    margin:20px;
-    margin-left: 20px;
+
+@keyframes lsw-header-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
 }
-.streak-container {
+
+.luxury-streak-widget-wrapper .lsw-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.luxury-streak-widget-wrapper .lsw-header-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--lsw-luxury-dark-charcoal);
+  margin: 0 0 0.25rem;
+  line-height: 1.2;
+}
+
+.luxury-streak-widget-wrapper .lsw-header-subtitle {
+  font-size: 0.85rem;
+  color: var(--lsw-luxury-medium-charcoal);
+  margin: 0;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* ============ MAIN STREAK CARD ============ */
+.luxury-streak-widget-wrapper .lsw-streak-card {
+  position: relative;
+  background: var(--lsw-luxury-white);
+  border: 1px solid var(--lsw-luxury-silver);
+  border-radius: 24px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--lsw-luxury-shadow-medium);
+  z-index: 2;
+}
+
+.luxury-streak-widget-wrapper .lsw-streak-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--lsw-luxury-gradient-pearl);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.luxury-streak-widget-wrapper .lsw-streak-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.luxury-streak-widget-wrapper .lsw-streak-main {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  flex: 1; /* allows it to grow and fill available space */
+  gap: 1.5rem;
 }
 
-        .streak-card {
-          background: linear-gradient(135deg, rgba(255, 149, 0, 0.15) 0%, rgba(255, 183, 71, 0.1) 100%);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 149, 0, 0.3);
-          border-radius: 20px;
-          padding: 20px;
-          width: 100%;
-          box-shadow: 0 8px 32px rgba(255, 149, 0, 0.2);
-          transition: all 0.3s ease;
-        }
+.luxury-streak-widget-wrapper .lsw-streak-visual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-        .streak-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 40px rgba(255, 149, 0, 0.3);
-          background: linear-gradient(135deg, rgba(255, 149, 0, 0.2) 0%, rgba(255, 183, 71, 0.15) 100%);
-        }
+.luxury-streak-widget-wrapper .lsw-streak-emoji-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        .streak-header {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 16px;
-        }
+.luxury-streak-widget-wrapper .lsw-streak-emoji {
+  font-size: 3rem;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
 
-        .streak-icon-wrapper {
-          width: 40px;
-          height: 40px;
-          background: linear-gradient(135deg, #FF9500, #FFB347);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 16px rgba(255, 149, 0, 0.3);
-        }
+.luxury-streak-widget-wrapper .lsw-emoji-glow {
+  position: absolute;
+  inset: -8px;
+  background: url(#lswGlowGradient);
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(12px);
+  animation: lsw-emoji-pulse 2s ease-in-out infinite;
+}
 
-        .streak-icon {
-          color: white;
-          font-size: 20px;
-          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
-        }
+@keyframes lsw-emoji-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
 
-        .streak-info {
-          flex: 1;
-        }
+.luxury-streak-widget-wrapper .lsw-progress-ring-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
 
-        .streak-label {
-          display: block;
-          font-size: 12px;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.7);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-bottom: 4px;
-        }
+.luxury-streak-widget-wrapper .lsw-progress-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
 
-        .streak-number {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-        }
+.luxury-streak-widget-wrapper .lsw-progress-track {
+  fill: none;
+  stroke: var(--lsw-luxury-silver);
+  stroke-width: 4;
+}
 
-        .streak-count {
-          font-size: 28px;
-          font-weight: 800;
-          color: #ffffff;
-          text-shadow: 0 2px 8px rgba(255, 149, 0, 0.4);
-          line-height: 1;
-        }
+.luxury-streak-widget-wrapper .lsw-progress-bar {
+  fill: none;
+  stroke: url(#lswStreakGradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 1s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.3));
+}
 
-        .streak-days {
-          font-size: 14px;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.8);
-        }
+.luxury-streak-widget-wrapper .lsw-progress-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
-        .streak-visual {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
+.luxury-streak-widget-wrapper .lsw-progress-number {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--lsw-luxury-gold-dark);
+  line-height: 1;
+}
 
-        .streak-emoji {
-          font-size: 32px;
-          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
+.luxury-streak-widget-wrapper .lsw-streak-info {
+  text-align: center;
+}
 
-        .streak-progress-ring {
-          width: 50px;
-          height: 50px;
-        }
+.luxury-streak-widget-wrapper .lsw-streak-number-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
 
-        .circular-chart {
-          display: block;
-          margin: 0 auto;
-          max-width: 50px;
-          max-height: 50px;
-          transform: rotate(-90deg);
-        }
+.luxury-streak-widget-wrapper .lsw-streak-count {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+}
 
-        .circle-bg {
-          fill: none;
-          stroke: rgba(255, 255, 255, 0.1);
-          stroke-width: 2;
-        }
+.luxury-streak-widget-wrapper .lsw-count-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--lsw-luxury-dark-charcoal);
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
 
-        .circle {
-          fill: none;
-          stroke: url(#streakGradient);
-          stroke-width: 2;
-          stroke-linecap: round;
-          transition: stroke-dasharray 0.6s ease;
-        }
+.luxury-streak-widget-wrapper .lsw-count-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--lsw-luxury-medium-charcoal);
+  margin-top: 0.5rem;
+}
 
-        .streak-stats {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          width:100%;
-        }
+.luxury-streak-widget-wrapper .lsw-motivational-message {
+  font-size: 0.9rem;
+  color: var(--lsw-luxury-medium-charcoal);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+  font-style: italic;
+}
 
-        .stat-card {
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 14px;
-          padding: 12px 16px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          transition: all 0.3s ease;
-          width: 100%;
-        }
+/* ============ STATS GRID ============ */
+.luxury-streak-widget-wrapper .lsw-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
 
-        .stat-card:hover {
-          background: rgba(255, 255, 255, 0.08);
-          transform: translateX(4px);
-        }
+.luxury-streak-widget-wrapper .lsw-stat-card {
+  position: relative;
+  background: var(--lsw-luxury-white);
+  border: 1px solid var(--lsw-luxury-silver);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--lsw-luxury-shadow-soft);
+}
 
-        .stat-icon {
-          color: #FF9500;
-          font-size: 18px;
-          opacity: 0.8;
-        }
+.luxury-streak-widget-wrapper .lsw-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--lsw-luxury-shadow-medium);
+  border-color: rgba(212, 175, 55, 0.3);
+}
 
-        .stat-info {
-          flex: 1;
-        }
+.luxury-streak-widget-wrapper .lsw-stat-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--lsw-luxury-gradient-pearl);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
 
-        .stat-number {
-          display: block;
-          font-size: 20px;
-          font-weight: 700;
-          color: #ffffff;
-          line-height: 1;
-        }
+.luxury-streak-widget-wrapper .lsw-stat-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
-        .stat-label {
-          font-size: 11px;
-          color: rgba(255, 255, 255, 0.6);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-top: 2px;
-        }
+.luxury-streak-widget-wrapper .lsw-stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--lsw-luxury-shadow-soft);
+}
 
-        /* Responsive Design */
-        @media (max-width: 1400px) {
-          .streak-container {
-            right: 10px;
-          }
-          
-          .streak-card,
-          .stat-card {
-            width: 180px;
-          }
-        }
+.luxury-streak-widget-wrapper .lsw-stat-icon {
+  font-size: 1.1rem;
+  color: var(--lsw-luxury-gold-dark);
+}
 
-        @media (max-width: 1200px) {
-          .streak-container {
-            position: static;
-            transform: none;
-            align-self: flex-end;
-            margin-top: 20px;
-          }
-        }
+.luxury-streak-widget-wrapper .lsw-stat-info {
+  flex: 1;
+  min-width: 0;
+}
 
-        @media (max-width: 768px) {
-          .streak-container {
-            align-self: center;
-            margin-top: 24px;
-          }
-          
-          .streak-card,
-          .stat-card {
-            width: 160px;
-          }
-          
-          .streak-count {
-            font-size: 24px;
-          }
-          
-          .streak-emoji {
-            font-size: 28px;
-          }
-        }
+.luxury-streak-widget-wrapper .lsw-stat-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--lsw-luxury-dark-charcoal);
+  line-height: 1;
+  display: block;
+}
 
-        @media (max-width: 480px) {
-          .streak-stats {
-            flex-direction: row;
-            gap: 8px;
-          }
-          
-          .streak-card {
-            width: 100%;
-            max-width: 300px;
-          }
-          
-          .stat-card {
-            width: calc(50% - 4px);
-          }
-          
-          .stat-number {
-            font-size: 18px;
-          }
-          
-          .stat-label {
-            font-size: 10px;
-          }
-        }
+.luxury-streak-widget-wrapper .lsw-stat-label {
+  font-size: 0.75rem;
+  color: var(--lsw-luxury-medium-charcoal);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* ============ ACHIEVEMENT BADGE ============ */
+.luxury-streak-widget-wrapper .lsw-achievement-badge {
+  position: relative;
+  background: var(--lsw-luxury-white);
+  border: 2px solid var(--lsw-success-500);
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--lsw-luxury-shadow-medium);
+  animation: lsw-achievement-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2;
+}
+
+@keyframes lsw-achievement-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.luxury-streak-widget-wrapper .lsw-achievement-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--lsw-success-100) 0%, rgba(16, 185, 129, 0.05) 100%);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.luxury-streak-widget-wrapper .lsw-achievement-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.luxury-streak-widget-wrapper .lsw-achievement-icon {
+  font-size: 1.5rem;
+  color: var(--lsw-success-500);
+  flex-shrink: 0;
+}
+
+.luxury-streak-widget-wrapper .lsw-achievement-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.luxury-streak-widget-wrapper .lsw-achievement-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--lsw-success-500);
+  display: block;
+  line-height: 1.2;
+}
+
+.luxury-streak-widget-wrapper .lsw-achievement-desc {
+  font-size: 0.8rem;
+  color: var(--lsw-luxury-medium-charcoal);
+  font-weight: 600;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* ============ FOOTER ============ */
+.luxury-streak-widget-wrapper .lsw-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-streak-widget-wrapper .lsw-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.luxury-streak-widget-wrapper .lsw-footer-icon {
+  font-size: 1rem;
+  color: var(--lsw-luxury-gold);
+}
+
+.luxury-streak-widget-wrapper .lsw-footer-text {
+  font-size: 0.8rem;
+  color: var(--lsw-luxury-medium-charcoal);
+  font-weight: 600;
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media (max-width: 768px) {
+  .luxury-streak-widget-wrapper .lsw-container {
+    padding: 1.5rem;
+    max-width: 320px;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-streak-content {
+    padding: 1.5rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-count-number {
+    font-size: 2rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-streak-emoji {
+    font-size: 2.5rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-progress-ring-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .luxury-streak-widget-wrapper .lsw-container {
+    padding: 1.25rem;
+    max-width: 280px;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-header-title {
+    font-size: 1.1rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-header-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-count-number {
+    font-size: 1.8rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-streak-emoji {
+    font-size: 2.2rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-progress-ring-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-stat-content {
+    padding: 1rem;
+  }
+  
+  .luxury-streak-widget-wrapper .lsw-stat-number {
+    font-size: 1.25rem;
+  }
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes lsw-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.luxury-streak-widget-wrapper .lsw-streak-card:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(212, 175, 55, 0.1) 50%, 
+    transparent 100%);
+  animation: lsw-shimmer 1.5s ease-in-out;
+  z-index: 3;
+}
+
+/* ============ SCROLLBAR STYLES ============ */
+.luxury-streak-widget-wrapper ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.luxury-streak-widget-wrapper ::-webkit-scrollbar-track {
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 3px;
+}
+
+.luxury-streak-widget-wrapper ::-webkit-scrollbar-thumb {
+  background: var(--lsw-luxury-gradient-gold);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.luxury-streak-widget-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--lsw-luxury-gold-dark), var(--lsw-luxury-gold));
+}
+
+/* ============ FOCUS STYLES ============ */
+.luxury-streak-widget-wrapper .lsw-stat-card:focus {
+  outline: 3px solid var(--lsw-luxury-gold);
+  outline-offset: 2px;
+}
+
+/* End of Luxury Streak Widget Wrapper */

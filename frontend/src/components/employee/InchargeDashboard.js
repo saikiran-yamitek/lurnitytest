@@ -13,7 +13,6 @@ import {
   FiTrendingUp,
   FiBook,
   FiCheck,
-  FiEye,
   FiSave,
   FiActivity,
   FiAward,
@@ -21,7 +20,7 @@ import {
   FiDownload
 } from "react-icons/fi";
 import "./InchargeDashboard.css";
-
+const API = process.env.REACT_APP_API_URL;
 export default function InchargeDashboard() {
   const [workshops, setWorkshops] = useState([]);
   const [emp, setEmp] = useState(null);
@@ -50,7 +49,7 @@ export default function InchargeDashboard() {
   const fetchWorkshops = async (employee) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:7700/api/workshops/incharge/${employee.id}`);
+      const response = await fetch(`${API}/api/workshops/incharge/${employee.id}`);
       const data = await response.json();
       setWorkshops(data);
     } catch (err) {
@@ -70,7 +69,7 @@ export default function InchargeDashboard() {
   const handleViewStudents = async (workshopId) => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:7700/api/workshops/${workshopId}/students`);
+      const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
       const data = await res.json();
       setRegisteredStudents(Array.isArray(data) ? data : []);
       setSelectedWorkshop(workshopId);
@@ -117,7 +116,7 @@ export default function InchargeDashboard() {
     try {
       const updates = Object.entries(editedStudents);
 
-      for (const [studentId, fields] of updates) {
+      for (const [ fields] of updates) {
         if (fields.attendance === undefined || !fields.grade) {
           setPopup("⚠️ Please mark both attendance and grade for all students.");
           setTimeout(() => setPopup(""), 3000);
@@ -126,8 +125,8 @@ export default function InchargeDashboard() {
       }
 
       for (const [studentId, fields] of updates) {
-        const res = await fetch(
-          `http://localhost:7700/api/workshops/${selectedWorkshop}/attendance`,
+        const res = await fetch(`${API}/api/workshops/${selectedWorkshop}/attendance`,
+          
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },

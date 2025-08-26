@@ -7,7 +7,7 @@ import sign2 from "../assets/signature2.png";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-
+const API = process.env.REACT_APP_API_URL;
 const CertificateViewer = () => {
   const { certId } = useParams();
   const [certificate, setCertificate] = useState(null);
@@ -15,7 +15,7 @@ const CertificateViewer = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:7700/api/certificates/${certId}`, {
+    fetch(`${API}/api/certificates/${certId}`, {
       headers: { Authorization: "Bearer " + token },
     })
       .then((res) => res.json())

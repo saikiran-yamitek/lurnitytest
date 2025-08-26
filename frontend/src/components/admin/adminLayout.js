@@ -17,7 +17,7 @@ import logo from '../../assets/LURNITY.jpg';
 
 
 export default function AdminLayout(props) {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme] = useState(localStorage.getItem('theme') || 'light');
   const [isHovering, setIsHovering] = useState(null);
   const history = useHistory();
 

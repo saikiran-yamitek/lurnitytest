@@ -24,7 +24,7 @@ import {
   FaGlobe,
   FaShieldAlt
 } from 'react-icons/fa';
-
+const API = process.env.REACT_APP_API_URL;
 const LuxuryCareersPage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [jobs, setJobs] = useState([]);
@@ -43,7 +43,7 @@ const LuxuryCareersPage = () => {
     useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch("http://localhost:7700/api/landingpage/jobs");
+        const res = await fetch(`${API}/api/landingpage/jobs`);
         if (!res.ok) {
           throw new Error("Failed to fetch jobs");
         }
@@ -328,8 +328,7 @@ const LuxuryCareersPage = () => {
           resumeUrl: e.target.resumeUrl.value,
         };
 
-        const res = await fetch(
-          `http://localhost:7700/api/landingpage/${job._id}/apply`,
+        const res = await fetch(`${API}/api/landingpage/${job._id}/apply`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

@@ -4,6 +4,8 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { useParams } from "react-router-dom";
 
+const API = process.env.REACT_APP_API_URL;
+
 
 const Resume = () => {
   const [user, setUser] = useState(null);
@@ -17,8 +19,8 @@ const Resume = () => {
   useEffect(() => {
   const token = localStorage.getItem("token");
   const url = userId
-    ? `http://localhost:7700/api/get-resume-data?userId=${userId}`
-    : `http://localhost:7700/api/get-resume-data`;
+    ? `${API}/api/get-resume-data?userId=${userId}`
+    : `${API}/api/get-resume-data`;
 
   fetch(url, {
     headers: { Authorization: `Bearer ${token}` },
@@ -140,7 +142,7 @@ Create a responsive design that adapts gracefully to different screen sizes.
   const saveProjectsToBackend = async (formattedProjects) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:7700/api/update-projects", {
+      const response = await fetch(`${API}/api/update-projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

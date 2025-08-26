@@ -5,12 +5,12 @@ import Select from "react-select";
 import {
   FiUser, FiPhone, FiMapPin, FiCode, FiHeart, FiBook,
   FiBriefcase, FiAward, FiChevronDown, FiChevronRight, FiSave,
-  FiUpload, FiCamera, FiTrash2, FiHome,   FiCheck, FiX, FiRotateCw, FiZoomIn, FiZoomOut ,
+  FiUpload, FiCamera, FiTrash2, FiHome, FiCheck, FiX, 
+  FiRotateCw, FiZoomIn, FiZoomOut, 
 } from "react-icons/fi";
 import logo from "../assets/LURNITY.jpg";
 import "./StudentProfilePage.css";
-
-
+const API = process.env.REACT_APP_API_URL;
 
 const sections = {
   "Basic Details": [
@@ -29,8 +29,6 @@ const sections = {
   "Work Experience": ["Experience Details"],
   "Projects & Achievements": ["Projects", "Achievements"],
 };
-
-
 
 const StudentProfilePage = () => {
   const hist = useHistory();
@@ -123,54 +121,54 @@ const StudentProfilePage = () => {
       instituteCity: ""
     },
   });
-  const [showCropper, setShowCropper] = useState(false);
-const [tempImageForCrop, setTempImageForCrop] = useState(null);
-const [cropSettings, setCropSettings] = useState({
-  x: 50,
-  y: 50,
-  width: 200,
-  height: 200,
-  zoom: 1,
-  rotation: 0
-});
-const [isDragging, setIsDragging] = useState(false);
-const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-const cropCanvasRef = useRef(null);
-const [notification, setNotification] = useState(null);
 
+  const [showCropper, setShowCropper] = useState(false);
+  const [tempImageForCrop, setTempImageForCrop] = useState(null);
+  const [cropSettings, setCropSettings] = useState({
+    x: 50,
+    y: 50,
+    width: 200,
+    height: 200,
+    zoom: 1,
+    rotation: 0
+  });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const cropCanvasRef = useRef(null);
+  const [notification, setNotification] = useState(null);
 
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch(`http://localhost:7700/api/user/${userId}/profile`);
-      const data = await response.json();
-      if (response.ok && data) {
-        setFormData({
-          ...formData,
-          ...data,
-          name: data.name || data.ircName || "",
-          geminiApiKey: data.geminiApiKey || "",
-          photo: data.photoURL, // Store the base64 string here
-          photoURL: data.photoURL ? 
-            (data.photoURL.startsWith('data:image') ? 
-              data.photoURL : 
-              `data:image/jpeg;base64,${data.photoURL}`) : "",
-          parentGuardian: {
-            ...formData.parentGuardian,
-            ...data.parentGuardian,
-            whatsappPhone: data.parentGuardian?.whatsappPhone || ""
-          }
-        });
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(`${API}/api/user/${userId}/profile`);
+        const data = await response.json();
+        if (response.ok && data) {
+          setFormData({
+            ...formData,
+            ...data,
+            name: data.name || data.ircName || "",
+            geminiApiKey: data.geminiApiKey || "",
+            photo: data.photoURL,
+            photoURL: data.photoURL ? 
+              (data.photoURL.startsWith('data:image') ? 
+                data.photoURL : 
+                `data:image/jpeg;base64,${data.photoURL}`) : "",
+            parentGuardian: {
+              ...formData.parentGuardian,
+              ...data.parentGuardian,
+              whatsappPhone: data.parentGuardian?.whatsappPhone || ""
+            }
+          });
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
       }
-    } catch (err) {
-      console.error("Fetch error:", err);
-    }
-  };
+    };
 
-  if (userId) fetchProfile();
-}, [userId]);
+    if (userId) fetchProfile();
+  }, [userId,formData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -178,178 +176,171 @@ const [notification, setNotification] = useState(null);
   };
 
   const handlePhotoUpload = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      // Create a temporary URL for preview
-      const tempUrl = URL.createObjectURL(file);
-      
-      setFormData(prev => ({
-        ...prev,
-        photo: event.target.result, // This stores the base64 string
-        photoFile: file, // Keep the file reference
-        photoURL: tempUrl // Temporary URL for preview
-      }));
-    };
-    reader.readAsDataURL(file); // Read as base64
-  }
-};
-
-  const handleSave = async () => {
-  try {
-    // Prepare the data to send
-    const dataToSend = {
-      ...formData,
-      // Don't send the temporary photoURL or File object
-      photoURL: formData.photo, // Send the base64 string instead
-    };
-    delete dataToSend.photoFile; // Remove the File object
-    
-    const response = await fetch(`http://localhost:7700/api/user/${userId}/profile`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dataToSend),
-    });
-
-    const result = await response.json();
-    if (!response.ok) throw new Error(result.message || "Save failed");
-
-    // Show success notification
-    setNotification({
-      type: 'success',
-      title: 'Success',
-      message: 'Profile saved successfully!',
-      icon: '🎉'
-    });
-    
-    // Auto-hide after 3 seconds
-    setTimeout(() => setNotification(null), 3000);
-  } catch (err) {
-    console.error("Save Error:", err);
-    setNotification({
-      type: 'error',
-      title: 'Error',
-      message: 'Failed to save profile. Please try again.',
-      icon: '❌'
-    });
-    setTimeout(() => setNotification(null), 3000);
-  }
-};
-
-  const handleCropMouseDown = (e) => {
-  setIsDragging(true);
-  setDragStart({
-    x: e.clientX - cropSettings.x,
-    y: e.clientY - cropSettings.y
-  });
-};
-
-const handleCropMouseMove = (e) => {
-  if (!isDragging) return;
-  
-  const newX = e.clientX - dragStart.x;
-  const newY = e.clientY - dragStart.y;
-  
-  setCropSettings(prev => ({
-    ...prev,
-    x: Math.max(0, Math.min(400 - prev.width, newX)),
-    y: Math.max(0, Math.min(300 - prev.height, newY))
-  }));
-};
-
-const handleCropMouseUp = () => {
-  setIsDragging(false);
-};
-
-const getCroppedImage = async () => {
-  return new Promise((resolve) => {
-    const canvas = cropCanvasRef.current;
-    const ctx = canvas.getContext('2d');
-    const img = new Image();
-    
-    img.onload = () => {
-      const outputSize = 300;
-      canvas.width = outputSize;
-      canvas.height = outputSize;
-      
-      const containerWidth = 400;
-      const containerHeight = 300;
-      const scaleX = img.width / containerWidth;
-      const scaleY = img.height / containerHeight;
-      
-      ctx.save();
-      ctx.translate(outputSize / 2, outputSize / 2);
-      ctx.rotate((cropSettings.rotation * Math.PI) / 180);
-      ctx.scale(cropSettings.zoom, cropSettings.zoom);
-      
-      const sourceX = cropSettings.x * scaleX;
-      const sourceY = cropSettings.y * scaleY;
-      const sourceWidth = cropSettings.width * scaleX;
-      const sourceHeight = cropSettings.height * scaleY;
-      
-      ctx.drawImage(
-        img,
-        sourceX,
-        sourceY,
-        sourceWidth,
-        sourceHeight,
-        -outputSize / 2,
-        -outputSize / 2,
-        outputSize,
-        outputSize
-      );
-      
-      ctx.restore();
-      
-      canvas.toBlob((blob) => {
-        resolve(blob);
-      }, 'image/jpeg', 0.9);
-    };
-    img.src = tempImageForCrop;
-  });
-};
-
-const handleCropComplete = async () => {
-  try {
-    const croppedBlob = await getCroppedImage();
-    if (croppedBlob) {
-      // Convert the cropped blob to base64
+    const file = e.target.files[0];
+    if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        const base64String = event.target.result;
-        
-        // Revoke previous URL if exists
-        if (formData.photoURL.startsWith('blob:')) {
-          URL.revokeObjectURL(formData.photoURL);
-        }
+        const tempUrl = URL.createObjectURL(file);
         
         setFormData(prev => ({
           ...prev,
-          photo: base64String, // Store base64 string
-          photoURL: base64String, // Use base64 for preview
+          photo: event.target.result,
+          photoFile: file,
+          photoURL: tempUrl
         }));
       };
-      reader.readAsDataURL(croppedBlob);
+      reader.readAsDataURL(file);
     }
-  } catch (error) {
-    console.error("Error cropping image:", error);
-    setNotification({
-      type: 'error',
-      title: 'Error',
-      message: 'Failed to process image',
-      icon: '❌'
+  };
+
+  const handleSave = async () => {
+    try {
+      const dataToSend = {
+        ...formData,
+        photoURL: formData.photo,
+      };
+      delete dataToSend.photoFile;
+      
+      const response = await fetch(`${API}/api/user/${userId}/profile`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataToSend),
+      });
+
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.message || "Save failed");
+
+      setNotification({
+        type: 'success',
+        title: 'Success',
+        message: 'Profile saved successfully!',
+        icon: '🎉'
+      });
+      
+      setTimeout(() => setNotification(null), 3000);
+    } catch (err) {
+      console.error("Save Error:", err);
+      setNotification({
+        type: 'error',
+        title: 'Error',
+        message: 'Failed to save profile. Please try again.',
+        icon: '❌'
+      });
+      setTimeout(() => setNotification(null), 3000);
+    }
+  };
+
+  const handleCropMouseDown = (e) => {
+    setIsDragging(true);
+    setDragStart({
+      x: e.clientX - cropSettings.x,
+      y: e.clientY - cropSettings.y
     });
-  } finally {
+  };
+
+  const handleCropMouseMove = (e) => {
+    if (!isDragging) return;
+    
+    const newX = e.clientX - dragStart.x;
+    const newY = e.clientY - dragStart.y;
+    
+    setCropSettings(prev => ({
+      ...prev,
+      x: Math.max(0, Math.min(400 - prev.width, newX)),
+      y: Math.max(0, Math.min(300 - prev.height, newY))
+    }));
+  };
+
+  const handleCropMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const getCroppedImage = async () => {
+    return new Promise((resolve) => {
+      const canvas = cropCanvasRef.current;
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      
+      img.onload = () => {
+        const outputSize = 300;
+        canvas.width = outputSize;
+        canvas.height = outputSize;
+        
+        const containerWidth = 400;
+        const containerHeight = 300;
+        const scaleX = img.width / containerWidth;
+        const scaleY = img.height / containerHeight;
+        
+        ctx.save();
+        ctx.translate(outputSize / 2, outputSize / 2);
+        ctx.rotate((cropSettings.rotation * Math.PI) / 180);
+        ctx.scale(cropSettings.zoom, cropSettings.zoom);
+        
+        const sourceX = cropSettings.x * scaleX;
+        const sourceY = cropSettings.y * scaleY;
+        const sourceWidth = cropSettings.width * scaleX;
+        const sourceHeight = cropSettings.height * scaleY;
+        
+        ctx.drawImage(
+          img,
+          sourceX,
+          sourceY,
+          sourceWidth,
+          sourceHeight,
+          -outputSize / 2,
+          -outputSize / 2,
+          outputSize,
+          outputSize
+        );
+        
+        ctx.restore();
+        
+        canvas.toBlob((blob) => {
+          resolve(blob);
+        }, 'image/jpeg', 0.9);
+      };
+      img.src = tempImageForCrop;
+    });
+  };
+
+  const handleCropComplete = async () => {
+    try {
+      const croppedBlob = await getCroppedImage();
+      if (croppedBlob) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64String = event.target.result;
+          
+          if (formData.photoURL.startsWith('blob:')) {
+            URL.revokeObjectURL(formData.photoURL);
+          }
+          
+          setFormData(prev => ({
+            ...prev,
+            photo: base64String,
+            photoURL: base64String,
+          }));
+        };
+        reader.readAsDataURL(croppedBlob);
+      }
+    } catch (error) {
+      console.error("Error cropping image:", error);
+      setNotification({
+        type: 'error',
+        title: 'Error',
+        message: 'Failed to process image',
+        icon: '❌'
+      });
+    } finally {
+      setShowCropper(false);
+      setTempImageForCrop(null);
+    }
+  };
+
+  const handleCropCancel = () => {
     setShowCropper(false);
     setTempImageForCrop(null);
-  }
-};
-
-const handleCropCancel = () => {
-  setShowCropper(false);
-  setTempImageForCrop(null);
-};
+  };
 
   const renderSection = () => {
     const { category, item } = selectedSection;
@@ -371,24 +362,24 @@ const handleCropCancel = () => {
 
           <div className="photo-upload-container">
             <div className="photo-preview-wrapper">
-<div className="photo-preview-container">
-  {formData.photoURL ? (
-    <img 
-      src={formData.photoURL} 
-      alt="Preview" 
-      className="photo-preview" 
-      onError={(e) => {
-        e.target.onerror = null; // Prevent infinite loop
-        e.target.src = ''; // Clear invalid src
-      }}
-    />
-  ) : (
-    <div className="photo-placeholder">
-      <FiUser size={48} />
-    </div>
-  )}
-  <div className="photo-overlay"></div>
-</div>
+              <div className="photo-preview-container">
+                {formData.photoURL ? (
+                  <img 
+                    src={formData.photoURL} 
+                    alt="Preview" 
+                    className="photo-preview" 
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '';
+                    }}
+                  />
+                ) : (
+                  <div className="photo-placeholder">
+                    <FiUser size={48} />
+                  </div>
+                )}
+                <div className="photo-overlay"></div>
+              </div>
             </div>
             <div className="photo-actions">
               <label htmlFor="photo-upload" className="glass-btn primary">
@@ -410,68 +401,68 @@ const handleCropCancel = () => {
           </div>
 
           <div className="modern-form-grid">
-  {[
-    ["First Name", "firstName", "text", true], // Added 4th parameter for lock-sensitive fields
-    ["Last Name", "lastName", "text", true],
-    ["Name on IRC Certificate", "name", "text"],
-    ["Gender", "gender", "select"],
-    ["Communication Language", "communicationLanguage", "text"],
-    ["Teaching Language", "teachingLanguage", "text"],
-    ["Date of Birth", "dateOfBirth", "date"],
-    ["LinkedIn", "linkedIn", "text"],
-    ["Twitter", "twitter", "text"],
-    ["GitHub", "github", "text"],
-    ["Resume URL", "resumeURL", "text"],
-  ].map(([label, name, type, isLockable]) => (
-    <div className="glass-form-group" key={name}>
-      <label>{label}</label>
-      {type === "select" ? (
-        <select 
-          name={name} 
-          value={formData[name]} 
-          onChange={handleInputChange}
-          className="glass-input"
-          disabled={isLockable && formData.profileLock === "locked"}
-        >
-          <option value="">Select</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-          <option value="Prefer Not to Say">Prefer Not to Say</option>
-        </select>
-      ) : (
-        <input
-          type={type}
-          name={name}
-          value={
-            name === "dateOfBirth" && formData[name]
-              ? formData[name].substring(0, 10)
-              : formData[name]
-          }
-          onChange={handleInputChange}
-          className="glass-input"
-          disabled={isLockable && formData.profileLock === "locked"}
-        />
-      )}
-    </div>
-  ))}
-  <div className="glass-form-group" key="geminiApiKey">
-    <label>Gemini API Key</label>
-    <input
-      type="text"
-      name="geminiApiKey"
-      value={formData.geminiApiKey}
-      onChange={handleInputChange}
-      className="glass-input"
-      onFocus={() => {
-        if (!hasShownGeminiDisclaimer) {
-          setShowGeminiDisclaimer(true);
-          setHasShownGeminiDisclaimer(true);
-        }
-      }}
-    />
-  </div>
-</div>
+            {[
+              ["First Name", "firstName", "text", true],
+              ["Last Name", "lastName", "text", true],
+              ["Name on IRC Certificate", "name", "text"],
+              ["Gender", "gender", "select"],
+              ["Communication Language", "communicationLanguage", "text"],
+              ["Teaching Language", "teachingLanguage", "text"],
+              ["Date of Birth", "dateOfBirth", "date"],
+              ["LinkedIn", "linkedIn", "text"],
+              ["Twitter", "twitter", "text"],
+              ["GitHub", "github", "text"],
+              ["Resume URL", "resumeURL", "text"],
+            ].map(([label, name, type, isLockable]) => (
+              <div className="glass-form-group" key={name}>
+                <label>{label}</label>
+                {type === "select" ? (
+                  <select 
+                    name={name} 
+                    value={formData[name]} 
+                    onChange={handleInputChange}
+                    className="glass-input"
+                    disabled={isLockable && formData.profileLock === "locked"}
+                  >
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                    <option value="Prefer Not to Say">Prefer Not to Say</option>
+                  </select>
+                ) : (
+                  <input
+                    type={type}
+                    name={name}
+                    value={
+                      name === "dateOfBirth" && formData[name]
+                        ? formData[name].substring(0, 10)
+                        : formData[name]
+                    }
+                    onChange={handleInputChange}
+                    className="glass-input"
+                    disabled={isLockable && formData.profileLock === "locked"}
+                  />
+                )}
+              </div>
+            ))}
+            <div className="glass-form-group" key="geminiApiKey">
+              <label>Gemini API Key</label>
+              <input
+                type="text"
+                name="geminiApiKey"
+                value={formData.geminiApiKey}
+                onChange={handleInputChange}
+                className="glass-input"
+                onFocus={() => {
+                  if (!hasShownGeminiDisclaimer) {
+                    setShowGeminiDisclaimer(true);
+                    setHasShownGeminiDisclaimer(true);
+                  }
+                }}
+              />
+            </div>
+          </div>
 
           <div className="form-actions">
             <button className="save-btn" onClick={handleSave}>
@@ -483,213 +474,208 @@ const handleCropCancel = () => {
     }
 
     // Student Contact Details Section
-    // Student Contact Details Section - Fixed Version
-if (category === "Basic Details" && item === "Student Contact Details") {
-  return (
-    <div className="modern-form-section">
-      <div className="section-glow"></div>
-      <div className="section-header">
-        <div className="header-icon">
-          <FiPhone />
-        </div>
-        <div className="header-text">
-          <h2>Student Contact Details</h2>
-          <p className="section-description">
-            We will use the contact details you provide to send you important updates during the program
-          </p>
-        </div>
-      </div>
+    if (category === "Basic Details" && item === "Student Contact Details") {
+      return (
+        <div className="modern-form-section">
+          <div className="section-glow"></div>
+          <div className="section-header">
+            <div className="header-icon">
+              <FiPhone />
+            </div>
+            <div className="header-text">
+              <h2>Student Contact Details</h2>
+              <p className="section-description">
+                We will use the contact details you provide to send you important updates during the program
+              </p>
+            </div>
+          </div>
 
-      <div className="modern-form-grid">
-        <div className="glass-form-group">
-          <label>Registered Phone Number</label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            placeholder="+91 9347494329"
-            className="glass-input"
-          />
-        </div>
+          <div className="modern-form-grid">
+            <div className="glass-form-group">
+              <label>Registered Phone Number</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="+91 9347494329"
+                className="glass-input"
+              />
+            </div>
 
-        <div className="glass-form-group">
-          <label>Is this same as your WhatsApp Number?</label>
-          <div className="modern-radio-group">
-            {["Yes", "No", "Don't have WhatsApp"].map((option) => (
-              <label key={option} className="modern-radio-option">
+            <div className="glass-form-group">
+              <label>Is this same as your WhatsApp Number?</label>
+              <div className="modern-radio-group">
+                {["Yes", "No", "Don't have WhatsApp"].map((option) => (
+                  <label key={option} className="modern-radio-option">
+                    <input
+                      type="radio"
+                      name="isWhatsAppSame"
+                      value={option}
+                      checked={formData.isWhatsAppSame === option}
+                      onChange={(e) => {
+                        const newValue = e.target.value;
+                        setFormData((prev) => ({
+                          ...prev,
+                          isWhatsAppSame: newValue,
+                          whatsappPhone: newValue === "No" ? prev.whatsappPhone : "",
+                        }));
+                      }}
+                    />
+                    <span className="radio-checkmark"></span>
+                    <span className="radio-label">{option}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {formData.isWhatsAppSame === "No" && (
+              <div className="glass-form-group">
+                <label>WhatsApp Phone Number</label>
                 <input
-                  type="radio"
-                  name="isWhatsAppSame"
-                  value={option}
-                  checked={formData.isWhatsAppSame === option}
-                  onChange={(e) => {
-                    const newValue = e.target.value;
+                  type="tel"
+                  name="whatsappPhone"
+                  value={formData.whatsappPhone || ""}
+                  onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      isWhatsAppSame: newValue,
-                      // Clear whatsappPhone when switching to "Yes" or "Don't have WhatsApp"
-                      whatsappPhone: newValue === "No" ? prev.whatsappPhone : "",
-                    }));
-                  }}
+                      whatsappPhone: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter WhatsApp number"
+                  className="glass-input"
                 />
-                <span className="radio-checkmark"></span>
-                <span className="radio-label">{option}</span>
-              </label>
-            ))}
+              </div>
+            )}
+
+            <div className="glass-form-group">
+              <label>Email ID</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="glass-input"
+                disabled={formData.profileLock === "locked"}
+              />
+            </div>
+          </div>
+
+          <div className="form-actions">
+            <button className="save-btn" onClick={handleSave}>
+              <FiSave /> Save Changes
+            </button>
           </div>
         </div>
-
-        {/* Conditional WhatsApp Phone Number Field */}
-        {formData.isWhatsAppSame === "No" && (
-          <div className="glass-form-group">
-            <label>WhatsApp Phone Number</label>
-            <input
-              type="tel"
-              name="whatsappPhone"
-              value={formData.whatsappPhone || ""}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  whatsappPhone: e.target.value,
-                }))
-              }
-              placeholder="Enter WhatsApp number"
-              className="glass-input"
-            />
-          </div>
-        )}
-
-        <div className="glass-form-group">
-          <label>Email ID</label>
-          <input
-  type="email"
-  name="email"
-  value={formData.email}
-  onChange={handleInputChange}
-  className="glass-input"
-  disabled={formData.profileLock === "locked"}
-/>
-        </div>
-      </div>
-
-      <div className="form-actions">
-        <button className="save-btn" onClick={handleSave}>
-          <FiSave /> Save Changes
-        </button>
-      </div>
-    </div>
-  );
-}
+      );
+    }
 
     // Parent/Guardian Details Section
     if (category === "Basic Details" && item === "Parent/Guardian Details") {
-  return (
-    <div className="modern-form-section">
-      <div className="section-glow"></div>
-      <div className="section-header">
-        <div className="header-icon">
-          <FiHeart />
-        </div>
-        <div className="header-text">
-          <h2>Parent/Guardian Details</h2>
-          <p className="section-description">
-            Person/Guardian who supports the student during their Lurnity journey. 
-            Student's progress will be shared regularly with Parent/Guardian during the program.
-          </p>
-        </div>
-      </div>
-
-      <div className="modern-form-grid">
-        {[
-          ["First Name", "firstName", "text"],
-          ["Last Name", "lastName", "text"],
-          ["Relation with the student", "relation", "text"],
-          ["Occupation", "occupation", "text"],
-          ["Parent/Guardian Email ID", "email", "email"],
-          ["Parent/Guardian Phone Number", "phone", "tel"],
-        ].map(([label, key, type]) => (
-          <div className="glass-form-group" key={key}>
-            <label>{label}</label>
-            <input
-              type={type}
-              name={key}
-              value={formData.parentGuardian[key] || ""}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  parentGuardian: {
-                    ...prev.parentGuardian,
-                    [key]: e.target.value,
-                  },
-                }))
-              }
-              className="glass-input"
-            />
+      return (
+        <div className="modern-form-section">
+          <div className="section-glow"></div>
+          <div className="section-header">
+            <div className="header-icon">
+              <FiHeart />
+            </div>
+            <div className="header-text">
+              <h2>Parent/Guardian Details</h2>
+              <p className="section-description">
+                Person/Guardian who supports the student during their Lurnity journey. 
+                Student's progress will be shared regularly with Parent/Guardian during the program.
+              </p>
+            </div>
           </div>
-        ))}
 
-        <div className="glass-form-group">
-          <label>Is this same as your WhatsApp Number?</label>
-          <div className="modern-radio-group">
-            {["Yes", "No", "Don't have WhatsApp"].map((option) => (
-              <label key={option} className="modern-radio-option">
+          <div className="modern-form-grid">
+            {[
+              ["First Name", "firstName", "text"],
+              ["Last Name", "lastName", "text"],
+              ["Relation with the student", "relation", "text"],
+              ["Occupation", "occupation", "text"],
+              ["Parent/Guardian Email ID", "email", "email"],
+              ["Parent/Guardian Phone Number", "phone", "tel"],
+            ].map(([label, key, type]) => (
+              <div className="glass-form-group" key={key}>
+                <label>{label}</label>
                 <input
-                  type="radio"
-                  name="isWhatsAppSame"
-                  value={option}
-                  checked={formData.parentGuardian.isWhatsAppSame === option}
+                  type={type}
+                  name={key}
+                  value={formData.parentGuardian[key] || ""}
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
                       parentGuardian: {
                         ...prev.parentGuardian,
-                        isWhatsAppSame: e.target.value,
-                        // Clear whatsappPhone when switching to "Yes" or "Don't have WhatsApp"
-                        whatsappPhone: e.target.value === "No" ? prev.parentGuardian.whatsappPhone : "",
+                        [key]: e.target.value,
                       },
                     }))
                   }
+                  className="glass-input"
                 />
-                <span className="radio-checkmark"></span>
-                <span className="radio-label">{option}</span>
-              </label>
+              </div>
             ))}
+
+            <div className="glass-form-group">
+              <label>Is this same as your WhatsApp Number?</label>
+              <div className="modern-radio-group">
+                {["Yes", "No", "Don't have WhatsApp"].map((option) => (
+                  <label key={option} className="modern-radio-option">
+                    <input
+                      type="radio"
+                      name="isWhatsAppSame"
+                      value={option}
+                      checked={formData.parentGuardian.isWhatsAppSame === option}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          parentGuardian: {
+                            ...prev.parentGuardian,
+                            isWhatsAppSame: e.target.value,
+                            whatsappPhone: e.target.value === "No" ? prev.parentGuardian.whatsappPhone : "",
+                          },
+                        }))
+                      }
+                    />
+                    <span className="radio-checkmark"></span>
+                    <span className="radio-label">{option}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {formData.parentGuardian.isWhatsAppSame === "No" && (
+              <div className="glass-form-group">
+                <label>WhatsApp Phone Number</label>
+                <input
+                  type="tel"
+                  name="whatsappPhone"
+                  value={formData.parentGuardian.whatsappPhone || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      parentGuardian: {
+                        ...prev.parentGuardian,
+                        whatsappPhone: e.target.value,
+                      },
+                    }))
+                  }
+                  placeholder="Enter WhatsApp number"
+                  className="glass-input"
+                />
+              </div>
+            )}
+          </div>
+
+          <div className="form-actions">
+            <button className="save-btn" onClick={handleSave}>
+              <FiSave /> Save Changes
+            </button>
           </div>
         </div>
-
-        {/* Conditional WhatsApp Phone Number Field */}
-        {formData.parentGuardian.isWhatsAppSame === "No" && (
-          <div className="glass-form-group">
-            <label>WhatsApp Phone Number</label>
-            <input
-              type="tel"
-              name="whatsappPhone"
-              value={formData.parentGuardian.whatsappPhone || ""}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  parentGuardian: {
-                    ...prev.parentGuardian,
-                    whatsappPhone: e.target.value,
-                  },
-                }))
-              }
-              placeholder="Enter WhatsApp number"
-              className="glass-input"
-            />
-          </div>
-        )}
-      </div>
-
-      <div className="form-actions">
-        <button className="save-btn" onClick={handleSave}>
-          <FiSave /> Save Changes
-        </button>
-      </div>
-    </div>
-  );
-}
+      );
+    }
 
     // Current Address Section
     if (category === "Basic Details" && item === "Current Address") {
@@ -735,7 +721,6 @@ if (category === "Basic Details" && item === "Student Contact Details") {
               </div>
             ))}
 
-            {/* Country Dropdown */}
             <div className="glass-form-group">
               <label>Country</label>
               <select
@@ -764,7 +749,6 @@ if (category === "Basic Details" && item === "Student Contact Details") {
               </select>
             </div>
 
-            {/* State Dropdown */}
             <div className="glass-form-group">
               <label>State</label>
               <select
@@ -794,7 +778,6 @@ if (category === "Basic Details" && item === "Student Contact Details") {
               </select>
             </div>
 
-            {/* District Dropdown */}
             <div className="glass-form-group">
               <label>District</label>
               <select
@@ -970,62 +953,64 @@ if (category === "Basic Details" && item === "Student Contact Details") {
                 styles={{
                   control: (provided, state) => ({
                     ...provided,
-                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '12px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(8px)',
+                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                    borderRadius: '14px',
                     minHeight: '48px',
-                    boxShadow: state.isFocused ? '0 0 0 2px rgba(99, 102, 241, 0.3)' : 'none',
+                    boxShadow: state.isFocused ? '0 0 0 3px rgba(212, 175, 55, 0.1)' : 'none',
                     '&:hover': {
-                      borderColor: 'rgba(99, 102, 241, 0.3)'
+                      borderColor: 'rgba(212, 175, 55, 0.4)'
                     }
                   }),
                   menu: (provided) => ({
                     ...provided,
-                    backgroundColor: 'rgba(25, 25, 40, 0.95)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
                     backdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '12px',
+                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                    borderRadius: '14px',
+                    boxShadow: '0 8px 32px rgba(212, 175, 55, 0.12)',
                     zIndex: 9999
                   }),
                   option: (provided, state) => ({
                     ...provided,
                     backgroundColor: state.isSelected 
-                      ? 'rgba(99, 102, 241, 0.3)' 
+                      ? 'rgba(212, 175, 55, 0.2)' 
                       : state.isFocused 
-                        ? 'rgba(255, 255, 255, 0.1)' 
+                        ? 'rgba(212, 175, 55, 0.1)' 
                         : 'transparent',
-                    color: '#ffffff',
+                    color: '#2c2c2c',
                     padding: '12px 16px'
                   }),
                   multiValue: (provided) => ({
                     ...provided,
-                    backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                    backgroundColor: 'rgba(212, 175, 55, 0.15)',
                     borderRadius: '8px'
                   }),
                   multiValueLabel: (provided) => ({
                     ...provided,
-                    color: '#ffffff',
-                    fontSize: '0.85rem'
+                    color: '#2c2c2c',
+                    fontSize: '0.85rem',
+                    fontWeight: '500'
                   }),
                   multiValueRemove: (provided) => ({
                     ...provided,
-                    color: '#ffffff',
+                    color: '#2c2c2c',
                     '&:hover': {
-                      backgroundColor: 'rgba(239, 68, 68, 0.3)',
+                      backgroundColor: 'rgba(231, 76, 60, 0.2)',
                     }
                   }),
                   placeholder: (provided) => ({
                     ...provided,
-                    color: 'rgba(255, 255, 255, 0.6)'
+                    color: 'rgba(44, 44, 44, 0.5)'
                   }),
                   singleValue: (provided) => ({
                     ...provided,
-                    color: '#ffffff'
+                    color: '#2c2c2c'
                   }),
                   input: (provided) => ({
                     ...provided,
-                    color: '#ffffff'
+                    color: '#2c2c2c'
                   })
                 }}
               />
@@ -1041,7 +1026,7 @@ if (category === "Basic Details" && item === "Student Contact Details") {
       );
     }
 
-    // Your Preference Section (keeping the rest similar with dark theme)
+    // Your Preference Section
     if (category === "Basic Details" && item === "Your Preference") {
       return (
         <div className="modern-form-section">
@@ -1419,6 +1404,7 @@ if (category === "Basic Details" && item === "Student Contact Details") {
                 />
               </div>
             )}
+
             {formData.intermediateOrDiploma.markingScheme === "Percentage" && (
               <div className="glass-form-group">
                 <label>Enter Percentage</label>
@@ -1876,311 +1862,302 @@ if (category === "Basic Details" && item === "Student Contact Details") {
 
   return (
     <div className="profile-page"> 
-    <div className="modern-profile-container">
-      {/* Modern Header */}
-      <header className="modern-header">
-        <div className="header-glow"></div>
-        <div className="header-content">
-          <div className="logo-section">
-            <div className="logo-container">
-              <img src={logo} alt="Lurnity Logo" className="modern-logo" />
-              <div className="logo-shine"></div>
+      <div className="modern-profile-container">
+        {/* Modern Header */}
+        <header className="modern-header">
+          <div className="header-glow"></div>
+          <div className="header-content">
+            <div className="logo-section">
+              <div className="logo-container">
+                <img src={logo} alt="Lurnity Logo" className="modern-logo" />
+                <div className="logo-shine"></div>
+              </div>
+            </div>
+            
+            <nav className="header-nav">
+              <button className="nav-btn" onClick={() => hist.push("/home")}>
+                <FiHome />
+                <span>Home</span>
+              </button>
+              
+              {formData.photoURL && (
+                <div className="user-avatar">
+                  <img src={formData.photoURL} alt="Profile" className="avatar-img" />
+                  <div className="avatar-glow"></div>
+                </div>
+              )}
+            </nav>
+          </div>
+        </header>
+
+        <div className="profile-layout">
+          {/* Modern Sidebar */}
+          <aside className="modern-sidebar">
+            <div className="sidebar-glow"></div>
+            <div className="sidebar-content">
+              {Object.entries(sections).map(([category, items]) => (
+                <div className="sidebar-section" key={category}>
+                  <div 
+                    className="sidebar-category" 
+                    onClick={() => setCollapsed((prev) => ({ ...prev, [category]: !prev[category] }))}
+                  >
+                    <div className="category-icon">
+                      {collapsed[category] ? <FiChevronRight /> : <FiChevronDown />}
+                    </div>
+                    <span className="category-title">{category}</span>
+                    <div className="category-glow"></div>
+                  </div>
+                  
+                  {!collapsed[category] && (
+                    <div className="sidebar-items">
+                      {items.map((item) => (
+                        <div
+                          key={item}
+                          className={`sidebar-item ${
+                            selectedSection.category === category && selectedSection.item === item ? "active" : ""
+                          }`}
+                          onClick={() => setSelectedSection({ category, item })}
+                        >
+                          <span className="item-text">{item}</span>
+                          <div className="item-glow"></div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </aside>
+
+          {/* Main Content */}
+          <main className="main-content">
+            {renderSection()}
+          </main>
+        </div>
+
+        {showCropper && (
+          <div className="image-cropper-overlay">
+            <div className="image-cropper-modal">
+              <div className="cropper-header">
+                <h3>Crop Your Image</h3>
+                <p>Adjust the crop area to frame your photo perfectly</p>
+              </div>
+
+              <div className="cropper-container">
+                <div 
+                  className="crop-area"
+                  onMouseMove={handleCropMouseMove}
+                  onMouseUp={handleCropMouseUp}
+                  onMouseLeave={handleCropMouseUp}
+                >
+                  <img
+                    src={tempImageForCrop}
+                    alt="Crop preview"
+                    className="crop-image"
+                    style={{
+                      transform: `scale(${cropSettings.zoom}) rotate(${cropSettings.rotation}deg)`,
+                      transformOrigin: 'center'
+                    }}
+                    draggable={false}
+                  />
+                  
+                  <div
+                    className="crop-overlay"
+                    style={{
+                      left: `${cropSettings.x}px`,
+                      top: `${cropSettings.y}px`,
+                      width: `${cropSettings.width}px`,
+                      height: `${cropSettings.height}px`
+                    }}
+                    onMouseDown={handleCropMouseDown}
+                  >
+                    <div className="crop-border"></div>
+                    <div className="crop-handles">
+                      <div className="crop-handle top-left"></div>
+                      <div className="crop-handle top-right"></div>
+                      <div className="crop-handle bottom-left"></div>
+                      <div className="crop-handle bottom-right"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="cropper-controls">
+                  <div className="control-group">
+                    <label>Zoom</label>
+                    <div className="control-row">
+                      <button 
+                        className="control-btn"
+                        onClick={() => setCropSettings(prev => ({ ...prev, zoom: Math.max(0.5, prev.zoom - 0.1) }))}
+                      >
+                        <FiZoomOut />
+                      </button>
+                      <input
+                        type="range"
+                        min="0.5"
+                        max="3"
+                        step="0.1"
+                        value={cropSettings.zoom}
+                        onChange={(e) => setCropSettings(prev => ({ ...prev, zoom: parseFloat(e.target.value) }))}
+                        className="control-slider"
+                      />
+                      <button 
+                        className="control-btn"
+                        onClick={() => setCropSettings(prev => ({ ...prev, zoom: Math.min(3, prev.zoom + 0.1) }))}
+                      >
+                        <FiZoomIn />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="control-group">
+                    <label>Rotation</label>
+                    <div className="control-row">
+                      <button 
+                        className="control-btn"
+                        onClick={() => setCropSettings(prev => ({ ...prev, rotation: prev.rotation - 90 }))}
+                      >
+                        <FiRotateCw style={{ transform: 'scaleX(-1)' }} />
+                      </button>
+                      <input
+                        type="range"
+                        min="0"
+                        max="360"
+                        value={cropSettings.rotation}
+                        onChange={(e) => setCropSettings(prev => ({ ...prev, rotation: parseInt(e.target.value) }))}
+                        className="control-slider"
+                      />
+                      <button 
+                        className="control-btn"
+                        onClick={() => setCropSettings(prev => ({ ...prev, rotation: prev.rotation + 90 }))}
+                      >
+                        <FiRotateCw />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="control-group">
+                    <label>Crop Size</label>
+                    <div className="control-row">
+                      <input
+                        type="range"
+                        min="50"
+                        max="300"
+                        value={cropSettings.width}
+                        onChange={(e) => {
+                          const newWidth = parseInt(e.target.value);
+                          setCropSettings(prev => ({
+                            ...prev,
+                            width: newWidth,
+                            height: newWidth
+                          }));
+                        }}
+                        className="control-slider"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="cropper-actions">
+                <button className="cancel-btn" onClick={handleCropCancel}>
+                  <FiX /> Cancel
+                </button>
+                <button className="confirm-btn" onClick={handleCropComplete}>
+                  <FiCheck /> Apply Crop
+                </button>
+              </div>
+
+              <canvas ref={cropCanvasRef} style={{ display: 'none' }} />
             </div>
           </div>
-          
-          <nav className="header-nav">
-            <button className="nav-btn" onClick={() => hist.push("/home")}>
-              <FiHome />
-              <span>Home</span>
-            </button>
-            
-            {formData.photoURL && (
-              <div className="user-avatar">
-                <img src={formData.photoURL} alt="Profile" className="avatar-img" />
-                <div className="avatar-glow"></div>
-              </div>
-            )}
-          </nav>
-        </div>
-      </header>
+        )}
 
-      <div className="profile-layout">
-        {/* Modern Sidebar */}
-        <aside className="modern-sidebar">
-          <div className="sidebar-glow"></div>
-          <div className="sidebar-content">
-            {Object.entries(sections).map(([category, items]) => (
-              <div className="sidebar-section" key={category}>
-                <div 
-                  className="sidebar-category" 
-                  onClick={() => setCollapsed((prev) => ({ ...prev, [category]: !prev[category] }))}
-                >
-                  <div className="category-icon">
-                    {collapsed[category] ? <FiChevronRight /> : <FiChevronDown />}
-                  </div>
-                  <span className="category-title">{category}</span>
-                  <div className="category-glow"></div>
+        {notification && (
+          <div className="notification-modal">
+            <div className="notification-backdrop" onClick={() => setNotification(null)} />
+            <div className={`notification-content notification-${notification.type}`}>
+              <h2>
+                <span>{notification.icon}</span>
+                {notification.title}
+              </h2>
+              <p>{notification.message}</p>
+              <button 
+                className="glass-btn primary"
+                onClick={() => setNotification(null)}
+                style={{ width: '100%' }}
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        )}
+
+        {showGeminiDisclaimer && (
+          <div className="disclaimer-modal-overlay">
+            <div className="disclaimer-modal">
+              <div className="disclaimer-header">
+                <h3>Gemini API Key Disclaimer</h3>
+              </div>
+              
+              <div className="disclaimer-content">
+                <div className="disclaimer-item">
+                  <div className="disclaimer-icon">📜</div>
+                  <p>By entering your Gemini API key, you agree to:</p>
                 </div>
                 
-                {!collapsed[category] && (
-                  <div className="sidebar-items">
-                    {items.map((item) => (
-                      <div
-                        key={item}
-                        className={`sidebar-item ${
-                          selectedSection.category === category && selectedSection.item === item ? "active" : ""
-                        }`}
-                        onClick={() => setSelectedSection({ category, item })}
-                      >
-                        <span className="item-text">{item}</span>
-                        <div className="item-glow"></div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <ul className="disclaimer-list">
+                  <li className="disclaimer-list-item">
+                    <div className="list-icon">🔹</div>
+                    <a 
+                      href="https://developers.google.com/terms" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="disclaimer-link"
+                    >
+                      Google's API Terms of Service
+                    </a>
+                  </li>
+                  <li className="disclaimer-list-item">
+                    <div className="list-icon">🔹</div>
+                    <a 
+                      href="https://ai.google.dev/gemini-api/terms" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="disclaimer-link"
+                    >
+                      Gemini API Additional Terms
+                    </a>
+                  </li>
+                  <li className="disclaimer-list-item">
+                    <div className="list-icon">🔹</div>
+                    <a 
+                      href="https://policies.google.com/privacy" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="disclaimer-link"
+                    >
+                      Google's Privacy Policy
+                    </a>
+                  </li>
+                </ul>
+                
+                <div className="disclaimer-note">
+                  <p>You are responsible for any usage charges and compliance with Google's policies.</p>
+                </div>
               </div>
-            ))}
-          </div>
-        </aside>
-
-        {/* Main Content */}
-        <main className="main-content">
-          {renderSection()}
-        </main>
-      </div>
-
-      {showCropper && (
-  <div className="image-cropper-overlay">
-    <div className="image-cropper-modal">
-      <div className="cropper-header">
-        <h3>Crop Your Image</h3>
-        <p>Adjust the crop area to frame your photo perfectly</p>
-      </div>
-
-      <div className="cropper-container">
-        <div 
-          className="crop-area"
-          onMouseMove={handleCropMouseMove}
-          onMouseUp={handleCropMouseUp}
-          onMouseLeave={handleCropMouseUp}
-        >
-          <img
-            src={tempImageForCrop}
-            alt="Crop preview"
-            className="crop-image"
-            style={{
-              transform: `scale(${cropSettings.zoom}) rotate(${cropSettings.rotation}deg)`,
-              transformOrigin: 'center'
-            }}
-            draggable={false}
-          />
-          
-          <div
-            className="crop-overlay"
-            style={{
-              left: `${cropSettings.x}px`,
-              top: `${cropSettings.y}px`,
-              width: `${cropSettings.width}px`,
-              height: `${cropSettings.height}px`
-            }}
-            onMouseDown={handleCropMouseDown}
-          >
-            <div className="crop-border"></div>
-            <div className="crop-handles">
-              <div className="crop-handle top-left"></div>
-              <div className="crop-handle top-right"></div>
-              <div className="crop-handle bottom-left"></div>
-              <div className="crop-handle bottom-right"></div>
+              
+              <div className="disclaimer-actions">
+                <button 
+                  className="glass-btn primary" 
+                  onClick={() => setShowGeminiDisclaimer(false)}
+                >
+                  I Understand
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="cropper-controls">
-          <div className="control-group">
-            <label>Zoom</label>
-            <div className="control-row">
-              <button 
-                className="control-btn"
-                onClick={() => setCropSettings(prev => ({ ...prev, zoom: Math.max(0.5, prev.zoom - 0.1) }))}
-              >
-                <FiZoomOut />
-              </button>
-              <input
-                type="range"
-                min="0.5"
-                max="3"
-                step="0.1"
-                value={cropSettings.zoom}
-                onChange={(e) => setCropSettings(prev => ({ ...prev, zoom: parseFloat(e.target.value) }))}
-                className="control-slider"
-              />
-              <button 
-                className="control-btn"
-                onClick={() => setCropSettings(prev => ({ ...prev, zoom: Math.min(3, prev.zoom + 0.1) }))}
-              >
-                <FiZoomIn />
-              </button>
-            </div>
-          </div>
-
-          <div className="control-group">
-            <label>Rotation</label>
-            <div className="control-row">
-              <button 
-                className="control-btn"
-                onClick={() => setCropSettings(prev => ({ ...prev, rotation: prev.rotation - 90 }))}
-              >
-                <FiRotateCw style={{ transform: 'scaleX(-1)' }} />
-              </button>
-              <input
-                type="range"
-                min="0"
-                max="360"
-                value={cropSettings.rotation}
-                onChange={(e) => setCropSettings(prev => ({ ...prev, rotation: parseInt(e.target.value) }))}
-                className="control-slider"
-              />
-              <button 
-                className="control-btn"
-                onClick={() => setCropSettings(prev => ({ ...prev, rotation: prev.rotation + 90 }))}
-              >
-                <FiRotateCw />
-              </button>
-            </div>
-          </div>
-
-          <div className="control-group">
-            <label>Crop Size</label>
-            <div className="control-row">
-              <input
-                type="range"
-                min="50"
-                max="300"
-                value={cropSettings.width}
-                onChange={(e) => {
-                  const newWidth = parseInt(e.target.value);
-                  setCropSettings(prev => ({
-                    ...prev,
-                    width: newWidth,
-                    height: newWidth // Keep it square
-                  }));
-                }}
-                className="control-slider"
-              />
-            </div>
-          </div>
-        </div>
+        )}
       </div>
-
-      <div className="cropper-actions">
-        <button className="cancel-btn" onClick={handleCropCancel}>
-          <FiX /> Cancel
-        </button>
-        <button className="confirm-btn" onClick={handleCropComplete}>
-          <FiCheck /> Apply Crop
-        </button>
-      </div>
-
-      <canvas ref={cropCanvasRef} style={{ display: 'none' }} />
-    </div>
-  </div>
-)}
-
-      {/* SVG Definitions */}
-      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
-        <defs>
-          <linearGradient id="profileGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#6366f1" />
-            <stop offset="50%" stopColor="#8b5cf6" />
-            <stop offset="100%" stopColor="#ec4899" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    {notification && (
-  <div className="notification-modal">
-    <div className="notification-backdrop" onClick={() => setNotification(null)} />
-    <div className={`notification-content notification-${notification.type}`}>
-      <h2>
-        <span>{notification.icon}</span>
-        {notification.title}
-      </h2>
-      <p>{notification.message}</p>
-      <button 
-        className="glass-btn primary"
-        onClick={() => setNotification(null)}
-        style={{ width: '100%' }}
-      >
-        Dismiss
-      </button>
-    </div>
-  </div>
-)}
-    {showGeminiDisclaimer && (
-  <div className="disclaimer-modal-overlay">
-    <div className="disclaimer-modal">
-      <div className="disclaimer-header">
-        <h3>Gemini API Key Disclaimer</h3>
-      </div>
-      
-      <div className="disclaimer-content">
-        <div className="disclaimer-item">
-          <div className="disclaimer-icon">📜</div>
-          <p>By entering your Gemini API key, you agree to:</p>
-        </div>
-        
-        <ul className="disclaimer-list">
-          <li className="disclaimer-list-item">
-            <div className="list-icon">🔹</div>
-            <a 
-              href="https://developers.google.com/terms" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="disclaimer-link"
-            >
-              Google's API Terms of Service
-            </a>
-          </li>
-          <li className="disclaimer-list-item">
-            <div className="list-icon">🔹</div>
-            <a 
-              href="https://ai.google.dev/gemini-api/terms" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="disclaimer-link"
-            >
-              Gemini API Additional Terms
-            </a>
-          </li>
-          <li className="disclaimer-list-item">
-            <div className="list-icon">🔹</div>
-            <a 
-              href="https://policies.google.com/privacy" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="disclaimer-link"
-            >
-              Google's Privacy Policy
-            </a>
-          </li>
-        </ul>
-        
-        <div className="disclaimer-note">
-          <p>You are responsible for any usage charges and compliance with Google's policies.</p>
-        </div>
-      </div>
-      
-      <div className="disclaimer-actions">
-        <button 
-          className="glass-btn primary" 
-          onClick={() => setShowGeminiDisclaimer(false)}
-        >
-          I Understand
-        </button>
-      </div>
-    </div>
-  </div>
-)}
     </div>
   );
 };

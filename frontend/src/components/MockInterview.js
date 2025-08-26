@@ -1,12 +1,13 @@
 // src/pages/MockInterview.jsx
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  FiStar, FiPlay, FiPause, FiRefreshCw, FiHeart, 
+   FiPlay, FiPause, FiRefreshCw, FiHeart, 
   FiZap, FiClock, FiFlag, FiShield, FiArrowLeft
 } from 'react-icons/fi';
 import "./MockInterview.css";
 
-const API = "http://localhost:7700";
+
+const API = process.env.REACT_APP_API_URL;
 
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 const DIFFICULTY_POINTS = { easy: 5, medium: 10, hard: 20 };
@@ -29,7 +30,7 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
   const [usedHint, setUsedHint] = useState(0);
   const [hintMessage, setHintMessage] = useState("");
 
-  const [used5050, setUsed5050] = useState(false);
+  const [setUsed5050] = useState(false);
   const [reducedOptions, setReducedOptions] = useState(null);
 
   const timerRef = useRef(null);

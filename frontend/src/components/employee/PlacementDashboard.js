@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import logo from "../../assets/LURNITY.jpg";
 import { 
   FiUser, FiLogOut, FiUsers, FiCalendar, FiX, FiPlus, 
-  FiList, FiEdit, FiTrash2, FiEye, FiCheck, FiSearch,
+   FiEdit, FiTrash2, FiEye, FiCheck, FiSearch,
   FiHome, FiMapPin, FiClock, FiAward, FiBell, FiTrendingUp,
-  FiActivity, FiRefreshCw, FiDownload, FiSave, FiFilter
+  FiActivity, FiRefreshCw, FiDownload, FiSave, 
 } from "react-icons/fi";
 import { listPlacements, createPlacementDrive, getStudentsForDrive, deletePlacementDrive } from "../../services/placementApi";
 import "./PlacementDashboard.css"
@@ -55,7 +55,7 @@ export default function PlacementDashboard() {
     }
     fetchDrives();
     fetchCompanies();
-  }, []);
+  }, [emp, history]);
 
   const fetchDrives = async () => {
     setLoading(true);

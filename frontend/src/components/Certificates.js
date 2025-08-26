@@ -2,14 +2,19 @@ import React, { useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import {
   FiHome, FiAward, FiPlayCircle, FiChevronRight,
-  FiUser, FiPhone, FiLogOut, FiArrowLeft, FiDownload, FiLinkedin
+  FiUser, FiPhone, FiLogOut, FiArrowLeft, FiDownload, 
+  FiLinkedin, FiClock, FiCalendar, FiStar, FiTrendingUp,
+  FiEye
 } from "react-icons/fi";
 import logo from "../assets/LURNITY.jpg";
+import "./Certificates.css";
+const API = process.env.REACT_APP_API_URL;
 
 const Certificates = () => {
   const [certificates, setCertificates] = useState([]);
   const [user, setUser] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
+  const [loading, setLoading] = useState(true);
   const hist = useHistory();
   const menuRef = useRef(null);
   const profileRef = useRef(null);
@@ -21,23 +26,45 @@ const Certificates = () => {
       return;
     }
 
-    fetch("http://localhost:7700/api/homepage", {
+    setLoading(true);
+    fetch(`${API}/api/homepage`, {
       headers: { Authorization: "Bearer " + token },
     })
       .then((res) => res.json())
       .then((user) => {
         setUser(user);
-        return fetch(`http://localhost:7700/api/certificates/user/${user.id}`, {
+        return fetch(`${API}/api/certificates/user/${user.id}`, {
           headers: { Authorization: "Bearer " + token },
         });
       })
       .then((res) => res.json())
-      .then(setCertificates)
-      .catch((err) => console.error("Failed to load certificates:", err));
+      .then((certs) => {
+        setCertificates(certs);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load certificates:", err);
+        setLoading(false);
+      });
   }, [hist]);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target) &&
+          profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const handleDownload = (certId, title) => {
-    fetch(`http://localhost:7700/api/certificates/${certId}/pdf`, {
+    fetch(`${API}/api/certificates/${certId}/pdf`, {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     })
       .then((res) => {
@@ -56,157 +83,289 @@ const Certificates = () => {
   };
 
   const Sidebar = () => (
-    <aside className="modern-sidebar">
-      <div className="sidebar-glow"></div>
-      <div className="sidebar-content">
-        <div className="logo-section">
-          <div className="logo-container">
-            <img src={logo} alt="Lurnity" className="modern-logo" />
-            <div className="logo-shine"></div>
+    <aside className="cert-sidebar">
+      <div className="cert-sidebar-backdrop"></div>
+      <div className="cert-sidebar-content">
+        <div className="cert-logo-section">
+          <div className="cert-logo-container">
+            <img src={logo} alt="Lurnity" className="cert-logo" />
+            <div className="cert-logo-glow"></div>
           </div>
         </div>
         
-        <nav className="modern-nav">
+        <nav className="cert-nav">
           <button 
-            className="nav-btn" 
+            className="cert-nav-btn" 
             onClick={() => hist.push("/home")}
           >
-            <div className="nav-icon"><FiHome /></div>
-            <span>Home</span>
-            <div className="nav-glow"></div>
+            <div className="cert-nav-icon-wrapper">
+              <FiHome className="cert-nav-icon" />
+            </div>
+            <span className="cert-nav-text">Dashboard</span>
+            <div className="cert-nav-glow"></div>
           </button>
           
-          <button className="nav-btn active">
-            <div className="nav-icon"><FiAward /></div>
-            <span>Certificates</span>
-            <div className="nav-glow"></div>
+          <button className="cert-nav-btn active">
+            <div className="cert-nav-icon-wrapper">
+              <FiAward className="cert-nav-icon" />
+            </div>
+            <span className="cert-nav-text">Certificates</span>
+            <div className="cert-nav-glow"></div>
           </button>
           
           <button 
-            className="nav-btn" 
+            className="cert-nav-btn" 
             onClick={() => hist.push("/sandbox")}
           >
-            <div className="nav-icon"><FiPlayCircle /></div>
-            <span>CodeSandbox</span>
-            <div className="nav-glow"></div>
+            <div className="cert-nav-icon-wrapper">
+              <FiPlayCircle className="cert-nav-icon" />
+            </div>
+            <span className="cert-nav-text">CodeSandbox</span>
+            <div className="cert-nav-glow"></div>
           </button>
-          
-          
         </nav>
 
-        <div ref={profileRef} className="profile-section" onClick={() => setShowMenu((p) => !p)}>
-          <div className="profile-glass">
-            <div className="profile-content">
-              <img
-                src={user?.profileImage || "/default-profile.png"}
-                alt="Profile"
-                className="profile-image"
-              />
-              <div className="profile-text">
-                <span className="profile-name">{user?.name || ""}</span>
-                <span className="profile-status">Online</span>
+        <div ref={profileRef} className="cert-profile-section" onClick={() => setShowMenu((p) => !p)}>
+          <div className="cert-profile-container">
+            <div className="cert-profile-content">
+              <div className="cert-profile-avatar">
+                <img
+                  src={user?.profileImage || "/default-profile.png"}
+                  alt="Profile"
+                  className="cert-profile-image"
+                />
+                <div className="cert-profile-status"></div>
               </div>
-              <FiChevronRight className="profile-arrow" />
+              <div className="cert-profile-info">
+                <span className="cert-profile-name">{user?.name || "Student"}</span>
+                <span className="cert-profile-role">Premium Member</span>
+              </div>
+              <FiChevronRight className={`cert-profile-arrow ${showMenu ? 'rotated' : ''}`} />
             </div>
           </div>
         </div>
 
         {showMenu && (
-          <div ref={menuRef} className="glass-menu">
-            <div className="menu-backdrop"></div>
-            <ul>
-              <li onClick={() => { hist.push("/profile"); setShowMenu(false); }}>
-                <FiUser className="menu-icon" />
-                <span>Profile</span>
-              </li>
-              <li onClick={() => { hist.push("/contact"); setShowMenu(false); }}>
-                <FiPhone className="menu-icon" />
-                <span>Contact Us</span>
-              </li>
-              <li onClick={() => { localStorage.clear(); hist.replace("/login"); }}>
-                <FiLogOut className="menu-icon" />
-                <span>Log Out</span>
-              </li>
-            </ul>
+          <div ref={menuRef} className="cert-profile-menu">
+            <div className="cert-menu-backdrop"></div>
+            <div className="cert-menu-content">
+              <div className="cert-menu-item" onClick={() => { hist.push("/profile"); setShowMenu(false); }}>
+                <div className="cert-menu-icon-wrapper">
+                  <FiUser className="cert-menu-icon" />
+                </div>
+                <span>Profile Settings</span>
+                <FiChevronRight className="cert-menu-arrow" />
+              </div>
+              <div className="cert-menu-item" onClick={() => { hist.push("/contact"); setShowMenu(false); }}>
+                <div className="cert-menu-icon-wrapper">
+                  <FiPhone className="cert-menu-icon" />
+                </div>
+                <span>Contact Support</span>
+                <FiChevronRight className="cert-menu-arrow" />
+              </div>
+              <div className="cert-menu-divider"></div>
+              <div className="cert-menu-item danger" onClick={() => { localStorage.clear(); hist.replace("/login"); }}>
+                <div className="cert-menu-icon-wrapper">
+                  <FiLogOut className="cert-menu-icon" />
+                </div>
+                <span>Sign Out</span>
+                <FiChevronRight className="cert-menu-arrow" />
+              </div>
+            </div>
           </div>
         )}
       </div>
     </aside>
   );
 
-  return (
-    <div className="app-container">
-      <Sidebar />
-      <main className="main-content">
-        <header className="hero-banner">
-          <div className="hero-background">
-            <div className="gradient-orb orb-1"></div>
-            <div className="gradient-orb orb-2"></div>
-            <div className="gradient-orb orb-3"></div>
-          </div>
-          
-          <div className="hero-content">
-            <div className="hero-text">
-              <h1 className="hero-title">Your Certificates</h1>
-              <p className="hero-subtitle">Celebrate your achievements and showcase your skills</p>
-            </div>
-          </div>
-        </header>
+  const StatCard = ({ icon: Icon, title, value, subtitle }) => (
+    <div className="cert-stat-card">
+      <div className="cert-stat-backdrop"></div>
+      <div className="cert-stat-content">
+        <div className="cert-stat-icon-wrapper">
+          <Icon className="cert-stat-icon" />
+        </div>
+        <div className="cert-stat-info">
+          <h3 className="cert-stat-value">{value}</h3>
+          <p className="cert-stat-title">{title}</p>
+          {subtitle && <span className="cert-stat-subtitle">{subtitle}</span>}
+        </div>
+      </div>
+    </div>
+  );
 
-        {certificates.length === 0 ? (
-          <div className="empty-state">
-            <FiAward size={48} />
-            <p>No certificates yet. Complete courses to earn certificates!</p>
+  if (loading) {
+    return (
+      <div className="certificates-luxury-wrapper">
+        <div className="cert-loading-container">
+          <div className="cert-loading-backdrop">
+            <div className="cert-loading-aurora"></div>
           </div>
-        ) : (
-          <section className="course-card">
-            <div className="card-glow"></div>
-            <div className="card-header">
-              <h3 className="card-title">Your Achievements</h3>
+          <div className="cert-loading-content">
+            <div className="cert-loading-spinner">
+              <div className="cert-spinner-ring"></div>
+              <div className="cert-spinner-ring"></div>
+              <div className="cert-spinner-ring"></div>
+            </div>
+            <h3>Loading Your Achievements</h3>
+            <p>Preparing your certificate portfolio...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="certificates-luxury-wrapper">
+      <div className="cert-app-container">
+        <Sidebar />
+        
+        <main className="cert-main-content">
+          {/* Hero Header */}
+          <section className="cert-hero-section">
+            <div className="cert-hero-backdrop">
+              <div className="cert-gradient-orb cert-orb-1"></div>
+              <div className="cert-gradient-orb cert-orb-2"></div>
+              <div className="cert-gradient-orb cert-orb-3"></div>
             </div>
             
-            <div className="card-content">
+            <div className="cert-hero-content">
+              <div className="cert-hero-text">
+                <div className="cert-hero-badge">
+                  <FiAward className="cert-badge-icon" />
+                  <span>Your Achievements</span>
+                </div>
+                <h1 className="cert-hero-title">Certificate Portfolio</h1>
+                <p className="cert-hero-subtitle">
+                  Showcase your skills and celebrate your learning milestones with verified certificates
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Stats Overview */}
+          <section className="cert-stats-section">
+            <div className="cert-stats-grid">
+              <StatCard 
+                icon={FiAward}
+                title="Total Certificates"
+                value={certificates.length}
+                subtitle="Earned through dedication"
+              />
+              <StatCard 
+                icon={FiTrendingUp}
+                title="Completion Rate"
+                value="98%"
+                subtitle="Above average performance"
+              />
+              <StatCard 
+                icon={FiCalendar}
+                title="This Month"
+                value={certificates.filter(cert => {
+                  const certDate = new Date(cert.issueDate);
+                  const now = new Date();
+                  return certDate.getMonth() === now.getMonth() && certDate.getFullYear() === now.getFullYear();
+                }).length}
+                subtitle="New achievements"
+              />
+            </div>
+          </section>
+
+          {/* Certificates Content */}
+          {certificates.length === 0 ? (
+            <section className="cert-empty-state">
+              <div className="cert-empty-backdrop"></div>
+              <div className="cert-empty-content">
+                <div className="cert-empty-icon">
+                  <FiAward size={64} />
+                </div>
+                <h2>Start Your Journey</h2>
+                <p>Complete courses to earn your first certificate and showcase your achievements</p>
+                <button className="cert-cta-btn" onClick={() => hist.push("/home")}>
+                  <FiHome /> Explore Courses
+                </button>
+              </div>
+            </section>
+          ) : (
+            <section className="cert-content-section">
+              <div className="cert-section-header">
+                <div className="cert-header-content">
+                  <h2 className="cert-section-title">Your Certificates</h2>
+                  <p className="cert-section-subtitle">
+                    {certificates.length} achievement{certificates.length !== 1 ? 's' : ''} unlocked
+                  </p>
+                </div>
+              </div>
+              
               <div className="cert-grid">
                 {certificates.map((cert) => (
-                  <div className="cert-item" key={cert._id}>
-                    <h4>{cert.subCourseTitle}</h4>
-                    <p className="cert-meta">
-                      <span>Issued: {new Date(cert.issueDate).toLocaleDateString()}</span>
-                    </p>
-                    <div className="cert-actions">
+                  <div className="cert-card" key={cert._id}>
+                    <div className="cert-card-backdrop"></div>
+                    <div className="cert-card-header">
+                      <div className="cert-card-badge">
+                        <FiAward className="cert-card-badge-icon" />
+                      </div>
+                      <div className="cert-card-status">
+                        <span className="cert-status-indicator"></span>
+                        <span className="cert-status-text">Verified</span>
+                      </div>
+                    </div>
+                    
+                    <div className="cert-card-content">
+                      <h3 className="cert-card-title">{cert.subCourseTitle}</h3>
+                      <div className="cert-card-meta">
+                        <div className="cert-meta-item">
+                          <FiCalendar className="cert-meta-icon" />
+                          <span>Issued: {new Date(cert.issueDate).toLocaleDateString()}</span>
+                        </div>
+                        <div className="cert-meta-item">
+                          <FiClock className="cert-meta-icon" />
+                          <span>Lifetime Valid</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="cert-card-actions">
                       <button 
-                        className="cert-btn view-btn"
+                        className="cert-action-btn primary"
                         onClick={() => hist.push(`/certificate/view/${cert._id}`)}
                       >
-                        View Certificate
+                        <FiEye className="cert-btn-icon" />
+                        <span>View</span>
                       </button>
                       <button 
-                        className="cert-btn download-btn"
+                        className="cert-action-btn secondary"
                         onClick={() => handleDownload(cert._id, cert.subCourseTitle)}
                       >
-                        <FiDownload /> Download
+                        <FiDownload className="cert-btn-icon" />
+                        <span>Download</span>
                       </button>
                       <button 
-                        className="cert-btn linkedin-btn"
+                        className="cert-action-btn tertiary"
                         onClick={() => alert("Coming soon: LinkedIn integration!")}
                       >
-                        <FiLinkedin /> Share
+                        <FiLinkedin className="cert-btn-icon" />
+                        <span>Share</span>
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
-          </section>
-        )}
+            </section>
+          )}
 
-        <button 
-          className="back-btn"
-          onClick={() => hist.push("/home")}
-        >
-          <FiArrowLeft /> Back to Home
-        </button>
-      </main>
+          {/* Back Button */}
+          <div className="cert-back-section">
+            <button 
+              className="cert-back-btn"
+              onClick={() => hist.push("/home")}
+            >
+              <FiArrowLeft className="cert-back-icon" />
+              <span>Back to Dashboard</span>
+            </button>
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

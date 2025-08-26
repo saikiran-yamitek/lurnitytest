@@ -11,7 +11,7 @@ import {
   FiShield,
   FiHeadphones,
   FiTool,
-  FiActivity
+  
 } from "react-icons/fi";
 import "./employees.css";
 

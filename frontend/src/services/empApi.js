@@ -1,8 +1,9 @@
-const API = "http://localhost:7700/api";
+
+const API = `${process.env.REACT_APP_API_URL}/api`;
 
 /* ---------------- employee auth ---------------- */
 export const empLogin = async (username, password) => {
-  const r = await fetch("http://localhost:7700/api/employees/login", {
+  const r = await fetch(`${API}/employees/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })

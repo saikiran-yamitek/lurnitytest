@@ -31,7 +31,7 @@ import {
   createWorkshop,
 } from "../../services/workshopApi";
 import "./LabAdminDashboard.css";
-
+const API = process.env.REACT_APP_API_URL;
 export default function LabAdminDashboard() {
   const [workshops, setWorkshops] = useState([]);
   const [incharges, setIncharges] = useState([]);
@@ -109,7 +109,7 @@ export default function LabAdminDashboard() {
 
   const confirmDeleteWorkshop = async () => {
     try {
-      await fetch(`http://localhost:7700/api/workshops/${workshopToDelete}`, {
+      await fetch(`${API}/api/workshops/${workshopToDelete}`,{
         method: "DELETE",
       });
       setPopup("🗑️ Workshop deleted successfully");
@@ -125,7 +125,7 @@ export default function LabAdminDashboard() {
 
   const handleViewStudents = async (workshopId) => {
     try {
-      const res = await fetch(`http://localhost:7700/api/workshops/${workshopId}/students`);
+      const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
       const data = await res.json();
 
       if (Array.isArray(data)) {

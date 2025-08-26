@@ -176,7 +176,7 @@ export default class CourseForm extends Component {
   render() {
     const {
       title, instructor, overallDuration, status,
-      subCourses, saving, instructors, uploading
+      subCourses, saving, instructors
     } = this.state;
 
     const canTranscript =

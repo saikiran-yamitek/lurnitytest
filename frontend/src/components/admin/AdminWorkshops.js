@@ -17,13 +17,14 @@ import {
 import { listWorkshops } from "../../services/workshopApi";
 import { listEmployees } from "../../services/adminApi";
 import "./AdminWorkshops.css";
+const API = process.env.REACT_APP_API_URL;
 
 export default function AdminWorkshops() {
   const [workshops, setWorkshops] = useState([]);
   const [incharges, setIncharges] = useState([]);
   const [editWorkshop, setEditWorkshop] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState([]);
-  const [selectedWorkshop, setSelectedWorkshop] = useState(null);
+  const [ setSelectedWorkshop] = useState(null);
   const [showStudentPopup, setShowStudentPopup] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -46,7 +47,7 @@ export default function AdminWorkshops() {
     if (!window.confirm("Are you sure you want to delete this workshop?")) return;
 
     try {
-      await fetch(`http://localhost:7700/api/workshops/${id}`, { method: "DELETE" });
+      await fetch(`${API}/api/workshops/${id}`, { method: "DELETE" });
       setWorkshops(workshops.filter(w => w._id !== id));
     } catch (error) {
       console.error("Failed to delete workshop:", error);
@@ -62,7 +63,7 @@ export default function AdminWorkshops() {
 
     try {
       setSaving(true);
-      const res = await fetch(`http://localhost:7700/api/workshops/${editWorkshop._id}`, {
+      const res = await fetch(`${API}/api/workshops/${editWorkshop._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editWorkshop),
@@ -82,7 +83,7 @@ export default function AdminWorkshops() {
 
   const handleViewStudents = async (workshopId) => {
     try {
-      const res = await fetch(`http://localhost:7700/api/workshops/${workshopId}/students`);
+      const res = await fetch(`${API}/api/workshops/${workshopId}/students`,);
       const data = await res.json();
 
       if (Array.isArray(data)) {

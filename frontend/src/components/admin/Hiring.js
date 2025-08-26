@@ -1,6 +1,5 @@
 // src/components/admin/Hiring.js
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   FiEdit,
   FiTrash2,
@@ -43,7 +42,7 @@ export default function Hiring() {
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const history = useHistory();
+  
 
   useEffect(() => {
     fetchJobs();

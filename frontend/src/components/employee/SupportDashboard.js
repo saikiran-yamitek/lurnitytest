@@ -9,7 +9,7 @@ import {
   FiTrash2, FiSearch, FiTrendingUp, FiActivity, FiDownload
 } from "react-icons/fi";
 import "./SupportDashboard.css";
-
+const API = process.env.REACT_APP_API_URL;
 export default function SupportDashboard({ emp }) {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [tickets, setTickets] = useState([]);
@@ -35,11 +35,11 @@ export default function SupportDashboard({ emp }) {
       setTickets(await listTickets());
       setDemos(await listDemos());
 
-      const feedbackRes = await fetch("http://localhost:7700/api/feedback");
+      const feedbackRes = await fetch(`${API}/api/feedback`);
       const feedbackJson = await feedbackRes.json();
       setFeedbacks(feedbackJson);
 
-      const courseRes = await fetch("http://localhost:7700/api/courses");
+      const courseRes = await fetch(`${API}/api/courses`);
       const courseJson = await courseRes.json();
       setCourses(courseJson);
     } catch (error) {
@@ -67,7 +67,7 @@ export default function SupportDashboard({ emp }) {
       resolutionNote: note.trim()
     });
 
-    await fetch("http://localhost:7700/api/user/setAlert", {
+    await fetch(`${API}/api/user/setAlert`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -127,7 +127,7 @@ export default function SupportDashboard({ emp }) {
   const confirmDeleteFeedback = async () => {
     const id = deleteModal.feedbackId;
     try {
-      const res = await fetch(`http://localhost:7700/api/feedback/${id}`, {
+      const res = await fetch(`${API}/api/feedback/${id}`, {
         method: "DELETE",
       });
 

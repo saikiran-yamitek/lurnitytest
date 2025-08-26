@@ -6,6 +6,7 @@ import {
   FiDownload,
   FiLinkedin
 } from "react-icons/fi";
+const API = process.env.REACT_APP_API_URL;
 
 const AdminCertificatesView = () => {
   const { userId } = useParams();
@@ -13,14 +14,14 @@ const AdminCertificatesView = () => {
   const hist = useHistory();
 
   useEffect(() => {
-    fetch(`http://localhost:7700/api/certificates/user/${userId}`)
+    fetch(`${API}/api/certificates/user/${userId}`)
       .then((res) => res.json())
       .then(setCertificates)
       .catch((err) => console.error("Failed to load certificates:", err));
   }, [userId]);
 
   const handleDownload = (certId, title) => {
-    fetch(`http://localhost:7700/api/certificates/${certId}/pdf`, {
+    fetch(`${API}/api/certificates/${certId}/pdf`, {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     })
       .then((res) => {

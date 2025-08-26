@@ -1,5 +1,6 @@
-const API = 'http://localhost:7700/api/admin';
-const API_URL = 'http://localhost:7700/api/employees';
+
+const API = `${process.env.REACT_APP_API_URL}/api/admin`;
+const API_URL = `${process.env.REACT_APP_API_URL}/api/employees`;
 
 
 // Utility to include Authorization header

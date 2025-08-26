@@ -1,12 +1,11 @@
 // TestWorkshopsPage.js
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import "./TestWorkshopsPage.css";
 
-const API = "http://localhost:7700";
+
+const API = process.env.REACT_APP_API_URL;
 
 export default function TestWorkshopsPage() {
-  const { courseId, subCourseIdx } = useParams();
   const [workshops, setWorkshops] = useState([]);
   const [registeredIds, setRegisteredIds] = useState([]);
   const [registeredSubCourses, setRegisteredSubCourses] = useState([]);
