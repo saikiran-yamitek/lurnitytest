@@ -1,113 +1,1066 @@
-/* TestWorkshopsPage.css */
-.test-page {
-  padding: 2rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
+/* ============ LUXURY TEST WORKSHOPS WRAPPER - COMPLETE ISOLATION ============ */
+
+.luxury-test-workshops-wrapper {
+  /* Complete CSS reset for this component only */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Luxury Color Palette - Same as other components */
+  --ltw-luxury-gold: #d4af37;
+  --ltw-luxury-gold-light: #f4e4b3;
+  --ltw-luxury-gold-dark: #b8941f;
+  --ltw-luxury-white: #ffffff;
+  --ltw-luxury-cream: #faf9f7;
+  --ltw-luxury-pearl: #f5f4f2;
+  --ltw-luxury-silver: #e8e6e3;
+  --ltw-luxury-charcoal: #2c2c2c;
+  --ltw-luxury-dark-charcoal: #1a1a1a;
+  --ltw-luxury-medium-charcoal: #404040;
+  --ltw-luxury-light-charcoal: #666666;
+  
+  /* Status Colors */
+  --ltw-success-500: #10b981;
+  --ltw-success-100: #d1fae5;
+  --ltw-warning-500: #f59e0b;
+  --ltw-warning-100: #fef3c7;
+  --ltw-danger-500: #ef4444;
+  --ltw-danger-100: #fee2e2;
+  --ltw-info-500: #3b82f6;
+  --ltw-info-100: #dbeafe;
+  
+  /* Enhanced Gradients */
+  --ltw-luxury-gradient-gold: linear-gradient(135deg, var(--ltw-luxury-gold) 0%, #e6c547 50%, var(--ltw-luxury-gold-light) 100%);
+  --ltw-luxury-gradient-elegant: linear-gradient(135deg, #fefefe 0%, #f9f8f6 50%, #f5f4f2 100%);
+  --ltw-luxury-gradient-pearl: linear-gradient(135deg, var(--ltw-luxury-pearl) 0%, var(--ltw-luxury-cream) 100%);
+  
+  /* Luxury Shadows */
+  --ltw-luxury-shadow-soft: 0 4px 20px rgba(212, 175, 55, 0.08);
+  --ltw-luxury-shadow-medium: 0 8px 32px rgba(212, 175, 55, 0.12);
+  --ltw-luxury-shadow-strong: 0 16px 64px rgba(212, 175, 55, 0.16);
+  --ltw-luxury-shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
+
+  /* Apply base styles only to this wrapper */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ltw-luxury-charcoal);
   min-height: 100vh;
+  background: var(--ltw-luxury-gradient-elegant);
+  position: relative;
+  overflow-x: hidden;
 }
 
-.page-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #2b2d42;
-  text-align: center;
-  margin-bottom: 2rem;
-  text-shadow: 1px 1px 2px #adb5bd;
+.luxury-test-workshops-wrapper .ltw-background-glow {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+  animation: ltw-rotate 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.no-workshops {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #495057;
+@keyframes ltw-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.workshop-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.workshop-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 6px solid #00b4d8;
-}
-
-.workshop-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-}
-
-.card-header {
+/* ============ LOADING STATE ============ */
+.luxury-test-workshops-wrapper .ltw-loading-container {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
-.lab-name {
-  font-size: 1.4rem;
-  color: #023e8a;
+.luxury-test-workshops-wrapper .ltw-loading-spinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
 }
 
-.lab-time,
-.lab-address,
-.lab-seats,
-.lab-incharge {
-  font-size: 1rem;
-  color: #343a40;
-  margin: 4px 0;
-}
-
-.lab-seats.seats-ok {
-  color: green;
-  font-weight: bold;
-}
-
-.lab-seats.seats-full {
-  color: red;
-  font-weight: bold;
-}
-
-.register-btn,
-.registered-btn,
-.full-btn {
-  margin-top: 1rem;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
+.luxury-test-workshops-wrapper .ltw-spinner-ring {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: ltw-spinner-rotate 1.5s linear infinite;
+}
+
+.luxury-test-workshops-wrapper .ltw-spinner-ring:nth-child(1) {
+  border-top-color: var(--ltw-luxury-gold);
+  animation-delay: 0s;
+}
+
+.luxury-test-workshops-wrapper .ltw-spinner-ring:nth-child(2) {
+  border-right-color: var(--ltw-success-500);
+  animation-delay: -0.5s;
+}
+
+.luxury-test-workshops-wrapper .ltw-spinner-ring:nth-child(3) {
+  border-bottom-color: var(--ltw-info-500);
+  animation-delay: -1s;
+}
+
+@keyframes ltw-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.luxury-test-workshops-wrapper .ltw-loading-content h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ltw-luxury-dark-charcoal);
+  margin: 0 0 1rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-loading-content p {
+  color: var(--ltw-luxury-medium-charcoal);
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* ============ CONTAINER ============ */
+.luxury-test-workshops-wrapper .ltw-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ============ HEADER ============ */
+.luxury-test-workshops-wrapper .ltw-header {
+  position: relative;
+  background: var(--ltw-luxury-white);
+  border: 1px solid var(--ltw-luxury-silver);
+  border-radius: 32px;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  box-shadow: var(--ltw-luxury-shadow-strong);
+}
+
+.luxury-test-workshops-wrapper .ltw-header-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--ltw-luxury-gradient-pearl);
+  backdrop-filter: blur(20px);
+  z-index: 1;
+}
+
+.luxury-test-workshops-wrapper .ltw-header-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-header-icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: var(--ltw-luxury-gradient-gold);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--ltw-luxury-shadow-medium);
+}
+
+.luxury-test-workshops-wrapper .ltw-header-icon {
+  font-size: 2rem;
+  color: white;
+}
+
+.luxury-test-workshops-wrapper .ltw-header-icon-glow {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: var(--ltw-luxury-gold);
+  border-radius: 28px;
+  opacity: 0.3;
+  filter: blur(12px);
+  z-index: -1;
+  animation: ltw-header-glow 3s ease-in-out infinite;
+}
+
+@keyframes ltw-header-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.luxury-test-workshops-wrapper .ltw-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.luxury-test-workshops-wrapper .ltw-page-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: var(--ltw-luxury-gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+.luxury-test-workshops-wrapper .ltw-page-subtitle {
+  font-size: 1.25rem;
+  color: var(--ltw-luxury-medium-charcoal);
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.luxury-test-workshops-wrapper .ltw-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.luxury-test-workshops-wrapper .ltw-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: var(--ltw-luxury-white);
+  border: 1px solid var(--ltw-luxury-silver);
+  border-radius: 20px;
+  box-shadow: var(--ltw-luxury-shadow-soft);
   transition: all 0.3s ease;
+}
+
+.luxury-test-workshops-wrapper .ltw-stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ltw-luxury-shadow-medium);
+}
+
+.luxury-test-workshops-wrapper .ltw-stat-icon {
+  font-size: 1.5rem;
+  color: var(--ltw-luxury-gold);
+}
+
+.luxury-test-workshops-wrapper .ltw-stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.luxury-test-workshops-wrapper .ltw-stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ltw-luxury-dark-charcoal);
+  line-height: 1;
+}
+
+.luxury-test-workshops-wrapper .ltw-stat-label {
+  font-size: 0.9rem;
+  color: var(--ltw-luxury-medium-charcoal);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============ MAIN CONTENT ============ */
+.luxury-test-workshops-wrapper .ltw-main {
+  margin-bottom: 3rem;
+}
+
+/* ============ EMPTY STATE ============ */
+.luxury-test-workshops-wrapper .ltw-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--ltw-luxury-white);
+  border: 1px solid var(--ltw-luxury-silver);
+  border-radius: 32px;
+  box-shadow: var(--ltw-luxury-shadow-medium);
+}
+
+.luxury-test-workshops-wrapper .ltw-empty-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 2rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-empty-icon {
+  font-size: 4rem;
+  color: var(--ltw-luxury-gold);
+}
+
+.luxury-test-workshops-wrapper .ltw-empty-icon-glow {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: var(--ltw-luxury-gold);
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(16px);
+  z-index: -1;
+}
+
+.luxury-test-workshops-wrapper .ltw-empty-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ltw-luxury-dark-charcoal);
+  margin: 0 0 1rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-empty-description {
+  font-size: 1.1rem;
+  color: var(--ltw-luxury-medium-charcoal);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============ WORKSHOPS GRID ============ */
+.luxury-test-workshops-wrapper .ltw-workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card {
+  position: relative;
+  background: var(--ltw-luxury-white);
+  border: 1px solid var(--ltw-luxury-silver);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ltw-luxury-shadow-medium);
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ltw-luxury-shadow-strong);
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card.registered {
+  border-color: var(--ltw-success-500);
+  background: linear-gradient(135deg, var(--ltw-luxury-white) 0%, var(--ltw-success-100) 100%);
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card.full {
+  border-color: var(--ltw-danger-500);
+  background: linear-gradient(135deg, var(--ltw-luxury-white) 0%, var(--ltw-danger-100) 100%);
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card.conflict {
+  border-color: var(--ltw-warning-500);
+  background: linear-gradient(135deg, var(--ltw-luxury-white) 0%, var(--ltw-warning-100) 100%);
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card.available {
+  border-color: var(--ltw-luxury-gold);
+  background: linear-gradient(135deg, var(--ltw-luxury-white) 0%, rgba(212, 175, 55, 0.05) 100%);
+}
+
+.luxury-test-workshops-wrapper .ltw-card-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--ltw-luxury-gradient-pearl);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.luxury-test-workshops-wrapper .ltw-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 2.5rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-icon-wrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: var(--ltw-luxury-gradient-gold);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--ltw-luxury-shadow-soft);
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-icon-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--ltw-luxury-gold);
+  border-radius: 18px;
+  opacity: 0.3;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ltw-luxury-dark-charcoal);
+  margin: 0 0 1rem;
+  line-height: 1.3;
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--ltw-luxury-medium-charcoal);
+  font-weight: 500;
+}
+
+.luxury-test-workshops-wrapper .ltw-meta-icon {
+  font-size: 1rem;
+  color: var(--ltw-luxury-gold);
+  flex-shrink: 0;
+}
+
+.luxury-test-workshops-wrapper .ltw-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.luxury-test-workshops-wrapper .ltw-status-badge.registered {
+  background: var(--ltw-success-100);
+  color: var(--ltw-success-500);
+  border: 1px solid var(--ltw-success-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-status-badge.full {
+  background: var(--ltw-danger-100);
+  color: var(--ltw-danger-500);
+  border: 1px solid var(--ltw-danger-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-status-badge.conflict {
+  background: var(--ltw-warning-100);
+  color: var(--ltw-warning-500);
+  border: 1px solid var(--ltw-warning-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-status-badge.loading {
+  background: var(--ltw-info-100);
+  color: var(--ltw-info-500);
+  border: 1px solid var(--ltw-info-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-status-badge.available {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--ltw-luxury-gold-dark);
+  border: 1px solid var(--ltw-luxury-gold);
+}
+
+.luxury-test-workshops-wrapper .ltw-status-icon {
+  font-size: 1rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-status-icon.spinning {
+  animation: ltw-spin 1s linear infinite;
+}
+
+@keyframes ltw-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ============ WORKSHOP DETAILS ============ */
+.luxury-test-workshops-wrapper .ltw-workshop-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--ltw-luxury-white);
+  border: 1px solid var(--ltw-luxury-silver);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  box-shadow: var(--ltw-luxury-shadow-soft);
+}
+
+.luxury-test-workshops-wrapper .ltw-detail-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ltw-luxury-shadow-medium);
+  background: rgba(212, 175, 55, 0.02);
+}
+
+.luxury-test-workshops-wrapper .ltw-detail-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.luxury-test-workshops-wrapper .ltw-detail-icon {
+  font-size: 1.1rem;
+  color: var(--ltw-luxury-gold);
+}
+
+.luxury-test-workshops-wrapper .ltw-detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-detail-label {
+  font-size: 0.85rem;
+  color: var(--ltw-luxury-medium-charcoal);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.luxury-test-workshops-wrapper .ltw-detail-value {
+  font-size: 1rem;
+  color: var(--ltw-luxury-dark-charcoal);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.luxury-test-workshops-wrapper .ltw-capacity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-capacity-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--ltw-luxury-silver);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.luxury-test-workshops-wrapper .ltw-capacity-fill {
+  height: 100%;
+  background: var(--ltw-luxury-gradient-gold);
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.3);
+}
+
+/* ============ CARD ACTIONS ============ */
+.luxury-test-workshops-wrapper .ltw-card-actions {
+  margin-top: 2rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-action-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--ltw-luxury-shadow-soft);
 }
 
-.register-btn {
-  background-color: #0077b6;
-  color: #fff;
-}
-
-.register-btn:hover {
-  background-color: #023e8a;
-}
-
-.registered-btn {
-  background-color: #38b000;
+.luxury-test-workshops-wrapper .ltw-action-btn.available {
+  background: var(--ltw-luxury-gradient-gold);
   color: white;
-  cursor: not-allowed;
-  box-shadow: inset 0 0 5px #00000033;
+  border: 2px solid var(--ltw-luxury-gold-dark);
+  box-shadow: var(--ltw-luxury-shadow-glow);
 }
 
-.full-btn {
-  background-color: #adb5bd;
-  color: white;
-  cursor: not-allowed;
-  box-shadow: inset 0 0 5px #00000033;
+.luxury-test-workshops-wrapper .ltw-action-btn.available:hover {
+  background: linear-gradient(135deg, var(--ltw-luxury-gold-dark), var(--ltw-luxury-gold));
+  transform: translateY(-3px);
+  box-shadow: var(--ltw-luxury-shadow-strong);
 }
+
+.luxury-test-workshops-wrapper .ltw-action-btn.registered {
+  background: var(--ltw-success-100);
+  color: var(--ltw-success-500);
+  border: 2px solid var(--ltw-success-500);
+  cursor: not-allowed;
+}
+
+.luxury-test-workshops-wrapper .ltw-action-btn.full {
+  background: var(--ltw-danger-100);
+  color: var(--ltw-danger-500);
+  border: 2px solid var(--ltw-danger-500);
+  cursor: not-allowed;
+}
+
+.luxury-test-workshops-wrapper .ltw-action-btn.conflict {
+  background: var(--ltw-warning-100);
+  color: var(--ltw-warning-500);
+  border: 2px solid var(--ltw-warning-500);
+  cursor: not-allowed;
+}
+
+.luxury-test-workshops-wrapper .ltw-action-btn.loading {
+  background: var(--ltw-info-100);
+  color: var(--ltw-info-500);
+  border: 2px solid var(--ltw-info-500);
+  cursor: not-allowed;
+}
+
+.luxury-test-workshops-wrapper .ltw-btn-icon {
+  font-size: 1.1rem;
+}
+
+/* ============ FOOTER ============ */
+.luxury-test-workshops-wrapper .ltw-footer {
+  position: relative;
+  background: var(--ltw-luxury-white);
+  border: 1px solid var(--ltw-luxury-silver);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--ltw-luxury-shadow-medium);
+}
+
+.luxury-test-workshops-wrapper .ltw-footer-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--ltw-luxury-gradient-pearl);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.luxury-test-workshops-wrapper .ltw-footer-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-footer-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.luxury-test-workshops-wrapper .ltw-footer-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--ltw-luxury-medium-charcoal);
+  font-weight: 600;
+}
+
+.luxury-test-workshops-wrapper .ltw-footer-icon {
+  font-size: 1.25rem;
+  color: var(--ltw-luxury-gold);
+}
+
+/* ============ NOTIFICATION SYSTEM ============ */
+.luxury-test-workshops-wrapper .ltw-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--ltw-luxury-shadow-strong);
+  animation: ltw-notification-slide-in 0.4s ease-out;
+  max-width: 400px;
+  min-width: 300px;
+}
+
+@keyframes ltw-notification-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(20px);
+  z-index: 1;
+}
+
+.luxury-test-workshops-wrapper .ltw-notification.success .ltw-notification-glass {
+  background: var(--ltw-success-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-notification.error .ltw-notification-glass {
+  background: var(--ltw-danger-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-notification.warning .ltw-notification-glass {
+  background: var(--ltw-warning-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-notification.info .ltw-notification-glass {
+  background: var(--ltw-info-500);
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  color: white;
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-icon .ltw-icon {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2.5;
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-text {
+  flex: 1;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-close {
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.luxury-test-workshops-wrapper .ltw-notification-close .ltw-icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media (max-width: 1200px) {
+  .luxury-test-workshops-wrapper .ltw-workshops-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .luxury-test-workshops-wrapper .ltw-container {
+    padding: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-header-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-header-icon {
+    font-size: 1.5rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-page-title {
+    font-size: 2rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-page-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-stats {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-stat-item {
+    justify-content: center;
+    padding: 1.25rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-workshops-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-card-content {
+    padding: 2rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-card-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-workshop-meta {
+    align-items: center;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-footer-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .luxury-test-workshops-wrapper .ltw-container {
+    padding: 0.75rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-header-content {
+    padding: 1.5rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-header-icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-header-icon {
+    font-size: 1.25rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-page-title {
+    font-size: 1.75rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-page-subtitle {
+    font-size: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-stat-item {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-stat-content {
+    align-items: center;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-card-content {
+    padding: 1.5rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-workshop-icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-workshop-icon {
+    font-size: 1.25rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-workshop-name {
+    font-size: 1.25rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-detail-item {
+    padding: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-detail-icon-wrapper {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-detail-icon {
+    font-size: 1rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-action-btn {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-footer-content {
+    padding: 1.5rem;
+  }
+  
+  .luxury-test-workshops-wrapper .ltw-notification-content {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============ SCROLLBAR STYLES ============ */
+.luxury-test-workshops-wrapper ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.luxury-test-workshops-wrapper ::-webkit-scrollbar-track {
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 4px;
+}
+
+.luxury-test-workshops-wrapper ::-webkit-scrollbar-thumb {
+  background: var(--ltw-luxury-gradient-gold);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.luxury-test-workshops-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--ltw-luxury-gold-dark), var(--ltw-luxury-gold));
+}
+
+/* ============ FOCUS STYLES ============ */
+.luxury-test-workshops-wrapper .ltw-action-btn:focus,
+.luxury-test-workshops-wrapper .ltw-notification-close:focus {
+  outline: 3px solid var(--ltw-luxury-gold);
+  outline-offset: 2px;
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes ltw-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card {
+  animation: ltw-fade-in-up 0.6s ease-out;
+}
+
+.luxury-test-workshops-wrapper .ltw-workshop-card:nth-child(1) { animation-delay: 0.1s; }
+.luxury-test-workshops-wrapper .ltw-workshop-card:nth-child(2) { animation-delay: 0.2s; }
+.luxury-test-workshops-wrapper .ltw-workshop-card:nth-child(3) { animation-delay: 0.3s; }
+.luxury-test-workshops-wrapper .ltw-workshop-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ============ HOVER EFFECTS ============ */
+.luxury-test-workshops-wrapper .ltw-detail-item:hover .ltw-detail-icon {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.luxury-test-workshops-wrapper .ltw-stat-item:hover .ltw-stat-icon {
+  transform: scale(1.1) rotate(5deg);
+  transition: all 0.3s ease;
+}
+
+/* End of Luxury Test Workshops Wrapper */

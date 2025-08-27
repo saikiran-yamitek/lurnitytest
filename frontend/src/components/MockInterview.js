@@ -1,11 +1,12 @@
-// src/pages/MockInterview.jsx
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-   FiPlay, FiPause, FiRefreshCw, FiHeart, 
-  FiZap, FiClock, FiFlag, FiShield, FiArrowLeft
+  FiPlay, FiPause, FiRefreshCw, FiHeart, FiZap, FiClock, FiFlag, 
+  FiShield, FiArrowLeft, FiTarget, FiTrendingUp, FiStar, FiCheck,
+  FiX, FiEye,  FiSkipForward, FiBrain, FiAward,
+  FiMaximize2, FiMinimize2
 } from 'react-icons/fi';
+import { FaLightbulb ,FaBrain} from "react-icons/fa";
 import "./MockInterview.css";
-
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -23,6 +24,7 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
   const [lives, setLives] = useState(3);
   const [timeLeft, setTimeLeft] = useState(45);
   const [isPaused, setIsPaused] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(true);
   
   // limits
   const [revealCount, setRevealCount] = useState(0);
@@ -34,9 +36,89 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
   const [reducedOptions, setReducedOptions] = useState(null);
 
   const timerRef = useRef(null);
+  const modalRef = useRef(null);
   const current = questions[idx];
 
-  // ✅ Fetch questions
+  // Prevent background scroll and handle fullscreen - IMPROVED VERSION
+  useEffect(() => {
+    // Store original body overflow
+    const originalOverflow = document.body.style.overflow;
+    const originalPosition = document.body.style.position;
+    const originalScrollX = window.scrollX;
+    const originalScrollY = window.scrollY;
+    
+    // Prevent background scroll when modal is opened
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.height = '100%';
+    document.body.style.top = `-${originalScrollY}px`;
+    document.body.style.left = `-${originalScrollX}px`;
+    
+    // Add class to prevent pull-to-refresh on mobile
+    document.documentElement.style.overscrollBehavior = 'none';
+    document.body.style.overscrollBehavior = 'none';
+
+    // IMPROVED: Only prevent scroll events that happen outside the modal
+    const preventBackgroundScroll = (e) => {
+      // Check if the event target is inside our modal
+      const modalElement = modalRef.current;
+      if (modalElement && modalElement.contains(e.target)) {
+        // Allow scrolling inside the modal
+        return;
+      }
+      
+      // Prevent scrolling outside the modal
+      e.preventDefault();
+      e.stopPropagation();
+    };
+
+    const preventBackgroundKeyScroll = (e) => {
+      // Check if the event target is inside our modal
+      const modalElement = modalRef.current;
+      if (modalElement && modalElement.contains(e.target)) {
+        // Allow keyboard navigation inside the modal
+        return;
+      }
+      
+      // Prevent arrow keys, page up/down, space, home, end from scrolling background
+      if ([32, 33, 34, 35, 36, 37, 38, 39, 40].includes(e.keyCode)) {
+        e.preventDefault();
+      }
+    };
+
+    // Add event listeners to prevent background scrolling only
+    document.addEventListener('wheel', preventBackgroundScroll, { passive: false });
+    document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
+    document.addEventListener('keydown', preventBackgroundKeyScroll);
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.position = originalPosition;
+      document.body.style.width = '';
+      document.body.style.height = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.documentElement.style.overscrollBehavior = '';
+      document.body.style.overscrollBehavior = '';
+      
+      // Restore scroll position
+      window.scrollTo(originalScrollX, originalScrollY);
+      
+      document.removeEventListener('wheel', preventBackgroundScroll);
+      document.removeEventListener('touchmove', preventBackgroundScroll);
+      document.removeEventListener('keydown', preventBackgroundKeyScroll);
+    };
+  }, []);
+
+  // Handle exit with cleanup
+  const handleExit = () => {
+    // Cleanup will happen in useEffect return function
+    onExit && onExit();
+  };
+
+  // All your existing useEffect hooks and functions remain the same
   useEffect(() => {
     let active = true;
     async function load() {
@@ -80,7 +162,6 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
     return () => { active = false };
   }, [companyName, skills, user]);
 
-  // ✅ Timer
   useEffect(() => {
     if (loading || !current || revealed || isPaused) return;
     timerRef.current && clearInterval(timerRef.current);
@@ -98,13 +179,11 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
     return () => timerRef.current && clearInterval(timerRef.current);
   }, [idx, loading, isPaused, current]);
 
-  // ✅ Select
   const handleSelectOption = (opt) => {
     if (revealed) return;
     setSelected(opt);
   };
 
-  // ✅ Reveal logic (max 3, no score gain)
   const handleReveal = (manual = true, timeOut = false) => {
     if (!current || revealed || revealCount >= 3) return;
 
@@ -116,7 +195,6 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
       isCorrect = !timeOut && manual && !!current.answer;
     }
 
-    // ✅ Score is ONLY based on user answering, NOT reveal
     if (isCorrect && manual && revealCount < 3) {
       const base = DIFFICULTY_POINTS[current.difficulty] || 10;
       const streakBonus = clamp(streak * 2, 0, 10);
@@ -132,7 +210,6 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
     timerRef.current && clearInterval(timerRef.current);
   };
 
-  // ✅ Next Question
   const nextQuestion = () => {
     setSelected(null);
     setRevealed(false);
@@ -142,11 +219,10 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
       setIdx((i) => i + 1);
     } else {
       alert(`Interview complete! Score: ${score}`);
-      onExit && onExit();
+      handleExit();
     }
   };
 
-  // ✅ Skip (max 2, no score)
   const applySkip = () => {
     if (usedSkip >= 2) return;
     setUsedSkip(x => x + 1);
@@ -158,25 +234,22 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
       setIdx(i => i + 1);
     } else {
       alert(`Interview complete! Score: ${score}`);
-      onExit && onExit();
+      handleExit();
     }
   };
 
-  // ✅ Hint (inline display)
   const applyHint = () => {
     if (usedHint >= 2) return;
     setUsedHint(x => x + 1);
     setHintMessage(current?.rationale ? current.rationale.slice(0, 160) + "..." : "No hint available.");
   };
 
-  // ✅ Options
   const visibleOptions = useMemo(() => {
     if (!current?.options) return null;
     if (reducedOptions) return reducedOptions;
     return current.options;
   }, [current, reducedOptions]);
 
-  // ✅ Restart
   const restart = () => {
     setIdx(0); setSelected(null); setRevealed(false); setScore(0);
     setStreak(0); setLives(3); setTimeLeft(45); setIsPaused(false);
@@ -184,70 +257,332 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
     setRevealCount(0);
   };
 
-  if (loading) return <div className="mock-interview-wrapper"><div className="mi-loading">Loading questions...</div></div>;
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
 
-  if (!questions.length) return <div className="mock-interview-wrapper"><p>No Questions Generated</p></div>;
+  // All your existing helper functions remain the same
+  const getDifficultyColor = (difficulty) => {
+    switch (difficulty?.toLowerCase()) {
+      case 'easy': return 'easy';
+      case 'medium': return 'medium';
+      case 'hard': return 'hard';
+      default: return 'medium';
+    }
+  };
+
+  const getTimerColor = () => {
+    if (timeLeft > 30) return 'safe';
+    if (timeLeft > 10) return 'warning';
+    return 'danger';
+  };
+
+  const getProgressPercentage = () => {
+    return ((idx + 1) / questions.length) * 100;
+  };
+
+  if (loading) {
+    return (
+      <div className="luxury-mock-interview-wrapper fullscreen" ref={modalRef}>
+        <div className="lmi-fullscreen-overlay"></div>
+        <div className="lmi-loading-container">
+          <div className="lmi-loading-spinner">
+            <div className="lmi-spinner-ring"></div>
+            <div className="lmi-spinner-ring"></div>
+            <div className="lmi-spinner-ring"></div>
+          </div>
+          <div className="lmi-loading-content">
+            <h3>Preparing Your Interview Experience</h3>
+            <p>Generating premium questions tailored for {companyName}...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!questions.length) {
+    return (
+      <div className="luxury-mock-interview-wrapper fullscreen" ref={modalRef}>
+        <div className="lmi-fullscreen-overlay"></div>
+        <div className="lmi-error-container">
+          <div className="lmi-error-icon">
+            <FaBrain />
+          </div>
+          <h3>No Questions Available</h3>
+          <p>Unable to generate questions for this interview session.</p>
+          <button className="lmi-exit-button" onClick={handleExit}>
+            <FiArrowLeft />
+            <span>Return to Placement</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="mock-interview-wrapper">
-      <div className="mi-card">
-        <div className="mi-header">
-          <button onClick={() => onExit && onExit()} className="mi-exit"><FiArrowLeft /></button>
-          <h3>Mock Interview • {companyName}</h3>
-          <div className="mi-stats">
-            <span><FiClock /> {timeLeft}s</span>
-            <span><FiZap /> {streak}</span>
-            <span><FiHeart color={lives > 0 ? "#ff4d6d" : "#bbb"} /> {lives}</span>
-            <span><FiShield /> {score}</span>
+    <div className={`luxury-mock-interview-wrapper ${isFullscreen ? 'fullscreen' : 'windowed'}`} ref={modalRef}>
+      <div className="lmi-fullscreen-overlay"></div>
+      
+      <div className="lmi-container">
+        <div className="lmi-background-glow"></div>
+        
+        {/* Header */}
+        <div className="lmi-header">
+          <div className="lmi-header-glass"></div>
+          <div className="lmi-header-content">
+            <div className="lmi-header-left">
+              <button className="lmi-exit-btn" onClick={handleExit}>
+                <FiArrowLeft />
+              </button>
+              <div className="lmi-company-info">
+                <h2 className="lmi-company-name">{companyName}</h2>
+                <p className="lmi-interview-type">Mock Interview Session</p>
+              </div>
+            </div>
+            
+            <div className="lmi-header-right">
+              <button className="lmi-fullscreen-toggle" onClick={toggleFullscreen}>
+                {isFullscreen ? <FiMinimize2 /> : <FiMaximize2 />}
+              </button>
+              
+              <div className="lmi-header-stats">
+                <div className={`lmi-stat-item timer ${getTimerColor()}`}>
+                  <FiClock className="lmi-stat-icon" />
+                  <span className="lmi-stat-value">{timeLeft}s</span>
+                </div>
+                <div className="lmi-stat-item streak">
+                  <FiZap className="lmi-stat-icon" />
+                  <span className="lmi-stat-value">{streak}</span>
+                </div>
+                <div className="lmi-stat-item lives">
+                  <FiHeart className="lmi-stat-icon" />
+                  <span className="lmi-stat-value">{lives}</span>
+                </div>
+                <div className="lmi-stat-item score">
+                  <FiShield className="lmi-stat-icon" />
+                  <span className="lmi-stat-value">{score}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Question */}
-        <div className="mi-body">
-          <div className="mi-progress-bar"><div style={{ width: `${((idx+1)/questions.length)*100}%` }} /></div>
-          <p className="mi-help">{idx+1}/{questions.length}</p>
-          <h4 className="mi-question">{current.question}</h4>
-
-          {visibleOptions ? (
-            <div className="mi-options">
-              {visibleOptions.map((opt) => {
-                const isCorrect = revealed && current.answer && opt.trim() === current.answer.trim();
-                const isSelected = selected === opt;
-                return (
-                  <button key={opt} onClick={() => handleSelectOption(opt)} disabled={revealed}
-                    className={`mi-opt ${isSelected ? "selected" : ""} ${revealed ? (isCorrect ? "correct":"wrong"):""}`}>
-                    {opt}
-                  </button>
-                );
-              })}
+        {/* Scrollable Content Area */}
+        <div className="lmi-content-scroll">
+          {/* Progress Section */}
+          <div className="lmi-progress-section">
+            <div className="lmi-progress-header">
+              <span className="lmi-question-counter">
+                Question {idx + 1} of {questions.length}
+              </span>
+              <div className={`lmi-difficulty-badge ${getDifficultyColor(current.difficulty)}`}>
+                <FiTarget className="lmi-difficulty-icon" />
+                <span>{current.difficulty || 'Medium'}</span>
+              </div>
             </div>
-          ) : (
-            <textarea className="mi-textarea" disabled={revealed}
-              placeholder="Type your reasoning here..."
-              onChange={(e)=>setSelected(e.target.value)} />
-          )}
-
-          {/* Actions */}
-          <div className="mi-actions">
-            <button onClick={() => setIsPaused(p=>!p)}>{isPaused? <FiPlay/> : <FiPause/>} {isPaused? "Resume":"Pause"}</button>
-            <button onClick={applySkip} disabled={usedSkip>=2}><FiFlag/> Skip</button>
-            <button onClick={applyHint} disabled={usedHint>=2}><FiShield/> Hint</button>
-            <button onClick={()=>handleReveal(true)} disabled={revealed || revealCount>=3}>Reveal ({3-revealCount} left)</button>
-            <button onClick={nextQuestion} disabled={!revealed}>Next</button>
+            
+            <div className="lmi-progress-bar-container">
+              <div className="lmi-progress-bar">
+                <div 
+                  className="lmi-progress-fill" 
+                  style={{ width: `${getProgressPercentage()}%` }}
+                ></div>
+              </div>
+              <span className="lmi-progress-percent">{Math.round(getProgressPercentage())}%</span>
+            </div>
           </div>
 
-          {hintMessage && <div className="mi-hint"><strong>Hint:</strong> {hintMessage}</div>}
+          {/* Question Section */}
+          <div className="lmi-question-section">
+            <div className="lmi-question-card">
+              <div className="lmi-question-glass"></div>
+              <div className="lmi-question-content">
+                <div className="lmi-question-header">
+                  <div className="lmi-question-icon-wrapper">
+                    <FaBrain className="lmi-question-icon" />
+                  </div>
+                  <div className="lmi-question-meta">
+                    <span className="lmi-question-type">
+                      {current.type || 'Multiple Choice Question'}
+                    </span>
+                  </div>
+                </div>
+                
+                <h3 className="lmi-question-text">{current.question}</h3>
+              </div>
+            </div>
+          </div>
+
+          {/* Answer Section */}
+          <div className="lmi-answer-section">
+            {visibleOptions ? (
+              <div className="lmi-options-grid">
+                {visibleOptions.map((opt, optIdx) => {
+                  const isCorrect = revealed && current.answer && opt.trim() === current.answer.trim();
+                  const isSelected = selected === opt;
+                  const isWrong = revealed && isSelected && !isCorrect;
+                  
+                  return (
+                    <button 
+                      key={optIdx} 
+                      className={`lmi-option ${isSelected ? 'selected' : ''} ${
+                        revealed ? (isCorrect ? 'correct' : isWrong ? 'wrong' : '') : ''
+                      }`}
+                      onClick={() => handleSelectOption(opt)} 
+                      disabled={revealed}
+                    >
+                      <div className="lmi-option-glass"></div>
+                      <div className="lmi-option-content">
+                        <div className="lmi-option-indicator">
+                          {revealed && isCorrect && <FiCheck />}
+                          {revealed && isWrong && <FiX />}
+                          {!revealed && isSelected && <FiTarget />}
+                        </div>
+                        <span className="lmi-option-text">{opt}</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="lmi-text-answer">
+                <div className="lmi-textarea-wrapper">
+                  <textarea 
+                    className="lmi-textarea" 
+                    disabled={revealed}
+                    placeholder="Type your detailed answer here. Explain your reasoning and approach..."
+                    onChange={(e) => setSelected(e.target.value)}
+                    value={selected || ''}
+                  />
+                  <div className="lmi-textarea-footer">
+                    <span className="lmi-char-count">{(selected || '').length}/500</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Hint Section */}
+          {hintMessage && (
+            <div className="lmi-hint-section">
+              <div className="lmi-hint-card">
+                <div className="lmi-hint-glass"></div>
+                <div className="lmi-hint-content">
+                  <div className="lmi-hint-header">
+                    <FaLightbulb className="lmi-hint-icon" />
+                    <span className="lmi-hint-title">Hint</span>
+                  </div>
+                  <p className="lmi-hint-message">{hintMessage}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Answer Explanation */}
           {revealed && (
-            <div className="mi-answer-box">
-              <strong>Answer:</strong> {current.answer || "—"}
-              {current.rationale && <p><em>{current.rationale}</em></p>}
+            <div className="lmi-explanation-section">
+              <div className="lmi-explanation-card">
+                <div className="lmi-explanation-glass"></div>
+                <div className="lmi-explanation-content">
+                  <div className="lmi-explanation-header">
+                    <div className="lmi-answer-badge">
+                      <FiCheck className="lmi-answer-icon" />
+                      <span>Correct Answer</span>
+                    </div>
+                  </div>
+                  
+                  <div className="lmi-answer-content">
+                    <p className="lmi-correct-answer">
+                      <strong>Answer:</strong> {current.answer || "No answer provided"}
+                    </p>
+                    {current.rationale && (
+                      <div className="lmi-rationale">
+                        <h4>Explanation:</h4>
+                        <p>{current.rationale}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           )}
-        </div>
 
-        <div className="mi-footer">
-          <button onClick={restart}><FiRefreshCw/> Restart</button>
-          <button onClick={() => onExit && onExit()}><FiArrowLeft/> Exit</button>
+          {/* Action Buttons */}
+          <div className="lmi-actions-section">
+            <div className="lmi-actions-primary">
+              <button 
+                className={`lmi-action-btn pause ${isPaused ? 'resumed' : ''}`}
+                onClick={() => setIsPaused(p => !p)}
+              >
+                {isPaused ? <FiPlay /> : <FiPause />}
+                <span>{isPaused ? "Resume" : "Pause"}</span>
+              </button>
+              
+              <button 
+                className="lmi-action-btn reveal"
+                onClick={() => handleReveal(true)} 
+                disabled={revealed || revealCount >= 3}
+              >
+                <FiEye />
+                <span>Reveal ({3 - revealCount} left)</span>
+              </button>
+              
+              <button 
+                className="lmi-action-btn next primary"
+                onClick={nextQuestion} 
+                disabled={!revealed}
+              >
+                <FiSkipForward />
+                <span>Next Question</span>
+              </button>
+            </div>
+            
+            <div className="lmi-actions-secondary">
+              <button 
+                className="lmi-action-btn skip"
+                onClick={applySkip} 
+                disabled={usedSkip >= 2}
+              >
+                <FiFlag />
+                <span>Skip ({2 - usedSkip} left)</span>
+              </button>
+              
+              <button 
+                className="lmi-action-btn hint"
+                onClick={applyHint} 
+                disabled={usedHint >= 2}
+              >
+                <FaLightbulb />
+                <span>Hint ({2 - usedHint} left)</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="lmi-footer">
+            <div className="lmi-footer-content">
+              <button className="lmi-footer-btn secondary" onClick={restart}>
+                <FiRefreshCw />
+                <span>Restart Interview</span>
+              </button>
+              
+              <div className="lmi-footer-stats">
+                <div className="lmi-footer-stat">
+                  <FiTrendingUp className="lmi-footer-stat-icon" />
+                  <span>Score: {score}</span>
+                </div>
+                <div className="lmi-footer-stat">
+                  <FiAward className="lmi-footer-stat-icon" />
+                  <span>Streak: {streak}</span>
+                </div>
+              </div>
+              
+              <button className="lmi-footer-btn primary" onClick={handleExit}>
+                <FiArrowLeft />
+                <span>Exit Interview</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
