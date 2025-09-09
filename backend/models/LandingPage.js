@@ -30,18 +30,19 @@ const jobSchema = new mongoose.Schema({
 });
 
 const cohortSchema = new mongoose.Schema({
-  title: { type: String, required: true, trim: true },
-  startDate: { type: Date, required: true },
-  duration: { type: String, required: true },
-  seatsLeft: { type: Number, required: true, min: 0 },
-  badgeType: {
-    type: String,
-    enum: ['Exclusive', 'Premium', 'Lurnity'],
-    default: 'Premium'
-  },
-  isActive: { type: Boolean, default: true },
-  createdAt: { type: Date, default: Date.now }
+  title: String,
+  startDate: Date,
+  duration: String,
+  seatsLeft: Number,
+  badgeType: String,
+  isActive: Boolean,
+  tagline: String,
+  speakerName: String,
+  speakerCompany: String,
+  rating: Number,
+  whatYouWillLearn: [String]
 });
+
 
 const landingPageSchema = new mongoose.Schema({
   cohorts: [cohortSchema],

@@ -11,8 +11,6 @@ import { generateReceiptStream } from '../utils/pdfReceipt.js';
 import PDFDocument from 'pdfkit';
 import Ticket from '../models/Ticket.js';
 
-
-
 const router = express.Router();
 
 // 🟢 List Users

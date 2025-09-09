@@ -42,7 +42,7 @@ export default function AdminLayout(props) {
     { path: "/admin/workshops", name: "Workshops", icon: <FaChalkboardTeacher /> },
     { path: "/admin/settings", name: "Settings", icon: <FaCog /> },
     { path: "/admin/hiring", name: "Hiring", icon: <FaUserTie /> },
-    { path: "/admin/cohorts", name: "Manage Cohorts", icon: <FaCalendarAlt /> }
+    { path: "/admin/cohorts", name: "Manage Masterclass", icon: <FaCalendarAlt /> }
   ];
 
   return (

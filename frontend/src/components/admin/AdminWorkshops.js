@@ -24,7 +24,7 @@ export default function AdminWorkshops() {
   const [incharges, setIncharges] = useState([]);
   const [editWorkshop, setEditWorkshop] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState([]);
-  const [ setSelectedWorkshop] = useState(null);
+  const [setSelectedWorkshop] = useState(null);
   const [showStudentPopup, setShowStudentPopup] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -83,7 +83,7 @@ export default function AdminWorkshops() {
 
   const handleViewStudents = async (workshopId) => {
     try {
-      const res = await fetch(`${API}/api/workshops/${workshopId}/students`,);
+      const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
       const data = await res.json();
 
       if (Array.isArray(data)) {
@@ -104,14 +104,14 @@ export default function AdminWorkshops() {
   const formatDateTime = (dateString) => {
     const date = new Date(dateString);
     return {
-      date: date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
+      date: date.toLocaleDateString("en-US", { 
+        year: "numeric", 
+        month: "short", 
+        day: "numeric" 
       }),
-      time: date.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
+      time: date.toLocaleTimeString("en-US", { 
+        hour: "2-digit", 
+        minute: "2-digit" 
       })
     };
   };
@@ -187,7 +187,7 @@ export default function AdminWorkshops() {
               return (
                 <div 
                   key={w._id} 
-                  className={`workshop-card ${isUpcoming ? 'upcoming' : 'past'}`}
+                  className={`workshop-card ${isUpcoming ? "upcoming" : "past"}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="workshop-header">
@@ -244,8 +244,8 @@ export default function AdminWorkshops() {
                         <div className="info-content">
                           <span className="info-label">Incharge</span>
                           <span className="info-value">
-                            {typeof w.inchargeId === "object" 
-                              ? w.inchargeId.name 
+                            {w.inchargeId && typeof w.inchargeId === "object"
+                              ? w.inchargeId?.name
                               : incharges.find(i => i._id === w.inchargeId)?.name || "Not assigned"}
                           </span>
                         </div>
@@ -414,13 +414,13 @@ export default function AdminWorkshops() {
                     </thead>
                     <tbody>
                       {selectedStudents.map((entry, index) => (
-                        <tr key={entry._id} style={{ animationDelay: `${index * 0.05}s` }}>
+                        <tr key={entry._id || index} style={{ animationDelay: `${index * 0.05}s` }}>
                           <td className="student-name">
                             <FiUser className="student-icon" />
-                            {entry.name}
+                            {entry?.name || "Unknown"}
                           </td>
-                          <td className="student-email">{entry.email}</td>
-                          <td className="student-phone">{entry.phone}</td>
+                          <td className="student-email">{entry?.email || "N/A"}</td>
+                          <td className="student-phone">{entry?.phone || "N/A"}</td>
                           <td>
                             <span className="status-badge registered">
                               <FiUserCheck />

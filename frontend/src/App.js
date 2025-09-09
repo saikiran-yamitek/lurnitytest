@@ -18,6 +18,7 @@ import Resume from "./components/Resume"
 import StudentPlacementDrives from './components/StudentPlacementDrives'
 import PracticePage  from "./components/PracticePage";
 import CareersPage from './components/CareersPage'
+import AICoursePage from './components/AICoursePage';
 
 
 /* ── Admin ── */
@@ -75,7 +76,7 @@ function App() {
         <Route path="/placement" component={StudentPlacementDrives} />
         <Route path="/practice/:courseId/:subIdx/:vidIdx" component={PracticePage} />
         <Route path="/careers" component={CareersPage} />
-        
+        <Route path="/course/ai" component={AICoursePage} />
             
 
         {/* 🟡 Employee Auth */}

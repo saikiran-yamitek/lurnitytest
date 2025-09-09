@@ -3,6 +3,7 @@ import { Country, State, City } from "country-state-city";
 import { FaTimes, FaUser, FaEnvelope, FaPhone, FaGraduationCap, FaMapMarkerAlt, FaUniversity, FaRocket, FaStar, FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import "./DemoForm.css";
 const API = process.env.REACT_APP_API_URL;
+
 export default function DemoForm({ onClose }) {
   const [form, setForm] = useState({
     name: "",
@@ -93,35 +94,35 @@ export default function DemoForm({ onClose }) {
 
   return (
     <>
-      <div className="luxury-demo-overlay">
-        <div className="luxury-demo-container">
-          <button className="luxury-close-btn" onClick={onClose}>
+      <div className="lurnity-demo-overlay">
+        <div className="lurnity-demo-container">
+          <button className="lurnity-close-btn" onClick={onClose}>
             <FaTimes />
           </button>
           
           {/* Premium Header */}
-          <div className="luxury-demo-header">
-            <div className="luxury-demo-icon">
+          <div className="lurnity-demo-header">
+            <div className="lurnity-demo-icon">
               <FaRocket />
             </div>
-            <h2 className="luxury-demo-title">
-              Book Your <span className="luxury-gradient-text">Exclusive</span> Demo
+            <h2 className="lurnity-demo-title">
+              Book Your <span className="lurnity-gradient-text">Exclusive</span> Demo
             </h2>
-            <p className="luxury-demo-subtitle">
+            <p className="lurnity-demo-subtitle">
               Experience premium mentorship and see how Lurnity can transform your career
             </p>
             
             {/* Premium Benefits */}
-            <div className="luxury-benefits">
-              <div className="luxury-benefit">
+            <div className="lurnity-benefits">
+              <div className="lurnity-benefit">
                 <FaStar className="benefit-icon" />
                 <span>30-min personalized session</span>
               </div>
-              <div className="luxury-benefit">
+              <div className="lurnity-benefit">
                 <FaCheckCircle className="benefit-icon" />
                 <span>Portfolio review & feedback</span>
               </div>
-              <div className="luxury-benefit">
+              <div className="lurnity-benefit">
                 <FaGraduationCap className="benefit-icon" />
                 <span>Career roadmap discussion</span>
               </div>
@@ -129,21 +130,21 @@ export default function DemoForm({ onClose }) {
           </div>
 
           {/* Premium Form */}
-          <form onSubmit={handleSubmit} className="luxury-demo-form">
-            <div className="luxury-form-grid">
+          <form onSubmit={handleSubmit} className="lurnity-demo-form">
+            <div className="lurnity-form-grid">
               
               {/* Name Field */}
-              <div className="luxury-form-group">
-                <label className="luxury-label">
+              <div className="lurnity-form-group">
+                <label className="lurnity-label">
                   <FaUser className="label-icon" />
                   Full Name
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <input
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    className="luxury-input"
+                    className="lurnity-input"
                     placeholder="Enter your full name"
                     required
                   />
@@ -151,18 +152,18 @@ export default function DemoForm({ onClose }) {
               </div>
 
               {/* Email Field */}
-              <div className="luxury-form-group">
-                <label className="luxury-label">
+              <div className="lurnity-form-group">
+                <label className="lurnity-label">
                   <FaEnvelope className="label-icon" />
                   Email Address
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <input
                     name="email"
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="luxury-input"
+                    className="lurnity-input"
                     placeholder="your.email@example.com"
                     required
                   />
@@ -170,37 +171,37 @@ export default function DemoForm({ onClose }) {
               </div>
 
               {/* Phone Field */}
-              <div className="luxury-form-group">
-                <label className="luxury-label">
+              <div className="lurnity-form-group">
+                <label className="lurnity-label">
                   <FaPhone className="label-icon" />
                   Phone Number
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <input
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
-                    className={`luxury-input ${errors.phone ? 'luxury-input-error' : ''}`}
+                    className={`lurnity-input ${errors.phone ? 'lurnity-input-error' : ''}`}
                     placeholder="10-digit phone number"
                     maxLength="10"
                     required
                   />
                 </div>
-                {errors.phone && <span className="luxury-error-text">{errors.phone}</span>}
+                {errors.phone && <span className="lurnity-error-text">{errors.phone}</span>}
               </div>
 
               {/* Education Field */}
-              <div className="luxury-form-group">
-                <label className="luxury-label">
+              <div className="lurnity-form-group">
+                <label className="lurnity-label">
                   <FaGraduationCap className="label-icon" />
                   Education Level
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <select
                     name="education"
                     value={form.education}
                     onChange={handleChange}
-                    className="luxury-select"
+                    className="lurnity-select"
                     required
                   >
                     <option value="">Select Education Level</option>
@@ -215,17 +216,17 @@ export default function DemoForm({ onClose }) {
               </div>
 
               {/* Current Education Field */}
-              <div className="luxury-form-group">
-                <label className="luxury-label">
+              <div className="lurnity-form-group">
+                <label className="lurnity-label">
                   <FaGraduationCap className="label-icon" />
                   Current Field of Study
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <input
                     name="currentEducation"
                     value={form.currentEducation}
                     onChange={handleChange}
-                    className="luxury-input"
+                    className="lurnity-input"
                     placeholder="e.g., Computer Science, Engineering"
                     required
                   />
@@ -233,17 +234,17 @@ export default function DemoForm({ onClose }) {
               </div>
 
               {/* State Field */}
-              <div className="luxury-form-group">
-                <label className="luxury-label">
+              <div className="lurnity-form-group">
+                <label className="lurnity-label">
                   <FaMapMarkerAlt className="label-icon" />
                   State
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <select
                     name="state"
                     value={form.state}
                     onChange={handleChange}
-                    className="luxury-select"
+                    className="lurnity-select"
                     required
                   >
                     <option value="">Select State</option>
@@ -255,17 +256,17 @@ export default function DemoForm({ onClose }) {
               </div>
 
               {/* City Field */}
-              <div className="luxury-form-group">
-                <label className="luxury-label">
+              <div className="lurnity-form-group">
+                <label className="lurnity-label">
                   <FaMapMarkerAlt className="label-icon" />
                   City
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <select
                     name="city"
                     value={form.city}
                     onChange={handleChange}
-                    className="luxury-select"
+                    className="lurnity-select"
                     required
                   >
                     <option value="">Select City</option>
@@ -277,17 +278,17 @@ export default function DemoForm({ onClose }) {
               </div>
 
               {/* College Field */}
-              <div className="luxury-form-group luxury-form-group-full">
-                <label className="luxury-label">
+              <div className="lurnity-form-group lurnity-form-group-full">
+                <label className="lurnity-label">
                   <FaUniversity className="label-icon" />
                   College/University
                 </label>
-                <div className="luxury-input-container">
+                <div className="lurnity-input-container">
                   <input
                     name="college"
                     value={form.college}
                     onChange={handleChange}
-                    className="luxury-input"
+                    className="lurnity-input"
                     placeholder="Enter your college/university name"
                     required
                   />
@@ -298,7 +299,7 @@ export default function DemoForm({ onClose }) {
             {/* Submit Button */}
             <button 
               type="submit" 
-              className="luxury-submit-btn"
+              className="lurnity-submit-btn"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -314,18 +315,18 @@ export default function DemoForm({ onClose }) {
               )}
             </button>
 
-            {msg && <p className="luxury-form-message">{msg}</p>}
+            {msg && <p className="lurnity-form-message">{msg}</p>}
           </form>
 
           {/* Trust Indicators */}
-          <div className="luxury-trust-indicators">
+          <div className="lurnity-trust-indicators">
             <div className="trust-item">
-              <span className="trust-number">5,000+</span>
-              <span className="trust-label">Demos Conducted</span>
+              <span className="trust-number">15,847+</span>
+              <span className="trust-label">Students Placed</span>
             </div>
             <div className="trust-divider"></div>
             <div className="trust-item">
-              <span className="trust-number">4.9/5</span>
+              <span className="trust-number">4.94★</span>
               <span className="trust-label">Student Rating</span>
             </div>
             <div className="trust-divider"></div>
@@ -337,18 +338,18 @@ export default function DemoForm({ onClose }) {
         </div>
       </div>
 
-      {/* Luxury Success Popup */}
+      {/* Success Popup */}
       {showSuccessPopup && (
-        <div className="luxury-success-overlay">
-          <div className="luxury-success-container">
-            <div className="luxury-success-icon">
+        <div className="lurnity-success-overlay">
+          <div className="lurnity-success-container">
+            <div className="lurnity-success-icon">
               <FaCheckCircle />
             </div>
-            <h3 className="luxury-success-title">Demo Booked Successfully!</h3>
-            <p className="luxury-success-message">
+            <h3 className="lurnity-success-title">Demo Booked Successfully!</h3>
+            <p className="lurnity-success-message">
               Our premium career advisor will contact you within 24 hours to schedule your exclusive demo session.
             </p>
-            <div className="luxury-success-benefits">
+            <div className="lurnity-success-benefits">
               <div className="success-benefit">
                 <FaCheckCircle className="success-check" />
                 <span>Personalized curriculum review</span>

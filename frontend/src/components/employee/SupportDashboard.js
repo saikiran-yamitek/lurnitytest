@@ -614,7 +614,7 @@ export default function SupportDashboard({ emp }) {
                           </div>
                           <div className="support-demo-location">
                             <p><strong>Location:</strong> {demo.city}</p>
-                            <p><strong>College:</strong> {demo.collegeAddress}</p>
+                            <p><strong>College:</strong> {demo.college}</p>
                           </div>
                         </div>
                       </div>

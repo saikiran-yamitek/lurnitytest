@@ -8,6 +8,8 @@ const demoSchema = new mongoose.Schema({
   currentEducation: String,
   city: String,
   collegeAddress: String,
+  college: String,
+  state:String,
   booked: { type: Boolean, default: false },
   createdAt: {
     type: Date,
