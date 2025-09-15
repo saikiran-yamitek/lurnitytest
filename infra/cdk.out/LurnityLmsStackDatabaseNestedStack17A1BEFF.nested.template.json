@@ -1,0 +1,569 @@
+{
+ "Resources": {
+  "User00B015A1": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "email",
+      "AttributeType": "S"
+     }
+    ],
+    "GlobalSecondaryIndexes": [
+     {
+      "IndexName": "email-index",
+      "KeySchema": [
+       {
+        "AttributeName": "email",
+        "KeyType": "HASH"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+       "ReadCapacityUnits": 5,
+       "WriteCapacityUnits": 5
+      }
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/User/Resource"
+   }
+  },
+  "CourseED484317": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Course/Resource"
+   }
+  },
+  "Transaction2728EE3D": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "userId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "date",
+      "AttributeType": "S"
+     }
+    ],
+    "GlobalSecondaryIndexes": [
+     {
+      "IndexName": "userId-index",
+      "KeySchema": [
+       {
+        "AttributeName": "userId",
+        "KeyType": "HASH"
+       },
+       {
+        "AttributeName": "date",
+        "KeyType": "RANGE"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+       "ReadCapacityUnits": 5,
+       "WriteCapacityUnits": 5
+      }
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Transaction/Resource"
+   }
+  },
+  "Ticket1A791DE7": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Ticket/Resource"
+   }
+  },
+  "AdminLoginTableFE665023": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/AdminLoginTable/Resource"
+   }
+  },
+  "LandingPageE6162516": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/LandingPage/Resource"
+   }
+  },
+  "Certificate4E7ABB08": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Certificate/Resource"
+   }
+  },
+  "CompanyA0ED5F4A": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Company/Resource"
+   }
+  },
+  "EmployeeE3741266": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Employee/Resource"
+   }
+  },
+  "Feedback2A073F76": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Feedback/Resource"
+   }
+  },
+  "Placement4CF18568": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Placement/Resource"
+   }
+  },
+  "Workshop3A33C0B9": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Workshop/Resource"
+   }
+  },
+  "Demo34AD4DAD": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "ProvisionedThroughput": {
+     "ReadCapacityUnits": 5,
+     "WriteCapacityUnits": 5
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Demo/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzQ11DNQTCwv1k1OydbNyUzSq/ZLLS5JTQkuSUzO1gFKxKdU5iXm5qcAZUISk3JSdZzT8sCMWp2g1OL80qJksBCMXauTl5+SqpdVrF9maKEHREaKWcWZmbpFpXklmbmpekEQGgCl0vAVegAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "LurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "User00B015A1",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref": {
+   "Value": {
+    "Ref": "User00B015A1"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackCourse654EB038Ref": {
+   "Value": {
+    "Ref": "CourseED484317"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackTransactionD853F59DRef": {
+   "Value": {
+    "Ref": "Transaction2728EE3D"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref": {
+   "Value": {
+    "Ref": "Ticket1A791DE7"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref": {
+   "Value": {
+    "Ref": "LandingPageE6162516"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref": {
+   "Value": {
+    "Ref": "Certificate4E7ABB08"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackCompany72221DCERef": {
+   "Value": {
+    "Ref": "CompanyA0ED5F4A"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef": {
+   "Value": {
+    "Ref": "EmployeeE3741266"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref": {
+   "Value": {
+    "Ref": "Feedback2A073F76"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackPlacement598293F4Ref": {
+   "Value": {
+    "Ref": "Placement4CF18568"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref": {
+   "Value": {
+    "Ref": "Workshop3A33C0B9"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref": {
+   "Value": {
+    "Ref": "Demo34AD4DAD"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Transaction2728EE3D",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackCourse654EB038Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CourseED484317",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackTicket2098D3B8Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Ticket1A791DE7",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackAdminLoginTable777A3840Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AdminLoginTableFE665023",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackLandingPage8052BF21Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "LandingPageE6162516",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Certificate4E7ABB08",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackCompany72221DCEArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CompanyA0ED5F4A",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "EmployeeE3741266",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Feedback2A073F76",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackPlacement598293F4Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Placement4CF18568",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Workshop3A33C0B9",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Demo34AD4DAD",
+     "Arn"
+    ]
+   }
+  }
+ }
+}
