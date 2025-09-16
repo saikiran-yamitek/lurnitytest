@@ -7,15 +7,50 @@ class ApiNestedStack extends cdk.NestedStack {
 
     const { lambdas } = props;
 
-    // Create API Gateway
+    // Create API Gateway with enhanced CORS configuration
     this.api = new apigateway.RestApi(this, "LurnityLmsApi", { 
       restApiName: "LurnityLmsApi", 
-      deployOptions: { stageName: process.env.STAGE || "dev" } 
+      deployOptions: { stageName: process.env.STAGE || "dev" },
+      defaultCorsPreflightOptions: {
+        allowOrigins: ['*'],
+        allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowHeaders: [
+          'Content-Type',
+          'Authorization', 
+          'X-Amz-Date', 
+          'X-Api-Key', 
+          'X-Amz-Security-Token',
+          'X-Amz-User-Agent'
+        ],
+        allowCredentials: false,
+        maxAge: cdk.Duration.days(1)
+      }
     });
 
-    // Move all your API Gateway routes here (exactly as they are in your original file)
-    // --- Admin ---
-    const adminRes = this.api.root.addResource("admin");
+    // Add gateway responses with CORS headers for error responses
+    this.api.addGatewayResponse('Default4XX', {
+      type: apigateway.ResponseType.DEFAULT_4XX,
+      responseHeaders: {
+        'Access-Control-Allow-Origin': "'*'",
+        'Access-Control-Allow-Methods': "'GET,POST,PUT,DELETE,OPTIONS'",
+        'Access-Control-Allow-Headers': "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+      }
+    });
+
+    this.api.addGatewayResponse('Default5XX', {
+      type: apigateway.ResponseType.DEFAULT_5XX,
+      responseHeaders: {
+        'Access-Control-Allow-Origin': "'*'",
+        'Access-Control-Allow-Methods': "'GET,POST,PUT,DELETE,OPTIONS'",
+        'Access-Control-Allow-Headers': "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+      }
+    });
+
+    // ADD /api PREFIX RESOURCE - This is the key change!
+    const apiResource = this.api.root.addResource("api");
+
+    // --- Admin --- (moved under /api)
+    const adminRes = apiResource.addResource("admin");
     adminRes.addResource("auth").addMethod("POST", new apigateway.LambdaIntegration(lambdas.adminAuthLambda));
 
     const usersRes = adminRes.addResource("users");
@@ -25,8 +60,8 @@ class ApiNestedStack extends cdk.NestedStack {
     userIdRes.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteUserLambda));
     userIdRes.addMethod("PATCH", new apigateway.LambdaIntegration(lambdas.setUserLockLambda));
 
-    // --- Employees ---
-    const employeesRes = this.api.root.addResource("employees");
+    // --- Employees --- (moved under /api)
+    const employeesRes = apiResource.addResource("employees");
     employeesRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listEmployeesLambda));
     employeesRes.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createEmployeeLambda));
     employeesRes.addResource("login").addMethod("POST", new apigateway.LambdaIntegration(lambdas.employeeLoginLambda));
@@ -35,8 +70,8 @@ class ApiNestedStack extends cdk.NestedStack {
     empIdRes.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateEmployeeLambda));
     empIdRes.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteEmployeeLambda));
 
-    // --- LandingPage ---
-    const landingPage = this.api.root.addResource("landingPage");
+    // --- LandingPage --- (moved under /api, changed to lowercase to match frontend)
+    const landingPage = apiResource.addResource("landingpage"); // Changed from "landingPage" to "landingpage"
     landingPage.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getLatestLandingPageLambda));
     const cohorts = landingPage.addResource("cohorts");
     cohorts.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getCohortsLambda));
@@ -45,28 +80,28 @@ class ApiNestedStack extends cdk.NestedStack {
     cohortId.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateCohortLambda));
     cohortId.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteCohortLambda));
 
-    // --- Certificates ---
-    const certificates = this.api.root.addResource("certificates");
+    // --- Certificates --- (moved under /api)
+    const certificates = apiResource.addResource("certificates");
     certificates.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listCertificatesLambda));
     certificates.addResource("generate").addMethod("POST", new apigateway.LambdaIntegration(lambdas.generateCertificateLambda));
     certificates.addResource("check-exists").addMethod("POST", new apigateway.LambdaIntegration(lambdas.checkCertificateExistsLambda));
     certificates.addResource("{id}").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getCertificateByIdLambda));
     certificates.addResource("user").addResource("{userId}").addMethod("GET", new apigateway.LambdaIntegration(lambdas.listCertificatesByUserLambda));
 
-    // --- Companies ---
-    const companies = this.api.root.addResource("companies");
+    // --- Companies --- (moved under /api)
+    const companies = apiResource.addResource("companies");
     companies.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getCompaniesLambda));
     companies.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createCompanyLambda));
     companies.addResource("{id}").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateCompanyLambda));
 
-    // --- Feedback ---
-    const feedback = this.api.root.addResource("feedback");
+    // --- Feedback --- (moved under /api)
+    const feedback = apiResource.addResource("feedback");
     feedback.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listFeedbacksLambda));
     feedback.addResource("submit").addMethod("POST", new apigateway.LambdaIntegration(lambdas.submitFeedbackLambda));
     feedback.addResource("{id}").addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteFeedbackLambda));
 
-    // --- Placements ---
-    const placements = this.api.root.addResource("placements");
+    // --- Placements --- (moved under /api)
+    const placements = apiResource.addResource("placements");
     placements.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listPlacementsLambda));
     placements.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createPlacementLambda));
     const placementId = placements.addResource("{id}");
@@ -74,8 +109,8 @@ class ApiNestedStack extends cdk.NestedStack {
     placementId.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updatePlacementLambda));
     placementId.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deletePlacementLambda));
 
-    // --- Workshops ---
-    const workshops = this.api.root.addResource("workshops");
+    // --- Workshops --- (moved under /api)
+    const workshops = apiResource.addResource("workshops");
     workshops.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listWorkshopsLambda));
     workshops.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createWorkshopLambda));
     workshops.addResource("user").addResource("{userId}").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getUserWorkshopsLambda));
@@ -92,8 +127,8 @@ class ApiNestedStack extends cdk.NestedStack {
     workshopId.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateWorkshopLambda));
     workshopId.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteWorkshopLambda));
 
-    // --- Public Courses ---
-    const courses = this.api.root.addResource("courses");
+    // --- Public Courses --- (moved under /api)
+    const courses = apiResource.addResource("courses");
     courses.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listCoursesPublicLambda));
     courses.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createCoursePublicLambda));
     const coursesId = courses.addResource("{id}");
@@ -101,39 +136,44 @@ class ApiNestedStack extends cdk.NestedStack {
     coursesId.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateCoursePublicLambda));
     coursesId.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteCoursePublicLambda));
 
-    // --- Demos ---
-    const demos = this.api.root.addResource("demos");
+    // --- Demos --- (moved under /api)
+    const demos = apiResource.addResource("demos");
     demos.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createDemoLambda));
     demos.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listDemosLambda));
     demos.addResource("{id}").addResource("booked").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.markDemoBookedLambda));
+    
+    // Add the missing /demo/book endpoint that your frontend expects
+    const demoBook = demos.addResource("book");
+    demoBook.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listDemosLambda)); // Reuse existing lambda or create new one
+    demoBook.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createDemoLambda)); // Add POST method for demo booking
 
-    // --- Transcribe ---
-    const transcribe = this.api.root.addResource("transcribe");
+    // --- Transcribe --- (moved under /api)
+    const transcribe = apiResource.addResource("transcribe");
     transcribe.addMethod("POST", new apigateway.LambdaIntegration(lambdas.transcribeLambda));
 
-    // --- Tickets ---
-    const tickets = this.api.root.addResource("tickets");
+    // --- Tickets --- (moved under /api)
+    const tickets = apiResource.addResource("tickets");
     tickets.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createTicketLambda));
     tickets.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listTicketsLambda));
     const ticketId = tickets.addResource("{id}");
     ticketId.addMethod("PATCH", new apigateway.LambdaIntegration(lambdas.updateTicketLambda));
 
-    // --- Rankings ---
-    const rankings = this.api.root.addResource("rankings");
+    // --- Rankings --- (moved under /api)
+    const rankings = apiResource.addResource("rankings");
     rankings.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getRankingsLambda));
 
-    // --- Progress ---
-    const progress = this.api.root.addResource("progress");
+    // --- Progress --- (moved under /api)
+    const progress = apiResource.addResource("progress");
     progress.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getProgressLambda));
     progress.addResource("watch").addMethod("POST", new apigateway.LambdaIntegration(lambdas.watchProgressLambda));
 
-    // --- Auth endpoints ---
-    const authRes = this.api.root.addResource("auth");
+    // --- Auth endpoints --- (moved under /api)
+    const authRes = apiResource.addResource("auth");
     authRes.addResource("login").addMethod("POST", new apigateway.LambdaIntegration(lambdas.authLoginLambda));
     authRes.addResource("google-login").addMethod("POST", new apigateway.LambdaIntegration(lambdas.authGoogleLoginLambda));
 
-    // --- User API Gateway routes ---
-    const userRes = this.api.root.addResource("user");
+    // --- User API Gateway routes --- (moved under /api)
+    const userRes = apiResource.addResource("user");
     userRes.addResource("register").addMethod("POST", new apigateway.LambdaIntegration(lambdas.registerUserLambda));
     userRes.addResource("homepage").addMethod("GET", new apigateway.LambdaIntegration(lambdas.homepageUserLambda));
     userRes.addResource("resume").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getResumeDataLambda));
@@ -159,9 +199,8 @@ class ApiNestedStack extends cdk.NestedStack {
     userRes.addResource("get-key").addMethod("POST", new apigateway.LambdaIntegration(lambdas.getKeyLambda));
     userRes.addResource("mock-questions").addMethod("POST", new apigateway.LambdaIntegration(lambdas.mockQuestionsLambda));
 
-    // --- API routes for Judge0 key ---
-    const apiRes = this.api.root.addResource("api");
-    const keyRes = apiRes.addResource("key");
+    // --- Judge0 key routes --- (moved under /api, fixed conflict)
+    const keyRes = apiResource.addResource("key"); // Changed from separate "api" to under main apiResource
     keyRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getJudge0KeyLambda));
     keyRes.addMethod("POST", new apigateway.LambdaIntegration(lambdas.updateJudge0KeyLambda));
   }

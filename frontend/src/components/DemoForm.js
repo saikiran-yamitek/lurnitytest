@@ -71,7 +71,7 @@ export default function DemoForm({ onClose }) {
     setMsg("");
 
     try {
-      const res = await fetch(`${API}/api/demo/book`, {
+      const res = await fetch(`${API}/api/demos/book`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
