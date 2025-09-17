@@ -1,6 +1,6 @@
 // backend/routes/admin/generateReceipt.js
 import { getUserById } from "../../models/User.js";
-import { generateAndUploadReceipt, generateReceiptBuffer } from "../../utils/pdfReceipt.js";
+import { generateAndUploadReceipt } from "../../utils/pdfReceipt.js";
 
 export const handler = async (event) => {
   try {

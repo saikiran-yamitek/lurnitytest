@@ -1244,7 +1244,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "bff08b815e1380696cfbb5615216b52c4fddfde1684cf2539d378a325e1fe173.zip"
                         },
                         "environment": {
                           "variables": {
@@ -1297,7 +1297,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listUsers.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -1316,7 +1316,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -1471,7 +1471,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "541d55c06a1935f9b748c95f45d26e30c97baf53b2c20ec6f4666602c76fa9ef.zip"
                         },
                         "environment": {
                           "variables": {
@@ -1524,7 +1524,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateUser.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -1543,7 +1543,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -1698,7 +1698,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "e105d5b5d90735423d2601291cdb20834b0d9c8dc19be5cb88408a3faa669e6f.zip"
                         },
                         "environment": {
                           "variables": {
@@ -1751,7 +1751,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteUser.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -1770,7 +1770,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -1956,7 +1956,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "8a390a11f7fe10833213b5c689deebe5f01314bcea9d230b8b8e95c669ebf5ea.zip"
                         },
                         "environment": {
                           "variables": {
@@ -2009,7 +2009,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "exportUsersCsv.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -2028,7 +2028,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -2203,7 +2203,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "5a07a1eefc9236b35dab00653210adb94c447d9b516046da77e6d56071a6c7ba.zip"
                         },
                         "environment": {
                           "variables": {
@@ -2256,7 +2256,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createTransaction.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -2275,7 +2275,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -2450,7 +2450,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "12133524e4a36942a4f7442edb8714fa6d1093ef9fe98473abfffc6ce09f42c7.zip"
                         },
                         "environment": {
                           "variables": {
@@ -2503,7 +2503,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listUserTransactions.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -2522,7 +2522,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -2688,7 +2688,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "b7f148ce691ea42f692f68fd3dfafa96787ab099ddeec8dd233b5c430465c73f.zip"
                         },
                         "environment": {
                           "variables": {
@@ -2741,7 +2741,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "generateReceipt.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -2760,7 +2760,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -2907,7 +2907,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "8ef9e46fc9c110fc8420aa21e50d441b6a8ff1335a750784cbcd08c0a67362cd.zip"
                         },
                         "environment": {
                           "variables": {
@@ -2960,7 +2960,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listCourses.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -2979,7 +2979,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -3126,7 +3126,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "3d7e70d9bcee683dc348ae0cc6b128c75adf264936b296cb4121de1696d58096.zip"
                         },
                         "environment": {
                           "variables": {
@@ -3179,7 +3179,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createCourse.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -3198,7 +3198,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -3345,7 +3345,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "b770960c2ca375f877dedee5257cfd3b1057f8562a8e58004fc619ce5b9809c4.zip"
                         },
                         "environment": {
                           "variables": {
@@ -3398,7 +3398,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateCourse.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -3417,7 +3417,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -3564,7 +3564,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "0559978f821158bf396c61c7a32217db1a489d77c94de8dfe47c544a38f67643.zip"
                         },
                         "environment": {
                           "variables": {
@@ -3617,7 +3617,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteCourse.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -3636,7 +3636,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -3737,7 +3737,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "3a6ac18861d7dc3647acaeab2efa77b5ef010f1414435d98beac9866946ce22b.zip"
                         },
                         "environment": {
                           "variables": {
@@ -3790,7 +3790,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getStats.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -3809,7 +3809,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -3956,7 +3956,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "77ceab8b9b1cc7801236989096d72985babf9e435acd78f7b216ab74654d5b7b.zip"
                         },
                         "environment": {
                           "variables": {
@@ -4009,7 +4009,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteTicket.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -4028,7 +4028,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -4183,7 +4183,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "b7edded5090b10138b072a90cf648d22850642d8ceb0b23759108301820fb9ad.zip"
+                          "s3Key": "bf8bff4e09b350b75c4dfe56240e9dc5b124af3cef59c4b1f9ee247f372f23dc.zip"
                         },
                         "environment": {
                           "variables": {
@@ -4236,7 +4236,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "setUserLock.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -4255,7 +4255,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -4402,7 +4402,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "7abf0f250095831ba66520c1fd07ca14d2b0fbec5f607064bae03ea833b59e14.zip"
+                          "s3Key": "49c017612f0b8ae797c49654e82047fa05621610ce44bff0103fc34d061a6078.zip"
                         },
                         "environment": {
                           "variables": {
@@ -4455,7 +4455,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "adminAuth.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -4474,7 +4474,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -4621,7 +4621,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "9302fe17783985a5eee6f28ea9fee43f832edb1b0ab6f26ef420f555602fc63e.zip"
                         },
                         "environment": {
                           "variables": {
@@ -4674,7 +4674,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getCohorts.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -4693,7 +4693,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -4840,7 +4840,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "25370160592fffeeab490d4dd8b9c0a503e8fa9a467df956af02a6e13a44f1ec.zip"
                         },
                         "environment": {
                           "variables": {
@@ -4893,7 +4893,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createCohort.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -4912,7 +4912,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -5059,7 +5059,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "0378a31206debd19f6d40f690a3890768282ae0958b97cf567508f34ef1b6f94.zip"
                         },
                         "environment": {
                           "variables": {
@@ -5112,7 +5112,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateCohort.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -5131,7 +5131,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -5278,7 +5278,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "b433fc326e6781adc110bfc397be84f745af1cdd0a439172c4ad8898f02d3f5f.zip"
                         },
                         "environment": {
                           "variables": {
@@ -5331,7 +5331,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteCohort.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -5350,7 +5350,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -5529,7 +5529,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "5765c5102e362139d83be15e46fdf328add6c90cac4825990e06c9ece5f276e8.zip"
+                          "s3Key": "ad4278863f9130a305f6157566c38e2a1f70473f7d98bc31ff1164db8291026b.zip"
                         },
                         "environment": {
                           "variables": {
@@ -5582,7 +5582,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "generateCertificate.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -5601,7 +5601,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -5780,7 +5780,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "5765c5102e362139d83be15e46fdf328add6c90cac4825990e06c9ece5f276e8.zip"
+                          "s3Key": "a700756f382817bcc5adb90f92fdec908fc3a214381b0d0eb4f6de02b8aaab7e.zip"
                         },
                         "environment": {
                           "variables": {
@@ -5833,7 +5833,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listCertificates.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -5852,7 +5852,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -6031,7 +6031,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "5765c5102e362139d83be15e46fdf328add6c90cac4825990e06c9ece5f276e8.zip"
+                          "s3Key": "babe9560e7f93a7da2eab588ae25baced31d3b23ee923cc8d84f4f68873ca836.zip"
                         },
                         "environment": {
                           "variables": {
@@ -6084,7 +6084,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getCertificateById.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -6103,7 +6103,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -6282,7 +6282,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "5765c5102e362139d83be15e46fdf328add6c90cac4825990e06c9ece5f276e8.zip"
+                          "s3Key": "d66b1af651750afffc2ce60c54db4d9871c91972f98c17d3f32ad22731853154.zip"
                         },
                         "environment": {
                           "variables": {
@@ -6335,7 +6335,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listCertificatesByUser.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -6354,7 +6354,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -6533,7 +6533,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "5765c5102e362139d83be15e46fdf328add6c90cac4825990e06c9ece5f276e8.zip"
+                          "s3Key": "9e4254ef45a172ea38ea9a6dc22fef051f6f6c83b41c14a35070583ec82651f3.zip"
                         },
                         "environment": {
                           "variables": {
@@ -6586,7 +6586,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "checkCertificateExists.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -6605,7 +6605,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -6752,7 +6752,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "9e7036d72aa2e863ab993795db400ce983c6f4d22ae2d0512522115e5b0adac6.zip"
+                          "s3Key": "7d91aed826f47bb31ff0c94b28be95908c10248490e542f8afff631327355a62.zip"
                         },
                         "environment": {
                           "variables": {
@@ -6805,7 +6805,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getCompanies.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -6824,7 +6824,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -6971,7 +6971,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "9e7036d72aa2e863ab993795db400ce983c6f4d22ae2d0512522115e5b0adac6.zip"
+                          "s3Key": "8e96383f912465af00c5157394b8ccb9c926085874fc67ac8fcb894b9f7a162b.zip"
                         },
                         "environment": {
                           "variables": {
@@ -7024,7 +7024,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createCompany.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -7043,7 +7043,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -7190,7 +7190,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "9e7036d72aa2e863ab993795db400ce983c6f4d22ae2d0512522115e5b0adac6.zip"
+                          "s3Key": "845f2a2d09e2b03247edb13d59f8f8cc74df12b499e60cb592a449848ace572c.zip"
                         },
                         "environment": {
                           "variables": {
@@ -7243,7 +7243,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateCompany.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -7262,7 +7262,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -7409,7 +7409,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "0b90f9c20d0d64b286256a219b8332e510b87eb6b5069fbfa4b5764d7fbd6a51.zip"
+                          "s3Key": "23eb461707207b5b1e0234fef5aaef34d8f987fca70e1637ad730aa4e4683c87.zip"
                         },
                         "environment": {
                           "variables": {
@@ -7462,7 +7462,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createEmployee.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -7481,7 +7481,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -7628,7 +7628,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "0b90f9c20d0d64b286256a219b8332e510b87eb6b5069fbfa4b5764d7fbd6a51.zip"
+                          "s3Key": "af3f2639872f3272c4569d71aeab12b4cdef72bcce080b2379e41e266568d002.zip"
                         },
                         "environment": {
                           "variables": {
@@ -7681,7 +7681,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listEmployees.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -7700,7 +7700,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -7847,7 +7847,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "0b90f9c20d0d64b286256a219b8332e510b87eb6b5069fbfa4b5764d7fbd6a51.zip"
+                          "s3Key": "c4601630659d33f5fde2c650165a3582531395843664d99ff0f8f8526d2610a2.zip"
                         },
                         "environment": {
                           "variables": {
@@ -7900,7 +7900,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getEmployeeById.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -7919,7 +7919,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -8066,7 +8066,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "0b90f9c20d0d64b286256a219b8332e510b87eb6b5069fbfa4b5764d7fbd6a51.zip"
+                          "s3Key": "618800c733073dc1767cb64dd2e89507636dc7c0f0e6da70cc1ddde9b1ff7e37.zip"
                         },
                         "environment": {
                           "variables": {
@@ -8119,7 +8119,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateEmployee.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -8138,7 +8138,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -8285,7 +8285,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "0b90f9c20d0d64b286256a219b8332e510b87eb6b5069fbfa4b5764d7fbd6a51.zip"
+                          "s3Key": "14e5c9e77c5104049112b9661d6350410f43dca979870e72af7d00f8e1b4406c.zip"
                         },
                         "environment": {
                           "variables": {
@@ -8338,7 +8338,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteEmployee.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -8357,7 +8357,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -8504,7 +8504,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "0b90f9c20d0d64b286256a219b8332e510b87eb6b5069fbfa4b5764d7fbd6a51.zip"
+                          "s3Key": "c4e36bced56c5c5d88b46d5e1a6b8fb1cf6bb0ddd578b2240be7ada6b27498b3.zip"
                         },
                         "environment": {
                           "variables": {
@@ -8557,7 +8557,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "login.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -8576,7 +8576,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -8743,7 +8743,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "6d35d7b39a61f208ab13a7fbc304f411dc0f04d047b8424c1efcf0692f9a4dc6.zip"
+                          "s3Key": "78d33a0554a7893894f0d0512607ff5312a13ccc45a89cab2c5afa75cb6ded08.zip"
                         },
                         "environment": {
                           "variables": {
@@ -8796,7 +8796,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "submitFeedback.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -8815,7 +8815,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -8982,7 +8982,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "6d35d7b39a61f208ab13a7fbc304f411dc0f04d047b8424c1efcf0692f9a4dc6.zip"
+                          "s3Key": "08ec40df15d230ec4b2ba48da47e9bffcceea3cb6a63c2b2f97dcb695a2cc306.zip"
                         },
                         "environment": {
                           "variables": {
@@ -9035,7 +9035,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listFeedbacks.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -9054,7 +9054,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -9221,7 +9221,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "6d35d7b39a61f208ab13a7fbc304f411dc0f04d047b8424c1efcf0692f9a4dc6.zip"
+                          "s3Key": "dec53741ac11b39b60d54c059aec83dc62b0f649283d785b3d4342a3974a58e6.zip"
                         },
                         "environment": {
                           "variables": {
@@ -9274,7 +9274,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteFeedback.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -9293,7 +9293,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -9472,7 +9472,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "8beaa2516803497aa9d94d2167875dbcfe1bc72546c17329938757228c6700e2.zip"
+                          "s3Key": "5bc1feb95d7c13ef182143af7076c909e0669bf6b629734bd9ebf9f386afdfad.zip"
                         },
                         "environment": {
                           "variables": {
@@ -9525,7 +9525,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createPlacement.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -9544,7 +9544,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -9723,7 +9723,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "8beaa2516803497aa9d94d2167875dbcfe1bc72546c17329938757228c6700e2.zip"
+                          "s3Key": "26d67e8c237d2b637494b042082f3e9cbf0022d2fc5728f2637e01f62e454229.zip"
                         },
                         "environment": {
                           "variables": {
@@ -9776,7 +9776,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listPlacements.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -9795,7 +9795,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -9974,7 +9974,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "8beaa2516803497aa9d94d2167875dbcfe1bc72546c17329938757228c6700e2.zip"
+                          "s3Key": "177cbc7d88ee7cf90ea65960dccb540a7b4a3b4e4526d8217a1a11efa0639b66.zip"
                         },
                         "environment": {
                           "variables": {
@@ -10027,7 +10027,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getPlacementById.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -10046,7 +10046,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -10225,7 +10225,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "8beaa2516803497aa9d94d2167875dbcfe1bc72546c17329938757228c6700e2.zip"
+                          "s3Key": "8d5d0dab0ac03c761780224554191a7b8ad118f22c304ae4246ea5e21b48ebec.zip"
                         },
                         "environment": {
                           "variables": {
@@ -10278,7 +10278,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updatePlacement.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -10297,7 +10297,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -10476,7 +10476,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "8beaa2516803497aa9d94d2167875dbcfe1bc72546c17329938757228c6700e2.zip"
+                          "s3Key": "1e44e2a534be6c97f6abd0a731677a247e524badf77d860d5b8faca2de088e11.zip"
                         },
                         "environment": {
                           "variables": {
@@ -10529,7 +10529,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deletePlacement.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -10548,7 +10548,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -10724,7 +10724,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "2fa5218164ae30b6c3bd10a8811fc7be829dff8ad322b22f3b4550d8f466d9f1.zip"
                         },
                         "environment": {
                           "variables": {
@@ -10777,7 +10777,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listWorkshops.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -10796,7 +10796,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -10943,7 +10943,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "e7bbb270084fadbb5f69b232c2a656bee4f0b84bdf426038d736dcb6d2290e92.zip"
                         },
                         "environment": {
                           "variables": {
@@ -10996,7 +10996,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createWorkshop.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -11015,7 +11015,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -11162,7 +11162,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "47f0df74d2c03a14505a263a9e0175aef6027f510a48286e4b9a47c492766bca.zip"
                         },
                         "environment": {
                           "variables": {
@@ -11215,7 +11215,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "registerStudent.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -11234,7 +11234,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -11410,7 +11410,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "e14930f78f9c9f23d739eaa5eae57273a63014e487e9b6f9d4363f1b78d92bd9.zip"
                         },
                         "environment": {
                           "variables": {
@@ -11463,7 +11463,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getUserWorkshops.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -11482,7 +11482,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -11658,7 +11658,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "52dd77654273cf6cafa163e78f350034d279363b3a251c7daa7a9e00c85ebdc7.zip"
                         },
                         "environment": {
                           "variables": {
@@ -11711,7 +11711,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getWorkshopStudents.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -11730,7 +11730,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -11877,7 +11877,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "288732724a302c65a392a6f22b1fdcbeece04b5aaa4f21b61c0329a654ad4a8f.zip"
                         },
                         "environment": {
                           "variables": {
@@ -11930,7 +11930,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteWorkshop.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -11949,7 +11949,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -12096,7 +12096,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "ebadfb04fe9af8c663c69c8c497a420e911105e0efb3ccedf6c0b42ad826ac4a.zip"
                         },
                         "environment": {
                           "variables": {
@@ -12149,7 +12149,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getWorkshopsByIncharge.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -12168,7 +12168,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -12315,7 +12315,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "81f554b93dc921efd22cdfbc9a323ad6618a8577140f02cb0724dcbcfa8cd993.zip"
                         },
                         "environment": {
                           "variables": {
@@ -12368,7 +12368,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateStudentAttendance.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -12387,7 +12387,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -12534,7 +12534,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "23024722cfc012c4cc9eb8356108b6cb9b736a477e189b93a4b1d90f70d96ab3.zip"
                         },
                         "environment": {
                           "variables": {
@@ -12587,7 +12587,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "registerStudentPut.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -12606,7 +12606,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -12753,7 +12753,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c7a7fbca5ef9c5b986cb078c45108961eac7d7a682c3514e94e87d5fe6a93aa1.zip"
+                          "s3Key": "6d1c7c2d0d48cfed98f759c1a607d4c95e62b49e79a6eb422e1a1a7433329e6a.zip"
                         },
                         "environment": {
                           "variables": {
@@ -12806,7 +12806,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateWorkshop.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -12825,7 +12825,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -12972,7 +12972,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cafe91757f1738323310c2f14f66d16c469eb548fe16d80b03c525d9f727e8d8.zip"
+                          "s3Key": "d29f04d2333c0b3ec7560d7043db197776ff355d47f9335175e394424479408c.zip"
                         },
                         "environment": {
                           "variables": {
@@ -13025,7 +13025,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createCourse.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -13044,7 +13044,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -13191,7 +13191,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cafe91757f1738323310c2f14f66d16c469eb548fe16d80b03c525d9f727e8d8.zip"
+                          "s3Key": "6505eba7dd8f756fefb08b0153935f9b7124bf13508ec3037829d70a987f22e7.zip"
                         },
                         "environment": {
                           "variables": {
@@ -13244,7 +13244,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listCourses.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -13263,7 +13263,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -13410,7 +13410,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cafe91757f1738323310c2f14f66d16c469eb548fe16d80b03c525d9f727e8d8.zip"
+                          "s3Key": "6f8aba991f63827e2baea08e92745ff3d05d52f9d6a7270e298e0db372174f97.zip"
                         },
                         "environment": {
                           "variables": {
@@ -13463,7 +13463,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getCourseById.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -13482,7 +13482,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -13629,7 +13629,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cafe91757f1738323310c2f14f66d16c469eb548fe16d80b03c525d9f727e8d8.zip"
+                          "s3Key": "162e20bdbcb03174da5e516a24a740890b65280d305043a72c0cb5aa45583c51.zip"
                         },
                         "environment": {
                           "variables": {
@@ -13682,7 +13682,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateCourse.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -13701,7 +13701,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -13848,7 +13848,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cafe91757f1738323310c2f14f66d16c469eb548fe16d80b03c525d9f727e8d8.zip"
+                          "s3Key": "0038bc5a94c42549f195f1b56b8c0a6fc2239ffbe402ff3f147eb55a5beeb1bc.zip"
                         },
                         "environment": {
                           "variables": {
@@ -13901,7 +13901,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteCourse.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -13920,7 +13920,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -14067,7 +14067,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cb99d4529d272111595e5c12f563d4b78b0dff804582f6bef02f5fd37cb2519c.zip"
+                          "s3Key": "8e758e513208d40636f629c64101d46bbed0230b31551c7bca9e22bc3088f18c.zip"
                         },
                         "environment": {
                           "variables": {
@@ -14120,7 +14120,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createDemo.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -14139,7 +14139,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -14286,7 +14286,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cb99d4529d272111595e5c12f563d4b78b0dff804582f6bef02f5fd37cb2519c.zip"
+                          "s3Key": "911ba092cd0613f60979e65159381beb372af9255b49d88b6933ddeecb13695f.zip"
                         },
                         "environment": {
                           "variables": {
@@ -14339,7 +14339,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listDemos.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -14358,7 +14358,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -14505,7 +14505,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "cb99d4529d272111595e5c12f563d4b78b0dff804582f6bef02f5fd37cb2519c.zip"
+                          "s3Key": "0c43da5ecb16c7770bfc0842924245cb01fa90b4696c3859c32036e431653e18.zip"
                         },
                         "environment": {
                           "variables": {
@@ -14558,7 +14558,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "markDemoBooked.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -14577,7 +14577,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -14763,7 +14763,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "84051d74ed1806cb373905ad6ab08429c14605090476bc3b8fd6d60674addc86.zip"
+                          "s3Key": "88708dbb822e3b3fac5990c6558c9fdd379a0c0c63e53e3d4b4874a73fe4193a.zip"
                         },
                         "environment": {
                           "variables": {
@@ -14816,7 +14816,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "transcribe.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -14835,7 +14835,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -15002,7 +15002,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "f49598b361d9db453665f5a10f24b4c79603578f203bf11284a1581d21d36485.zip"
+                          "s3Key": "f4a43d31ed0f334683aa850a54943a0bd474c4cee843c99eac9815278f544c7c.zip"
                         },
                         "environment": {
                           "variables": {
@@ -15055,7 +15055,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createTicket.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -15074,7 +15074,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -15241,7 +15241,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "f49598b361d9db453665f5a10f24b4c79603578f203bf11284a1581d21d36485.zip"
+                          "s3Key": "cc05a2faf6c381e4e69e6855caafcdcfe9da05b8cf29a611d4d57d2cdc4e7f6e.zip"
                         },
                         "environment": {
                           "variables": {
@@ -15294,7 +15294,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "listTickets.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -15313,7 +15313,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -15480,7 +15480,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "f49598b361d9db453665f5a10f24b4c79603578f203bf11284a1581d21d36485.zip"
+                          "s3Key": "b737f43707759d85bd959c1853b135a1d2222c93f2a16fc1266e868ac9f7a175.zip"
                         },
                         "environment": {
                           "variables": {
@@ -15533,7 +15533,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateTicket.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -15552,7 +15552,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -15731,7 +15731,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "382ff13094bcae0e52c1a644e11621b00aa41c1eeff73b20fcfc8c0818f41a02.zip"
+                          "s3Key": "5744e0f6b8a8867f7fe50a6984bf2ef771b0b91c3a7ae2e4aebe8680e926ff9e.zip"
                         },
                         "environment": {
                           "variables": {
@@ -15784,7 +15784,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getRankings.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -15803,7 +15803,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -15958,7 +15958,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "6f81f7e09443a39f948d64bec36fd578a8638b6580666133dab99b73d6ea30c2.zip"
+                          "s3Key": "0432f0ae76fcab4766e39e116dd107cf4e978f1e1ed34a115cfc7b40f8ee2c22.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16011,7 +16011,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getProgress.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -16030,7 +16030,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -16185,7 +16185,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "6f81f7e09443a39f948d64bec36fd578a8638b6580666133dab99b73d6ea30c2.zip"
+                          "s3Key": "82158afbf49fa866e6de04aa3d4eb1d66fe3ef805d0df08dc7a5a32131924333.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16238,7 +16238,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "watchProgress.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -16257,7 +16257,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -16404,7 +16404,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "dd638f0ecf6b878915a86d9a7c5b4619fb1738b5e9ad5c949151de34e09de775.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16457,7 +16457,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getJobs.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -16476,7 +16476,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -16623,7 +16623,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "2e694ae6dc45330dc20b6262424aa345b7a1881796ba2bb0871f518a70f04469.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16676,7 +16676,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "createJob.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -16695,7 +16695,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -16842,7 +16842,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "14ca4eee73e3aa08e32605348da416fec728437d491dcec44f443195a8976085.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16895,7 +16895,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateJob.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -16914,7 +16914,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -17061,7 +17061,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "cbfdd75d783f04655d599d07185cc43b5eedd0280ec166c9d472d79e2532a75e.zip"
                         },
                         "environment": {
                           "variables": {
@@ -17114,7 +17114,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateJobStatus.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -17133,7 +17133,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -17280,7 +17280,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "05287242c1d39c2c0d750c9b77cb2f0e792d1df2de4ea2ca29c42dc6fa3ea9b9.zip"
                         },
                         "environment": {
                           "variables": {
@@ -17333,7 +17333,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "deleteJob.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -17352,7 +17352,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -17499,7 +17499,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "c4ef3ff9166b00085f7f02d3946d874107626c99ec6d0e62127b2c92e516b3a3.zip"
                         },
                         "environment": {
                           "variables": {
@@ -17552,7 +17552,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "applyForJob.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -17571,7 +17571,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -17718,7 +17718,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a78eeca5a7925f7a50572bbf60418949c03d681ce6c721eebaad4b1da5dd77e2.zip"
+                          "s3Key": "2c337f490e125ae28557119f70b2d24cf2e153f8220cff2eb66705dd5db71754.zip"
                         },
                         "environment": {
                           "variables": {
@@ -17771,7 +17771,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getLatestLandingPage.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -17790,7 +17790,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -17945,7 +17945,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "a3054d9cebce96f018a19e5f45f9e6dec93c7f4be50d97736405f0391b35813c.zip"
                         },
                         "environment": {
                           "variables": {
@@ -17998,7 +17998,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "register.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -18017,7 +18017,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -18172,7 +18172,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "1a2c67bbf7303fd69cd0f8200d9a7ddc9a1f1e8b25827a542cbdf5d8021774be.zip"
                         },
                         "environment": {
                           "variables": {
@@ -18225,7 +18225,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "homepage.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -18244,7 +18244,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -18399,7 +18399,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "c0e187dc203dc68b2c69fe348dec051a36e14d29d9cc0d5f8961af9c4319b2cb.zip"
                         },
                         "environment": {
                           "variables": {
@@ -18452,7 +18452,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getResumeData.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -18471,7 +18471,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -18626,7 +18626,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "1f7eea0b74665ef71ccb5c917e836d368a69c68938985b278294d301d422bd73.zip"
                         },
                         "environment": {
                           "variables": {
@@ -18679,7 +18679,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateCompletedSubcourses.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -18698,7 +18698,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -18853,7 +18853,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "a435a4c1338d28e29b7cff8a6367c47fa59e25f8ac35ac72488067fa74f345ff.zip"
                         },
                         "environment": {
                           "variables": {
@@ -18906,7 +18906,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "setAlert.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -18925,7 +18925,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -19080,7 +19080,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "36427c988be8dc87747da2d6b12795f900a3fc97341c0e3f448bedcc3b2fdcda.zip"
                         },
                         "environment": {
                           "variables": {
@@ -19133,7 +19133,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateProfile.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -19152,7 +19152,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -19307,7 +19307,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "47cec10cd90b2913e546eedba8022266905bc281bbf2ed8a2bc16542a9b4cff1.zip"
                         },
                         "environment": {
                           "variables": {
@@ -19360,7 +19360,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getProfile.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -19379,7 +19379,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -19534,7 +19534,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "470cd9e1db50441482d79354b43d1be53d8f7d51d1d2fa4a524585983ae077ca.zip"
                         },
                         "environment": {
                           "variables": {
@@ -19587,7 +19587,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateProjects.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -19606,7 +19606,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -19761,7 +19761,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "d0785c45f51678987735c46fe506b69e7176405abb4da9b3a7de48816e2912a1.zip"
                         },
                         "environment": {
                           "variables": {
@@ -19814,7 +19814,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "addPracticeResult.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -19833,7 +19833,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -19988,7 +19988,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "6a8406716a38187423c8a993fd21ca0db2ecdd426ff41fa228ab251d1272e74d.zip"
                         },
                         "environment": {
                           "variables": {
@@ -20041,7 +20041,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getPracticeHistory.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -20060,7 +20060,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -20215,7 +20215,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "cc00420d6148f85eceb8096b20de8cbcaa3e87616aaa24f6ee5c045103c260be.zip"
                         },
                         "environment": {
                           "variables": {
@@ -20268,7 +20268,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getStreakData.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -20287,7 +20287,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -20442,7 +20442,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "8ece354432e808c2f31fda0267d5f192a0f2ab1e26825628ee5f87c32730220d.zip"
                         },
                         "environment": {
                           "variables": {
@@ -20495,7 +20495,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateStreakData.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -20514,7 +20514,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -20669,7 +20669,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "6da3fe4e442abdf848f229a08a19b0b6c2a49e2a86e01b61c48d80bbbcc544ad.zip"
                         },
                         "environment": {
                           "variables": {
@@ -20722,7 +20722,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateCourseCompletion.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -20741,7 +20741,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -20896,7 +20896,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "29638700a2703360142d261c3af60901eb215195cc3a96caa8862c3633b87de7.zip"
                         },
                         "environment": {
                           "variables": {
@@ -20949,7 +20949,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "saveQuestion.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -20968,7 +20968,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -21123,7 +21123,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "77fbda045c05477dcca47716789ab068129cb18225ffe720288c77016506f0c1.zip"
                         },
                         "environment": {
                           "variables": {
@@ -21176,7 +21176,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getSavedQuestions.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -21195,7 +21195,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -21350,7 +21350,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "b5c424053d7dc770a67e415dc4d03c0d6b5cdfed09813f2c05e1a1398f4b364e.zip"
                         },
                         "environment": {
                           "variables": {
@@ -21403,7 +21403,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getJudge0Key.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -21422,7 +21422,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -21577,7 +21577,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "bcb4417ed1d0f656f877888129961262441f43718bd3ae1001e15fcf0a945427.zip"
                         },
                         "environment": {
                           "variables": {
@@ -21630,7 +21630,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "updateJudge0Key.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -21649,7 +21649,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -21804,7 +21804,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "2fea6584ab493ee0cdc3c26b83bbafd349ff2db3c3e2bab62b50c31d429acdff.zip"
                         },
                         "environment": {
                           "variables": {
@@ -21857,7 +21857,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "saveKey.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -21876,7 +21876,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -22031,7 +22031,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "815cf8ff93b685ea3eee7c077f06d8e2038be1c7041174d3c4ad58a20ec35722.zip"
                         },
                         "environment": {
                           "variables": {
@@ -22084,7 +22084,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "getKey.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -22103,7 +22103,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -22258,7 +22258,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "0ae68bde773e9f8aa0cb05a714c9bb2fcdbbcd3d897bd5c6800e88af1b1645f9.zip"
                         },
                         "environment": {
                           "variables": {
@@ -22311,7 +22311,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "mockQuestions.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -22330,7 +22330,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -22485,7 +22485,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "8d0b74b8f1547a46924bb5283e0e4786974323049f65d8434905096eaac11f6b.zip"
                         },
                         "environment": {
                           "variables": {
@@ -22538,7 +22538,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "login.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -22557,7 +22557,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -22712,7 +22712,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "74a4222f6fb77fc2cb3193d91b81130502d5b883fa323c4b77f9ef63df8863fb.zip"
+                          "s3Key": "c2be8bf418d0795f12877116a40d304d26e14904a8f536ca2265fe8ab946915f.zip"
                         },
                         "environment": {
                           "variables": {
@@ -22765,7 +22765,7 @@
                             "ADMIN_JWT_SECRET": "admin-secret-key"
                           }
                         },
-                        "handler": "googleLogin.handler",
+                        "handler": "index.handler",
                         "memorySize": 512,
                         "role": {
                           "Fn::GetAtt": [
@@ -22784,7 +22784,7 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
                   "version": "2.151.0"
                 }
               },
@@ -23843,7 +23843,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/ba3f73c34faba404ddcbb6d687b44aa9f4cf2609633753334217fd0b5704b4ab.json"
+                          "/abd8880508d4086623d64c7f134697a7cae8fd2d48cfeaf6d96ac518dd2993bc.json"
                         ]
                       ]
                     }

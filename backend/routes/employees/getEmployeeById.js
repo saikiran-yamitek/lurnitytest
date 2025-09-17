@@ -1,9 +1,9 @@
-import { getEmployee } from "../../models/Employee.js";
+import { getEmployeeById } from "../../models/Employee.js";
 
 export const handler = async (event) => {
   try {
     const { id } = event.pathParameters || {};
-    const employee = await getEmployee(id);
+    const employee = await getEmployeeById(id);
 
     if (!employee) {
       return {

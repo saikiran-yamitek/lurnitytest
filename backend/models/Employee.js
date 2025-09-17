@@ -146,3 +146,5 @@ export const verifyEmployeePassword = async (employee, password) => {
   }
   return bcrypt.compare(password, employee.password);
 };
+
+export { getAllEmployees as listEmployees };

@@ -1,14 +1,14 @@
 // models/Demo.js
 // DynamoDB helpers for Demo bookings
 // Requires: process.env.DEMO_TABLE_NAME
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import {
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const {
   DynamoDBDocumentClient,
   PutCommand,
   ScanCommand,
   UpdateCommand,
-} from "@aws-sdk/lib-dynamodb";
-import crypto from "crypto";
+} = require("@aws-sdk/lib-dynamodb");
+const crypto = require("crypto");
 
 const REGION = process.env.AWS_REGION || "us-east-1";
 const TABLE = process.env.DEMO_TABLE_NAME;
@@ -18,7 +18,7 @@ if (!TABLE) throw new Error("DEMO_TABLE_NAME env var is required");
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({ region: REGION }));
 
 /** Create a demo booking */
-export async function createDemo(data = {}) {
+async function createDemo(data = {}) {
   const id = data.id || crypto.randomUUID();
   const now = new Date().toISOString();
 
@@ -35,7 +35,7 @@ export async function createDemo(data = {}) {
 }
 
 /** List all demo bookings (latest first) */
-export async function listDemos() {
+async function listDemos() {
   const result = await ddb.send(new ScanCommand({ TableName: TABLE }));
 
   const items = (result.Items || []).sort(
@@ -46,7 +46,7 @@ export async function listDemos() {
 }
 
 /** Mark a demo booking as booked */
-export async function markDemoBooked(demoId) {
+async function markDemoBooked(demoId) {
   if (!demoId) throw new Error("demoId required");
 
   const now = new Date().toISOString();
@@ -69,7 +69,7 @@ export async function markDemoBooked(demoId) {
   return res.Attributes ?? null;
 }
 
-export default {
+module.exports = {
   createDemo,
   listDemos,
   markDemoBooked,

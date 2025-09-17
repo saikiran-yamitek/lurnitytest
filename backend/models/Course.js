@@ -104,6 +104,22 @@ export async function deleteCourse(courseId) {
   return true;
 }
 
+export async function countCourses() {
+  const res = await ddb.send(new ScanCommand({ TableName: TABLE, Select: "COUNT" }));
+  return res.Count ?? 0;
+}
+
+export async function checkSubCourseExists(courseId, subCourseId) {
+  const course = await getCourseById(courseId);
+  if (!course || !course.subCourses) return false;
+  return course.subCourses.some(sc => sc.id === subCourseId);
+}
+
+export async function findCourseById(courseId) {
+  return getCourseById(courseId);
+}
+
+
 export default {
   calcTotalMinutes,
   createCourse,
@@ -111,4 +127,8 @@ export default {
   getCourseById,
   updateCourse,
   deleteCourse,
+  countCourses,
+  checkSubCourseExists,
+  findCourseById,
 };
+

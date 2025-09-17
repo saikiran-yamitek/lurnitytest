@@ -1,6 +1,6 @@
 // backend/routes/admin/exportUsersCsv.js
 import { listUsers } from "../../models/User.js";
-import { convertToCSV, exportUsersToS3 } from "../../utils/csvExport.js";
+import { convertToCSV } from "../../utils/csvExport.js";
 
 export const handler = async (event) => {
   try {

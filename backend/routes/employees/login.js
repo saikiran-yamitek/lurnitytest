@@ -1,4 +1,4 @@
-import { getEmployeeByUsername, verifyEmployeePassword } from "../../../models/Employee.js";
+import { getEmployeeByUsername, verifyEmployeePassword } from "../../models/Employee.js";
 
 export const handler = async (event) => {
   try {

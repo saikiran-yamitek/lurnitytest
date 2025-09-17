@@ -1,5 +1,6 @@
 const cdk = require("aws-cdk-lib");
 const lambda = require("aws-cdk-lib/aws-lambda");
+const lambdaNodejs = require("aws-cdk-lib/aws-lambda-nodejs");
 const path = require("path");
 
 class LambdaNestedStack extends cdk.NestedStack {
@@ -26,15 +27,16 @@ class LambdaNestedStack extends cdk.NestedStack {
     const userLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "user");
     const transcribeLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "transcribe");
 
-    const makeLambda = (idSuffix, filename, assetPath) =>
-      new lambda.Function(this, idSuffix, {
-        runtime: lambda.Runtime.NODEJS_18_X,
-        handler: `${filename}.handler`,
-        code: lambda.Code.fromAsset(assetPath),
-        environment: lambdaEnv,
-        timeout: cdk.Duration.seconds(30),
-        memorySize: 512,
-      });
+   const makeLambda = (idSuffix, filename, assetPath) =>
+  new lambdaNodejs.NodejsFunction(this, idSuffix, {
+    entry: path.join(assetPath, `${filename}.js`), // direct entry file
+    handler: "handler",                            // exported function name
+    runtime: lambda.Runtime.NODEJS_18_X,
+    environment: lambdaEnv,
+    timeout: cdk.Duration.seconds(30),
+    memorySize: 512,
+  });
+
 
     // Move all your Lambda functions here (copy from your original file)
     this.listUsersLambda = makeLambda("ListUsersLambda", "listUsers", adminLambdaPath);
@@ -73,7 +75,7 @@ class LambdaNestedStack extends cdk.NestedStack {
 
     // Employee lambdas
     this.createEmployeeLambda = makeLambda("CreateEmployeeLambda", "createEmployee", employeesLambdaPath);
-    this.listEmployeesLambda = makeLambda("ListEmployeesLambda", "listEmployees", employeesLambdaPath);
+    this.listEmployeesLambda = makeLambda("ListEmployeesLambda", "getAllEmployees", employeesLambdaPath);
     this.getEmployeeByIdLambda = makeLambda("GetEmployeeByIdLambda", "getEmployeeById", employeesLambdaPath);
     this.updateEmployeeLambda = makeLambda("UpdateEmployeeLambda", "updateEmployee", employeesLambdaPath);
     this.deleteEmployeeLambda = makeLambda("DeleteEmployeeLambda", "deleteEmployee", employeesLambdaPath);
@@ -128,7 +130,7 @@ class LambdaNestedStack extends cdk.NestedStack {
 
     // Progress lambdas
     this.getProgressLambda = makeLambda("GetProgressLambda", "getProgress", progressLambdaPath);
-    this.watchProgressLambda = makeLambda("WatchProgressLambda", "watchProgress", progressLambdaPath);
+    this.watchProgressLambda = makeLambda("WatchProgressLambda", "watch", progressLambdaPath);
 
     // Landing page jobs lambdas
     this.getJobsLambda = makeLambda("GetJobsLambda", "getJobs", landingPageLambdaPath);

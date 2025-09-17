@@ -1,11 +1,11 @@
-import { applyForJob } from "../../models/LandingPage.js";
+import { applyToJob } from "../../models/LandingPage.js";
 
 export const handler = async (event) => {
   try {
     const { jobId } = event.pathParameters;
     const application = JSON.parse(event.body);
 
-    const result = await applyForJob(jobId, application);
+    const result = await applyToJob(jobId, application);
 
     return result
       ? { statusCode: 201, body: JSON.stringify(result) }

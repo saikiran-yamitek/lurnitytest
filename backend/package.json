@@ -21,7 +21,8 @@
     "puppeteer": "^24.15.0",
     "socket.io": "^4.8.1",
     "tmp": "^0.2.3",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

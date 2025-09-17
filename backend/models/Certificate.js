@@ -101,3 +101,10 @@ export async function checkCertificateExists(userId, subCourseTitle) {
   );
   return result.Items?.some((c) => c.subCourseTitle === subCourseTitle);
 }
+
+export { generateCertificate as createCertificate };
+export { getCertificateById as findCertificate };
+export { getAllCertificates as listCertificates };
+export { getCertificateById as findCertificateById };
+export { getCertificatesByUserId as listCertificatesByUserId };
+export { checkCertificateExists as certificateExists };

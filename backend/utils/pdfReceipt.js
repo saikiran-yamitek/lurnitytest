@@ -22,3 +22,20 @@ export function generateReceiptStream(user) {
   doc.end();
   return doc;
 }
+
+export async function generateAndUploadReceipt(receiptData) {
+  // generate the PDF
+  const pdf = await createPdfReceipt(receiptData);
+
+  // upload to S3 (example using AWS SDK v3)
+  const s3 = new S3Client();
+  await s3.send(new PutObjectCommand({
+    Bucket: process.env.RECEIPTS_BUCKET,
+    Key: `receipts/${receiptData.id}.pdf`,
+    Body: pdf,
+    ContentType: "application/pdf",
+  }));
+
+  return `s3://${process.env.RECEIPTS_BUCKET}/receipts/${receiptData.id}.pdf`;
+}
+
