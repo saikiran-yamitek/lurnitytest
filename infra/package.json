@@ -1,6 +1,7 @@
 {
   "name": "lms-infra",
   "version": "0.1.0",
+  "type": "module", 
   "bin": {
     "lms-infra": "bin/lurnitylms.js"
   },

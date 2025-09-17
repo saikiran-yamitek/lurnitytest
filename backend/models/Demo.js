@@ -1,14 +1,14 @@
 // models/Demo.js
 // DynamoDB helpers for Demo bookings
 // Requires: process.env.DEMO_TABLE_NAME
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const {
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import {
   DynamoDBDocumentClient,
   PutCommand,
   ScanCommand,
   UpdateCommand,
-} = require("@aws-sdk/lib-dynamodb");
-const crypto = require("crypto");
+} from "@aws-sdk/lib-dynamodb";
+import crypto from "crypto";
 
 const REGION = process.env.AWS_REGION || "us-east-1";
 const TABLE = process.env.DEMO_TABLE_NAME;
@@ -69,7 +69,7 @@ async function markDemoBooked(demoId) {
   return res.Attributes ?? null;
 }
 
-module.exports = {
+export {
   createDemo,
   listDemos,
   markDemoBooked,

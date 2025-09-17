@@ -1,7 +1,11 @@
-const cdk = require("aws-cdk-lib");
-const lambda = require("aws-cdk-lib/aws-lambda");
-const lambdaNodejs = require("aws-cdk-lib/aws-lambda-nodejs");
-const path = require("path");
+import * as cdk from "aws-cdk-lib";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as lambdaNodejs from "aws-cdk-lib/aws-lambda-nodejs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class LambdaNestedStack extends cdk.NestedStack {
   constructor(scope, id, props) {
@@ -10,35 +14,74 @@ class LambdaNestedStack extends cdk.NestedStack {
     const { lambdaEnv } = props;
 
     // Lambda paths
-    const adminLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "admin");
-    const adminAuthLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "adminAuth");
-    const landingPageLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "landingPage");
-    const certificatesLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "certificates");
-    const companiesLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "companies");
-    const employeesLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "employees");
-    const feedbackLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "feedback");
-    const placementLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "placement");
-    const workshopLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "workshop");
-    const coursesLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "courses");
-    const demoLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "demo");
-    const ticketsLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "tickets");
-    const rankingsLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "rankings");
-    const progressLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "progress");
-    const userLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "user");
-    const transcribeLambdaPath = path.join(__dirname,"..", "..", "backend", "routes", "transcribe");
+    const adminLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "admin");
+    const adminAuthLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "adminAuth");
+    const landingPageLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "landingPage");
+    const certificatesLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "certificates");
+    const companiesLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "companies");
+    const employeesLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "employees");
+    const feedbackLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "feedback");
+    const placementLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "placement");
+    const workshopLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "workshop");
+    const coursesLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "courses");
+    const demoLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "demo");
+    const ticketsLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "tickets");
+    const rankingsLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "rankings");
+    const progressLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "progress");
+    const userLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "user");
+    const transcribeLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "transcribe");
 
-   const makeLambda = (idSuffix, filename, assetPath) =>
+    // Unified makeLambda function for consistent Lambda creation
+    // Unified makeLambda function for consistent Lambda creation
+  const makeLambda = (idSuffix, filename, assetPath) =>
   new lambdaNodejs.NodejsFunction(this, idSuffix, {
-    entry: path.join(assetPath, `${filename}.js`), // direct entry file
-    handler: "handler",                            // exported function name
+    entry: path.join(assetPath, `${filename}.js`),
+    handler: "handler", // your handler must be exported as: export const handler = ...
     runtime: lambda.Runtime.NODEJS_18_X,
     environment: lambdaEnv,
     timeout: cdk.Duration.seconds(30),
     memorySize: 512,
+    bundling: {
+      minify: false,
+      sourceMap: false,
+      target: "es2020",
+      format: "esm",                // produce ESM bundle
+      mainFields: ["module", "main"],
+      externalModules: ["aws-sdk"], // keep AWS SDK external (Lambda provides it)
+      // Inject a banner that creates a require() for dynamic requires (async_hooks etc.)
+      esbuildArgs: {
+        "--banner:js": "import { createRequire } from 'module'; globalThis.require = createRequire(import.meta.url);"
+      },
+      // Use local bundling (no Docker). CDK by default will try local bundling when possible.
+      // We DON'T override local.tryBundle here (so Docker won't be forced).
+      commandHooks: {
+        beforeBundling: () => [],
+        beforeInstall: () => [],
+        // afterBundling runs locally; write package.json into the actual outputDir
+        afterBundling: (inputDir, outputDir) => {
+          // Build the safe command to write package.json to the outputDir
+          const pkgPath = path.join(outputDir, "package.json");
+          const content = JSON.stringify({ type: "module" });
+
+          // escape backslashes for Windows cmd
+          const safePkgPath = pkgPath.replace(/\\/g, "\\\\");
+          const safeContent = content.replace(/"/g, '\\"');
+
+          // Use node to write the file; pass file path + content as argv to avoid quoting issues
+          return [
+            `node -e "require('fs').writeFileSync(process.argv[1], process.argv[2])" "${safePkgPath}" "${safeContent}"`
+          ];
+        }
+      }
+    },
   });
 
 
-    // Move all your Lambda functions here (copy from your original file)
+
+
+
+
+    // Admin lambdas
     this.listUsersLambda = makeLambda("ListUsersLambda", "listUsers", adminLambdaPath);
     this.updateUserLambda = makeLambda("UpdateUserLambda", "updateUser", adminLambdaPath);
     this.deleteUserLambda = makeLambda("DeleteUserLambda", "deleteUser", adminLambdaPath);
@@ -112,8 +155,10 @@ class LambdaNestedStack extends cdk.NestedStack {
     this.updateCoursePublicLambda = makeLambda("UpdateCoursePublicLambda", "updateCourse", coursesLambdaPath);
     this.deleteCoursePublicLambda = makeLambda("DeleteCoursePublicLambda", "deleteCourse", coursesLambdaPath);
 
-    // Demo lambdas
-    this.createDemoLambda = makeLambda("CreateDemoLambda", "createDemo", demoLambdaPath);
+    // Demo lambdas - NOW USING UNIFIED APPROACH
+    // Replace raw lambda.Function with NodejsFunction bundling (ESM)
+this.createDemoLambda = makeLambda("CreateDemoLambda", "createDemo", demoLambdaPath);
+
     this.listDemosLambda = makeLambda("ListDemosLambda", "listDemos", demoLambdaPath);
     this.markDemoBookedLambda = makeLambda("MarkDemoBookedLambda", "markDemoBooked", demoLambdaPath);
 
@@ -173,4 +218,4 @@ class LambdaNestedStack extends cdk.NestedStack {
   }
 }
 
-module.exports = { LambdaNestedStack };
+export { LambdaNestedStack };

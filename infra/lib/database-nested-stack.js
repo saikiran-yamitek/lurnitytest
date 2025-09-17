@@ -1,5 +1,5 @@
-const cdk = require("aws-cdk-lib");
-const dynamodb = require("aws-cdk-lib/aws-dynamodb");
+import * as cdk from "aws-cdk-lib";
+import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 
 class DatabaseNestedStack extends cdk.NestedStack {
   constructor(scope, id, props) {
@@ -84,4 +84,4 @@ class DatabaseNestedStack extends cdk.NestedStack {
   }
 }
 
-module.exports = { DatabaseNestedStack };
+export { DatabaseNestedStack };

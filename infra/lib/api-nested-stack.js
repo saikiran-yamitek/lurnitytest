@@ -1,5 +1,5 @@
-const cdk = require("aws-cdk-lib");
-const apigateway = require("aws-cdk-lib/aws-apigateway");
+import * as cdk from "aws-cdk-lib";
+import * as apigateway from "aws-cdk-lib/aws-apigateway";
 
 class ApiNestedStack extends cdk.NestedStack {
   constructor(scope, id, props) {
@@ -206,4 +206,4 @@ class ApiNestedStack extends cdk.NestedStack {
   }
 }
 
-module.exports = { ApiNestedStack };
+export { ApiNestedStack };

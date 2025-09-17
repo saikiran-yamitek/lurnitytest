@@ -3,7 +3,7 @@
 const API = `${process.env.REACT_APP_API_URL}/api`;
 
 export const register = (data) =>
-  fetch(`${API}/register`, {
+  fetch(`${API}/user/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

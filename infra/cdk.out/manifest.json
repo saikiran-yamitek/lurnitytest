@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/69dd00b72d02615fcffce98dceca56781f8be25ca8f286454de43f02586219a5.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/b6a463613962aaa55204617a446ff99cf25157c5fc352574d0ce13c0098f1f18.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -302,6 +302,24 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "If you are relying on AWS SDK v2 to be present in the Lambda environment already, please explicitly configure a NodeJS runtime of Node 16 or lower. [ack: @aws-cdk/aws-lambda-nodejs:sdkV2NotInRuntime]",
+            "trace": [
+              "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
+              "Annotations.addWarningV2 (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:825)",
+              "new Bundling (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\aws-lambda-nodejs\\lib\\bundling.js:1:3534)",
+              "Bundling.bundle (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\aws-lambda-nodejs\\lib\\bundling.js:1:991)",
+              "new NodejsFunction (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\aws-lambda-nodejs\\lib\\function.js:1:2171)",
+              "makeLambda (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:37:3)",
+              "new LambdaNestedStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:85:28)",
+              "new LurnityLmsStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lurnitylms-stack.js:56:25)",
+              "file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/bin/lurnity.js:17:1",
+              "ModuleJob.run (node:internal/modules/esm/module_job:194:25)"
+            ]
           }
         ],
         "/LurnityLmsStack/LambdaNestedStack/ListUsersLambda/ServiceRole/Resource": [

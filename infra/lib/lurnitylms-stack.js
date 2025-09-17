@@ -1,28 +1,33 @@
-const path = require("path");
-const cdk = require("aws-cdk-lib");
-const s3 = require("aws-cdk-lib/aws-s3");
-const dotenv = require("dotenv");
-const { Construct } = require("constructs");
-const { DatabaseNestedStack } = require("./database-nested-stack");
-const { LambdaNestedStack } = require("./lambda-nested-stack");
-const { ApiNestedStack } = require("./api-nested-stack");
+import path from "path";
+import { fileURLToPath } from "url"; // <-- required for ES module __dirname
+import * as cdk from "aws-cdk-lib";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import dotenv from "dotenv";
+import { DatabaseNestedStack } from "./database-nested-stack.js";
+import { LambdaNestedStack } from "./lambda-nested-stack.js";
+import { ApiNestedStack } from "./api-nested-stack.js";
 
+// Recreate __dirname in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load backend .env file
 dotenv.config({ path: path.join(__dirname, "../../backend/.env") });
 
 class LurnityLmsStack extends cdk.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    // S3 Bucket (stays in main stack)
+    // S3 Bucket
     const assetBucket = new s3.Bucket(this, process.env.S3_BUCKET, {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
 
-    // Create database nested stack
+    // Database nested stack
     const databaseStack = new DatabaseNestedStack(this, 'DatabaseNestedStack');
 
-    // Create lambda environment
+    // Lambda environment variables
     const lambdaEnv = {
       REGION: process.env.AWS_REGION,
       USER_TABLE_NAME: databaseStack.userTable.tableName,
@@ -47,17 +52,17 @@ class LurnityLmsStack extends cdk.Stack {
       ADMIN_JWT_SECRET: process.env.ADMIN_JWT_SECRET || "admin-secret-key",
     };
 
-    // Create lambda nested stack
+    // Lambda nested stack
     const lambdaStack = new LambdaNestedStack(this, 'LambdaNestedStack', {
-      lambdaEnv: lambdaEnv
+      lambdaEnv
     });
 
-    // Create API nested stack
+    // API nested stack
     const apiStack = new ApiNestedStack(this, 'ApiNestedStack', {
       lambdas: lambdaStack
     });
 
-    // Grant permissions (same as before)
+    // Grant permissions (same as original code)
     [lambdaStack.listUsersLambda, lambdaStack.updateUserLambda, lambdaStack.deleteUserLambda, lambdaStack.exportUsersCsvLambda, lambdaStack.setUserLockLambda].forEach(l => databaseStack.userTable.grantFullAccess(l));
     [lambdaStack.createTransactionLambda, lambdaStack.listUserTransactionsLambda].forEach(l => { databaseStack.transactionTable.grantFullAccess(l); databaseStack.userTable.grantFullAccess(l); });
     [lambdaStack.listCoursesLambda, lambdaStack.createCourseLambda, lambdaStack.updateCourseLambda, lambdaStack.deleteCourseLambda].forEach(l => databaseStack.courseTable.grantFullAccess(l));
@@ -153,4 +158,4 @@ class LurnityLmsStack extends cdk.Stack {
   }
 }
 
-module.exports = { LurnityLmsStack };
+export { LurnityLmsStack };
