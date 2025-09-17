@@ -254,7 +254,7 @@ export default function Home() {
       } catch {}
 
       try {
-        const u = await fetchJSON(`${API}/api/homepage`);
+        const u = await fetchJSON(`${API}/api/user/homepage`);
         setUser(u);
         await fetchLabs(u.id);
         
