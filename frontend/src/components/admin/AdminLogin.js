@@ -47,7 +47,7 @@ export default function AdminLogin() {
       setIsLoading(true);
       setShowAuthWarning(false);
       
-      const res = await fetch(`${API}/api/admin/login`, {
+      const res = await fetch(`${API}/api/admin/auth`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pendingCredentials),

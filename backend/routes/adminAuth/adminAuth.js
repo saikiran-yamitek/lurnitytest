@@ -1,33 +1,30 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { getAdminByUsername } from "../../models/AdminLogin.js"; // helper from AdminLogin.js
+import { getAdminByUsername } from "../../models/AdminLogin.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const body = event.body ? JSON.parse(event.body) : {};
     const { username, password } = body;
 
     if (!username || !password) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ message: "All fields are required" }),
-      };
+      return createResponse(400, { message: "All fields are required" });
     }
 
     const admin = await getAdminByUsername(username);
     if (!admin) {
-      return {
-        statusCode: 401,
-        body: JSON.stringify({ message: "Invalid credentials" }),
-      };
+      return createResponse(401, { message: "Invalid credentials" });
     }
 
     const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) {
-      return {
-        statusCode: 401,
-        body: JSON.stringify({ message: "Invalid credentials" }),
-      };
+      return createResponse(401, { message: "Invalid credentials" });
     }
 
     const token = jwt.sign(
@@ -36,15 +33,9 @@ export const handler = async (event) => {
       { expiresIn: "1d" }
     );
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ token }),
-    };
+    return createResponse(200, { token });
   } catch (err) {
     console.error("Login error:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: "Server error" }),
-    };
+    return createResponse(500, { message: "Server error" });
   }
 };
