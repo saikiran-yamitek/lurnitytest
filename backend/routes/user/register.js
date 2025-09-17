@@ -1,18 +1,24 @@
 import { createUser, findUserByEmail } from "../../models/User.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const body = JSON.parse(event.body);
     const { name, email, password, phone } = body;
 
     const existing = await findUserByEmail(email);
     if (existing) {
-      return { statusCode: 400, body: JSON.stringify({ msg: "User already exists" }) };
+      return createResponse(400, { msg: "User already exists" });
     }
 
     await createUser({ id: Date.now().toString(), name, email, password, phone });
-    return { statusCode: 201, body: JSON.stringify({ msg: "User registered successfully" }) };
+    return createResponse(201, { msg: "User registered successfully" });
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ msg: "Registration error", error: err.message }) };
+    return createResponse(500, { msg: "Registration error", error: err.message });
   }
 };

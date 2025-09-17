@@ -11539,7 +11539,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "31297a8ed2cd2545c0138e63c1c37183f4f1ab005d063e820ea6d108596eb579.zip"
+     "S3Key": "3fa74eaae98201a552d78aea7adf939cf95f2eecefe1e921dedd1da6342681fb.zip"
     },
     "Environment": {
      "Variables": {
@@ -11609,7 +11609,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterUserLambda/Resource",
-    "aws:asset:path": "asset.31297a8ed2cd2545c0138e63c1c37183f4f1ab005d063e820ea6d108596eb579",
+    "aws:asset:path": "asset.3fa74eaae98201a552d78aea7adf939cf95f2eecefe1e921dedd1da6342681fb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
