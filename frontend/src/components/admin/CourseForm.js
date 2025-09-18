@@ -57,38 +57,78 @@ export default class CourseForm extends Component {
   };
 
   async componentDidMount() {
+    console.log('🚀 CourseForm component mounting...');
     const { id } = this.props.match.params;
 
     if (id) {
-      const course = (await listCourses()).find((c) => c._id === id);
-      if (course) this.setState(course);
+      try {
+        console.log('📚 Loading course with ID:', id);
+        const coursesResponse = await listCourses();
+        console.log('📚 Courses API response:', coursesResponse);
+        
+        // ✅ FIXED: Extract courses array from response
+        const courses = Array.isArray(coursesResponse) 
+          ? coursesResponse 
+          : coursesResponse.items || [];
+        
+        console.log('📚 Extracted courses:', courses.length);
+        
+        // Find course by ID (handle both 'id' and '_id' fields)
+        const course = courses.find((c) => c.id === id || c._id === id);
+        
+        if (course) {
+          console.log('✅ Course found:', course);
+          this.setState(course);
+        } else {
+          console.warn('❌ Course not found with ID:', id);
+        }
 
-      if (
-        this.props.fromContent &&
-        course &&
-        course.status === "Published" &&
-        this.props.emp?.role !== "super"
-      ) {
-        alert("Only Super Admin can edit a Published course.");
-        return this.props.history.push("/employee/content");
+        if (
+          this.props.fromContent &&
+          course &&
+          course.status === "Published" &&
+          this.props.emp?.role !== "super"
+        ) {
+          alert("Only Super Admin can edit a Published course.");
+          return this.props.history.push("/employee/content");
+        }
+      } catch (err) {
+        console.error("❌ Failed to load course:", err);
       }
     }
 
+    // Load all subcourses with error handling
     try {
-      const allSubCourses = await listAllSubCourses();
+      console.log('📚 Loading all subcourses...');
+      const allSubCoursesResponse = await listAllSubCourses();
+      const allSubCourses = Array.isArray(allSubCoursesResponse) 
+        ? allSubCoursesResponse 
+        : allSubCoursesResponse.items || [];
+      
+      console.log('✅ All subcourses loaded:', allSubCourses.length);
       this.setState({ allSubCourses });
     } catch (err) {
-      console.error("Failed to load subcourses:", err);
+      console.error("❌ Failed to load subcourses:", err);
+      this.setState({ allSubCourses: [] });
     }
 
+    // Load employees/instructors with error handling
     try {
-      const emps = await listEmployees();
-      const instructors = emps
+      console.log('👨‍💼 Loading employees...');
+      const employeesResponse = await listEmployees();
+      const employees = Array.isArray(employeesResponse) 
+        ? employeesResponse 
+        : employeesResponse.items || [];
+      
+      const instructors = employees
         .filter(e => e.role === "instructor")
         .map(e => e.name);
+      
+      console.log('✅ Instructors loaded:', instructors.length);
       this.setState({ instructors });
     } catch (err) {
-      console.error("Failed to load instructors:", err);
+      console.error("❌ Failed to load instructors:", err);
+      this.setState({ instructors: [] });
     }
   }
 
@@ -161,13 +201,22 @@ export default class CourseForm extends Component {
     try {
       this.setState({ saving: true });
       const { id } = this.props.match.params;
-      id ? await updateCourse(id, this.state) : await createCourse(this.state);
+      
+      console.log('💾 Saving course...', { id, state: this.state });
+      
+      if (id) {
+        await updateCourse(id, this.state);
+        console.log('✅ Course updated successfully');
+      } else {
+        await createCourse(this.state);
+        console.log('✅ Course created successfully');
+      }
 
       this.props.history.push(
         this.props.fromContent ? "/employee/content" : "/admin/courses"
       );
     } catch (err) {
-      console.error(err);
+      console.error('❌ Save failed:', err);
       alert("Save failed — check console.");
       this.setState({ saving: false });
     }
@@ -176,7 +225,8 @@ export default class CourseForm extends Component {
   render() {
     const {
       title, instructor, overallDuration, status,
-      subCourses, saving, instructors
+      subCourses, saving, instructors, showImportModal,
+      allSubCourses, selectedSubId, uploading
     } = this.state;
 
     const canTranscript =
@@ -211,11 +261,11 @@ export default class CourseForm extends Component {
 
         {/* Main Form Card */}
         <div className="form-card">
-          {saving && (
+          {(saving || uploading) && (
             <div className="saving-overlay">
               <div className="saving-content">
                 <div className="saving-spinner"></div>
-                <p>Saving course...</p>
+                <p>{saving ? "Saving course..." : "Uploading video..."}</p>
               </div>
             </div>
           )}
@@ -539,17 +589,17 @@ export default class CourseForm extends Component {
               <button 
                 type="submit" 
                 className="submit-btn"
-                disabled={saving}
+                disabled={saving || uploading}
               >
                 <FiSave />
-                {saving ? "Saving Course..." : "Save Course"}
+                {saving ? "Saving Course..." : uploading ? "Uploading..." : "Save Course"}
               </button>
             </div>
           </form>
         </div>
 
         {/* Import Modal */}
-        {this.state.showImportModal && (
+        {showImportModal && (
           <div className="modal-backdrop">
             <div className="modal-card">
               <div className="modal-header">
@@ -562,11 +612,11 @@ export default class CourseForm extends Component {
                   <label className="form-label">Available Modules</label>
                   <select 
                     className="form-select"
-                    value={this.state.selectedSubId}
+                    value={selectedSubId}
                     onChange={e => this.setState({ selectedSubId: e.target.value })}
                   >
                     <option value="">-- Select Module --</option>
-                    {this.state.allSubCourses.map((sc, i) => (
+                    {allSubCourses.map((sc, i) => (
                       <option key={i} value={i}>
                         {sc.title} ({sc.parentCourse})
                       </option>
