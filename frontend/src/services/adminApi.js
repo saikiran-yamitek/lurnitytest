@@ -1,8 +1,5 @@
-
 const API = `${process.env.REACT_APP_API_URL}/api/admin`;
 const API_URL = `${process.env.REACT_APP_API_URL}/api/employees`;
-
-
 
 // Utility to include Authorization header
 const authHeaders = () => ({
@@ -87,10 +84,7 @@ export const logTransaction = (id, data) =>
     body: JSON.stringify(data),
   }).then(res => res.json());
 
-
-
 /* ---------- Generate Receipt (PDF) ---------- */
-// services/adminApi.js
 export const generateReceipt = async id => {
   const res = await fetch(`${API}/users/${id}/receipt`, {
     headers: {
@@ -99,16 +93,15 @@ export const generateReceipt = async id => {
     }
   });
   if (!res.ok) throw new Error(await res.text());
-  return res.blob();           // valid Blob of PDF
+  return res.blob();
 };
 
-
-
-
-
+/* ---------- Employees ---------- */
 // Fetch all employees
 export const listEmployees = async () => {
-  const res = await fetch(API_URL);
+  const res = await fetch(API_URL, {
+    headers: authHeaders(),
+  });
   if (!res.ok) throw new Error('Failed to fetch employees');
   return await res.json();
 };
@@ -117,7 +110,7 @@ export const listEmployees = async () => {
 export const createEmployee = async (data) => {
   const res = await fetch(API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify(data)
   });
   if (!res.ok) throw new Error('Failed to create employee');
@@ -128,7 +121,7 @@ export const createEmployee = async (data) => {
 export const updateEmployee = async (id, data) => {
   const res = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders(),
     body: JSON.stringify(data)
   });
   if (!res.ok) throw new Error('Failed to update employee');
@@ -138,13 +131,16 @@ export const updateEmployee = async (id, data) => {
 // Delete an employee
 export const deleteEmployee = async (id) => {
   const res = await fetch(`${API_URL}/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: authHeaders(),
   });
   if (!res.ok) throw new Error('Failed to delete employee');
 };
 
-
-export const getEmployee     = (id) => fetch(`${API}/employees/${id}`).then(r => r.json());
+export const getEmployee = (id) => 
+  fetch(`${API}/employees/${id}`, {
+    headers: authHeaders(),
+  }).then(r => r.json());
 
 export const saveEmployee = async (id, data) => {
   const res = await fetch(`${API_URL}${id ? `/${id}` : ""}`, {
@@ -156,14 +152,14 @@ export const saveEmployee = async (id, data) => {
   return await res.json();
 };
 
-
+/* ---------- Tickets ---------- */
 export const listTickets = () =>
   fetch(`${API}/tickets`, { headers: authHeaders() }).then((r) => r.json());
 
 export const updateTicket = (id, body) =>
   fetch(`${API}/tickets/${id}`, {
     method: "PATCH",
-    headers: { ...authHeaders(), "Content-Type": "application/json" },
+    headers: authHeaders(),
     body: JSON.stringify(body),
   }).then((r) => r.json());
 
@@ -173,19 +169,22 @@ export const deleteTicket = (id) =>
     headers: authHeaders(),
   }).then((r) => (r.status === 204 ? { ok: true } : r.json()));
 
+/* ---------- Profile Lock ---------- */
 export async function toggleProfileLock(id, status) {
-  const res = await fetch(`/api/admin/users/${id}/lock`, {
+  const res = await fetch(`${API}/users/${id}/lock`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeaders(),
     body: JSON.stringify({ lockStatus: status })
   });
   if (!res.ok) throw new Error("Failed to update lock");
   return await res.json();
 }
 
-// services/adminApi.js
+/* ---------- Cohorts ---------- */
 export const listCohorts = async () => {
-  const response = await fetch('/api/admin/landingpage/cohorts');
+  const response = await fetch(`${API}/landingpage/cohorts`, {
+    headers: authHeaders(),
+  });
   if (!response.ok) {
     throw new Error('Failed to fetch cohorts');
   }
@@ -193,11 +192,9 @@ export const listCohorts = async () => {
 };
 
 export const createCohort = async (cohortData) => {
-  const response = await fetch('/api/admin/landingpage/cohorts', {
+  const response = await fetch(`${API}/landingpage/cohorts`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: authHeaders(),
     body: JSON.stringify(cohortData)
   });
   if (!response.ok) {
@@ -207,11 +204,9 @@ export const createCohort = async (cohortData) => {
 };
 
 export const updateCohort = async (id, cohortData) => {
-  const response = await fetch(`/api/admin/landingpage/cohorts/${id}`, {
+  const response = await fetch(`${API}/landingpage/cohorts/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: authHeaders(),
     body: JSON.stringify(cohortData)
   });
   if (!response.ok) {
@@ -221,13 +216,12 @@ export const updateCohort = async (id, cohortData) => {
 };
 
 export const deleteCohort = async (id) => {
-  const response = await fetch(`/api/admin/landingpage/cohorts/${id}`, {
-    method: 'DELETE'
+  const response = await fetch(`${API}/landingpage/cohorts/${id}`, {
+    method: 'DELETE',
+    headers: authHeaders(),
   });
   if (!response.ok) {
     throw new Error('Failed to delete cohort');
   }
   return response.json();
 };
-
-
