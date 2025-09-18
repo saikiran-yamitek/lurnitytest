@@ -148,8 +148,8 @@ const StudentProfilePage = () => {
         setFormData(prev => ({
           ...prev,
           ...data.user,
-          name: data.name || data.ircName || "",
-          geminiApiKey: data.geminiApiKey || "",
+          name: data.user.name || data.ircName || "",
+          geminiApiKey: data.user.geminiApiKey || "",
           photo: data.photoURL,
           photoURL: data.photoURL ?
             (data.photoURL.startsWith('data:image')
