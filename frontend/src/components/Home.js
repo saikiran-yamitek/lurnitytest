@@ -13,7 +13,6 @@ import "./Home.css";
 import StreakWidget from "./StreakWidget";
 import SavedQuestions from "./SavedQuestions";
 
-
 const API = process.env.REACT_APP_API_URL;
 const idOf = (cId, sIdx, vIdx) => `${cId}|${sIdx}|${vIdx}`;
 
@@ -31,6 +30,19 @@ export default function Home() {
   const [pendingLabToRegister, setPendingLabToRegister] = useState(null);
   const [showRegistrationSuccess, setShowRegistrationSuccess] = useState(false);
   const [registrationMessage, setRegistrationMessage] = useState("");
+
+  // ✅ FIXED: Safe array helper function
+  const getSafeArray = (data, fallbackKeys = ['items', 'data', 'results']) => {
+    if (Array.isArray(data)) return data;
+    
+    for (const key of fallbackKeys) {
+      if (data && Array.isArray(data[key])) {
+        return data[key];
+      }
+    }
+    
+    return [];
+  };
 
   const isSidebarLocked = (user) => {
     return user?.status === "banned" || !user?.course;
@@ -61,11 +73,18 @@ export default function Home() {
     const allVideosWatched = videoIds.every(id => watched.includes(id));
     
     if (prevSubCourse.lab === "Yes") {
-      const lab = labs.find(l => l.subCourseId === prevSubCourse._id);
-      const labCompleted = lab?.registeredStudents?.some(
-        r => r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
-      );
-      return !(allVideosWatched && labCompleted);
+      // ✅ FIXED: Safe array operations
+      const safeLabs = getSafeArray(labs);
+      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse._id);
+      
+      if (lab) {
+        const registeredStudents = getSafeArray(lab.registeredStudents);
+        const labCompleted = registeredStudents.some(
+          r => r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
+        );
+        return !(allVideosWatched && labCompleted);
+      }
+      return true;
     }
     
     return !allVideosWatched;
@@ -112,18 +131,27 @@ export default function Home() {
     if (!course || !watched || !course.subCourses) return 0;
     let totalItems = 0;
     let completedItems = 0;
-    course.subCourses.forEach((sc, sIdx) => {
+    
+    const safeCourse = course.subCourses || [];
+    const safeLabs = getSafeArray(labs);
+    
+    safeCourse.forEach((sc, sIdx) => {
       const videoIds = sc.videos?.map((_, vIdx) => idOf(course._id, sIdx, vIdx)) || [];
       const completed = videoIds.filter(id => watched.includes(id)).length;
       totalItems += videoIds.length;
       completedItems += completed;
+      
       if (sc.lab === "Yes") {
         totalItems += 1;
         const normalize = (s) => s?.trim().toLowerCase();
-        const labEntry = labs.find((lab) => lab.subCourseId === sc._id);
-        const regEntry = labEntry?.registeredStudents?.find(r => r.student === user?.id);
-        const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
-        if (labPassed) completedItems += 1;
+        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc._id);
+        
+        if (labEntry) {
+          const registeredStudents = getSafeArray(labEntry.registeredStudents);
+          const regEntry = registeredStudents.find(r => r.student === user?.id);
+          const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
+          if (labPassed) completedItems += 1;
+        }
       }
     });
     return totalItems ? Math.round((completedItems / totalItems) * 100) : 0;
@@ -180,13 +208,19 @@ export default function Home() {
   const helpRef = useRef(null);
   const helpBtnRef = useRef(null);
 
+  // ✅ FIXED: Safe fetchLabs function
   const fetchLabs = async (userId) => {
     try {
       const res = await fetch(`${API}/api/workshops`, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       });
       const data = await res.json();
-      setLabs(data);
+      console.log('🔍 Labs API response:', data);
+      
+      // Handle both array and object responses
+      const safeLabs = getSafeArray(data, ['items', 'workshops']);
+      console.log('✅ Safe labs array:', safeLabs);
+      setLabs(safeLabs);
     } catch (err) {
       console.error("Error fetching labs", err);
       setLabs([]);
@@ -206,26 +240,32 @@ export default function Home() {
     }
   }, []);
 
+  // ✅ FIXED: Safe user registration functions
   const isUserRegisteredForSubcourse = (subCourseId) => {
-    return labs.some(lab => 
-      lab.subCourseId === subCourseId && 
-      lab.registeredStudents?.some(r => r.student === user?.id)
-    );
+    const safeLabs = getSafeArray(labs);
+    return safeLabs.some(lab => {
+      if (lab.subCourseId !== subCourseId) return false;
+      const registeredStudents = getSafeArray(lab.registeredStudents);
+      return registeredStudents.some(r => r.student === user?.id);
+    });
   };
 
   const getUserRegistrationForSubcourse = (subCourseId) => {
-    const lab = labs.find(lab => 
-      lab.subCourseId === subCourseId && 
-      lab.registeredStudents?.some(r => r.student === user?.id)
-    );
+    const safeLabs = getSafeArray(labs);
+    const lab = safeLabs.find(lab => {
+      if (lab.subCourseId !== subCourseId) return false;
+      const registeredStudents = getSafeArray(lab.registeredStudents);
+      return registeredStudents.some(r => r.student === user?.id);
+    });
     
     if (lab) {
-      return lab.registeredStudents.find(r => r.student === user?.id);
+      const registeredStudents = getSafeArray(lab.registeredStudents);
+      return registeredStudents.find(r => r.student === user?.id);
     }
     return null;
   };
 
-  // All useEffect hooks remain the same...
+  // All useEffect hooks with fixes...
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -250,7 +290,8 @@ export default function Home() {
 
     (async () => {
       try {
-        setWatched(await fetchJSON(`${API}/api/progress`));
+        const watchedData = await fetchJSON(`${API}/api/progress`);
+        setWatched(Array.isArray(watchedData) ? watchedData : []);
       } catch {}
 
       try {
@@ -276,10 +317,17 @@ export default function Home() {
         if (u.status === "suspended") return setNote("Your account is suspended. Please contact your mentor.");
         if (!u.course) return setNote("Course yet to be decided. Please wait for admin enrolment.");
 
-        const all = await fetchJSON(`${API}/api/courses`);
-        const found = all.find(
+        // ✅ FIXED: Safe courses handling
+        const coursesResponse = await fetchJSON(`${API}/api/courses`);
+        console.log('🔍 Courses API response:', coursesResponse);
+        
+        const allCourses = getSafeArray(coursesResponse, ['items', 'courses']);
+        console.log('✅ Safe courses array:', allCourses);
+        
+        const found = allCourses.find(
           (c) => c._id === u.course || c.title?.toLowerCase() === u.course?.toLowerCase()
         );
+        
         if (!found)
           return setNote(`No course titled "${u.course}" found. Please contact admin.`);
         setCourse(found);
@@ -734,10 +782,17 @@ export default function Home() {
                       if (hasLab) {
                         total += 1;
                         const normalize = (s) => s?.trim().toLowerCase();
-                        const labEntry = labs.find((lab) => lab.subCourseId === sc._id);
-                        const regEntry = labEntry?.registeredStudents?.find(r => r.student === user?.id);
-                        const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
-                        if (labPassed) completed += 1;
+                        
+                        // ✅ FIXED: Safe array operations for lab processing
+                        const safeLabs = getSafeArray(labs);
+                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc._id);
+                        
+                        if (labEntry) {
+                          const registeredStudents = getSafeArray(labEntry.registeredStudents);
+                          const regEntry = registeredStudents.find(r => r.student === user?.id);
+                          const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
+                          if (labPassed) completed += 1;
+                        }
                       }
 
                       const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -927,60 +982,66 @@ export default function Home() {
               </div>
 
               <div className="lms-labs-grid">
-                {labs.filter((lab) =>
-                  lab.registeredStudents?.some((r) => r.student === user?.id)
-                ).length === 0 ? (
-                  <div className="lms-empty-state">
-                    <FiTool className="lms-empty-icon" />
-                    <h3>No Registered Labs</h3>
-                    <p>You haven't registered for any lab sessions yet.</p>
-                  </div>
-                ) : (
-                  labs
-                    .filter((lab) =>
-                      lab.registeredStudents?.some((r) => r.student === user?.id)
-                    )
-                    .map((lab) => {
-                      const reg = lab.registeredStudents.find((r) => r.student === user?.id);
-                      const result = reg?.result?.toLowerCase() || "pending";
+                {(() => {
+                  // ✅ FIXED: Safe filtering for registered labs
+                  const safeLabs = getSafeArray(labs);
+                  const registeredLabs = safeLabs.filter((lab) => {
+                    const registeredStudents = getSafeArray(lab.registeredStudents);
+                    return registeredStudents.some((r) => r.student === user?.id);
+                  });
 
-                      return (
-                        <div key={lab._id} className="lms-luxury-lab-card">
-                          <div className="lms-lab-card-backdrop"></div>
-                          <div className="lms-lab-card-content">
-                            <div className="lms-lab-header">
-                              <div className="lms-lab-icon">
-                                <FiTool />
-                              </div>
-                              <div className="lms-lab-info">
-                                <h4 className="lms-lab-name">{lab.labName}</h4>
-                                <p className="lms-lab-address">{lab.labAddress}</p>
-                                <p className="lms-lab-time">
-                                  {new Date(lab.time).toLocaleDateString('en-US', {
-                                    weekday: 'long',
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric'
-                                  })}
-                                </p>
-                              </div>
+                  if (registeredLabs.length === 0) {
+                    return (
+                      <div className="lms-empty-state">
+                        <FiTool className="lms-empty-icon" />
+                        <h3>No Registered Labs</h3>
+                        <p>You haven't registered for any lab sessions yet.</p>
+                      </div>
+                    );
+                  }
+
+                  return registeredLabs.map((lab) => {
+                    const registeredStudents = getSafeArray(lab.registeredStudents);
+                    const reg = registeredStudents.find((r) => r.student === user?.id);
+                    const result = reg?.result?.toLowerCase() || "pending";
+
+                    return (
+                      <div key={lab._id} className="lms-luxury-lab-card">
+                        <div className="lms-lab-card-backdrop"></div>
+                        <div className="lms-lab-card-content">
+                          <div className="lms-lab-header">
+                            <div className="lms-lab-icon">
+                              <FiTool />
                             </div>
-                            <div className="lms-lab-footer">
-                              <div className="lms-lab-badges">
-                                <span className={`lms-lab-badge attendance ${reg?.attendance === true ? 'present' : reg?.attendance === false ? 'absent' : 'pending'}`}>
-                                  {reg?.attendance === true ? "Present" : 
-                                   reg?.attendance === false ? "Absent" : "Pending"}
-                                </span>
-                                <span className={`lms-lab-badge result ${result}`}>
-                                  {result === "pass" ? "Passed" : result === "fail" ? "Failed" : "Pending"}
-                                </span>
-                              </div>
+                            <div className="lms-lab-info">
+                              <h4 className="lms-lab-name">{lab.labName}</h4>
+                              <p className="lms-lab-address">{lab.labAddress}</p>
+                              <p className="lms-lab-time">
+                                {new Date(lab.time).toLocaleDateString('en-US', {
+                                  weekday: 'long',
+                                  year: 'numeric',
+                                  month: 'long',
+                                  day: 'numeric'
+                                })}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="lms-lab-footer">
+                            <div className="lms-lab-badges">
+                              <span className={`lms-lab-badge attendance ${reg?.attendance === true ? 'present' : reg?.attendance === false ? 'absent' : 'pending'}`}>
+                                {reg?.attendance === true ? "Present" : 
+                                 reg?.attendance === false ? "Absent" : "Pending"}
+                              </span>
+                              <span className={`lms-lab-badge result ${result}`}>
+                                {result === "pass" ? "Passed" : result === "fail" ? "Failed" : "Pending"}
+                              </span>
                             </div>
                           </div>
                         </div>
-                      );
-                    })
-                )}
+                      </div>
+                    );
+                  });
+                })()}
               </div>
             </section>
           )}
@@ -1029,7 +1090,9 @@ export default function Home() {
                     );
                   }
 
-                  const matchingLabs = labs.filter(
+                  // ✅ FIXED: Safe filtering for matching labs
+                  const safeLabs = getSafeArray(labs);
+                  const matchingLabs = safeLabs.filter(
                     (lab) => lab.subCourseId === selectedSubcourse._id
                   );
 
@@ -1044,9 +1107,10 @@ export default function Home() {
                   }
 
                   return matchingLabs.map((lab) => {
-                    const isRegistered = lab.registeredStudents?.some((r) => r.student === userId);
+                    const registeredStudents = getSafeArray(lab.registeredStudents);
+                    const isRegistered = registeredStudents.some((r) => r.student === userId);
                     const labTime = new Date(lab.time).toLocaleString();
-                    const currentRegistrations = lab.registeredStudents?.length || 0;
+                    const currentRegistrations = registeredStudents.length;
                     const isFull = currentRegistrations >= lab.memberCount;
 
                     const handleRegister = async () => {

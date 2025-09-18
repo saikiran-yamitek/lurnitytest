@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/082606512a5977420e4be7c842d0d13429a2afa76730e57510a56fd6e8bd4ba5.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/53897d2bda1fc538cab97fa7417b70e015d37fa3505556b7b9bc49677b419395.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -2578,16 +2578,46 @@
             "data": "LurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
           }
         ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn"
-          }
-        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackSetAlertLambdaA99601CEArn": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsStackLambdaNestedStackSetAlertLambdaA99601CEArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn"
           }
         ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateProfileLambdaFB1D0E82Arn": [
@@ -2600,6 +2630,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsStackLambdaNestedStackGetProfileLambdaCC90E37DArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn"
           }
         ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateProjectsLambda7DD706BCArn": [
@@ -2632,42 +2668,6 @@
             "data": "LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn"
           }
         ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn"
-          }
-        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetJudge0KeyLambda5174CACCArn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2689,7 +2689,7 @@
         "/LurnityLmsStack/ApiNestedStack": [
           {
             "type": "aws:cdk:info",
-            "data": "Number of resources: 406 is approaching allowed maximum of 500",
+            "data": "Number of resources: 408 is approaching allowed maximum of 500",
             "trace": [
               "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
               "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
@@ -2730,7 +2730,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F2bafb6a165bff3efb834457b2bb39b1a7"
+            "data": "LurnityLmsApiDeployment658DA5F2c71603432fbeca39a3911ebba2c3af83"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -4659,36 +4659,6 @@
             "data": "LurnityLmsApiapiuserresumeGETFE27759A"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/completedSubcourses/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercompletedSubcoursesAA80945A"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/completedSubcourses/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercompletedSubcoursesOPTIONS08E04484"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/completedSubcourses/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.completedSubcourses": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercompletedSubcoursesPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiusercompletedSubcoursesAC0CA6B4"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/completedSubcourses/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.completedSubcourses": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercompletedSubcoursesPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiusercompletedSubcourses2DFB396D"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/completedSubcourses/PUT/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercompletedSubcoursesPUT14F1FA09"
-          }
-        ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/alert/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -4717,282 +4687,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsApiapiuseralertPOST049A551E"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofile54CD9CE4"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofileOPTIONS97175756"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.profile": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofilePUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuserprofile51B31048"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.profile": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofilePUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuserprofile72E4248F"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/PUT/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofilePUT8602EEFC"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.profile": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofileGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserprofile9BBBAF2E"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.profile": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofileGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserprofileDA27A780"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/profile/GET/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprofileGET4BDE86A1"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/projects/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprojectsE59B170A"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/projects/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprojectsOPTIONSA25A8CC3"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/projects/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.projects": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprojectsPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuserprojects182F31ED"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/projects/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.projects": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprojectsPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuserprojectsD015B468"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/projects/PUT/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserprojectsPUTB124ED38"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceResult/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeResult132134F3"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceResult/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeResultOPTIONS8C2C2E62"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceResult/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.practiceResult": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeResultPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserpracticeResultEE40F79D"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceResult/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.practiceResult": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeResultPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserpracticeResultC685753A"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceResult/POST/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeResultPOST9D994DA6"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceHistory/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeHistory5A449BA8"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceHistory/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeHistoryOPTIONS0921F17A"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceHistory/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.practiceHistory": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeHistoryGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserpracticeHistory9FAD22DC"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceHistory/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.practiceHistory": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeHistoryGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserpracticeHistoryEB385F43"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/practiceHistory/GET/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserpracticeHistoryGET27AA2D1B"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakData3D5CFC84"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakDataOPTIONSF5FD26C2"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.streakData": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakDataGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserstreakDataB6A75C73"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.streakData": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakDataGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserstreakData3EB302B2"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/GET/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakDataGET92B6476F"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.streakData": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakDataPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuserstreakDataF7BE0A7C"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.streakData": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakDataPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuserstreakData482D4F5C"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/streakData/PUT/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuserstreakDataPUT05B177E1"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/courseCompletion/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercourseCompletion2E4F6155"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/courseCompletion/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercourseCompletionOPTIONS075A7301"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/courseCompletion/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.courseCompletion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercourseCompletionPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiusercourseCompletion1066CD60"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/courseCompletion/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.courseCompletion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercourseCompletionPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiusercourseCompletionF739C309"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/courseCompletion/PUT/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusercourseCompletionPUTCFFF74F7"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersaveQuestion044FB4A0"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersaveQuestionOPTIONS19F7F2B0"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.saveQuestion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersaveQuestionPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiusersaveQuestion690883B1"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.saveQuestion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersaveQuestionPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiusersaveQuestion92D07B95"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/POST/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersaveQuestionPOSTF37BFD3D"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersavedQuestions79205DB3"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersavedQuestionsOPTIONS9D38FE04"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersavedQuestionsGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiusersavedQuestionsBF910061"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersavedQuestionsGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiusersavedQuestions75515A7E"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiusersavedQuestionsGET5482EA5A"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/save-key/Resource": [
@@ -5083,6 +4777,324 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsApiapiusermockquestionsPOST08D97B18"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersaveQuestion044FB4A0"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersaveQuestionOPTIONS19F7F2B0"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.saveQuestion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersaveQuestionPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiusersaveQuestion690883B1"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.saveQuestion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersaveQuestionPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiusersaveQuestion92D07B95"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersaveQuestionPOSTF37BFD3D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersavedQuestions79205DB3"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersavedQuestionsOPTIONS9D38FE04"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersavedQuestionsGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiusersavedQuestionsBF910061"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersavedQuestionsGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiusersavedQuestions75515A7E"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiusersavedQuestionsGET5482EA5A"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserid20370AEA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridOPTIONSC05C40F9"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/courseCompletion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcourseCompletionB782C044"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/courseCompletion/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcourseCompletionOPTIONS117350C1"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/courseCompletion/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.courseCompletion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcourseCompletionPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridcourseCompletionDD91E6B4"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/courseCompletion/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.courseCompletion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcourseCompletionPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridcourseCompletion4B54AB3B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/courseCompletion/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcourseCompletionPUTCE399AAD"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofile4C9F6316"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofileOPTIONS732C26A0"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.profile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofilePUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprofile79156351"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.profile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofilePUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprofileC7137F80"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofilePUT69C9351B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.profile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofileGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridprofile711DB22D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.profile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofileGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridprofileA87BCBBD"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/profile/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprofileGET2BEB3223"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/completedSubcourses/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcompletedSubcoursesAA416622"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/completedSubcourses/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcompletedSubcoursesOPTIONS6C821DED"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/completedSubcourses/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.completedSubcourses": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcompletedSubcoursesPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridcompletedSubcoursesAC341C13"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/completedSubcourses/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.completedSubcourses": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcompletedSubcoursesPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridcompletedSubcourses48892346"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/completedSubcourses/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridcompletedSubcoursesPUT4BC183BE"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprojects6229CE7B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprojectsOPTIONSF7D782FA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprojectsPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprojects5E18E835"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprojectsPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprojects5D93CE31"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridprojectsPUT750AF469"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceResult/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeResult17711546"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceResult/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeResultOPTIONS0445129A"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceResult/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceResult": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeResultPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridpracticeResult0BB015E4"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceResult/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceResult": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeResultPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridpracticeResult5FC2BA58"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceResult/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeResultPOSTCD0025BA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistory55640ED3"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistoryOPTIONS2F686757"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.practiceHistory": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistoryGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridpracticeHistory56548316"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.practiceHistory": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistoryGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridpracticeHistoryBEB2900D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistoryGET52ECAEBA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakData2957EAA2"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakDataOPTIONSBF9E9388"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.streakData": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakDataGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridstreakDataC845BEB7"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.streakData": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakDataGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridstreakData639B87F9"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakDataGET1AA5408D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.streakData": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakDataPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridstreakData10B0468D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.streakData": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakDataPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridstreakData748D17C9"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridstreakDataPUTE018EE8D"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/key/Resource": [
@@ -5523,16 +5535,46 @@
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn"
-          }
-        ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSetAlertLambdaA99601CEArn": [
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetAlertLambdaA99601CEArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateProfileLambdaFB1D0E82Arn": [
@@ -5545,6 +5587,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetProfileLambdaCC90E37DArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCompletedSubcoursesLambdaB8E45E49Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateProjectsLambda7DD706BCArn": [
@@ -5575,42 +5623,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSaveKeyLambdaC1842653Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetKeyLambdaB30AD760Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackMockQuestionsLambdaD3A939F5Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetJudge0KeyLambda5174CACCArn": [
