@@ -7,8 +7,6 @@ import {
   listCourses, exportCSV, logTransaction, generateReceipt, toggleProfileLock
 } from '../../services/adminApi';
 
-
-
 import {
   FiDownloadCloud, FiEdit2, FiSave, FiX,
   FiTrash2, FiFileText, FiUsers, FiSearch,
@@ -25,8 +23,25 @@ class Users extends Component {
   };
 
   async componentDidMount() {
-    const [users, courses] = await Promise.all([listUsers(), listCourses()]);
-    this.setState({ users, filtered: users, courses });
+    // Load users independently - this should always work
+    try {
+      const users = await listUsers();
+      console.log('✅ Users loaded successfully:', users.length);
+      this.setState({ users, filtered: users });
+    } catch (error) {
+      console.error('❌ Failed to load users:', error);
+      this.setState({ users: [], filtered: [] });
+    }
+
+    // Load courses independently - won't affect users if it fails
+    try {
+      const courses = await listCourses();
+      console.log('✅ Courses loaded successfully:', courses.length);
+      this.setState(prevState => ({ ...prevState, courses }));
+    } catch (error) {
+      console.error('❌ Failed to load courses (users still work):', error);
+      this.setState(prevState => ({ ...prevState, courses: [] }));
+    }
   }
 
   /* ---------- edit helpers ---------- */
