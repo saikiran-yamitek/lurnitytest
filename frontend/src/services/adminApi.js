@@ -1,6 +1,7 @@
 
 const API = `${process.env.REACT_APP_API_URL}/api/admin`;
 const API_URL = `${process.env.REACT_APP_API_URL}/api/employees`;
+const APII = `${process.env.REACT_APP_API_URL}/api`;
 
 
 // Utility to include Authorization header
@@ -47,26 +48,26 @@ export const deleteUser = (id) =>
 
 /* ---------- Courses ---------- */
 export const listCourses = () =>
-  fetch(`${API}/courses`, {
+  fetch(`${APII}/courses`, {
     headers: authHeaders(),
   }).then(res => res.json());
 
 export const createCourse = (data) =>
-  fetch(`${API}/courses`, {
+  fetch(`${APII}/courses`, {
     method: 'POST',
     headers: authHeaders(),
     body: JSON.stringify(data),
   }).then(res => res.json());
 
 export const updateCourse = (id, data) =>
-  fetch(`${API}/courses/${id}`, {
+  fetch(`${APII}/courses/${id}`, {
     method: 'PUT',
     headers: authHeaders(),
     body: JSON.stringify(data),
   }).then(res => res.json());
 
 export const deleteCourse = (id) =>
-  fetch(`${API}/courses/${id}`, {
+  fetch(`${APII}/courses/${id}`, {
     method: 'DELETE',
     headers: authHeaders(),
   }).then(res => res.json());
