@@ -30,7 +30,10 @@ class Users extends Component {
       const usersResponse = await listUsers();
       console.log('👥 Users response:', usersResponse);
       
-      const usersArray = Array.isArray(usersResponse) ? usersResponse : [];
+      // ✅ FIXED: Extract users array from response.items
+      const usersArray = usersResponse.items || [];
+      console.log('✅ Users extracted:', usersArray.length, usersArray);
+      
       this.setState({ 
         users: usersArray, 
         filtered: usersArray 
@@ -46,7 +49,10 @@ class Users extends Component {
       const coursesResponse = await listCourses();
       console.log('📚 Courses response:', coursesResponse);
       
-      const coursesArray = Array.isArray(coursesResponse) ? coursesResponse : [];
+      // ✅ FIXED: Extract courses array from response.items
+      const coursesArray = coursesResponse.items || [];
+      console.log('✅ Courses extracted:', coursesArray.length);
+      
       this.setState(prevState => ({ 
         ...prevState, 
         courses: coursesArray 
@@ -62,27 +68,38 @@ class Users extends Component {
   }
 
   /* ---------- edit helpers ---------- */
-  startEdit = u => this.setState({ editId: u._id, form: { ...u } });
+  // ✅ FIXED: Use 'id' instead of '_id' to match API response
+  startEdit = u => this.setState({ editId: u.id, form: { ...u } });
   cancel = () => this.setState({ editId: null });
   change = e => this.setState({ form: { ...this.state.form, [e.target.name]: e.target.value } });
 
   save = async id => {
-    const up = await updateUser(id, this.state.form);
-    await logTransaction(id, { amount: this.state.form.amountPaid, mode: this.state.form.paymentMode, date: new Date() });
-    this.setState(s => ({
-      users: s.users.map(u => u._id === id ? up : u),
-      filtered: s.filtered.map(u => u._id === id ? up : u),
-      editId: null
-    }));
+    try {
+      const up = await updateUser(id, this.state.form);
+      await logTransaction(id, { amount: this.state.form.amountPaid, mode: this.state.form.paymentMode, date: new Date() });
+      this.setState(s => ({
+        users: s.users.map(u => u.id === id ? up : u),
+        filtered: s.filtered.map(u => u.id === id ? up : u),
+        editId: null
+      }));
+    } catch (error) {
+      console.error('❌ Failed to save user:', error);
+      alert('Failed to save user: ' + error.message);
+    }
   };
 
   del = async id => {
     if (!window.confirm('Delete user?')) return;
-    await deleteUser(id);
-    this.setState(s => ({
-      users: s.users.filter(u => u._id !== id),
-      filtered: s.filtered.filter(u => u._id !== id)
-    }));
+    try {
+      await deleteUser(id);
+      this.setState(s => ({
+        users: s.users.filter(u => u.id !== id),
+        filtered: s.filtered.filter(u => u.id !== id)
+      }));
+    } catch (error) {
+      console.error('❌ Failed to delete user:', error);
+      alert('Failed to delete user: ' + error.message);
+    }
   };
 
   search = e => {
@@ -125,6 +142,7 @@ class Users extends Component {
 
     // Add safety check for filtered array
     const safeFiltered = Array.isArray(filtered) ? filtered : [];
+    console.log('🔍 Rendering users:', safeFiltered.length);
 
     return (
       <div className="users-page">
@@ -207,10 +225,10 @@ class Users extends Component {
                 {safeFiltered.map(u => {
                   const bal = (u.courseFee || 0) - (u.amountPaid || 0);
                   const prog = u.courseCompletion || 0;
-                  const isEd = editId === u._id;
+                  const isEd = editId === u.id; // ✅ FIXED: Use 'id' instead of '_id'
 
                   return (
-                    <tr key={u._id} className={`user-row ${isEd ? 'editing' : ''}`}>
+                    <tr key={u.id} className={`user-row ${isEd ? 'editing' : ''}`}>
                       {/* User Info */}
                       <td className="user-info-cell">
                         <div className="user-info">
@@ -236,6 +254,7 @@ class Users extends Component {
                               <>
                                 <div className="user-name">{u.name}</div>
                                 <div className="user-email">{u.email}</div>
+                                {u.phone && <div className="user-phone">{u.phone}</div>}
                               </>
                             )}
                           </div>
@@ -262,7 +281,7 @@ class Users extends Component {
                           <select name="course" className="edit-select" value={form.course || ''} onChange={this.change}>
                             <option value="">None</option>
                             {Array.isArray(courses) && courses.map(c => (
-                              <option key={c._id} value={c.title}>{c.title}</option>
+                              <option key={c.id || c._id} value={c.title}>{c.title}</option>
                             ))}
                           </select>
                         ) : (
@@ -393,7 +412,7 @@ class Users extends Component {
                             <div className="edit-actions">
                               <button
                                 className="action-btn save-btn"
-                                onClick={() => this.save(u._id)}
+                                onClick={() => this.save(u.id)}
                                 title="Save Changes"
                               >
                                 <FiSave />
@@ -417,28 +436,28 @@ class Users extends Component {
                               </button>
                               <button
                                 className="action-btn delete-btn"
-                                onClick={() => this.del(u._id)}
+                                onClick={() => this.del(u.id)}
                                 title="Delete User"
                               >
                                 <FiTrash2 />
                               </button>
                               <button
                                 className="action-btn receipt-btn"
-                                onClick={() => this.downloadReceipt(u._id)}
+                                onClick={() => this.downloadReceipt(u.id)}
                                 title="Download Receipt"
                               >
                                 <FiFileText />
                               </button>
                               <button
                                 className="action-btn certificate-btn"
-                                onClick={() => this.props.history.push(`/admin/certificates/${u._id}`)}
+                                onClick={() => this.props.history.push(`/admin/certificates/${u.id}`)}
                                 title="View Certificates"
                               >
                                 <FiAward />
                               </button>
                               <button
                                 className="action-btn resume-btn"
-                                onClick={() => this.props.history.push(`/admin/resume/${u._id}`)}
+                                onClick={() => this.props.history.push(`/admin/resume/${u.id}`)}
                                 title="Download Resume"
                               >
                                 <FiFile />
@@ -447,11 +466,15 @@ class Users extends Component {
                                 className={`action-btn lock-btn ${u.profileLock === 'locked' ? 'locked' : 'unlocked'}`}
                                 onClick={async () => {
                                   const newStatus = u.profileLock === "locked" ? "unlocked" : "locked";
-                                  const updated = await toggleProfileLock(u._id, newStatus);
-                                  this.setState(s => ({
-                                    users: s.users.map(us => us._id === u._id ? updated : us),
-                                    filtered: s.filtered.map(us => us._id === u._id ? updated : us)
-                                  }));
+                                  try {
+                                    const updated = await toggleProfileLock(u.id, newStatus);
+                                    this.setState(s => ({
+                                      users: s.users.map(us => us.id === u.id ? updated : us),
+                                      filtered: s.filtered.map(us => us.id === u.id ? updated : us)
+                                    }));
+                                  } catch (error) {
+                                    console.error('❌ Failed to toggle profile lock:', error);
+                                  }
                                 }}
                                 title={u.profileLock === "locked" ? "Unlock Profile" : "Lock Profile"}
                               >
