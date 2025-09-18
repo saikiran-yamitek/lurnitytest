@@ -142,23 +142,32 @@ const StudentProfilePage = () => {
   useEffect(() => {
   const fetchProfile = async () => {
     try {
-      const response = await fetch(`${API}/api/user/${userId}/profile`);
-      const data = await response.json();
-      if (response.ok && data) {
+      const res  = await fetch(`${API}/api/user/${userId}/profile`);
+      const data = await res.json();          // {msg, user:{…}}
+
+      if (res.ok && data?.user) {
+        const rawPhoto = data.user.photoURL;  // may be undefined/null
+
         setFormData(prev => ({
           ...prev,
-          ...data.user,
-          name: data.user.name || data.ircName || "",
+          ...data.user,                       // put every profile field in state
+          name:        data.user.ircName || data.user.name || "",
           geminiApiKey: data.user.geminiApiKey || "",
-          photo: data.photoURL,
-          photoURL: data.photoURL ?
-            (data.photoURL.startsWith('data:image')
-              ? data.photoURL
-              : `data:image/jpeg;base64,${data.photoURL}`) : "",
+
+          /* photo fields */
+          photo:    rawPhoto,
+          photoURL:
+            typeof rawPhoto === "string" && rawPhoto.startsWith
+              ? rawPhoto.startsWith("data:image")
+                ? rawPhoto
+                : `data:image/jpeg;base64,${rawPhoto}`
+              : "",
+
+          /* nested object – rebuild each level */
           parentGuardian: {
             ...prev.parentGuardian,
-            ...data.parentGuardian,
-            whatsappPhone: data.parentGuardian?.whatsappPhone || ""
+            ...data.user.parentGuardian,
+            whatsappPhone: data.user.parentGuardian?.whatsappPhone || ""
           }
         }));
       }
@@ -166,8 +175,10 @@ const StudentProfilePage = () => {
       console.error("Fetch error:", err);
     }
   };
+
   if (userId) fetchProfile();
-}, [userId]); // Remove formData from dependency array
+}, [userId]);
+// Remove formData from dependency array
 
 
   const handleInputChange = (e) => {
