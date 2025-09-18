@@ -21,21 +21,36 @@ export default function Courses() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  /* fetch once with error handling */
+  /* fetch once with proper response handling */
   useEffect(() => {
     const loadCourses = async () => {
       console.log('🚀 Loading courses...');
       try {
-        const data = await listCourses();
-        console.log('📚 Courses response:', data);
+        const response = await listCourses();
+        console.log('📚 Raw API response:', response);
         
-        // Ensure data is always an array
-        const coursesArray = Array.isArray(data) ? data : [];
-        console.log('✅ Courses loaded:', coursesArray.length);
+        // ✅ FIXED: Extract items array from response
+        let coursesArray = [];
+        
+        if (Array.isArray(response)) {
+          // Response is already an array
+          coursesArray = response;
+        } else if (response && Array.isArray(response.items)) {
+          // Response has items property with array
+          coursesArray = response.items;
+        } else if (response && typeof response === 'object') {
+          // Response is object, try to extract array values
+          coursesArray = Object.values(response).filter(item => 
+            item && typeof item === 'object' && item.id
+          );
+        }
+        
+        console.log('✅ Courses extracted:', coursesArray.length, coursesArray);
         setCourses(coursesArray);
+        
       } catch (error) {
         console.error('❌ Failed to fetch courses:', error);
-        setCourses([]); // Set empty array on error
+        setCourses([]);
       } finally {
         setLoading(false);
       }
@@ -48,26 +63,21 @@ export default function Courses() {
     if (!window.confirm('Are you sure you want to delete this course?')) return;
     try {
       await deleteCourse(id);
-      // Use safe filter with array check
+      // Safe filter with array check
       if (Array.isArray(courses)) {
-        setCourses(courses.filter(c => c._id !== id));
-      } else {
-        console.error('❌ Courses is not an array:', courses);
-        setCourses([]);
+        setCourses(courses.filter(c => c.id !== id)); // Note: using 'id' instead of '_id'
       }
     } catch (error) {
       console.error('❌ Failed to delete course:', error);
     }
   };
 
-  // Safe filter functions to prevent errors
+  // Safe filter functions
   const safeFilterCourses = (predicate) => {
     if (Array.isArray(courses)) {
       return courses.filter(predicate);
-    } else {
-      console.warn('🔍 Attempted to filter non-array courses:', typeof courses, courses);
-      return [];
     }
+    return [];
   };
 
   // Ensure courses is always an array for rendering
@@ -164,11 +174,11 @@ export default function Courses() {
               </thead>
               <tbody>
                 {safeCourses.map((c, index) => (
-                  <tr key={c._id} style={{ animationDelay: `${index * 0.1}s` }}>
+                  <tr key={c.id} style={{ animationDelay: `${index * 0.1}s` }}>
                     <td className="course-title">
                       <div className="course-info">
-                        <h4>{c.title}</h4>
-                        <span className="course-meta">Course ID: {c._id?.slice?.(-6) || 'Unknown'}</span>
+                        <h4>{c.title || 'Untitled Course'}</h4>
+                        <span className="course-meta">Course ID: {c.id?.slice?.(-6) || 'Unknown'}</span>
                       </div>
                     </td>
                     <td className="duration">
@@ -184,14 +194,14 @@ export default function Courses() {
                     </td>
                     <td className="actions">
                       <Link 
-                        to={`/admin/courses/${c._id}`} 
+                        to={`/admin/courses/${c.id}`} 
                         className="action-btn edit-btn"
                         title="Edit Course"
                       >
                         <FiEdit2 />
                       </Link>
                       <button 
-                        onClick={() => handleDelete(c._id)} 
+                        onClick={() => handleDelete(c.id)} 
                         className="action-btn delete-btn"
                         title="Delete Course"
                       >
