@@ -140,35 +140,35 @@ const StudentProfilePage = () => {
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch(`${API}/api/user/${userId}/profile`);
-        const data = await response.json();
-        if (response.ok && data) {
-          setFormData({
-            ...formData,
-            ...data,
-            name: data.name || data.ircName || "",
-            geminiApiKey: data.geminiApiKey || "",
-            photo: data.photoURL,
-            photoURL: data.photoURL ? 
-              (data.photoURL.startsWith('data:image') ? 
-                data.photoURL : 
-                `data:image/jpeg;base64,${data.photoURL}`) : "",
-            parentGuardian: {
-              ...formData.parentGuardian,
-              ...data.parentGuardian,
-              whatsappPhone: data.parentGuardian?.whatsappPhone || ""
-            }
-          });
-        }
-      } catch (err) {
-        console.error("Fetch error:", err);
+  const fetchProfile = async () => {
+    try {
+      const response = await fetch(`${API}/api/user/${userId}/profile`);
+      const data = await response.json();
+      if (response.ok && data) {
+        setFormData(prev => ({
+          ...prev,
+          ...data.user,
+          name: data.name || data.ircName || "",
+          geminiApiKey: data.geminiApiKey || "",
+          photo: data.photoURL,
+          photoURL: data.photoURL ?
+            (data.photoURL.startsWith('data:image')
+              ? data.photoURL
+              : `data:image/jpeg;base64,${data.photoURL}`) : "",
+          parentGuardian: {
+            ...prev.parentGuardian,
+            ...data.parentGuardian,
+            whatsappPhone: data.parentGuardian?.whatsappPhone || ""
+          }
+        }));
       }
-    };
+    } catch (err) {
+      console.error("Fetch error:", err);
+    }
+  };
+  if (userId) fetchProfile();
+}, [userId]); // Remove formData from dependency array
 
-    if (userId) fetchProfile();
-  }, [userId,formData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
