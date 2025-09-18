@@ -11,7 +11,7 @@ import {
   FiDownloadCloud, FiEdit2, FiSave, FiX,
   FiTrash2, FiFileText, FiUsers, FiSearch,
   FiLock, FiUnlock, FiAward, FiFile,
-  FiActivity, FiDollarSign, FiClock
+  FiActivity, FiDollarSign, FiClock, FiLoader
 } from 'react-icons/fi';
 
 import './Users.css';
@@ -19,7 +19,8 @@ import './Users.css';
 class Users extends Component {
   state = {
     users: [], filtered: [], courses: [],
-    editId: null, form: {}, search: ''
+    editId: null, form: {}, search: '',
+    loading: false, savingId: null
   };
 
   async componentDidMount() {
@@ -68,62 +69,132 @@ class Users extends Component {
   }
 
   /* ---------- edit helpers ---------- */
-  // ✅ FIXED: Use 'id' instead of '_id' to match API response
   startEdit = u => this.setState({ editId: u.id, form: { ...u } });
   cancel = () => this.setState({ editId: null });
   change = e => this.setState({ form: { ...this.state.form, [e.target.name]: e.target.value } });
 
+  // ✅ IMPROVED: Enhanced save method with proper error handling
   save = async id => {
+    if (this.state.savingId === id) return; // Prevent double-clicks
+    
     try {
-      const up = await updateUser(id, this.state.form);
-      await logTransaction(id, { amount: this.state.form.amountPaid, mode: this.state.form.paymentMode, date: new Date() });
+      this.setState({ savingId: id });
+      console.log('🔍 Saving user:', id);
+      console.log('🔍 Form data:', this.state.form);
+      
+      // ✅ FIXED: Remove id from form data before sending to avoid DynamoDB primary key error
+      const { id: formId, ...updateData } = this.state.form;
+      
+      console.log('🔍 Update data (excluding id):', updateData);
+      
+      const up = await updateUser(id, updateData);
+      console.log('✅ User updated successfully:', up);
+      
+      // Only log transaction if there's payment data and it's not empty
+      if (updateData.amountPaid && updateData.paymentMode) {
+        try {
+          await logTransaction(id, { 
+            amount: updateData.amountPaid, 
+            mode: updateData.paymentMode, 
+            date: new Date() 
+          });
+          console.log('✅ Transaction logged successfully');
+        } catch (transactionError) {
+          console.error('❌ Transaction logging failed (user still updated):', transactionError);
+          // Don't fail the entire save if transaction logging fails
+          alert('User updated but transaction logging failed. Please check manually.');
+        }
+      }
+      
       this.setState(s => ({
-        users: s.users.map(u => u.id === id ? up : u),
-        filtered: s.filtered.map(u => u.id === id ? up : u),
-        editId: null
+        users: s.users.map(u => u.id === id ? { ...u, ...updateData } : u),
+        filtered: s.filtered.map(u => u.id === id ? { ...u, ...updateData } : u),
+        editId: null,
+        savingId: null
       }));
+      
+      // ✅ SUCCESS FEEDBACK
+      alert('✅ User updated successfully!');
+      
     } catch (error) {
       console.error('❌ Failed to save user:', error);
-      alert('Failed to save user: ' + error.message);
+      this.setState({ savingId: null });
+      
+      // ✅ IMPROVED: Better error messages based on error type
+      if (error.message.includes('500')) {
+        alert('❌ Server error: There was a problem updating the user. Please try again or contact support.');
+      } else if (error.message.includes('Failed to fetch')) {
+        alert('❌ Network error: Please check your internet connection and try again.');
+      } else if (error.message.includes('404')) {
+        alert('❌ User not found. Please refresh the page and try again.');
+      } else if (error.message.includes('401') || error.message.includes('403')) {
+        alert('❌ Authentication error. Please log in again.');
+      } else {
+        alert(`❌ Failed to save user: ${error.message}`);
+      }
     }
   };
 
+  // ✅ IMPROVED: Enhanced delete with better error handling
   del = async id => {
-    if (!window.confirm('Delete user?')) return;
+    if (!window.confirm('Are you sure you want to delete this user? This action cannot be undone.')) return;
+    
     try {
+      this.setState({ loading: true });
       await deleteUser(id);
+      
       this.setState(s => ({
         users: s.users.filter(u => u.id !== id),
-        filtered: s.filtered.filter(u => u.id !== id)
+        filtered: s.filtered.filter(u => u.id !== id),
+        loading: false
       }));
+      
+      alert('✅ User deleted successfully!');
+      
     } catch (error) {
       console.error('❌ Failed to delete user:', error);
-      alert('Failed to delete user: ' + error.message);
+      this.setState({ loading: false });
+      
+      if (error.message.includes('Failed to fetch')) {
+        alert('❌ Network error: Please check your connection and try again.');
+      } else {
+        alert('❌ Failed to delete user: ' + error.message);
+      }
     }
   };
 
+  // ✅ IMPROVED: Debounced search function
+  searchTimeout = null;
   search = e => {
-    const q = e.target.value.toLowerCase();
-    const { users } = this.state;
+    const q = e.target.value;
+    this.setState({ search: q });
     
-    // Add safety check for users array
-    if (Array.isArray(users)) {
-      this.setState({
-        search: q,
-        filtered: users.filter(u => 
-          (u.name && u.name.toLowerCase().includes(q)) || 
-          (u.email && u.email.toLowerCase().includes(q))
-        )
-      });
-    } else {
-      console.error('Users is not an array:', users);
-      this.setState({ search: q, filtered: [] });
+    // Clear existing timeout
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
     }
+    
+    // Debounce search by 300ms
+    this.searchTimeout = setTimeout(() => {
+      const { users } = this.state;
+      const query = q.toLowerCase();
+      
+      if (Array.isArray(users)) {
+        this.setState({
+          filtered: users.filter(u => 
+            (u.name && u.name.toLowerCase().includes(query)) || 
+            (u.email && u.email.toLowerCase().includes(query)) ||
+            (u.phone && u.phone.toLowerCase().includes(query))
+          )
+        });
+      }
+    }, 300);
   };
 
   /* ---------- receipt ---------- */
   downloadReceipt = async id => {
     try {
+      this.setState({ loading: true });
       const blob = await generateReceipt(id);
       const url = URL.createObjectURL(blob);
 
@@ -132,13 +203,55 @@ class Users extends Component {
       a.download = `Lurnity_receipt_${id}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
+      
+      this.setState({ loading: false });
+      
     } catch (e) {
-      alert(e.message || 'Failed to generate receipt');
+      this.setState({ loading: false });
+      console.error('❌ Receipt generation failed:', e);
+      alert('❌ Failed to generate receipt: ' + (e.message || 'Please try again'));
+    }
+  };
+
+  // ✅ IMPROVED: Enhanced toggle profile lock with better error handling
+  toggleLock = async (user) => {
+    if (this.state.loading) return; // Prevent multiple clicks
+    
+    const newStatus = user.profileLock === "locked" ? "unlocked" : "locked";
+    
+    try {
+      this.setState({ loading: true });
+      console.log('🔍 Toggling profile lock for user:', user.id, 'to status:', newStatus);
+      
+      const updated = await toggleProfileLock(user.id, newStatus);
+      console.log('✅ Profile lock toggled successfully:', updated);
+      
+      this.setState(s => ({
+        users: s.users.map(us => us.id === user.id ? { ...us, profileLock: newStatus } : us),
+        filtered: s.filtered.map(us => us.id === user.id ? { ...us, profileLock: newStatus } : us),
+        loading: false
+      }));
+      
+      alert(`✅ User profile ${newStatus} successfully!`);
+      
+    } catch (error) {
+      console.error('❌ Failed to toggle profile lock:', error);
+      this.setState({ loading: false });
+      
+      if (error.message.includes('Failed to fetch')) {
+        alert('❌ Network error: Please check your internet connection and try again.');
+      } else if (error.message.includes('404')) {
+        alert('❌ Profile lock endpoint not found. Please contact support.');
+      } else if (error.message.includes('401') || error.message.includes('403')) {
+        alert('❌ Authentication error. Please log in again.');
+      } else {
+        alert(`❌ Failed to toggle profile lock: ${error.message}`);
+      }
     }
   };
 
   render() {
-    const { filtered, editId, form, courses, search } = this.state;
+    const { filtered, editId, form, courses, search, loading, savingId } = this.state;
 
     // Add safety check for filtered array
     const safeFiltered = Array.isArray(filtered) ? filtered : [];
@@ -193,13 +306,17 @@ class Users extends Component {
             <input
               type="text"
               className="search-input"
-              placeholder="Search by name or email..."
+              placeholder="Search by name, email, or phone..."
               value={search}
               onChange={this.search}
             />
           </div>
-          <button className="export-btn" onClick={() => exportCSV(this.state.users)}>
-            <FiDownloadCloud />
+          <button 
+            className="export-btn" 
+            onClick={() => exportCSV(this.state.users)}
+            disabled={loading}
+          >
+            {loading ? <FiLoader className="spin" /> : <FiDownloadCloud />}
             <span>Export CSV</span>
           </button>
         </div>
@@ -225,10 +342,11 @@ class Users extends Component {
                 {safeFiltered.map(u => {
                   const bal = (u.courseFee || 0) - (u.amountPaid || 0);
                   const prog = u.courseCompletion || 0;
-                  const isEd = editId === u.id; // ✅ FIXED: Use 'id' instead of '_id'
+                  const isEd = editId === u.id;
+                  const isSaving = savingId === u.id;
 
                   return (
-                    <tr key={u.id} className={`user-row ${isEd ? 'editing' : ''}`}>
+                    <tr key={u.id} className={`user-row ${isEd ? 'editing' : ''} ${isSaving ? 'saving' : ''}`}>
                       {/* User Info */}
                       <td className="user-info-cell">
                         <div className="user-info">
@@ -241,6 +359,7 @@ class Users extends Component {
                                   value={form.name || ''}
                                   onChange={this.change}
                                   placeholder="Name"
+                                  disabled={isSaving}
                                 />
                                 <input
                                   name="email"
@@ -248,6 +367,15 @@ class Users extends Component {
                                   value={form.email || ''}
                                   onChange={this.change}
                                   placeholder="Email"
+                                  disabled={isSaving}
+                                />
+                                <input
+                                  name="phone"
+                                  className="edit-input phone-input"
+                                  value={form.phone || ''}
+                                  onChange={this.change}
+                                  placeholder="Phone"
+                                  disabled={isSaving}
                                 />
                               </>
                             ) : (
@@ -264,7 +392,13 @@ class Users extends Component {
                       {/* Role */}
                       <td>
                         {isEd ? (
-                          <select name="role" className="edit-select" value={form.role || ''} onChange={this.change}>
+                          <select 
+                            name="role" 
+                            className="edit-select" 
+                            value={form.role || ''} 
+                            onChange={this.change}
+                            disabled={isSaving}
+                          >
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                           </select>
@@ -278,7 +412,13 @@ class Users extends Component {
                       {/* Course */}
                       <td>
                         {isEd ? (
-                          <select name="course" className="edit-select" value={form.course || ''} onChange={this.change}>
+                          <select 
+                            name="course" 
+                            className="edit-select" 
+                            value={form.course || ''} 
+                            onChange={this.change}
+                            disabled={isSaving}
+                          >
                             <option value="">None</option>
                             {Array.isArray(courses) && courses.map(c => (
                               <option key={c.id || c._id} value={c.title}>{c.title}</option>
@@ -303,6 +443,7 @@ class Users extends Component {
                                 value={form.courseFee || ''}
                                 onChange={this.change}
                                 placeholder="Fee"
+                                disabled={isSaving}
                               />
                               <input
                                 name="amountPaid"
@@ -311,6 +452,7 @@ class Users extends Component {
                                 value={form.amountPaid || ''}
                                 onChange={this.change}
                                 placeholder="Paid"
+                                disabled={isSaving}
                               />
                             </>
                           ) : (
@@ -337,7 +479,13 @@ class Users extends Component {
                       {/* Payment Mode */}
                       <td>
                         {isEd ? (
-                          <select name="paymentMode" className="edit-select" value={form.paymentMode || ''} onChange={this.change}>
+                          <select 
+                            name="paymentMode" 
+                            className="edit-select" 
+                            value={form.paymentMode || ''} 
+                            onChange={this.change}
+                            disabled={isSaving}
+                          >
                             <option value="">Select</option>
                             <option value="cash">Cash</option>
                             <option value="online">Online</option>
@@ -360,7 +508,13 @@ class Users extends Component {
                       {/* Status */}
                       <td>
                         {isEd ? (
-                          <select name="status" className="edit-select" value={form.status || ''} onChange={this.change}>
+                          <select 
+                            name="status" 
+                            className="edit-select" 
+                            value={form.status || ''} 
+                            onChange={this.change}
+                            disabled={isSaving}
+                          >
                             <option value="active">Active</option>
                             <option value="suspended">Suspended</option>
                             <option value="banned">Banned</option>
@@ -391,6 +545,7 @@ class Users extends Component {
                               className="edit-select hours-select"
                               value={form.learningHours || 3}
                               onChange={this.change}
+                              disabled={isSaving}
                             >
                               {[3, 4, 5, 6].map(hr => (
                                 <option key={hr} value={hr}>{hr}h</option>
@@ -414,13 +569,15 @@ class Users extends Component {
                                 className="action-btn save-btn"
                                 onClick={() => this.save(u.id)}
                                 title="Save Changes"
+                                disabled={isSaving}
                               >
-                                <FiSave />
+                                {isSaving ? <FiLoader className="spin" /> : <FiSave />}
                               </button>
                               <button
                                 className="action-btn cancel-btn"
                                 onClick={this.cancel}
                                 title="Cancel"
+                                disabled={isSaving}
                               >
                                 <FiX />
                               </button>
@@ -431,6 +588,7 @@ class Users extends Component {
                                 className="action-btn edit-btn"
                                 onClick={() => this.startEdit(u)}
                                 title="Edit User"
+                                disabled={loading}
                               >
                                 <FiEdit2 />
                               </button>
@@ -438,6 +596,7 @@ class Users extends Component {
                                 className="action-btn delete-btn"
                                 onClick={() => this.del(u.id)}
                                 title="Delete User"
+                                disabled={loading}
                               >
                                 <FiTrash2 />
                               </button>
@@ -445,6 +604,7 @@ class Users extends Component {
                                 className="action-btn receipt-btn"
                                 onClick={() => this.downloadReceipt(u.id)}
                                 title="Download Receipt"
+                                disabled={loading}
                               >
                                 <FiFileText />
                               </button>
@@ -452,6 +612,7 @@ class Users extends Component {
                                 className="action-btn certificate-btn"
                                 onClick={() => this.props.history.push(`/admin/certificates/${u.id}`)}
                                 title="View Certificates"
+                                disabled={loading}
                               >
                                 <FiAward />
                               </button>
@@ -459,26 +620,17 @@ class Users extends Component {
                                 className="action-btn resume-btn"
                                 onClick={() => this.props.history.push(`/admin/resume/${u.id}`)}
                                 title="Download Resume"
+                                disabled={loading}
                               >
                                 <FiFile />
                               </button>
                               <button
                                 className={`action-btn lock-btn ${u.profileLock === 'locked' ? 'locked' : 'unlocked'}`}
-                                onClick={async () => {
-                                  const newStatus = u.profileLock === "locked" ? "unlocked" : "locked";
-                                  try {
-                                    const updated = await toggleProfileLock(u.id, newStatus);
-                                    this.setState(s => ({
-                                      users: s.users.map(us => us.id === u.id ? updated : us),
-                                      filtered: s.filtered.map(us => us.id === u.id ? updated : us)
-                                    }));
-                                  } catch (error) {
-                                    console.error('❌ Failed to toggle profile lock:', error);
-                                  }
-                                }}
+                                onClick={() => this.toggleLock(u)}
                                 title={u.profileLock === "locked" ? "Unlock Profile" : "Lock Profile"}
+                                disabled={loading}
                               >
-                                {u.profileLock === "locked" ? <FiLock /> : <FiUnlock />}
+                                {loading ? <FiLoader className="spin" /> : (u.profileLock === "locked" ? <FiLock /> : <FiUnlock />)}
                               </button>
                             </div>
                           )}
