@@ -232,7 +232,7 @@ export default function Home() {
       const response = await fetch(`${API}/api/user/${userId}/profile`);
       const data = await response.json();
       if (response.ok && data) {
-        const completion = checkProfileCompletion(data);
+        const completion = checkProfileCompletion(data.user);
         setProfileCompletion(completion);
       }
     } catch (err) {
