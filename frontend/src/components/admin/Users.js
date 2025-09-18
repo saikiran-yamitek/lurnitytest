@@ -7,8 +7,6 @@ import {
   listCourses, exportCSV, logTransaction, generateReceipt, toggleProfileLock
 } from '../../services/adminApi';
 
-
-
 import {
   FiDownloadCloud, FiEdit2, FiSave, FiX,
   FiTrash2, FiFileText, FiUsers, FiSearch,
@@ -25,8 +23,42 @@ class Users extends Component {
   };
 
   async componentDidMount() {
-    const [users, courses] = await Promise.all([listUsers(), listCourses()]);
-    this.setState({ users, filtered: users, courses });
+    console.log('🚀 Users component mounting...');
+    
+    // Load users with error handling
+    try {
+      const usersResponse = await listUsers();
+      console.log('👥 Users response:', usersResponse);
+      
+      const usersArray = Array.isArray(usersResponse) ? usersResponse : [];
+      this.setState({ 
+        users: usersArray, 
+        filtered: usersArray 
+      });
+      console.log('✅ Users loaded:', usersArray.length);
+    } catch (error) {
+      console.error('❌ Failed to load users:', error);
+      this.setState({ users: [], filtered: [] });
+    }
+
+    // Load courses independently (won't break users if it fails)
+    try {
+      const coursesResponse = await listCourses();
+      console.log('📚 Courses response:', coursesResponse);
+      
+      const coursesArray = Array.isArray(coursesResponse) ? coursesResponse : [];
+      this.setState(prevState => ({ 
+        ...prevState, 
+        courses: coursesArray 
+      }));
+      console.log('✅ Courses loaded:', coursesArray.length);
+    } catch (error) {
+      console.error('❌ Failed to load courses (users still work):', error);
+      this.setState(prevState => ({ 
+        ...prevState, 
+        courses: [] 
+      }));
+    }
   }
 
   /* ---------- edit helpers ---------- */
@@ -55,10 +87,21 @@ class Users extends Component {
 
   search = e => {
     const q = e.target.value.toLowerCase();
-    this.setState({
-      search: q,
-      filtered: this.state.users.filter(u => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q))
-    });
+    const { users } = this.state;
+    
+    // Add safety check for users array
+    if (Array.isArray(users)) {
+      this.setState({
+        search: q,
+        filtered: users.filter(u => 
+          (u.name && u.name.toLowerCase().includes(q)) || 
+          (u.email && u.email.toLowerCase().includes(q))
+        )
+      });
+    } else {
+      console.error('Users is not an array:', users);
+      this.setState({ search: q, filtered: [] });
+    }
   };
 
   /* ---------- receipt ---------- */
@@ -80,6 +123,9 @@ class Users extends Component {
   render() {
     const { filtered, editId, form, courses, search } = this.state;
 
+    // Add safety check for filtered array
+    const safeFiltered = Array.isArray(filtered) ? filtered : [];
+
     return (
       <div className="users-page">
         {/* Page Header */}
@@ -98,7 +144,7 @@ class Users extends Component {
               <FiUsers />
             </div>
             <div className="stat-content">
-              <h3>{filtered.length}</h3>
+              <h3>{safeFiltered.length}</h3>
               <p>Total Users</p>
             </div>
           </div>
@@ -107,7 +153,7 @@ class Users extends Component {
               <FiActivity />
             </div>
             <div className="stat-content">
-              <h3>{filtered.filter(u => (u.status || 'active') === 'active').length}</h3>
+              <h3>{safeFiltered.filter(u => (u.status || 'active') === 'active').length}</h3>
               <p>Active Users</p>
             </div>
           </div>
@@ -116,7 +162,7 @@ class Users extends Component {
               <FiDollarSign />
             </div>
             <div className="stat-content">
-              <h3>₹{filtered.reduce((sum, u) => sum + (u.amountPaid || 0), 0).toLocaleString()}</h3>
+              <h3>₹{safeFiltered.reduce((sum, u) => sum + (u.amountPaid || 0), 0).toLocaleString()}</h3>
               <p>Total Revenue</p>
             </div>
           </div>
@@ -158,7 +204,7 @@ class Users extends Component {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map(u => {
+                {safeFiltered.map(u => {
                   const bal = (u.courseFee || 0) - (u.amountPaid || 0);
                   const prog = u.courseCompletion || 0;
                   const isEd = editId === u._id;
@@ -174,14 +220,14 @@ class Users extends Component {
                                 <input
                                   name="name"
                                   className="edit-input"
-                                  value={form.name}
+                                  value={form.name || ''}
                                   onChange={this.change}
                                   placeholder="Name"
                                 />
                                 <input
                                   name="email"
                                   className="edit-input email-input"
-                                  value={form.email}
+                                  value={form.email || ''}
                                   onChange={this.change}
                                   placeholder="Email"
                                 />
@@ -199,7 +245,7 @@ class Users extends Component {
                       {/* Role */}
                       <td>
                         {isEd ? (
-                          <select name="role" className="edit-select" value={form.role} onChange={this.change}>
+                          <select name="role" className="edit-select" value={form.role || ''} onChange={this.change}>
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                           </select>
@@ -215,7 +261,7 @@ class Users extends Component {
                         {isEd ? (
                           <select name="course" className="edit-select" value={form.course || ''} onChange={this.change}>
                             <option value="">None</option>
-                            {courses.map(c => (
+                            {Array.isArray(courses) && courses.map(c => (
                               <option key={c._id} value={c.title}>{c.title}</option>
                             ))}
                           </select>
@@ -295,7 +341,7 @@ class Users extends Component {
                       {/* Status */}
                       <td>
                         {isEd ? (
-                          <select name="status" className="edit-select" value={form.status} onChange={this.change}>
+                          <select name="status" className="edit-select" value={form.status || ''} onChange={this.change}>
                             <option value="active">Active</option>
                             <option value="suspended">Suspended</option>
                             <option value="banned">Banned</option>

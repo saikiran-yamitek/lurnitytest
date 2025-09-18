@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/f4ec72a5243338750a952170c0c1795fbc4713f05f91d052a9832f34ee2db0a7.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/fc3a9bb038cef774df386cb9795ed501c0e60a51bd44b18124056f2782acba7b.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -2236,6 +2236,36 @@
             "data": "LurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2458,36 +2488,6 @@
             "data": "LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn"
           }
         ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
-          }
-        ],
-        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
-          }
-        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateDemoLambda019E6998Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2686,6 +2686,29 @@
             "data": "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81"
           }
         ],
+        "/LurnityLmsStack/ApiNestedStack": [
+          {
+            "type": "aws:cdk:info",
+            "data": "Number of resources: 406 is approaching allowed maximum of 500",
+            "trace": [
+              "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
+              "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
+              "ApiNestedStack._synthesizeTemplate (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stack.js:1:14502)",
+              "NestedStackSynthesizer.synthesizeTemplate (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stack-synthesizers\\stack-synthesizer.js:1:2161)",
+              "NestedStackSynthesizer.synthesize (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stack-synthesizers\\nested.js:1:1697)",
+              "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:2:3394",
+              "visit (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:372)",
+              "visit (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:334)",
+              "visit (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:334)",
+              "synthesizeTree (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:2:3236)",
+              "synthesize (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:1696)",
+              "App.synth (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stage.js:1:2263)",
+              "process.<anonymous> (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\app.js:1:1745)",
+              "Object.onceWrapper (node:events:632:26)",
+              "process.emit (node:events:517:28)"
+            ]
+          }
+        ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -2707,7 +2730,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F235508e57604ca0505262d37e0d342c4a"
+            "data": "LurnityLmsApiDeployment658DA5F2bafb6a165bff3efb834457b2bb39b1a7"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -2876,6 +2899,120 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsApiapiadminusersidPATCHE96C2D75"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincourses1AC17463"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesOPTIONSA6B7B069"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiadmincourses468E08ED"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiadmincoursesAB7E4B46"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesGETDEB8C7C4"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiadmincoursesD56F83B0"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiadmincourses5F377A53"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesPOST16647970"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesid8DC0DA16"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidOPTIONS117346DD"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiadmincoursesidDA1F70F3"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiadmincoursesid6C93A5EB"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidGET9AF359C7"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiadmincoursesidA0D03F95"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiadmincoursesid48F0FD0B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidPUT8F4B80B9"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/DELETE/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidDELETEApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DDELETEapiadmincoursesid095E05D0"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/DELETE/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidDELETEApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DDELETEapiadmincoursesid554C5401"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadmincoursesidDELETEF4BB975D"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/employees/Resource": [
@@ -5044,6 +5181,36 @@
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
           }
         ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+          }
+        ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -5264,36 +5431,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
-          }
-        ],
-        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateDemoLambda019E6998Arn": [

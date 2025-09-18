@@ -23363,6 +23363,46 @@
                   "version": "2.151.0"
                 }
               },
+              "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+                "id": "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+                "id": "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
               "LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
                 "id": "LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn",
@@ -23654,46 +23694,6 @@
               "LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn": {
                 "id": "LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnOutput",
-                  "version": "2.151.0"
-                }
-              },
-              "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
-                "id": "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
-                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnOutput",
-                  "version": "2.151.0"
-                }
-              },
-              "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
-                "id": "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
-                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnOutput",
-                  "version": "2.151.0"
-                }
-              },
-              "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
-                "id": "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
-                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnOutput",
-                  "version": "2.151.0"
-                }
-              },
-              "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
-                "id": "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
-                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnOutput",
-                  "version": "2.151.0"
-                }
-              },
-              "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
-                "id": "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
-                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.151.0"
@@ -24150,7 +24150,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/1ee7d9673b68231fc7abc86065f52f05b65e551c73e6317fca813092281f62ce.json"
+                          "/9b0cbbe174f1c0df8710fda9ba9dcee317a1680a0d46418627d642b843e8357f.json"
                         ]
                       ]
                     }
@@ -24303,7 +24303,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F235508e57604ca0505262d37e0d342c4a"
+                              "Ref": "LurnityLmsApiDeployment658DA5F2bafb6a165bff3efb834457b2bb39b1a7"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -25464,6 +25464,841 @@
                                                 },
                                                 "resourceId": {
                                                   "Ref": "LurnityLmsApiapiadminusersidEBF65140"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                      "version": "2.151.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                  "version": "2.151.0"
+                                }
+                              },
+                              "courses": {
+                                "id": "courses",
+                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                      "aws:cdk:cloudformation:props": {
+                                        "parentId": {
+                                          "Ref": "LurnityLmsApiapiadmin95F6082F"
+                                        },
+                                        "pathPart": "courses",
+                                        "restApiId": {
+                                          "Ref": "LurnityLmsApi9DD8A13A"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "OPTIONS": {
+                                    "id": "OPTIONS",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/OPTIONS",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/OPTIONS/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "apiKeyRequired": false,
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "OPTIONS",
+                                            "integration": {
+                                              "type": "MOCK",
+                                              "requestTemplates": {
+                                                "application/json": "{ statusCode: 200 }"
+                                              },
+                                              "integrationResponses": [
+                                                {
+                                                  "statusCode": "204",
+                                                  "responseParameters": {
+                                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                    "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,DELETE,OPTIONS'",
+                                                    "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "methodResponses": [
+                                              {
+                                                "statusCode": "204",
+                                                "responseParameters": {
+                                                  "method.response.header.Access-Control-Allow-Headers": true,
+                                                  "method.response.header.Access-Control-Allow-Origin": true,
+                                                  "method.response.header.Access-Control-Allow-Methods": true,
+                                                  "method.response.header.Access-Control-Max-Age": true
+                                                }
+                                              }
+                                            ],
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapiadmincourses1AC17463"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "GET": {
+                                    "id": "GET",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/GET",
+                                    "children": {
+                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses": {
+                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/",
+                                                  {
+                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                  },
+                                                  "/GET/api/admin/courses"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses": {
+                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/test-invoke-stage/GET/api/admin/courses"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/GET/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "GET",
+                                            "integration": {
+                                              "type": "AWS_PROXY",
+                                              "uri": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                    {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+                                                    },
+                                                    "/invocations"
+                                                  ]
+                                                ]
+                                              },
+                                              "integrationHttpMethod": "POST"
+                                            },
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapiadmincourses1AC17463"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "POST": {
+                                    "id": "POST",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/POST",
+                                    "children": {
+                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses": {
+                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/",
+                                                  {
+                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                  },
+                                                  "/POST/api/admin/courses"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses": {
+                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.courses",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/test-invoke-stage/POST/api/admin/courses"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/POST/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "POST",
+                                            "integration": {
+                                              "type": "AWS_PROXY",
+                                              "uri": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                    {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+                                                    },
+                                                    "/invocations"
+                                                  ]
+                                                ]
+                                              },
+                                              "integrationHttpMethod": "POST"
+                                            },
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapiadmincourses1AC17463"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "{id}": {
+                                    "id": "{id}",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapiadmincourses1AC17463"
+                                            },
+                                            "pathPart": "{id}",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiadmincoursesid8DC0DA16"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "GET": {
+                                        "id": "GET",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/GET",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/GET/api/admin/courses/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.admin.courses.{id}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/GET/api/admin/courses/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/GET/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "GET",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiadmincoursesid8DC0DA16"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "PUT": {
+                                        "id": "PUT",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/PUT",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/PUT/api/admin/courses/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.admin.courses.{id}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/PUT/api/admin/courses/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/PUT/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "PUT",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiadmincoursesid8DC0DA16"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "DELETE": {
+                                        "id": "DELETE",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/DELETE",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/DELETE/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/DELETE/api/admin/courses/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/DELETE/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.admin.courses.{id}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/DELETE/api/admin/courses/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/courses/{id}/DELETE/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "DELETE",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiadmincoursesid8DC0DA16"
                                                 },
                                                 "restApiId": {
                                                   "Ref": "LurnityLmsApi9DD8A13A"
@@ -41216,6 +42051,46 @@
                   "version": "2.151.0"
                 }
               },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn",
@@ -41507,46 +42382,6 @@
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnParameter",
-                  "version": "2.151.0"
-                }
-              },
-              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
-                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
-                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnParameter",
-                  "version": "2.151.0"
-                }
-              },
-              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
-                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
-                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnParameter",
-                  "version": "2.151.0"
-                }
-              },
-              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
-                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
-                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnParameter",
-                  "version": "2.151.0"
-                }
-              },
-              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
-                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
-                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnParameter",
-                  "version": "2.151.0"
-                }
-              },
-              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
-                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
-                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnParameter",
                   "version": "2.151.0"
@@ -41855,6 +42690,36 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
                         ]
                       },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+                        ]
+                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -42077,36 +42942,6 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn"
                         ]
                       },
-                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
-                        "Fn::GetAtt": [
-                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-                          "Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
-                        ]
-                      },
-                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
-                        "Fn::GetAtt": [
-                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-                          "Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
-                        ]
-                      },
-                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
-                        "Fn::GetAtt": [
-                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-                          "Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
-                        ]
-                      },
-                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
-                        "Fn::GetAtt": [
-                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-                          "Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
-                        ]
-                      },
-                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
-                        "Fn::GetAtt": [
-                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-                          "Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
-                        ]
-                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateDemoLambda019E6998Arn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -42312,7 +43147,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/c817de41f82cd42e42b09defcbeddc9ff270078fc624cae1f8db48caee5ce4b5.json"
+                          "/4a34cec383c9f4cf2d3d389acdb16fdf011a6d356583f7a853cf0f2301bed798.json"
                         ]
                       ]
                     }

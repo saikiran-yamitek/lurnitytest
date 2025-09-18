@@ -23,11 +23,42 @@ export default function Dashboard() {
   const [trends, setTrends] = useState({ students: 'up', employees: 'up', courses: 'up', revenue: 'up' });
 
   useEffect(() => {
-    (async () => {
-      const [users, courses, employees] = await Promise.all([
-        listUsers(), listCourses(), listEmployees()
-      ]);
+    const loadDashboardData = async () => {
+      console.log('🚀 Loading dashboard data...');
+      
+      // Load each API independently with error handling
+      let users = [];
+      let courses = [];
+      let employees = [];
+      
+      try {
+        const usersResponse = await listUsers();
+        console.log('👥 Users response:', usersResponse);
+        users = Array.isArray(usersResponse) ? usersResponse : [];
+      } catch (error) {
+        console.error('❌ Failed to load users:', error);
+        users = [];
+      }
+      
+      try {
+        const coursesResponse = await listCourses();
+        console.log('📚 Courses response:', coursesResponse);
+        courses = Array.isArray(coursesResponse) ? coursesResponse : [];
+      } catch (error) {
+        console.error('❌ Failed to load courses:', error);
+        courses = [];
+      }
+      
+      try {
+        const employeesResponse = await listEmployees();
+        console.log('👨‍💼 Employees response:', employeesResponse);
+        employees = Array.isArray(employeesResponse) ? employeesResponse : [];
+      } catch (error) {
+        console.error('❌ Failed to load employees:', error);
+        employees = [];
+      }
 
+      // Now safely filter - users is guaranteed to be an array
       const studentsArr = users.filter(u => u.role === 'user');
       const revenueTot = studentsArr.reduce((sum, u) => sum + (+u.amountPaid || 0), 0);
 
@@ -78,7 +109,11 @@ export default function Dashboard() {
         { metric: 'Employees', count: employees.length },
         { metric: 'Courses', count: courses.length }
       ]);
-    })();
+      
+      console.log('✅ Dashboard data loaded successfully');
+    };
+    
+    loadDashboardData();
   }, []);
 
   const COLORS = ['#8B5FBF', '#D4AF37', '#5F9EA0', '#CD5C5C', '#4682B4'];
@@ -137,7 +172,6 @@ export default function Dashboard() {
           color={LUXURY_COLORS.accent}
           trend={trends.revenue}
         />
-        
       </div>
 
       {/* ---------- charts ---------- */}

@@ -15291,6 +15291,46 @@
     ]
    }
   },
+  "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListCoursesPublicLambda96B78432",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CreateCoursePublicLambdaC1FE1D16",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetCourseByIdPublicLambda979F28C0",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateCoursePublicLambdaF9F9A29C",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteCoursePublicLambda9344C01D",
+     "Arn"
+    ]
+   }
+  },
   "LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
    "Value": {
     "Fn::GetAtt": [
@@ -15583,46 +15623,6 @@
    "Value": {
     "Fn::GetAtt": [
      "DeleteWorkshopLambda896A43DB",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "ListCoursesPublicLambda96B78432",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "CreateCoursePublicLambdaC1FE1D16",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "GetCourseByIdPublicLambda979F28C0",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "UpdateCoursePublicLambdaF9F9A29C",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "DeleteCoursePublicLambda9344C01D",
      "Arn"
     ]
    }
