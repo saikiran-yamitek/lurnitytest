@@ -1,16 +1,16 @@
 import { getLatestLandingPage } from "../../models/LandingPage.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
-export const handler = async () => {
+export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const page = await getLatestLandingPage();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(page || {}),
-    };
+    return createResponse(200, page || {});
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
-    };
+    return createResponse(500, { error: err.message });
   }
 };

@@ -1,17 +1,17 @@
 import { listEmployees } from "../../models/Employee.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
-export const handler = async () => {
+export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const employees = await listEmployees();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(employees),
-    };
+    return createResponse(200, employees);
   } catch (err) {
     console.error("Error fetching employees:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: "Server error fetching employees" }),
-    };
+    return createResponse(500, { message: "Server error fetching employees" });
   }
 };

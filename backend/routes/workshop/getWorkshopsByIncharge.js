@@ -1,15 +1,18 @@
 import { getWorkshopsByIncharge } from "../../models/Workshop.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const { empId } = event.pathParameters;
     const workshops = await getWorkshopsByIncharge(empId);
-    return {
-      statusCode: 200,
-      body: JSON.stringify(workshops),
-    };
+    return createResponse(200, workshops);
   } catch (err) {
     console.error("Error fetching workshops by incharge:", err);
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    return createResponse(500, { error: err.message });
   }
 };

@@ -1,8 +1,14 @@
 // lambdas/feedback/listFeedbacks.js
 import { listFeedbacks } from "../../models/Feedback.js";
 import { getUserName } from "../../models/User.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
-export const handler = async () => {
+export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     let feedbacks = await listFeedbacks();
 
@@ -14,15 +20,9 @@ export const handler = async () => {
     // Sort by createdAt descending
     feedbacks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(feedbacks),
-    };
+    return createResponse(200, feedbacks);
   } catch (err) {
     console.error("Error fetching feedbacks:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Failed to fetch feedbacks" }),
-    };
+    return createResponse(500, { error: "Failed to fetch feedbacks" });
   }
 };

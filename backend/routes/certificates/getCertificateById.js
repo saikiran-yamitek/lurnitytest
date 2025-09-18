@@ -1,25 +1,31 @@
 // routes/certificates/getCertificateById.js
 import { findCertificateById } from "../../models/Certificate.js";
 import { findUserById } from "../../models/User.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const certId = event.pathParameters?.id;
     if (!certId) {
-      return { statusCode: 400, body: JSON.stringify({ error: "Certificate ID required" }) };
+      return createResponse(400, { error: "Certificate ID required" });
     }
 
     const cert = await findCertificateById(certId);
     if (!cert) {
-      return { statusCode: 404, body: JSON.stringify({ error: "Certificate not found" }) };
+      return createResponse(404, { error: "Certificate not found" });
     }
 
     const user = await findUserById(cert.userId);
     cert.userName = user?.name || "User";
 
-    return { statusCode: 200, body: JSON.stringify(cert) };
+    return createResponse(200, cert);
   } catch (err) {
     console.error("Error fetching certificate by ID:", err);
-    return { statusCode: 500, body: JSON.stringify({ error: "Server error" }) };
+    return createResponse(500, { error: "Server error" });
   }
 };

@@ -1,6 +1,12 @@
 import { listCourses } from "../../models/Course.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const limit = event.queryStringParameters?.limit
       ? Number(event.queryStringParameters.limit)
@@ -11,14 +17,8 @@ export const handler = async (event) => {
 
     const result = await listCourses({ limit, lastKey });
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(result),
-    };
+    return createResponse(200, result);
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
-    };
+    return createResponse(500, { error: err.message });
   }
 };

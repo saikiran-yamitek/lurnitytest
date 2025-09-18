@@ -1,19 +1,19 @@
 import { deleteEmployee } from "../../models/Employee.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const { id } = event.pathParameters || {};
     await deleteEmployee(id);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ ok: true }),
-    };
+    return createResponse(200, { ok: true });
   } catch (err) {
     console.error("Error deleting employee:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: "Server error deleting employee" }),
-    };
+    return createResponse(500, { message: "Server error deleting employee" });
   }
 };

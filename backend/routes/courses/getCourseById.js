@@ -1,25 +1,25 @@
 import { getCourseById } from "../../models/Course.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const id = event.pathParameters?.id;
     if (!id) {
-      return { statusCode: 400, body: JSON.stringify({ error: "id is required" }) };
+      return createResponse(400, { error: "id is required" });
     }
 
     const course = await getCourseById(id);
     if (!course) {
-      return { statusCode: 404, body: JSON.stringify({ error: "Not found" }) };
+      return createResponse(404, { error: "Not found" });
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(course),
-    };
+    return createResponse(200, course);
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
-    };
+    return createResponse(500, { error: err.message });
   }
 };

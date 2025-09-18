@@ -1,18 +1,18 @@
 // routes/certificates/listCertificates.js
 import { listCertificates } from "../../models/Certificate.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
-export const handler = async () => {
+export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const certs = await listCertificates();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(certs),
-    };
+    return createResponse(200, certs);
   } catch (err) {
     console.error("Get cert error:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: "Failed to fetch certificates." }),
-    };
+    return createResponse(500, { message: "Failed to fetch certificates." });
   }
 };

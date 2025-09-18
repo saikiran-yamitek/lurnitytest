@@ -1,15 +1,26 @@
 import { addCompletedSubcourse } from "../../models/User.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const body = JSON.parse(event.body);
     const { userId, subCourseTitle } = body;
 
     const updated = await addCompletedSubcourse(userId, subCourseTitle);
-    if (!updated) return { statusCode: 404, body: JSON.stringify({ error: "User not found" }) };
+    if (!updated) {
+      return createResponse(404, { error: "User not found" });
+    }
 
-    return { statusCode: 200, body: JSON.stringify({ message: "Completed subcourse updated", completedSubcourses: updated.completedSubcourses }) };
+    return createResponse(200, { 
+      message: "Completed subcourse updated", 
+      completedSubcourses: updated.completedSubcourses 
+    });
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    return createResponse(500, { error: err.message });
   }
 };

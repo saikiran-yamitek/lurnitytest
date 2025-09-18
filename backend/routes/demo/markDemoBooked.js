@@ -1,25 +1,22 @@
 import { markDemoBooked } from "../../models/Demo.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const id = event.pathParameters?.id;
     if (!id) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "id is required" }),
-      };
+      return createResponse(400, { error: "id is required" });
     }
 
     const updated = await markDemoBooked(id);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: "Demo marked as booked", demo: updated }),
-    };
+    return createResponse(200, { message: "Demo marked as booked", demo: updated });
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
-    };
+    return createResponse(500, { error: err.message });
   }
 };

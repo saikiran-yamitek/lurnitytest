@@ -1,7 +1,13 @@
 // backend/routes/companies/updateCompany.js
 import { updateCompany } from "../../models/Company.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const { id } = event.pathParameters;
     const body = JSON.parse(event.body);
@@ -9,21 +15,12 @@ export const handler = async (event) => {
     const updatedCompany = await updateCompany(id, body);
 
     if (!updatedCompany) {
-      return {
-        statusCode: 404,
-        body: JSON.stringify({ message: "Company not found." }),
-      };
+      return createResponse(404, { message: "Company not found." });
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(updatedCompany),
-    };
+    return createResponse(200, updatedCompany);
   } catch (err) {
     console.error("❌ Error updating company:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: "Failed to update company." }),
-    };
+    return createResponse(500, { message: "Failed to update company." });
   }
 };

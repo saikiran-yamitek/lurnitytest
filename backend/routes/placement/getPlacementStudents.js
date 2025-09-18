@@ -1,13 +1,19 @@
 import { getPlacementById } from "../../models/Placement.js";
 import { getUser } from "../../models/User.js"; // enrich student details
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const { id } = event.pathParameters;
     const drive = await getPlacementById(id);
 
     if (!drive) {
-      return { statusCode: 404, body: JSON.stringify({ message: "Drive not found" }) };
+      return createResponse(404, { message: "Drive not found" });
     }
 
     const enrichedStudents = await Promise.all(
@@ -25,8 +31,8 @@ export const handler = async (event) => {
       })
     );
 
-    return { statusCode: 200, body: JSON.stringify(enrichedStudents) };
+    return createResponse(200, enrichedStudents);
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ message: err.message }) };
+    return createResponse(500, { message: err.message });
   }
 };

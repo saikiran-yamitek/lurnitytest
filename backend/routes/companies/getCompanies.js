@@ -1,18 +1,18 @@
 // backend/routes/companies/getCompanies.js
 import { listCompanies } from "../../models/Company.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
-export const handler = async () => {
+export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const companies = await listCompanies();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(companies),
-    };
+    return createResponse(200, companies);
   } catch (err) {
     console.error("❌ Error fetching companies:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: "Failed to fetch companies." }),
-    };
+    return createResponse(500, { message: "Failed to fetch companies." });
   }
 };

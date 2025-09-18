@@ -1,16 +1,16 @@
 import { getCohorts } from "../../models/LandingPage.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
-export const handler = async () => {
+export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const cohorts = await getCohorts();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(cohorts),
-    };
+    return createResponse(200, cohorts);
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
-    };
+    return createResponse(500, { error: err.message });
   }
 };

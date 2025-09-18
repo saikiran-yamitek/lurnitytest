@@ -1,23 +1,23 @@
 // routes/certificates/listCertificatesByUser.js
 import { listCertificatesByUserId } from "../../models/Certificate.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const userId = event.pathParameters?.userId;
     if (!userId) {
-      return { statusCode: 400, body: JSON.stringify({ error: "User ID required" }) };
+      return createResponse(400, { error: "User ID required" });
     }
 
     const certs = await listCertificatesByUserId(userId);
-    return {
-      statusCode: 200,
-      body: JSON.stringify(certs),
-    };
+    return createResponse(200, certs);
   } catch (err) {
     console.error("Error fetching certificates for user:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Server error" }),
-    };
+    return createResponse(500, { error: "Server error" });
   }
 };

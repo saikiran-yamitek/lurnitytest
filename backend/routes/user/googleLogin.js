@@ -3,6 +3,7 @@
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
 import { findUserByEmail } from "../../models/User.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID ||
@@ -11,15 +12,17 @@ const client = new OAuth2Client(
 const JWT_SECRET = process.env.JWT_SECRET || "secretKey";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const body = JSON.parse(event.body || "{}");
     const { token } = body;
 
     if (!token) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ success: false, msg: "Token required" }),
-      };
+      return createResponse(400, { success: false, msg: "Token required" });
     }
 
     // 1) Verify Google token
@@ -34,10 +37,7 @@ export const handler = async (event) => {
     // 2) Lookup user
     const existingUser = await findUserByEmail(email);
     if (!existingUser) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ success: false, msg: "User not registered" }),
-      };
+      return createResponse(200, { success: false, msg: "User not registered" });
     }
 
     // 3) Create app token
@@ -47,19 +47,13 @@ export const handler = async (event) => {
       { expiresIn: "1h" }
     );
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        success: true,
-        token: appToken,
-        user: { id: existingUser.id, email: existingUser.email },
-      }),
-    };
+    return createResponse(200, {
+      success: true,
+      token: appToken,
+      user: { id: existingUser.id, email: existingUser.email },
+    });
   } catch (err) {
     console.error("Google login error:", err);
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ success: false, msg: "Invalid Google login" }),
-    };
+    return createResponse(400, { success: false, msg: "Invalid Google login" });
   }
 };

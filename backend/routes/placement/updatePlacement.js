@@ -1,13 +1,19 @@
 import { updatePlacement } from "../../models/Placement.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const { id } = event.pathParameters;
     const body = JSON.parse(event.body);
 
     const updated = await updatePlacement(id, body);
-    return { statusCode: 200, body: JSON.stringify(updated) };
+    return createResponse(200, updated);
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ message: err.message }) };
+    return createResponse(500, { message: err.message });
   }
 };

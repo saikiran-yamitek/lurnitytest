@@ -1,8 +1,14 @@
 // lambdas/tickets/createTicket.js
 import { generateTicketId, createTicket } from "../../models/Ticket.js";
 import { addTicketToUser } from "../../models/User.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const body = JSON.parse(event.body || "{}");
 
@@ -23,15 +29,9 @@ export const handler = async (event) => {
       await addTicketToUser(body.userId, saved.id);
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify(saved),
-    };
+    return createResponse(200, saved);
   } catch (err) {
     console.error("Error creating ticket:", err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Ticket create failed" }),
-    };
+    return createResponse(500, { error: "Ticket create failed" });
   }
 };

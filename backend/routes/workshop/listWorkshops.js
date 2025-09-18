@@ -1,14 +1,17 @@
 import { listWorkshops } from "../../models/Workshop.js";
+import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
-export const handler = async () => {
+export const handler = async (event) => {
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return handleOptionsRequest();
+  }
+
   try {
     const workshops = await listWorkshops();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(workshops),
-    };
+    return createResponse(200, workshops);
   } catch (err) {
     console.error("Failed to list workshops:", err);
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    return createResponse(500, { error: err.message });
   }
 };
