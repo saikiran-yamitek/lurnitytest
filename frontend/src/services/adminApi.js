@@ -1,5 +1,6 @@
-const API = `${process.env.REACT_APP_API_URL}/api/admin`;
-const API_URL = `${process.env.REACT_APP_API_URL}/api/employees`;
+const API_BASE_URL = 'https://kc281uzp54.execute-api.ap-south-1.amazonaws.com/dev';
+const API = `${API_BASE_URL}/api/admin`;
+const API_URL = `${API_BASE_URL}/api/employees`;
 
 // Utility to include Authorization header
 const authHeaders = () => ({
