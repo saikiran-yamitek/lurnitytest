@@ -156,7 +156,7 @@
     "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Ticket/Resource"
    }
   },
-  "AdminLoginTableFE665023": {
+  "adminLoginTable5FFF86F4": {
    "Type": "AWS::DynamoDB::Table",
    "Properties": {
     "AttributeDefinitions": [
@@ -179,7 +179,7 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/AdminLoginTable/Resource"
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/adminLoginTable/Resource"
    }
   },
   "LandingPageE6162516": {
@@ -439,6 +439,11 @@
     "Ref": "Certificate4E7ABB08"
    }
   },
+  "LurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref": {
+   "Value": {
+    "Ref": "adminLoginTable5FFF86F4"
+   }
+  },
   "LurnityLmsStackDatabaseNestedStackCompany72221DCERef": {
    "Value": {
     "Ref": "CompanyA0ED5F4A"
@@ -493,10 +498,10 @@
     ]
    }
   },
-  "LurnityLmsStackDatabaseNestedStackAdminLoginTable777A3840Arn": {
+  "LurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Arn": {
    "Value": {
     "Fn::GetAtt": [
-     "AdminLoginTableFE665023",
+     "adminLoginTable5FFF86F4",
      "Arn"
     ]
    }

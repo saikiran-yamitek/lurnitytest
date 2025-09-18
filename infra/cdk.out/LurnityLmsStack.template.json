@@ -174,7 +174,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/d46c9d48b9adfad89d19fa7311fa71c9f29c6fb5f2b3f01b896f6b5924b46dae.json"
+       "/563caf1db41affac265711d293b6d520ea948a2c593932e483e54dd565b3d31a.json"
       ]
      ]
     }
@@ -231,6 +231,12 @@
       "Fn::GetAtt": [
        "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
        "Outputs.LurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      ]
+     },
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref": {
+      "Fn::GetAtt": [
+       "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+       "Outputs.LurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
       ]
      },
      "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef": {
@@ -296,10 +302,10 @@
        "Outputs.LurnityLmsStackDatabaseNestedStackTicket2098D3B8Arn"
       ]
      },
-     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackAdminLoginTable777A3840Arn": {
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Arn": {
       "Fn::GetAtt": [
        "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
-       "Outputs.LurnityLmsStackDatabaseNestedStackAdminLoginTable777A3840Arn"
+       "Outputs.LurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Arn"
       ]
      },
      "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Arn": {
@@ -363,7 +369,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/c427dd3c11f2669f7d0af5a9d6da5b1a548e571ba9617076552022df79dc6b7b.json"
+       "/f68da1db0a6786e9fc5b1ae8993488b8b140fde41ac191e1a985c44533363975.json"
       ]
      ]
     }

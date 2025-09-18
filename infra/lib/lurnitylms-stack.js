@@ -36,6 +36,7 @@ class LurnityLmsStack extends cdk.Stack {
       TICKET_TABLE_NAME: databaseStack.ticketTable.tableName,
       LANDING_PAGE_TABLE: databaseStack.landingPageTable.tableName,
       CERTIFICATE_TABLE_NAME: databaseStack.certificateTable.tableName,
+      ADMIN_LOGIN_TABLE:databaseStack.adminLoginTable.tableName,
       COMPANY_TABLE_NAME: databaseStack.companyTable.tableName,
       EMPLOYEE_TABLE_NAME: databaseStack.employeeTable.tableName,
       FEEDBACK_TABLE_NAME: databaseStack.feedbackTable.tableName,
