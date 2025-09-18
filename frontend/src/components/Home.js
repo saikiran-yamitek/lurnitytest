@@ -837,7 +837,7 @@ export default function Home() {
                                   <div 
                                     className={`lms-luxury-content-item video ${done ? 'completed' : ''} ${isLocked ? 'locked' : ''}`}
                                     onClick={() => {
-                                      if (!isLocked) hist.push(`/watch/${course._id}/${sIdx}/${vIdx}`);
+                                      if (!isLocked) hist.push(`/watch/${course.id}/${sIdx}/${vIdx}`);
                                     }}
                                   >
                                     <div className="lms-item-backdrop"></div>
