@@ -21,29 +21,57 @@ export default function Courses() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  /* fetch once */
+  /* fetch once with error handling */
   useEffect(() => {
-    (async () => {
+    const loadCourses = async () => {
+      console.log('🚀 Loading courses...');
       try {
         const data = await listCourses();
-        setCourses(data);
+        console.log('📚 Courses response:', data);
+        
+        // Ensure data is always an array
+        const coursesArray = Array.isArray(data) ? data : [];
+        console.log('✅ Courses loaded:', coursesArray.length);
+        setCourses(coursesArray);
       } catch (error) {
-        console.error('Failed to fetch courses:', error);
+        console.error('❌ Failed to fetch courses:', error);
+        setCourses([]); // Set empty array on error
       } finally {
         setLoading(false);
       }
-    })();
+    };
+
+    loadCourses();
   }, []);
 
   const handleDelete = async id => {
     if (!window.confirm('Are you sure you want to delete this course?')) return;
     try {
       await deleteCourse(id);
-      setCourses(courses.filter(c => c._id !== id));
+      // Use safe filter with array check
+      if (Array.isArray(courses)) {
+        setCourses(courses.filter(c => c._id !== id));
+      } else {
+        console.error('❌ Courses is not an array:', courses);
+        setCourses([]);
+      }
     } catch (error) {
-      console.error('Failed to delete course:', error);
+      console.error('❌ Failed to delete course:', error);
     }
   };
+
+  // Safe filter functions to prevent errors
+  const safeFilterCourses = (predicate) => {
+    if (Array.isArray(courses)) {
+      return courses.filter(predicate);
+    } else {
+      console.warn('🔍 Attempted to filter non-array courses:', typeof courses, courses);
+      return [];
+    }
+  };
+
+  // Ensure courses is always an array for rendering
+  const safeCourses = Array.isArray(courses) ? courses : [];
 
   if (loading) {
     return (
@@ -67,14 +95,14 @@ export default function Courses() {
         <p className="page-subtitle">Manage and organize your course content</p>
       </div>
 
-      {/* Stats Cards */}
+      {/* Stats Cards - Using safe filter functions */}
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon published">
             <FiActivity />
           </div>
           <div className="stat-content">
-            <h3>{courses.filter(c => (c.status || "").toLowerCase().trim() === "published").length}</h3>
+            <h3>{safeFilterCourses(c => (c.status || "").toLowerCase().trim() === "published").length}</h3>
             <p>Published</p>
           </div>
         </div>
@@ -83,8 +111,7 @@ export default function Courses() {
             <FiClock />
           </div>
           <div className="stat-content">
-            
-<h3>{courses.filter(c => (c.status || "").toLowerCase().trim() === "draft").length}</h3>
+            <h3>{safeFilterCourses(c => (c.status || "").toLowerCase().trim() === "draft").length}</h3>
             <p>Draft</p>
           </div>
         </div>
@@ -93,7 +120,7 @@ export default function Courses() {
             <FiBook />
           </div>
           <div className="stat-content">
-            <h3>{courses.length}</h3>
+            <h3>{safeCourses.length}</h3>
             <p>Total Courses</p>
           </div>
         </div>
@@ -114,7 +141,7 @@ export default function Courses() {
 
       {/* Table Card */}
       <div className="courses-card">
-        {courses.length === 0 ? (
+        {safeCourses.length === 0 ? (
           <div className="empty-state">
             <FiBook className="empty-state-icon" />
             <h3>No courses found</h3>
@@ -136,23 +163,23 @@ export default function Courses() {
                 </tr>
               </thead>
               <tbody>
-                {courses.map((c, index) => (
+                {safeCourses.map((c, index) => (
                   <tr key={c._id} style={{ animationDelay: `${index * 0.1}s` }}>
                     <td className="course-title">
                       <div className="course-info">
                         <h4>{c.title}</h4>
-                        <span className="course-meta">Course ID: {c._id.slice(-6)}</span>
+                        <span className="course-meta">Course ID: {c._id?.slice?.(-6) || 'Unknown'}</span>
                       </div>
                     </td>
                     <td className="duration">
                       <div className="duration-badge">
                         <FiClock />
-                        {c.overallDuration} min
+                        {c.overallDuration || 0} min
                       </div>
                     </td>
                     <td>
-                      <span className={`status-badge ${c.status.toLowerCase()}`}>
-                        {c.status}
+                      <span className={`status-badge ${(c.status || 'unknown').toLowerCase()}`}>
+                        {c.status || 'Unknown'}
                       </span>
                     </td>
                     <td className="actions">
