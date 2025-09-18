@@ -12548,7 +12548,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c762a2ebe61879b2a90ca8e2bb717cd98ddbcfe7683cf831be2e61cfb145b010.zip"
+     "S3Key": "87ea87f5db3de8b4d0085b3bdae0bc4356599d56db0c98ec7c1be64c8aac1401.zip"
     },
     "Environment": {
      "Variables": {
@@ -12621,7 +12621,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProfileLambda/Resource",
-    "aws:asset:path": "asset.c762a2ebe61879b2a90ca8e2bb717cd98ddbcfe7683cf831be2e61cfb145b010",
+    "aws:asset:path": "asset.87ea87f5db3de8b4d0085b3bdae0bc4356599d56db0c98ec7c1be64c8aac1401",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
