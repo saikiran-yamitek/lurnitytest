@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -20,6 +20,7 @@ import PracticePage  from "./components/PracticePage";
 import CareersPage from './components/CareersPage'
 import AICoursePage from './components/AICoursePage';
 
+
 /* ── Admin ── */
 import AdminLogin         from "./components/admin/AdminLogin";
 import AdminProtectedRoute from "./components/admin/AdminProtectedRoute";
@@ -35,6 +36,7 @@ import AdminWorkshops from "./components/admin/AdminWorkshops";
 import CohortsManagement from "./components/admin/CohortsManagement"
 import Hiring from "./components/admin/Hiring"
 
+
 /* ── Employee (role‑based) ── */
 import EmpLogin           from "./components/employee/EmpLogin";
 import EmpRoute           from "./components/employee/EmpRoute";
@@ -48,25 +50,15 @@ import LabAdminDashboard from "./components/employee/LabAdminDashboard";
 import InchargeDashboard from "./components/employee/InchargeDashboard";
 import PlacementDashboard from './components/employee/PlacementDashboard';
 
-// 🚨 ADD THIS COMPONENT - Fixes trailing slash issue on page reload
-function TrailingSlashRedirect() {
-  const location = useLocation();
-  
-  if (location.pathname.endsWith('/') && location.pathname.length > 1) {
-    return <Redirect to={location.pathname.slice(0, -1)} />;
-  }
-  
-  return null;
-}
+
+
+
 
 function App() {
   return (
     <GoogleOAuthProvider clientId="322821846367-514od8575kmib97gji4q88ntskndmo9b.apps.googleusercontent.com">
     <BrowserRouter>
       <Switch>
-        {/* 🚨 ADD THIS AS THE VERY FIRST ROUTE - Removes trailing slashes */}
-        <TrailingSlashRedirect />
-        
         {/* 🟢 Public Routes */}
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/register" component={Login} />
@@ -85,6 +77,7 @@ function App() {
         <Route path="/practice/:courseId/:subIdx/:vidIdx" component={PracticePage} />
         <Route path="/careers" component={CareersPage} />
         <Route path="/course/ai" component={AICoursePage} />
+            
 
         {/* 🟡 Employee Auth */}
         <Route exact path="/employee/login" component={EmpLogin} />
@@ -107,10 +100,11 @@ function App() {
           )}
         />
         <EmpRoute
-          path="/employee/labincharge"
-          roles={["lab incharge", "super"]}
-          component={InchargeDashboard}
-        />
+  path="/employee/labincharge"
+  roles={["lab incharge", "super"]}
+  component={InchargeDashboard}
+/>
+
 
         <EmpRoute
           exact
@@ -140,7 +134,6 @@ function App() {
           roles={["placement", "super"]}
           component={PlacementDashboard}
         />
-        
         {/* 🔒 Admin Protected Routes */}
         <AdminProtectedRoute
           path="/admin"
@@ -162,6 +155,9 @@ function App() {
                 <Route path="/admin/resume/:userId" component={Resume} />
                 <Route path="/admin/cohorts" component={CohortsManagement} />
                 <Route path="/admin/hiring" component={Hiring} />
+
+
+                
 
                 <Redirect to="/admin" />
               </Switch>
