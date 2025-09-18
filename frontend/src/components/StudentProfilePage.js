@@ -148,17 +148,17 @@ const StudentProfilePage = () => {
         setFormData(prev => ({
           ...prev,
           ...data.user,
-          name: data.name || data.ircName || "",
-          geminiApiKey: data.geminiApiKey || "",
-          photo: data.photoURL,
-          photoURL: data.photoURL ?
+          name: data.user.name || data.ircName || "",
+          geminiApiKey: data.user.geminiApiKey || "",
+          photo: data.user.photoURL,
+          photoURL: data.user.photoURL ?
             (data.photoURL.startsWith('data:image')
               ? data.photoURL
               : `data:image/jpeg;base64,${data.photoURL}`) : "",
           parentGuardian: {
             ...prev.parentGuardian,
-            ...data.parentGuardian,
-            whatsappPhone: data.parentGuardian?.whatsappPhone || ""
+            ...data.user.parentGuardian,
+            whatsappPhone: data.user.parentGuardian?.whatsappPhone || ""
           }
         }));
       }
