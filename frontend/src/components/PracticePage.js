@@ -79,14 +79,22 @@ export default function PracticePage() {
   }, [courseId]);
 
   useEffect(() => {
-    const userr = JSON.parse(localStorage.getItem("userId"));
-    fetch(`${API}/api/user/${userr}/practiceHistory?courseId=${courseId}&subIdx=${sIdx}&vidIdx=${vIdx}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    })
-      .then(r => r.json())
-      .then(setAttempts)
-      .catch(e => console.error("Failed to fetch attempts:", e));
-  }, [courseId, sIdx, vIdx]);
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  const token = localStorage.getItem("token");
+
+  fetch(`${API}/api/user/${userId}/practiceHistory`, {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ courseId, subIdx: sIdx, vidIdx: vIdx })
+  })
+    .then(r => r.json())
+    .then(setAttempts)
+    .catch(e => console.error("Failed to fetch attempts:", e));
+}, [courseId, sIdx, vIdx]);
+
 
   // Security and fullscreen event listeners (same as original)
   useEffect(() => {

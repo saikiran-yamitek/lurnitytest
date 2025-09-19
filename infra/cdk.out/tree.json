@@ -20242,7 +20242,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c4ed5d4689d9fc5acb95cb519e1cb85f30d3a4e0c7118993fe8abe0195d3195e.zip"
+                          "s3Key": "3a048d6cc015085764b957d7085ff6a49ee49b645a5728b214865515129c4e07.zip"
                         },
                         "environment": {
                           "variables": {
@@ -24150,7 +24150,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/76b181706bf6c3fca3be5d5ef0c87a444659d6cd9ee54d3c8c4e02647e276123.json"
+                          "/72ddf532476e601e4e7828aca28c995fb380a2ad2015dbc4dc1f2fad4cb7110e.json"
                         ]
                       ]
                     }
@@ -24303,7 +24303,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F2c71603432fbeca39a3911ebba2c3af83"
+                              "Ref": "LurnityLmsApiDeployment658DA5F2eb101c0428760d0a2206eee596b33395"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -41278,6 +41278,137 @@
                                           "fqn": "aws-cdk-lib.aws_apigateway.Method",
                                           "version": "2.151.0"
                                         }
+                                      },
+                                      "POST": {
+                                        "id": "POST",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPracticeHistoryLambda78E161A6Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/POST/api/user/*/practiceHistory"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPracticeHistoryLambda78E161A6Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/POST/api/user/*/practiceHistory"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "POST",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPracticeHistoryLambda78E161A6Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiuseridpracticeHistory55640ED3"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
                                       }
                                     },
                                     "constructInfo": {
@@ -43237,7 +43368,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/63cdec83224f745e97a754ff4ecf2a328a261dcdbccd552322fd77a85bac05b6.json"
+                          "/97b707c96002a0122356eb3785f12aecb1b7f144a98540c1ea77d0249b5a0720.json"
                         ]
                       ]
                     }

@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/b08360afb92a47c54936e513c684f0cb69c2d8e92dfd66e38e0e63888a0b5acd.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/b5b50e39c0c157690371a514ba9798cf1cbff8e467d2abe9b1e661a6fa214ac1.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -2689,7 +2689,7 @@
         "/LurnityLmsStack/ApiNestedStack": [
           {
             "type": "aws:cdk:info",
-            "data": "Number of resources: 408 is approaching allowed maximum of 500",
+            "data": "Number of resources: 411 is approaching allowed maximum of 500",
             "trace": [
               "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
               "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
@@ -2730,7 +2730,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F2c71603432fbeca39a3911ebba2c3af83"
+            "data": "LurnityLmsApiDeployment658DA5F2eb101c0428760d0a2206eee596b33395"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -5047,6 +5047,24 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsApiapiuseridpracticeHistoryGET52ECAEBA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistoryPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridpracticeHistory6035CB4B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistoryPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridpracticeHistoryA003B856"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuseridpracticeHistoryPOST20AFB98D"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/streakData/Resource": [

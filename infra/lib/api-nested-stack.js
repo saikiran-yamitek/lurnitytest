@@ -209,8 +209,12 @@ class ApiNestedStack extends cdk.NestedStack {
     userSpecificRes.addResource("completedSubcourses").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateCompletedSubcoursesLambda));
     userSpecificRes.addResource("projects").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateProjectsLambda));
     userSpecificRes.addResource("practiceResult").addMethod("POST", new apigateway.LambdaIntegration(lambdas.addPracticeResultLambda));
-    userSpecificRes.addResource("practiceHistory").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getPracticeHistoryLambda));
     
+    
+    const practiceHistoryRes = userSpecificRes.addResource("practiceHistory"); // only once
+practiceHistoryRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getPracticeHistoryLambda));
+practiceHistoryRes.addMethod("POST", new apigateway.LambdaIntegration(lambdas.getPracticeHistoryLambda));
+
     const streakDataResource = userSpecificRes.addResource("streakData");
     streakDataResource.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getStreakDataLambda));
     streakDataResource.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateStreakDataLambda));

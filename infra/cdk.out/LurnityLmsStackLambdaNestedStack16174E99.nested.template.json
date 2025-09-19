@@ -13180,7 +13180,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c4ed5d4689d9fc5acb95cb519e1cb85f30d3a4e0c7118993fe8abe0195d3195e.zip"
+     "S3Key": "3a048d6cc015085764b957d7085ff6a49ee49b645a5728b214865515129c4e07.zip"
     },
     "Environment": {
      "Variables": {
@@ -13253,7 +13253,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPracticeHistoryLambda/Resource",
-    "aws:asset:path": "asset.c4ed5d4689d9fc5acb95cb519e1cb85f30d3a4e0c7118993fe8abe0195d3195e",
+    "aws:asset:path": "asset.3a048d6cc015085764b957d7085ff6a49ee49b645a5728b214865515129c4e07",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

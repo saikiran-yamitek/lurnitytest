@@ -64,7 +64,7 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Account"
    }
   },
-  "LurnityLmsApiDeployment658DA5F2c71603432fbeca39a3911ebba2c3af83": {
+  "LurnityLmsApiDeployment658DA5F2eb101c0428760d0a2206eee596b33395": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
@@ -224,6 +224,7 @@
     "LurnityLmsApiapiuseridOPTIONSC05C40F9",
     "LurnityLmsApiapiuseridpracticeHistoryGET52ECAEBA",
     "LurnityLmsApiapiuseridpracticeHistoryOPTIONS2F686757",
+    "LurnityLmsApiapiuseridpracticeHistoryPOST20AFB98D",
     "LurnityLmsApiapiuseridpracticeHistory55640ED3",
     "LurnityLmsApiapiuseridpracticeResultOPTIONS0445129A",
     "LurnityLmsApiapiuseridpracticeResultPOSTCD0025BA",
@@ -310,7 +311,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "LurnityLmsApiDeployment658DA5F2c71603432fbeca39a3911ebba2c3af83"
+     "Ref": "LurnityLmsApiDeployment658DA5F2eb101c0428760d0a2206eee596b33395"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
@@ -13191,6 +13192,112 @@
    },
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/GET/Resource"
+   }
+  },
+  "LurnityLmsApiapiuseridpracticeHistoryPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridpracticeHistory6035CB4B": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPracticeHistoryLambda78E161A6Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/",
+       {
+        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+       },
+       "/POST/api/user/*/practiceHistory"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory"
+   }
+  },
+  "LurnityLmsApiapiuseridpracticeHistoryPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridpracticeHistoryA003B856": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPracticeHistoryLambda78E161A6Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/test-invoke-stage/POST/api/user/*/practiceHistory"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.practiceHistory"
+   }
+  },
+  "LurnityLmsApiapiuseridpracticeHistoryPOST20AFB98D": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPracticeHistoryLambda78E161A6Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuseridpracticeHistory55640ED3"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceHistory/POST/Resource"
    }
   },
   "LurnityLmsApiapiuseridstreakData2957EAA2": {

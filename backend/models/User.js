@@ -206,10 +206,18 @@ export const addPracticeResult = async (userId, result) => {
   return res.Attributes.practiceHistory;
 };
 
-export const getPracticeHistory = async (userId) => {
+export const getPracticeHistory = async ({ userId, courseId, subIdx, vidIdx }) => {
   const user = await getUserById(userId);
-  return user?.practiceHistory || [];
+  let history = user?.practiceHistory || [];
+
+  // Optional: filter based on provided parameters
+  if (courseId !== undefined) history = history.filter(h => h.courseId === courseId);
+  if (subIdx !== undefined) history = history.filter(h => h.subIdx === subIdx);
+  if (vidIdx !== undefined) history = history.filter(h => h.vidIdx === vidIdx);
+
+  return history;
 };
+
 
 // Streaks
 export const getStreakData = async (userId) => {
