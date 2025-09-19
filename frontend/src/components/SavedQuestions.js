@@ -22,7 +22,7 @@ export default function SavedQuestions({ user }) {
         return;
       }
       try {
-        const res = await fetch(`${API}/api/user/${user.id}/saved-questions`, {
+        const res = await fetch(`${API}/api/user/${user.id}/savedQuestions`, {
           headers: { Authorization: "Bearer " + localStorage.getItem("token") },
         });
 

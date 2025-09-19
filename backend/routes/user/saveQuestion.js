@@ -2,7 +2,6 @@ import { saveQuestion } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
-  // Handle preflight OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
     return handleOptionsRequest();
   }
@@ -13,67 +12,24 @@ export const handler = async (event) => {
     const body = JSON.parse(event.body);
     console.log("📦 Parsed body:", JSON.stringify(body, null, 2));
     
-    const { userId, question, correctAnswer } = body;
+    // ✅ Fix: Extract correctOption (not correctAnswer)
+    const { userId, question, correctOption, options } = body;
     
     console.log("🆔 userId:", userId, "(type:", typeof userId, ")");
     console.log("❓ question:", JSON.stringify(question, null, 2), "(type:", typeof question, ")");
-    console.log("✅ correctAnswer:", JSON.stringify(correctAnswer, null, 2), "(type:", typeof correctAnswer, ")");
+    console.log("✅ correctOption:", JSON.stringify(correctOption, null, 2), "(type:", typeof correctOption, ")");
+    console.log("📝 options:", JSON.stringify(options, null, 2), "(type:", typeof options, ")");
     
-    // Check for undefined values in question object
-    if (question && typeof question === 'object') {
-      console.log("🔍 Checking question properties:");
-      Object.entries(question).forEach(([key, value]) => {
-        console.log(`   ${key}:`, value, "(type:", typeof value, ", undefined?", value === undefined, ")");
-        
-        // If value is an array or object, check its contents
-        if (Array.isArray(value)) {
-          console.log(`   ${key} array contents:`);
-          value.forEach((item, index) => {
-            console.log(`     [${index}]:`, item, "(type:", typeof item, ", undefined?", item === undefined, ")");
-            if (item && typeof item === 'object') {
-              Object.entries(item).forEach(([subKey, subValue]) => {
-                console.log(`       ${subKey}:`, subValue, "(type:", typeof subValue, ", undefined?", subValue === undefined, ")");
-              });
-            }
-          });
-        } else if (value && typeof value === 'object') {
-          console.log(`   ${key} object contents:`);
-          Object.entries(value).forEach(([subKey, subValue]) => {
-            console.log(`     ${subKey}:`, subValue, "(type:", typeof subValue, ", undefined?", subValue === undefined, ")");
-          });
-        }
-      });
-    }
+    // Check for undefined values
+    if (userId === undefined) console.log("⚠️ userId is undefined!");
+    if (question === undefined) console.log("⚠️ question is undefined!");
+    if (correctOption === undefined) console.log("⚠️ correctOption is undefined!");
+    if (options === undefined) console.log("⚠️ options is undefined!");
     
-    // Check for undefined values in correctAnswer object
-    if (correctAnswer && typeof correctAnswer === 'object') {
-      console.log("🔍 Checking correctAnswer properties:");
-      Object.entries(correctAnswer).forEach(([key, value]) => {
-        console.log(`   ${key}:`, value, "(type:", typeof value, ", undefined?", value === undefined, ")");
-        
-        // If value is an array or object, check its contents
-        if (Array.isArray(value)) {
-          console.log(`   ${key} array contents:`);
-          value.forEach((item, index) => {
-            console.log(`     [${index}]:`, item, "(type:", typeof item, ", undefined?", item === undefined, ")");
-            if (item && typeof item === 'object') {
-              Object.entries(item).forEach(([subKey, subValue]) => {
-                console.log(`       ${subKey}:`, subValue, "(type:", typeof subValue, ", undefined?", subValue === undefined, ")");
-              });
-            }
-          });
-        } else if (value && typeof value === 'object') {
-          console.log(`   ${key} object contents:`);
-          Object.entries(value).forEach(([subKey, subValue]) => {
-            console.log(`     ${subKey}:`, subValue, "(type:", typeof subValue, ", undefined?", subValue === undefined, ")");
-          });
-        }
-      });
-    }
+    console.log("🚀 Calling saveQuestion with:", { userId, question, correctAnswer: correctOption });
     
-    console.log("🚀 Calling saveQuestion with:", { userId, question, correctAnswer });
-    
-    await saveQuestion(userId, question, correctAnswer);
+    // ✅ Pass correctOption as correctAnswer to maintain your saveQuestion function
+    await saveQuestion(userId, question, correctOption);
     
     console.log("✅ Question saved successfully");
     return createResponse(200, { msg: "Question saved" });
@@ -85,3 +41,4 @@ export const handler = async (event) => {
     return createResponse(500, { msg: "Error saving question", error: err.message });
   }
 };
+

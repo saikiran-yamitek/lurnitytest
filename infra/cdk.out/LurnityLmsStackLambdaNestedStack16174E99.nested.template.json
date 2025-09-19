@@ -13812,7 +13812,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "54e5f5b181a8ae3546eb1e34411e4a8078532e9748c88ae336984a48482f816c.zip"
+     "S3Key": "faffbcaea3c5f8ddc334e7cda9c81c253e677b99ef13500db2c6cd48bc0b3782.zip"
     },
     "Environment": {
      "Variables": {
@@ -13885,7 +13885,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SaveQuestionLambda/Resource",
-    "aws:asset:path": "asset.54e5f5b181a8ae3546eb1e34411e4a8078532e9748c88ae336984a48482f816c",
+    "aws:asset:path": "asset.faffbcaea3c5f8ddc334e7cda9c81c253e677b99ef13500db2c6cd48bc0b3782",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

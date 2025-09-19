@@ -192,7 +192,7 @@ class ApiNestedStack extends cdk.NestedStack {
     userRes.addResource("get-key").addMethod("POST", new apigateway.LambdaIntegration(lambdas.getKeyLambda));
     userRes.addResource("mock-questions").addMethod("POST", new apigateway.LambdaIntegration(lambdas.mockQuestionsLambda));
     userRes.addResource("saveQuestion").addMethod("POST", new apigateway.LambdaIntegration(lambdas.saveQuestionLambda));
-    userRes.addResource("savedQuestions").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getSavedQuestionsLambda));
+    
 
     // ✅ FIXED: User-specific endpoints under /user/{id}/
     const userSpecificRes = userRes.addResource("{id}");
@@ -218,7 +218,7 @@ practiceHistoryRes.addMethod("POST", new apigateway.LambdaIntegration(lambdas.ge
     const streakDataResource = userSpecificRes.addResource("streakData");
     streakDataResource.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getStreakDataLambda));
     streakDataResource.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateStreakDataLambda));
-
+userSpecificRes.addResource("savedQuestions").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getSavedQuestionsLambda));
     // --- Judge0 key routes ---
     const keyRes = apiResource.addResource("key");
     keyRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getJudge0KeyLambda));

@@ -254,10 +254,15 @@ export const updateCourseCompletion = async (userId, courseCompletion) => {
 
 // Saved Questions
 export const saveQuestion = async (userId, question, correctAnswer) => {
+  console.log("💾 Original userId:", userId, "type:", typeof userId);
+  
+  const userIdStr = String(userId);
+  console.log("🔧 Converted userId:", userIdStr);
+  
   await ddb.send(
     new UpdateCommand({
       TableName: TABLE,
-      Key: { id: userId },
+      Key: { id: userIdStr }, // ← Always use string
       UpdateExpression:
         "SET savedQuestions = list_append(if_not_exists(savedQuestions, :empty), :q)",
       ExpressionAttributeValues: {
@@ -267,7 +272,9 @@ export const saveQuestion = async (userId, question, correctAnswer) => {
       ReturnValues: "ALL_NEW",
     })
   );
+  console.log("✅ Question saved successfully for user:", userIdStr);
 };
+
 
 export const getSavedQuestions = async (userId) => {
   const user = await getUserById(userId);
