@@ -10,7 +10,7 @@ export async function handler(event) {
 
     if (!url) return createResponse(400, { error: "url required" });
 
-    const data = await transcribeMedia(url); // <-- now uses AWS Transcribe
+    const data = await transcribeMedia(url);
     return createResponse(200, data);
   } catch (err) {
     console.error("Transcription error →", err.message);
