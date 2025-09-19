@@ -19,6 +19,7 @@ import { OAuth2Client } from "google-auth-library";
 const REGION = process.env.AWS_REGION || "us-east-1";
 const TABLE = process.env.USER_TABLE_NAME || "User"; // fallback to "User" like new.js
 
+
 if (!TABLE) {
   throw new Error("USER_TABLE_NAME env var is required");
 }
@@ -488,7 +489,7 @@ export function verifyJwt(token) {
 export async function saveUserGeminiKey(userId, geminiApiKey) {
   await ddbDoc.send(
     new UpdateCommand({
-      TableName: USER_TABLE,
+      TableName: TABLE,
       Key: { id: userId },
       UpdateExpression: "set geminiApiKey = :k",
       ExpressionAttributeValues: { ":k": geminiApiKey },
@@ -503,7 +504,7 @@ export async function saveUserGeminiKey(userId, geminiApiKey) {
 export async function getUserGeminiKey(userId) {
   const res = await ddbDoc.send(
     new GetCommand({
-      TableName: USER_TABLE,
+      TableName: TABLE,
       Key: { id: userId },
       ProjectionExpression: "geminiApiKey",
     })

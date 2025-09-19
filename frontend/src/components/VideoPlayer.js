@@ -132,7 +132,7 @@ export default function VideoPlayer() {
 
   const saveGeminiKey = () => {
     if (!newKey.trim()) return;
-    fetch(`${API}/api/gemini/save-key`, {
+    fetch(`${API}/api/user/save-key`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, geminiApiKey: newKey.trim() })
