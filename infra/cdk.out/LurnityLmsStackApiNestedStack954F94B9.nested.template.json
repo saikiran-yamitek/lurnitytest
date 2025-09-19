@@ -64,7 +64,7 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Account"
    }
   },
-  "LurnityLmsApiDeployment658DA5F2aa9e228c4ef9731f34495095af7dac07": {
+  "LurnityLmsApiDeployment658DA5F208d024ff067d0f484fed98e5ad772e17": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
@@ -237,6 +237,9 @@
     "LurnityLmsApiapiuseridprojectsPUT750AF469",
     "LurnityLmsApiapiuseridprojects6229CE7B",
     "LurnityLmsApiapiuserid20370AEA",
+    "LurnityLmsApiapiuseridresumeGET0C9FADEF",
+    "LurnityLmsApiapiuseridresumeOPTIONS9F580C0F",
+    "LurnityLmsApiapiuseridresumeAE1F5356",
     "LurnityLmsApiapiuseridsavedQuestionsGETA6D428A4",
     "LurnityLmsApiapiuseridsavedQuestionsOPTIONS5E28282E",
     "LurnityLmsApiapiuseridsavedQuestions3D879F50",
@@ -261,9 +264,6 @@
     "LurnityLmsApiapiuserregisterPOST12BF60AA",
     "LurnityLmsApiapiuserregister70D66307",
     "LurnityLmsApiapiuser110D0A22",
-    "LurnityLmsApiapiuserresumeGETFE27759A",
-    "LurnityLmsApiapiuserresumeOPTIONS21BFF7E3",
-    "LurnityLmsApiapiuserresumeC844EDA5",
     "LurnityLmsApiapiusersavekeyOPTIONS40810743",
     "LurnityLmsApiapiusersavekeyPOST5527BECA",
     "LurnityLmsApiapiusersavekey4B47F6E8",
@@ -311,7 +311,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "LurnityLmsApiDeployment658DA5F2aa9e228c4ef9731f34495095af7dac07"
+     "Ref": "LurnityLmsApiDeployment658DA5F208d024ff067d0f484fed98e5ad772e17"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
@@ -10870,172 +10870,6 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/homepage/GET/Resource"
    }
   },
-  "LurnityLmsApiapiuserresumeC844EDA5": {
-   "Type": "AWS::ApiGateway::Resource",
-   "Properties": {
-    "ParentId": {
-     "Ref": "LurnityLmsApiapiuser110D0A22"
-    },
-    "PathPart": "resume",
-    "RestApiId": {
-     "Ref": "LurnityLmsApi9DD8A13A"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/resume/Resource"
-   }
-  },
-  "LurnityLmsApiapiuserresumeOPTIONS21BFF7E3": {
-   "Type": "AWS::ApiGateway::Method",
-   "Properties": {
-    "ApiKeyRequired": false,
-    "AuthorizationType": "NONE",
-    "HttpMethod": "OPTIONS",
-    "Integration": {
-     "IntegrationResponses": [
-      {
-       "ResponseParameters": {
-        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-        "method.response.header.Access-Control-Allow-Origin": "'*'",
-        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
-        "method.response.header.Access-Control-Max-Age": "'86400'"
-       },
-       "StatusCode": "204"
-      }
-     ],
-     "RequestTemplates": {
-      "application/json": "{ statusCode: 200 }"
-     },
-     "Type": "MOCK"
-    },
-    "MethodResponses": [
-     {
-      "ResponseParameters": {
-       "method.response.header.Access-Control-Allow-Headers": true,
-       "method.response.header.Access-Control-Allow-Origin": true,
-       "method.response.header.Access-Control-Allow-Methods": true,
-       "method.response.header.Access-Control-Max-Age": true
-      },
-      "StatusCode": "204"
-     }
-    ],
-    "ResourceId": {
-     "Ref": "LurnityLmsApiapiuserresumeC844EDA5"
-    },
-    "RestApiId": {
-     "Ref": "LurnityLmsApi9DD8A13A"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/resume/OPTIONS/Resource"
-   }
-  },
-  "LurnityLmsApiapiuserresumeGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserresumeB2AB340C": {
-   "Type": "AWS::Lambda::Permission",
-   "Properties": {
-    "Action": "lambda:InvokeFunction",
-    "FunctionName": {
-     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
-    },
-    "Principal": "apigateway.amazonaws.com",
-    "SourceArn": {
-     "Fn::Join": [
-      "",
-      [
-       "arn:",
-       {
-        "Ref": "AWS::Partition"
-       },
-       ":execute-api:ap-south-1:",
-       {
-        "Ref": "AWS::AccountId"
-       },
-       ":",
-       {
-        "Ref": "LurnityLmsApi9DD8A13A"
-       },
-       "/",
-       {
-        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
-       },
-       "/GET/api/user/resume"
-      ]
-     ]
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/resume/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.resume"
-   }
-  },
-  "LurnityLmsApiapiuserresumeGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuserresumeAE400B61": {
-   "Type": "AWS::Lambda::Permission",
-   "Properties": {
-    "Action": "lambda:InvokeFunction",
-    "FunctionName": {
-     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
-    },
-    "Principal": "apigateway.amazonaws.com",
-    "SourceArn": {
-     "Fn::Join": [
-      "",
-      [
-       "arn:",
-       {
-        "Ref": "AWS::Partition"
-       },
-       ":execute-api:ap-south-1:",
-       {
-        "Ref": "AWS::AccountId"
-       },
-       ":",
-       {
-        "Ref": "LurnityLmsApi9DD8A13A"
-       },
-       "/test-invoke-stage/GET/api/user/resume"
-      ]
-     ]
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/resume/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.resume"
-   }
-  },
-  "LurnityLmsApiapiuserresumeGETFE27759A": {
-   "Type": "AWS::ApiGateway::Method",
-   "Properties": {
-    "AuthorizationType": "NONE",
-    "HttpMethod": "GET",
-    "Integration": {
-     "IntegrationHttpMethod": "POST",
-     "Type": "AWS_PROXY",
-     "Uri": {
-      "Fn::Join": [
-       "",
-       [
-        "arn:",
-        {
-         "Ref": "AWS::Partition"
-        },
-        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
-        {
-         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
-        },
-        "/invocations"
-       ]
-      ]
-     }
-    },
-    "ResourceId": {
-     "Ref": "LurnityLmsApiapiuserresumeC844EDA5"
-    },
-    "RestApiId": {
-     "Ref": "LurnityLmsApi9DD8A13A"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/resume/GET/Resource"
-   }
-  },
   "LurnityLmsApiapiuseralertD10F5562": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
@@ -13572,6 +13406,172 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/GET/Resource"
    }
   },
+  "LurnityLmsApiapiuseridresumeAE1F5356": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "LurnityLmsApiapiuserid20370AEA"
+    },
+    "PathPart": "resume",
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/resume/Resource"
+   }
+  },
+  "LurnityLmsApiapiuseridresumeOPTIONS9F580C0F": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuseridresumeAE1F5356"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/resume/OPTIONS/Resource"
+   }
+  },
+  "LurnityLmsApiapiuseridresumeGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridresume3D8BC833": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/",
+       {
+        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+       },
+       "/GET/api/user/*/resume"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/resume/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.resume"
+   }
+  },
+  "LurnityLmsApiapiuseridresumeGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiuseridresumeA05D2977": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/test-invoke-stage/GET/api/user/*/resume"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/resume/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.resume"
+   }
+  },
+  "LurnityLmsApiapiuseridresumeGET0C9FADEF": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuseridresumeAE1F5356"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/resume/GET/Resource"
+   }
+  },
   "LurnityLmsApiapikey96E86B5D": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
@@ -14096,9 +14096,6 @@
   "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackHomepageUserLambda1EA8E071Arn": {
    "Type": "String"
   },
-  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn": {
-   "Type": "String"
-  },
   "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetAlertLambdaA99601CEArn": {
    "Type": "String"
   },
@@ -14142,6 +14139,9 @@
    "Type": "String"
   },
   "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn": {
    "Type": "String"
   },
   "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJudge0KeyLambda5174CACCArn": {
