@@ -859,7 +859,7 @@ export default function Home() {
                                   {!isLocked && (
                                     <div 
                                       className="lms-luxury-content-item practice"
-                                      onClick={() => hist.push(`/practice/${course._id}/${sIdx}/${vIdx}`)}
+                                      onClick={() => hist.push(`/practice/${course.id}/${sIdx}/${vIdx}`)}
                                     >
                                       <div className="lms-item-backdrop"></div>
                                       <div className="lms-item-icon">

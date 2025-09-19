@@ -486,23 +486,30 @@ export function verifyJwt(token) {
 }
 
 
+
+
 export async function saveUserGeminiKey(userId, geminiApiKey) {
-  await ddbDoc.send(
+  await ddb.send(
     new UpdateCommand({
       TableName: TABLE,
       Key: { id: userId },
-      UpdateExpression: "set geminiApiKey = :k",
-      ExpressionAttributeValues: { ":k": geminiApiKey },
+      UpdateExpression: "SET geminiApiKey = :k, updatedAt = :u",
+      ExpressionAttributeValues: {
+        ":k": geminiApiKey,
+        ":u": new Date().toISOString()
+      },
+      ReturnValues: "ALL_NEW",
     })
   );
   return { message: "Gemini API key saved successfully" };
 }
 
+
 /**
  * Fetch Gemini API key for a user
  */
 export async function getUserGeminiKey(userId) {
-  const res = await ddbDoc.send(
+  const res = await ddb.send(
     new GetCommand({
       TableName: TABLE,
       Key: { id: userId },

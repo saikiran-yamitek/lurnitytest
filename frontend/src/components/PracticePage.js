@@ -70,7 +70,7 @@ export default function PracticePage() {
       .catch(e => setErr(e.message));
 
     // Fetch user data
-    fetch(`${API}/api/homepage`, {
+    fetch(`${API}/api/user/homepage`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     })
       .then(r => r.json())

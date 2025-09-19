@@ -19,7 +19,7 @@ export default function SandboxPlayground() {
   useEffect(() => {
     if (!token) return;
 
-    fetch(`${API}/api/homepage`, {
+    fetch(`${API}/apiuser/homepage`, {
       headers: { Authorization: "Bearer " + token }
     })
       .then((r) => r.ok ? r.json() : null)
