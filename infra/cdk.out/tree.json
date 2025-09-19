@@ -21392,7 +21392,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "521e77726dddbf52444731a337037b396f11bd889479c6b894703237b40cba70.zip"
+                          "s3Key": "180ca7622f7596508c685799b67dc994da07465d2ed29921e32dc96842798e95.zip"
                         },
                         "environment": {
                           "variables": {
@@ -23859,14 +23859,6 @@
                   "version": "2.151.0"
                 }
               },
-              "LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": {
-                "id": "LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
-                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnOutput",
-                  "version": "2.151.0"
-                }
-              },
               "LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": {
                 "id": "LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn",
@@ -23934,6 +23926,14 @@
               "LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn": {
                 "id": "LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.151.0"
@@ -24150,7 +24150,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/451a1386d81716ac5066f559f568d23de7ac4fbe0af0cada6fc444a25c60b240.json"
+                          "/a8f96710137ce08b940dbdb82b2d9913dccea91db0c118a75621e2070ce39426.json"
                         ]
                       ]
                     }
@@ -24303,7 +24303,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F2eb101c0428760d0a2206eee596b33395"
+                              "Ref": "LurnityLmsApiDeployment658DA5F2aa9e228c4ef9731f34495095af7dac07"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -39523,227 +39523,6 @@
                                   "version": "2.151.0"
                                 }
                               },
-                              "savedQuestions": {
-                                "id": "savedQuestions",
-                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions",
-                                "children": {
-                                  "Resource": {
-                                    "id": "Resource",
-                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/Resource",
-                                    "attributes": {
-                                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
-                                      "aws:cdk:cloudformation:props": {
-                                        "parentId": {
-                                          "Ref": "LurnityLmsApiapiuser110D0A22"
-                                        },
-                                        "pathPart": "savedQuestions",
-                                        "restApiId": {
-                                          "Ref": "LurnityLmsApi9DD8A13A"
-                                        }
-                                      }
-                                    },
-                                    "constructInfo": {
-                                      "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
-                                      "version": "2.151.0"
-                                    }
-                                  },
-                                  "OPTIONS": {
-                                    "id": "OPTIONS",
-                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/OPTIONS",
-                                    "children": {
-                                      "Resource": {
-                                        "id": "Resource",
-                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/OPTIONS/Resource",
-                                        "attributes": {
-                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
-                                          "aws:cdk:cloudformation:props": {
-                                            "apiKeyRequired": false,
-                                            "authorizationType": "NONE",
-                                            "httpMethod": "OPTIONS",
-                                            "integration": {
-                                              "type": "MOCK",
-                                              "requestTemplates": {
-                                                "application/json": "{ statusCode: 200 }"
-                                              },
-                                              "integrationResponses": [
-                                                {
-                                                  "statusCode": "204",
-                                                  "responseParameters": {
-                                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
-                                                    "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
-                                                    "method.response.header.Access-Control-Max-Age": "'86400'"
-                                                  }
-                                                }
-                                              ]
-                                            },
-                                            "methodResponses": [
-                                              {
-                                                "statusCode": "204",
-                                                "responseParameters": {
-                                                  "method.response.header.Access-Control-Allow-Headers": true,
-                                                  "method.response.header.Access-Control-Allow-Origin": true,
-                                                  "method.response.header.Access-Control-Allow-Methods": true,
-                                                  "method.response.header.Access-Control-Max-Age": true
-                                                }
-                                              }
-                                            ],
-                                            "resourceId": {
-                                              "Ref": "LurnityLmsApiapiusersavedQuestions79205DB3"
-                                            },
-                                            "restApiId": {
-                                              "Ref": "LurnityLmsApi9DD8A13A"
-                                            }
-                                          }
-                                        },
-                                        "constructInfo": {
-                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
-                                          "version": "2.151.0"
-                                        }
-                                      }
-                                    },
-                                    "constructInfo": {
-                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
-                                      "version": "2.151.0"
-                                    }
-                                  },
-                                  "GET": {
-                                    "id": "GET",
-                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET",
-                                    "children": {
-                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions": {
-                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions",
-                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions",
-                                        "attributes": {
-                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
-                                          "aws:cdk:cloudformation:props": {
-                                            "action": "lambda:InvokeFunction",
-                                            "functionName": {
-                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
-                                            },
-                                            "principal": "apigateway.amazonaws.com",
-                                            "sourceArn": {
-                                              "Fn::Join": [
-                                                "",
-                                                [
-                                                  "arn:",
-                                                  {
-                                                    "Ref": "AWS::Partition"
-                                                  },
-                                                  ":execute-api:ap-south-1:",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":",
-                                                  {
-                                                    "Ref": "LurnityLmsApi9DD8A13A"
-                                                  },
-                                                  "/",
-                                                  {
-                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
-                                                  },
-                                                  "/GET/api/user/savedQuestions"
-                                                ]
-                                              ]
-                                            }
-                                          }
-                                        },
-                                        "constructInfo": {
-                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
-                                          "version": "2.151.0"
-                                        }
-                                      },
-                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions": {
-                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions",
-                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.savedQuestions",
-                                        "attributes": {
-                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
-                                          "aws:cdk:cloudformation:props": {
-                                            "action": "lambda:InvokeFunction",
-                                            "functionName": {
-                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
-                                            },
-                                            "principal": "apigateway.amazonaws.com",
-                                            "sourceArn": {
-                                              "Fn::Join": [
-                                                "",
-                                                [
-                                                  "arn:",
-                                                  {
-                                                    "Ref": "AWS::Partition"
-                                                  },
-                                                  ":execute-api:ap-south-1:",
-                                                  {
-                                                    "Ref": "AWS::AccountId"
-                                                  },
-                                                  ":",
-                                                  {
-                                                    "Ref": "LurnityLmsApi9DD8A13A"
-                                                  },
-                                                  "/test-invoke-stage/GET/api/user/savedQuestions"
-                                                ]
-                                              ]
-                                            }
-                                          }
-                                        },
-                                        "constructInfo": {
-                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
-                                          "version": "2.151.0"
-                                        }
-                                      },
-                                      "Resource": {
-                                        "id": "Resource",
-                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/savedQuestions/GET/Resource",
-                                        "attributes": {
-                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
-                                          "aws:cdk:cloudformation:props": {
-                                            "authorizationType": "NONE",
-                                            "httpMethod": "GET",
-                                            "integration": {
-                                              "type": "AWS_PROXY",
-                                              "uri": {
-                                                "Fn::Join": [
-                                                  "",
-                                                  [
-                                                    "arn:",
-                                                    {
-                                                      "Ref": "AWS::Partition"
-                                                    },
-                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
-                                                    {
-                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
-                                                    },
-                                                    "/invocations"
-                                                  ]
-                                                ]
-                                              },
-                                              "integrationHttpMethod": "POST"
-                                            },
-                                            "resourceId": {
-                                              "Ref": "LurnityLmsApiapiusersavedQuestions79205DB3"
-                                            },
-                                            "restApiId": {
-                                              "Ref": "LurnityLmsApi9DD8A13A"
-                                            }
-                                          }
-                                        },
-                                        "constructInfo": {
-                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
-                                          "version": "2.151.0"
-                                        }
-                                      }
-                                    },
-                                    "constructInfo": {
-                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
-                                      "version": "2.151.0"
-                                    }
-                                  }
-                                },
-                                "constructInfo": {
-                                  "fqn": "aws-cdk-lib.aws_apigateway.Resource",
-                                  "version": "2.151.0"
-                                }
-                              },
                               "{id}": {
                                 "id": "{id}",
                                 "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}",
@@ -41767,6 +41546,227 @@
                                       "fqn": "aws-cdk-lib.aws_apigateway.Resource",
                                       "version": "2.151.0"
                                     }
+                                  },
+                                  "savedQuestions": {
+                                    "id": "savedQuestions",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapiuserid20370AEA"
+                                            },
+                                            "pathPart": "savedQuestions",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiuseridsavedQuestions3D879F50"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "GET": {
+                                        "id": "GET",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/GET",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.savedQuestions": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.savedQuestions",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.savedQuestions",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/GET/api/user/*/savedQuestions"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.savedQuestions": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.savedQuestions",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.user.{id}.savedQuestions",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/GET/api/user/*/savedQuestions"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/savedQuestions/GET/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "GET",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiuseridsavedQuestions3D879F50"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                      "version": "2.151.0"
+                                    }
                                   }
                                 },
                                 "constructInfo": {
@@ -42768,14 +42768,6 @@
                   "version": "2.151.0"
                 }
               },
-              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": {
-                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
-                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnParameter",
-                  "version": "2.151.0"
-                }
-              },
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn",
@@ -42843,6 +42835,14 @@
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnParameter",
                   "version": "2.151.0"
@@ -43283,12 +43283,6 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
                         ]
                       },
-                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": {
-                        "Fn::GetAtt": [
-                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-                          "Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
-                        ]
-                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -43343,6 +43337,12 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackUpdateStreakDataLambdaF2DDBC37Arn"
                         ]
                       },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackGetSavedQuestionsLambdaB2AB5F92Arn"
+                        ]
+                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJudge0KeyLambda5174CACCArn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -43368,7 +43368,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/97b707c96002a0122356eb3785f12aecb1b7f144a98540c1ea77d0249b5a0720.json"
+                          "/d32aacfd811619430eb34fa4d29ceba5fe68c355bfe690911a277fbe35e62c78.json"
                         ]
                       ]
                     }

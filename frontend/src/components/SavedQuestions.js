@@ -16,33 +16,40 @@ export default function SavedQuestions({ user }) {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const fetchSavedQuestions = async () => {
-      if (!user?.id) {
-        setLoading(false);
-        return;
+  const fetchSavedQuestions = async () => {
+    if (!user?.id) {
+      setLoading(false);
+      return;
+    }
+    try {
+      const res = await fetch(`${API}/api/user/${user.id}/savedQuestions`, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to fetch saved questions");
       }
-      try {
-        const res = await fetch(`${API}/api/user/${user.id}/savedQuestions`, {
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        });
 
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || "Failed to fetch saved questions");
-        }
+      const data = await res.json();
+      console.log("📦 Raw response:", data); // Debug log
+      
+      // ✅ Fix: Extract savedQuestions from the response object
+      const questions = data.savedQuestions || data || [];
+      console.log("📋 Extracted questions:", questions); // Debug log
+      
+      setSavedQuestions(Array.isArray(questions) ? questions : []);
+    } catch (err) {
+      console.error("Error fetching saved questions:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        const data = await res.json();
-        setSavedQuestions(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("Error fetching saved questions:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  fetchSavedQuestions();
+}, [user?.id]);
 
-    fetchSavedQuestions();
-  }, [user?.id]);
 
   const handleDeleteQuestion = async (questionId) => {
     setDeleting(true);
