@@ -56,7 +56,7 @@ export default function VideoPlayer() {
       .catch(e => setErr(e.message));
 
     if (userId) {
-      fetch(`${API}/api/gemini/get-key`, {
+      fetch(`${API}/api/user/get-key`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId })
