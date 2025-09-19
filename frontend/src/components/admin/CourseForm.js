@@ -512,39 +512,41 @@ export default class CourseForm extends Component {
                                 </div>
 
                                 {/* Transcript Section */}
-                                {v.url && canTranscript && (
-                                  <div className="transcript-section">
-                                    <div className="transcript-header">
-                                      <button 
-                                        type="button"
-                                        className="transcript-btn"
-                                        onClick={() => this.generateTranscript(sIdx, vIdx)}
-                                        disabled={v.transcribing}
-                                      >
-                                        <FiMic />
-                                        {v.transcribing
-                                          ? "Transcribing..."
-                                          : v.transcript
-                                            ? "Regenerate Transcript"
-                                            : "Generate Transcript"}
-                                      </button>
-                                    </div>
+                                {/* Transcript Section */}
+{v.url && canTranscript && (
+  <div className="transcript-section">
+    <div className="transcript-header">
+      <button 
+        type="button"
+        className="transcript-btn"
+        onClick={() => this.generateTranscript(sIdx, vIdx)}
+        disabled={v.transcribing}
+      >
+        <FiMic />
+        {v.transcribing
+          ? "Transcribing..."
+          : v.transcript
+            ? "Regenerate Transcript"
+            : "Generate Transcript"}
+      </button>
+    </div>
 
-                                    {v.transcript != null && (
-                                      <div className="transcript-editor">
-                                        <label className="form-label">Transcript</label>
-                                        <textarea 
-                                          className="form-control transcript-textarea"
-                                          rows={4}
-                                          value={v.transcript}
-                                          onChange={e =>
-                                            this.handleVideoChange(sIdx, vIdx, "transcript", e.target.value)}
-                                          placeholder="Video transcript will appear here..."
-                                        />
-                                      </div>
-                                    )}
-                                  </div>
-                                )}
+    {/* ✅ Always show transcript textarea (manual or API) */}
+    <div className="transcript-editor">
+      <label className="form-label">Transcript (Auto / Manual)</label>
+      <textarea 
+        className="form-control transcript-textarea"
+        rows={4}
+        value={v.transcript || ""}
+        onChange={e =>
+          this.handleVideoChange(sIdx, vIdx, "transcript", e.target.value)
+        }
+        placeholder="Paste transcript here or click 'Generate Transcript'"
+      />
+    </div>
+  </div>
+)}
+
                               </div>
                             </div>
                           ))}
