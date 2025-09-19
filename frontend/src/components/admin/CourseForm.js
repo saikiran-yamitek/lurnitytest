@@ -8,6 +8,7 @@ import {
   listAllSubCourses,
 } from "../../services/adminApi";
 import { uploadVideoToCloudinary } from "./cloudinaryUpload";
+const API_URL = process.env.REACT_APP_API_URL;
 
 import {
   FiTrash2,
@@ -169,7 +170,7 @@ export default class CourseForm extends Component {
 
     const v = this.state.subCourses[sIdx].videos[vIdx];
     try {
-      const res = await fetch("/api/admin/transcribe", {
+      const res = await fetch(`${API_URL}/admin/transcribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: v.url })
