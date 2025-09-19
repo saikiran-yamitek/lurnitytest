@@ -79,33 +79,14 @@ export default function PracticePage() {
   }, [courseId]);
 
   useEffect(() => {
-  const fetchHistory = async () => {
-    try {
-      const userId = localStorage.getItem("userId"); // string
-      const res = await fetch(`${API}/api/user/${userId}/practiceHistory`, {
-        method: "POST", // POST so we can send data in body
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({
-          courseId,
-          subIdx: sIdx,
-          vidIdx: vIdx
-        })
-      });
-
-      if (!res.ok) throw new Error("Failed to fetch attempts");
-      const data = await res.json();
-      setAttempts(data);
-    } catch (err) {
-      console.error("Failed to fetch attempts:", err);
-    }
-  };
-
-  fetchHistory();
-}, [courseId, sIdx, vIdx]);
-
+    const userr = JSON.parse(localStorage.getItem("userId"));
+    fetch(`${API}/api/user/${userr}/practiceHistory?courseId=${courseId}&subIdx=${sIdx}&vidIdx=${vIdx}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    })
+      .then(r => r.json())
+      .then(setAttempts)
+      .catch(e => console.error("Failed to fetch attempts:", e));
+  }, [courseId, sIdx, vIdx]);
 
   // Security and fullscreen event listeners (same as original)
   useEffect(() => {
