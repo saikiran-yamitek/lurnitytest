@@ -9542,7 +9542,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "ec6891fb1b3eec691bb27b73023508205e1834269fb589376f0959c64a094721.zip"
+     "S3Key": "fc9e007c087929faeec8d1211ba1d615416e801183dfd2d43a5dd4c440998bfb.zip"
     },
     "Environment": {
      "Variables": {
@@ -9615,7 +9615,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/Resource",
-    "aws:asset:path": "asset.ec6891fb1b3eec691bb27b73023508205e1834269fb589376f0959c64a094721",
+    "aws:asset:path": "asset.fc9e007c087929faeec8d1211ba1d615416e801183dfd2d43a5dd4c440998bfb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
