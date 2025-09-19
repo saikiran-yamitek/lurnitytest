@@ -208,7 +208,7 @@ class ApiNestedStack extends cdk.NestedStack {
 
     // Other user-specific endpoints
     userSpecificRes.addResource("completedSubcourses").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateCompletedSubcoursesLambda));
-    userSpecificRes.addResource("projects").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateProjectsLambda));
+    userSpecificRes.addResource("projects").addMethod("POST", new apigateway.LambdaIntegration(lambdas.updateProjectsLambda));
     userSpecificRes.addResource("practiceResult").addMethod("POST", new apigateway.LambdaIntegration(lambdas.addPracticeResultLambda));
     
     

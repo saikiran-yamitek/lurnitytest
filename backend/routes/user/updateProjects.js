@@ -2,22 +2,27 @@ import { updateProjects } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
-  // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
+  if (event.httpMethod === "OPTIONS") {
     return handleOptionsRequest();
   }
 
   try {
-    const body = JSON.parse(event.body);
-    const { userId, projects } = body;
+    const userId = event.pathParameters?.id; // ✅ from URL /api/user/{id}/projects
+    const body = JSON.parse(event.body || "{}");
+    const { projects } = body; // ✅ from request body
 
     if (!userId) {
-      return createResponse(400, { msg: "userId required" });
+      return createResponse(400, { msg: "userId required in path" });
+    }
+
+    if (!projects || !Array.isArray(projects)) {
+      return createResponse(400, { msg: "projects must be an array" });
     }
 
     const updated = await updateProjects(userId, projects);
-    return createResponse(200, updated);
+    return createResponse(200, { msg: "Projects updated", updated });
   } catch (err) {
+    console.error("Update projects error:", err);
     return createResponse(500, { msg: "Error updating projects", error: err.message });
   }
 };

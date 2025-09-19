@@ -18632,7 +18632,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "2f43bd6082436c6cc3aa67ed923a23b91bd5f448e9a6a746c035f7aad50be847.zip"
+                          "s3Key": "a0185b5e822bd87a9ab9b9a30a65b11410b84dbbd290c89398e203cd911cca43.zip"
                         },
                         "environment": {
                           "variables": {
@@ -19782,7 +19782,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "4fe6928a22d095f88b908921154147f6e5bcbc6dbcd471205a81d2b9022dd279.zip"
+                          "s3Key": "7202cd6c73248785bdcab892e9bd4d68528b338a1e0f2b1d2ef0c226e79b8256.zip"
                         },
                         "environment": {
                           "variables": {
@@ -24150,7 +24150,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/678ca792b1523ee9767231d97949cb19d9b3be6e94ae0765a0e7b2da85f4ddee.json"
+                          "/ba3b95058ed11fd2fd6af89bdb2ba6b40dcaf8e30fb749c500548be2d04642e9.json"
                         ]
                       ]
                     }
@@ -24303,7 +24303,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F208d024ff067d0f484fed98e5ad772e17"
+                              "Ref": "LurnityLmsApiDeployment658DA5F29199743330e71ad9175f08b8fe22054f"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -40264,13 +40264,13 @@
                                           "version": "2.151.0"
                                         }
                                       },
-                                      "PUT": {
-                                        "id": "PUT",
-                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT",
+                                      "POST": {
+                                        "id": "POST",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST",
                                         "children": {
-                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects": {
-                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects",
-                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects",
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects",
                                             "attributes": {
                                               "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                                               "aws:cdk:cloudformation:props": {
@@ -40299,7 +40299,7 @@
                                                       {
                                                         "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
                                                       },
-                                                      "/PUT/api/user/*/projects"
+                                                      "/POST/api/user/*/projects"
                                                     ]
                                                   ]
                                                 }
@@ -40310,9 +40310,9 @@
                                               "version": "2.151.0"
                                             }
                                           },
-                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects": {
-                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects",
-                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects",
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects",
                                             "attributes": {
                                               "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                                               "aws:cdk:cloudformation:props": {
@@ -40337,7 +40337,7 @@
                                                       {
                                                         "Ref": "LurnityLmsApi9DD8A13A"
                                                       },
-                                                      "/test-invoke-stage/PUT/api/user/*/projects"
+                                                      "/test-invoke-stage/POST/api/user/*/projects"
                                                     ]
                                                   ]
                                                 }
@@ -40350,12 +40350,12 @@
                                           },
                                           "Resource": {
                                             "id": "Resource",
-                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/Resource",
                                             "attributes": {
                                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                                               "aws:cdk:cloudformation:props": {
                                                 "authorizationType": "NONE",
-                                                "httpMethod": "PUT",
+                                                "httpMethod": "POST",
                                                 "integration": {
                                                   "type": "AWS_PROXY",
                                                   "uri": {
@@ -43368,7 +43368,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/fd800bfadf9fcf7f62104ad7e0ac9af3351a4bf907d0596e66a394b45654706d.json"
+                          "/77c31650d25d53dfbdd0e86bcf44287ef2328654578b90e30bb8a33f7092978d.json"
                         ]
                       ]
                     }

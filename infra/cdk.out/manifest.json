@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/e014f2ce5f817363866caa4543347ee2ebe7b3420d0e693da0be70a543d3c915.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/2c0fcdd719059b943b615b4fef2e1f39a2744d8dd1c0e605d1059f2d40614466.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -2730,7 +2730,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F208d024ff067d0f484fed98e5ad772e17"
+            "data": "LurnityLmsApiDeployment658DA5F29199743330e71ad9175f08b8fe22054f"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -4911,22 +4911,22 @@
             "data": "LurnityLmsApiapiuseridprojectsOPTIONSF7D782FA"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects": [
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuseridprojectsPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprojects5E18E835"
+            "data": "LurnityLmsApiapiuseridprojectsPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridprojects8CCEC80C"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects": [
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuseridprojectsPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprojects5D93CE31"
+            "data": "LurnityLmsApiapiuseridprojectsPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridprojects8BE83E22"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/Resource": [
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuseridprojectsPUT750AF469"
+            "data": "LurnityLmsApiapiuseridprojectsPOST0186FC11"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/practiceResult/Resource": [

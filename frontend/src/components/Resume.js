@@ -140,8 +140,9 @@ Create a responsive design that adapts gracefully to different screen sizes.
 
   const saveProjectsToBackend = async (formattedProjects) => {
     const token = localStorage.getItem("token");
+    const id = localStorage.getItem("userId");
     try {
-      const response = await fetch(`${API}/api/update-projects`, {
+      const response = await fetch(`${API}/api/user/${id}/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

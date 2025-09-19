@@ -12074,7 +12074,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "2f43bd6082436c6cc3aa67ed923a23b91bd5f448e9a6a746c035f7aad50be847.zip"
+     "S3Key": "a0185b5e822bd87a9ab9b9a30a65b11410b84dbbd290c89398e203cd911cca43.zip"
     },
     "Environment": {
      "Variables": {
@@ -12147,7 +12147,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetResumeDataLambda/Resource",
-    "aws:asset:path": "asset.2f43bd6082436c6cc3aa67ed923a23b91bd5f448e9a6a746c035f7aad50be847",
+    "aws:asset:path": "asset.a0185b5e822bd87a9ab9b9a30a65b11410b84dbbd290c89398e203cd911cca43",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12864,7 +12864,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4fe6928a22d095f88b908921154147f6e5bcbc6dbcd471205a81d2b9022dd279.zip"
+     "S3Key": "7202cd6c73248785bdcab892e9bd4d68528b338a1e0f2b1d2ef0c226e79b8256.zip"
     },
     "Environment": {
      "Variables": {
@@ -12937,7 +12937,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProjectsLambda/Resource",
-    "aws:asset:path": "asset.4fe6928a22d095f88b908921154147f6e5bcbc6dbcd471205a81d2b9022dd279",
+    "aws:asset:path": "asset.7202cd6c73248785bdcab892e9bd4d68528b338a1e0f2b1d2ef0c226e79b8256",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

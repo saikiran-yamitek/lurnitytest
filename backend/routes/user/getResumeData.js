@@ -10,13 +10,21 @@ export const handler = async (event) => {
   try {
     console.log("Headers:", JSON.stringify(event.headers, null, 2));
 
-    const authHeader = event.headers?.authorization; // always lowercase
+    // ✅ Handle both lowercase and uppercase header keys
+    const authHeader =
+      event.headers?.authorization || event.headers?.Authorization;
+
     const token = authHeader?.split(" ")[1];
-    if (!token) return createResponse(401, { msg: "No token" });
-const JWT_SECRET = process.env.JWT_SECRET || "secretKey";
+    if (!token) {
+      console.log("❌ No token found in headers");
+      return createResponse(401, { msg: "No token" });
+    }
+
+    const JWT_SECRET = process.env.JWT_SECRET || "secretKey";
+
     let decoded;
     try {
-      decoded = jwt.verify(token, JWT_SECRET); // 🔑 use same secret as in login
+      decoded = jwt.verify(token, JWT_SECRET); // 🔑 use same secret as login
     } catch (err) {
       console.error("JWT verify failed:", err.message);
       return createResponse(401, { msg: "Invalid token", error: err.message });

@@ -64,7 +64,7 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Account"
    }
   },
-  "LurnityLmsApiDeployment658DA5F208d024ff067d0f484fed98e5ad772e17": {
+  "LurnityLmsApiDeployment658DA5F29199743330e71ad9175f08b8fe22054f": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
@@ -234,7 +234,7 @@
     "LurnityLmsApiapiuseridprofilePUT69C9351B",
     "LurnityLmsApiapiuseridprofile4C9F6316",
     "LurnityLmsApiapiuseridprojectsOPTIONSF7D782FA",
-    "LurnityLmsApiapiuseridprojectsPUT750AF469",
+    "LurnityLmsApiapiuseridprojectsPOST0186FC11",
     "LurnityLmsApiapiuseridprojects6229CE7B",
     "LurnityLmsApiapiuserid20370AEA",
     "LurnityLmsApiapiuseridresumeGET0C9FADEF",
@@ -311,7 +311,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "LurnityLmsApiDeployment658DA5F208d024ff067d0f484fed98e5ad772e17"
+     "Ref": "LurnityLmsApiDeployment658DA5F29199743330e71ad9175f08b8fe22054f"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
@@ -12424,7 +12424,7 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/OPTIONS/Resource"
    }
   },
-  "LurnityLmsApiapiuseridprojectsPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprojects5E18E835": {
+  "LurnityLmsApiapiuseridprojectsPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridprojects8CCEC80C": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -12452,16 +12452,16 @@
        {
         "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
        },
-       "/PUT/api/user/*/projects"
+       "/POST/api/user/*/projects"
       ]
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects"
    }
   },
-  "LurnityLmsApiapiuseridprojectsPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseridprojects5D93CE31": {
+  "LurnityLmsApiapiuseridprojectsPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseridprojects8BE83E22": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -12485,20 +12485,20 @@
        {
         "Ref": "LurnityLmsApi9DD8A13A"
        },
-       "/test-invoke-stage/PUT/api/user/*/projects"
+       "/test-invoke-stage/POST/api/user/*/projects"
       ]
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.{id}.projects"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.{id}.projects"
    }
   },
-  "LurnityLmsApiapiuseridprojectsPUT750AF469": {
+  "LurnityLmsApiapiuseridprojectsPOST0186FC11": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "Integration": {
      "IntegrationHttpMethod": "POST",
      "Type": "AWS_PROXY",
@@ -12527,7 +12527,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/PUT/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/projects/POST/Resource"
    }
   },
   "LurnityLmsApiapiuseridpracticeResult17711546": {
