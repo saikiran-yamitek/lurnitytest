@@ -7,7 +7,7 @@ export const handler = async (event) => {
   }
 
   try {
-    const userId = event.pathParameters?.userId;
+    const userId = event.pathParameters?.id;
     if (!userId) {
       return createResponse(400, { msg: "userId required" });
     }

@@ -554,6 +554,7 @@ Transcript: ${transcript}`;
 
   const handleSaveQuestion = async () => {
     const currentQuestion = questions[currentQuestionIndex];
+    const userId = JSON.parse(localStorage.getItem("userId"));
     try {
       const response = await fetch(`${API}/api/user/saveQuestion`, {
         method: 'POST',
@@ -562,6 +563,7 @@ Transcript: ${transcript}`;
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({
+          userId: userId, 
           question: currentQuestion.question,
           correctOption: currentQuestion.correctAnswer,
           options: currentQuestion.options
