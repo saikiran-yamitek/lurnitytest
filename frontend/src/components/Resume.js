@@ -18,9 +18,8 @@ const Resume = () => {
 
   useEffect(() => {
   const token = localStorage.getItem("token");
-  const url = userId
-    ? `${API}/api/get-resume-data?userId=${userId}`
-    : `${API}/api/get-resume-data`;
+  const id = localStorage.getItem("userId");
+  const url = `${API}/api/user/${id}/resume`;
 
   fetch(url, {
     headers: { Authorization: `Bearer ${token}` },
