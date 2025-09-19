@@ -476,41 +476,43 @@ Transcript: ${transcript}`;
   };
 
   const savePracticeResult = async (finalScore) => {
-    try {
-      const correctCount = Object.keys(answers).filter(i => answers[i] === questions[i]?.correctAnswer).length;
-      const wrongCount = Object.keys(answers).filter(i => answers[i] && answers[i] !== questions[i]?.correctAnswer).length;
-      const timeSpent = 300 - timeRemaining;
+  try {
+    const user = JSON.parse(localStorage.getItem("userId"));
+    
 
-      const response = await fetch(`${API}/api/results`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-          courseId,
-          subIdx: sIdx,
-          vidIdx: vIdx,
-          score: finalScore,
-          totalQuestions: questions.length,
-          correctAnswers: correctCount,
-          wrongAnswers: wrongCount,
-          timeSpent,
-          violations: violations,
-          violationCount: violationCountRef.current
-        })
-      });
+    const correctCount = Object.keys(answers).filter(i => answers[i] === questions[i]?.correctAnswer).length;
+    const wrongCount = Object.keys(answers).filter(i => answers[i] && answers[i] !== questions[i]?.correctAnswer).length;
+    const timeSpent = 300 - timeRemaining;
 
-      if (!response.ok) {
-        throw new Error('Failed to save practice result');
-      }
+    const response = await fetch(`${API}/api/user/${user}/practiceResult`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        courseId,
+        subIdx: sIdx,
+        vidIdx: vIdx,
+        score: finalScore,
+        totalQuestions: questions.length,
+        correctAnswers: correctCount,
+        wrongAnswers: wrongCount,
+        timeSpent,
+        violations,
+        violationCount: violationCountRef.current,
+        completedAt: new Date().toISOString()
+      })
+    });
 
-      const result = await response.json();
-      console.log('Practice result saved:', result);
-    } catch (error) {
-      console.error('Failed to save practice result:', error);
-    }
-  };
+    if (!response.ok) throw new Error('Failed to save practice result');
+    const result = await response.json();
+    console.log('✅ Practice result saved:', result);
+  } catch (error) {
+    console.error('❌ Failed to save practice result:', error);
+  }
+};
+
 
   const handleQuizSubmit = async () => {
     setTimerActive(false);

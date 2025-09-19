@@ -62,41 +62,26 @@ export async function getCourseById(courseId) {
 }
 
 /** Update course */
+/** Update course (overwrite entire record) */
 export async function updateCourse(courseId, data = {}) {
   if (!courseId) throw new Error("courseId required");
+
+  // Recalculate duration if needed
   if (!data.overallDuration && data.subCourses) {
     data.overallDuration = calcTotalMinutes(data.subCourses);
   }
 
-  const keys = Object.keys(data);
-  if (keys.length === 0) return getCourseById(courseId);
-
-  const exprParts = [];
-  const exprAttrNames = {};
-  const exprAttrValues = {};
-
-  keys.forEach((k) => {
-    exprParts.push(`#${k} = :${k}`);
-    exprAttrNames[`#${k}`] = k;
-    exprAttrValues[`:${k}`] = data[k];
-  });
-
-  exprParts.push("#updatedAt = :updatedAt");
-  exprAttrNames["#updatedAt"] = "updatedAt";
-  exprAttrValues[":updatedAt"] = new Date().toISOString();
-
-  const params = {
-    TableName: TABLE,
-    Key: { id: courseId },
-    UpdateExpression: `SET ${exprParts.join(", ")}`,
-    ExpressionAttributeNames: exprAttrNames,
-    ExpressionAttributeValues: exprAttrValues,
-    ReturnValues: "ALL_NEW",
+  const item = {
+    id: courseId,
+    ...data,
+    updatedAt: new Date().toISOString(),
   };
 
-  const res = await ddb.send(new UpdateCommand(params));
-  return res.Attributes ?? null;
+  // Overwrite full course record in DynamoDB
+  await ddb.send(new PutCommand({ TableName: TABLE, Item: item }));
+  return item;
 }
+
 
 /** Delete course */
 export async function deleteCourse(courseId) {
