@@ -555,7 +555,7 @@ Transcript: ${transcript}`;
   const handleSaveQuestion = async () => {
     const currentQuestion = questions[currentQuestionIndex];
     try {
-      const response = await fetch(`${API}/api/save-question`, {
+      const response = await fetch(`${API}/api/user/saveQuestion`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

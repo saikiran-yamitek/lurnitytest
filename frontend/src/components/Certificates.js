@@ -27,7 +27,7 @@ const Certificates = () => {
     }
 
     setLoading(true);
-    fetch(`${API}/api/homepage`, {
+    fetch(`${API}/api/user/homepage`, {
       headers: { Authorization: "Bearer " + token },
     })
       .then((res) => res.json())
