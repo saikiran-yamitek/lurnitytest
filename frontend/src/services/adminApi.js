@@ -165,7 +165,7 @@ export const updateTicket = (id, body) =>
   }).then((r) => r.json());
 
 export const deleteTicket = (id) =>
-  fetch(`${API}/tickets/${id}`, {
+  fetch(`${API_BASE_URL}/api/tickets/${id}`, {
     method: "DELETE",
     headers: authHeaders(),
   }).then((r) => (r.status === 204 ? { ok: true } : r.json()));

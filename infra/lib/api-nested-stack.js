@@ -165,6 +165,7 @@ class ApiNestedStack extends cdk.NestedStack {
     tickets.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listTicketsLambda));
     const ticketId = tickets.addResource("{id}");
     ticketId.addMethod("PATCH", new apigateway.LambdaIntegration(lambdas.updateTicketLambda));
+    ticketId.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteTicketLambda));
 
     // --- Rankings ---
     const rankings = apiResource.addResource("rankings");

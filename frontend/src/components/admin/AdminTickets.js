@@ -44,8 +44,8 @@ export default function AdminTickets() {
   const del = async (t) => {
     if (!window.confirm("Are you sure you want to delete this ticket permanently?")) return;
     try {
-      await deleteTicket(t._id);
-      setTickets((p) => p.filter((x) => x._id !== t._id));
+      await deleteTicket(t.id);
+      setTickets((p) => p.filter((x) => x._id !== t.id));
     } catch (error) {
       console.error("Failed to delete ticket:", error);
     }
@@ -53,9 +53,9 @@ export default function AdminTickets() {
 
   const reopen = async (t) => {
     try {
-      await updateTicket(t._id, { status: "Open", closedBy: "", resolutionNote: "" });
+      await updateTicket(t.id, { status: "Open", closedBy: "", resolutionNote: "" });
       setTickets((p) =>
-        p.map((x) => (x._id === t._id ? { ...x, status: "Open" } : x))
+        p.map((x) => (x._id === t.id ? { ...x, status: "Open" } : x))
       );
       setActiveTab('pending');
     } catch (error) {
@@ -185,7 +185,7 @@ export default function AdminTickets() {
           ) : (
             <div className="tickets-list">
               {(activeTab === 'pending' ? pendingList : resolvedList).map((t, index) => (
-                <div key={t._id} className="ticket-item" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div key={t.id} className="ticket-item" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="ticket-header">
                     <div className="ticket-info">
                       <div className="ticket-subject">
