@@ -449,19 +449,35 @@ export async function addTicketToUser(userId, ticketId) {
 
 // Update lastSeenResolvedTicketId
 export async function setLastResolvedTicket(userEmail, ticketId) {
-  const params = {
+  // 1️⃣ Query user table by email (GSI)
+  const userResult = await ddb.send(new QueryCommand({
     TableName: TABLE,
-    Key: { email: userEmail }, // ⚠️ assumes "email" is PK or GSI
+    IndexName: "email-index",
+    KeyConditionExpression: "email = :email",
+    ExpressionAttributeValues: { ":email": userEmail },
+    Limit: 1
+  }));
+
+  if (!userResult.Items?.length) {
+    console.error("User not found for email:", userEmail);
+    return null;
+  }
+
+  const userId = userResult.Items[0].id;
+
+  // 2️⃣ Update the user by id (PK)
+  const updateResult = await ddb.send(new UpdateCommand({
+    TableName: TABLE,
+    Key: { id: userId },
     UpdateExpression: "SET lastSeenResolvedTicketId = :tid, updatedAt = :updatedAt",
     ExpressionAttributeValues: {
       ":tid": ticketId,
-      ":updatedAt": new Date().toISOString(),
+      ":updatedAt": new Date().toISOString()
     },
-    ReturnValues: "ALL_NEW",
-  };
+    ReturnValues: "ALL_NEW"
+  }));
 
-  const result = await ddb.send(new UpdateCommand(params));
-  return result.Attributes ?? null;
+  return updateResult.Attributes ?? null;
 }
 
 // Progress-related helpers

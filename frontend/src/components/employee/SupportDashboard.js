@@ -68,7 +68,7 @@ export default function SupportDashboard({ emp }) {
     });
 
     await fetch(`${API}/api/user/alert`, {
-      method: "PUT",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: ticket.userEmail,
