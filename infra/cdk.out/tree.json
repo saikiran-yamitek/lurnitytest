@@ -7433,6 +7433,21 @@
                                           "Ref": "AWS::NoValue"
                                         }
                                       ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:Query",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            {
+                                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+                                            },
+                                            "/index/*"
+                                          ]
+                                        ]
+                                      }
                                     }
                                   ],
                                   "Version": "2012-10-17"
@@ -7498,7 +7513,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "a8dc563be3e91222c923d5cceb0176f2882cb546dd8fc9fa1f4f42fbac0abfed.zip"
+                          "s3Key": "86b6647536bf4cec92932b47816875909de50ecab56ceee6265a5eb658752f21.zip"
                         },
                         "environment": {
                           "variables": {
@@ -7655,6 +7670,21 @@
                                           "Ref": "AWS::NoValue"
                                         }
                                       ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:Query",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            {
+                                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+                                            },
+                                            "/index/*"
+                                          ]
+                                        ]
+                                      }
                                     }
                                   ],
                                   "Version": "2012-10-17"
@@ -7877,6 +7907,21 @@
                                           "Ref": "AWS::NoValue"
                                         }
                                       ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:Query",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            {
+                                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+                                            },
+                                            "/index/*"
+                                          ]
+                                        ]
+                                      }
                                     }
                                   ],
                                   "Version": "2012-10-17"
@@ -8099,6 +8144,21 @@
                                           "Ref": "AWS::NoValue"
                                         }
                                       ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:Query",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            {
+                                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+                                            },
+                                            "/index/*"
+                                          ]
+                                        ]
+                                      }
                                     }
                                   ],
                                   "Version": "2012-10-17"
@@ -8164,7 +8224,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "1c6107c678133d4fa665dd56417c37c9c139084405f90c5e6924bc4e7eb2dfc6.zip"
+                          "s3Key": "709c35bdc578f9f782ac789b9321e81800641b8228fa61eee2a66f31ca5a070b.zip"
                         },
                         "environment": {
                           "variables": {
@@ -8321,6 +8381,21 @@
                                           "Ref": "AWS::NoValue"
                                         }
                                       ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:Query",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            {
+                                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+                                            },
+                                            "/index/*"
+                                          ]
+                                        ]
+                                      }
                                     }
                                   ],
                                   "Version": "2012-10-17"
@@ -8543,6 +8618,21 @@
                                           "Ref": "AWS::NoValue"
                                         }
                                       ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:Query",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            {
+                                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+                                            },
+                                            "/index/*"
+                                          ]
+                                        ]
+                                      }
                                     }
                                   ],
                                   "Version": "2012-10-17"
@@ -8608,7 +8698,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "e2ac3cd55e42801750704eb6ee03ffe59e4bf6645b21b15a1477a03216c03c49.zip"
+                          "s3Key": "eb7cee8537ef4f5e5e405b474b538dd05c8357fcee0c3cfc612886cf13daed27.zip"
                         },
                         "environment": {
                           "variables": {
@@ -24158,7 +24248,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/543f08476c0fb080cce1303572e27bb837ae5ebad0f1167524e827c7b30733f2.json"
+                          "/1cb7c91fc7e1a24ef65b8a2efbfe5f6bdd0981d7440453e69ff763851ab67fad.json"
                         ]
                       ]
                     }

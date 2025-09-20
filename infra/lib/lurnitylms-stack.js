@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url"; // <-- required for ES module __dirname
 import * as cdk from "aws-cdk-lib";
 import * as s3 from "aws-cdk-lib/aws-s3";
+import * as iam from "aws-cdk-lib/aws-iam"; // 👈 added
 import dotenv from "dotenv";
 import { DatabaseNestedStack } from "./database-nested-stack.js";
 import { LambdaNestedStack } from "./lambda-nested-stack.js";
@@ -36,7 +37,7 @@ class LurnityLmsStack extends cdk.Stack {
       TICKET_TABLE_NAME: databaseStack.ticketTable.tableName,
       LANDING_PAGE_TABLE: databaseStack.landingPageTable.tableName,
       CERTIFICATE_TABLE_NAME: databaseStack.certificateTable.tableName,
-      ADMIN_LOGIN_TABLE:databaseStack.adminLoginTable.tableName,
+      ADMIN_LOGIN_TABLE: databaseStack.adminLoginTable.tableName,
       COMPANY_TABLE_NAME: databaseStack.companyTable.tableName,
       EMPLOYEE_TABLE_NAME: databaseStack.employeeTable.tableName,
       FEEDBACK_TABLE_NAME: databaseStack.feedbackTable.tableName,
@@ -75,7 +76,25 @@ class LurnityLmsStack extends cdk.Stack {
       databaseStack.certificateTable.grantFullAccess(l); databaseStack.userTable.grantFullAccess(l); databaseStack.courseTable.grantFullAccess(l);
     });
     [lambdaStack.getCompaniesLambda, lambdaStack.createCompanyLambda, lambdaStack.updateCompanyLambda].forEach(l => databaseStack.companyTable.grantFullAccess(l));
-    [lambdaStack.createEmployeeLambda, lambdaStack.listEmployeesLambda, lambdaStack.getEmployeeByIdLambda, lambdaStack.updateEmployeeLambda, lambdaStack.deleteEmployeeLambda, lambdaStack.employeeLoginLambda].forEach(l => databaseStack.employeeTable.grantFullAccess(l));
+
+    // ✅ Employee Lambdas - add index permissions
+    [
+      lambdaStack.createEmployeeLambda,
+      lambdaStack.listEmployeesLambda,
+      lambdaStack.getEmployeeByIdLambda,
+      lambdaStack.updateEmployeeLambda,
+      lambdaStack.deleteEmployeeLambda,
+      lambdaStack.employeeLoginLambda
+    ].forEach(l => {
+      databaseStack.employeeTable.grantFullAccess(l);
+      l.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ["dynamodb:Query"],
+        resources: [
+          `${databaseStack.employeeTable.tableArn}/index/*`
+        ]
+      }));
+    });
 
     [lambdaStack.submitFeedbackLambda, lambdaStack.listFeedbacksLambda, lambdaStack.deleteFeedbackLambda].forEach(l => {
       databaseStack.feedbackTable.grantFullAccess(l);

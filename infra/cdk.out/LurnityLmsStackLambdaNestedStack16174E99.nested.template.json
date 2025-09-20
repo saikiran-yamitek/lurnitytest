@@ -4374,6 +4374,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -4396,7 +4411,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a8dc563be3e91222c923d5cceb0176f2882cb546dd8fc9fa1f4f42fbac0abfed.zip"
+     "S3Key": "86b6647536bf4cec92932b47816875909de50ecab56ceee6265a5eb658752f21.zip"
     },
     "Environment": {
      "Variables": {
@@ -4469,7 +4484,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateEmployeeLambda/Resource",
-    "aws:asset:path": "asset.a8dc563be3e91222c923d5cceb0176f2882cb546dd8fc9fa1f4f42fbac0abfed",
+    "aws:asset:path": "asset.86b6647536bf4cec92932b47816875909de50ecab56ceee6265a5eb658752f21",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4524,6 +4539,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -4674,6 +4704,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -4824,6 +4869,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -4846,7 +4906,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1c6107c678133d4fa665dd56417c37c9c139084405f90c5e6924bc4e7eb2dfc6.zip"
+     "S3Key": "709c35bdc578f9f782ac789b9321e81800641b8228fa61eee2a66f31ca5a070b.zip"
     },
     "Environment": {
      "Variables": {
@@ -4919,7 +4979,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateEmployeeLambda/Resource",
-    "aws:asset:path": "asset.1c6107c678133d4fa665dd56417c37c9c139084405f90c5e6924bc4e7eb2dfc6",
+    "aws:asset:path": "asset.709c35bdc578f9f782ac789b9321e81800641b8228fa61eee2a66f31ca5a070b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4974,6 +5034,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -5124,6 +5199,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -5146,7 +5236,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e2ac3cd55e42801750704eb6ee03ffe59e4bf6645b21b15a1477a03216c03c49.zip"
+     "S3Key": "eb7cee8537ef4f5e5e405b474b538dd05c8357fcee0c3cfc612886cf13daed27.zip"
     },
     "Environment": {
      "Variables": {
@@ -5219,7 +5309,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/EmployeeLoginLambda/Resource",
-    "aws:asset:path": "asset.e2ac3cd55e42801750704eb6ee03ffe59e4bf6645b21b15a1477a03216c03c49",
+    "aws:asset:path": "asset.eb7cee8537ef4f5e5e405b474b538dd05c8357fcee0c3cfc612886cf13daed27",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

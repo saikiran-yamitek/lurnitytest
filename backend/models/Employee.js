@@ -23,18 +23,34 @@ if (!EMPLOYEE_TABLE) {
 // ------------------------
 // CREATE EMPLOYEE
 // ------------------------
+
+
 export const createEmployee = async (employeeData) => {
+  console.log("👤 Creating new employee:", employeeData.name);
+  
+  let hashedPassword = null;
+  if (employeeData.password) {
+    console.log("🔐 Hashing password...");
+    hashedPassword = await bcrypt.hash(employeeData.password, 12);
+    console.log("✅ Password hashed successfully");
+  }
+
   const newEmployee = {
     ...employeeData,
+    password: hashedPassword,
     id: employeeData.id || crypto.randomUUID(),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
+
   await docClient.send(
     new PutCommand({ TableName: EMPLOYEE_TABLE, Item: newEmployee })
   );
+  
+  console.log("✅ Employee created with ID:", newEmployee.id);
   return newEmployee;
 };
+
 
 // ------------------------
 // GET ALL EMPLOYEES
@@ -68,31 +84,57 @@ export const getEmployeeById = async (id) => {
 // UPDATE EMPLOYEE
 // ------------------------
 export const updateEmployee = async (id, updateData) => {
+  console.log("📝 Updating employee ID:", id);
+  console.log("📦 Raw update data:", updateData);
+  
+  // ✅ Remove id and other non-updatable fields
+  const { id: _, createdAt, updatedAt, ...cleanUpdateData } = updateData;
+  
+  console.log("🧹 Cleaned update data:", cleanUpdateData);
+  
   const now = new Date().toISOString();
   const updateExpressionParts = [];
   const expressionValues = {};
+  const expressionAttributeNames = {};
 
-  for (const key in updateData) {
+  // ✅ Only iterate over cleaned data (no 'id' field)
+  for (const key in cleanUpdateData) {
     updateExpressionParts.push(`#${key} = :${key}`);
-    expressionValues[`:${key}`] = updateData[key];
+    expressionValues[`:${key}`] = cleanUpdateData[key];
+    expressionAttributeNames[`#${key}`] = key;
   }
+  
+  // Add updatedAt separately
   updateExpressionParts.push("#updatedAt = :updatedAt");
   expressionValues[":updatedAt"] = now;
+  expressionAttributeNames["#updatedAt"] = "updatedAt";
+
+  if (updateExpressionParts.length === 1) { // Only updatedAt
+    console.log("⚠️ No fields to update");
+    return null;
+  }
 
   const params = {
     TableName: EMPLOYEE_TABLE,
     Key: { id },
     UpdateExpression: `SET ${updateExpressionParts.join(", ")}`,
-    ExpressionAttributeNames: Object.fromEntries(
-      Object.keys(updateData).map((k) => [`#${k}`, k])
-    ),
+    ExpressionAttributeNames: expressionAttributeNames,
     ExpressionAttributeValues: expressionValues,
     ReturnValues: "ALL_NEW",
   };
 
-  const result = await docClient.send(new UpdateCommand(params));
-  return result.Attributes;
+  console.log("📤 DynamoDB UpdateCommand:", JSON.stringify(params, null, 2));
+
+  try {
+    const result = await docClient.send(new UpdateCommand(params));
+    console.log("✅ Employee updated successfully");
+    return result.Attributes;
+  } catch (error) {
+    console.error("❌ DynamoDB update error:", error);
+    throw error;
+  }
 };
+
 
 // ------------------------
 // DELETE EMPLOYEE
@@ -115,14 +157,7 @@ export const deleteEmployee = async (id) => {
 export const getEmployeeByUsername = async (username) => {
   if (!username) throw new Error("username is required");
 
-  // If "username" is the PK
-  const result = await docClient.send(
-    new GetCommand({ TableName: EMPLOYEE_TABLE, Key: { username } })
-  );
-  if (result.Item) return result.Item;
 
-  // If username is stored in a GSI instead:
-  /*
   const result = await docClient.send(
     new QueryCommand({
       TableName: EMPLOYEE_TABLE,
@@ -132,9 +167,9 @@ export const getEmployeeByUsername = async (username) => {
     })
   );
   return result.Items && result.Items[0] ? result.Items[0] : null;
-  */
+  
 
-  return null;
+  
 };
 
 /**
