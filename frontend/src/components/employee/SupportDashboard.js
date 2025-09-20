@@ -593,7 +593,7 @@ export default function SupportDashboard({ emp }) {
               ) : (
                 <div className="support-demos-grid">
                   {newDemos.map((demo) => (
-                    <div className="support-demo-card" key={demo._id}>
+                    <div className="support-demo-card" key={demo.id}>
                       <div className="support-demo-card-header">
                         <div className="support-demo-main-info">
                           <div className="support-demo-badge">
@@ -622,7 +622,7 @@ export default function SupportDashboard({ emp }) {
                       <div className="support-demo-card-footer">
                         <button 
                           className="support-btn support-btn-primary" 
-                          onClick={() => handleMarkBooked(demo._id)}
+                          onClick={() => handleMarkBooked(demo.id)}
                         >
                           <FiCheckCircle />
                           Mark as Booked
