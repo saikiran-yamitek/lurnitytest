@@ -650,7 +650,7 @@ export default function SupportDashboard({ emp }) {
                 ) : (
                   <div className="support-booked-list">
                     {bookedDemos.map((demo) => (
-                      <div key={demo._id} className="support-booked-item">
+                      <div key={demo.id} className="support-booked-item">
                         <div className="support-booked-header">
                           <div className="support-booked-info">
                             <h4 className="support-booked-name">{demo.name}</h4>
@@ -705,7 +705,7 @@ export default function SupportDashboard({ emp }) {
                     );
 
                     return (
-                      <div className="support-feedback-card" key={feedback._id}>
+                      <div className="support-feedback-card" key={feedback.id}>
                         <div className="support-feedback-card-header">
                           <div className="support-feedback-main-info">
                             <div className="support-feedback-badge">
@@ -719,7 +719,7 @@ export default function SupportDashboard({ emp }) {
                           <div className="support-feedback-actions">
                             <button 
                               className="support-action-btn support-action-btn-delete" 
-                              onClick={() => openDeleteModal(feedback._id)}
+                              onClick={() => openDeleteModal(feedback.id)}
                               title="Delete Feedback"
                             >
                               <FiTrash2 />
