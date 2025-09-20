@@ -23755,6 +23755,14 @@
                   "version": "2.151.0"
                 }
               },
+              "LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn": {
+                "id": "LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
               "LurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn": {
                 "id": "LurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn",
@@ -24150,7 +24158,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/e94b4e8b09822183a43e516d3c60e985a005223d7919f8fea64bd1c03551b42d.json"
+                          "/543f08476c0fb080cce1303572e27bb837ae5ebad0f1167524e827c7b30733f2.json"
                         ]
                       ]
                     }
@@ -24303,7 +24311,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F29199743330e71ad9175f08b8fe22054f"
+                              "Ref": "LurnityLmsApiDeployment658DA5F2f68389923a2f4cf8f6fc88e8cb374e60"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -36463,6 +36471,137 @@
                                       "fqn": "aws-cdk-lib.aws_apigateway.Method",
                                       "version": "2.151.0"
                                     }
+                                  },
+                                  "DELETE": {
+                                    "id": "DELETE",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/tickets/{id}/DELETE",
+                                    "children": {
+                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.tickets.{id}": {
+                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.tickets.{id}",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/tickets/{id}/DELETE/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.tickets.{id}",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/",
+                                                  {
+                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                  },
+                                                  "/DELETE/api/tickets/*"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.tickets.{id}": {
+                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.tickets.{id}",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/tickets/{id}/DELETE/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.tickets.{id}",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/test-invoke-stage/DELETE/api/tickets/*"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/tickets/{id}/DELETE/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "DELETE",
+                                            "integration": {
+                                              "type": "AWS_PROXY",
+                                              "uri": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                    {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn"
+                                                    },
+                                                    "/invocations"
+                                                  ]
+                                                ]
+                                              },
+                                              "integrationHttpMethod": "POST"
+                                            },
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapiticketsid77BC6104"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
                                   }
                                 },
                                 "constructInfo": {
@@ -42664,6 +42803,14 @@
                   "version": "2.151.0"
                 }
               },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn",
@@ -43205,6 +43352,12 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackUpdateTicketLambda03E333D0Arn"
                         ]
                       },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn"
+                        ]
+                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -43368,7 +43521,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/77c31650d25d53dfbdd0e86bcf44287ef2328654578b90e30bb8a33f7092978d.json"
+                          "/4c7d3a79fed4ef91899f98f5e5df5e39135a40bb4ba3e7fa8694087bf5f9825c.json"
                         ]
                       ]
                     }

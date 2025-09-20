@@ -369,7 +369,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/e94b4e8b09822183a43e516d3c60e985a005223d7919f8fea64bd1c03551b42d.json"
+       "/543f08476c0fb080cce1303572e27bb837ae5ebad0f1167524e827c7b30733f2.json"
       ]
      ]
     }
@@ -710,6 +710,12 @@
        "Outputs.LurnityLmsStackLambdaNestedStackUpdateTicketLambda03E333D0Arn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -873,7 +879,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/77c31650d25d53dfbdd0e86bcf44287ef2328654578b90e30bb8a33f7092978d.json"
+       "/4c7d3a79fed4ef91899f98f5e5df5e39135a40bb4ba3e7fa8694087bf5f9825c.json"
       ]
      ]
     }

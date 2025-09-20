@@ -15683,6 +15683,14 @@
     ]
    }
   },
+  "LurnityLmsStackLambdaNestedStackDeleteTicketLambdaD3ABD77CArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteTicketLambda4A36BFAF",
+     "Arn"
+    ]
+   }
+  },
   "LurnityLmsStackLambdaNestedStackGetRankingsLambda2E51B83CArn": {
    "Value": {
     "Fn::GetAtt": [
