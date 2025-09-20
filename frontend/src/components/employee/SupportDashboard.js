@@ -61,13 +61,13 @@ export default function SupportDashboard({ emp }) {
       return;
     }
 
-    await updateTicket(ticket._id, {
+    await updateTicket(ticket.id, {
       status: "Resolved",
       closedBy: emp.name,
       resolutionNote: note.trim()
     });
 
-    await fetch(`${API}/api/user/setAlert`, {
+    await fetch(`${API}/api/user/alert`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
