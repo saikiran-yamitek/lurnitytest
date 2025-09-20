@@ -418,13 +418,16 @@ export async function countUsers() {
 
 // Get user name only
 export async function getUserName(userId) {
-  const result = await ddb.send(
-    new GetCommand({
-      TableName: TABLE,
-      Key: { id: userId },
-      ProjectionExpression: "name",
-    })
-  );
+  const params = {
+    TableName: TABLE,
+    Key: { id: userId },
+    ProjectionExpression: "#nm", // alias instead of reserved word
+    ExpressionAttributeNames: {
+      "#nm": "name",
+    },
+  };
+
+  const result = await ddb.send(new GetCommand(params));
   return result.Item ? result.Item.name : null;
 }
 

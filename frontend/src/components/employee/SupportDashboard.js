@@ -698,62 +698,40 @@ export default function SupportDashboard({ emp }) {
               ) : (
                 <div className="support-feedbacks-grid">
                   {feedbacks.map((feedback) => {
-                    const { courseTitle, subCourseTitle, videoTitle } = getCourseDetails(
-                      feedback.courseId,
-                      feedback.subIndex,
-                      feedback.videoIndex
-                    );
+  const { courseTitle, subCourseTitle, videoTitle } = getCourseDetails(
+    feedback.courseId,
+    feedback.subIndex,
+    feedback.videoIndex
+  );
 
-                    return (
-                      <div className="support-feedback-card" key={feedback.id}>
-                        <div className="support-feedback-card-header">
-                          <div className="support-feedback-main-info">
-                            <div className="support-feedback-badge">
-                              <FiMessageSquare />
-                            </div>
-                            <div className="support-feedback-details">
-                              <h3 className="support-feedback-user">{feedback.userId?.name || "Unknown User"}</h3>
-                              <p className="support-feedback-course">{courseTitle}</p>
-                            </div>
-                          </div>
-                          <div className="support-feedback-actions">
-                            <button 
-                              className="support-action-btn support-action-btn-delete" 
-                              onClick={() => openDeleteModal(feedback.id)}
-                              title="Delete Feedback"
-                            >
-                              <FiTrash2 />
-                            </button>
-                          </div>
-                        </div>
+  return (
+    <div className="support-feedback-card" key={feedback.id}>
+      <div className="support-feedback-card-header">
+        <div className="support-feedback-main-info">
+          <div className="support-feedback-badge">
+            <FiMessageSquare />
+          </div>
+          <div className="support-feedback-details">
+            {/* FIXED HERE */}
+            <h3 className="support-feedback-user">{feedback.userName || "Unknown User"}</h3>
+            <p className="support-feedback-course">{courseTitle}</p>
+          </div>
+        </div>
+        <div className="support-feedback-actions">
+          <button 
+            className="support-action-btn support-action-btn-delete" 
+            onClick={() => openDeleteModal(feedback.id)}
+            title="Delete Feedback"
+          >
+            <FiTrash2 />
+          </button>
+        </div>
+      </div>
+      ...
+    </div>
+  );
+})}
 
-                        <div className="support-feedback-card-body">
-                          <div className="support-feedback-meta">
-                            <div className="support-feedback-item">
-                              <span className="support-feedback-label">SubCourse:</span>
-                              <span className="support-feedback-value">{subCourseTitle}</span>
-                            </div>
-                            <div className="support-feedback-item">
-                              <span className="support-feedback-label">Video:</span>
-                              <span className="support-feedback-value">{videoTitle}</span>
-                            </div>
-                            <div className="support-feedback-item">
-                              <span className="support-feedback-label">Rating:</span>
-                              <div className="support-feedback-stars">
-                                {Array.from({ length: feedback.rating }, (_, i) => (
-                                  <span key={i}>⭐</span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="support-feedback-comment">
-                            <span className="support-feedback-label">Comment:</span>
-                            <p className="support-feedback-text">{feedback.comment}</p>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
                 </div>
               )}
             </div>
