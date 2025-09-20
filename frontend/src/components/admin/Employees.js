@@ -36,7 +36,7 @@ export default function Employees() {
     if (!window.confirm("Are you sure you want to delete this employee?")) return;
     try {
       await deleteEmployee(id);
-      setEmps(e => e.filter(v => v._id !== id));
+      setEmps(e => e.filter(v => v.id !== id));
     } catch (error) {
       console.error("Failed to delete employee:", error);
     }
@@ -151,7 +151,7 @@ export default function Employees() {
               </thead>
               <tbody>
                 {emps.map((e, index) => (
-                  <tr key={e._id} className="employee-row" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <tr key={e.id} className="employee-row" style={{ animationDelay: `${index * 0.1}s` }}>
                     {/* Employee Info */}
                     <td className="employee-info-cell">
                       <div className="employee-info">
@@ -195,7 +195,7 @@ export default function Employees() {
                     <td className="actions-cell">
                       <div className="actions-container">
                         <Link
-                          to={`/admin/employees/${e._id}`}
+                          to={`/admin/employees/${e.id}`}
                           className="action-btn edit-btn"
                           title="Edit Employee"
                         >
@@ -203,7 +203,7 @@ export default function Employees() {
                         </Link>
                         <button
                           className="action-btn delete-btn"
-                          onClick={() => remove(e._id)}
+                          onClick={() => remove(e.id)}
                           title="Delete Employee"
                         >
                           <FiTrash2 />
