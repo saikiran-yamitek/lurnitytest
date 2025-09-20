@@ -1,6 +1,7 @@
 // models/Ticket.js
 // DynamoDB helper(s) for tickets
 // Requires: process.env.TICKET_TABLE_NAME
+import crypto from "crypto";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
   DynamoDBDocumentClient,
@@ -11,6 +12,7 @@ import {
   ScanCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
+
 
 const REGION = process.env.AWS_REGION || "us-east-1";
 const TABLE = process.env.TICKET_TABLE_NAME;

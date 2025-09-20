@@ -1,11 +1,11 @@
 // lambdas/tickets/createTicket.js
+import crypto from "crypto"; // ✅ import crypto
 import { generateTicketId, createTicket } from "../../models/Ticket.js";
 import { addTicketToUser } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
-  // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
+  if (event.httpMethod === "OPTIONS") {
     return handleOptionsRequest();
   }
 
@@ -18,7 +18,7 @@ export const handler = async (event) => {
     const ticket = {
       ...body,
       ticketId,
-      id: crypto.randomUUID(),
+      id: crypto.randomUUID(), // ✅ now works
     };
 
     // Save ticket
@@ -32,6 +32,6 @@ export const handler = async (event) => {
     return createResponse(200, saved);
   } catch (err) {
     console.error("Error creating ticket:", err);
-    return createResponse(500, { error: "Ticket create failed" });
+    return createResponse(500, { error: "Ticket create failed", details: err.message });
   }
 };

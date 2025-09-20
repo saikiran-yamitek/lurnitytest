@@ -155,7 +155,7 @@ export const saveEmployee = async (id, data) => {
 
 /* ---------- Tickets ---------- */
 export const listTickets = () =>
-  fetch(`${API}/tickets`, { headers: authHeaders() }).then((r) => r.json());
+  fetch(`${API_BASE_URL}/api/tickets`, { headers: authHeaders() }).then((r) => r.json());
 
 export const updateTicket = (id, body) =>
   fetch(`${API}/tickets/${id}`, {
