@@ -705,14 +705,13 @@ export default function SupportDashboard({ emp }) {
   );
 
   return (
-    <div className="support-feedback-card" key={feedback.id}>
+    <div className="support-feedback-card" key={feedback.id || feedback._id}>
       <div className="support-feedback-card-header">
         <div className="support-feedback-main-info">
           <div className="support-feedback-badge">
             <FiMessageSquare />
           </div>
           <div className="support-feedback-details">
-            {/* FIXED HERE */}
             <h3 className="support-feedback-user">{feedback.userName || "Unknown User"}</h3>
             <p className="support-feedback-course">{courseTitle}</p>
           </div>
@@ -720,17 +719,53 @@ export default function SupportDashboard({ emp }) {
         <div className="support-feedback-actions">
           <button 
             className="support-action-btn support-action-btn-delete" 
-            onClick={() => openDeleteModal(feedback.id)}
+            onClick={() => openDeleteModal(feedback.id || feedback._id)}
             title="Delete Feedback"
           >
             <FiTrash2 />
           </button>
         </div>
       </div>
-      ...
+
+      <div className="support-feedback-card-body">
+        <div className="support-feedback-content">
+          <div className="support-feedback-details-section">
+            <p><strong>Course:</strong> {courseTitle}</p>
+            {subCourseTitle && <p><strong>Section:</strong> {subCourseTitle}</p>}
+            {videoTitle && <p><strong>Video:</strong> {videoTitle}</p>}
+          </div>
+          
+          <div className="support-feedback-message">
+            <h4>Feedback:</h4>
+            <p>{feedback.feedback || feedback.message || "No feedback message"}</p>
+          </div>
+
+          {feedback.rating && (
+            <div className="support-feedback-rating">
+              <span className="support-rating-label">Rating:</span>
+              <span className="support-rating-stars">
+                {"★".repeat(feedback.rating)}{"☆".repeat(5 - feedback.rating)}
+              </span>
+              <span className="support-rating-value">({feedback.rating}/5)</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="support-feedback-card-footer">
+        <div className="support-feedback-meta">
+          <span className="support-feedback-date">
+            {feedback.createdAt ? new Date(feedback.createdAt).toLocaleDateString() : "Date unknown"}
+          </span>
+          <span className="support-feedback-type">
+            {feedback.type || "General Feedback"}
+          </span>
+        </div>
+      </div>
     </div>
   );
 })}
+
 
                 </div>
               )}
