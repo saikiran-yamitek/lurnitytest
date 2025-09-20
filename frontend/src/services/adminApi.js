@@ -139,7 +139,7 @@ export const deleteEmployee = async (id) => {
 };
 
 export const getEmployee = (id) => 
-  fetch(`${API_BASE_URL}/employees/${id}`, {
+  fetch(`${API_BASE_URL}/api/employees/${id}`, {
     headers: authHeaders(),
   }).then(r => r.json());
 
