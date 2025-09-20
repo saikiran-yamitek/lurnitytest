@@ -30,25 +30,62 @@ export default function SupportDashboard({ emp }) {
   }, []);
 
   const fetchAllData = async () => {
-    setLoading(true);
-    try {
-      setTickets(await listTickets());
-      setDemos(await listDemos());
+  setLoading(true);
+  try {
+    console.log("🔄 Starting data fetch...");
+    
+    // Fetch tickets and demos
+    setTickets(await listTickets());
+    setDemos(await listDemos());
 
-      const feedbackRes = await fetch(`${API}/api/feedback`);
-      const feedbackJson = await feedbackRes.json();
-      setFeedbacks(feedbackJson);
-
-      const courseRes = await fetch(`${API}/api/courses`);
-      const courseJson = await courseRes.json();
-      setCourses(courseJson);
-    } catch (error) {
-      setPopupMessage("❌ Failed to load data");
-      setTimeout(() => setPopupMessage(""), 3000);
-    } finally {
-      setLoading(false);
+    // Fetch feedbacks
+    console.log("🔄 Fetching feedbacks...");
+    const feedbackRes = await fetch(`${API}/api/feedback`);
+    console.log("📡 Feedback response status:", feedbackRes.status);
+    
+    if (!feedbackRes.ok) {
+      throw new Error(`Feedback API failed: ${feedbackRes.status}`);
     }
-  };
+    
+    const feedbackJson = await feedbackRes.json();
+    console.log("📦 Raw feedback data:", feedbackJson);
+    
+    // ✅ Handle feedback response format (could be array or {items: []} format)
+    const feedbackArray = Array.isArray(feedbackJson) 
+      ? feedbackJson 
+      : (feedbackJson.items || []);
+    
+    console.log("📦 Processed feedbacks:", feedbackArray);
+    setFeedbacks(feedbackArray);
+
+    // Fetch courses
+    console.log("🔄 Fetching courses...");
+    const courseRes = await fetch(`${API}/api/courses`);
+    console.log("📡 Course response status:", courseRes.status);
+    
+    if (!courseRes.ok) {
+      throw new Error(`Courses API failed: ${courseRes.status}`);
+    }
+    
+    const courseJson = await courseRes.json();
+    console.log("📦 Raw course data:", courseJson);
+    
+    // ✅ Extract courses from the {items: []} format
+    const courseArray = courseJson.items || [];
+    
+    console.log("📦 Processed courses:", courseArray);
+    setCourses(courseArray);
+    
+    console.log("✅ All data fetched successfully");
+  } catch (error) {
+    console.error("❌ Error in fetchAllData:", error);
+    setPopupMessage(`❌ Failed to load data: ${error.message}`);
+    setTimeout(() => setPopupMessage(""), 3000);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const openModal = (t) => setModal({ open: true, note: "", ticket: t });
   const closeModal = () => setModal({ open: false, note: "", ticket: null });
@@ -107,18 +144,48 @@ export default function SupportDashboard({ emp }) {
   };
 
   const getCourseDetails = (courseId, subIndex, videoIndex) => {
-    const course = courses.find((c) => c._id === courseId);
-    if (!course) return {};
-
-    const subCourse = course.subCourses?.[subIndex];
-    const video = subCourse?.videos?.[videoIndex];
-
+  console.log("🔍 Looking for course:", { courseId, subIndex, videoIndex });
+  console.log("📚 Available courses:", courses.length);
+  
+  // ✅ Check if courses is an array
+  if (!Array.isArray(courses) || courses.length === 0) {
+    console.warn("Courses data not available:", courses);
     return {
-      courseTitle: course.title || "Unknown Course",
-      subCourseTitle: subCourse?.title || "Unknown SubCourse",
-      videoTitle: video?.title || "Unknown Video"
+      courseTitle: "Loading courses...",
+      subCourseTitle: "Loading...",
+      videoTitle: "Loading..."
     };
+  }
+
+  // ✅ Find course by id (note: course structure uses 'id' not '_id')
+  const course = courses.find((c) => c.id === courseId || c._id === courseId);
+  
+  if (!course) {
+    console.warn("Course not found:", courseId);
+    console.log("Available course IDs:", courses.map(c => c.id || c._id));
+    return {
+      courseTitle: "Unknown Course",
+      subCourseTitle: "Unknown SubCourse",
+      videoTitle: "Unknown Video"
+    };
+  }
+
+  console.log("✅ Found course:", course.title);
+
+  // ✅ Get subcourse and video details
+  const subCourse = course.subCourses?.[subIndex];
+  const video = subCourse?.videos?.[videoIndex];
+
+  const result = {
+    courseTitle: course.title || "Unknown Course",
+    subCourseTitle: subCourse?.title || "Unknown SubCourse",
+    videoTitle: video?.title || "Unknown Video"
   };
+
+  console.log("📋 Course details result:", result);
+  return result;
+};
+
 
   const openDeleteModal = (id) => {
     setDeleteModal({ open: true, feedbackId: id });
@@ -671,106 +738,140 @@ export default function SupportDashboard({ emp }) {
           )}
 
           {activeTab === 'feedbacks' && (
-            <div className="support-feedbacks-section">
-              <div className="support-section-header">
-                <div className="support-section-info">
-                  <h2 className="support-section-title">User Feedbacks</h2>
-                  <p className="support-section-subtitle">Course and video feedback from students</p>
-                </div>
-                <div className="support-section-actions">
-                  <button className="support-btn support-btn-outline">
-                    <FiDownload />
-                    Export Feedback
-                  </button>
-                </div>
-              </div>
-
-              {feedbacks.length === 0 ? (
-                <div className="support-empty-state">
-                  <div className="support-empty-icon">
-                    <FiMessageSquare />
-                  </div>
-                  <h3 className="support-empty-title">No Feedbacks Available</h3>
-                  <p className="support-empty-description">
-                    User feedback will appear here when submitted.
-                  </p>
-                </div>
-              ) : (
-                <div className="support-feedbacks-grid">
-                  {feedbacks.map((feedback) => {
-  const { courseTitle, subCourseTitle, videoTitle } = getCourseDetails(
-    feedback.courseId,
-    feedback.subIndex,
-    feedback.videoIndex
-  );
-
-  return (
-    <div className="support-feedback-card" key={feedback.id || feedback._id}>
-      <div className="support-feedback-card-header">
-        <div className="support-feedback-main-info">
-          <div className="support-feedback-badge">
-            <FiMessageSquare />
-          </div>
-          <div className="support-feedback-details">
-            <h3 className="support-feedback-user">{feedback.userName || "Unknown User"}</h3>
-            <p className="support-feedback-course">{courseTitle}</p>
-          </div>
-        </div>
-        <div className="support-feedback-actions">
-          <button 
-            className="support-action-btn support-action-btn-delete" 
-            onClick={() => openDeleteModal(feedback.id || feedback._id)}
-            title="Delete Feedback"
-          >
-            <FiTrash2 />
-          </button>
-        </div>
+  <div className="support-feedbacks-section">
+    <div className="support-section-header">
+      <div className="support-section-info">
+        <h2 className="support-section-title">User Feedbacks</h2>
+        <p className="support-section-subtitle">Course and video feedback from students</p>
       </div>
-
-      <div className="support-feedback-card-body">
-        <div className="support-feedback-content">
-          <div className="support-feedback-details-section">
-            <p><strong>Course:</strong> {courseTitle}</p>
-            {subCourseTitle && <p><strong>Section:</strong> {subCourseTitle}</p>}
-            {videoTitle && <p><strong>Video:</strong> {videoTitle}</p>}
-          </div>
-          
-          <div className="support-feedback-message">
-            <h4>Feedback:</h4>
-            <p>{feedback.feedback || feedback.message || "No feedback message"}</p>
-          </div>
-
-          {feedback.rating && (
-            <div className="support-feedback-rating">
-              <span className="support-rating-label">Rating:</span>
-              <span className="support-rating-stars">
-                {"★".repeat(feedback.rating)}{"☆".repeat(5 - feedback.rating)}
-              </span>
-              <span className="support-rating-value">({feedback.rating}/5)</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="support-feedback-card-footer">
-        <div className="support-feedback-meta">
-          <span className="support-feedback-date">
-            {feedback.createdAt ? new Date(feedback.createdAt).toLocaleDateString() : "Date unknown"}
-          </span>
-          <span className="support-feedback-type">
-            {feedback.type || "General Feedback"}
-          </span>
-        </div>
+      <div className="support-section-actions">
+        <button className="support-btn support-btn-outline">
+          <FiDownload />
+          Export Feedback
+        </button>
       </div>
     </div>
-  );
-})}
 
+    {/* ✅ Debug info (remove in production) */}
+    <div className="debug-info" style={{padding: '10px', background: '#f0f0f0', margin: '10px 0', fontSize: '12px'}}>
+      <p>📊 Debug Info:</p>
+      <p>• Feedbacks: {feedbacks.length} items</p>
+      <p>• Courses: {courses.length} items</p>
+      <p>• Courses loaded: {Array.isArray(courses) ? 'Yes' : 'No'}</p>
+    </div>
 
+    {!Array.isArray(feedbacks) || feedbacks.length === 0 ? (
+      <div className="support-empty-state">
+        <div className="support-empty-icon">
+          <FiMessageSquare />
+        </div>
+        <h3 className="support-empty-title">No Feedbacks Available</h3>
+        <p className="support-empty-description">
+          {!Array.isArray(feedbacks) ? 
+            "Loading feedback data..." : 
+            "User feedback will appear here when submitted."
+          }
+        </p>
+      </div>
+    ) : (
+      <div className="support-feedbacks-grid">
+        {feedbacks.map((feedback, index) => {
+          if (!feedback) {
+            return (
+              <div key={index} className="support-error-card">
+                <p>Invalid feedback data</p>
+              </div>
+            );
+          }
+
+          try {
+            const { courseTitle, subCourseTitle, videoTitle } = getCourseDetails(
+              feedback.courseId,
+              feedback.subIndex,
+              feedback.videoIndex
+            );
+
+            return (
+              <div className="support-feedback-card" key={feedback.id || feedback._id || index}>
+                <div className="support-feedback-card-header">
+                  <div className="support-feedback-main-info">
+                    <div className="support-feedback-badge">
+                      <FiMessageSquare />
+                    </div>
+                    <div className="support-feedback-details">
+                      <h3 className="support-feedback-user">
+                        {feedback.userName || feedback.userEmail || "Unknown User"}
+                      </h3>
+                      <p className="support-feedback-course">{courseTitle}</p>
+                    </div>
+                  </div>
+                  <div className="support-feedback-actions">
+                    <button 
+                      className="support-action-btn support-action-btn-delete" 
+                      onClick={() => openDeleteModal(feedback.id || feedback._id)}
+                      title="Delete Feedback"
+                    >
+                      <FiTrash2 />
+                    </button>
+                  </div>
                 </div>
-              )}
-            </div>
-          )}
+
+                <div className="support-feedback-card-body">
+                  <div className="support-feedback-content">
+                    <div className="support-feedback-details-section">
+                      <p><strong>Course:</strong> {courseTitle}</p>
+                      {subCourseTitle && subCourseTitle !== "Unknown SubCourse" && (
+                        <p><strong>Section:</strong> {subCourseTitle}</p>
+                      )}
+                      {videoTitle && videoTitle !== "Unknown Video" && (
+                        <p><strong>Video:</strong> {videoTitle}</p>
+                      )}
+                    </div>
+                    
+                    <div className="support-feedback-message">
+                      <h4>Feedback:</h4>
+                      <p>{feedback.feedback || feedback.message || feedback.text || "No feedback message"}</p>
+                    </div>
+
+                    {feedback.rating && (
+                      <div className="support-feedback-rating">
+                        <span className="support-rating-label">Rating:</span>
+                        <span className="support-rating-stars">
+                          {"★".repeat(Number(feedback.rating))}{"☆".repeat(5 - Number(feedback.rating))}
+                        </span>
+                        <span className="support-rating-value">({feedback.rating}/5)</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="support-feedback-card-footer">
+                  <div className="support-feedback-meta">
+                    <span className="support-feedback-date">
+                      {feedback.createdAt ? new Date(feedback.createdAt).toLocaleDateString() : "Date unknown"}
+                    </span>
+                    <span className="support-feedback-type">
+                      {feedback.type || "General Feedback"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          } catch (error) {
+            console.error('Error rendering feedback:', error, feedback);
+            return (
+              <div key={index} className="support-error-card">
+                <p>⚠️ Error rendering feedback #{index + 1}</p>
+                <small>{error.message}</small>
+              </div>
+            );
+          }
+        })}
+      </div>
+    )}
+  </div>
+)}
+
         </main>
       </div>
 
