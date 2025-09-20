@@ -188,7 +188,7 @@ class ApiNestedStack extends cdk.NestedStack {
     userRes.addResource("register").addMethod("POST", new apigateway.LambdaIntegration(lambdas.registerUserLambda));
     userRes.addResource("homepage").addMethod("GET", new apigateway.LambdaIntegration(lambdas.homepageUserLambda));
     
-    userRes.addResource("alert").addMethod("POST", new apigateway.LambdaIntegration(lambdas.setAlertLambda));
+    userRes.addResource("alert").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.setAlertLambda));
     userRes.addResource("save-key").addMethod("POST", new apigateway.LambdaIntegration(lambdas.saveKeyLambda));
     userRes.addResource("get-key").addMethod("POST", new apigateway.LambdaIntegration(lambdas.getKeyLambda));
     userRes.addResource("mock-questions").addMethod("POST", new apigateway.LambdaIntegration(lambdas.mockQuestionsLambda));

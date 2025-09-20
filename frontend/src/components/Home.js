@@ -306,7 +306,7 @@ export default function Home() {
         if (u.alertAvailable) {
           setPopupMessage("✅ Your ticket has been resolved.");
           setTimeout(() => setPopupMessage(""), 3000);
-          await fetch(`${API}/api/user/setAlert`, {
+          await fetch(`${API}/api/user/alert`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: u.email, alert: false }),
