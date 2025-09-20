@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/175ee6c94d0d48be0f02652409fbaeb94e0cce8e02f05070a9b3e84ff7198ce8.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/7faef884d128d85dc4171d961b412a7c63e85cf80961e864e246de636cc559e7.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -2736,7 +2736,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F2f68389923a2f4cf8f6fc88e8cb374e60"
+            "data": "LurnityLmsApiDeployment658DA5F2c3999c8329cfdb061d070c400f68eb66"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -4665,22 +4665,22 @@
             "data": "LurnityLmsApiapiuseralertOPTIONS57B43889"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/alert/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.alert": [
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/alert/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.alert": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuseralertPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseralert91AB0F6F"
+            "data": "LurnityLmsApiapiuseralertPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseralert74A044C8"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/alert/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.alert": [
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/alert/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.user.alert": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuseralertPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuseralert64812B21"
+            "data": "LurnityLmsApiapiuseralertPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiuseralert664B8AED"
           }
         ],
-        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/alert/POST/Resource": [
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/alert/PUT/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiapiuseralertPOST049A551E"
+            "data": "LurnityLmsApiapiuseralertPUT6239F410"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/save-key/Resource": [

@@ -1373,7 +1373,7 @@
         }
       }
     },
-    "4c7d3a79fed4ef91899f98f5e5df5e39135a40bb4ba3e7fa8694087bf5f9825c": {
+    "0c6d2cd96a2a824e84b1723ae1b00ae8d762e9c33be84be8fbaefb356f6ad5bd": {
       "source": {
         "path": "LurnityLmsStackApiNestedStack954F94B9.nested.template.json",
         "packaging": "file"
@@ -1381,13 +1381,13 @@
       "destinations": {
         "current_account-ap-south-1": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1",
-          "objectKey": "4c7d3a79fed4ef91899f98f5e5df5e39135a40bb4ba3e7fa8694087bf5f9825c.json",
+          "objectKey": "0c6d2cd96a2a824e84b1723ae1b00ae8d762e9c33be84be8fbaefb356f6ad5bd.json",
           "region": "ap-south-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-ap-south-1"
         }
       }
     },
-    "175ee6c94d0d48be0f02652409fbaeb94e0cce8e02f05070a9b3e84ff7198ce8": {
+    "7faef884d128d85dc4171d961b412a7c63e85cf80961e864e246de636cc559e7": {
       "source": {
         "path": "LurnityLmsStack.template.json",
         "packaging": "file"
@@ -1395,7 +1395,7 @@
       "destinations": {
         "current_account-ap-south-1": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1",
-          "objectKey": "175ee6c94d0d48be0f02652409fbaeb94e0cce8e02f05070a9b3e84ff7198ce8.json",
+          "objectKey": "7faef884d128d85dc4171d961b412a7c63e85cf80961e864e246de636cc559e7.json",
           "region": "ap-south-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-ap-south-1"
         }

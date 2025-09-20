@@ -7,7 +7,7 @@ export const listDemos = async () => {
 };
 
 export const markDemoAsBooked = async (id) => {
-  const res = await fetch(`${API}/demos/{id}/booked`, {
+  const res = await fetch(`${API}/demos/${id}/booked`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
   });
