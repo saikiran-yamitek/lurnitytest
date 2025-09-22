@@ -118,13 +118,14 @@ export default function InchargeDashboard() {
 
       
 
-for (const [fields] of updates) {
+for (const [studentId, fields] of updates) {
   if (fields.attendance === undefined || !fields.grade) {
     setPopup("⚠️ Please mark both attendance and grade for all students.");
     setTimeout(() => setPopup(""), 3000);
     return;
   }
 }
+
 
 
       for (const [studentId, fields] of updates) {
