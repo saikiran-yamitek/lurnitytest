@@ -24,7 +24,7 @@ export default function AdminWorkshops() {
   const [incharges, setIncharges] = useState([]);
   const [editWorkshop, setEditWorkshop] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState([]);
-  const [setSelectedWorkshop] = useState(null);
+ const [selectedWorkshop, setSelectedWorkshop] = useState(null);
   const [showStudentPopup, setShowStudentPopup] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -82,24 +82,18 @@ export default function AdminWorkshops() {
   };
 
   const handleViewStudents = async (workshopId) => {
-    try {
-      const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
-      const data = await res.json();
+  try {
+    const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
+    const data = await res.json();
+    setSelectedStudents(Array.isArray(data) ? data : []);
+    setSelectedWorkshop(workshopId); // now safe
+    setShowStudentPopup(true);
+  } catch (err) {
+    console.error("Failed to fetch students:", err);
+    alert("Failed to fetch registered students. Please try again.");
+  }
+};
 
-      if (Array.isArray(data)) {
-        setSelectedStudents(data);
-      } else {
-        console.warn("Expected array, got:", data);
-        setSelectedStudents([]);
-      }
-
-      setSelectedWorkshop(workshopId);
-      setShowStudentPopup(true);
-    } catch (err) {
-      console.error("Failed to fetch students:", err);
-      alert("Failed to fetch registered students. Please try again.");
-    }
-  };
 
   const formatDateTime = (dateString) => {
     const date = new Date(dateString);
