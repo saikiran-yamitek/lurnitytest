@@ -30,6 +30,8 @@ export default function Home() {
   const [pendingLabToRegister, setPendingLabToRegister] = useState(null);
   const [showRegistrationSuccess, setShowRegistrationSuccess] = useState(false);
   const [registrationMessage, setRegistrationMessage] = useState("");
+  const [issuedCertificates, setIssuedCertificates] = useState([]);
+
 
   // ✅ FIXED: Safe array helper function
   const getSafeArray = (data, fallbackKeys = ['items', 'data', 'results']) => {
@@ -156,6 +158,31 @@ export default function Home() {
     });
     return totalItems ? Math.round((completedItems / totalItems) * 100) : 0;
   };
+
+  const generateSubcourseCertificate = async (subCourseTitle) => {
+  try {
+    const res = await fetch(`${API}/api/certificates/generate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        userId: user.id,
+        courseId: course.id,
+        subCourseTitle,
+      }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Certificate generation failed");
+
+    setPopupMessage(`🎉 Certificate issued for ${subCourseTitle}`);
+  } catch (err) {
+    console.error("Certificate generation error:", err);
+  }
+};
+
 
   const checkProfileCompletion = (profileData) => {
     if (!profileData) return { isComplete: false, missingFields: 0, totalFields: 0, percentage: 0 };
@@ -399,6 +426,34 @@ export default function Home() {
       updateCourseCompletion();
     }
   }, [courseCompletion, user]);
+
+  useEffect(() => {
+  if (!user || !course || !course.subCourses) return;
+
+  course.subCourses.forEach(async (sc, sIdx) => {
+    const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+    let completed = videoIds.filter(id => watched.includes(id)).length;
+
+    // Include lab if applicable
+    if (sc.lab === "Yes") {
+      const labEntry = getSafeArray(labs).find(l => l.subCourseId === sc.id);
+      const regEntry = labEntry?.registeredStudents?.find(r => r.student === user.id);
+      const labPassed = regEntry?.attendance === true && (regEntry?.result?.trim().toLowerCase() === "pass");
+      if (labPassed) completed += 1;
+    }
+
+    const total = videoIds.length + (sc.lab === "Yes" ? 1 : 0);
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+    // Only issue if 100% and not already issued
+    const alreadyIssued = issuedCertificates.includes(sc.title);
+    if (percent === 100 && !alreadyIssued) {
+      await generateSubcourseCertificate(sc.title);
+      setIssuedCertificates(prev => [...prev, sc.title]);
+    }
+  });
+}, [watched, labs, course, user]);
+
 
   const handleResumeClick = () => {
     if (!profileCompletion.isComplete) {

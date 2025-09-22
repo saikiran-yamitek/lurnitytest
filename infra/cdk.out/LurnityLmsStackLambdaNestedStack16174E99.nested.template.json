@@ -3046,6 +3046,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -3228,6 +3243,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -3410,6 +3440,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -3592,6 +3637,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -3774,6 +3834,21 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"

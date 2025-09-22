@@ -73,8 +73,20 @@ class LurnityLmsStack extends cdk.Stack {
     databaseStack.adminLoginTable.grantFullAccess(lambdaStack.adminAuthLambda);
     [lambdaStack.getCohortsLambda, lambdaStack.createCohortLambda, lambdaStack.updateCohortLambda, lambdaStack.deleteCohortLambda, lambdaStack.getJobsLambda, lambdaStack.createJobLambda, lambdaStack.updateJobLambda, lambdaStack.updateJobStatusLambda, lambdaStack.deleteJobLambda, lambdaStack.applyForJobLambda, lambdaStack.getLatestLandingPageLambda].forEach(l => databaseStack.landingPageTable.grantFullAccess(l));
     [lambdaStack.generateCertificateLambda, lambdaStack.listCertificatesLambda, lambdaStack.getCertificateByIdLambda, lambdaStack.listCertificatesByUserLambda, lambdaStack.checkCertificateExistsLambda].forEach(l => {
-      databaseStack.certificateTable.grantFullAccess(l); databaseStack.userTable.grantFullAccess(l); databaseStack.courseTable.grantFullAccess(l);
-    });
+  databaseStack.certificateTable.grantFullAccess(l);
+  databaseStack.userTable.grantFullAccess(l);
+  databaseStack.courseTable.grantFullAccess(l);
+
+  // ✅ Add GSI query permission
+  l.addToRolePolicy(new iam.PolicyStatement({
+    effect: iam.Effect.ALLOW,
+    actions: ["dynamodb:Query"],
+    resources: [
+      `${databaseStack.certificateTable.tableArn}/index/*`  // allow all GSIs
+    ]
+  }));
+});
+
     [lambdaStack.getCompaniesLambda, lambdaStack.createCompanyLambda, lambdaStack.updateCompanyLambda].forEach(l => databaseStack.companyTable.grantFullAccess(l));
 
     // ✅ Employee Lambdas - add index permissions
