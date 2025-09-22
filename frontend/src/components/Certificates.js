@@ -301,7 +301,7 @@ const Certificates = () => {
               
               <div className="cert-grid">
                 {certificates.map((cert) => (
-                  <div className="cert-card" key={cert._id}>
+                  <div className="cert-card" key={cert.id}>
                     <div className="cert-card-backdrop"></div>
                     <div className="cert-card-header">
                       <div className="cert-card-badge">
@@ -330,14 +330,14 @@ const Certificates = () => {
                     <div className="cert-card-actions">
                       <button 
                         className="cert-action-btn primary"
-                        onClick={() => hist.push(`/certificate/view/${cert._id}`)}
+                        onClick={() => hist.push(`/certificate/view/${cert.id}`)}
                       >
                         <FiEye className="cert-btn-icon" />
                         <span>View</span>
                       </button>
                       <button 
                         className="cert-action-btn secondary"
-                        onClick={() => handleDownload(cert._id, cert.subCourseTitle)}
+                        onClick={() => handleDownload(cert.id, cert.subCourseTitle)}
                       >
                         <FiDownload className="cert-btn-icon" />
                         <span>Download</span>
