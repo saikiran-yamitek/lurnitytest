@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FaCalendarAlt, FaClock, FaUser, FaArrowRight, FaBuilding, FaPlay, FaStar, FaUsers, FaGraduationCap, FaCheckCircle, FaRocket, FaMapMarkerAlt, FaVideo, FaMicrophone, FaChalkboardTeacher,FaCertificate } from 'react-icons/fa';
 import './UpcomingMasterclasses.css';
-
+const API_BASE = process.env.REACT_APP_API_URL;
 class UpcomingMasterclasses extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +31,7 @@ class UpcomingMasterclasses extends Component {
   };
 
   fetchMasterclasses = () => {
-    fetch("/api/landingpage/cohorts")
+    fetch(`${API_BASE}/api/landingpage/cohorts`)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch masterclasses");
         return res.json();
@@ -56,7 +56,7 @@ class UpcomingMasterclasses extends Component {
     ];
 
     return cohorts.map((cohort, index) => ({
-      id: cohort._id,
+      id: cohort.id,
       title: cohort.title,
       subtitle: cohort.tagline || 'Master cutting-edge skills with industry experts',
       date: this.formatDate(cohort.startDate),
