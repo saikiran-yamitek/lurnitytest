@@ -61,6 +61,7 @@ export default function LabAdminDashboard() {
   try {
     const workshopRes = await listWorkshops();
     const courseRes = await listCourses();
+    const empRes = await listEmployees(); // 👈 fetch employees
 
     setWorkshops(
       Array.isArray(workshopRes)
@@ -74,14 +75,23 @@ export default function LabAdminDashboard() {
         : courseRes.items || courseRes.Items || courseRes.data || []
     );
 
+    setIncharges(
+      Array.isArray(empRes)
+        ? empRes
+        : empRes.items || empRes.Items || empRes.data || []
+    ); // 👈 set employees in state
+
     console.log("✅ Workshops:", workshopRes);
     console.log("✅ Courses:", courseRes);
+    console.log("✅ Employees/Incharges:", empRes);
   } catch (err) {
     console.error("Failed to load data", err);
     setWorkshops([]);
     setCourses([]);
+    setIncharges([]);
   }
 };
+
 
 
   const handleChange = (e) =>
