@@ -272,7 +272,7 @@ export default function Home() {
   const isUserRegisteredForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     return safeLabs.some(lab => {
-      if (lab.subCourseId !== subCourseId) return false;
+      if (lab.subCourseId !== selectedLabSubcourse) return false;
       const registeredStudents = getSafeArray(lab.registeredStudents);
       return registeredStudents.some(r => r.student === user?.id);
     });
@@ -281,7 +281,7 @@ export default function Home() {
   const getUserRegistrationForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     const lab = safeLabs.find(lab => {
-      if (lab.subCourseId !== subCourseId) return false;
+      if (lab.subCourseId !== selectedLabSubcourse) return false;
       const registeredStudents = getSafeArray(lab.registeredStudents);
       return registeredStudents.some(r => r.student === user?.id);
     });
@@ -841,7 +841,7 @@ export default function Home() {
                         
                         // ✅ FIXED: Safe array operations for lab processing
                         const safeLabs = getSafeArray(labs);
-                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.id);
+                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
                         
                         if (labEntry) {
                           const registeredStudents = getSafeArray(labEntry.registeredStudents);
