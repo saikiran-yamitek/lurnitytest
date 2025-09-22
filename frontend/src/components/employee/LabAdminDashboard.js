@@ -583,19 +583,22 @@ payload.subCourseId = selectedSubCourse.title; // since no ID exists
                         Assign Lab Incharge <span className="lab-required">*</span>
                       </label>
                       <select
-                        className="lab-form-input lab-form-select"
-                        name="inchargeId"
-                        value={form.inchargeId || ""}
-                        onChange={handleChange}
-                        required
-                      >
-                        <option value="">Select incharge...</option>
-                        {incharges.map((e) => (
-                          <option key={e.id} value={e.id}>
-                            {e.name}
-                          </option>
-                        ))}
-                      </select>
+  className="lab-form-input lab-form-select"
+  name="inchargeId"
+  value={form.inchargeId || ""}
+  onChange={handleChange}
+  required
+>
+  <option value="">Select incharge...</option>
+  {incharges
+    .filter((e) => e.role.toLowerCase() === "lab incharge") // ✅ filter by role
+    .map((e) => (
+      <option key={e.id} value={e.id}>
+        {e.name}
+      </option>
+  ))}
+</select>
+
                     </div>
                   </div>
 

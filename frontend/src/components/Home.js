@@ -1104,165 +1104,142 @@ export default function Home() {
 
           {/* Lab details section with wrapper */}
           {selectedSection === "lab-details" && selectedLabSubcourse && (
-            <section className="lms-luxury-section">
-              <div className="lms-section-header">
-                <button 
-                  className="lms-luxury-btn text"
-                  onClick={() => {
-                    setSelectedLabSubcourse(null);
-                    setSelectedSection("home");
-                  }}
-                >
-                  ← Back to Dashboard
-                </button>
-                <h2 className="lms-section-title">Lab Sessions: {selectedLabSubcourse}</h2>
+  <section className="lms-luxury-section">
+    <div className="lms-section-header">
+      <button 
+        className="lms-luxury-btn text"
+        onClick={() => {
+          setSelectedLabSubcourse(null);
+          setSelectedSection("home");
+        }}
+      >
+        ← Back to Dashboard
+      </button>
+      <h2 className="lms-section-title">Lab Sessions: {selectedLabSubcourse}</h2>
+    </div>
+
+    <div className="lms-lab-details-grid">
+      {(() => {
+        const userId = user?.id;
+
+        // ✅ Filter labs using subCourseId matching the selected subcourse title
+        const safeLabs = getSafeArray(labs);
+        const matchingLabs = safeLabs.filter(
+          (lab) => lab.subCourseId === selectedLabSubcourse
+        );
+
+        if (matchingLabs.length === 0) {
+          return (
+            <div className="lms-empty-state">
+              <FiTool className="lms-empty-icon" />
+              <h3>No Lab Sessions</h3>
+              <p>No laboratory sessions are scheduled for this module yet.</p>
+            </div>
+          );
+        }
+
+        return matchingLabs.map((lab) => {
+          const registeredStudents = getSafeArray(lab.registeredStudents);
+          const isRegistered = registeredStudents.some((r) => r.student === userId);
+          const labTime = new Date(lab.time).toLocaleString();
+          const currentRegistrations = registeredStudents.length;
+          const isFull = currentRegistrations >= Number(lab.memberCount);
+
+          const handleRegister = async () => {
+            try {
+              const res = await fetch(`${API}/api/workshops/${lab.id}/register`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                body: JSON.stringify({ userId }),
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || "Error");
+              setRegistrationMessage("Registration Successful!");
+              setShowRegistrationSuccess(true);
+              fetchLabs(userId);
+              setSelectedLabSubcourse(null);
+              setSelectedSection("home");
+            } catch (err) {
+              alert("❌ " + err.message);
+            }
+          };
+
+          const handleDeregister = async () => {
+            try {
+              const res = await fetch(`${API}/api/workshops/${lab.id}/deregister`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                body: JSON.stringify({ userId }),
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || "Error");
+              alert("Successfully deregistered from lab session");
+              fetchLabs(userId);
+            } catch (err) {
+              alert("❌ " + err.message);
+            }
+          };
+
+          return (
+            <div key={lab.id} className="lms-luxury-lab-detail-card">
+              <div className="lms-lab-detail-backdrop"></div>
+              <div className="lms-lab-detail-content">
+                <div className="lms-lab-detail-header">
+                  <div className="lms-lab-detail-icon">
+                    <FiTool />
+                  </div>
+                  <div className="lms-lab-detail-info">
+                    <h4 className="lms-lab-detail-title">{lab.labName}</h4>
+                    <p className="lms-lab-detail-address">{lab.labAddress}</p>
+                    <p className="lms-lab-detail-time">{labTime}</p>
+                    <div className="lms-lab-detail-capacity">
+                      <span className={`lms-capacity-text ${isFull ? 'full' : ''}`}>
+                        {currentRegistrations}/{lab.memberCount} registered
+                        {isFull && " (FULL)"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="lms-lab-detail-actions">
+                  {isRegistered ? (
+                    <>
+                      <div className="lms-status-badge registered">
+                        <FiCheckCircle />
+                        Registered
+                      </div>
+                      <button 
+                        className="lms-luxury-btn danger"
+                        onClick={handleDeregister}
+                      >
+                        Cancel Registration
+                      </button>
+                    </>
+                  ) : (
+                    <button 
+                      className={`lms-luxury-btn primary ${isFull ? 'disabled' : ''}`}
+                      onClick={handleRegister}
+                      disabled={isFull}
+                    >
+                      {isFull ? 'Session Full' : 'Register Now'}
+                    </button>
+                  )}
+                </div>
               </div>
+            </div>
+          );
+        });
+      })()}
+    </div>
+  </section>
+)}
 
-              <div className="lms-lab-details-grid">
-                {(() => {
-                  const normalize = (s) => s?.trim().toLowerCase();
-                  const userId = user?.id;
-
-                  const selectedSubcourse = course.subCourses?.find(sc => sc.title === selectedLabSubcourse);
-                  
-                  if (!selectedSubcourse) {
-                    return (
-                      <div className="lms-empty-state">
-                        <FiTool className="lms-empty-icon" />
-                        <h3>Subcourse Not Found</h3>
-                      </div>
-                    );
-                  }
-
-                  const isUserRegisteredForThisSubcourse = isUserRegisteredForSubcourse(selectedSubcourse.id);
-
-                  if (isUserRegisteredForThisSubcourse) {
-                    return (
-                      <div className="lms-info-card">
-                        <FiLock className="lms-info-icon" />
-                        <h3>Already Registered</h3>
-                        <p>You are already registered for a lab in this module. Registration is limited to one per module.</p>
-                      </div>
-                    );
-                  }
-
-                  // ✅ FIXED: Safe filtering for matching labs
-                  const safeLabs = getSafeArray(labs);
-                  const matchingLabs = safeLabs.filter(
-                    (lab) => lab.subCourseId === selectedSubcourse.id
-                  );
-
-                  if (matchingLabs.length === 0) {
-                    return (
-                      <div className="lms-empty-state">
-                        <FiTool className="lms-empty-icon" />
-                        <h3>No Lab Sessions</h3>
-                        <p>No laboratory sessions are scheduled for this module yet.</p>
-                      </div>
-                    );
-                  }
-
-                  return matchingLabs.map((lab) => {
-                    const registeredStudents = getSafeArray(lab.registeredStudents);
-                    const isRegistered = registeredStudents.some((r) => r.student === userId);
-                    const labTime = new Date(lab.time).toLocaleString();
-                    const currentRegistrations = registeredStudents.length;
-                    const isFull = currentRegistrations >= lab.memberCount;
-
-                    const handleRegister = async () => {
-                      try {
-                        const res = await fetch(`${API}/api/workshops/${lab.id}/register`, {
-                          method: "POST",
-                          headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer " + localStorage.getItem("token"),
-                          },
-                          body: JSON.stringify({ userId }),
-                        });
-                        const data = await res.json();
-                        if (!res.ok) throw new Error(data.error || "Error");
-                        setRegistrationMessage("Registration Successful!");
-                        setShowRegistrationSuccess(true);
-                        fetchLabs(userId);
-                        setSelectedLabSubcourse(null);
-                        setSelectedSection("home");
-                      } catch (err) {
-                        alert("❌ " + err.message);
-                      }
-                    };
-
-                    const handleDeregister = async () => {
-                      try {
-                        const res = await fetch(`${API}/api/workshops/${lab.id}/deregister`, {
-                          method: "POST",
-                          headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer " + localStorage.getItem("token"),
-                          },
-                          body: JSON.stringify({ userId }),
-                        });
-                        const data = await res.json();
-                        if (!res.ok) throw new Error(data.error || "Error");
-                        alert("Successfully deregistered from lab session");
-                        fetchLabs(userId);
-                      } catch (err) {
-                        alert("❌ " + err.message);
-                      }
-                    };
-
-                    return (
-                      <div key={lab.id} className="lms-luxury-lab-detail-card">
-                        <div className="lms-lab-detail-backdrop"></div>
-                        <div className="lms-lab-detail-content">
-                          <div className="lms-lab-detail-header">
-                            <div className="lms-lab-detail-icon">
-                              <FiTool />
-                            </div>
-                            <div className="lms-lab-detail-info">
-                              <h4 className="lms-lab-detail-title">{lab.labName}</h4>
-                              <p className="lms-lab-detail-address">{lab.labAddress}</p>
-                              <p className="lms-lab-detail-time">{labTime}</p>
-                              <div className="lms-lab-detail-capacity">
-                                <span className={`lms-capacity-text ${isFull ? 'full' : ''}`}>
-                                  {currentRegistrations}/{lab.memberCount} registered
-                                  {isFull && " (FULL)"}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div className="lms-lab-detail-actions">
-                            {isRegistered ? (
-                              <>
-                                <div className="lms-status-badge registered">
-                                  <FiCheckCircle />
-                                  Registered
-                                </div>
-                                <button 
-                                  className="lms-luxury-btn danger"
-                                  onClick={handleDeregister}
-                                >
-                                  Cancel Registration
-                                </button>
-                              </>
-                            ) : (
-                              <button 
-                                className={`lms-luxury-btn primary ${isFull ? 'disabled' : ''}`}
-                                onClick={() => handleRegisterClick(lab)}
-                                disabled={isFull}
-                              >
-                                {isFull ? 'Session Full' : 'Register Now'}
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  });
-                })()}
-              </div>
-            </section>
-          )}
 
           {/* Warning popup */}
           {showRegisterWarning && (
