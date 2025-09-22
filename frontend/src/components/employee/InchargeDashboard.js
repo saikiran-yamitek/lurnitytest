@@ -408,7 +408,7 @@ export default function InchargeDashboard() {
                 </div>
                 <div className="incharge-recent-workshops">
                   {workshops.slice(0, 3).map((workshop) => (
-                    <div key={workshop._id} className="incharge-recent-workshop-item">
+                    <div key={workshop.id} className="incharge-recent-workshop-item">
                       <div className="incharge-recent-workshop-header">
                         <div className="incharge-workshop-icon">
                           <FiBook />
@@ -461,7 +461,7 @@ export default function InchargeDashboard() {
                     );
                     
                     return (
-                      <div className="incharge-workshop-card" key={workshop._id}>
+                      <div className="incharge-workshop-card" key={workshop.id}>
                         <div className="incharge-workshop-card-header">
                           <div className="incharge-workshop-main-info">
                             <div className="incharge-workshop-badge">
@@ -530,7 +530,7 @@ export default function InchargeDashboard() {
                         <div className="incharge-workshop-card-footer">
                           <button 
                             className="incharge-btn incharge-btn-outline" 
-                            onClick={() => handleViewStudents(workshop._id)}
+                            onClick={() => handleViewStudents(workshop.id)}
                           >
                             <FiUsers />
                             Manage Students ({registered})
@@ -569,7 +569,7 @@ export default function InchargeDashboard() {
                   const passRate = totalStudents > 0 ? ((passCount / totalStudents) * 100).toFixed(1) : 0;
 
                   return (
-                    <div key={workshop._id} className="incharge-report-card">
+                    <div key={workshop.id} className="incharge-report-card">
                       <div className="incharge-report-header">
                         <div className="incharge-report-icon">
                           <FiAward />
@@ -675,7 +675,7 @@ export default function InchargeDashboard() {
                       </thead>
                       <tbody>
                         {registeredStudents.map((student) => {
-                          const edited = editedStudents[student._id] || {};
+                          const edited = editedStudents[student.id] || {};
                           const attendanceValue =
                             edited.attendance !== undefined
                               ? edited.attendance
@@ -698,7 +698,7 @@ export default function InchargeDashboard() {
                                 : "pending";
 
                           return (
-                            <tr key={student._id}>
+                            <tr key={student.id}>
                               <td>
                                 <div className="incharge-student-info">
                                   <div className="incharge-student-avatar">
@@ -719,7 +719,7 @@ export default function InchargeDashboard() {
                                   value={attendanceValue}
                                   onChange={(e) =>
                                     handleFieldChange(
-                                      student._id,
+                                      student.id,
                                       "attendance",
                                       e.target.value
                                     )
@@ -735,7 +735,7 @@ export default function InchargeDashboard() {
                                   value={gradeValue}
                                   onChange={(e) =>
                                     handleFieldChange(
-                                      student._id,
+                                      student.id,
                                       "grade",
                                       e.target.value
                                     )

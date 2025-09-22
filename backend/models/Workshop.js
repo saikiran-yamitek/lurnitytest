@@ -79,17 +79,34 @@ export async function getUserWorkshops(userId) {
 }
 
 // 5. Get students in a workshop
+// 5. Get students in a workshop (with full user details)
 export async function getWorkshopStudents(workshopId) {
   const workshop = await getWorkshopById(workshopId);
   if (!workshop) throw new Error("Workshop not found");
 
-  return (workshop.registeredStudents || []).map((entry) => ({
-    student: entry.student,
-    attendance: entry.attendance,
-    result: entry.result,
-    grade: entry.grade,
-  }));
+  const studentsWithDetails = [];
+
+  for (const entry of workshop.registeredStudents || []) {
+    if (!entry.student) continue;
+
+    // Fetch student details from Users table
+    const user = await getUserById(entry.student);
+
+    studentsWithDetails.push({
+      id: entry.student,
+      name: user?.name || "Unknown",
+      email: user?.email || "-",
+      phone: user?.phone || "-",
+      attendance: entry.attendance,
+      result: entry.result,
+      grade: entry.grade,
+      registrationDate: entry.registeredAt || null,
+    });
+  }
+
+  return studentsWithDetails;
 }
+
 
 // 6. Delete workshop
 export async function deleteWorkshop(workshopId) {
