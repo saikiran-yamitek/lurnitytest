@@ -14,7 +14,7 @@ export const handler = async (event) => {
     if (!userId) return createResponse(400, { error: "user id required" });
 
     const body = event.body ? JSON.parse(event.body) : {};
-    const { amount, mode, date, meta } = body;
+    let { amount, mode, date, meta } = body;
     amount = Number(amount);
     if (amount == null) return createResponse(400, { error: "amount required" });
 
