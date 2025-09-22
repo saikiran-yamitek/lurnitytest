@@ -18,7 +18,7 @@ import {
   FiTarget
 } from 'react-icons/fi';
 import './CohortsManagement.css';
-
+const API_BASE = process.env.REACT_APP_API_URL;
 export default function CohortsManagement() {
   const [cohorts, setCohorts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +46,7 @@ export default function CohortsManagement() {
   const fetchCohorts = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/admin/landingpage/cohorts');
+      const response = await fetch(`${API_BASE}/api/landingpage/cohorts`);
       if (!response.ok) throw new Error('Failed to fetch cohorts');
       const data = await response.json();
       setCohorts(data);
@@ -98,8 +98,8 @@ export default function CohortsManagement() {
     try {
       setSaving(true);
       const url = currentCohort 
-        ? `/api/admin/landingpage/cohorts/${currentCohort._id}`
-        : '/api/admin/landingpage/cohorts';
+        ? `${API_BASE}/api/landingpage/cohorts/${currentCohort.id}`
+        : `${API_BASE}/api/landingpage/cohorts`;
       const method = currentCohort ? 'PUT' : 'POST';
       
       const response = await fetch(url, {
@@ -160,7 +160,7 @@ export default function CohortsManagement() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this cohort?')) {
       try {
-        const response = await fetch(`/api/admin/landingpage/cohorts/${id}`, { method: 'DELETE' });
+        const response = await fetch(`/api/landingpage/cohorts/${id}`, { method: 'DELETE' });
         if (!response.ok) throw new Error('Failed to delete cohort');
         await fetchCohorts();
       } catch (error) {
@@ -417,14 +417,14 @@ export default function CohortsManagement() {
               </thead>
               <tbody>
                 {cohorts.map((cohort, index) => (
-                  <tr key={cohort._id} className="cohort-row" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <tr key={cohort.id} className="cohort-row" style={{ animationDelay: `${index * 0.1}s` }}>
                     <td className="cohort-details-cell">
                       <div className="cohort-details">
                         <div className="cohort-title">{cohort.title}</div>
                         <div className="cohort-tagline">{cohort.tagline}</div>
                         <div className="cohort-speaker">{cohort.speakerName} ({cohort.speakerCompany})</div>
                         <div className="cohort-rating">Rating: {cohort.rating}</div>
-                        <div className="cohort-id">ID: {cohort._id.slice(-6)}</div>
+                        <div className="cohort-id">ID: {cohort.id.slice(-6)}</div>
                       </div>
                     </td>
                     <td className="schedule-cell">
@@ -445,7 +445,7 @@ export default function CohortsManagement() {
                     <td className="actions-cell">
                       <div className="actions-container">
                         <button onClick={() => handleEdit(cohort)} className="action-btn edit-btn" title="Edit Cohort"><FiEdit /></button>
-                        <button onClick={() => handleDelete(cohort._id)} className="action-btn delete-btn" title="Delete Cohort"><FiTrash2 /></button>
+                        <button onClick={() => handleDelete(cohort.id)} className="action-btn delete-btn" title="Delete Cohort"><FiTrash2 /></button>
                       </div>
                     </td>
                   </tr>

@@ -23,6 +23,7 @@ import {
 } from 'react-icons/fi';
 import './Hiring.css';
 
+
 export default function Hiring() {
   const [jobs, setJobs] = useState([]);
   const [formData, setFormData] = useState({
