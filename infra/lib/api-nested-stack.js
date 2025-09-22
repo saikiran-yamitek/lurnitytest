@@ -59,7 +59,11 @@ class ApiNestedStack extends cdk.NestedStack {
     userIdRes.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateUserLambda));
     userIdRes.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteUserLambda));
     userIdRes.addMethod("PATCH", new apigateway.LambdaIntegration(lambdas.setUserLockLambda));
-
+    const transactionsRes = userIdRes.addResource("transactions");  // /admin/users/{id}/transactions
+transactionsRes.addMethod(
+  "POST",
+  new apigateway.LambdaIntegration(lambdas.createTransactionLambda)
+);
     // Admin Courses Resource
     const adminCoursesRes = adminRes.addResource("courses");
     adminCoursesRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listCoursesPublicLambda));

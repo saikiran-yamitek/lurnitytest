@@ -15,6 +15,7 @@ export const handler = async (event) => {
 
     const body = event.body ? JSON.parse(event.body) : {};
     const { amount, mode, date, meta } = body;
+    amount = Number(amount);
     if (amount == null) return createResponse(400, { error: "amount required" });
 
     // Prefer transactional helper which writes transaction and updates user atomically

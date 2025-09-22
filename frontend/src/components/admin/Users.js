@@ -15,7 +15,7 @@ import {
 } from 'react-icons/fi';
 
 import './Users.css';
-
+const API_BASE = process.env.REACT_APP_API_URL;
 class Users extends Component {
   state = {
     users: [], filtered: [], courses: [],
@@ -94,7 +94,7 @@ class Users extends Component {
       if (updateData.amountPaid && updateData.paymentMode) {
         try {
           await logTransaction(id, { 
-            amount: updateData.amountPaid, 
+            amount: Number(updateData.amountPaid), 
             mode: updateData.paymentMode, 
             date: new Date() 
           });
@@ -610,7 +610,7 @@ class Users extends Component {
                               </button>
                               <button
                                 className="action-btn certificate-btn"
-                                onClick={() => this.props.history.push(`/admin/certificates/${u.id}`)}
+                                onClick={() => this.props.history.push(`${API_BASE}/api/certificates/${u.id}`)}
                                 title="View Certificates"
                                 disabled={loading}
                               >
@@ -618,7 +618,7 @@ class Users extends Component {
                               </button>
                               <button
                                 className="action-btn resume-btn"
-                                onClick={() => this.props.history.push(`/admin/resume/${u.id}`)}
+                                onClick={() => this.props.history.push(`${API_BASE}/api/user/${u.id}/resume`)}
                                 title="Download Resume"
                                 disabled={loading}
                               >

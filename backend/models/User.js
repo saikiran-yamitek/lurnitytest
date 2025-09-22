@@ -343,7 +343,11 @@ export async function findUserById(userId) {
 // Update user fields (generic)
 export async function updateUser(userId, updateFields = {}) {
   if (!userId) throw new Error("userId is required");
-  const keys = Object.keys(updateFields);
+
+  // ❌ Strip reserved/auto-managed fields
+  const { id, createdAt, updatedAt, ...safeFields } = updateFields;
+  const keys = Object.keys(safeFields);
+
   if (keys.length === 0) return getUserById(userId);
 
   const exprParts = [];
@@ -353,9 +357,10 @@ export async function updateUser(userId, updateFields = {}) {
   keys.forEach((k) => {
     exprParts.push(`#${k} = :${k}`);
     exprAttrNames[`#${k}`] = k;
-    exprAttrValues[`:${k}`] = updateFields[k];
+    exprAttrValues[`:${k}`] = safeFields[k];
   });
 
+  // ✅ Add updatedAt only once (server-side)
   exprParts.push("#updatedAt = :updatedAt");
   exprAttrNames["#updatedAt"] = "updatedAt";
   exprAttrValues[":updatedAt"] = new Date().toISOString();
@@ -372,6 +377,7 @@ export async function updateUser(userId, updateFields = {}) {
   const result = await ddb.send(new UpdateCommand(params));
   return result.Attributes ?? null;
 }
+
 
 // Delete a user
 export async function deleteUser(userId) {
