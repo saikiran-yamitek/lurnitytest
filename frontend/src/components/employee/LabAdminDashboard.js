@@ -478,11 +478,15 @@ payload.subCourseId = selectedSubCourse.title; // since no ID exists
                         required
                       >
                         <option value="">Choose a course...</option>
-                        {courses.map((c) => (
-                          <option key={c.id} value={c.id}>
-                            {c.title}
-                          </option>
-                        ))}
+                        // When rendering course dropdown
+{courses
+  .filter((c) => c.subCourses?.some((sub) => sub.lab === "Yes")) // only courses with lab subcourses
+  .map((c) => (
+    <option key={c.id} value={c.id}>
+      {c.title}
+    </option>
+  ))}
+
                       </select>
                     </div>
 
@@ -499,13 +503,16 @@ payload.subCourseId = selectedSubCourse.title; // since no ID exists
   required
 >
   <option value="">Select lab name...</option>
-  {courses
-    .find((c) => c.id === form.courseId)
-    ?.subCourses?.map((sub, idx) => (
-      <option key={idx} value={sub.title}>
-        {sub.title}
-      </option>
-    ))}
+ // When rendering lab dropdown
+{courses
+  .find((c) => c.id === form.courseId)
+  ?.subCourses?.filter((sub) => sub.lab === "Yes") // only subcourses with lab
+  .map((sub, idx) => (
+    <option key={idx} value={sub.title}>
+      {sub.title}
+    </option>
+  ))}
+
 </select>
 
                     </div>
