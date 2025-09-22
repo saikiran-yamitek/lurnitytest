@@ -104,6 +104,14 @@ export async function findCourseById(courseId) {
   return getCourseById(courseId);
 }
 
+export async function doesSubCourseExist(courseId, subCourseTitle) {
+  const course = await getCourseById(courseId);
+  if (!course || !course.subCourses) return false;
+
+  // Compare by title
+  return course.subCourses.some(sc => sc.title === subCourseTitle);
+}
+
 
 export default {
   calcTotalMinutes,

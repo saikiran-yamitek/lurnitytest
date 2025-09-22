@@ -178,6 +178,9 @@ export default function Home() {
     if (!res.ok) throw new Error(data.message || "Certificate generation failed");
 
     setPopupMessage(`🎉 Certificate issued for ${subCourseTitle}`);
+    setTimeout(() => {
+  setPopupMessage("");
+}, 3000);
   } catch (err) {
     console.error("Certificate generation error:", err);
   }

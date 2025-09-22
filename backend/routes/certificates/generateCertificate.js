@@ -1,9 +1,8 @@
 // routes/certificates/generateCertificate.js
 import {
-  findCertificate,
   createCertificate,findCertificateByUserSubCourse
 } from "../../models/Certificate.js";
-import { findCourseById, checkSubCourseExists } from "../../models/Course.js";
+import { findCourseById ,doesSubCourseExist} from "../../models/Course.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
@@ -21,29 +20,27 @@ export const handler = async (event) => {
     }
 
     // Check for existing certificate
-    const existing = await findCertificateByUserSubCourse({ userId, subCourseTitle });
+    const existing = await findCertificateByUserSubCourse(userId, subCourseTitle );
     if (existing) {
-      return createResponse(200, {
-        message: "Certificate already issued.",
-        certificate: existing,
-      });
-    }
+  return createResponse(200, {
+    message: "Certificate already issued.",
+    certificate: existing,
+  });
+}
 
-    // Validate course and subCourse
-    const course = await findCourseById(courseId);
-    if (!course) {
-      return createResponse(404, { message: "Course not found." });
-    }
+// Validate course and subCourse
+const course = await findCourseById(courseId);
+if (!course) return createResponse(404, { message: "Course not found." });
 
-    const subCourseExists = await checkSubCourseExists(courseId, subCourseTitle);
-    if (!subCourseExists) {
-      return createResponse(400, { message: "Sub-course not found in course." });
-    }
+const subCourseExists = await doesSubCourseExist(courseId, subCourseTitle);
+if (!subCourseExists)
+  return createResponse(400, { message: "Sub-course not found in course." });
 
-    // Create certificate
-    const cert = await createCertificate({ userId, courseId, subCourseTitle });
+// ⚠️ Corrected call: pass separate arguments
+const cert = await createCertificate(userId, courseId, subCourseTitle);
 
-    return createResponse(201, { message: "Certificate issued.", certificate: cert });
+return createResponse(201, { message: "Certificate issued.", certificate: cert });
+    
   } catch (error) {
     console.error("❌ Certificate issue error:", error);
     return createResponse(500, { message: "Internal server error." });
