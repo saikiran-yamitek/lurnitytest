@@ -48,7 +48,7 @@ export default function AdminWorkshops() {
 
     try {
       await fetch(`${API}/api/workshops/${id}`, { method: "DELETE" });
-      setWorkshops(workshops.filter(w => w._id !== id));
+      setWorkshops(workshops.filter(w => w.id !== id));
     } catch (error) {
       console.error("Failed to delete workshop:", error);
       alert("Failed to delete workshop. Please try again.");
@@ -63,14 +63,14 @@ export default function AdminWorkshops() {
 
     try {
       setSaving(true);
-      const res = await fetch(`${API}/api/workshops/${editWorkshop._id}`, {
+      const res = await fetch(`${API}/api/workshops/${editWorkshop.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editWorkshop),
       });
       const updated = await res.json();
       setWorkshops((prev) =>
-        prev.map((w) => (w._id === updated._id ? updated : w))
+        prev.map((w) => (w.id === updated.id ? updated : w))
       );
       setEditWorkshop(null);
     } catch (err) {
@@ -186,7 +186,7 @@ export default function AdminWorkshops() {
 
               return (
                 <div 
-                  key={w._id} 
+                  key={w.id} 
                   className={`workshop-card ${isUpcoming ? "upcoming" : "past"}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -205,7 +205,7 @@ export default function AdminWorkshops() {
                       </button>
                       <button 
                         className="action-btn delete-btn" 
-                        onClick={() => handleDelete(w._id)}
+                        onClick={() => handleDelete(w.id)}
                         title="Delete Workshop"
                       >
                         <FiTrash2 />
@@ -246,7 +246,7 @@ export default function AdminWorkshops() {
                           <span className="info-value">
                             {w.inchargeId && typeof w.inchargeId === "object"
                               ? w.inchargeId?.name
-                              : incharges.find(i => i._id === w.inchargeId)?.name || "Not assigned"}
+                              : incharges.find(i => i.id === w.inchargeId)?.name || "Not assigned"}
                           </span>
                         </div>
                       </div>
@@ -261,7 +261,7 @@ export default function AdminWorkshops() {
 
                     <button 
                       className="view-students-btn" 
-                      onClick={() => handleViewStudents(w._id)}
+                      onClick={() => handleViewStudents(w.id)}
                     >
                       <FiUsers />
                       View Registered Students
@@ -414,7 +414,7 @@ export default function AdminWorkshops() {
                     </thead>
                     <tbody>
                       {selectedStudents.map((entry, index) => (
-                        <tr key={entry._id || index} style={{ animationDelay: `${index * 0.05}s` }}>
+                        <tr key={entry.id || index} style={{ animationDelay: `${index * 0.05}s` }}>
                           <td className="student-name">
                             <FiUser className="student-icon" />
                             {entry?.name || "Unknown"}
