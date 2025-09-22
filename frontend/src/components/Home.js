@@ -272,7 +272,7 @@ export default function Home() {
   const isUserRegisteredForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     return safeLabs.some(lab => {
-      if (lab.subCourseId !== selectedLabSubcourse) return false;
+      if (lab.subCourseId !== subCourseId) return false;
       const registeredStudents = getSafeArray(lab.registeredStudents);
       return registeredStudents.some(r => r.student === user?.id);
     });
@@ -281,7 +281,7 @@ export default function Home() {
   const getUserRegistrationForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     const lab = safeLabs.find(lab => {
-      if (lab.subCourseId !== selectedLabSubcourse) return false;
+      if (lab.subCourseId !== subCourseId) return false;
       const registeredStudents = getSafeArray(lab.registeredStudents);
       return registeredStudents.some(r => r.student === user?.id);
     });
@@ -841,7 +841,7 @@ export default function Home() {
                         
                         // ✅ FIXED: Safe array operations for lab processing
                         const safeLabs = getSafeArray(labs);
-                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
+                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.id);
                         
                         if (labEntry) {
                           const registeredStudents = getSafeArray(labEntry.registeredStudents);
@@ -932,53 +932,55 @@ export default function Home() {
                             })}
 
                             {sc.lab === "Yes" && (() => {
-                              const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-                              const allVideosCompleted = videoIds.every(id => watched.includes(id));
-                              const normalize = s => s?.trim().toLowerCase();
-                              
-                              const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.id);
-                              const userRegistration = getUserRegistrationForSubcourse(sc.id);
-                              const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
+  const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+  const allVideosCompleted = videoIds.every(id => watched.includes(id));
+  const normalize = s => s?.trim().toLowerCase();
+  
+  // ✅ FIXED: Use sc.title instead of sc.id
+  const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
+  const userRegistration = getUserRegistrationForSubcourse(sc.title);
+  const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
 
-                              const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
+  const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
 
-                              return (
-                                <div 
-                                  className={`lms-luxury-content-item lab ${isLabLocked ? 'locked' : ''} ${showGreenTick ? 'completed' : ''}`}
-                                  onClick={() => {
-                                    if (!isLabLocked) {
-                                      setSelectedLabSubcourse(sc.title);
-                                      setSelectedSection("lab-details");
-                                    }
-                                  }}
-                                >
-                                  <div className="lms-item-backdrop"></div>
-                                  <div className="lms-item-icon">
-                                    {isLabLocked ? <FiLock /> : <FiTool />}
-                                  </div>
-                                  <div className="lms-item-content">
-                                    <h4 className="lms-item-title">Hands-on Lab Session</h4>
-                                    <div className="lms-lab-status-container">
-                                      {isRegisteredForSubcourse ? (
-                                        <div className="lms-status-badges">
-                                          <span className="lms-status-badge registered">✓ Registered</span>
-                                          {userRegistration?.result && userRegistration.result !== 'pending' && (
-                                            <span className={`lms-status-badge ${normalize(userRegistration.result)}`}>
-                                              {normalize(userRegistration.result) === "pass" ? "✓ Passed" : "✗ Failed"}
-                                            </span>
-                                          )}
-                                        </div>
-                                      ) : allVideosCompleted ? (
-                                        <span className="lms-status-badge available">Available</span>
-                                      ) : (
-                                        <span className="lms-status-badge locked">Complete videos first</span>
-                                      )}
-                                    </div>
-                                  </div>
-                                  {showGreenTick && <FiCheckCircle className="lms-completion-icon" />}
-                                </div>
-                              );
-                            })()}
+  return (
+    <div 
+      className={`lms-luxury-content-item lab ${isLabLocked ? 'locked' : ''} ${showGreenTick ? 'completed' : ''}`}
+      onClick={() => {
+        if (!isLabLocked) {
+          setSelectedLabSubcourse(sc.title);
+          setSelectedSection("lab-details");
+        }
+      }}
+    >
+      <div className="lms-item-backdrop"></div>
+      <div className="lms-item-icon">
+        {isLabLocked ? <FiLock /> : <FiTool />}
+      </div>
+      <div className="lms-item-content">
+        <h4 className="lms-item-title">Hands-on Lab Session</h4>
+        <div className="lms-lab-status-container">
+          {isRegisteredForSubcourse ? (
+            <div className="lms-status-badges">
+              <span className="lms-status-badge registered">✓ Registered</span>
+              {userRegistration?.result && userRegistration.result !== 'pending' && (
+                <span className={`lms-status-badge ${normalize(userRegistration.result)}`}>
+                  {normalize(userRegistration.result) === "pass" ? "✓ Passed" : "✗ Failed"}
+                </span>
+              )}
+            </div>
+          ) : allVideosCompleted ? (
+            <span className="lms-status-badge available">Available</span>
+          ) : (
+            <span className="lms-status-badge locked">Complete videos first</span>
+          )}
+        </div>
+      </div>
+      {showGreenTick && <FiCheckCircle className="lms-completion-icon" />}
+    </div>
+  );
+})()}
+
                           </div>
                         </div>
                       );
