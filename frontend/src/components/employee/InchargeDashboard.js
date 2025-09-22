@@ -116,13 +116,16 @@ export default function InchargeDashboard() {
     try {
       const updates = Object.entries(editedStudents);
 
-      for (const [ fields] of updates) {
-        if (fields.attendance === undefined || !fields.grade) {
-          setPopup("⚠️ Please mark both attendance and grade for all students.");
-          setTimeout(() => setPopup(""), 3000);
-          return;
-        }
-      }
+      
+
+for (const [fields] of updates) {
+  if (fields.attendance === undefined || !fields.grade) {
+    setPopup("⚠️ Please mark both attendance and grade for all students.");
+    setTimeout(() => setPopup(""), 3000);
+    return;
+  }
+}
+
 
       for (const [studentId, fields] of updates) {
         const res = await fetch(`${API}/api/workshops/${selectedWorkshop}/attendance`,
