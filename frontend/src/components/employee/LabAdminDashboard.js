@@ -58,19 +58,28 @@ export default function LabAdminDashboard() {
   }, []);
 
   const fetchData = async () => {
-    setLoading(true);
-    try {
-      const all = await listEmployees();
-      const inchargesOnly = all.filter((e) => e.role === "lab incharge");
-      setIncharges(inchargesOnly);
-      setWorkshops(await listWorkshops());
-      setCourses(await listCourses());
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const workshopRes = await listWorkshops();
+    const courseRes = await listCourses();
+
+    setWorkshops(
+      Array.isArray(workshopRes) 
+        ? workshopRes 
+        : workshopRes.Items || workshopRes.data || []
+    );
+
+    setCourses(
+      Array.isArray(courseRes) 
+        ? courseRes 
+        : courseRes.Items || courseRes.data || []
+    );
+  } catch (err) {
+    console.error("Failed to load data", err);
+    setWorkshops([]);
+    setCourses([]);
+  }
+};
+
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -80,8 +89,8 @@ export default function LabAdminDashboard() {
     try {
       const payload = { ...form, createdBy: emp.id };
 
-      const selectedCourse = courses.find((c) => c._id === form.courseId);
-      const selectedSubCourse = selectedCourse?.subCourses?.find((sub) => sub._id === form.labName);
+      const selectedCourse = courses.find((c) => c.id === form.courseId);
+      const selectedSubCourse = selectedCourse?.subCourses?.find((sub) => sub.id === form.labName);
 
       if (!selectedSubCourse) {
         setPopup("❌ Invalid subcourse selected.");
@@ -90,7 +99,7 @@ export default function LabAdminDashboard() {
       }
 
       payload.labName = selectedSubCourse.title;
-      payload.subCourseId = selectedSubCourse._id;
+      payload.subCourseId = selectedSubCourse.id;
 
       await createWorkshop(payload);
       setPopup("✅ Workshop scheduled successfully");
@@ -411,7 +420,7 @@ export default function LabAdminDashboard() {
                 </div>
                 <div className="lab-recent-workshops">
                   {workshops.slice(0, 3).map((workshop) => (
-                    <div key={workshop._id} className="lab-recent-workshop-item">
+                    <div key={workshop.id} className="lab-recent-workshop-item">
                       <div className="lab-recent-workshop-header">
                         <div className="lab-workshop-icon">
                           <FiBook />
@@ -464,7 +473,7 @@ export default function LabAdminDashboard() {
                       >
                         <option value="">Choose a course...</option>
                         {courses.map((c) => (
-                          <option key={c._id} value={c._id}>
+                          <option key={c.id} value={c.id}>
                             {c.title}
                           </option>
                         ))}
@@ -485,8 +494,8 @@ export default function LabAdminDashboard() {
                       >
                         <option value="">Select lab name...</option>
                         {courses
-                          .find((c) => c._id === form.courseId)?.subCourses?.map((sub) => (
-                            <option key={sub._id} value={sub._id}>
+                          .find((c) => c.id === form.courseId)?.subCourses?.map((sub) => (
+                            <option key={sub.id} value={sub.id}>
                               {sub.title}
                             </option>
                           ))}
@@ -557,7 +566,7 @@ export default function LabAdminDashboard() {
                       >
                         <option value="">Select incharge...</option>
                         {incharges.map((e) => (
-                          <option key={e._id} value={e._id}>
+                          <option key={e.id} value={e.id}>
                             {e.name}
                           </option>
                         ))}
@@ -641,7 +650,7 @@ export default function LabAdminDashboard() {
                     const occupancyPercentage = (registered / workshop.memberCount) * 100;
                     
                     return (
-                      <div className="lab-workshop-card" key={workshop._id}>
+                      <div className="lab-workshop-card" key={workshop.id}>
                         <div className="lab-workshop-card-header">
                           <div className="lab-workshop-main-info">
                             <div className="lab-workshop-badge">
@@ -658,7 +667,7 @@ export default function LabAdminDashboard() {
                           <div className="lab-workshop-actions">
                             <button 
                               className="lab-action-btn lab-action-btn-danger" 
-                              onClick={() => setWorkshopToDelete(workshop._id)}
+                              onClick={() => setWorkshopToDelete(workshop.id)}
                               title="Delete Workshop"
                             >
                               <FiTrash2 />
@@ -689,7 +698,7 @@ export default function LabAdminDashboard() {
                                 <span className="lab-meta-value">
                                   {typeof workshop.inchargeId === "object"
                                     ? workshop.inchargeId.name
-                                    : incharges.find((i) => i._id === workshop.inchargeId)?.name || "—"}
+                                    : incharges.find((i) => i.id === workshop.inchargeId)?.name || "—"}
                                 </span>
                               </div>
                             </div>
@@ -725,7 +734,7 @@ export default function LabAdminDashboard() {
                         <div className="lab-workshop-card-footer">
                           <button 
                             className="lab-btn lab-btn-outline" 
-                            onClick={() => handleViewStudents(workshop._id)}
+                            onClick={() => handleViewStudents(workshop.id)}
                           >
                             <FiUsers />
                             View Participants ({registered})
@@ -756,7 +765,7 @@ export default function LabAdminDashboard() {
 
               <div className="lab-courses-grid">
                 {courses.map((course) => (
-                  <div key={course._id} className="lab-course-card">
+                  <div key={course.id} className="lab-course-card">
                     <div className="lab-course-header">
                       <div className="lab-course-icon">
                         <FiHome />
@@ -787,7 +796,7 @@ export default function LabAdminDashboard() {
                         <h4 className="lab-subcourses-title">Lab Sessions</h4>
                         <div className="lab-subcourse-list">
                           {course.subCourses?.slice(0, 4).map((sub) => (
-                            <span key={sub._id} className="lab-subcourse-tag">
+                            <span key={sub.id} className="lab-subcourse-tag">
                               {sub.title}
                             </span>
                           ))}
@@ -911,7 +920,7 @@ export default function LabAdminDashboard() {
                       </thead>
                       <tbody>
                         {selectedStudents.map((student) => (
-                          <tr key={student._id}>
+                          <tr key={student.id}>
                             <td>
                               <div className="lab-participant-info">
                                 <div className="lab-participant-avatar">
