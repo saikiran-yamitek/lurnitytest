@@ -3011,7 +3011,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -3208,7 +3216,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -3405,7 +3421,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -3602,7 +3626,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -3799,7 +3831,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },

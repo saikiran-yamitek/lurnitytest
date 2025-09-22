@@ -511,6 +511,36 @@
                           {
                             "attributeName": "id",
                             "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "userId",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "subCourseTitle",
+                            "attributeType": "S"
+                          }
+                        ],
+                        "globalSecondaryIndexes": [
+                          {
+                            "indexName": "user-subcourse-index",
+                            "keySchema": [
+                              {
+                                "attributeName": "userId",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "subCourseTitle",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "ALL"
+                            },
+                            "provisionedThroughput": {
+                              "readCapacityUnits": 5,
+                              "writeCapacityUnits": 5
+                            }
                           }
                         ],
                         "keySchema": [
@@ -1080,7 +1110,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/563caf1db41affac265711d293b6d520ea948a2c593932e483e54dd565b3d31a.json"
+                          "/5f58b7d10849f99815fd397866b88533144d61db5d2af95b1f210ac716c3787b.json"
                         ]
                       ]
                     }
@@ -5494,7 +5524,15 @@
                                           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
                                         },
                                         {
-                                          "Ref": "AWS::NoValue"
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
                                         }
                                       ]
                                     },
@@ -5763,7 +5801,15 @@
                                           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
                                         },
                                         {
-                                          "Ref": "AWS::NoValue"
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
                                         }
                                       ]
                                     },
@@ -6032,7 +6078,15 @@
                                           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
                                         },
                                         {
-                                          "Ref": "AWS::NoValue"
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
                                         }
                                       ]
                                     },
@@ -6301,7 +6355,15 @@
                                           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
                                         },
                                         {
-                                          "Ref": "AWS::NoValue"
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
                                         }
                                       ]
                                     },
@@ -6570,7 +6632,15 @@
                                           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
                                         },
                                         {
-                                          "Ref": "AWS::NoValue"
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
                                         }
                                       ]
                                     },
@@ -24331,7 +24401,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/569253150f3f6ec73edd47ad2fb51540e5ac161270eddcf2c546b8807ec5f29a.json"
+                          "/027737f5546c95dcba30cb3e2a8578eaea014502acecf0f496893673d3da6c3a.json"
                         ]
                       ]
                     }

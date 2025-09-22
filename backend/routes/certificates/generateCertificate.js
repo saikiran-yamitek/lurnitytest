@@ -1,7 +1,7 @@
 // routes/certificates/generateCertificate.js
 import {
   findCertificate,
-  createCertificate,
+  createCertificate,findCertificateByUserSubCourse
 } from "../../models/Certificate.js";
 import { findCourseById, checkSubCourseExists } from "../../models/Course.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
@@ -21,7 +21,7 @@ export const handler = async (event) => {
     }
 
     // Check for existing certificate
-    const existing = await findCertificate({ userId, courseId, subCourseTitle });
+    const existing = await findCertificateByUserSubCourse({ userId, subCourseTitle });
     if (existing) {
       return createResponse(200, {
         message: "Certificate already issued.",

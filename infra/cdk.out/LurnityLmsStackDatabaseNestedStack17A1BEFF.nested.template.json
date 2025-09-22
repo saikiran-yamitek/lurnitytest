@@ -215,6 +215,36 @@
      {
       "AttributeName": "id",
       "AttributeType": "S"
+     },
+     {
+      "AttributeName": "userId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "subCourseTitle",
+      "AttributeType": "S"
+     }
+    ],
+    "GlobalSecondaryIndexes": [
+     {
+      "IndexName": "user-subcourse-index",
+      "KeySchema": [
+       {
+        "AttributeName": "userId",
+        "KeyType": "HASH"
+       },
+       {
+        "AttributeName": "subCourseTitle",
+        "KeyType": "RANGE"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+       "ReadCapacityUnits": 5,
+       "WriteCapacityUnits": 5
+      }
      }
     ],
     "KeySchema": [

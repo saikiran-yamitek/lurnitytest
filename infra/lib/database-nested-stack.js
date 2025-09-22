@@ -48,9 +48,18 @@ class DatabaseNestedStack extends cdk.NestedStack {
     });
 
     this.certificateTable = new dynamodb.Table(this, process.env.CERTIFICATE_TABLE_NAME || "CertificateTable", {
-      partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-    });
+  partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
+  removalPolicy: cdk.RemovalPolicy.DESTROY,
+});
+
+// Add GSI for user + subcourse
+this.certificateTable.addGlobalSecondaryIndex({
+  indexName: "user-subcourse-index",
+  partitionKey: { name: "userId", type: dynamodb.AttributeType.STRING },
+  sortKey: { name: "subCourseTitle", type: dynamodb.AttributeType.STRING },
+  projectionType: dynamodb.ProjectionType.ALL,
+});
+
 
     this.companyTable = new dynamodb.Table(this, process.env.COMPANY_TABLE_NAME || "CompanyTable", {
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },

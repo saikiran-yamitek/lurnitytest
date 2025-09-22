@@ -18,12 +18,12 @@ export async function generateCertificate(userId, courseId, subCourseTitle) {
   const existing = await docClient.send(
     new QueryCommand({
       TableName: TABLE_NAME,
-      IndexName: "user-course-subcourse-index", // ⚠️ Needs GSI if you want composite lookup
-      KeyConditionExpression: "userId = :u AND courseId = :c",
-      ExpressionAttributeValues: {
-        ":u": userId,
-        ":c": courseId,
-      },
+      IndexName: "user-subcourse-index",
+KeyConditionExpression: "userId = :u AND subCourseTitle = :s",
+ExpressionAttributeValues: {
+  ":u": userId,
+  ":s": subCourseTitle,
+},
     })
   );
 
@@ -101,6 +101,24 @@ export async function checkCertificateExists(userId, subCourseTitle) {
   );
   return result.Items?.some((c) => c.subCourseTitle === subCourseTitle);
 }
+
+
+export async function findCertificateByUserSubCourse(userId, subCourseTitle) {
+  const result = await docClient.send(
+    new QueryCommand({
+      TableName: TABLE_NAME,
+      IndexName: "user-subcourse-index", // Add this GSI in DynamoDB
+      KeyConditionExpression: "userId = :u AND subCourseTitle = :s",
+      ExpressionAttributeValues: {
+        ":u": userId,
+        ":s": subCourseTitle,
+      },
+    })
+  );
+
+  return result.Items?.[0] || null; // return first certificate if exists
+}
+
 
 export { generateCertificate as createCertificate };
 export { getCertificateById as findCertificate };
