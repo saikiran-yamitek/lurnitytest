@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   PieChart, Pie, Cell,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   LineChart, Line,
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
   ResponsiveContainer
@@ -25,40 +25,42 @@ export default function Dashboard() {
   useEffect(() => {
     const loadDashboardData = async () => {
       console.log('🚀 Loading dashboard data...');
-      
-      // Load each API independently with error handling
+
       let users = [];
       let courses = [];
       let employees = [];
-      
+
       try {
         const usersResponse = await listUsers();
         console.log('👥 Users response:', usersResponse);
-        users = Array.isArray(usersResponse) ? usersResponse : [];
+        users = Array.isArray(usersResponse?.items) ? usersResponse.items : [];
       } catch (error) {
         console.error('❌ Failed to load users:', error);
         users = [];
       }
-      
+
       try {
         const coursesResponse = await listCourses();
         console.log('📚 Courses response:', coursesResponse);
-        courses = Array.isArray(coursesResponse) ? coursesResponse : [];
+        courses = Array.isArray(coursesResponse?.items) ? coursesResponse.items : [];
       } catch (error) {
         console.error('❌ Failed to load courses:', error);
         courses = [];
       }
-      
+
       try {
         const employeesResponse = await listEmployees();
         console.log('👨‍💼 Employees response:', employeesResponse);
-        employees = Array.isArray(employeesResponse) ? employeesResponse : [];
+        employees = Array.isArray(employeesResponse?.items)
+          ? employeesResponse.items
+          : Array.isArray(employeesResponse)
+            ? employeesResponse
+            : [];
       } catch (error) {
         console.error('❌ Failed to load employees:', error);
         employees = [];
       }
 
-      // Now safely filter - users is guaranteed to be an array
       const studentsArr = users.filter(u => u.role === 'user');
       const revenueTot = studentsArr.reduce((sum, u) => sum + (+u.amountPaid || 0), 0);
 
@@ -69,7 +71,6 @@ export default function Dashboard() {
         revenue: revenueTot
       });
 
-      // Set random trends for demo
       setTrends({
         students: Math.random() > 0.5 ? 'up' : 'down',
         employees: Math.random() > 0.5 ? 'up' : 'down',
@@ -85,7 +86,7 @@ export default function Dashboard() {
       });
       setPie(Object.entries(cMap).map(([name, value]) => ({ name, value })));
 
-      /* bar – weekday sign‑ups */
+      /* bar – weekday sign-ups */
       const week = { Sun: 0, Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0 };
       studentsArr.forEach(u => {
         const d = new Date(u.createdAt || Date.now())
@@ -109,10 +110,10 @@ export default function Dashboard() {
         { metric: 'Employees', count: employees.length },
         { metric: 'Courses', count: courses.length }
       ]);
-      
+
       console.log('✅ Dashboard data loaded successfully');
     };
-    
+
     loadDashboardData();
   }, []);
 
@@ -127,7 +128,7 @@ export default function Dashboard() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="dash"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -144,31 +145,31 @@ export default function Dashboard() {
 
       {/* ---------- stats ---------- */}
       <div className="stats">
-        <StatCard 
-          icon={<FaUsers />} 
-          label="Students" 
-          value={stats.students} 
+        <StatCard
+          icon={<FaUsers />}
+          label="Students"
+          value={stats.students}
           color={LUXURY_COLORS.secondary}
           trend={trends.students}
         />
-        <StatCard 
-          icon={<FaRegIdBadge />} 
-          label="Employees" 
-          value={stats.employees} 
+        <StatCard
+          icon={<FaRegIdBadge />}
+          label="Employees"
+          value={stats.employees}
           color={LUXURY_COLORS.primary}
           trend={trends.employees}
         />
-        <StatCard 
-          icon={<FaBookOpen />} 
-          label="Courses" 
-          value={stats.courses} 
+        <StatCard
+          icon={<FaBookOpen />}
+          label="Courses"
+          value={stats.courses}
           color={LUXURY_COLORS.success}
           trend={trends.courses}
         />
-        <StatCard 
-          icon={<FaRupeeSign />} 
-          label="Revenue" 
-          value={`₹${stats.revenue.toLocaleString()}`} 
+        <StatCard
+          icon={<FaRupeeSign />}
+          label="Revenue"
+          value={`₹${stats.revenue.toLocaleString()}`}
           color={LUXURY_COLORS.accent}
           trend={trends.revenue}
         />
@@ -179,23 +180,23 @@ export default function Dashboard() {
         <ChartBox title="Enrollments by Course" color={LUXURY_COLORS.secondary}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <Pie 
-                data={pieData} 
-                dataKey="value" 
-                outerRadius="70%" 
+              <Pie
+                data={pieData}
+                dataKey="value"
+                outerRadius="70%"
                 innerRadius="45%"
                 label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
               >
                 {pieData.map((_, i) => (
-                  <Cell 
-                    key={i} 
-                    fill={COLORS[i % COLORS.length]} 
+                  <Cell
+                    key={i}
+                    fill={COLORS[i % COLORS.length]}
                     stroke={LUXURY_COLORS.light}
                     strokeWidth={2}
                   />
                 ))}
               </Pie>
-              <Tooltip 
+              <Tooltip
                 contentStyle={{
                   background: LUXURY_COLORS.dark,
                   borderColor: LUXURY_COLORS.primary,
@@ -207,21 +208,21 @@ export default function Dashboard() {
           </ResponsiveContainer>
         </ChartBox>
 
-        <ChartBox title="Sign‑ups by Weekday" color={LUXURY_COLORS.primary}>
+        <ChartBox title="Sign-ups by Weekday" color={LUXURY_COLORS.primary}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={weekBar}>
-              <CartesianGrid strokeDasharray="3 3" stroke={LUXURY_COLORS.light} strokeOpacity={0.15}/>
-              <XAxis 
-                dataKey="day" 
+              <CartesianGrid strokeDasharray="3 3" stroke={LUXURY_COLORS.light} strokeOpacity={0.15} />
+              <XAxis
+                dataKey="day"
                 tick={{ fill: LUXURY_COLORS.light }}
                 axisLine={{ stroke: LUXURY_COLORS.light }}
               />
-              <YAxis 
-                allowDecimals={false} 
+              <YAxis
+                allowDecimals={false}
                 tick={{ fill: LUXURY_COLORS.light }}
                 axisLine={{ stroke: LUXURY_COLORS.light }}
               />
-              <Tooltip 
+              <Tooltip
                 contentStyle={{
                   background: LUXURY_COLORS.dark,
                   borderColor: LUXURY_COLORS.primary,
@@ -229,15 +230,15 @@ export default function Dashboard() {
                   color: LUXURY_COLORS.light
                 }}
               />
-              <Bar 
-                dataKey="users" 
-                fill={LUXURY_COLORS.primary} 
+              <Bar
+                dataKey="users"
+                fill={LUXURY_COLORS.primary}
                 radius={[6, 6, 0, 0]}
                 animationDuration={1500}
               >
                 {weekBar.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
+                  <Cell
+                    key={`cell-${index}`}
                     fill={COLORS[index % COLORS.length]}
                   />
                 ))}
@@ -249,17 +250,17 @@ export default function Dashboard() {
         <ChartBox title="Revenue Growth (YTD)" color={LUXURY_COLORS.accent}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={revLine}>
-              <CartesianGrid strokeDasharray="3 3" stroke={LUXURY_COLORS.light} strokeOpacity={0.15}/>
-              <XAxis 
-                dataKey="month" 
+              <CartesianGrid strokeDasharray="3 3" stroke={LUXURY_COLORS.light} strokeOpacity={0.15} />
+              <XAxis
+                dataKey="month"
                 tick={{ fill: LUXURY_COLORS.light }}
                 axisLine={{ stroke: LUXURY_COLORS.light }}
               />
-              <YAxis 
+              <YAxis
                 tick={{ fill: LUXURY_COLORS.light }}
                 axisLine={{ stroke: LUXURY_COLORS.light }}
               />
-              <Tooltip 
+              <Tooltip
                 contentStyle={{
                   background: LUXURY_COLORS.dark,
                   borderColor: LUXURY_COLORS.primary,
@@ -267,10 +268,10 @@ export default function Dashboard() {
                   color: LUXURY_COLORS.light
                 }}
               />
-              <Line 
-                type="monotone" 
-                dataKey="revenue" 
-                stroke={LUXURY_COLORS.accent} 
+              <Line
+                type="monotone"
+                dataKey="revenue"
+                stroke={LUXURY_COLORS.accent}
                 strokeWidth={3}
                 dot={{ fill: LUXURY_COLORS.primary, strokeWidth: 2, r: 4 }}
                 activeDot={{ fill: LUXURY_COLORS.light, stroke: LUXURY_COLORS.accent, strokeWidth: 2, r: 6 }}
@@ -283,27 +284,27 @@ export default function Dashboard() {
         <ChartBox title="Platform Mix" color={LUXURY_COLORS.success}>
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarMx}>
-              <PolarGrid stroke={LUXURY_COLORS.light} strokeOpacity={0.2}/>
-              <PolarAngleAxis 
-                dataKey="metric" 
-                tick={{ 
+              <PolarGrid stroke={LUXURY_COLORS.light} strokeOpacity={0.2} />
+              <PolarAngleAxis
+                dataKey="metric"
+                tick={{
                   fill: LUXURY_COLORS.light,
-                  fontSize: 12 
-                }} 
+                  fontSize: 12
+                }}
               />
-              <PolarRadiusAxis 
-                tick={false} 
+              <PolarRadiusAxis
+                tick={false}
                 axisLine={false}
               />
-              <Radar 
-                dataKey="count" 
-                fill={LUXURY_COLORS.success} 
+              <Radar
+                dataKey="count"
+                fill={LUXURY_COLORS.success}
                 fillOpacity={0.55}
                 stroke={LUXURY_COLORS.light}
                 strokeWidth={1.5}
                 animationDuration={1500}
               />
-              <Tooltip 
+              <Tooltip
                 contentStyle={{
                   background: LUXURY_COLORS.dark,
                   borderColor: LUXURY_COLORS.primary,
@@ -320,12 +321,12 @@ export default function Dashboard() {
 }
 
 const StatCard = ({ icon, label, value, color, trend }) => (
-  <motion.div 
+  <motion.div
     className="stat-card"
     whileHover={{ y: -5 }}
     transition={{ type: "spring", stiffness: 300 }}
   >
-    <div className="stat-ico" style={{ 
+    <div className="stat-ico" style={{
       background: `linear-gradient(135deg, ${color} 0%, ${color}33 100%)`,
       color: 'white'
     }}>
@@ -342,7 +343,7 @@ const StatCard = ({ icon, label, value, color, trend }) => (
 );
 
 const ChartBox = ({ title, children, color }) => (
-  <motion.div 
+  <motion.div
     className="chart-box"
     whileHover={{ scale: 1.02 }}
     transition={{ type: "spring", stiffness: 300 }}
