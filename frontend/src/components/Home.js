@@ -69,13 +69,13 @@ export default function Home() {
     
     const prevSubCourse = course.subCourses[subCourseIndex - 1];
     const videoIds = prevSubCourse.videos?.map((_, vIdx) => 
-      idOf(course._id, subCourseIndex - 1, vIdx)) || [];
+      idOf(course.id, subCourseIndex - 1, vIdx)) || [];
     const allVideosWatched = videoIds.every(id => watched.includes(id));
     
     if (prevSubCourse.lab === "Yes") {
       // ✅ FIXED: Safe array operations
       const safeLabs = getSafeArray(labs);
-      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse._id);
+      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.id);
       
       if (lab) {
         const registeredStudents = getSafeArray(lab.registeredStudents);
@@ -98,7 +98,7 @@ export default function Home() {
   const confirmRegister = async () => {
     if (!pendingLabToRegister) return;
     try {
-      const res = await fetch(`${API}/api/workshops/${pendingLabToRegister._id}/register`, {
+      const res = await fetch(`${API}/api/workshops/${pendingLabToRegister.id}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export default function Home() {
     const safeLabs = getSafeArray(labs);
     
     safeCourse.forEach((sc, sIdx) => {
-      const videoIds = sc.videos?.map((_, vIdx) => idOf(course._id, sIdx, vIdx)) || [];
+      const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
       const completed = videoIds.filter(id => watched.includes(id)).length;
       totalItems += videoIds.length;
       completedItems += completed;
@@ -144,7 +144,7 @@ export default function Home() {
       if (sc.lab === "Yes") {
         totalItems += 1;
         const normalize = (s) => s?.trim().toLowerCase();
-        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc._id);
+        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.id);
         
         if (labEntry) {
           const registeredStudents = getSafeArray(labEntry.registeredStudents);
@@ -325,7 +325,7 @@ export default function Home() {
         console.log('✅ Safe courses array:', allCourses);
         
         const found = allCourses.find(
-          (c) => c._id === u.course || c.title?.toLowerCase() === u.course?.toLowerCase()
+          (c) => c.id === u.course || c.title?.toLowerCase() === u.course?.toLowerCase()
         );
         
         if (!found)
@@ -771,7 +771,7 @@ export default function Home() {
                 <div className="lms-luxury-content-grid">
                   <div className="lms-content-main">
                     {course.subCourses?.map((sc, sIdx) => {
-                      const videoIds = sc.videos?.map((_, vIdx) => idOf(course._id, sIdx, vIdx)) || [];
+                      const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
                       const completedVideos = videoIds.filter(id => watched.includes(id)).length;
                       const totalVideos = videoIds.length;
                       const hasLab = sc.lab === "Yes";
@@ -785,7 +785,7 @@ export default function Home() {
                         
                         // ✅ FIXED: Safe array operations for lab processing
                         const safeLabs = getSafeArray(labs);
-                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc._id);
+                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.id);
                         
                         if (labEntry) {
                           const registeredStudents = getSafeArray(labEntry.registeredStudents);
@@ -826,7 +826,7 @@ export default function Home() {
 
                           <div className="lms-module-content">
                             {sc.videos?.map((v, vIdx) => {
-                              const id = idOf(course._id, sIdx, vIdx);
+                              const id = idOf(course.id, sIdx, vIdx);
                               const done = watched.includes(id);
                               
                               const unlockedCount = getUnlockedVideosCount(user, sIdx);
@@ -876,12 +876,12 @@ export default function Home() {
                             })}
 
                             {sc.lab === "Yes" && (() => {
-                              const videoIds = sc.videos?.map((_, vIdx) => idOf(course._id, sIdx, vIdx)) || [];
+                              const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
                               const allVideosCompleted = videoIds.every(id => watched.includes(id));
                               const normalize = s => s?.trim().toLowerCase();
                               
-                              const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc._id);
-                              const userRegistration = getUserRegistrationForSubcourse(sc._id);
+                              const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.id);
+                              const userRegistration = getUserRegistrationForSubcourse(sc.id);
                               const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
 
                               const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
@@ -1006,7 +1006,7 @@ export default function Home() {
                     const result = reg?.result?.toLowerCase() || "pending";
 
                     return (
-                      <div key={lab._id} className="lms-luxury-lab-card">
+                      <div key={lab.id} className="lms-luxury-lab-card">
                         <div className="lms-lab-card-backdrop"></div>
                         <div className="lms-lab-card-content">
                           <div className="lms-lab-header">
@@ -1078,7 +1078,7 @@ export default function Home() {
                     );
                   }
 
-                  const isUserRegisteredForThisSubcourse = isUserRegisteredForSubcourse(selectedSubcourse._id);
+                  const isUserRegisteredForThisSubcourse = isUserRegisteredForSubcourse(selectedSubcourse.id);
 
                   if (isUserRegisteredForThisSubcourse) {
                     return (
@@ -1093,7 +1093,7 @@ export default function Home() {
                   // ✅ FIXED: Safe filtering for matching labs
                   const safeLabs = getSafeArray(labs);
                   const matchingLabs = safeLabs.filter(
-                    (lab) => lab.subCourseId === selectedSubcourse._id
+                    (lab) => lab.subCourseId === selectedSubcourse.id
                   );
 
                   if (matchingLabs.length === 0) {
@@ -1115,7 +1115,7 @@ export default function Home() {
 
                     const handleRegister = async () => {
                       try {
-                        const res = await fetch(`${API}/api/workshops/${lab._id}/register`, {
+                        const res = await fetch(`${API}/api/workshops/${lab.id}/register`, {
                           method: "POST",
                           headers: {
                             "Content-Type": "application/json",
@@ -1137,7 +1137,7 @@ export default function Home() {
 
                     const handleDeregister = async () => {
                       try {
-                        const res = await fetch(`${API}/api/workshops/${lab._id}/deregister`, {
+                        const res = await fetch(`${API}/api/workshops/${lab.id}/deregister`, {
                           method: "POST",
                           headers: {
                             "Content-Type": "application/json",
@@ -1155,7 +1155,7 @@ export default function Home() {
                     };
 
                     return (
-                      <div key={lab._id} className="lms-luxury-lab-detail-card">
+                      <div key={lab.id} className="lms-luxury-lab-detail-card">
                         <div className="lms-lab-detail-backdrop"></div>
                         <div className="lms-lab-detail-content">
                           <div className="lms-lab-detail-header">
