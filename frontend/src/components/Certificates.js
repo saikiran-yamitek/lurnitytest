@@ -39,9 +39,11 @@ const Certificates = () => {
       })
       .then((res) => res.json())
       .then((certs) => {
-        setCertificates(certs);
-        setLoading(false);
-      })
+  // If backend returns { Items: [...] }, use Items; else fallback to certs array
+  setCertificates(Array.isArray(certs) ? certs : certs.Items || []);
+  setLoading(false);
+})
+
       .catch((err) => {
         console.error("Failed to load certificates:", err);
         setLoading(false);
