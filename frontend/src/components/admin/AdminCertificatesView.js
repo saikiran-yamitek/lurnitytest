@@ -51,19 +51,19 @@ const AdminCertificatesView = () => {
         ) : (
           <div className="cert-grid">
             {certificates.map((cert) => (
-              <div className="cert-card" key={cert._id}>
+              <div className="cert-card" key={cert.id}>
                 <h3>{cert.subCourseTitle}</h3>
                 <p><strong>Issued on:</strong> {new Date(cert.issueDate).toLocaleDateString()}</p>
                 <div className="cert-actions">
                   <button
                     className="cert-link"
-                    onClick={() => hist.push(`/certificate/view/${cert._id}`)}
+                    onClick={() => hist.push(`/certificate/view/${cert.id}`)}
                   >
                     View
                   </button>
                   <button
                     className="cert-download"
-                    onClick={() => handleDownload(cert._id, cert.subCourseTitle)}
+                    onClick={() => handleDownload(cert.id, cert.subCourseTitle)}
                   >
                     <FiDownload /> Download
                   </button>
