@@ -64,7 +64,7 @@ function App() {
         <Route exact path="/register" component={Login} />
         <Route exact path="/login" component={Login} />
         <Route path="/home" component={Home} />
-        <Route path="/certificates" component={Certificates} />
+        <Route exact path="/certificates" component={Certificates} />
         <Route exact path="/admin-login" component={AdminLogin} />
         <Route path="/watch/:courseId/:subIdx/:vidIdx" component={VideoPlayer} />
         <Route path="/sandbox" component={SandboxPlayground} />

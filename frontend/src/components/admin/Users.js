@@ -94,7 +94,7 @@ class Users extends Component {
       if (updateData.amountPaid && updateData.paymentMode) {
         try {
           await logTransaction(id, { 
-            amount: Number(updateData.amountPaid), 
+            amount: updateData.amountPaid, 
             mode: updateData.paymentMode, 
             date: new Date() 
           });
@@ -610,7 +610,7 @@ class Users extends Component {
                               </button>
                               <button
                                 className="action-btn certificate-btn"
-                                onClick={() => this.props.history.push(`/certificates/${u.id}`)}
+                                onClick={() => this.props.history.push(`/admin/certificates/${u.id}`)}
                                 title="View Certificates"
                                 disabled={loading}
                               >

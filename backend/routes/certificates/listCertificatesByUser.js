@@ -10,6 +10,8 @@ export const handler = async (event) => {
 
   try {
     const userId = event.pathParameters?.userId;
+    const id = event.pathParameters?.id;
+    console.log(id);
     if (!userId) {
       return createResponse(400, { error: "User ID required" });
     }
