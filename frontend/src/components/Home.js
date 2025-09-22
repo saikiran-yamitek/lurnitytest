@@ -269,29 +269,49 @@ export default function Home() {
   }, []);
 
   // ✅ FIXED: Safe user registration functions
-  const isUserRegisteredForSubcourse = (subCourseId) => {
-    const safeLabs = getSafeArray(labs);
-    return safeLabs.some(lab => {
-      if (lab.subCourseId !== subCourseId) return false;
-      const registeredStudents = getSafeArray(lab.registeredStudents);
-      return registeredStudents.some(r => r.student === user?.id);
-    });
-  };
+ const isUserRegisteredForSubcourse = (subCourseId) => {
+  const safeLabs = getSafeArray(labs);
+  
+  // Find subcourse by ID to get its title
+  const subcourse = course?.subCourses?.find(sc => sc.id === subCourseId);
+  const subcourseTitle = subcourse?.title;
+  
+  console.log('🔍 Checking registration for:', subcourseTitle);
+  
+  // Match workshop using the subcourse title (since workshop.subCourseId contains the title)
+  const matchingWorkshop = safeLabs.find(workshop => workshop.subCourseId === subcourseTitle);
+  
+  if (!matchingWorkshop) {
+    console.log('❌ No matching workshop found');
+    return false;
+  }
+  
+  const registeredStudents = getSafeArray(matchingWorkshop.registeredStudents);
+  const isRegistered = registeredStudents.some(r => r.student === user?.id);
+  
+  console.log('🔍 Registration status:', isRegistered);
+  return isRegistered;
+};
 
-  const getUserRegistrationForSubcourse = (subCourseId) => {
-    const safeLabs = getSafeArray(labs);
-    const lab = safeLabs.find(lab => {
-      if (lab.subCourseId !== subCourseId) return false;
-      const registeredStudents = getSafeArray(lab.registeredStudents);
-      return registeredStudents.some(r => r.student === user?.id);
-    });
-    
-    if (lab) {
-      const registeredStudents = getSafeArray(lab.registeredStudents);
-      return registeredStudents.find(r => r.student === user?.id);
-    }
-    return null;
-  };
+const getUserRegistrationForSubcourse = (subCourseId) => {
+  const safeLabs = getSafeArray(labs);
+  
+  // Find subcourse by ID to get its title
+  const subcourse = course?.subCourses?.find(sc => sc.id === subCourseId);
+  const subcourseTitle = subcourse?.title;
+  
+  // Match workshop using the subcourse title
+  const workshop = safeLabs.find(w => w.subCourseId === subcourseTitle);
+  
+  if (workshop) {
+    const registeredStudents = getSafeArray(workshop.registeredStudents);
+    return registeredStudents.find(r => r.student === user?.id);
+  }
+  return null;
+};
+
+
+  
 
   // All useEffect hooks with fixes...
   useEffect(() => {
@@ -1124,9 +1144,18 @@ export default function Home() {
 
         // ✅ Filter labs using subCourseId matching the selected subcourse title
         const safeLabs = getSafeArray(labs);
-        const matchingLabs = safeLabs.filter(
-          (lab) => lab.subCourseId === selectedLabSubcourse
-        );
+        // Get subcourse title from the selected subcourse ID
+const subcourse = course?.subCourses?.find(sc => sc.id === selectedLabSubcourse);
+const subcourseTitle = subcourse?.title;
+
+console.log('🔍 Looking for workshops with title:', subcourseTitle);
+
+const matchingLabs = safeLabs.filter(
+  (lab) => lab.subCourseId === subcourseTitle
+);
+
+console.log('🔍 Found matching workshops:', matchingLabs);
+
 
         if (matchingLabs.length === 0) {
           return (
