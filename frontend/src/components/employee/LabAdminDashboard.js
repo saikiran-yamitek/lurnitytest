@@ -63,16 +63,19 @@ export default function LabAdminDashboard() {
     const courseRes = await listCourses();
 
     setWorkshops(
-      Array.isArray(workshopRes) 
-        ? workshopRes 
-        : workshopRes.Items || workshopRes.data || []
+      Array.isArray(workshopRes)
+        ? workshopRes
+        : workshopRes.items || workshopRes.Items || workshopRes.data || []
     );
 
     setCourses(
-      Array.isArray(courseRes) 
-        ? courseRes 
-        : courseRes.Items || courseRes.data || []
+      Array.isArray(courseRes)
+        ? courseRes
+        : courseRes.items || courseRes.Items || courseRes.data || []
     );
+
+    console.log("✅ Workshops:", workshopRes);
+    console.log("✅ Courses:", courseRes);
   } catch (err) {
     console.error("Failed to load data", err);
     setWorkshops([]);
@@ -90,16 +93,19 @@ export default function LabAdminDashboard() {
       const payload = { ...form, createdBy: emp.id };
 
       const selectedCourse = courses.find((c) => c.id === form.courseId);
-      const selectedSubCourse = selectedCourse?.subCourses?.find((sub) => sub.id === form.labName);
+const selectedSubCourse = selectedCourse?.subCourses?.find(
+  (sub) => sub.title === form.labName
+);
 
-      if (!selectedSubCourse) {
-        setPopup("❌ Invalid subcourse selected.");
-        setTimeout(() => setPopup(""), 3000);
-        return;
-      }
+if (!selectedSubCourse) {
+  setPopup("❌ Invalid subcourse selected.");
+  setTimeout(() => setPopup(""), 3000);
+  return;
+}
 
-      payload.labName = selectedSubCourse.title;
-      payload.subCourseId = selectedSubCourse.id;
+payload.labName = selectedSubCourse.title;
+payload.subCourseId = selectedSubCourse.title; // since no ID exists
+
 
       await createWorkshop(payload);
       setPopup("✅ Workshop scheduled successfully");
@@ -485,21 +491,23 @@ export default function LabAdminDashboard() {
                         Lab Selection <span className="lab-required">*</span>
                       </label>
                       <select
-                        className="lab-form-input lab-form-select"
-                        name="labName"
-                        value={form.labName || ""}
-                        onChange={handleChange}
-                        disabled={!form.courseId}
-                        required
-                      >
-                        <option value="">Select lab name...</option>
-                        {courses
-                          .find((c) => c.id === form.courseId)?.subCourses?.map((sub) => (
-                            <option key={sub.id} value={sub.id}>
-                              {sub.title}
-                            </option>
-                          ))}
-                      </select>
+  className="lab-form-input lab-form-select"
+  name="labName"
+  value={form.labName || ""}
+  onChange={handleChange}
+  disabled={!form.courseId}
+  required
+>
+  <option value="">Select lab name...</option>
+  {courses
+    .find((c) => c.id === form.courseId)
+    ?.subCourses?.map((sub, idx) => (
+      <option key={idx} value={sub.title}>
+        {sub.title}
+      </option>
+    ))}
+</select>
+
                     </div>
                   </div>
 
