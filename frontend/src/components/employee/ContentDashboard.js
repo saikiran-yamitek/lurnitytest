@@ -21,15 +21,18 @@ export default function ContentDashboard({ emp }) {
   }, []);
 
   const fetchCourses = async () => {
-    setLoading(true);
-    try {
-      setCourses(await listCourses());
-    } catch (error) {
-      console.error("Failed to fetch courses:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const data = await listCourses();
+    setCourses(Array.isArray(data.items) ? data.items : []); // ✅ use items array
+  } catch (error) {
+    console.error("Failed to fetch courses:", error);
+    setCourses([]);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const doLogout = () => {
     localStorage.removeItem("empInfo");
