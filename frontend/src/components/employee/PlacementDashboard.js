@@ -860,7 +860,7 @@ const emp = useMemo(() => {
                           onClick={async () => {
                             try {
                               const studentRes = await fetch(`/api/placements/${drive.id}/students`);
-                              const studentList = await studentRes.json();
+                              const studentList = students;
 
                               let hasError = false;
                               let errorMsg = "";
