@@ -172,7 +172,7 @@ export const deleteTicket = (id) =>
 
 /* ---------- Profile Lock ---------- */
 export async function toggleProfileLock(id, status) {
-  const res = await fetch(`${API}/users/${id}/lock`, {
+  const res = await fetch(`${API}/users/${id}`, {
     method: "PATCH",
     headers: authHeaders(),
     body: JSON.stringify({ lockStatus: status })
