@@ -66,6 +66,13 @@ export default function PlacementDashboard() {
   // no deps needed because emp is stable
 }, []);
 
+useEffect(() => {
+  if (activeTab === "rankings") {
+    fetchRankings(rankingSortBy);
+  }
+}, [activeTab, rankingSortBy]);
+
+
 
   const fetchDrives = async () => {
     setLoading(true);
@@ -1182,18 +1189,13 @@ export default function PlacementDashboard() {
                   <div className="placement-filter-group">
                     <label className="placement-form-label">Sort By:</label>
                     <select
-                      value={rankingSortBy}
-                      onChange={(e) => {
-                        setRankingSortBy(e.target.value);
-                        useEffect(() => {
-  if (activeTab === "rankings") {
-    fetchRankings(rankingSortBy);
-  }
-}, [activeTab, rankingSortBy]);
+  value={rankingSortBy}
+  onChange={(e) => {
+    setRankingSortBy(e.target.value);
+  }}
+  className="placement-form-select"
+>
 
-                      }}
-                      className="placement-form-select"
-                    >
                       <option value="lab">Lab Grades</option>
                       <option value="degree">Bachelor's CGPA / Percentage</option>
                     </select>
