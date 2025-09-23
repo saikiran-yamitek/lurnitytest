@@ -153,7 +153,7 @@ export default function Hiring() {
       isActive: typeof job.isActive === 'boolean' ? job.isActive : true
     });
     setIsEditing(true);
-    setCurrentJobId(job._id || job.id || null);
+    setCurrentJobId(job.id || job.id || null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -522,7 +522,7 @@ export default function Hiring() {
             <div className="jobs-container">
               {jobs.map((job, index) => (
                 <div
-                  key={job._id || job.id || index}
+                  key={job.id || job.id || index}
                   className={`job-card ${job.isActive ? 'active' : 'inactive'}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -576,14 +576,14 @@ export default function Hiring() {
                     </button>
 
                     <button
-                      onClick={() => toggleJobStatus(job._id || job.id, job.isActive)}
+                      onClick={() => toggleJobStatus(job.id || job.id, job.isActive)}
                       className={`action-btn status-btn ${job.isActive ? 'deactivate' : 'activate'}`}
                       title={job.isActive ? 'Deactivate Job' : 'Activate Job'}
                     >
                       {job.isActive ? <FiX /> : <FiCheck />}
                     </button>
 
-                    <button onClick={() => deleteJob(job._id || job.id)} className="action-btn delete-btn" title="Delete Job">
+                    <button onClick={() => deleteJob(job.id || job.id)} className="action-btn delete-btn" title="Delete Job">
                       <FiTrash2 />
                     </button>
                   </div>
