@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import logo from "../../assets/LURNITY.jpg";
 import { 
@@ -27,71 +27,69 @@ export default function PlacementDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   
-  // ✅ Memoize emp to prevent new object creation on every render
-const emp = useMemo(() => {
-  const stored = localStorage.getItem("empInfo");
-  return stored ? JSON.parse(stored) : null;
-}, []);
+  const [emp] = useState(() => {
+  try {
+    return JSON.parse(localStorage.getItem("empInfo"));
+  } catch (e) {
+    return null;
+  }
+});
 
   const history = useHistory();
 
-  const fetchCompanies = useCallback(async () => {
-  try {
-    const res = await fetch("/api/companies");
-    if (!res.ok) throw new Error("Failed to load companies");
-    const data = await res.json();
-    setCompanies(data);
-  } catch (err) {
-    console.error("fetchCompanies:", err);
-  }
-}, []);
-
-
-  useEffect(() => {
-  if (activeTab === "rankings") {
-    fetchRankings(rankingSortBy);
-  }
-}, [activeTab, rankingSortBy, fetchRankings]);
-
+  const fetchCompanies = async () => {
+    try {
+      const res = await fetch("/api/companies");
+      if (!res.ok) throw new Error("Failed to load companies");
+      const data = await res.json();
+      setCompanies(data);
+    } catch (err) {
+      console.error("fetchCompanies:", err);
+    }
+  };
 
   useEffect(() => {
-  if (!emp || !emp.id) {
+    if (activeTab === "rankings") {
+      fetchRankings(rankingSortBy);
+    }
+  }, [activeTab, rankingSortBy]);
+
+  useEffect(() => {
+  const stored = emp; // stable via useState initializer
+  if (!stored || !stored.id) {
     alert("Session expired. Please login again.");
     history.replace("/employee/login");
     return;
   }
   fetchDrives();
   fetchCompanies();
-}, [emp?.id, history, fetchDrives, fetchCompanies]);
-
-
-  const fetchDrives = useCallback(async () => {
-  setLoading(true);
-  try {
-    const all = await listPlacements();
-    setScheduledDrives(all.filter((d) => d.status === 'SCHEDULED'));
-    setCompletedDrives(all.filter((d) => d.status === 'COMPLETED'));
-  } catch (error) {
-    setPopup("❌ Failed to fetch drives");
-    setTimeout(() => setPopup(""), 3000);
-  } finally {
-    setLoading(false);
-  }
+  // no deps needed because emp is stable
 }, []);
 
 
-  const handleChange = useCallback((e) => {
-  setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-}, []);
+  const fetchDrives = async () => {
+    setLoading(true);
+    try {
+      const all = await listPlacements();
+      setScheduledDrives(all.filter((d) => d.status === 'SCHEDULED'));
+      setCompletedDrives(all.filter((d) => d.status === 'COMPLETED'));
+    } catch (error) {
+      setPopup("❌ Failed to fetch drives");
+      setTimeout(() => setPopup(""), 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleCreate = useCallback(async () => {
+  const handleCreate = async () => {
     setLoading(true);
     try {
       const payload = { ...form, createdBy: emp.id };
 
-      if (form.id) {
-        await fetch(`/api/placements/${form.id}`, {
+      if (form._id) {
+        await fetch(`/api/placements/${form._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -110,13 +108,12 @@ const emp = useMemo(() => {
       setPopup("❌ Failed to save drive");
       setTimeout(() => setPopup(""), 3000);
       console.error(err);
-      } finally {
-    setLoading(false);
-  }
-}, [form, emp?.id, fetchDrives]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-
-  const handleViewStudents = useCallback(async (driveId) => {
+  const handleViewStudents = async (driveId) => {
     try {
       const data = await getStudentsForDrive(driveId);
       setStudents(data);
@@ -127,9 +124,9 @@ const emp = useMemo(() => {
       setTimeout(() => setPopup(""), 3000);
       console.error(err);
     }
-  }, []);
+  };
 
-  const handleDelete = useCallback(async () => {
+  const handleDelete = async () => {
     try {
       await deletePlacementDrive(driveToDelete);
       setPopup("🗑️ Drive deleted successfully");
@@ -141,34 +138,27 @@ const emp = useMemo(() => {
       setTimeout(() => setPopup(""), 3000);
       console.error(err);
     }
-  }, [driveToDelete, fetchDrives]);
+  };
 
-  const handleEditDrive = useCallback((drive) => {
-  setForm({
-    ...drive,
-    lastDateToApply: drive.lastDateToApply?.split("T")[0],
-    driveDate: drive.driveDate?.split("T")[0],
-  });
-  setActiveTab("create");
-}, []);
+  const handleEditDrive = (drive) => {
+    setForm({
+  ...drive,
+  lastDateToApply: drive.lastDateToApply ? drive.lastDateToApply.split("T")[0] : "",
+  driveDate: drive.driveDate ? drive.driveDate.split("T")[0] : "",
+});
+    setActiveTab("create");
+  };
 
+  const doLogout = () => {
+    localStorage.removeItem("empInfo");
+    history.replace("/employee/login");
+  };
 
-  const doLogout = useCallback(() => {
-  localStorage.removeItem("empInfo");
-  history.replace("/employee/login");
-}, [history]);
-
-
-  const fetchRankings = useCallback(async (sortBy = "lab") => {
-  try {
+  const fetchRankings = async (sortBy = "lab") => {
     const res = await fetch(`/api/rankings?sortBy=${sortBy}`);
     const data = await res.json();
     setRankings(data);
-  } catch (err) {
-    console.error("fetchRankings:", err);
-  }
-}, []);
-
+  };
 
   // Calculate dashboard statistics
   const totalDrives = scheduledDrives.length + completedDrives.length;
@@ -270,7 +260,7 @@ const emp = useMemo(() => {
             <div className="placement-page-info">
               <h1 className="placement-page-title">
                 {activeTab === 'dashboard' && 'Placement Dashboard'}
-                {activeTab === 'create' && (form.id ? 'Edit Placement Drive' : 'Create New Drive')}
+                {activeTab === 'create' && (form._id ? 'Edit Placement Drive' : 'Create New Drive')}
                 {activeTab === 'scheduled' && 'Scheduled Drives'}
                 {activeTab === 'companies' && 'Company Management'}
                 {activeTab === 'completed' && 'Completed Drives'}
@@ -449,7 +439,7 @@ const emp = useMemo(() => {
                 </div>
                 <div className="placement-recent-drives">
                   {[...scheduledDrives, ...completedDrives].slice(0, 3).map((drive) => (
-                    <div key={drive.id} className="placement-recent-drive-item">
+                    <div key={drive._id} className="placement-recent-drive-item">
                       <div className="placement-recent-drive-header">
                         <div className="placement-drive-icon">
                           <FiHome />
@@ -486,10 +476,10 @@ const emp = useMemo(() => {
               <div className="placement-form-container">
                 <div className="placement-form-header">
                   <h2 className="placement-form-title">
-                    {form.id ? 'Edit Placement Drive' : 'Drive Details'}
+                    {form._id ? 'Edit Placement Drive' : 'Drive Details'}
                   </h2>
                   <p className="placement-form-subtitle">
-                    Fill in the information to {form.id ? 'update' : 'create'} a placement opportunity
+                    Fill in the information to {form._id ? 'update' : 'create'} a placement opportunity
                   </p>
                 </div>
 
@@ -502,11 +492,11 @@ const emp = useMemo(() => {
                       <select 
                         className="placement-form-input placement-form-select" 
                         onChange={(e) => {
-                          const selected = companies.find(c => c.id === e.target.value);
+                          const selected = companies.find(c => c._id === e.target.value);
                           if (!selected) return;
                           setForm({
                             ...form,
-                            companyId: selected.id,
+                            companyId: selected._id,
                             company: selected.name,
                             aboutCompany: selected.about,
                             companyWebsite: selected.website,
@@ -517,7 +507,7 @@ const emp = useMemo(() => {
                       >
                         <option value="">Choose a company...</option>
                         {companies.map((c) => (
-                          <option key={c.id} value={c.id}>{c.name}</option>
+                          <option key={c._id} value={c._id}>{c.name}</option>
                         ))}
                       </select>
                     </div>
@@ -734,7 +724,7 @@ const emp = useMemo(() => {
                       disabled={loading}
                     >
                       <FiCalendar />
-                      {form.id ? 'Update Drive' : 'Create Drive'}
+                      {form._id ? 'Update Drive' : 'Create Drive'}
                     </button>
                   </div>
                 </form>
@@ -764,7 +754,7 @@ const emp = useMemo(() => {
               ) : (
                 <div className="placement-drives-grid">
                   {scheduledDrives.map((drive) => (
-                    <div className="placement-drive-card" key={drive.id}>
+                    <div className="placement-drive-card" key={drive._id}>
                       <div className="placement-drive-card-header">
                         <div className="placement-drive-main-info">
                           <div className="placement-drive-badge">
@@ -785,7 +775,7 @@ const emp = useMemo(() => {
                           </button>
                           <button 
                             className="placement-action-btn placement-action-btn-delete" 
-                            onClick={() => setDriveToDelete(drive.id)}
+                            onClick={() => setDriveToDelete(drive._id)}
                             title="Delete Drive"
                           >
                             <FiTrash2 />
@@ -850,7 +840,7 @@ const emp = useMemo(() => {
                       <div className="placement-drive-card-footer">
                         <button 
                           className="placement-btn placement-btn-outline" 
-                          onClick={() => handleViewStudents(drive.id)}
+                          onClick={() => handleViewStudents(drive._id)}
                         >
                           <FiUsers />
                           View Students ({drive.registered?.length || 0})
@@ -859,8 +849,8 @@ const emp = useMemo(() => {
                           className="placement-btn placement-btn-success"
                           onClick={async () => {
                             try {
-                              const studentRes = await fetch(`/api/placements/${drive.id}/students`);
-                              const studentList = students;
+                              const studentRes = await fetch(`/api/placements/${drive._id}/students`);
+                              const studentList = await studentRes.json();
 
                               let hasError = false;
                               let errorMsg = "";
@@ -889,7 +879,7 @@ const emp = useMemo(() => {
                                 return;
                               }
 
-                              await fetch(`/api/placements/${drive.id}/complete`, { method: "PUT" });
+                              await fetch(`/api/placements/${drive._id}/complete`, { method: "PUT" });
                               fetchDrives();
                               setPopup("✅ Drive marked as completed");
                               setTimeout(() => setPopup(""), 2000);
@@ -914,7 +904,7 @@ const emp = useMemo(() => {
           {activeTab === 'companies' && (
             <div className="placement-companies-section">
               <div className="placement-company-form-card">
-                <h3>{newCompany.id ? 'Edit Company' : 'Add New Company'}</h3>
+                <h3>{newCompany._id ? 'Edit Company' : 'Add New Company'}</h3>
                 
                 <div className="placement-form-grid">
                   <div className="placement-form-group">
@@ -977,8 +967,8 @@ const emp = useMemo(() => {
                     className="placement-btn placement-btn-primary" 
                     onClick={async () => {
                       try {
-                        if (newCompany.id) {
-                          await fetch(`/api/companies/${newCompany.id}`, {
+                        if (newCompany._id) {
+                          await fetch(`/api/companies/${newCompany._id}`, {
                             method: "PUT",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newCompany)
@@ -1003,7 +993,7 @@ const emp = useMemo(() => {
                     }}
                   >
                     <FiHome />
-                    {newCompany.id ? "Update Company" : "Add Company"}
+                    {newCompany._id ? "Update Company" : "Add Company"}
                   </button>
                 </div>
               </div>
@@ -1023,7 +1013,7 @@ const emp = useMemo(() => {
                     </thead>
                     <tbody>
                       {companies.map((company) => (
-                        <tr key={company.id}>
+                        <tr key={company._id}>
                           <td>
                             <div className="placement-company-cell">
                               <div className="placement-company-avatar">
@@ -1092,7 +1082,7 @@ const emp = useMemo(() => {
               ) : (
                 <div className="placement-drives-grid">
                   {completedDrives.map((drive) => (
-                    <div className="placement-drive-card placement-drive-card-completed" key={drive.id}>
+                    <div className="placement-drive-card placement-drive-card-completed" key={drive._id}>
                       <div className="placement-drive-card-header">
                         <div className="placement-drive-main-info">
                           <div className="placement-drive-badge">
@@ -1148,7 +1138,7 @@ const emp = useMemo(() => {
                       <div className="placement-drive-card-footer">
                         <button 
                           className="placement-btn placement-btn-outline" 
-                          onClick={() => handleViewStudents(drive.id)}
+                          onClick={() => handleViewStudents(drive._id)}
                         >
                           <FiEye />
                           View Results
@@ -1156,7 +1146,7 @@ const emp = useMemo(() => {
                         <button
                           className="placement-btn placement-btn-warning"
                           onClick={async () => {
-                            await fetch(`/api/placements/${drive.id}/revoke`, { method: "PUT" });
+                            await fetch(`/api/placements/${drive._id}/revoke`, { method: "PUT" });
                             fetchDrives();
                             setPopup("🔄 Drive status reverted to Scheduled");
                             setTimeout(() => setPopup(""), 2000);
@@ -1195,7 +1185,12 @@ const emp = useMemo(() => {
                       value={rankingSortBy}
                       onChange={(e) => {
                         setRankingSortBy(e.target.value);
-                        fetchRankings(e.target.value);
+                        useEffect(() => {
+  if (activeTab === "rankings") {
+    fetchRankings(rankingSortBy);
+  }
+}, [activeTab, rankingSortBy]);
+
                       }}
                       className="placement-form-select"
                     >
@@ -1236,7 +1231,7 @@ const emp = useMemo(() => {
                         student.name?.toLowerCase().includes(searchTerm.toLowerCase())
                       )
                       .map((student, index) => (
-                        <tr key={student.id}>
+                        <tr key={student._id}>
                           <td>
                             <div className={`placement-rank-badge ${index < 3 ? 'placement-rank-top' : ''}`}>
                               #{index + 1}
@@ -1373,7 +1368,7 @@ const emp = useMemo(() => {
                       </thead>
                       <tbody>
                         {students.map((student, index) => (
-                          <tr key={student.id}>
+                          <tr key={student._id}>
                             <td>
                               <div className="placement-student-info">
                                 <div className="placement-student-avatar">
@@ -1439,7 +1434,7 @@ const emp = useMemo(() => {
                                 className="placement-btn placement-btn-primary placement-btn-sm"
                                 onClick={async () => {
                                   try {
-                                    await fetch(`/api/placements/${selectedDrive}/students/${student.id}`, {
+                                    await fetch(`/api/placements/${selectedDrive}/students/${student._id}`, {
                                       method: "PUT",
                                       headers: {
                                         "Content-Type": "application/json",
