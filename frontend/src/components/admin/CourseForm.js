@@ -101,17 +101,25 @@ export default class CourseForm extends Component {
     // Load all subcourses with error handling
     // Load all subcourses with error handling
 // Load all subcourses with error handling
-try {
+  try {
   console.log('📚 Loading all subcourses...');
   const allSubCoursesResponse = await listAllSubCourses();
-  
+
+  // ✅ Normalize to array of subcourses
   let allSubCourses = [];
-  if (Array.isArray(allSubCoursesResponse)) {
-    allSubCourses = allSubCoursesResponse;
-  } else if (Array.isArray(allSubCoursesResponse.items)) {
-    allSubCourses = allSubCoursesResponse.items;
-  } else if (allSubCoursesResponse.items && typeof allSubCoursesResponse.items === "object") {
-    allSubCourses = Object.values(allSubCoursesResponse.items);
+
+  if (
+    allSubCoursesResponse &&
+    Array.isArray(allSubCoursesResponse.items)
+  ) {
+    // flatten all subCourses from each course
+    allSubCourses = allSubCoursesResponse.items.flatMap(c =>
+      (c.subCourses || []).map(sc => ({
+        ...sc,
+        parentCourse: c.title, // keep track of where it came from
+        parentId: c.id || c._id,
+      }))
+    );
   }
 
   console.log('✅ All subcourses loaded:', allSubCourses.length);
@@ -120,6 +128,7 @@ try {
   console.error("❌ Failed to load subcourses:", err);
   this.setState({ allSubCourses: [] });
 }
+
 
 
 
