@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import logo from "../../assets/LURNITY.jpg";
 import { 
@@ -27,53 +27,65 @@ export default function PlacementDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   
-  const emp = JSON.parse(localStorage.getItem("empInfo"));
+  // ✅ Memoize emp to prevent new object creation on every render
+const emp = useMemo(() => {
+  const stored = localStorage.getItem("empInfo");
+  return stored ? JSON.parse(stored) : null;
+}, []);
+
   const history = useHistory();
 
-  const fetchCompanies = async () => {
-    try {
-      const res = await fetch("/api/companies");
-      if (!res.ok) throw new Error("Failed to load companies");
-      const data = await res.json();
-      setCompanies(data);
-    } catch (err) {
-      console.error("fetchCompanies:", err);
-    }
-  };
+  const fetchCompanies = useCallback(async () => {
+  try {
+    const res = await fetch("/api/companies");
+    if (!res.ok) throw new Error("Failed to load companies");
+    const data = await res.json();
+    setCompanies(data);
+  } catch (err) {
+    console.error("fetchCompanies:", err);
+  }
+}, []);
+
 
   useEffect(() => {
-    if (activeTab === "rankings") {
-      fetchRankings(rankingSortBy);
-    }
-  }, [activeTab, rankingSortBy]);
+  if (activeTab === "rankings") {
+    fetchRankings(rankingSortBy);
+  }
+}, [activeTab, rankingSortBy, fetchRankings]);
+
 
   useEffect(() => {
-    if (!emp || !emp.id) {
-      alert("Session expired. Please login again.");
-      history.replace("/employee/login");
-      return;
-    }
-    fetchDrives();
-    fetchCompanies();
-  }, [emp, history]);
+  if (!emp || !emp.id) {
+    alert("Session expired. Please login again.");
+    history.replace("/employee/login");
+    return;
+  }
+  fetchDrives();
+  fetchCompanies();
+}, [emp?.id, history, fetchDrives, fetchCompanies]);
 
-  const fetchDrives = async () => {
-    setLoading(true);
-    try {
-      const all = await listPlacements();
-      setScheduledDrives(all.filter((d) => d.status === 'SCHEDULED'));
-      setCompletedDrives(all.filter((d) => d.status === 'COMPLETED'));
-    } catch (error) {
-      setPopup("❌ Failed to fetch drives");
-      setTimeout(() => setPopup(""), 3000);
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const fetchDrives = useCallback(async () => {
+  setLoading(true);
+  try {
+    const all = await listPlacements();
+    setScheduledDrives(all.filter((d) => d.status === 'SCHEDULED'));
+    setCompletedDrives(all.filter((d) => d.status === 'COMPLETED'));
+  } catch (error) {
+    setPopup("❌ Failed to fetch drives");
+    setTimeout(() => setPopup(""), 3000);
+  } finally {
+    setLoading(false);
+  }
+}, []);
 
-  const handleCreate = async () => {
+
+  const handleChange = useCallback((e) => {
+  setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+}, []);
+
+
+  const handleCreate = useCallback(async () => {
     setLoading(true);
     try {
       const payload = { ...form, createdBy: emp.id };
@@ -98,12 +110,13 @@ export default function PlacementDashboard() {
       setPopup("❌ Failed to save drive");
       setTimeout(() => setPopup(""), 3000);
       console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+      } finally {
+    setLoading(false);
+  }
+}, [form, emp?.id, fetchDrives]);
 
-  const handleViewStudents = async (driveId) => {
+
+  const handleViewStudents = useCallback(async (driveId) => {
     try {
       const data = await getStudentsForDrive(driveId);
       setStudents(data);
@@ -114,9 +127,9 @@ export default function PlacementDashboard() {
       setTimeout(() => setPopup(""), 3000);
       console.error(err);
     }
-  };
+  }, []);
 
-  const handleDelete = async () => {
+  const handleDelete = useCallback(async () => {
     try {
       await deletePlacementDrive(driveToDelete);
       setPopup("🗑️ Drive deleted successfully");
@@ -128,27 +141,34 @@ export default function PlacementDashboard() {
       setTimeout(() => setPopup(""), 3000);
       console.error(err);
     }
-  };
+  }, [driveToDelete, fetchDrives]);
 
-  const handleEditDrive = (drive) => {
-    setForm({
-      ...drive,
-      lastDateToApply: drive.lastDateToApply?.split("T")[0],
-      driveDate: drive.driveDate?.split("T"),
-    });
-    setActiveTab("create");
-  };
+  const handleEditDrive = useCallback((drive) => {
+  setForm({
+    ...drive,
+    lastDateToApply: drive.lastDateToApply?.split("T")[0],
+    driveDate: drive.driveDate?.split("T")[0],
+  });
+  setActiveTab("create");
+}, []);
 
-  const doLogout = () => {
-    localStorage.removeItem("empInfo");
-    history.replace("/employee/login");
-  };
 
-  const fetchRankings = async (sortBy = "lab") => {
+  const doLogout = useCallback(() => {
+  localStorage.removeItem("empInfo");
+  history.replace("/employee/login");
+}, [history]);
+
+
+  const fetchRankings = useCallback(async (sortBy = "lab") => {
+  try {
     const res = await fetch(`/api/rankings?sortBy=${sortBy}`);
     const data = await res.json();
     setRankings(data);
-  };
+  } catch (err) {
+    console.error("fetchRankings:", err);
+  }
+}, []);
+
 
   // Calculate dashboard statistics
   const totalDrives = scheduledDrives.length + completedDrives.length;
