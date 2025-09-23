@@ -99,19 +99,29 @@ export default class CourseForm extends Component {
     }
 
     // Load all subcourses with error handling
-    try {
-      console.log('📚 Loading all subcourses...');
-      const allSubCoursesResponse = await listAllSubCourses();
-      const allSubCourses = Array.isArray(allSubCoursesResponse) 
-        ? allSubCoursesResponse 
-        : allSubCoursesResponse.items || [];
-      
-      console.log('✅ All subcourses loaded:', allSubCourses.length);
-      this.setState({ allSubCourses });
-    } catch (err) {
-      console.error("❌ Failed to load subcourses:", err);
-      this.setState({ allSubCourses: [] });
-    }
+    // Load all subcourses with error handling
+// Load all subcourses with error handling
+try {
+  console.log('📚 Loading all subcourses...');
+  const allSubCoursesResponse = await listAllSubCourses();
+  
+  let allSubCourses = [];
+  if (Array.isArray(allSubCoursesResponse)) {
+    allSubCourses = allSubCoursesResponse;
+  } else if (Array.isArray(allSubCoursesResponse.items)) {
+    allSubCourses = allSubCoursesResponse.items;
+  } else if (allSubCoursesResponse.items && typeof allSubCoursesResponse.items === "object") {
+    allSubCourses = Object.values(allSubCoursesResponse.items);
+  }
+
+  console.log('✅ All subcourses loaded:', allSubCourses.length);
+  this.setState({ allSubCourses });
+} catch (err) {
+  console.error("❌ Failed to load subcourses:", err);
+  this.setState({ allSubCourses: [] });
+}
+
+
 
     // Load employees/instructors with error handling
     try {

@@ -285,7 +285,7 @@ export default function ContentDashboard({ emp }) {
                 </div>
                 <div className="content-recent-courses">
                   {courses.slice(0, 3).map((course) => (
-                    <div key={course._id} className="content-recent-course-item">
+                    <div key={course.id} className="content-recent-course-item">
                       <div className="content-recent-course-header">
                         <div className="content-course-icon">
                           <FiBook />
@@ -353,7 +353,7 @@ export default function ContentDashboard({ emp }) {
               ) : (
                 <div className="content-courses-grid">
                   {courses.map((course) => (
-                    <div key={course._id} className="content-course-card">
+                    <div key={course.id} className="content-course-card">
                       <div className="content-course-card-header">
                         <div className="content-course-main-info">
                           <div className="content-course-badge-icon">
@@ -390,7 +390,7 @@ export default function ContentDashboard({ emp }) {
                           </div>
                         ) : (
                           <Link 
-                            to={`/employee/content/${course._id}`}
+                            to={`/employee/content/${course.id}`}
                             className="content-btn content-btn-primary"
                           >
                             <FiEdit3 />
