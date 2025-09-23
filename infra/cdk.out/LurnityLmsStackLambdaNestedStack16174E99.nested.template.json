@@ -15600,6 +15600,54 @@
     ]
    }
   },
+  "LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetJobsLambda5BE5043F",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CreateJobLambdaA00FB296",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateJobLambda74886259",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteJobLambda809EB03D",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateJobStatusLambda6345D479",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ApplyForJobLambda63251FEE",
+     "Arn"
+    ]
+   }
+  },
   "LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn": {
    "Value": {
     "Fn::GetAtt": [

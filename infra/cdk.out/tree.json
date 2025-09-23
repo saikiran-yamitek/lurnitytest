@@ -23702,6 +23702,54 @@
                   "version": "2.151.0"
                 }
               },
+              "LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn": {
+                "id": "LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
               "LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn": {
                 "id": "LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn",
@@ -24401,7 +24449,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/a725e6ebe263f8e954b6faf69d650ca1fe6f3d80009a027fc2883ab3dbf961d0.json"
+                          "/f9b8a8c09ccfc0068cf20fd013e310dda666e527c1231f8f0354e9a1225f917b.json"
                         ]
                       ]
                     }
@@ -24554,7 +24602,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F2c6b14f6507eb921941de1e788294647e"
+                              "Ref": "LurnityLmsApiDeployment658DA5F2916920422f6b99f418c261fc0b56f383"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -28074,6 +28122,1152 @@
                                 },
                                 "constructInfo": {
                                   "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                  "version": "2.151.0"
+                                }
+                              },
+                              "jobs": {
+                                "id": "jobs",
+                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                      "aws:cdk:cloudformation:props": {
+                                        "parentId": {
+                                          "Ref": "LurnityLmsApiapilandingpage6DDC32A4"
+                                        },
+                                        "pathPart": "jobs",
+                                        "restApiId": {
+                                          "Ref": "LurnityLmsApi9DD8A13A"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "OPTIONS": {
+                                    "id": "OPTIONS",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/OPTIONS",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/OPTIONS/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "apiKeyRequired": false,
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "OPTIONS",
+                                            "integration": {
+                                              "type": "MOCK",
+                                              "requestTemplates": {
+                                                "application/json": "{ statusCode: 200 }"
+                                              },
+                                              "integrationResponses": [
+                                                {
+                                                  "statusCode": "204",
+                                                  "responseParameters": {
+                                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                    "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                    "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "methodResponses": [
+                                              {
+                                                "statusCode": "204",
+                                                "responseParameters": {
+                                                  "method.response.header.Access-Control-Allow-Headers": true,
+                                                  "method.response.header.Access-Control-Allow-Origin": true,
+                                                  "method.response.header.Access-Control-Allow-Methods": true,
+                                                  "method.response.header.Access-Control-Max-Age": true
+                                                }
+                                              }
+                                            ],
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapilandingpagejobs94F5B11F"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "GET": {
+                                    "id": "GET",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/GET",
+                                    "children": {
+                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs": {
+                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/",
+                                                  {
+                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                  },
+                                                  "/GET/api/landingpage/jobs"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs": {
+                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/test-invoke-stage/GET/api/landingpage/jobs"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/GET/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "GET",
+                                            "integration": {
+                                              "type": "AWS_PROXY",
+                                              "uri": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                    {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn"
+                                                    },
+                                                    "/invocations"
+                                                  ]
+                                                ]
+                                              },
+                                              "integrationHttpMethod": "POST"
+                                            },
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapilandingpagejobs94F5B11F"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "POST": {
+                                    "id": "POST",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/POST",
+                                    "children": {
+                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs": {
+                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/",
+                                                  {
+                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                  },
+                                                  "/POST/api/landingpage/jobs"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs": {
+                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/test-invoke-stage/POST/api/landingpage/jobs"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/POST/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "POST",
+                                            "integration": {
+                                              "type": "AWS_PROXY",
+                                              "uri": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                    {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn"
+                                                    },
+                                                    "/invocations"
+                                                  ]
+                                                ]
+                                              },
+                                              "integrationHttpMethod": "POST"
+                                            },
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapilandingpagejobs94F5B11F"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "{jobId}": {
+                                    "id": "{jobId}",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapilandingpagejobs94F5B11F"
+                                            },
+                                            "pathPart": "{jobId}",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapilandingpagejobsjobId475D75D4"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "PUT": {
+                                        "id": "PUT",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/PUT",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/PUT/api/landingpage/jobs/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/PUT/api/landingpage/jobs/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/PUT/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "PUT",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapilandingpagejobsjobId475D75D4"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "DELETE": {
+                                        "id": "DELETE",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/DELETE",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/DELETE/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/DELETE/api/landingpage/jobs/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/DELETE/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/DELETE/api/landingpage/jobs/*"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/DELETE/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "DELETE",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapilandingpagejobsjobId475D75D4"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "status": {
+                                        "id": "status",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                              "aws:cdk:cloudformation:props": {
+                                                "parentId": {
+                                                  "Ref": "LurnityLmsApiapilandingpagejobsjobId475D75D4"
+                                                },
+                                                "pathPart": "status",
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "OPTIONS": {
+                                            "id": "OPTIONS",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/OPTIONS",
+                                            "children": {
+                                              "Resource": {
+                                                "id": "Resource",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/OPTIONS/Resource",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "apiKeyRequired": false,
+                                                    "authorizationType": "NONE",
+                                                    "httpMethod": "OPTIONS",
+                                                    "integration": {
+                                                      "type": "MOCK",
+                                                      "requestTemplates": {
+                                                        "application/json": "{ statusCode: 200 }"
+                                                      },
+                                                      "integrationResponses": [
+                                                        {
+                                                          "statusCode": "204",
+                                                          "responseParameters": {
+                                                            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                            "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                            "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                            "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                          }
+                                                        }
+                                                      ]
+                                                    },
+                                                    "methodResponses": [
+                                                      {
+                                                        "statusCode": "204",
+                                                        "responseParameters": {
+                                                          "method.response.header.Access-Control-Allow-Headers": true,
+                                                          "method.response.header.Access-Control-Allow-Origin": true,
+                                                          "method.response.header.Access-Control-Allow-Methods": true,
+                                                          "method.response.header.Access-Control-Max-Age": true
+                                                        }
+                                                      }
+                                                    ],
+                                                    "resourceId": {
+                                                      "Ref": "LurnityLmsApiapilandingpagejobsjobIdstatusA7C39B47"
+                                                    },
+                                                    "restApiId": {
+                                                      "Ref": "LurnityLmsApi9DD8A13A"
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                                  "version": "2.151.0"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "PATCH": {
+                                            "id": "PATCH",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/PATCH",
+                                            "children": {
+                                              "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status": {
+                                                "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/PATCH/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "action": "lambda:InvokeFunction",
+                                                    "functionName": {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn"
+                                                    },
+                                                    "principal": "apigateway.amazonaws.com",
+                                                    "sourceArn": {
+                                                      "Fn::Join": [
+                                                        "",
+                                                        [
+                                                          "arn:",
+                                                          {
+                                                            "Ref": "AWS::Partition"
+                                                          },
+                                                          ":execute-api:ap-south-1:",
+                                                          {
+                                                            "Ref": "AWS::AccountId"
+                                                          },
+                                                          ":",
+                                                          {
+                                                            "Ref": "LurnityLmsApi9DD8A13A"
+                                                          },
+                                                          "/",
+                                                          {
+                                                            "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                          },
+                                                          "/PATCH/api/landingpage/jobs/*/status"
+                                                        ]
+                                                      ]
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                                  "version": "2.151.0"
+                                                }
+                                              },
+                                              "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status": {
+                                                "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/PATCH/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "action": "lambda:InvokeFunction",
+                                                    "functionName": {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn"
+                                                    },
+                                                    "principal": "apigateway.amazonaws.com",
+                                                    "sourceArn": {
+                                                      "Fn::Join": [
+                                                        "",
+                                                        [
+                                                          "arn:",
+                                                          {
+                                                            "Ref": "AWS::Partition"
+                                                          },
+                                                          ":execute-api:ap-south-1:",
+                                                          {
+                                                            "Ref": "AWS::AccountId"
+                                                          },
+                                                          ":",
+                                                          {
+                                                            "Ref": "LurnityLmsApi9DD8A13A"
+                                                          },
+                                                          "/test-invoke-stage/PATCH/api/landingpage/jobs/*/status"
+                                                        ]
+                                                      ]
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                                  "version": "2.151.0"
+                                                }
+                                              },
+                                              "Resource": {
+                                                "id": "Resource",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/PATCH/Resource",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "authorizationType": "NONE",
+                                                    "httpMethod": "PATCH",
+                                                    "integration": {
+                                                      "type": "AWS_PROXY",
+                                                      "uri": {
+                                                        "Fn::Join": [
+                                                          "",
+                                                          [
+                                                            "arn:",
+                                                            {
+                                                              "Ref": "AWS::Partition"
+                                                            },
+                                                            ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                            {
+                                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn"
+                                                            },
+                                                            "/invocations"
+                                                          ]
+                                                        ]
+                                                      },
+                                                      "integrationHttpMethod": "POST"
+                                                    },
+                                                    "resourceId": {
+                                                      "Ref": "LurnityLmsApiapilandingpagejobsjobIdstatusA7C39B47"
+                                                    },
+                                                    "restApiId": {
+                                                      "Ref": "LurnityLmsApi9DD8A13A"
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                                  "version": "2.151.0"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "apply": {
+                                        "id": "apply",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                              "aws:cdk:cloudformation:props": {
+                                                "parentId": {
+                                                  "Ref": "LurnityLmsApiapilandingpagejobsjobId475D75D4"
+                                                },
+                                                "pathPart": "apply",
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "OPTIONS": {
+                                            "id": "OPTIONS",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/OPTIONS",
+                                            "children": {
+                                              "Resource": {
+                                                "id": "Resource",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/OPTIONS/Resource",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "apiKeyRequired": false,
+                                                    "authorizationType": "NONE",
+                                                    "httpMethod": "OPTIONS",
+                                                    "integration": {
+                                                      "type": "MOCK",
+                                                      "requestTemplates": {
+                                                        "application/json": "{ statusCode: 200 }"
+                                                      },
+                                                      "integrationResponses": [
+                                                        {
+                                                          "statusCode": "204",
+                                                          "responseParameters": {
+                                                            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                            "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                            "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                            "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                          }
+                                                        }
+                                                      ]
+                                                    },
+                                                    "methodResponses": [
+                                                      {
+                                                        "statusCode": "204",
+                                                        "responseParameters": {
+                                                          "method.response.header.Access-Control-Allow-Headers": true,
+                                                          "method.response.header.Access-Control-Allow-Origin": true,
+                                                          "method.response.header.Access-Control-Allow-Methods": true,
+                                                          "method.response.header.Access-Control-Max-Age": true
+                                                        }
+                                                      }
+                                                    ],
+                                                    "resourceId": {
+                                                      "Ref": "LurnityLmsApiapilandingpagejobsjobIdapply2D0739D3"
+                                                    },
+                                                    "restApiId": {
+                                                      "Ref": "LurnityLmsApi9DD8A13A"
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                                  "version": "2.151.0"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "POST": {
+                                            "id": "POST",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/POST",
+                                            "children": {
+                                              "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply": {
+                                                "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "action": "lambda:InvokeFunction",
+                                                    "functionName": {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn"
+                                                    },
+                                                    "principal": "apigateway.amazonaws.com",
+                                                    "sourceArn": {
+                                                      "Fn::Join": [
+                                                        "",
+                                                        [
+                                                          "arn:",
+                                                          {
+                                                            "Ref": "AWS::Partition"
+                                                          },
+                                                          ":execute-api:ap-south-1:",
+                                                          {
+                                                            "Ref": "AWS::AccountId"
+                                                          },
+                                                          ":",
+                                                          {
+                                                            "Ref": "LurnityLmsApi9DD8A13A"
+                                                          },
+                                                          "/",
+                                                          {
+                                                            "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                          },
+                                                          "/POST/api/landingpage/jobs/*/apply"
+                                                        ]
+                                                      ]
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                                  "version": "2.151.0"
+                                                }
+                                              },
+                                              "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply": {
+                                                "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "action": "lambda:InvokeFunction",
+                                                    "functionName": {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn"
+                                                    },
+                                                    "principal": "apigateway.amazonaws.com",
+                                                    "sourceArn": {
+                                                      "Fn::Join": [
+                                                        "",
+                                                        [
+                                                          "arn:",
+                                                          {
+                                                            "Ref": "AWS::Partition"
+                                                          },
+                                                          ":execute-api:ap-south-1:",
+                                                          {
+                                                            "Ref": "AWS::AccountId"
+                                                          },
+                                                          ":",
+                                                          {
+                                                            "Ref": "LurnityLmsApi9DD8A13A"
+                                                          },
+                                                          "/test-invoke-stage/POST/api/landingpage/jobs/*/apply"
+                                                        ]
+                                                      ]
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                                  "version": "2.151.0"
+                                                }
+                                              },
+                                              "Resource": {
+                                                "id": "Resource",
+                                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/POST/Resource",
+                                                "attributes": {
+                                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                                  "aws:cdk:cloudformation:props": {
+                                                    "authorizationType": "NONE",
+                                                    "httpMethod": "POST",
+                                                    "integration": {
+                                                      "type": "AWS_PROXY",
+                                                      "uri": {
+                                                        "Fn::Join": [
+                                                          "",
+                                                          [
+                                                            "arn:",
+                                                            {
+                                                              "Ref": "AWS::Partition"
+                                                            },
+                                                            ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                            {
+                                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn"
+                                                            },
+                                                            "/invocations"
+                                                          ]
+                                                        ]
+                                                      },
+                                                      "integrationHttpMethod": "POST"
+                                                    },
+                                                    "resourceId": {
+                                                      "Ref": "LurnityLmsApiapilandingpagejobsjobIdapply2D0739D3"
+                                                    },
+                                                    "restApiId": {
+                                                      "Ref": "LurnityLmsApi9DD8A13A"
+                                                    }
+                                                  }
+                                                },
+                                                "constructInfo": {
+                                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                                  "version": "2.151.0"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                      "version": "2.151.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.Resource",
                                   "version": "2.151.0"
                                 }
                               },
@@ -42979,6 +44173,54 @@
                   "version": "2.151.0"
                 }
               },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn",
@@ -43608,6 +44850,42 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn"
                         ]
                       },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn"
+                        ]
+                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -43999,7 +45277,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/414a19d403f5284a3556d31e31a4b7c0a092e698bd55c11f8467be856a45401c.json"
+                          "/0148ded151e11ff241466daf5f50aaec011abb7ad4746dac575ee4ed1772340d.json"
                         ]
                       ]
                     }

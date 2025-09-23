@@ -86,6 +86,36 @@ transactionsRes.addMethod(
     // --- LandingPage ---
     const landingPage = apiResource.addResource("landingpage");
     landingPage.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getLatestLandingPageLambda));
+    // --- Jobs ---
+const jobs = landingPage.addResource("jobs");
+
+// GET /api/landingpage/jobs
+jobs.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getJobsLambda));
+
+// POST /api/landingpage/jobs
+jobs.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createJobLambda));
+
+// /api/landingpage/jobs/{jobId}
+const jobId = jobs.addResource("{jobId}");
+
+// PUT /api/landingpage/jobs/{jobId}
+jobId.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateJobLambda));
+
+// DELETE /api/landingpage/jobs/{jobId}
+jobId.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteJobLambda));
+
+// PATCH /api/landingpage/jobs/{jobId}/status
+jobId.addResource("status").addMethod(
+  "PATCH",
+  new apigateway.LambdaIntegration(lambdas.updateJobStatusLambda)
+);
+
+// POST /api/landingpage/jobs/{jobId}/apply
+jobId.addResource("apply").addMethod(
+  "POST",
+  new apigateway.LambdaIntegration(lambdas.applyForJobLambda)
+);
+
     const cohorts = landingPage.addResource("cohorts");
     cohorts.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getCohortsLambda));
     cohorts.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createCohortLambda));

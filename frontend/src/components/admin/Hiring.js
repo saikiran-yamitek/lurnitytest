@@ -23,6 +23,7 @@ import {
 } from 'react-icons/fi';
 import './Hiring.css';
 
+const API = process.env.REACT_APP_API_URL;
 
 export default function Hiring() {
   const [jobs, setJobs] = useState([]);
@@ -43,29 +44,33 @@ export default function Hiring() {
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  
 
   useEffect(() => {
     fetchJobs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchJobs = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/jobs', {
+      const res = await fetch(`${API}/api/landingpage/jobs`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('adminToken')}`
         }
       });
-      const data = await response.json();
-      if (response.ok) {
+      const data = await res.json();
+      if (res.ok && Array.isArray(data)) {
         setJobs(data);
+      } else if (res.ok) {
+        // if backend returns an object with items key
+        setJobs(Array.isArray(data.items) ? data.items : []);
       } else {
         throw new Error(data.message || 'Failed to fetch jobs');
       }
-    } catch (error) {
-      console.error('Error fetching jobs:', error);
-      alert('Error fetching jobs');
+    } catch (err) {
+      console.error('Error fetching jobs:', err);
+      alert('Error fetching jobs. Check console for details.');
+      setJobs([]);
     } finally {
       setLoading(false);
     }
@@ -74,31 +79,31 @@ export default function Hiring() {
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
-      setFormData({ ...formData, [name]: checked });
+      setFormData((p) => ({ ...p, [name]: checked }));
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData((p) => ({ ...p, [name]: value }));
     }
   };
 
   const handleRequirementChange = (index, value) => {
-    const newRequirements = [...formData.requirements];
-    newRequirements[index] = value;
-    setFormData({ ...formData, requirements: newRequirements });
+    setFormData((p) => {
+      const reqs = [...p.requirements];
+      reqs[index] = value;
+      return { ...p, requirements: reqs };
+    });
   };
 
   const addRequirementField = () => {
-    setFormData({ ...formData, requirements: [...formData.requirements, ''] });
+    setFormData((p) => ({ ...p, requirements: [...p.requirements, ''] }));
   };
 
   const removeRequirementField = (index) => {
-    const newRequirements = formData.requirements.filter((_, i) => i !== index);
-    setFormData({ ...formData, requirements: newRequirements });
+    setFormData((p) => ({ ...p, requirements: p.requirements.filter((_, i) => i !== index) }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validate required fields
+    // Basic validation
     if (!formData.roleName || !formData.location || !formData.experience || !formData.description) {
       alert('Please fill in all required fields.');
       return;
@@ -106,10 +111,12 @@ export default function Hiring() {
 
     try {
       setSaving(true);
-      const url = isEditing ? `/api/jobs/${currentJobId}` : '/api/jobs';
+      const url = isEditing
+        ? `${API}/api/landingpage/jobs/${currentJobId}`
+        : `${API}/api/landingpage/jobs`;
       const method = isEditing ? 'PUT' : 'POST';
 
-      const response = await fetch(url, {
+      const res = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
@@ -118,17 +125,17 @@ export default function Hiring() {
         body: JSON.stringify(formData)
       });
 
-      const data = await response.json();
-      if (response.ok) {
+      const data = await res.json();
+      if (res.ok) {
         alert(isEditing ? 'Job updated successfully!' : 'Job created successfully!');
-        fetchJobs();
+        await fetchJobs();
         resetForm();
       } else {
         throw new Error(data.message || 'Failed to save job');
       }
-    } catch (error) {
-      console.error('Error saving job:', error);
-      alert('Error saving job');
+    } catch (err) {
+      console.error('Error saving job:', err);
+      alert('Error saving job. See console for details.');
     } finally {
       setSaving(false);
     }
@@ -136,65 +143,63 @@ export default function Hiring() {
 
   const editJob = (job) => {
     setFormData({
-      department: job.department,
-      roleName: job.roleName,
-      location: job.location,
-      type: job.type,
-      experience: job.experience,
-      description: job.description,
+      department: job.department || 'Engineering',
+      roleName: job.roleName || '',
+      location: job.location || '',
+      type: job.type || 'Full-time',
+      experience: job.experience || '',
+      description: job.description || '',
       requirements: job.requirements && job.requirements.length > 0 ? job.requirements : [''],
-      isActive: job.isActive
+      isActive: typeof job.isActive === 'boolean' ? job.isActive : true
     });
     setIsEditing(true);
-    setCurrentJobId(job._id);
+    setCurrentJobId(job._id || job.id || null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const toggleJobStatus = async (jobId, currentStatus) => {
+    if (!window.confirm(`Are you sure you want to ${currentStatus ? 'deactivate' : 'activate'} this job?`)) return;
     try {
-      const response = await fetch(`/api/jobs/${jobId}/status`, {
-        method: 'PUT',
+      const res = await fetch(`${API}/api/landingpage/jobs/${jobId}/status`, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('adminToken')}`
         },
         body: JSON.stringify({ isActive: !currentStatus })
       });
-
-      const data = await response.json();
-      if (response.ok) {
+      const data = await res.json();
+      if (res.ok) {
         alert('Job status updated successfully!');
         fetchJobs();
       } else {
         throw new Error(data.message || 'Failed to update job status');
       }
-    } catch (error) {
-      console.error('Error updating job status:', error);
-      alert('Error updating job status');
+    } catch (err) {
+      console.error('Error updating job status:', err);
+      alert('Error updating job status. See console for details.');
     }
   };
 
   const deleteJob = async (jobId) => {
-    if (window.confirm('Are you sure you want to delete this job?')) {
-      try {
-        const response = await fetch(`/api/jobs/${jobId}`, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('adminToken')}`
-          }
-        });
-
-        if (response.ok) {
-          alert('Job deleted successfully!');
-          fetchJobs();
-        } else {
-          const data = await response.json();
-          throw new Error(data.message || 'Failed to delete job');
+    if (!window.confirm('Are you sure you want to delete this job? This action cannot be undone.')) return;
+    try {
+      const res = await fetch(`${API}/api/landingpage/jobs/${jobId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('adminToken')}`
         }
-      } catch (error) {
-        console.error('Error deleting job:', error);
-        alert('Error deleting job');
+      });
+      if (res.ok) {
+        alert('Job deleted successfully!');
+        fetchJobs();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || 'Failed to delete job');
       }
+    } catch (err) {
+      console.error('Error deleting job:', err);
+      alert('Error deleting job. See console for details.');
     }
   };
 
@@ -214,7 +219,7 @@ export default function Hiring() {
   };
 
   const openApplicantsModal = (job) => {
-    const apps = job.applications || [];
+    const apps = Array.isArray(job.applications) ? job.applications : [];
     setSelectedApplicants(apps);
     setSelectedJobTitle(job.roleName || 'Applicants');
     setApplicantsModalOpen(true);
@@ -257,7 +262,7 @@ export default function Hiring() {
     return (
       <div className="hiring-page">
         <div className="loading-container">
-          <div className="loading-spinner"></div>
+          <div className="loading-spinner" />
           <p>Loading job postings...</p>
         </div>
       </div>
@@ -291,7 +296,7 @@ export default function Hiring() {
             <FiCheck />
           </div>
           <div className="stat-content">
-            <h3>{jobs.filter(job => job.isActive).length}</h3>
+            <h3>{jobs.filter((job) => job.isActive).length}</h3>
             <p>Active Jobs</p>
           </div>
         </div>
@@ -312,7 +317,7 @@ export default function Hiring() {
           {saving && (
             <div className="saving-overlay">
               <div className="saving-content">
-                <div className="saving-spinner"></div>
+                <div className="saving-spinner" />
                 <p>{isEditing ? 'Updating job...' : 'Creating job...'}</p>
               </div>
             </div>
@@ -324,7 +329,7 @@ export default function Hiring() {
               {isEditing ? 'Edit Job Posting' : 'Create New Job'}
             </h3>
             {isEditing && (
-              <button className="cancel-form-btn" onClick={resetForm}>
+              <button className="cancel-form-btn" onClick={resetForm} title="Cancel edit">
                 <FiX />
               </button>
             )}
@@ -462,11 +467,7 @@ export default function Hiring() {
                     )}
                   </div>
                 ))}
-                <button
-                  type="button"
-                  onClick={addRequirementField}
-                  className="add-req-btn"
-                >
+                <button type="button" onClick={addRequirementField} className="add-req-btn">
                   <FiPlus />
                   Add Requirement
                 </button>
@@ -489,10 +490,7 @@ export default function Hiring() {
             <div className="form-actions">
               <button type="submit" className="submit-btn" disabled={saving}>
                 <FiSave />
-                {saving 
-                  ? (isEditing ? 'Updating...' : 'Creating...') 
-                  : (isEditing ? 'Update Job' : 'Create Job')
-                }
+                {saving ? (isEditing ? 'Updating...' : 'Creating...') : (isEditing ? 'Update Job' : 'Create Job')}
               </button>
               {isEditing && (
                 <button type="button" onClick={resetForm} className="cancel-btn">
@@ -523,8 +521,8 @@ export default function Hiring() {
           ) : (
             <div className="jobs-container">
               {jobs.map((job, index) => (
-                <div 
-                  key={job._id} 
+                <div
+                  key={job._id || job.id || index}
                   className={`job-card ${job.isActive ? 'active' : 'inactive'}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -557,7 +555,7 @@ export default function Hiring() {
                   </div>
 
                   <div className="job-description">
-                    <p>{job.description.substring(0, 120)}...</p>
+                    <p>{(job.description || '').substring(0, 120)}{(job.description || '').length > 120 ? '...' : ''}</p>
                   </div>
 
                   <div className="job-stats">
@@ -568,33 +566,24 @@ export default function Hiring() {
                   </div>
 
                   <div className="job-actions">
-                    <button 
-                      onClick={() => editJob(job)} 
-                      className="action-btn edit-btn"
-                      title="Edit Job"
-                    >
+                    <button onClick={() => editJob(job)} className="action-btn edit-btn" title="Edit Job">
                       <FiEdit />
                     </button>
-                    <button
-                      onClick={() => openApplicantsModal(job)}
-                      className="action-btn applicants-btn"
-                      title="View Applicants"
-                    >
+
+                    <button onClick={() => openApplicantsModal(job)} className="action-btn applicants-btn" title="View Applicants">
                       <FiUsers />
                       <span>({(job.applications && job.applications.length) || 0})</span>
                     </button>
+
                     <button
-                      onClick={() => toggleJobStatus(job._id, job.isActive)}
+                      onClick={() => toggleJobStatus(job._id || job.id, job.isActive)}
                       className={`action-btn status-btn ${job.isActive ? 'deactivate' : 'activate'}`}
                       title={job.isActive ? 'Deactivate Job' : 'Activate Job'}
                     >
                       {job.isActive ? <FiX /> : <FiCheck />}
                     </button>
-                    <button 
-                      onClick={() => deleteJob(job._id)} 
-                      className="action-btn delete-btn"
-                      title="Delete Job"
-                    >
+
+                    <button onClick={() => deleteJob(job._id || job.id)} className="action-btn delete-btn" title="Delete Job">
                       <FiTrash2 />
                     </button>
                   </div>
@@ -652,12 +641,7 @@ export default function Hiring() {
                         </div>
                         <div className="applicant-actions">
                           {app.resumeUrl ? (
-                            <a
-                              href={app.resumeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="resume-btn"
-                            >
+                            <a href={app.resumeUrl} target="_blank" rel="noopener noreferrer" className="resume-btn">
                               <FiEye />
                               View Resume
                             </a>
@@ -681,9 +665,7 @@ export default function Hiring() {
 
             {selectedApplicants.length > 0 && (
               <div className="modal-footer">
-                <div className="applicants-count">
-                  Total: {selectedApplicants.length} applications
-                </div>
+                <div className="applicants-count">Total: {selectedApplicants.length} applications</div>
               </div>
             )}
           </div>

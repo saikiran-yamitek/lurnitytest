@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/37808f7793f4dd1bc3d94a23a341520765f133d6e25578061203d4504e159077.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/c79bccaa7ceecee562778d0f61e88a6abf167d8b116f2cbf012728c786b8ff9b.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -2314,6 +2314,42 @@
             "data": "LurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2701,7 +2737,7 @@
         "/LurnityLmsStack/ApiNestedStack": [
           {
             "type": "aws:cdk:info",
-            "data": "Number of resources: 419 is approaching allowed maximum of 500",
+            "data": "Number of resources: 445 is approaching allowed maximum of 500",
             "trace": [
               "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
               "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
@@ -2742,7 +2778,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F2c6b14f6507eb921941de1e788294647e"
+            "data": "LurnityLmsApiDeployment658DA5F2916920422f6b99f418c261fc0b56f383"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -3229,6 +3265,162 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsApiapilandingpageGET97816E88"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobs94F5B11F"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsOPTIONSC0E55CFC"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapilandingpagejobsBABA32F6"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.landingpage.jobs": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapilandingpagejobs47A57073"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsGET65957951"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapilandingpagejobsB23F9BFA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapilandingpagejobs5C0E3316"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsPOST9150FB3E"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobId475D75D4"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdOPTIONS433F9154"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapilandingpagejobsjobId269CEFB4"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.landingpage.jobs.{jobId}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapilandingpagejobsjobId4FB8EE57"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdPUT5BB31758"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/DELETE/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdDELETEApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DDELETEapilandingpagejobsjobId3EC356F7"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/DELETE/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.DELETE..api.landingpage.jobs.{jobId}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdDELETEApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DDELETEapilandingpagejobsjobIdEAFADF8D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdDELETE468C7075"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdstatusA7C39B47"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdstatusOPTIONS33E905E5"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/PATCH/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdstatusPATCHApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPATCHapilandingpagejobsjobIdstatusBC1E8447"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/PATCH/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PATCH..api.landingpage.jobs.{jobId}.status": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdstatusPATCHApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPATCHapilandingpagejobsjobIdstatusF7620DB5"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/status/PATCH/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdstatusPATCHF1581688"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdapply2D0739D3"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdapplyOPTIONS0470B013"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdapplyPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapilandingpagejobsjobIdapply2C0A2426"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.landingpage.jobs.{jobId}.apply": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdapplyPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapilandingpagejobsjobIdapplyFBE591C7"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/jobs/{jobId}/apply/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapilandingpagejobsjobIdapplyPOST3CDB7C23"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/cohorts/Resource": [
@@ -5347,6 +5539,42 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJobsLambdaD6B4DB72Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateJobLambdaA6057943Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobLambdaC7AC136AArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteJobLambda4274A213Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateJobStatusLambdaE90A2FA4Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackApplyForJobLambda03DE0852Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetCohortsLambda2641A0E5Arn": [
