@@ -287,7 +287,7 @@ const LuxuryCareersPage = () => {
         {/* Jobs List */}
         <div className="luxury-careers-jobs-container">
           {filteredJobs.map((job, index) => (
-            <div key={job._id} className="luxury-careers-job-card">
+            <div key={job.id} className="luxury-careers-job-card">
               {/* Job Header */}
               <div
                 className="luxury-careers-job-header"
@@ -328,7 +328,7 @@ const LuxuryCareersPage = () => {
           resumeUrl: e.target.resumeUrl.value,
         };
 
-        const res = await fetch(`${API}/api/landingpage/${job._id}/apply`,
+        const res = await fetch(`${API}/api/landingpage/jobs/${job.id}/apply`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
