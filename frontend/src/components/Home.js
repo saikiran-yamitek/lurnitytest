@@ -23,7 +23,7 @@ export default function Home() {
   const [course, setCourse] = useState(null);
   const [note, setNote] = useState(null);
   const [watched, setWatched] = useState([]);
-  const [practiceCompleted, setPracticeCompleted] = useState([]);
+  const [practiceCompleted, setPracticeCompleted] = useState([]); // array of practice IDs
   const [selectedLabSubcourse, setSelectedLabSubcourse] = useState(null);
   const [labs, setLabs] = useState([]);
   const [profileCompletion, setProfileCompletion] = useState({ isComplete: true, missingFields: 0, totalFields: 0 });
@@ -72,7 +72,7 @@ export default function Home() {
   };
 
   // ✅ IMPROVED: use title consistently when checking previous subcourse completion (videos + practices + labs)
-  const isSubcourseLocked = (course, subCourseIndex, watched, practiceCompleted) => {
+  const isSubcourseLocked = (course, subCourseIndex, watchedArr, practiceCompletedArr) => {
     if (subCourseIndex === 0) return false;
 
     const prevSubCourse = course.subCourses[subCourseIndex - 1];
@@ -80,12 +80,12 @@ export default function Home() {
     // Check all videos are watched
     const videoIds = prevSubCourse.videos?.map((_, vIdx) => 
       idOf(course.id, subCourseIndex - 1, vIdx)) || [];
-    const allVideosWatched = videoIds.every(id => watched.includes(id));
+    const allVideosWatched = videoIds.every(id => watchedArr.includes(id));
 
     // Check all practices are completed
     const practiceIds = prevSubCourse.videos?.map((_, vIdx) => 
       practiceIdOf(course.id, subCourseIndex - 1, vIdx)) || [];
-    const allPracticesCompleted = practiceIds.every(id => practiceCompleted.includes(id));
+    const allPracticesCompleted = practiceIds.every(id => practiceCompletedArr.includes(id));
 
     let labCompleted = true; // Default to true if no lab
     if (prevSubCourse.lab === "Yes") {
@@ -953,9 +953,11 @@ export default function Home() {
                               const id = idOf(course.id, sIdx, vIdx);
                               const practiceId = practiceIdOf(course.id, sIdx, vIdx);
                               const done = watched.includes(id);
-                              const practiceCompleted = isPracticeCompleted(course.id, sIdx, vIdx);
+                              // ---------- FIX: avoid shadowing `practiceCompleted` state ----------
+                              const practiceDone = isPracticeCompleted(course.id, sIdx, vIdx);
 
                               const unlockedCount = getUnlockedVideosCount(user, sIdx);
+                              // pass the global practiceCompleted array (state) to the lock check
                               const isLocked = vIdx >= unlockedCount || isSubcourseLocked(course, sIdx, watched, practiceCompleted);
 
                               return (
@@ -984,7 +986,7 @@ export default function Home() {
 
                                   {!isLocked && (
                                     <div 
-                                      className={`lms-luxury-content-item practice ${practiceCompleted ? 'completed' : ''}`}
+                                      className={`lms-luxury-content-item practice ${practiceDone ? 'completed' : ''}`}
                                       onClick={() => hist.push(`/practice/${course.id}/${sIdx}/${vIdx}`)}
                                     >
                                       <div className="lms-item-backdrop"></div>
@@ -995,7 +997,7 @@ export default function Home() {
                                         <h4 className="lms-item-title">Practice: {v.title}</h4>
                                         <span className="lms-item-meta">Interactive Quiz</span>
                                       </div>
-                                      {practiceCompleted && <FiCheckCircle className="lms-completion-icon" />}
+                                      {practiceDone && <FiCheckCircle className="lms-completion-icon" />}
                                     </div>
                                   )}
                                 </React.Fragment>
