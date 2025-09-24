@@ -95,8 +95,8 @@ useEffect(() => {
     try {
       const payload = { ...form, createdBy: emp.id };
 
-      if (form._id) {
-        await fetch(`/api/placements/${form._id}`, {
+      if (form.id) {
+        await fetch(`/api/placements/${form.id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -267,7 +267,7 @@ useEffect(() => {
             <div className="placement-page-info">
               <h1 className="placement-page-title">
                 {activeTab === 'dashboard' && 'Placement Dashboard'}
-                {activeTab === 'create' && (form._id ? 'Edit Placement Drive' : 'Create New Drive')}
+                {activeTab === 'create' && (form.id ? 'Edit Placement Drive' : 'Create New Drive')}
                 {activeTab === 'scheduled' && 'Scheduled Drives'}
                 {activeTab === 'companies' && 'Company Management'}
                 {activeTab === 'completed' && 'Completed Drives'}
@@ -446,7 +446,7 @@ useEffect(() => {
                 </div>
                 <div className="placement-recent-drives">
                   {[...scheduledDrives, ...completedDrives].slice(0, 3).map((drive) => (
-                    <div key={drive._id} className="placement-recent-drive-item">
+                    <div key={drive.id} className="placement-recent-drive-item">
                       <div className="placement-recent-drive-header">
                         <div className="placement-drive-icon">
                           <FiHome />
@@ -483,10 +483,10 @@ useEffect(() => {
               <div className="placement-form-container">
                 <div className="placement-form-header">
                   <h2 className="placement-form-title">
-                    {form._id ? 'Edit Placement Drive' : 'Drive Details'}
+                    {form.id ? 'Edit Placement Drive' : 'Drive Details'}
                   </h2>
                   <p className="placement-form-subtitle">
-                    Fill in the information to {form._id ? 'update' : 'create'} a placement opportunity
+                    Fill in the information to {form.id ? 'update' : 'create'} a placement opportunity
                   </p>
                 </div>
 
@@ -499,11 +499,11 @@ useEffect(() => {
                       <select 
                         className="placement-form-input placement-form-select" 
                         onChange={(e) => {
-                          const selected = companies.find(c => c._id === e.target.value);
+                          const selected = companies.find(c => c.id === e.target.value);
                           if (!selected) return;
                           setForm({
                             ...form,
-                            companyId: selected._id,
+                            companyId: selected.id,
                             company: selected.name,
                             aboutCompany: selected.about,
                             companyWebsite: selected.website,
@@ -514,7 +514,7 @@ useEffect(() => {
                       >
                         <option value="">Choose a company...</option>
                         {companies.map((c) => (
-                          <option key={c._id} value={c._id}>{c.name}</option>
+                          <option key={c.id} value={c.id}>{c.name}</option>
                         ))}
                       </select>
                     </div>
@@ -731,7 +731,7 @@ useEffect(() => {
                       disabled={loading}
                     >
                       <FiCalendar />
-                      {form._id ? 'Update Drive' : 'Create Drive'}
+                      {form.id ? 'Update Drive' : 'Create Drive'}
                     </button>
                   </div>
                 </form>
@@ -761,7 +761,7 @@ useEffect(() => {
               ) : (
                 <div className="placement-drives-grid">
                   {scheduledDrives.map((drive) => (
-                    <div className="placement-drive-card" key={drive._id}>
+                    <div className="placement-drive-card" key={drive.id}>
                       <div className="placement-drive-card-header">
                         <div className="placement-drive-main-info">
                           <div className="placement-drive-badge">
@@ -782,7 +782,7 @@ useEffect(() => {
                           </button>
                           <button 
                             className="placement-action-btn placement-action-btn-delete" 
-                            onClick={() => setDriveToDelete(drive._id)}
+                            onClick={() => setDriveToDelete(drive.id)}
                             title="Delete Drive"
                           >
                             <FiTrash2 />
@@ -847,7 +847,7 @@ useEffect(() => {
                       <div className="placement-drive-card-footer">
                         <button 
                           className="placement-btn placement-btn-outline" 
-                          onClick={() => handleViewStudents(drive._id)}
+                          onClick={() => handleViewStudents(drive.id)}
                         >
                           <FiUsers />
                           View Students ({drive.registered?.length || 0})
@@ -856,7 +856,7 @@ useEffect(() => {
                           className="placement-btn placement-btn-success"
                           onClick={async () => {
                             try {
-                              const studentRes = await fetch(`/api/placements/${drive._id}/students`);
+                              const studentRes = await fetch(`/api/placements/${drive.id}/students`);
                               const studentList = await studentRes.json();
 
                               let hasError = false;
@@ -886,7 +886,7 @@ useEffect(() => {
                                 return;
                               }
 
-                              await fetch(`/api/placements/${drive._id}/complete`, { method: "PUT" });
+                              await fetch(`/api/placements/${drive.id}/complete`, { method: "PUT" });
                               fetchDrives();
                               setPopup("✅ Drive marked as completed");
                               setTimeout(() => setPopup(""), 2000);
@@ -911,7 +911,7 @@ useEffect(() => {
           {activeTab === 'companies' && (
             <div className="placement-companies-section">
               <div className="placement-company-form-card">
-                <h3>{newCompany._id ? 'Edit Company' : 'Add New Company'}</h3>
+                <h3>{newCompany.id ? 'Edit Company' : 'Add New Company'}</h3>
                 
                 <div className="placement-form-grid">
                   <div className="placement-form-group">
@@ -974,8 +974,8 @@ useEffect(() => {
                     className="placement-btn placement-btn-primary" 
                     onClick={async () => {
                       try {
-                        if (newCompany._id) {
-                          await fetch(`/api/companies/${newCompany._id}`, {
+                        if (newCompany.id) {
+                          await fetch(`/api/companies/${newCompany.id}`, {
                             method: "PUT",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newCompany)
@@ -1000,7 +1000,7 @@ useEffect(() => {
                     }}
                   >
                     <FiHome />
-                    {newCompany._id ? "Update Company" : "Add Company"}
+                    {newCompany.id ? "Update Company" : "Add Company"}
                   </button>
                 </div>
               </div>
@@ -1020,7 +1020,7 @@ useEffect(() => {
                     </thead>
                     <tbody>
                       {companies.map((company) => (
-                        <tr key={company._id}>
+                        <tr key={company.id}>
                           <td>
                             <div className="placement-company-cell">
                               <div className="placement-company-avatar">
@@ -1089,7 +1089,7 @@ useEffect(() => {
               ) : (
                 <div className="placement-drives-grid">
                   {completedDrives.map((drive) => (
-                    <div className="placement-drive-card placement-drive-card-completed" key={drive._id}>
+                    <div className="placement-drive-card placement-drive-card-completed" key={drive.id}>
                       <div className="placement-drive-card-header">
                         <div className="placement-drive-main-info">
                           <div className="placement-drive-badge">
@@ -1145,7 +1145,7 @@ useEffect(() => {
                       <div className="placement-drive-card-footer">
                         <button 
                           className="placement-btn placement-btn-outline" 
-                          onClick={() => handleViewStudents(drive._id)}
+                          onClick={() => handleViewStudents(drive.id)}
                         >
                           <FiEye />
                           View Results
@@ -1153,7 +1153,7 @@ useEffect(() => {
                         <button
                           className="placement-btn placement-btn-warning"
                           onClick={async () => {
-                            await fetch(`/api/placements/${drive._id}/revoke`, { method: "PUT" });
+                            await fetch(`/api/placements/${drive.id}/revoke`, { method: "PUT" });
                             fetchDrives();
                             setPopup("🔄 Drive status reverted to Scheduled");
                             setTimeout(() => setPopup(""), 2000);
@@ -1233,7 +1233,7 @@ useEffect(() => {
                         student.name?.toLowerCase().includes(searchTerm.toLowerCase())
                       )
                       .map((student, index) => (
-                        <tr key={student._id}>
+                        <tr key={student.id}>
                           <td>
                             <div className={`placement-rank-badge ${index < 3 ? 'placement-rank-top' : ''}`}>
                               #{index + 1}
@@ -1370,7 +1370,7 @@ useEffect(() => {
                       </thead>
                       <tbody>
                         {students.map((student, index) => (
-                          <tr key={student._id}>
+                          <tr key={student.id}>
                             <td>
                               <div className="placement-student-info">
                                 <div className="placement-student-avatar">
@@ -1436,7 +1436,7 @@ useEffect(() => {
                                 className="placement-btn placement-btn-primary placement-btn-sm"
                                 onClick={async () => {
                                   try {
-                                    await fetch(`/api/placements/${selectedDrive}/students/${student._id}`, {
+                                    await fetch(`/api/placements/${selectedDrive}/students/${student.id}`, {
                                       method: "PUT",
                                       headers: {
                                         "Content-Type": "application/json",
