@@ -1233,7 +1233,7 @@ useEffect(() => {
                         student.name?.toLowerCase().includes(searchTerm.toLowerCase())
                       )
                       .map((student, index) => (
-                        <tr key={student.studentId}>
+                        <tr key={student._id}>
                           <td>
                             <div className={`placement-rank-badge ${index < 3 ? 'placement-rank-top' : ''}`}>
                               #{index + 1}
@@ -1370,7 +1370,7 @@ useEffect(() => {
                       </thead>
                       <tbody>
                         {students.map((student, index) => (
-                          <tr key={student.studentId}>
+                          <tr key={student._id}>
                             <td>
                               <div className="placement-student-info">
                                 <div className="placement-student-avatar">
@@ -1442,7 +1442,7 @@ useEffect(() => {
                                         "Content-Type": "application/json",
                                       },
                                       body: JSON.stringify({
-                                        studentId:student.studentId,
+                                        studentId:student._id,
                                         status: student.status,
                                         remarks: student.remarks,
                                         offerLetterURL: student.offerLetterURL,
