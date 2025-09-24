@@ -64,7 +64,7 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Account"
    }
   },
-  "LurnityLmsApiDeployment658DA5F206e73c1e0b218921b2d4c0393c02dde9": {
+  "LurnityLmsApiDeployment658DA5F2cdd197f779c7f258dec7b3d0196a6348": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
@@ -203,17 +203,6 @@
     "LurnityLmsApiapilandingpageOPTIONS2A1855FA",
     "LurnityLmsApiapilandingpage6DDC32A4",
     "LurnityLmsApiapiOPTIONS5102F850",
-    "LurnityLmsApiapiplacementsdriveIdOPTIONSCC230B85",
-    "LurnityLmsApiapiplacementsdriveIdregisterOPTIONSD8E4F97A",
-    "LurnityLmsApiapiplacementsdriveIdregisterPOST29FDCDA3",
-    "LurnityLmsApiapiplacementsdriveIdregister5F73EF51",
-    "LurnityLmsApiapiplacementsdriveId944DD01A",
-    "LurnityLmsApiapiplacementsdriveIdstatusOPTIONS4443B679",
-    "LurnityLmsApiapiplacementsdriveIdstatusPUTE8BAE311",
-    "LurnityLmsApiapiplacementsdriveIdstatus6C78DF8F",
-    "LurnityLmsApiapiplacementsdriveIdstudentsGET749692BC",
-    "LurnityLmsApiapiplacementsdriveIdstudentsOPTIONS151D87F8",
-    "LurnityLmsApiapiplacementsdriveIdstudents3A24FC23",
     "LurnityLmsApiapiplacementsidcompleteOPTIONSE0F50377",
     "LurnityLmsApiapiplacementsidcompletePUT2F0DF8BC",
     "LurnityLmsApiapiplacementsidcompleteB2F89004",
@@ -221,10 +210,19 @@
     "LurnityLmsApiapiplacementsidGETFA33B5E3",
     "LurnityLmsApiapiplacementsidOPTIONS52535272",
     "LurnityLmsApiapiplacementsidPUTB7FA41DF",
+    "LurnityLmsApiapiplacementsidregisterOPTIONS30B2F708",
+    "LurnityLmsApiapiplacementsidregisterPOST892932D9",
+    "LurnityLmsApiapiplacementsidregisterBC6D0169",
     "LurnityLmsApiapiplacementsidA9E72C59",
     "LurnityLmsApiapiplacementsidrevokeOPTIONS67305547",
     "LurnityLmsApiapiplacementsidrevokePUTCD1E4255",
     "LurnityLmsApiapiplacementsidrevoke24F11F93",
+    "LurnityLmsApiapiplacementsidstatusOPTIONSBD68A30C",
+    "LurnityLmsApiapiplacementsidstatusPUT14C97312",
+    "LurnityLmsApiapiplacementsidstatus25AAE07D",
+    "LurnityLmsApiapiplacementsidstudentsGET25F6C6A2",
+    "LurnityLmsApiapiplacementsidstudentsOPTIONS3D0A3B87",
+    "LurnityLmsApiapiplacementsidstudents9C2D7F28",
     "LurnityLmsApiapiplacementsGET1B6BEF49",
     "LurnityLmsApiapiplacementsOPTIONS49B51EFE",
     "LurnityLmsApiapiplacementsPOSTFEBA56E8",
@@ -346,7 +344,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "LurnityLmsApiDeployment658DA5F206e73c1e0b218921b2d4c0393c02dde9"
+     "Ref": "LurnityLmsApiDeployment658DA5F2cdd197f779c7f258dec7b3d0196a6348"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
@@ -7267,71 +7265,11 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveId944DD01A": {
+  "LurnityLmsApiapiplacementsidregisterBC6D0169": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
-     "Ref": "LurnityLmsApiapiplacements6FF182B1"
-    },
-    "PathPart": "{driveId}",
-    "RestApiId": {
-     "Ref": "LurnityLmsApi9DD8A13A"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/Resource"
-   }
-  },
-  "LurnityLmsApiapiplacementsdriveIdOPTIONSCC230B85": {
-   "Type": "AWS::ApiGateway::Method",
-   "Properties": {
-    "ApiKeyRequired": false,
-    "AuthorizationType": "NONE",
-    "HttpMethod": "OPTIONS",
-    "Integration": {
-     "IntegrationResponses": [
-      {
-       "ResponseParameters": {
-        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-        "method.response.header.Access-Control-Allow-Origin": "'*'",
-        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
-        "method.response.header.Access-Control-Max-Age": "'86400'"
-       },
-       "StatusCode": "204"
-      }
-     ],
-     "RequestTemplates": {
-      "application/json": "{ statusCode: 200 }"
-     },
-     "Type": "MOCK"
-    },
-    "MethodResponses": [
-     {
-      "ResponseParameters": {
-       "method.response.header.Access-Control-Allow-Headers": true,
-       "method.response.header.Access-Control-Allow-Origin": true,
-       "method.response.header.Access-Control-Allow-Methods": true,
-       "method.response.header.Access-Control-Max-Age": true
-      },
-      "StatusCode": "204"
-     }
-    ],
-    "ResourceId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
-    },
-    "RestApiId": {
-     "Ref": "LurnityLmsApi9DD8A13A"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/OPTIONS/Resource"
-   }
-  },
-  "LurnityLmsApiapiplacementsdriveIdregister5F73EF51": {
-   "Type": "AWS::ApiGateway::Resource",
-   "Properties": {
-    "ParentId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
+     "Ref": "LurnityLmsApiapiplacementsidA9E72C59"
     },
     "PathPart": "register",
     "RestApiId": {
@@ -7339,10 +7277,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/register/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdregisterOPTIONSD8E4F97A": {
+  "LurnityLmsApiapiplacementsidregisterOPTIONS30B2F708": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -7377,17 +7315,17 @@
      }
     ],
     "ResourceId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveIdregister5F73EF51"
+     "Ref": "LurnityLmsApiapiplacementsidregisterBC6D0169"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/OPTIONS/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/register/OPTIONS/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdregisterPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiplacementsdriveIdregisterEBFF2C72": {
+  "LurnityLmsApiapiplacementsidregisterPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiplacementsidregister03AC185F": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -7421,10 +7359,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/register/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{id}.register"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdregisterPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiplacementsdriveIdregister936F91AB": {
+  "LurnityLmsApiapiplacementsidregisterPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiplacementsidregisterF00C5A01": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -7454,10 +7392,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/register/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{id}.register"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdregisterPOST29FDCDA3": {
+  "LurnityLmsApiapiplacementsidregisterPOST892932D9": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -7483,21 +7421,21 @@
      }
     },
     "ResourceId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveIdregister5F73EF51"
+     "Ref": "LurnityLmsApiapiplacementsidregisterBC6D0169"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/register/POST/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstatus6C78DF8F": {
+  "LurnityLmsApiapiplacementsidstatus25AAE07D": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
+     "Ref": "LurnityLmsApiapiplacementsidA9E72C59"
     },
     "PathPart": "status",
     "RestApiId": {
@@ -7505,10 +7443,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/status/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstatusOPTIONS4443B679": {
+  "LurnityLmsApiapiplacementsidstatusOPTIONSBD68A30C": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -7543,17 +7481,17 @@
      }
     ],
     "ResourceId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveIdstatus6C78DF8F"
+     "Ref": "LurnityLmsApiapiplacementsidstatus25AAE07D"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/OPTIONS/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/status/OPTIONS/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstatusPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsdriveIdstatus83ED80D9": {
+  "LurnityLmsApiapiplacementsidstatusPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsidstatus734077E4": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -7587,10 +7525,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/status/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.status"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstatusPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsdriveIdstatus4FAFC7A6": {
+  "LurnityLmsApiapiplacementsidstatusPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsidstatus8EC5B627": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -7620,10 +7558,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/status/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.status"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstatusPUTE8BAE311": {
+  "LurnityLmsApiapiplacementsidstatusPUT14C97312": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -7649,21 +7587,21 @@
      }
     },
     "ResourceId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveIdstatus6C78DF8F"
+     "Ref": "LurnityLmsApiapiplacementsidstatus25AAE07D"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/status/PUT/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstudents3A24FC23": {
+  "LurnityLmsApiapiplacementsidstudents9C2D7F28": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
+     "Ref": "LurnityLmsApiapiplacementsidA9E72C59"
     },
     "PathPart": "students",
     "RestApiId": {
@@ -7671,10 +7609,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/students/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstudentsOPTIONS151D87F8": {
+  "LurnityLmsApiapiplacementsidstudentsOPTIONS3D0A3B87": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "ApiKeyRequired": false,
@@ -7709,17 +7647,17 @@
      }
     ],
     "ResourceId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveIdstudents3A24FC23"
+     "Ref": "LurnityLmsApiapiplacementsidstudents9C2D7F28"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/OPTIONS/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/students/OPTIONS/Resource"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstudentsGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiplacementsdriveIdstudents3DDCFDAF": {
+  "LurnityLmsApiapiplacementsidstudentsGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiplacementsidstudents32E53560": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -7753,10 +7691,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/students/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{id}.students"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstudentsGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiplacementsdriveIdstudents4C7E162D": {
+  "LurnityLmsApiapiplacementsidstudentsGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiplacementsidstudentsEBFBA834": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -7786,10 +7724,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/students/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{id}.students"
    }
   },
-  "LurnityLmsApiapiplacementsdriveIdstudentsGET749692BC": {
+  "LurnityLmsApiapiplacementsidstudentsGET25F6C6A2": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "NONE",
@@ -7815,14 +7753,14 @@
      }
     },
     "ResourceId": {
-     "Ref": "LurnityLmsApiapiplacementsdriveIdstudents3A24FC23"
+     "Ref": "LurnityLmsApiapiplacementsidstudents9C2D7F28"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/Resource"
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/students/GET/Resource"
    }
   },
   "LurnityLmsApiapiworkshops05DC3300": {

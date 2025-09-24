@@ -156,7 +156,7 @@ const StudentPlacementDrives = () => {
     }
 
     try {
-      const res = await fetch(`${API}/api/placements/${selectedDrive.id}`, {
+      const res = await fetch(`${API}/api/placements/${selectedDrive.id}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
