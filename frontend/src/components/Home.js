@@ -32,8 +32,7 @@ export default function Home() {
   const [registrationMessage, setRegistrationMessage] = useState("");
   const [issuedCertificates, setIssuedCertificates] = useState([]);
 
-
-  // ✅ FIXED: Safe array helper function
+  // ✅ Safe array helper function
   const getSafeArray = (data, fallbackKeys = ['items', 'data', 'results']) => {
     if (Array.isArray(data)) return data;
     
@@ -66,31 +65,33 @@ export default function Home() {
     return 0;
   };
 
+  // ✅ FIXED: Only consider videos and labs for subcourse locking (exclude practice)
   const isSubcourseLocked = (course, subCourseIndex, watched) => {
-    if (subCourseIndex === 0) return false;
-    
-    const prevSubCourse = course.subCourses[subCourseIndex - 1];
-    const videoIds = prevSubCourse.videos?.map((_, vIdx) => 
-      idOf(course.id, subCourseIndex - 1, vIdx)) || [];
-    const allVideosWatched = videoIds.every(id => watched.includes(id));
-    
-    if (prevSubCourse.lab === "Yes") {
-      // ✅ FIXED: Safe array operations
-      const safeLabs = getSafeArray(labs);
-      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.id);
-      
-      if (lab) {
-        const registeredStudents = getSafeArray(lab.registeredStudents);
-        const labCompleted = registeredStudents.some(
-          r => r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
-        );
-        return !(allVideosWatched && labCompleted);
-      }
-      return true;
+  if (subCourseIndex === 0) return false;
+  
+  const prevSubCourse = course.subCourses[subCourseIndex - 1];
+  const videoIds = prevSubCourse.videos?.map((_, vIdx) => 
+    idOf(course.id, subCourseIndex - 1, vIdx)
+  );
+  const allVideosWatched = videoIds.every(id => watched.includes(id));
+
+  if (prevSubCourse.lab === "Yes") {
+    const safeLabs = getSafeArray(labs);
+    const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.title);
+    if (lab) {
+      const registeredStudents = getSafeArray(lab.registeredStudents);
+      const labCompleted = registeredStudents.some(r => 
+        r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
+      );
+      // FIXED: Both videos AND lab must be completed to unlock next subcourse
+      return !(allVideosWatched && labCompleted);
     }
-    
-    return !allVideosWatched;
-  };
+    return true; // If lab exists but no registration found, keep locked
+  }
+  
+  return !allVideosWatched;
+};
+
 
   const handleRegisterClick = (lab) => {
     setPendingLabToRegister(lab);
@@ -129,6 +130,7 @@ export default function Home() {
     }
   };
   
+  // ✅ FIXED: Only count videos and labs for course completion (exclude practice)
   const calculateCourseCompletion = () => {
     if (!course || !watched || !course.subCourses) return 0;
     let totalItems = 0;
@@ -138,11 +140,13 @@ export default function Home() {
     const safeLabs = getSafeArray(labs);
     
     safeCourse.forEach((sc, sIdx) => {
+      // Only count videos (not practice)
       const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
       const completed = videoIds.filter(id => watched.includes(id)).length;
       totalItems += videoIds.length;
       completedItems += completed;
       
+      // Only count labs if they exist
       if (sc.lab === "Yes") {
         totalItems += 1;
         const normalize = (s) => s?.trim().toLowerCase();
@@ -159,31 +163,82 @@ export default function Home() {
     return totalItems ? Math.round((completedItems / totalItems) * 100) : 0;
   };
 
+  // ✅ FIXED: Calculate subcourse completion only with videos and labs
+  const calculateSubcourseCompletion = (sc, sIdx) => {
+    const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+    let completed = videoIds.filter(id => watched.includes(id)).length;
+    let total = videoIds.length;
+
+    // Only include lab if it exists
+    if (sc.lab === "Yes") {
+      total += 1;
+      const normalize = (s) => s?.trim().toLowerCase();
+      const safeLabs = getSafeArray(labs);
+      const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
+      
+      if (labEntry) {
+        const registeredStudents = getSafeArray(labEntry.registeredStudents);
+        const regEntry = registeredStudents.find(r => r.student === user?.id);
+        const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
+        if (labPassed) completed += 1;
+      }
+    }
+
+    return total > 0 ? Math.round((completed / total) * 100) : 0;
+  };
+
   const generateSubcourseCertificate = async (subCourseTitle) => {
-  try {
-    const res = await fetch(`${API}/api/certificates/generate`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        userId: user.id,
-        courseId: course.id,
-        subCourseTitle,
-      }),
-    });
+    try {
+      const res = await fetch(`${API}/api/certificates/generate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          courseId: course.id,
+          subCourseTitle,
+        }),
+      });
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Certificate generation failed");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Certificate generation failed");
 
+    } catch (err) {
+      console.error("Certificate generation error:", err);
+    }
+  };
+
+  // ✅ FIXED: Proper video completion tracking function
+  const markVideoAsWatched = async (courseId, sIdx, vIdx) => {
+    const videoId = idOf(courseId, sIdx, vIdx);
     
+    // Don't mark as watched if already watched
+    if (watched.includes(videoId)) return;
     
-  } catch (err) {
-    console.error("Certificate generation error:", err);
-  }
-};
-
+    try {
+      const res = await fetch(`${API}/api/progress`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          videoId: videoId,
+          userId: user?.id,
+          completed: true
+        }),
+      });
+      
+      if (res.ok) {
+        // Update local state
+        setWatched(prev => [...prev, videoId]);
+      }
+    } catch (err) {
+      console.error("Error marking video as watched:", err);
+    }
+  };
 
   const checkProfileCompletion = (profileData) => {
     if (!profileData) return { isComplete: false, missingFields: 0, totalFields: 0, percentage: 0 };
@@ -236,7 +291,7 @@ export default function Home() {
   const helpRef = useRef(null);
   const helpBtnRef = useRef(null);
 
-  // ✅ FIXED: Safe fetchLabs function
+  // ✅ Safe fetchLabs function
   const fetchLabs = async (userId) => {
     try {
       const res = await fetch(`${API}/api/workshops`, {
@@ -245,7 +300,6 @@ export default function Home() {
       const data = await res.json();
       console.log('🔍 Labs API response:', data);
       
-      // Handle both array and object responses
       const safeLabs = getSafeArray(data, ['items', 'workshops']);
       console.log('✅ Safe labs array:', safeLabs);
       setLabs(safeLabs);
@@ -268,7 +322,7 @@ export default function Home() {
     }
   }, []);
 
-  // ✅ FIXED: Safe user registration functions
+  // ✅ Safe user registration functions
   const isUserRegisteredForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     return safeLabs.some(lab => {
@@ -293,7 +347,7 @@ export default function Home() {
     return null;
   };
 
-  // All useEffect hooks with fixes...
+  // All useEffect hooks
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -345,7 +399,6 @@ export default function Home() {
         if (u.status === "suspended") return setNote("Your account is suspended. Please contact your mentor.");
         if (!u.course) return setNote("Course yet to be decided. Please wait for admin enrolment.");
 
-        // ✅ FIXED: Safe courses handling
         const coursesResponse = await fetchJSON(`${API}/api/courses`);
         console.log('🔍 Courses API response:', coursesResponse);
         
@@ -369,7 +422,6 @@ export default function Home() {
     };
   }, [hist, fetchProfileData]);
 
-  // Other useEffect hooks remain the same...
   useEffect(() => {
     const handler = (e) => {
       if (
@@ -428,33 +480,21 @@ export default function Home() {
     }
   }, [courseCompletion, user]);
 
+  // ✅ FIXED: Certificate generation only for 100% completed subcourses (videos + labs only)
   useEffect(() => {
-  if (!user || !course || !course.subCourses) return;
+    if (!user || !course || !course.subCourses) return;
 
-  course.subCourses.forEach(async (sc, sIdx) => {
-    const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-    let completed = videoIds.filter(id => watched.includes(id)).length;
-
-    // Include lab if applicable
-    if (sc.lab === "Yes") {
-      const labEntry = getSafeArray(labs).find(l => l.subCourseId === sc.title);
-      const regEntry = labEntry?.registeredStudents?.find(r => r.student === user.id);
-      const labPassed = regEntry?.attendance === true && (regEntry?.result?.trim().toLowerCase() === "pass");
-      if (labPassed) completed += 1;
-    }
-
-    const total = videoIds.length + (sc.lab === "Yes" ? 1 : 0);
-    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
-
-    // Only issue if 100% and not already issued
-    const alreadyIssued = issuedCertificates.includes(sc.title);
-    if (percent === 100 && !alreadyIssued) {
-      await generateSubcourseCertificate(sc.title);
-      setIssuedCertificates(prev => [...prev, sc.title]);
-    }
-  });
-}, [watched, labs, course, user]);
-
+    course.subCourses.forEach(async (sc, sIdx) => {
+      const percent = calculateSubcourseCompletion(sc, sIdx);
+      
+      // Only issue certificate if 100% complete and not already issued
+      const alreadyIssued = issuedCertificates.includes(sc.title);
+      if (percent === 100 && !alreadyIssued) {
+        await generateSubcourseCertificate(sc.title);
+        setIssuedCertificates(prev => [...prev, sc.title]);
+      }
+    });
+  }, [watched, labs, course, user, issuedCertificates]);
 
   const handleResumeClick = () => {
     if (!profileCompletion.isComplete) {
@@ -827,31 +867,7 @@ export default function Home() {
                 <div className="lms-luxury-content-grid">
                   <div className="lms-content-main">
                     {course.subCourses?.map((sc, sIdx) => {
-                      const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-                      const completedVideos = videoIds.filter(id => watched.includes(id)).length;
-                      const totalVideos = videoIds.length;
-                      const hasLab = sc.lab === "Yes";
-                      
-                      let completed = completedVideos;
-                      let total = totalVideos;
-
-                      if (hasLab) {
-                        total += 1;
-                        const normalize = (s) => s?.trim().toLowerCase();
-                        
-                        // ✅ FIXED: Safe array operations for lab processing
-                        const safeLabs = getSafeArray(labs);
-                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
-                        
-                        if (labEntry) {
-                          const registeredStudents = getSafeArray(labEntry.registeredStudents);
-                          const regEntry = registeredStudents.find(r => r.student === user?.id);
-                          const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
-                          if (labPassed) completed += 1;
-                        }
-                      }
-
-                      const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+                      const percent = calculateSubcourseCompletion(sc, sIdx);
 
                       return (
                         <div key={sIdx} className={`lms-luxury-course-module ${isSubcourseLocked(course, sIdx, watched) ? 'locked' : ''}`}>
@@ -931,55 +947,56 @@ export default function Home() {
                               );
                             })}
 
+                            {/* ✅ FIXED: Lab component with proper video completion checking */}
                             {sc.lab === "Yes" && (() => {
-  const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-  const allVideosCompleted = videoIds.every(id => watched.includes(id));
-  const normalize = s => s?.trim().toLowerCase();
-  
-  // ✅ FIXED: Use sc.title instead of sc.id
-  const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
-  const userRegistration = getUserRegistrationForSubcourse(sc.title);
-  const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
+                              const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+                              const allVideosCompleted = videoIds.every(id => watched.includes(id));
+                              const normalize = s => s?.trim().toLowerCase();
+                              
+                              const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
+                              const userRegistration = getUserRegistrationForSubcourse(sc.title);
+                              const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
 
-  const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
+                              // ✅ FIXED: Lab is locked if videos not completed OR already registered
+                              const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
 
-  return (
-    <div 
-      className={`lms-luxury-content-item lab ${isLabLocked ? 'locked' : ''} ${showGreenTick ? 'completed' : ''}`}
-      onClick={() => {
-        if (!isLabLocked) {
-          setSelectedLabSubcourse(sc.title);
-          setSelectedSection("lab-details");
-        }
-      }}
-    >
-      <div className="lms-item-backdrop"></div>
-      <div className="lms-item-icon">
-        {isLabLocked ? <FiLock /> : <FiTool />}
-      </div>
-      <div className="lms-item-content">
-        <h4 className="lms-item-title">Hands-on Lab Session</h4>
-        <div className="lms-lab-status-container">
-          {isRegisteredForSubcourse ? (
-            <div className="lms-status-badges">
-              <span className="lms-status-badge registered">✓ Registered</span>
-              {userRegistration?.result && userRegistration.result !== 'pending' && (
-                <span className={`lms-status-badge ${normalize(userRegistration.result)}`}>
-                  {normalize(userRegistration.result) === "pass" ? "✓ Passed" : "✗ Failed"}
-                </span>
-              )}
-            </div>
-          ) : allVideosCompleted ? (
-            <span className="lms-status-badge available">Available</span>
-          ) : (
-            <span className="lms-status-badge locked">Complete videos first</span>
-          )}
-        </div>
-      </div>
-      {showGreenTick && <FiCheckCircle className="lms-completion-icon" />}
-    </div>
-  );
-})()}
+                              return (
+                                <div 
+                                  className={`lms-luxury-content-item lab ${isLabLocked ? 'locked' : ''} ${showGreenTick ? 'completed' : ''}`}
+                                  onClick={() => {
+                                    if (!isLabLocked) {
+                                      setSelectedLabSubcourse(sc.title);
+                                      setSelectedSection("lab-details");
+                                    }
+                                  }}
+                                >
+                                  <div className="lms-item-backdrop"></div>
+                                  <div className="lms-item-icon">
+                                    {isLabLocked ? <FiLock /> : <FiTool />}
+                                  </div>
+                                  <div className="lms-item-content">
+                                    <h4 className="lms-item-title">Hands-on Lab Session</h4>
+                                    <div className="lms-lab-status-container">
+                                      {isRegisteredForSubcourse ? (
+                                        <div className="lms-status-badges">
+                                          <span className="lms-status-badge registered">✓ Registered</span>
+                                          {userRegistration?.result && userRegistration.result !== 'pending' && (
+                                            <span className={`lms-status-badge ${normalize(userRegistration.result)}`}>
+                                              {normalize(userRegistration.result) === "pass" ? "✓ Passed" : "✗ Failed"}
+                                            </span>
+                                          )}
+                                        </div>
+                                      ) : allVideosCompleted ? (
+                                        <span className="lms-status-badge available">Available</span>
+                                      ) : (
+                                        <span className="lms-status-badge locked">Complete videos first</span>
+                                      )}
+                                    </div>
+                                  </div>
+                                  {showGreenTick && <FiCheckCircle className="lms-completion-icon" />}
+                                </div>
+                              );
+                            })()}
 
                           </div>
                         </div>
@@ -1041,7 +1058,6 @@ export default function Home() {
 
               <div className="lms-labs-grid">
                 {(() => {
-                  // ✅ FIXED: Safe filtering for registered labs
                   const safeLabs = getSafeArray(labs);
                   const registeredLabs = safeLabs.filter((lab) => {
                     const registeredStudents = getSafeArray(lab.registeredStudents);
@@ -1106,142 +1122,139 @@ export default function Home() {
 
           {/* Lab details section with wrapper */}
           {selectedSection === "lab-details" && selectedLabSubcourse && (
-  <section className="lms-luxury-section">
-    <div className="lms-section-header">
-      <button 
-        className="lms-luxury-btn text"
-        onClick={() => {
-          setSelectedLabSubcourse(null);
-          setSelectedSection("home");
-        }}
-      >
-        ← Back to Dashboard
-      </button>
-      <h2 className="lms-section-title">Lab Sessions: {selectedLabSubcourse}</h2>
-    </div>
-
-    <div className="lms-lab-details-grid">
-      {(() => {
-        const userId = user?.id;
-
-        // ✅ Filter labs using subCourseId matching the selected subcourse title
-        const safeLabs = getSafeArray(labs);
-        const matchingLabs = safeLabs.filter(
-          (lab) => lab.subCourseId === selectedLabSubcourse
-        );
-
-        if (matchingLabs.length === 0) {
-          return (
-            <div className="lms-empty-state">
-              <FiTool className="lms-empty-icon" />
-              <h3>No Lab Sessions</h3>
-              <p>No laboratory sessions are scheduled for this module yet.</p>
-            </div>
-          );
-        }
-
-        return matchingLabs.map((lab) => {
-          const registeredStudents = getSafeArray(lab.registeredStudents);
-          const isRegistered = registeredStudents.some((r) => r.student === userId);
-          const labTime = new Date(lab.time).toLocaleString();
-          const currentRegistrations = registeredStudents.length;
-          const isFull = currentRegistrations >= Number(lab.memberCount);
-
-          const handleRegister = async () => {
-            try {
-              const res = await fetch(`${API}/api/workshops/${lab.id}/register`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + localStorage.getItem("token"),
-                },
-                body: JSON.stringify({ userId }),
-              });
-              const data = await res.json();
-              if (!res.ok) throw new Error(data.error || "Error");
-              setRegistrationMessage("Registration Successful!");
-              setShowRegistrationSuccess(true);
-              fetchLabs(userId);
-              setSelectedLabSubcourse(null);
-              setSelectedSection("home");
-            } catch (err) {
-              alert("❌ " + err.message);
-            }
-          };
-
-          const handleDeregister = async () => {
-            try {
-              const res = await fetch(`${API}/api/workshops/${lab.id}/deregister`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + localStorage.getItem("token"),
-                },
-                body: JSON.stringify({ userId }),
-              });
-              const data = await res.json();
-              if (!res.ok) throw new Error(data.error || "Error");
-              alert("Successfully deregistered from lab session");
-              fetchLabs(userId);
-            } catch (err) {
-              alert("❌ " + err.message);
-            }
-          };
-
-          return (
-            <div key={lab.id} className="lms-luxury-lab-detail-card">
-              <div className="lms-lab-detail-backdrop"></div>
-              <div className="lms-lab-detail-content">
-                <div className="lms-lab-detail-header">
-                  <div className="lms-lab-detail-icon">
-                    <FiTool />
-                  </div>
-                  <div className="lms-lab-detail-info">
-                    <h4 className="lms-lab-detail-title">{lab.labName}</h4>
-                    <p className="lms-lab-detail-address">{lab.labAddress}</p>
-                    <p className="lms-lab-detail-time">{labTime}</p>
-                    <div className="lms-lab-detail-capacity">
-                      <span className={`lms-capacity-text ${isFull ? 'full' : ''}`}>
-                        {currentRegistrations}/{lab.memberCount} registered
-                        {isFull && " (FULL)"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="lms-lab-detail-actions">
-                  {isRegistered ? (
-                    <>
-                      <div className="lms-status-badge registered">
-                        <FiCheckCircle />
-                        Registered
-                      </div>
-                      <button 
-                        className="lms-luxury-btn danger"
-                        onClick={handleDeregister}
-                      >
-                        Cancel Registration
-                      </button>
-                    </>
-                  ) : (
-                    <button 
-                      className={`lms-luxury-btn primary ${isFull ? 'disabled' : ''}`}
-                      onClick={handleRegister}
-                      disabled={isFull}
-                    >
-                      {isFull ? 'Session Full' : 'Register Now'}
-                    </button>
-                  )}
-                </div>
+            <section className="lms-luxury-section">
+              <div className="lms-section-header">
+                <button 
+                  className="lms-luxury-btn text"
+                  onClick={() => {
+                    setSelectedLabSubcourse(null);
+                    setSelectedSection("home");
+                  }}
+                >
+                  ← Back to Dashboard
+                </button>
+                <h2 className="lms-section-title">Lab Sessions: {selectedLabSubcourse}</h2>
               </div>
-            </div>
-          );
-        });
-      })()}
-    </div>
-  </section>
-)}
 
+              <div className="lms-lab-details-grid">
+                {(() => {
+                  const userId = user?.id;
+                  const safeLabs = getSafeArray(labs);
+                  const matchingLabs = safeLabs.filter(
+                    (lab) => lab.subCourseId === selectedLabSubcourse
+                  );
+
+                  if (matchingLabs.length === 0) {
+                    return (
+                      <div className="lms-empty-state">
+                        <FiTool className="lms-empty-icon" />
+                        <h3>No Lab Sessions</h3>
+                        <p>No laboratory sessions are scheduled for this module yet.</p>
+                      </div>
+                    );
+                  }
+
+                  return matchingLabs.map((lab) => {
+                    const registeredStudents = getSafeArray(lab.registeredStudents);
+                    const isRegistered = registeredStudents.some((r) => r.student === userId);
+                    const labTime = new Date(lab.time).toLocaleString();
+                    const currentRegistrations = registeredStudents.length;
+                    const isFull = currentRegistrations >= Number(lab.memberCount);
+
+                    const handleRegister = async () => {
+                      try {
+                        const res = await fetch(`${API}/api/workshops/${lab.id}/register`, {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer " + localStorage.getItem("token"),
+                          },
+                          body: JSON.stringify({ userId }),
+                        });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.error || "Error");
+                        setRegistrationMessage("Registration Successful!");
+                        setShowRegistrationSuccess(true);
+                        fetchLabs(userId);
+                        setSelectedLabSubcourse(null);
+                        setSelectedSection("home");
+                      } catch (err) {
+                        alert("❌ " + err.message);
+                      }
+                    };
+
+                    const handleDeregister = async () => {
+                      try {
+                        const res = await fetch(`${API}/api/workshops/${lab.id}/deregister`, {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer " + localStorage.getItem("token"),
+                          },
+                          body: JSON.stringify({ userId }),
+                        });
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data.error || "Error");
+                        alert("Successfully deregistered from lab session");
+                        fetchLabs(userId);
+                      } catch (err) {
+                        alert("❌ " + err.message);
+                      }
+                    };
+
+                    return (
+                      <div key={lab.id} className="lms-luxury-lab-detail-card">
+                        <div className="lms-lab-detail-backdrop"></div>
+                        <div className="lms-lab-detail-content">
+                          <div className="lms-lab-detail-header">
+                            <div className="lms-lab-detail-icon">
+                              <FiTool />
+                            </div>
+                            <div className="lms-lab-detail-info">
+                              <h4 className="lms-lab-detail-title">{lab.labName}</h4>
+                              <p className="lms-lab-detail-address">{lab.labAddress}</p>
+                              <p className="lms-lab-detail-time">{labTime}</p>
+                              <div className="lms-lab-detail-capacity">
+                                <span className={`lms-capacity-text ${isFull ? 'full' : ''}`}>
+                                  {currentRegistrations}/{lab.memberCount} registered
+                                  {isFull && " (FULL)"}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="lms-lab-detail-actions">
+                            {isRegistered ? (
+                              <>
+                                <div className="lms-status-badge registered">
+                                  <FiCheckCircle />
+                                  Registered
+                                </div>
+                                <button 
+                                  className="lms-luxury-btn danger"
+                                  onClick={handleDeregister}
+                                >
+                                  Cancel Registration
+                                </button>
+                              </>
+                            ) : (
+                              <button 
+                                className={`lms-luxury-btn primary ${isFull ? 'disabled' : ''}`}
+                                onClick={handleRegister}
+                                disabled={isFull}
+                              >
+                                {isFull ? 'Session Full' : 'Register Now'}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
+            </section>
+          )}
 
           {/* Warning popup */}
           {showRegisterWarning && (
