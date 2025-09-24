@@ -26,7 +26,7 @@ export default function PlacementDashboard() {
   const [rankingSortBy, setRankingSortBy] = useState("lab");
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
-  
+  const API_URL = process.env.REACT_APP_API_URL;
   const [emp] = useState(() => {
   try {
     return JSON.parse(localStorage.getItem("empInfo"));
@@ -39,7 +39,7 @@ export default function PlacementDashboard() {
 
   const fetchCompanies = async () => {
     try {
-      const res = await fetch("/api/companies");
+      const res = await fetch(`${API_URL}/api/companies`);
       if (!res.ok) throw new Error("Failed to load companies");
       const data = await res.json();
       setCompanies(data);
@@ -96,7 +96,7 @@ useEffect(() => {
       const payload = { ...form, createdBy: emp.id };
 
       if (form.id) {
-        await fetch(`/api/placements/${form.id}`, {
+        await fetch(`${API_URL}/api/placements/${form.id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -162,7 +162,7 @@ useEffect(() => {
   };
 
   const fetchRankings = async (sortBy = "lab") => {
-    const res = await fetch(`/api/rankings?sortBy=${sortBy}`);
+    const res = await fetch(`${API_URL}/api/rankings?sortBy=${sortBy}`);
     const data = await res.json();
     setRankings(data);
   };
@@ -856,7 +856,7 @@ useEffect(() => {
                           className="placement-btn placement-btn-success"
                           onClick={async () => {
                             try {
-                              const studentRes = await fetch(`/api/placements/${drive.id}/students`);
+                              const studentRes = await fetch(`${API_URL}/api/placements/${drive.id}/students`);
                               const studentList = await studentRes.json();
 
                               let hasError = false;
@@ -886,7 +886,7 @@ useEffect(() => {
                                 return;
                               }
 
-                              await fetch(`/api/placements/${drive.id}/complete`, { method: "PUT" });
+                              await fetch(`${API_URL}/api/placements/${drive.id}/complete`, { method: "PUT" });
                               fetchDrives();
                               setPopup("✅ Drive marked as completed");
                               setTimeout(() => setPopup(""), 2000);
@@ -975,14 +975,14 @@ useEffect(() => {
                     onClick={async () => {
                       try {
                         if (newCompany.id) {
-                          await fetch(`/api/companies/${newCompany.id}`, {
+                          await fetch(`${API_URL}/api/companies/${newCompany.id}`, {
                             method: "PUT",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newCompany)
                           });
                           setPopup("✅ Company Updated Successfully");
                         } else {
-                          await fetch("/api/companies", {
+                          await fetch("${API_URL}/api/companies", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newCompany)
@@ -1153,7 +1153,7 @@ useEffect(() => {
                         <button
                           className="placement-btn placement-btn-warning"
                           onClick={async () => {
-                            await fetch(`/api/placements/${drive.id}/revoke`, { method: "PUT" });
+                            await fetch(`${API_URL}/api/placements/${drive.id}/revoke`, { method: "PUT" });
                             fetchDrives();
                             setPopup("🔄 Drive status reverted to Scheduled");
                             setTimeout(() => setPopup(""), 2000);
@@ -1436,7 +1436,7 @@ useEffect(() => {
                                 className="placement-btn placement-btn-primary placement-btn-sm"
                                 onClick={async () => {
                                   try {
-                                    await fetch(`/api/placements/${selectedDrive}/students/${student.id}`, {
+                                    await fetch(`${API_URL}/api/placements/${selectedDrive}/students/${student.id}`, {
                                       method: "PUT",
                                       headers: {
                                         "Content-Type": "application/json",
