@@ -32,14 +32,17 @@ export default function Home() {
   const [registrationMessage, setRegistrationMessage] = useState("");
   const [issuedCertificates, setIssuedCertificates] = useState([]);
 
-  // ✅ SAFE ARRAY HELPER
+
+  // ✅ FIXED: Safe array helper function
   const getSafeArray = (data, fallbackKeys = ['items', 'data', 'results']) => {
     if (Array.isArray(data)) return data;
+    
     for (const key of fallbackKeys) {
       if (data && Array.isArray(data[key])) {
         return data[key];
       }
     }
+    
     return [];
   };
 
@@ -47,7 +50,7 @@ export default function Home() {
     return user?.status === "banned" || !user?.course;
   };
 
-  // Utility for unlocking videos per day (unchanged)
+  // Utility functions for video unlocking
   const getMaxVideosForDay = (learningHours) => {
     return Math.min(learningHours + 1, 4);
   };
@@ -63,32 +66,29 @@ export default function Home() {
     return 0;
   };
 
-  // ✅ FIXED: use title consistently when checking previous subcourse lab
   const isSubcourseLocked = (course, subCourseIndex, watched) => {
     if (subCourseIndex === 0) return false;
-
+    
     const prevSubCourse = course.subCourses[subCourseIndex - 1];
     const videoIds = prevSubCourse.videos?.map((_, vIdx) => 
       idOf(course.id, subCourseIndex - 1, vIdx)) || [];
     const allVideosWatched = videoIds.every(id => watched.includes(id));
-
+    
     if (prevSubCourse.lab === "Yes") {
+      // ✅ FIXED: Safe array operations
       const safeLabs = getSafeArray(labs);
-      // <-- CONSISTENT KEY: match by title (subCourseId === subCourse.title)
-      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.title);
-
+      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.id);
+      
       if (lab) {
         const registeredStudents = getSafeArray(lab.registeredStudents);
         const labCompleted = registeredStudents.some(
           r => r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
         );
-        // locked unless all previous videos watched AND lab completed
         return !(allVideosWatched && labCompleted);
       }
-      // If there is no lab entry, keep it locked until videos are watched
-      return !allVideosWatched;
+      return true;
     }
-
+    
     return !allVideosWatched;
   };
 
@@ -110,46 +110,44 @@ export default function Home() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error");
-
+      
       setRegistrationMessage("Registration Successful!");
       setShowRegistrationSuccess(true);
-
+      
       fetchLabs(user.id);
       setShowRegisterWarning(false);
       setPendingLabToRegister(null);
       setSelectedLabSubcourse(null);
       setSelectedSection("home");
-
+      
       setTimeout(() => {
         setShowRegistrationSuccess(false);
       }, 3000);
-
+      
     } catch (err) {
       alert("❌ " + err.message);
     }
   };
   
-  // ✅ CONSISTENT: calculate overall course completion (uses sc.title for lab lookup)
   const calculateCourseCompletion = () => {
     if (!course || !watched || !course.subCourses) return 0;
     let totalItems = 0;
     let completedItems = 0;
-
+    
     const safeCourse = course.subCourses || [];
     const safeLabs = getSafeArray(labs);
-
+    
     safeCourse.forEach((sc, sIdx) => {
       const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
       const completed = videoIds.filter(id => watched.includes(id)).length;
       totalItems += videoIds.length;
       completedItems += completed;
-
+      
       if (sc.lab === "Yes") {
         totalItems += 1;
         const normalize = (s) => s?.trim().toLowerCase();
-        // find lab by title consistently
         const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
-
+        
         if (labEntry) {
           const registeredStudents = getSafeArray(labEntry.registeredStudents);
           const regEntry = registeredStudents.find(r => r.student === user?.id);
@@ -162,27 +160,29 @@ export default function Home() {
   };
 
   const generateSubcourseCertificate = async (subCourseTitle) => {
-    try {
-      const res = await fetch(`${API}/api/certificates/generate`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          courseId: course.id,
-          subCourseTitle,
-        }),
-      });
+  try {
+    const res = await fetch(`${API}/api/certificates/generate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        userId: user.id,
+        courseId: course.id,
+        subCourseTitle,
+      }),
+    });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Certificate generation failed");
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Certificate generation failed");
 
-    } catch (err) {
-      console.error("Certificate generation error:", err);
-    }
-  };
+    
+    
+  } catch (err) {
+    console.error("Certificate generation error:", err);
+  }
+};
 
 
   const checkProfileCompletion = (profileData) => {
@@ -198,6 +198,7 @@ export default function Home() {
       return true;
     };
     
+    // Profile completion logic (same as before)
     const basicFields = [
       profileData.firstName, profileData.lastName, profileData.name,
       profileData.gender, profileData.communicationLanguage, profileData.teachingLanguage,
@@ -210,6 +211,7 @@ export default function Home() {
       if (isFieldFilled(field)) filledFields++;
     });
 
+    // Add other field checks...
     const missingFields = totalFields - filledFields;
     const percentage = totalFields > 0 ? Math.round((filledFields / totalFields) * 100) : 0;
     
@@ -234,7 +236,7 @@ export default function Home() {
   const helpRef = useRef(null);
   const helpBtnRef = useRef(null);
 
-  // ✅ SAFE fetching of labs
+  // ✅ FIXED: Safe fetchLabs function
   const fetchLabs = async (userId) => {
     try {
       const res = await fetch(`${API}/api/workshops`, {
@@ -242,6 +244,8 @@ export default function Home() {
       });
       const data = await res.json();
       console.log('🔍 Labs API response:', data);
+      
+      // Handle both array and object responses
       const safeLabs = getSafeArray(data, ['items', 'workshops']);
       console.log('✅ Safe labs array:', safeLabs);
       setLabs(safeLabs);
@@ -264,7 +268,7 @@ export default function Home() {
     }
   }, []);
 
-  // Registration helpers (use title as subCourseId)
+  // ✅ FIXED: Safe user registration functions
   const isUserRegisteredForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     return safeLabs.some(lab => {
@@ -289,6 +293,7 @@ export default function Home() {
     return null;
   };
 
+  // All useEffect hooks with fixes...
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -314,18 +319,8 @@ export default function Home() {
     (async () => {
       try {
         const watchedData = await fetchJSON(`${API}/api/progress`);
-        // ✅ Normalize watched items to strings that match idOf(...) format
-        const normalizedWatched = Array.isArray(watchedData)
-          ? watchedData.map(w => {
-              if (typeof w === 'string') return w;
-              return w.id || w.videoId || w.progressId || w.watchedId || "";
-            }).filter(Boolean)
-          : [];
-        setWatched(normalizedWatched);
-      } catch (err) {
-        console.warn('Error fetching progress:', err);
-        setWatched([]);
-      }
+        setWatched(Array.isArray(watchedData) ? watchedData : []);
+      } catch {}
 
       try {
         const u = await fetchJSON(`${API}/api/user/homepage`);
@@ -350,6 +345,7 @@ export default function Home() {
         if (u.status === "suspended") return setNote("Your account is suspended. Please contact your mentor.");
         if (!u.course) return setNote("Course yet to be decided. Please wait for admin enrolment.");
 
+        // ✅ FIXED: Safe courses handling
         const coursesResponse = await fetchJSON(`${API}/api/courses`);
         console.log('🔍 Courses API response:', coursesResponse);
         
@@ -373,6 +369,7 @@ export default function Home() {
     };
   }, [hist, fetchProfileData]);
 
+  // Other useEffect hooks remain the same...
   useEffect(() => {
     const handler = (e) => {
       if (
@@ -431,36 +428,33 @@ export default function Home() {
     }
   }, [courseCompletion, user]);
 
-  // ✅ CERTIFICATE ISSUE EFFECT: consistent lab lookup + safe arrays
   useEffect(() => {
-    if (!user || !course || !course.subCourses) return;
+  if (!user || !course || !course.subCourses) return;
 
-    course.subCourses.forEach(async (sc, sIdx) => {
-      const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-      let completed = videoIds.filter(id => watched.includes(id)).length;
+  course.subCourses.forEach(async (sc, sIdx) => {
+    const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+    let completed = videoIds.filter(id => watched.includes(id)).length;
 
-      // Include lab if applicable (consistent lookup)
-      if (sc.lab === "Yes") {
-        const safeLabs = getSafeArray(labs);
-        const labEntry = safeLabs.find(l => l.subCourseId === sc.title);
-        if (labEntry) {
-          const registeredStudents = getSafeArray(labEntry.registeredStudents);
-          const regEntry = registeredStudents.find(r => r.student === user.id);
-          const labPassed = regEntry?.attendance === true && (regEntry?.result?.trim().toLowerCase() === "pass");
-          if (labPassed) completed += 1;
-        }
-      }
+    // Include lab if applicable
+    if (sc.lab === "Yes") {
+      const labEntry = getSafeArray(labs).find(l => l.subCourseId === sc.title);
+      const regEntry = labEntry?.registeredStudents?.find(r => r.student === user.id);
+      const labPassed = regEntry?.attendance === true && (regEntry?.result?.trim().toLowerCase() === "pass");
+      if (labPassed) completed += 1;
+    }
 
-      const total = videoIds.length + (sc.lab === "Yes" ? 1 : 0);
-      const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    const total = videoIds.length + (sc.lab === "Yes" ? 1 : 0);
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
-      const alreadyIssued = issuedCertificates.includes(sc.title);
-      if (percent === 100 && !alreadyIssued) {
-        await generateSubcourseCertificate(sc.title);
-        setIssuedCertificates(prev => [...prev, sc.title]);
-      }
-    });
-  }, [watched, labs, course, user]);
+    // Only issue if 100% and not already issued
+    const alreadyIssued = issuedCertificates.includes(sc.title);
+    if (percent === 100 && !alreadyIssued) {
+      await generateSubcourseCertificate(sc.title);
+      setIssuedCertificates(prev => [...prev, sc.title]);
+    }
+  });
+}, [watched, labs, course, user]);
+
 
   const handleResumeClick = () => {
     if (!profileCompletion.isComplete) {
@@ -470,11 +464,13 @@ export default function Home() {
     hist.push("/resume");
   };
 
+  // **ENHANCED SCROLLABLE SIDEBAR COMPONENT**
   const Sidebar = () => (
     <aside className="lms-luxury-sidebar">
       <div className="lms-sidebar-shimmer"></div>
       <div className="lms-sidebar-scroll-container">
         <div className="lms-sidebar-content">
+          {/* Premium Logo Section */}
           <div className="lms-luxury-logo-section">
             <div className="lms-logo-backdrop">
               <div className="lms-logo-aurora"></div>
@@ -489,6 +485,7 @@ export default function Home() {
             </div>
           </div>
           
+          {/* Premium Navigation */}
           <nav className="lms-luxury-nav">
             <div className="lms-nav-section">
               <span className="lms-nav-section-title">MAIN</span>
@@ -609,6 +606,7 @@ export default function Home() {
             </div>
           </nav>
 
+          {/* Premium Profile Section */}
           <div ref={profileRef} className="lms-luxury-profile-section" onClick={() => setShowMenu((p) => !p)}>
             <div className="lms-profile-card">
               <div className="lms-profile-backdrop"></div>
@@ -650,6 +648,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Premium Menu */}
           {showMenu && (
             <div ref={menuRef} className="lms-luxury-menu">
               <div className="lms-menu-backdrop"></div>
@@ -698,6 +697,7 @@ export default function Home() {
     </aside>
   );
 
+  // Error states remain the same...
   if (note && user?.status === "banned") {
     return (
       <div className="lms-home-wrapper">
@@ -742,6 +742,7 @@ export default function Home() {
     </div>
   );
 
+  // Main render with enhanced luxury structure...
   return (
     <div className="lms-home-wrapper">
       <div className="lms-app-container">
@@ -749,6 +750,7 @@ export default function Home() {
         <main className="lms-luxury-main-content">
           {selectedSection === "home" && (
             <>
+              {/* Premium Hero Section */}
               <section className="lms-luxury-hero">
                 <div className="lms-hero-backdrop">
                   <div className="lms-hero-aurora lms-aurora-1"></div>
@@ -801,6 +803,7 @@ export default function Home() {
                 </div>
               </section>
 
+              {/* Profile completion banner */}
               {!profileCompletion.isComplete && (
                 <section className="lms-luxury-alert-banner">
                   <div className="lms-alert-backdrop"></div>
@@ -819,6 +822,7 @@ export default function Home() {
                 </section>
               )}
 
+              {/* Course content with luxury styling and STREAK WIDGET */}
               {profileCompletion.isComplete ? (
                 <div className="lms-luxury-content-grid">
                   <div className="lms-content-main">
@@ -835,8 +839,8 @@ export default function Home() {
                         total += 1;
                         const normalize = (s) => s?.trim().toLowerCase();
                         
+                        // ✅ FIXED: Safe array operations for lab processing
                         const safeLabs = getSafeArray(labs);
-                        // find lab by title (consistent)
                         const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
                         
                         if (labEntry) {
@@ -932,13 +936,12 @@ export default function Home() {
   const allVideosCompleted = videoIds.every(id => watched.includes(id));
   const normalize = s => s?.trim().toLowerCase();
   
-  // ✅ FIXED: Use sc.title for lab lookups
+  // ✅ FIXED: Use sc.title instead of sc.id
   const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
   const userRegistration = getUserRegistrationForSubcourse(sc.title);
   const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
 
-  // LOCK logic: lock only until all videos are completed
-  const isLabLocked = !allVideosCompleted;
+  const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
 
   return (
     <div 
@@ -1022,6 +1025,7 @@ export default function Home() {
             </div>
           )}
 
+          {/* Other sections with proper wrapper classes */}
           {selectedSection === "labs" && (
             <section className="lms-luxury-section">
               <div className="lms-section-header">
@@ -1037,6 +1041,7 @@ export default function Home() {
 
               <div className="lms-labs-grid">
                 {(() => {
+                  // ✅ FIXED: Safe filtering for registered labs
                   const safeLabs = getSafeArray(labs);
                   const registeredLabs = safeLabs.filter((lab) => {
                     const registeredStudents = getSafeArray(lab.registeredStudents);
@@ -1099,6 +1104,7 @@ export default function Home() {
             </section>
           )}
 
+          {/* Lab details section with wrapper */}
           {selectedSection === "lab-details" && selectedLabSubcourse && (
   <section className="lms-luxury-section">
     <div className="lms-section-header">
@@ -1118,6 +1124,7 @@ export default function Home() {
       {(() => {
         const userId = user?.id;
 
+        // ✅ Filter labs using subCourseId matching the selected subcourse title
         const safeLabs = getSafeArray(labs);
         const matchingLabs = safeLabs.filter(
           (lab) => lab.subCourseId === selectedLabSubcourse
@@ -1235,6 +1242,8 @@ export default function Home() {
   </section>
 )}
 
+
+          {/* Warning popup */}
           {showRegisterWarning && (
             <div className="lms-luxury-modal-overlay">
               <div className="lms-luxury-modal">
@@ -1276,6 +1285,7 @@ export default function Home() {
           )}
         </main>
 
+        {/* Floating help button */}
         <button className="lms-luxury-help-btn" ref={helpBtnRef} onClick={() => setShowHelp((p) => !p)}>
           <div className="lms-help-btn-backdrop"></div>
           <FiHelpCircle className="lms-help-icon" />
