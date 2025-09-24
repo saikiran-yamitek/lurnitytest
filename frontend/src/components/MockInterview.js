@@ -141,7 +141,7 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
           userName: userData?.name || 'Candidate',
           geminiApiKey
         };
-        const res = await fetch(`${API}/api/gemini/mock-questions`, {
+        const res = await fetch(`${API}/api/user/mock-questions`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
