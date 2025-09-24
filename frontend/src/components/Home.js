@@ -55,12 +55,12 @@ export default function Home() {
   };
 
   const getUnlockedVideosCount = (user, subCourseIndex) => {
-  // Calculate time-based unlocking for all subcourses
-  const startDate = user.startDate ? new Date(user.startDate) : new Date();
+  // Use createdAt instead of startDate
+  const startDate = user.createdAt ? new Date(user.createdAt) : new Date();
   const currentDate = new Date();
   const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
   
-  // 🔧 FIXED: Use learning hours directly as videos per day
+  // Use learning hours directly as videos per day
   const videosPerDay = user.learningHours || 3;
   
   if (subCourseIndex === 0) {
@@ -71,6 +71,7 @@ export default function Home() {
     return Math.min(videosPerDay * (dayDiff + 1), 100);
   }
 };
+
 
 
   // ✅ FIXED: Only consider videos and labs for subcourse locking (exclude practice)
