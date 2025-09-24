@@ -437,7 +437,7 @@ export default function Home() {
 
     // Include lab if applicable
     if (sc.lab === "Yes") {
-      const labEntry = getSafeArray(labs).find(l => l.subCourseId === sc.id);
+      const labEntry = getSafeArray(labs).find(l => l.subCourseId === sc.title);
       const regEntry = labEntry?.registeredStudents?.find(r => r.student === user.id);
       const labPassed = regEntry?.attendance === true && (regEntry?.result?.trim().toLowerCase() === "pass");
       if (labPassed) completed += 1;
