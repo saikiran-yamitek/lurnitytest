@@ -56,19 +56,23 @@ const StudentPlacementDrives = () => {
 
           for (const drive of drivesData) {
             for (const student of drive.registered) {
-              if (
-                student.student && 
-                String(student.student.id) === String(studentId) &&
-                String(student.status).toUpperCase() === "PLACED"
-              ) {
-                foundPlacement = {
-                  company: drive.company,
-                  role: drive.role,
-                  offerLetterURL: student.offerLetterURL
-                };
-                break;
-              }
-            }
+  if (
+    student.student &&
+    (
+      String(student.student) === String(studentId) ||    // case: student is a string
+      String(student.student.id) === String(studentId)    // case: student is an object
+    ) &&
+    String(student.status).toUpperCase() === "PLACED"
+  ) {
+    foundPlacement = {
+      company: drive.company,
+      role: drive.role,
+      offerLetterURL: student.offerLetterURL
+    };
+    break;
+  }
+}
+
 
             if (
               drive.registered.some(

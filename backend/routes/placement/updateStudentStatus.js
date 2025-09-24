@@ -8,11 +8,11 @@ export const handler = async (event) => {
   }
 
   try {
-    const { driveId } = event.pathParameters; // keep driveId in path
+    const { id } = event.pathParameters; // keep driveId in path
     const body = JSON.parse(event.body);      // parse body
     const { studentId, ...statusData } = body; // get studentId from body and rest as statusData
 
-    const result = await updateStudentStatus(driveId, studentId, statusData);
+    const result = await updateStudentStatus(id, studentId, statusData);
     return createResponse(200, result);
   } catch (err) {
     return createResponse(500, { message: err.message });

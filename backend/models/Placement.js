@@ -55,11 +55,11 @@ export async function getPlacementById(id) {
 }
 
 // Delete placement
-export async function deletePlacement(driveId) {
+export async function deletePlacement(id) {
   await docClient.send(
     new DeleteCommand({
       TableName: TABLE_NAME,
-      Key: { driveId },
+      Key: { id },
     })
   );
   return { message: "Deleted" };
@@ -144,11 +144,11 @@ export async function updatePlacement(id, updateData) {
 
 // Update student info inside placement
 export async function updateStudentStatus(
-  driveId,
+  id,
   studentId,
   { status, remarks, offerLetterURL }
 ) {
-  const placement = await getPlacementById(driveId);
+  const placement = await getPlacementById(id);
   if (!placement) throw new Error("Drive not found");
 
   const studentEntry = placement.registered?.find(
