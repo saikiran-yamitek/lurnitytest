@@ -388,16 +388,17 @@ Please provide a helpful, informative, and engaging response as Lurnity's AI ass
 
   // Switch to form mode
   const switchToFormMode = () => {
-    setIsFormMode(true);
-    setMessages([]);
-    setCurrentStep(0);
-    
-    // Start the demo form flow
-    setTimeout(() => {
-      addBotMessage(chatSteps[0].message, chatSteps[0].delay);
-      setCurrentStep(1);
-    }, 500);
-  };
+  setIsFormMode(true);
+  setMessages([]);
+  setCurrentStep(0);
+
+  // Start the demo form flow
+  setTimeout(() => {
+    addBotMessage(chatSteps[0].message, chatSteps[0].delay);
+    // ✅ Do NOT increment currentStep here
+  }, 500);
+};
+
 
   // Switch back to AI mode
   const switchToAIMode = () => {
@@ -580,13 +581,15 @@ Please provide a helpful, informative, and engaging response as Lurnity's AI ass
     }
 
     // Move to next step
+    
     const nextStep = currentStep + 1;
-    if (nextStep < chatSteps.length) {
-      setTimeout(() => {
-        addBotMessage(chatSteps[nextStep].message, chatSteps[nextStep].delay);
-        setCurrentStep(nextStep + 1);
-      }, 800);
-    }
+if (nextStep < chatSteps.length) {
+  setTimeout(() => {
+    addBotMessage(chatSteps[nextStep].message, chatSteps[nextStep].delay);
+    setCurrentStep(nextStep); // ✅ Correct
+  }, 800);
+}
+
   };
 
   const handleOptionClick = (option) => {
