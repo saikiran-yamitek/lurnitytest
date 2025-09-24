@@ -65,52 +65,32 @@ export default function Home() {
     }
     return 0;
   };
-  // helper - add once near your other helpers
-const getCombinedWatched = () => {
-  // watched = state from /api/progress (may be strings)
-  // user?.watchedVideos = profile's watched video strings (from /api/user/homepage)
-  const arr1 = Array.isArray(watched) ? watched : [];
-  const arr2 = Array.isArray(user?.watchedVideos) ? user.watchedVideos : [];
-  return Array.from(new Set([...arr1, ...arr2]));
-};
 
-
-  const isSubcourseLocked = (course, subCourseIndex) => {
-  if (subCourseIndex === 0) return false;
-
-  const combinedWatched = getCombinedWatched();
-
-  const prev = course.subCourses[subCourseIndex - 1];
-
-  // videos of previous subcourse
-  const prevVideoIds = (prev.videos || []).map((_, vIdx) => idOf(course.id, subCourseIndex - 1, vIdx));
-  const allVideosWatched = prevVideoIds.length === 0 ? true : prevVideoIds.every(id => combinedWatched.includes(id));
-
-  // LAB check
-  if (prev.lab === "Yes") {
-    const safeLabs = getSafeArray(labs);
-
-    // IMPORTANT: match by subCourse title (consistent)
-    const labEntry = safeLabs.find(l => l.subCourseId === prev.title);
-
-    if (labEntry) {
-      const registeredStudents = getSafeArray(labEntry.registeredStudents);
-      const labPassed = registeredStudents.some(
-        r => r.student === user?.id && r.attendance === true && (r.result || '').toString().trim().toLowerCase() === 'pass'
-      );
-      // locked unless both videos done and lab passed
-      return !(allVideosWatched && labPassed);
+  const isSubcourseLocked = (course, subCourseIndex, watched) => {
+    if (subCourseIndex === 0) return false;
+    
+    const prevSubCourse = course.subCourses[subCourseIndex - 1];
+    const videoIds = prevSubCourse.videos?.map((_, vIdx) => 
+      idOf(course.id, subCourseIndex - 1, vIdx)) || [];
+    const allVideosWatched = videoIds.every(id => watched.includes(id));
+    
+    if (prevSubCourse.lab === "Yes") {
+      // ✅ FIXED: Safe array operations
+      const safeLabs = getSafeArray(labs);
+      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.id);
+      
+      if (lab) {
+        const registeredStudents = getSafeArray(lab.registeredStudents);
+        const labCompleted = registeredStudents.some(
+          r => r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
+        );
+        return !(allVideosWatched && labCompleted);
+      }
+      return true;
     }
-
-    // lab not scheduled / no entry — don't block solely because lab record missing;
-    // unlock when videos are watched
+    
     return !allVideosWatched;
-  }
-
-  // no lab required — unlock when videos are watched
-  return !allVideosWatched;
-};
-
+  };
 
   const handleRegisterClick = (lab) => {
     setPendingLabToRegister(lab);
