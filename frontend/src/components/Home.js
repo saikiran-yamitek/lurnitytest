@@ -65,6 +65,15 @@ export default function Home() {
     }
     return 0;
   };
+  // helper - add once near your other helpers
+const getCombinedWatched = () => {
+  // watched = state from /api/progress (may be strings)
+  // user?.watchedVideos = profile's watched video strings (from /api/user/homepage)
+  const arr1 = Array.isArray(watched) ? watched : [];
+  const arr2 = Array.isArray(user?.watchedVideos) ? user.watchedVideos : [];
+  return Array.from(new Set([...arr1, ...arr2]));
+};
+
 
   const isSubcourseLocked = (course, subCourseIndex) => {
   if (subCourseIndex === 0) return false;
