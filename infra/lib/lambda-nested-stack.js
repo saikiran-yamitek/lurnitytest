@@ -135,6 +135,13 @@ class LambdaNestedStack extends cdk.NestedStack {
     this.getPlacementByIdLambda = makeLambda("GetPlacementByIdLambda", "getPlacementById", placementLambdaPath);
     this.updatePlacementLambda = makeLambda("UpdatePlacementLambda", "updatePlacement", placementLambdaPath);
     this.deletePlacementLambda = makeLambda("DeletePlacementLambda", "deletePlacement", placementLambdaPath);
+    // New Placement-related Lambdas
+this.updateStudentStatusLambda = makeLambda("UpdateStudentStatusLambda", "updateStudentStatus", placementLambdaPath);
+this.revokePlacementLambda = makeLambda("RevokePlacementLambda", "revokePlacement", placementLambdaPath);
+this.registerStudentPlacementLambda = makeLambda("RegisterStudentPlacementLambda", "registerStudent", placementLambdaPath);
+this.getPlacementStudentsLambda = makeLambda("GetPlacementStudentsLambda", "getPlacementStudents", placementLambdaPath);
+this.completePlacementLambda = makeLambda("CompletePlacementLambda", "completePlacement", placementLambdaPath);
+
 
     // Workshop lambdas
     this.listWorkshopsLambda = makeLambda("ListWorkshopsLambda", "listWorkshops", workshopLambdaPath);

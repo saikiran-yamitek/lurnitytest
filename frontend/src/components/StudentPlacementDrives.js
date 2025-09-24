@@ -58,7 +58,7 @@ const StudentPlacementDrives = () => {
             for (const student of drive.registered) {
               if (
                 student.student && 
-                String(student.student._id) === String(studentId) &&
+                String(student.student.id) === String(studentId) &&
                 String(student.status).toUpperCase() === "PLACED"
               ) {
                 foundPlacement = {
@@ -73,11 +73,11 @@ const StudentPlacementDrives = () => {
             if (
               drive.registered.some(
                 s =>
-                  (s.student && String(s.student._id) === String(studentId)) ||
-                  String(s._id) === String(studentId)
+                  (s.student && String(s.student.id) === String(studentId)) ||
+                  String(s.id) === String(studentId)
               )
             ) {
-              applied.push(drive._id);
+              applied.push(drive.id);
             }
           }
           
@@ -156,7 +156,7 @@ const StudentPlacementDrives = () => {
     }
 
     try {
-      const res = await fetch(`${API}/api/placements/register/${selectedDrive._id}`, {
+      const res = await fetch(`${API}/api/placements/register/${selectedDrive.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -166,7 +166,7 @@ const StudentPlacementDrives = () => {
 
       const data = await res.json();
       if (res.ok) {
-        setAppliedDriveIds(prev => [...prev, selectedDrive._id]); 
+        setAppliedDriveIds(prev => [...prev, selectedDrive.id]); 
         setShowSuccessPopup(true);
       } else {
         alert(data.message || "Failed to apply. Please try again.");
@@ -181,7 +181,7 @@ const StudentPlacementDrives = () => {
     const isPastDrive = new Date(drive.lastDateToApply) <= new Date();
     const matchesFilter =
       (filter === "all" && !isPastDrive) ||
-      (filter === "applied" && appliedDriveIds.includes(drive._id)) ||
+      (filter === "applied" && appliedDriveIds.includes(drive.id)) ||
       (filter === "past" && isPastDrive);
 
     const matchesSearch =
@@ -477,12 +477,12 @@ const StudentPlacementDrives = () => {
             <div className="spd-drives-grid">
               {filteredDrives.map((drive) => {
                 const isExpired = new Date(drive.lastDateToApply) < new Date();
-                const isApplied = appliedDriveIds.includes(drive._id);
+                const isApplied = appliedDriveIds.includes(drive.id);
                 
                 return (
                   <div 
                     className={`spd-drive-card ${isExpired ? 'expired' : ''} ${isApplied ? 'applied' : ''}`} 
-                    key={drive._id}
+                    key={drive.id}
                   >
                     <div className="spd-card-glass"></div>
                     
@@ -532,8 +532,8 @@ const StudentPlacementDrives = () => {
                         <p>
                           {
                             drive.registered.find(s =>
-                              (s.student && String(s.student._id) === String(localStorage.getItem("userId"))) ||
-                              String(s._id) === String(localStorage.getItem("userId"))
+                              (s.student && String(s.student.id) === String(localStorage.getItem("userId"))) ||
+                              String(s.id) === String(localStorage.getItem("userId"))
                             )?.remarks || "Your application is under review. We'll update you soon!"
                           }
                         </p>

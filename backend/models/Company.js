@@ -6,6 +6,7 @@ import {
   PutCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
+import crypto from "crypto";
 
 const client = new DynamoDBClient({ region: process.env.AWS_REGION });
 const ddb = DynamoDBDocumentClient.from(client);
@@ -37,22 +38,28 @@ export async function createCompany(data) {
 
 // ✅ Update existing company
 export async function updateCompany(id, data) {
+  // Strip out id so it’s not updated
+  const { id: _, ...fields } = data;
+
+  if (Object.keys(fields).length === 0) {
+    throw new Error("No fields to update");
+  }
+
   const updateExpression = [];
   const expressionAttributeValues = {};
+  const expressionAttributeNames = {};
 
-  for (const [key, value] of Object.entries(data)) {
+  for (const [key, value] of Object.entries(fields)) {
     updateExpression.push(`#${key} = :${key}`);
     expressionAttributeValues[`:${key}`] = value;
+    expressionAttributeNames[`#${key}`] = key;
   }
 
   const command = new UpdateCommand({
     TableName: TABLE_NAME,
     Key: { id },
     UpdateExpression: `SET ${updateExpression.join(", ")}`,
-    ExpressionAttributeNames: Object.keys(data).reduce(
-      (acc, key) => ({ ...acc, [`#${key}`]: key }),
-      {}
-    ),
+    ExpressionAttributeNames: expressionAttributeNames,
     ExpressionAttributeValues: expressionAttributeValues,
     ReturnValues: "ALL_NEW",
   });
@@ -60,3 +67,4 @@ export async function updateCompany(id, data) {
   const response = await ddb.send(command);
   return response.Attributes;
 }
+

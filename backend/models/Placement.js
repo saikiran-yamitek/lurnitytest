@@ -7,6 +7,8 @@ import {
   DeleteCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
+import crypto from "crypto";
+
 
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
@@ -23,11 +25,12 @@ export async function listPlacements() {
 // Create a new placement
 export async function createPlacement(driveData) {
   const newDrive = {
-    ...driveData,
+    id: driveData.id || crypto.randomUUID(),   // ✅ ensure PK
     driveId: driveData.driveId || Date.now().toString(),
     registered: driveData.registered || [],
     status: driveData.status || "SCHEDULED",
     createdAt: new Date().toISOString(),
+    ...driveData, // put this at the end so extra fields from client are preserved
   };
 
   await docClient.send(
@@ -36,6 +39,7 @@ export async function createPlacement(driveData) {
       Item: newDrive,
     })
   );
+
   return newDrive;
 }
 
@@ -93,21 +97,36 @@ export async function registerStudent(driveId, studentId) {
 }
 
 // Update placement details
-export async function updatePlacement(driveId, updateData) {
-  const placement = await getPlacementById(driveId);
-  if (!placement) throw new Error("Drive not found");
 
-  const updated = { ...placement, ...updateData };
 
-  await docClient.send(
-    new PutCommand({
-      TableName: TABLE_NAME,
-      Item: updated,
-    })
-  );
+export async function updatePlacement(id, updateData) {
+  // Strip id to avoid trying to update it
+  const { id: _, ...fields } = updateData;
 
-  return updated;
+  const updateExpr = [];
+  const exprAttrNames = {};
+  const exprAttrValues = {};
+
+  for (const [key, value] of Object.entries(fields)) {
+    updateExpr.push(`#${key} = :${key}`);
+    exprAttrNames[`#${key}`] = key;
+    exprAttrValues[`:${key}`] = value;
+  }
+
+  const command = new UpdateCommand({
+    TableName: TABLE_NAME,
+    Key: { id }, // only PK here (or { id, driveId } if composite key)
+    UpdateExpression: `SET ${updateExpr.join(", ")}`,
+    ExpressionAttributeNames: exprAttrNames,
+    ExpressionAttributeValues: exprAttrValues,
+    ReturnValues: "ALL_NEW",
+  });
+
+  const result = await docClient.send(command);
+  return result.Attributes;
 }
+
+
 
 // Update student info inside placement
 export async function updateStudentStatus(

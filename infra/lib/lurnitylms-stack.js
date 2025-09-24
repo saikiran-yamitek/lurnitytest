@@ -119,6 +119,20 @@ class LurnityLmsStack extends cdk.Stack {
       databaseStack.companyTable.grantFullAccess(l);
     });
 
+    // New placement lambdas
+[
+  lambdaStack.updateStudentStatusLambda,
+  lambdaStack.revokePlacementLambda,
+  lambdaStack.registerStudentPlacementLambda,
+  lambdaStack.getPlacementStudentsLambda,
+  lambdaStack.completePlacementLambda
+].forEach(l => {
+  databaseStack.placementTable.grantFullAccess(l);
+  databaseStack.userTable.grantFullAccess(l);
+  databaseStack.companyTable.grantFullAccess(l); // only if needed
+});
+
+
     [
       lambdaStack.listWorkshopsLambda,
       lambdaStack.createWorkshopLambda,

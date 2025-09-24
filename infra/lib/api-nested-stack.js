@@ -151,7 +151,13 @@ jobId.addResource("apply").addMethod(
     placementId.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getPlacementByIdLambda));
     placementId.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updatePlacementLambda));
     placementId.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deletePlacementLambda));
+    placementId.addResource("complete").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.completePlacementLambda));
+placementId.addResource("revoke").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.revokePlacementLambda));
 
+const driveResource = placements.addResource("{driveId}");
+driveResource.addResource("register").addMethod("POST", new apigateway.LambdaIntegration(lambdas.registerStudentPlacementLambda));
+driveResource.addResource("status").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateStudentStatusLambda));
+driveResource.addResource("students").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getPlacementStudentsLambda));
     // --- Workshops ---
     const workshops = apiResource.addResource("workshops");
     workshops.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listWorkshopsLambda));
