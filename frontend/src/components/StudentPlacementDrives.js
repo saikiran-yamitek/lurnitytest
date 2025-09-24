@@ -38,7 +38,7 @@ const StudentPlacementDrives = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`${API}/api/homepage`, {
+        const res = await fetch(`${API}/api/user/homepage`, {
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
         });
         const data = await res.json();
@@ -156,7 +156,7 @@ const StudentPlacementDrives = () => {
     }
 
     try {
-      const res = await fetch(`${API}/api/placements/register/${selectedDrive.id}`, {
+      const res = await fetch(`${API}/api/placements/${selectedDrive.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

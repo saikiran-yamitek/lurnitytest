@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/d5929b745fd5196aaeca951466d4bf7761e4f64b75d20bae21e1e57f4239355e.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/e8fb5d526a1d13e92ce85cc760516fcecd2e03cc80673edc5a7f37adedd9f703.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -1058,6 +1058,96 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "DeletePlacementLambda5F2105AD"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateStudentStatusLambdaServiceRole3147375C"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateStudentStatusLambdaServiceRoleDefaultPolicy266C2DBF"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateStudentStatusLambdaCEA8F7E9"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RevokePlacementLambdaServiceRole1CE54FED"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RevokePlacementLambdaServiceRoleDefaultPolicy2C243784"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RevokePlacementLambdaBA7FBA84"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RegisterStudentPlacementLambdaServiceRole1248FA6C"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RegisterStudentPlacementLambdaServiceRoleDefaultPolicy9DF8AD7B"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RegisterStudentPlacementLambdaC0989765"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPlacementStudentsLambdaServiceRole5E034EA5"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPlacementStudentsLambdaServiceRoleDefaultPolicy7ABA8682"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPlacementStudentsLambda62E29309"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CompletePlacementLambdaServiceRole2CE03406"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CompletePlacementLambdaServiceRoleDefaultPolicyF81B27C5"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CompletePlacementLambda08E4D434"
           }
         ],
         "/LurnityLmsStack/LambdaNestedStack/ListWorkshopsLambda/ServiceRole/Resource": [
@@ -2470,6 +2560,36 @@
             "data": "LurnityLmsStackLambdaNestedStackDeletePlacementLambda172CCFAFArn"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2737,7 +2857,7 @@
         "/LurnityLmsStack/ApiNestedStack": [
           {
             "type": "aws:cdk:info",
-            "data": "Number of resources: 445 is approaching allowed maximum of 500",
+            "data": "Number of resources: 472 is approaching allowed maximum of 500",
             "trace": [
               "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
               "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
@@ -2778,7 +2898,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F2916920422f6b99f418c261fc0b56f383"
+            "data": "LurnityLmsApiDeployment658DA5F206e73c1e0b218921b2d4c0393c02dde9"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -3961,6 +4081,168 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsApiapiplacementsidDELETEE10AD8DB"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidcompleteB2F89004"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidcompleteOPTIONSE0F50377"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidcompletePUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsidcomplete31BEA13D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidcompletePUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsidcomplete71BFED6B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidcompletePUT2F0DF8BC"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidrevoke24F11F93"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidrevokeOPTIONS67305547"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidrevokePUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsidrevokeA56957E4"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidrevokePUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsidrevoke06954203"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsidrevokePUTCD1E4255"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveId944DD01A"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdOPTIONSCC230B85"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdregister5F73EF51"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdregisterOPTIONSD8E4F97A"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdregisterPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiplacementsdriveIdregisterEBFF2C72"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdregisterPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiplacementsdriveIdregister936F91AB"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdregisterPOST29FDCDA3"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstatus6C78DF8F"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstatusOPTIONS4443B679"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstatusPUTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsdriveIdstatus83ED80D9"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstatusPUTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPUTapiplacementsdriveIdstatus4FAFC7A6"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstatusPUTE8BAE311"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstudents3A24FC23"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstudentsOPTIONS151D87F8"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstudentsGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiplacementsdriveIdstudents3DDCFDAF"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstudentsGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapiplacementsdriveIdstudents4C7E162D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiplacementsdriveIdstudentsGET749692BC"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/workshops/Resource": [
@@ -5695,6 +5977,36 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeletePlacementLambda172CCFAFArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn": [

@@ -10918,6 +10918,1276 @@
                   "version": "2.151.0"
                 }
               },
+              "UpdateStudentStatusLambda": {
+                "id": "UpdateStudentStatusLambda",
+                "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Arn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCEArn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "UpdateStudentStatusLambdaServiceRoleDefaultPolicy266C2DBF",
+                                "roles": [
+                                  {
+                                    "Ref": "UpdateStudentStatusLambdaServiceRole3147375C"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.151.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+                          },
+                          "s3Key": "35ed99bc35b63be70214cfc4ed5f1c7d296b68c3467701a23d3b246c29ac337a.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "REGION": "ap-south-1",
+                            "USER_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+                            },
+                            "COURSE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+                            },
+                            "TRANSACTION_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+                            },
+                            "TICKET_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+                            },
+                            "LANDING_PAGE_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+                            },
+                            "CERTIFICATE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+                            },
+                            "ADMIN_LOGIN_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+                            },
+                            "COMPANY_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+                            },
+                            "EMPLOYEE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+                            },
+                            "FEEDBACK_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+                            },
+                            "PLACEMENT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+                            },
+                            "WORKSHOP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+                            },
+                            "DEMO_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+                            },
+                            "S3_BUCKET": {
+                              "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+                            },
+                            "JWT_SECRET": "super-secret-dev-key",
+                            "GEMINI_API_KEY": "your-gemini-api-key",
+                            "JUDGE0_API_KEY": "your-judge0-api-key",
+                            "STAGE": "dev",
+                            "NODE_ENV": "development",
+                            "LOG_LEVEL": "info",
+                            "ADMIN_JWT_SECRET": "admin-secret-key"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "UpdateStudentStatusLambdaServiceRole3147375C",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs18.x",
+                        "timeout": 30
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.151.0"
+                }
+              },
+              "RevokePlacementLambda": {
+                "id": "RevokePlacementLambda",
+                "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Arn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCEArn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "RevokePlacementLambdaServiceRoleDefaultPolicy2C243784",
+                                "roles": [
+                                  {
+                                    "Ref": "RevokePlacementLambdaServiceRole1CE54FED"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.151.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+                          },
+                          "s3Key": "21798890831f6abfe4f730cc979d5ffb4c4b93fdaee9a7d7373ff291a3cc9060.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "REGION": "ap-south-1",
+                            "USER_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+                            },
+                            "COURSE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+                            },
+                            "TRANSACTION_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+                            },
+                            "TICKET_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+                            },
+                            "LANDING_PAGE_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+                            },
+                            "CERTIFICATE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+                            },
+                            "ADMIN_LOGIN_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+                            },
+                            "COMPANY_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+                            },
+                            "EMPLOYEE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+                            },
+                            "FEEDBACK_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+                            },
+                            "PLACEMENT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+                            },
+                            "WORKSHOP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+                            },
+                            "DEMO_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+                            },
+                            "S3_BUCKET": {
+                              "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+                            },
+                            "JWT_SECRET": "super-secret-dev-key",
+                            "GEMINI_API_KEY": "your-gemini-api-key",
+                            "JUDGE0_API_KEY": "your-judge0-api-key",
+                            "STAGE": "dev",
+                            "NODE_ENV": "development",
+                            "LOG_LEVEL": "info",
+                            "ADMIN_JWT_SECRET": "admin-secret-key"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "RevokePlacementLambdaServiceRole1CE54FED",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs18.x",
+                        "timeout": 30
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.151.0"
+                }
+              },
+              "RegisterStudentPlacementLambda": {
+                "id": "RegisterStudentPlacementLambda",
+                "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Arn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCEArn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "RegisterStudentPlacementLambdaServiceRoleDefaultPolicy9DF8AD7B",
+                                "roles": [
+                                  {
+                                    "Ref": "RegisterStudentPlacementLambdaServiceRole1248FA6C"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.151.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+                          },
+                          "s3Key": "365b14bda1daf32a344480152ecf7a683e1bb4176634228beeaf01074e2bc7b2.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "REGION": "ap-south-1",
+                            "USER_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+                            },
+                            "COURSE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+                            },
+                            "TRANSACTION_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+                            },
+                            "TICKET_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+                            },
+                            "LANDING_PAGE_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+                            },
+                            "CERTIFICATE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+                            },
+                            "ADMIN_LOGIN_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+                            },
+                            "COMPANY_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+                            },
+                            "EMPLOYEE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+                            },
+                            "FEEDBACK_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+                            },
+                            "PLACEMENT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+                            },
+                            "WORKSHOP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+                            },
+                            "DEMO_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+                            },
+                            "S3_BUCKET": {
+                              "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+                            },
+                            "JWT_SECRET": "super-secret-dev-key",
+                            "GEMINI_API_KEY": "your-gemini-api-key",
+                            "JUDGE0_API_KEY": "your-judge0-api-key",
+                            "STAGE": "dev",
+                            "NODE_ENV": "development",
+                            "LOG_LEVEL": "info",
+                            "ADMIN_JWT_SECRET": "admin-secret-key"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "RegisterStudentPlacementLambdaServiceRole1248FA6C",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs18.x",
+                        "timeout": 30
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.151.0"
+                }
+              },
+              "GetPlacementStudentsLambda": {
+                "id": "GetPlacementStudentsLambda",
+                "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Arn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCEArn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "GetPlacementStudentsLambdaServiceRoleDefaultPolicy7ABA8682",
+                                "roles": [
+                                  {
+                                    "Ref": "GetPlacementStudentsLambdaServiceRole5E034EA5"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.151.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+                          },
+                          "s3Key": "8d6800d4a6936f98cf92791336760e5d11f7d661b5e5e179d2fc35a1ffd87fbc.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "REGION": "ap-south-1",
+                            "USER_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+                            },
+                            "COURSE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+                            },
+                            "TRANSACTION_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+                            },
+                            "TICKET_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+                            },
+                            "LANDING_PAGE_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+                            },
+                            "CERTIFICATE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+                            },
+                            "ADMIN_LOGIN_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+                            },
+                            "COMPANY_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+                            },
+                            "EMPLOYEE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+                            },
+                            "FEEDBACK_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+                            },
+                            "PLACEMENT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+                            },
+                            "WORKSHOP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+                            },
+                            "DEMO_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+                            },
+                            "S3_BUCKET": {
+                              "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+                            },
+                            "JWT_SECRET": "super-secret-dev-key",
+                            "GEMINI_API_KEY": "your-gemini-api-key",
+                            "JUDGE0_API_KEY": "your-judge0-api-key",
+                            "STAGE": "dev",
+                            "NODE_ENV": "development",
+                            "LOG_LEVEL": "info",
+                            "ADMIN_JWT_SECRET": "admin-secret-key"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "GetPlacementStudentsLambdaServiceRole5E034EA5",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs18.x",
+                        "timeout": 30
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.151.0"
+                }
+              },
+              "CompletePlacementLambda": {
+                "id": "CompletePlacementLambda",
+                "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Arn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+                                              },
+                                              "/index/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "dynamodb:*",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCEArn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "CompletePlacementLambdaServiceRoleDefaultPolicyF81B27C5",
+                                "roles": [
+                                  {
+                                    "Ref": "CompletePlacementLambdaServiceRole2CE03406"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.151.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+                          },
+                          "s3Key": "88837fb553446b1e293b2732022565568cbaaea85346b48bd1fdd5e25cae73ad.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "REGION": "ap-south-1",
+                            "USER_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+                            },
+                            "COURSE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+                            },
+                            "TRANSACTION_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+                            },
+                            "TICKET_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+                            },
+                            "LANDING_PAGE_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+                            },
+                            "CERTIFICATE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+                            },
+                            "ADMIN_LOGIN_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+                            },
+                            "COMPANY_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+                            },
+                            "EMPLOYEE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+                            },
+                            "FEEDBACK_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+                            },
+                            "PLACEMENT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+                            },
+                            "WORKSHOP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+                            },
+                            "DEMO_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+                            },
+                            "S3_BUCKET": {
+                              "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+                            },
+                            "JWT_SECRET": "super-secret-dev-key",
+                            "GEMINI_API_KEY": "your-gemini-api-key",
+                            "JUDGE0_API_KEY": "your-judge0-api-key",
+                            "STAGE": "dev",
+                            "NODE_ENV": "development",
+                            "LOG_LEVEL": "info",
+                            "ADMIN_JWT_SECRET": "admin-secret-key"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "CompletePlacementLambdaServiceRole2CE03406",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs18.x",
+                        "timeout": 30
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.151.0"
+                }
+              },
               "ListWorkshopsLambda": {
                 "id": "ListWorkshopsLambda",
                 "path": "LurnityLmsStack/LambdaNestedStack/ListWorkshopsLambda",
@@ -23910,6 +25180,46 @@
                   "version": "2.151.0"
                 }
               },
+              "LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn": {
+                "id": "LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn": {
+                "id": "LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
               "LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn": {
                 "id": "LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn",
@@ -24449,7 +25759,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/f4cfb645c4b1c05bf84134477956411915b959a25acd35dd01a6a5bf4c2926a0.json"
+                          "/e5331760f573685ff1897aea213dc0b6278a8608d265ce6cf358d2823ef61fa7.json"
                         ]
                       ]
                     }
@@ -24602,7 +25912,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F2916920422f6b99f418c261fc0b56f383"
+                              "Ref": "LurnityLmsApiDeployment658DA5F206e73c1e0b218921b2d4c0393c02dde9"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -33232,6 +34542,1201 @@
                                     },
                                     "constructInfo": {
                                       "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "complete": {
+                                    "id": "complete",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapiplacementsidA9E72C59"
+                                            },
+                                            "pathPart": "complete",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsidcompleteB2F89004"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "PUT": {
+                                        "id": "PUT",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/PUT",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/PUT/api/placements/*/complete"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.complete",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/PUT/api/placements/*/complete"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/complete/PUT/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "PUT",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsidcompleteB2F89004"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "revoke": {
+                                    "id": "revoke",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapiplacementsidA9E72C59"
+                                            },
+                                            "pathPart": "revoke",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsidrevoke24F11F93"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "PUT": {
+                                        "id": "PUT",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/PUT/api/placements/*/revoke"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{id}.revoke",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/PUT/api/placements/*/revoke"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{id}/revoke/PUT/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "PUT",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsidrevoke24F11F93"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                      "version": "2.151.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                  "version": "2.151.0"
+                                }
+                              },
+                              "{driveId}": {
+                                "id": "{driveId}",
+                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                      "aws:cdk:cloudformation:props": {
+                                        "parentId": {
+                                          "Ref": "LurnityLmsApiapiplacements6FF182B1"
+                                        },
+                                        "pathPart": "{driveId}",
+                                        "restApiId": {
+                                          "Ref": "LurnityLmsApi9DD8A13A"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "OPTIONS": {
+                                    "id": "OPTIONS",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/OPTIONS",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/OPTIONS/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "apiKeyRequired": false,
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "OPTIONS",
+                                            "integration": {
+                                              "type": "MOCK",
+                                              "requestTemplates": {
+                                                "application/json": "{ statusCode: 200 }"
+                                              },
+                                              "integrationResponses": [
+                                                {
+                                                  "statusCode": "204",
+                                                  "responseParameters": {
+                                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                    "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                    "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "methodResponses": [
+                                              {
+                                                "statusCode": "204",
+                                                "responseParameters": {
+                                                  "method.response.header.Access-Control-Allow-Headers": true,
+                                                  "method.response.header.Access-Control-Allow-Origin": true,
+                                                  "method.response.header.Access-Control-Allow-Methods": true,
+                                                  "method.response.header.Access-Control-Max-Age": true
+                                                }
+                                              }
+                                            ],
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "register": {
+                                    "id": "register",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
+                                            },
+                                            "pathPart": "register",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsdriveIdregister5F73EF51"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "POST": {
+                                        "id": "POST",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/POST/api/placements/*/register"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.placements.{driveId}.register",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/POST/api/placements/*/register"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/register/POST/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "POST",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsdriveIdregister5F73EF51"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "status": {
+                                    "id": "status",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
+                                            },
+                                            "pathPart": "status",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsdriveIdstatus6C78DF8F"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "PUT": {
+                                        "id": "PUT",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/PUT/api/placements/*/status"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.PUT..api.placements.{driveId}.status",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/PUT/api/placements/*/status"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/status/PUT/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "PUT",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsdriveIdstatus6C78DF8F"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "students": {
+                                    "id": "students",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                          "aws:cdk:cloudformation:props": {
+                                            "parentId": {
+                                              "Ref": "LurnityLmsApiapiplacementsdriveId944DD01A"
+                                            },
+                                            "pathPart": "students",
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "OPTIONS": {
+                                        "id": "OPTIONS",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/OPTIONS",
+                                        "children": {
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/OPTIONS/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "apiKeyRequired": false,
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "OPTIONS",
+                                                "integration": {
+                                                  "type": "MOCK",
+                                                  "requestTemplates": {
+                                                    "application/json": "{ statusCode: 200 }"
+                                                  },
+                                                  "integrationResponses": [
+                                                    {
+                                                      "statusCode": "204",
+                                                      "responseParameters": {
+                                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "methodResponses": [
+                                                  {
+                                                    "statusCode": "204",
+                                                    "responseParameters": {
+                                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                                      "method.response.header.Access-Control-Max-Age": true
+                                                    }
+                                                  }
+                                                ],
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsdriveIdstudents3A24FC23"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "GET": {
+                                        "id": "GET",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET",
+                                        "children": {
+                                          "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students": {
+                                            "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/",
+                                                      {
+                                                        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                      },
+                                                      "/GET/api/placements/*/students"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students": {
+                                            "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.placements.{driveId}.students",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                              "aws:cdk:cloudformation:props": {
+                                                "action": "lambda:InvokeFunction",
+                                                "functionName": {
+                                                  "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn"
+                                                },
+                                                "principal": "apigateway.amazonaws.com",
+                                                "sourceArn": {
+                                                  "Fn::Join": [
+                                                    "",
+                                                    [
+                                                      "arn:",
+                                                      {
+                                                        "Ref": "AWS::Partition"
+                                                      },
+                                                      ":execute-api:ap-south-1:",
+                                                      {
+                                                        "Ref": "AWS::AccountId"
+                                                      },
+                                                      ":",
+                                                      {
+                                                        "Ref": "LurnityLmsApi9DD8A13A"
+                                                      },
+                                                      "/test-invoke-stage/GET/api/placements/*/students"
+                                                    ]
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                              "version": "2.151.0"
+                                            }
+                                          },
+                                          "Resource": {
+                                            "id": "Resource",
+                                            "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/placements/{driveId}/students/GET/Resource",
+                                            "attributes": {
+                                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                              "aws:cdk:cloudformation:props": {
+                                                "authorizationType": "NONE",
+                                                "httpMethod": "GET",
+                                                "integration": {
+                                                  "type": "AWS_PROXY",
+                                                  "uri": {
+                                                    "Fn::Join": [
+                                                      "",
+                                                      [
+                                                        "arn:",
+                                                        {
+                                                          "Ref": "AWS::Partition"
+                                                        },
+                                                        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                        {
+                                                          "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn"
+                                                        },
+                                                        "/invocations"
+                                                      ]
+                                                    ]
+                                                  },
+                                                  "integrationHttpMethod": "POST"
+                                                },
+                                                "resourceId": {
+                                                  "Ref": "LurnityLmsApiapiplacementsdriveIdstudents3A24FC23"
+                                                },
+                                                "restApiId": {
+                                                  "Ref": "LurnityLmsApi9DD8A13A"
+                                                }
+                                              }
+                                            },
+                                            "constructInfo": {
+                                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                              "version": "2.151.0"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
                                       "version": "2.151.0"
                                     }
                                   }
@@ -44381,6 +46886,46 @@
                   "version": "2.151.0"
                 }
               },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn",
@@ -45006,6 +47551,36 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackDeletePlacementLambda172CCFAFArn"
                         ]
                       },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackCompletePlacementLambdaCD877D3EArn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackRevokePlacementLambda22AE5E57Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackRegisterStudentPlacementLambdaBA6D5E07Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackUpdateStudentStatusLambda0FACC22AArn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackGetPlacementStudentsLambdaD2B23D89Arn"
+                        ]
+                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListWorkshopsLambdaC5C15653Arn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -45277,7 +47852,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/0148ded151e11ff241466daf5f50aaec011abb7ad4746dac575ee4ed1772340d.json"
+                          "/d6905f00ec39951163d73bbee23ae0fb2ae1509c44a25e032cbfc4d8ae951d67.json"
                         ]
                       ]
                     }

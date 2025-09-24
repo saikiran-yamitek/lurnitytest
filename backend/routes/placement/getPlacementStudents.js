@@ -1,5 +1,5 @@
 import { getPlacementById } from "../../models/Placement.js";
-import { getUser } from "../../models/User.js"; // enrich student details
+import { getUserById } from "../../models/User.js"; // enrich student details
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {
@@ -18,7 +18,7 @@ export const handler = async (event) => {
 
     const enrichedStudents = await Promise.all(
       (drive.registered || []).map(async (entry) => {
-        const user = await getUser(entry.student);
+        const user = await getUserById(entry.student);
         return {
           _id: entry.student,
           name: user?.name || "Unknown",
