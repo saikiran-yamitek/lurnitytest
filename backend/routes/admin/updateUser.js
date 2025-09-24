@@ -1,5 +1,5 @@
 // backend/routes/admin/updateUser.js
-import { updateUser, getUserById } from "../../models/User.js";
+import { updateUser } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
 
 export const handler = async (event) => {

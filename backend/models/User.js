@@ -346,8 +346,13 @@ export async function updateUser(userId, updateFields = {}) {
 
   // ❌ Strip reserved/auto-managed fields
   const { id, createdAt, updatedAt, ...safeFields } = updateFields;
-  const keys = Object.keys(safeFields);
 
+  // ✅ Fix: normalize numeric fields
+  if ("learningHours" in safeFields) {
+    safeFields.learningHours = Number(safeFields.learningHours);
+  }
+
+  const keys = Object.keys(safeFields);
   if (keys.length === 0) return getUserById(userId);
 
   const exprParts = [];
@@ -374,9 +379,12 @@ export async function updateUser(userId, updateFields = {}) {
     ReturnValues: "ALL_NEW",
   };
 
+  console.log("🛠 Final update params:", JSON.stringify(params, null, 2)); // <--- Debug
+
   const result = await ddb.send(new UpdateCommand(params));
   return result.Attributes ?? null;
 }
+
 
 
 // Delete a user

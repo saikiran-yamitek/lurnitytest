@@ -55,15 +55,23 @@ export default function Home() {
   };
 
   const getUnlockedVideosCount = (user, subCourseIndex) => {
-    if (subCourseIndex === 0) {
-      const startDate = user.startDate ? new Date(user.startDate) : new Date();
-      const currentDate = new Date();
-      const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
-      const maxVideos = getMaxVideosForDay(user.learningHours || 3);
-      return Math.min(maxVideos * (dayDiff + 1), 100);
-    }
-    return 0;
-  };
+  // Calculate time-based unlocking for all subcourses
+  const startDate = user.startDate ? new Date(user.startDate) : new Date();
+  const currentDate = new Date();
+  const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+  const maxVideos = getMaxVideosForDay(user.learningHours || 3);
+  
+  if (subCourseIndex === 0) {
+    // First subcourse: Standard time-based unlocking
+    return Math.min(maxVideos * (dayDiff + 1), 100);
+  } else {
+    // Other subcourses: If unlocked, apply same time-based logic
+    // but maybe with a bonus or accelerated unlocking
+    const acceleratedVideos = Math.min(maxVideos * (dayDiff + 1), 100);
+    return acceleratedVideos;
+  }
+};
+
 
   // ✅ FIXED: Only consider videos and labs for subcourse locking (exclude practice)
   const isSubcourseLocked = (course, subCourseIndex, watched) => {
@@ -80,22 +88,17 @@ export default function Home() {
     const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.title);
     if (lab) {
       const registeredStudents = getSafeArray(lab.registeredStudents);
-      
-      // 🔧 FIX: Use the same normalize function as completion calculation
-      const normalize = (s) => s?.trim().toLowerCase();
-      
       const labCompleted = registeredStudents.some(r => 
-        r.student === user?.id && r.attendance && normalize(r.result) === "pass"
+        r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
       );
-      
+      // FIXED: Both videos AND lab must be completed to unlock next subcourse
       return !(allVideosWatched && labCompleted);
     }
-    return true;
+    return true; // If lab exists but no registration found, keep locked
   }
   
   return !allVideosWatched;
 };
-
 
 
   const handleRegisterClick = (lab) => {
