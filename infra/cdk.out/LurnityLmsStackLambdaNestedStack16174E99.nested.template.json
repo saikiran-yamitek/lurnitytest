@@ -6407,7 +6407,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1d29c5bc7a6c16d96ea0c35198f67ce31ba41bc8faa852bca9795c5bbe9f9be2.zip"
+     "S3Key": "6cc6ea9406cf7fbf5bc3e7db3db3d8fcb08a248895a69acc83e21eaa332bb182.zip"
     },
     "Environment": {
      "Variables": {
@@ -6480,7 +6480,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPlacementByIdLambda/Resource",
-    "aws:asset:path": "asset.1d29c5bc7a6c16d96ea0c35198f67ce31ba41bc8faa852bca9795c5bbe9f9be2",
+    "aws:asset:path": "asset.6cc6ea9406cf7fbf5bc3e7db3db3d8fcb08a248895a69acc83e21eaa332bb182",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6953,7 +6953,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "35ed99bc35b63be70214cfc4ed5f1c7d296b68c3467701a23d3b246c29ac337a.zip"
+     "S3Key": "6c7dd1c696e16c5694344ee75a784f9c1fa7ff9427193c138e24ffbd6d4bbfc2.zip"
     },
     "Environment": {
      "Variables": {
@@ -7026,7 +7026,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Resource",
-    "aws:asset:path": "asset.35ed99bc35b63be70214cfc4ed5f1c7d296b68c3467701a23d3b246c29ac337a",
+    "aws:asset:path": "asset.6c7dd1c696e16c5694344ee75a784f9c1fa7ff9427193c138e24ffbd6d4bbfc2",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7317,7 +7317,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "365b14bda1daf32a344480152ecf7a683e1bb4176634228beeaf01074e2bc7b2.zip"
+     "S3Key": "97e65c89972868c28b80ede0b8dc03de2206c6fe59bb950a7acc99d71649cad9.zip"
     },
     "Environment": {
      "Variables": {
@@ -7390,7 +7390,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Resource",
-    "aws:asset:path": "asset.365b14bda1daf32a344480152ecf7a683e1bb4176634228beeaf01074e2bc7b2",
+    "aws:asset:path": "asset.97e65c89972868c28b80ede0b8dc03de2206c6fe59bb950a7acc99d71649cad9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7499,7 +7499,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8d6800d4a6936f98cf92791336760e5d11f7d661b5e5e179d2fc35a1ffd87fbc.zip"
+     "S3Key": "8c26a511ca56f2fd14e99507e00b9b851189acee6b3055307fba4cdb4677c984.zip"
     },
     "Environment": {
      "Variables": {
@@ -7572,7 +7572,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Resource",
-    "aws:asset:path": "asset.8d6800d4a6936f98cf92791336760e5d11f7d661b5e5e179d2fc35a1ffd87fbc",
+    "aws:asset:path": "asset.8c26a511ca56f2fd14e99507e00b9b851189acee6b3055307fba4cdb4677c984",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

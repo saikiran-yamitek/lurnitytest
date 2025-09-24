@@ -1436,12 +1436,13 @@ useEffect(() => {
                                 className="placement-btn placement-btn-primary placement-btn-sm"
                                 onClick={async () => {
                                   try {
-                                    await fetch(`${API_URL}/api/placements/${selectedDrive}/students/${student.id}`, {
+                                    await fetch(`${API_URL}/api/placements/${selectedDrive}/status`, {
                                       method: "PUT",
                                       headers: {
                                         "Content-Type": "application/json",
                                       },
                                       body: JSON.stringify({
+                                        studentId:student.id,
                                         status: student.status,
                                         remarks: student.remarks,
                                         offerLetterURL: student.offerLetterURL,

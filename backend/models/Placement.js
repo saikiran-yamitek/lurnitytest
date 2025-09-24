@@ -44,11 +44,11 @@ export async function createPlacement(driveData) {
 }
 
 // Get placement by ID
-export async function getPlacementById(driveId) {
+export async function getPlacementById(id) {
   const result = await docClient.send(
     new GetCommand({
       TableName: TABLE_NAME,
-      Key: { driveId },
+      Key: { id },
     })
   );
   return result.Item;
@@ -65,36 +65,50 @@ export async function deletePlacement(driveId) {
   return { message: "Deleted" };
 }
 
-// Register student in a drive
-export async function registerStudent(driveId, studentId) {
-  const placement = await getPlacementById(driveId);
+
+// registerStudent implementation — safe update (appends to `registered`)
+export async function registerStudent(id, studentId) {
+  // Ensure id is a string (table expects string)
+  const placementId = String(id);
+
+  // 1) fetch existing placement to validate & check duplicates
+  const placement = await getPlacementById(placementId);
   if (!placement) throw new Error("Drive not found");
 
-  const alreadyRegistered = placement.registered?.find(
-    (r) => r.student === studentId
+  const alreadyRegistered = (placement.registered || []).some(r =>
+    String(r.student) === String(studentId) ||
+    (r.student && String(r.student.id) === String(studentId))
   );
   if (alreadyRegistered) {
     throw new Error("You have already applied for this drive");
   }
 
+  // 2) new registration entry
   const newEntry = {
     student: studentId,
     status: "NOT PLACED",
     remarks: "",
-    offerLetterURL: "",
+    offerLetterURL: ""
   };
 
-  placement.registered = [...(placement.registered || []), newEntry];
+  // 3) KEY must exactly match table's PK name and type — your PK is `id` (String)
+  const Key = { id: placementId };
 
-  await docClient.send(
-    new PutCommand({
-      TableName: TABLE_NAME,
-      Item: placement,
-    })
-  );
+  // 4) Append the new entry to the `registered` list safely
+  await docClient.send(new UpdateCommand({
+    TableName: TABLE_NAME,
+    Key,
+    UpdateExpression: "SET registered = list_append(if_not_exists(registered, :empty_list), :newEntry)",
+    ExpressionAttributeValues: {
+      ":newEntry": [newEntry],
+      ":empty_list": []
+    },
+    ReturnValues: "UPDATED_NEW"
+  }));
 
   return { message: "Registered successfully" };
 }
+
 
 // Update placement details
 

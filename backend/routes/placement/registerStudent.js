@@ -8,14 +8,14 @@ export const handler = async (event) => {
   }
 
   try {
-    const { driveId } = event.pathParameters;
+    const { id } = event.pathParameters;
     const { studentId } = JSON.parse(event.body);
 
     if (!studentId) {
       return createResponse(400, { message: "Student ID is required" });
     }
 
-    const result = await registerStudent(driveId, studentId);
+    const result = await registerStudent(id, studentId);
     return createResponse(200, result);
   } catch (err) {
     return createResponse(500, { message: err.message });
