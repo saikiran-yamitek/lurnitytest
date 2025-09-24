@@ -125,7 +125,7 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
       try {
         setLoading(true);
         const token = localStorage.getItem('token');
-        const userRes = await fetch(`${API}/api/homepage`, {
+        const userRes = await fetch(`${API}/api/user/homepage`, {
           headers: { Authorization: "Bearer " + token }
         });
         const userData = await userRes.json();
