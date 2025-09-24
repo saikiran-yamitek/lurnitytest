@@ -183,15 +183,7 @@ export default function Home() {
     console.error("Certificate generation error:", err);
   }
 };
-  const isPracticeCompleted = (courseId, sIdx, vIdx) => {
-  const ph = getSafeArray(user?.practiceHistory || []);
-  return ph.some(p =>
-    p.courseId === courseId &&
-    Number(p.subIdx) === Number(sIdx) &&
-    Number(p.vidIdx) === Number(vIdx) &&
-    ( (p.timeSpent && p.timeSpent > 0) || (p.score && p.score > 0) )
-  );
-};
+
 
   const checkProfileCompletion = (profileData) => {
     if (!profileData) return { isComplete: false, missingFields: 0, totalFields: 0, percentage: 0 };
@@ -835,172 +827,164 @@ export default function Home() {
                 <div className="lms-luxury-content-grid">
                   <div className="lms-content-main">
                     {course.subCourses?.map((sc, sIdx) => {
+                      const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+                      const completedVideos = videoIds.filter(id => watched.includes(id)).length;
+                      const totalVideos = videoIds.length;
+                      const hasLab = sc.lab === "Yes";
+                      
+                      let completed = completedVideos;
+                      let total = totalVideos;
+
+                      if (hasLab) {
+                        total += 1;
+                        const normalize = (s) => s?.trim().toLowerCase();
+                        
+                        // ✅ FIXED: Safe array operations for lab processing
+                        const safeLabs = getSafeArray(labs);
+                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
+                        
+                        if (labEntry) {
+                          const registeredStudents = getSafeArray(labEntry.registeredStudents);
+                          const regEntry = registeredStudents.find(r => r.student === user?.id);
+                          const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
+                          if (labPassed) completed += 1;
+                        }
+                      }
+
+                      const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+                      return (
+                        <div key={sIdx} className={`lms-luxury-course-module ${isSubcourseLocked(course, sIdx, watched) ? 'locked' : ''}`}>
+                          <div className="lms-module-backdrop"></div>
+                          
+                          {isSubcourseLocked(course, sIdx, watched) && (
+                            <div className="lms-module-lock-overlay">
+                              <FiLock className="lms-lock-icon" />
+                              <h4>Module Locked</h4>
+                              <p>Complete previous modules to unlock</p>
+                            </div>
+                          )}
+                          
+                          <div className="lms-module-header">
+                            <div className="lms-module-title-section">
+                              <h3 className="lms-module-title">{sc.title}</h3>
+                              <div className="lms-module-progress">
+                                <span className="lms-progress-text">{percent}% Complete</span>
+                                <div className="lms-progress-bar">
+                                  <div 
+                                    className="lms-progress-fill"
+                                    style={{ width: `${percent}%` }}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="lms-module-content">
+                            {sc.videos?.map((v, vIdx) => {
+                              const id = idOf(course.id, sIdx, vIdx);
+                              const done = watched.includes(id);
+                              
+                              const unlockedCount = getUnlockedVideosCount(user, sIdx);
+                              const isLocked = vIdx >= unlockedCount || isSubcourseLocked(course, sIdx, watched);
+                              
+                              return (
+                                <React.Fragment key={id}>
+                                  <div 
+                                    className={`lms-luxury-content-item video ${done ? 'completed' : ''} ${isLocked ? 'locked' : ''}`}
+                                    onClick={() => {
+                                      if (!isLocked) hist.push(`/watch/${course.id}/${sIdx}/${vIdx}`);
+                                    }}
+                                  >
+                                    <div className="lms-item-backdrop"></div>
+                                    <div className="lms-item-icon">
+                                      {isLocked ? <FiLock /> : <FiPlayCircle />}
+                                    </div>
+                                    <div className="lms-item-content">
+                                      <h4 className="lms-item-title">{v.title}</h4>
+                                      <span className="lms-item-meta">{v.duration} minutes</span>
+                                    </div>
+                                    {done && <FiCheckCircle className="lms-completion-icon" />}
+                                    {isLocked && (
+                                      <div className="lms-item-tooltip">
+                                        Complete previous content to unlock
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  {!isLocked && (
+                                    <div 
+                                      className="lms-luxury-content-item practice"
+                                      onClick={() => hist.push(`/practice/${course.id}/${sIdx}/${vIdx}`)}
+                                    >
+                                      <div className="lms-item-backdrop"></div>
+                                      <div className="lms-item-icon">
+                                        <FiFileText />
+                                      </div>
+                                      <div className="lms-item-content">
+                                        <h4 className="lms-item-title">Practice: {v.title}</h4>
+                                        <span className="lms-item-meta">Interactive Quiz</span>
+                                      </div>
+                                    </div>
+                                  )}
+                                </React.Fragment>
+                              );
+                            })}
+
+                            {sc.lab === "Yes" && (() => {
   const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+  const allVideosCompleted = videoIds.every(id => watched.includes(id));
+  const normalize = s => s?.trim().toLowerCase();
+  
+  // ✅ FIXED: Use sc.title instead of sc.id
+  const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
+  const userRegistration = getUserRegistrationForSubcourse(sc.title);
+  const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
 
-  // count completed videos from `watched` (strings) and completed practices from user.practiceHistory
-  const completedVideos = videoIds.filter(id => watched.includes(id)).length;
-  const completedPractices = (sc.videos || []).reduce((acc, _, vIdx) => {
-    return acc + (isPracticeCompleted(course.id, sIdx, vIdx) ? 1 : 0);
-  }, 0);
+  const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
 
-  // totals: one video + one practice per video, plus lab if present
-  const totalVideos = videoIds.length;
-  const totalPractices = videoIds.length;
-  const hasLab = sc.lab === "Yes";
-
-  let completed = completedVideos + completedPractices;
-  let total = totalVideos + totalPractices;
-  if (hasLab) total += 1;
-
-  // lab pass check - if passed, count it as completed
-  if (hasLab) {
-    const normalize = (s) => s?.trim().toLowerCase();
-    const safeLabs = getSafeArray(labs);
-    const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
-    if (labEntry) {
-      const registeredStudents = getSafeArray(labEntry.registeredStudents);
-      const regEntry = registeredStudents.find(r => r.student === user?.id);
-      const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
-      if (labPassed) completed += 1;
-    }
-  }
-
-  const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
-
-  // video locking calculation (same as before)
   return (
-    <div key={sIdx} className={`lms-luxury-course-module ${isSubcourseLocked(course, sIdx, watched) ? 'locked' : ''}`}>
-      <div className="lms-module-backdrop"></div>
-
-      {isSubcourseLocked(course, sIdx, watched) && (
-        <div className="lms-module-lock-overlay">
-          <FiLock className="lms-lock-icon" />
-          <h4>Module Locked</h4>
-          <p>Complete previous modules to unlock</p>
-        </div>
-      )}
-
-      <div className="lms-module-header">
-        <div className="lms-module-title-section">
-          <h3 className="lms-module-title">{sc.title}</h3>
-          <div className="lms-module-progress">
-            <span className="lms-progress-text">{percent}% Complete</span>
-            <div className="lms-progress-bar">
-              <div 
-                className="lms-progress-fill"
-                style={{ width: `${percent}%` }}
-              />
-            </div>
-          </div>
-        </div>
+    <div 
+      className={`lms-luxury-content-item lab ${isLabLocked ? 'locked' : ''} ${showGreenTick ? 'completed' : ''}`}
+      onClick={() => {
+        if (!isLabLocked) {
+          setSelectedLabSubcourse(sc.title);
+          setSelectedSection("lab-details");
+        }
+      }}
+    >
+      <div className="lms-item-backdrop"></div>
+      <div className="lms-item-icon">
+        {isLabLocked ? <FiLock /> : <FiTool />}
       </div>
-
-      <div className="lms-module-content">
-        {sc.videos?.map((v, vIdx) => {
-          const id = idOf(course.id, sIdx, vIdx);
-          const done = watched.includes(id);
-          
-          const unlockedCount = getUnlockedVideosCount(user, sIdx);
-          const isLocked = vIdx >= unlockedCount || isSubcourseLocked(course, sIdx, watched);
-          
-          return (
-            <React.Fragment key={id}>
-              <div 
-                className={`lms-luxury-content-item video ${done ? 'completed' : ''} ${isLocked ? 'locked' : ''}`}
-                onClick={() => {
-                  if (!isLocked) hist.push(`/watch/${course.id}/${sIdx}/${vIdx}`);
-                }}
-              >
-                <div className="lms-item-backdrop"></div>
-                <div className="lms-item-icon">
-                  {isLocked ? <FiLock /> : <FiPlayCircle />}
-                </div>
-                <div className="lms-item-content">
-                  <h4 className="lms-item-title">{v.title}</h4>
-                  <span className="lms-item-meta">{v.duration} minutes</span>
-                </div>
-                {done && <FiCheckCircle className="lms-completion-icon" />}
-                {isLocked && (
-                  <div className="lms-item-tooltip">
-                    Complete previous content to unlock
-                  </div>
-                )}
-              </div>
-
-              {!isLocked && (
-                <div 
-                  className="lms-luxury-content-item practice"
-                  onClick={() => hist.push(`/practice/${course.id}/${sIdx}/${vIdx}`)}
-                >
-                  <div className="lms-item-backdrop"></div>
-                  <div className="lms-item-icon">
-                    <FiFileText />
-                  </div>
-                  <div className="lms-item-content">
-                    <h4 className="lms-item-title">Practice: {v.title}</h4>
-                    <span className="lms-item-meta">Interactive Quiz</span>
-                  </div>
-                </div>
+      <div className="lms-item-content">
+        <h4 className="lms-item-title">Hands-on Lab Session</h4>
+        <div className="lms-lab-status-container">
+          {isRegisteredForSubcourse ? (
+            <div className="lms-status-badges">
+              <span className="lms-status-badge registered">✓ Registered</span>
+              {userRegistration?.result && userRegistration.result !== 'pending' && (
+                <span className={`lms-status-badge ${normalize(userRegistration.result)}`}>
+                  {normalize(userRegistration.result) === "pass" ? "✓ Passed" : "✗ Failed"}
+                </span>
               )}
-            </React.Fragment>
-          );
-        })}
-
-        {sc.lab === "Yes" && (() => {
-          // require both videos and practices completed to mark lab available (unless registered)
-          const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-          const allVideosCompleted = videoIds.every(id => watched.includes(id));
-          const allPracticesCompleted = (sc.videos || []).every((_, vIdx) => isPracticeCompleted(course.id, sIdx, vIdx));
-
-          const normalize = s => s?.trim().toLowerCase();
-          const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
-          const userRegistration = getUserRegistrationForSubcourse(sc.title);
-          const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
-
-          // lock only if videos+practices are incomplete AND user is not already registered
-          const isLabLocked = !(allVideosCompleted && allPracticesCompleted) && !isRegisteredForSubcourse;
-
-          return (
-            <div 
-              className={`lms-luxury-content-item lab ${isLabLocked ? 'locked' : ''} ${showGreenTick ? 'completed' : ''}`}
-              onClick={() => {
-                if (!isLabLocked) {
-                  setSelectedLabSubcourse(sc.title);
-                  setSelectedSection("lab-details");
-                }
-              }}
-            >
-              <div className="lms-item-backdrop"></div>
-              <div className="lms-item-icon">
-                {isLabLocked ? <FiLock /> : <FiTool />}
-              </div>
-              <div className="lms-item-content">
-                <h4 className="lms-item-title">Hands-on Lab Session</h4>
-                <div className="lms-lab-status-container">
-                  {isRegisteredForSubcourse ? (
-                    <div className="lms-status-badges">
-                      <span className="lms-status-badge registered">✓ Registered</span>
-                      {userRegistration?.result && userRegistration.result !== 'pending' && (
-                        <span className={`lms-status-badge ${normalize(userRegistration.result)}`}>
-                          {normalize(userRegistration.result) === "pass" ? "✓ Passed" : "✗ Failed"}
-                        </span>
-                      )}
-                    </div>
-                  ) : (allVideosCompleted && allPracticesCompleted) ? (
-                    <span className="lms-status-badge available">Available</span>
-                  ) : (
-                    <span className="lms-status-badge locked">Complete videos & practice first</span>
-                  )}
-                </div>
-              </div>
-              {showGreenTick && <FiCheckCircle className="lms-completion-icon" />}
             </div>
-          );
-        })()}
+          ) : allVideosCompleted ? (
+            <span className="lms-status-badge available">Available</span>
+          ) : (
+            <span className="lms-status-badge locked">Complete videos first</span>
+          )}
+        </div>
       </div>
+      {showGreenTick && <FiCheckCircle className="lms-completion-icon" />}
     </div>
   );
-})}
+})()}
+
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                   
                   <div className="lms-content-sidebar">
