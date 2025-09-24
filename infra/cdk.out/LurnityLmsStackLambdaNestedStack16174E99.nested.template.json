@@ -6953,7 +6953,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "6c7dd1c696e16c5694344ee75a784f9c1fa7ff9427193c138e24ffbd6d4bbfc2.zip"
+     "S3Key": "78c45b29013deb2444eb7e2394be8ec115edd0cd38ec7f812098dce6aaef64f2.zip"
     },
     "Environment": {
      "Variables": {
@@ -7026,7 +7026,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Resource",
-    "aws:asset:path": "asset.6c7dd1c696e16c5694344ee75a784f9c1fa7ff9427193c138e24ffbd6d4bbfc2",
+    "aws:asset:path": "asset.78c45b29013deb2444eb7e2394be8ec115edd0cd38ec7f812098dce6aaef64f2",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
