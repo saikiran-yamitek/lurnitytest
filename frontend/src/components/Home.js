@@ -146,7 +146,7 @@ export default function Home() {
       if (sc.lab === "Yes") {
         totalItems += 1;
         const normalize = (s) => s?.trim().toLowerCase();
-        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.id);
+        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
         
         if (labEntry) {
           const registeredStudents = getSafeArray(labEntry.registeredStudents);
