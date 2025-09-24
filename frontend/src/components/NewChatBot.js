@@ -147,7 +147,7 @@ const NewChatBot = ({ isOpen, onClose }) => {
 
         genAI.current = new GoogleGenerativeAI(API_KEY);
         model.current = genAI.current.getGenerativeModel({
-          model: "gemini-pro",
+          model: "gemini-1.5-flash",
           generationConfig: {
             temperature: 0.8,
             topP: 0.95,
