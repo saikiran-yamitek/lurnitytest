@@ -235,7 +235,7 @@ const ChatBot = ({ isOpen, onClose }) => {
         college: formData.college
       };
 
-      const res = await fetch(`${API}/api/demo/book`, {
+      const res = await fetch(`${API}/api/demos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

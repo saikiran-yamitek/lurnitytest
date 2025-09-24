@@ -598,7 +598,7 @@ Please provide a helpful, informative, and engaging response as Lurnity's AI ass
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${API}/api/demo/book`, {
+      const response = await fetch(`${API}/api/demos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
