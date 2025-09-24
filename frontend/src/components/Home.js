@@ -77,7 +77,7 @@ export default function Home() {
     if (prevSubCourse.lab === "Yes") {
       // ✅ FIXED: Safe array operations
       const safeLabs = getSafeArray(labs);
-      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.title);
+      const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.id);
       
       if (lab) {
         const registeredStudents = getSafeArray(lab.registeredStudents);
@@ -146,7 +146,7 @@ export default function Home() {
       if (sc.lab === "Yes") {
         totalItems += 1;
         const normalize = (s) => s?.trim().toLowerCase();
-        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
+        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.id);
         
         if (labEntry) {
           const registeredStudents = getSafeArray(labEntry.registeredStudents);
@@ -269,7 +269,7 @@ export default function Home() {
   }, []);
 
   // ✅ FIXED: Safe user registration functions
-  const isUserRegisteredForSubcourse = (subCourseTitle) => {
+  const isUserRegisteredForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     return safeLabs.some(lab => {
       if (lab.subCourseId !== subCourseId) return false;
@@ -278,7 +278,7 @@ export default function Home() {
     });
   };
 
-  const getUserRegistrationForSubcourse = (subCourseTitle) => {
+  const getUserRegistrationForSubcourse = (subCourseId) => {
     const safeLabs = getSafeArray(labs);
     const lab = safeLabs.find(lab => {
       if (lab.subCourseId !== subCourseId) return false;
@@ -935,21 +935,20 @@ export default function Home() {
   const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
   const allVideosCompleted = videoIds.every(id => watched.includes(id));
   const normalize = s => s?.trim().toLowerCase();
-
-  // Use sc.title consistently
+  
+  // ✅ FIXED: Use sc.title instead of sc.id
   const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
   const userRegistration = getUserRegistrationForSubcourse(sc.title);
   const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
 
-  // Locked only if videos incomplete AND user not registered
-  const isLabLocked = !allVideosCompleted && !isRegisteredForSubcourse;
+  const isLabLocked = !allVideosCompleted || isRegisteredForSubcourse;
 
   return (
     <div 
       className={`lms-luxury-content-item lab ${isLabLocked ? 'locked' : ''} ${showGreenTick ? 'completed' : ''}`}
       onClick={() => {
-        if (!isLabLocked || isRegisteredForSubcourse) {
-          setSelectedLabSubcourse(sc.title); // set title
+        if (!isLabLocked) {
+          setSelectedLabSubcourse(sc.title);
           setSelectedSection("lab-details");
         }
       }}
@@ -981,7 +980,6 @@ export default function Home() {
     </div>
   );
 })()}
-
 
                           </div>
                         </div>
