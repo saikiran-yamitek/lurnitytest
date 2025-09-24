@@ -982,7 +982,7 @@ useEffect(() => {
                           });
                           setPopup("✅ Company Updated Successfully");
                         } else {
-                          await fetch("${API_URL}/api/companies", {
+                          await fetch(`${API_URL}/api/companies`, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newCompany)
