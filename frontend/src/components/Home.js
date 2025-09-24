@@ -80,17 +80,22 @@ export default function Home() {
     const lab = safeLabs.find(l => l.subCourseId === prevSubCourse.title);
     if (lab) {
       const registeredStudents = getSafeArray(lab.registeredStudents);
+      
+      // 🔧 FIX: Use the same normalize function as completion calculation
+      const normalize = (s) => s?.trim().toLowerCase();
+      
       const labCompleted = registeredStudents.some(r => 
-        r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
+        r.student === user?.id && r.attendance && normalize(r.result) === "pass"
       );
-      // FIXED: Both videos AND lab must be completed to unlock next subcourse
+      
       return !(allVideosWatched && labCompleted);
     }
-    return true; // If lab exists but no registration found, keep locked
+    return true;
   }
   
   return !allVideosWatched;
 };
+
 
 
   const handleRegisterClick = (lab) => {
