@@ -15,6 +15,7 @@ import SavedQuestions from "./SavedQuestions";
 
 const API = process.env.REACT_APP_API_URL;
 const idOf = (cId, sIdx, vIdx) => `${cId}|${sIdx}|${vIdx}`;
+const practiceIdOf = (cId, sIdx, vIdx) => `practice_${cId}|${sIdx}|${vIdx}`;
 
 export default function Home() {
   const hist = useHistory();
@@ -22,6 +23,7 @@ export default function Home() {
   const [course, setCourse] = useState(null);
   const [note, setNote] = useState(null);
   const [watched, setWatched] = useState([]);
+  const [practiceCompleted, setPracticeCompleted] = useState([]);
   const [selectedLabSubcourse, setSelectedLabSubcourse] = useState(null);
   const [labs, setLabs] = useState([]);
   const [profileCompletion, setProfileCompletion] = useState({ isComplete: true, missingFields: 0, totalFields: 0 });
@@ -63,15 +65,29 @@ export default function Home() {
     return 0;
   };
 
-  // ✅ FIXED: use title consistently when checking previous subcourse lab
-  const isSubcourseLocked = (course, subCourseIndex, watched) => {
+  // ✅ IMPROVED: Check if practice is completed for a specific video
+  const isPracticeCompleted = (courseId, sIdx, vIdx) => {
+    const practiceId = practiceIdOf(courseId, sIdx, vIdx);
+    return practiceCompleted.includes(practiceId);
+  };
+
+  // ✅ IMPROVED: use title consistently when checking previous subcourse completion (videos + practices + labs)
+  const isSubcourseLocked = (course, subCourseIndex, watched, practiceCompleted) => {
     if (subCourseIndex === 0) return false;
 
     const prevSubCourse = course.subCourses[subCourseIndex - 1];
+
+    // Check all videos are watched
     const videoIds = prevSubCourse.videos?.map((_, vIdx) => 
       idOf(course.id, subCourseIndex - 1, vIdx)) || [];
     const allVideosWatched = videoIds.every(id => watched.includes(id));
 
+    // Check all practices are completed
+    const practiceIds = prevSubCourse.videos?.map((_, vIdx) => 
+      practiceIdOf(course.id, subCourseIndex - 1, vIdx)) || [];
+    const allPracticesCompleted = practiceIds.every(id => practiceCompleted.includes(id));
+
+    let labCompleted = true; // Default to true if no lab
     if (prevSubCourse.lab === "Yes") {
       const safeLabs = getSafeArray(labs);
       // <-- CONSISTENT KEY: match by title (subCourseId === subCourse.title)
@@ -79,17 +95,16 @@ export default function Home() {
 
       if (lab) {
         const registeredStudents = getSafeArray(lab.registeredStudents);
-        const labCompleted = registeredStudents.some(
+        labCompleted = registeredStudents.some(
           r => r.student === user?.id && r.attendance && r.result?.toLowerCase() === "pass"
         );
-        // locked unless all previous videos watched AND lab completed
-        return !(allVideosWatched && labCompleted);
+      } else {
+        labCompleted = false; // No lab entry means not completed
       }
-      // If there is no lab entry, keep it locked until videos are watched
-      return !allVideosWatched;
     }
 
-    return !allVideosWatched;
+    // Locked unless ALL components are completed (videos + practices + lab)
+    return !(allVideosWatched && allPracticesCompleted && labCompleted);
   };
 
   const handleRegisterClick = (lab) => {
@@ -128,8 +143,8 @@ export default function Home() {
       alert("❌ " + err.message);
     }
   };
-  
-  // ✅ CONSISTENT: calculate overall course completion (uses sc.title for lab lookup)
+
+  // ✅ IMPROVED: calculate overall course completion (includes videos + practices + labs)
   const calculateCourseCompletion = () => {
     if (!course || !watched || !course.subCourses) return 0;
     let totalItems = 0;
@@ -139,11 +154,19 @@ export default function Home() {
     const safeLabs = getSafeArray(labs);
 
     safeCourse.forEach((sc, sIdx) => {
+      // Count videos
       const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-      const completed = videoIds.filter(id => watched.includes(id)).length;
+      const completedVideos = videoIds.filter(id => watched.includes(id)).length;
       totalItems += videoIds.length;
-      completedItems += completed;
+      completedItems += completedVideos;
 
+      // Count practices
+      const practiceIds = sc.videos?.map((_, vIdx) => practiceIdOf(course.id, sIdx, vIdx)) || [];
+      const completedPractices = practiceIds.filter(id => practiceCompleted.includes(id)).length;
+      totalItems += practiceIds.length;
+      completedItems += completedPractices;
+
+      // Count lab if applicable
       if (sc.lab === "Yes") {
         totalItems += 1;
         const normalize = (s) => s?.trim().toLowerCase();
@@ -159,6 +182,43 @@ export default function Home() {
       }
     });
     return totalItems ? Math.round((completedItems / totalItems) * 100) : 0;
+  };
+
+  // ✅ IMPROVED: Calculate subcourse completion percentage (videos + practices + labs)
+  const calculateSubcourseCompletion = (sc, sIdx) => {
+    if (!sc) return 0;
+
+    let totalItems = 0;
+    let completedItems = 0;
+
+    // Count videos
+    const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+    const completedVideos = videoIds.filter(id => watched.includes(id)).length;
+    totalItems += videoIds.length;
+    completedItems += completedVideos;
+
+    // Count practices
+    const practiceIds = sc.videos?.map((_, vIdx) => practiceIdOf(course.id, sIdx, vIdx)) || [];
+    const completedPractices = practiceIds.filter(id => practiceCompleted.includes(id)).length;
+    totalItems += practiceIds.length;
+    completedItems += completedPractices;
+
+    // Count lab if applicable
+    if (sc.lab === "Yes") {
+      totalItems += 1;
+      const normalize = (s) => s?.trim().toLowerCase();
+      const safeLabs = getSafeArray(labs);
+      const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
+
+      if (labEntry) {
+        const registeredStudents = getSafeArray(labEntry.registeredStudents);
+        const regEntry = registeredStudents.find(r => r.student === user?.id);
+        const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
+        if (labPassed) completedItems += 1;
+      }
+    }
+
+    return totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
   };
 
   const generateSubcourseCertificate = async (subCourseTitle) => {
@@ -184,27 +244,26 @@ export default function Home() {
     }
   };
 
-
   const checkProfileCompletion = (profileData) => {
     if (!profileData) return { isComplete: false, missingFields: 0, totalFields: 0, percentage: 0 };
-    
+
     let totalFields = 0;
     let filledFields = 0;
-    
+
     const isFieldFilled = (value) => {
       if (value === null || value === undefined || value === "") return false;
       if (Array.isArray(value)) return value.length > 0;
       if (typeof value === "object") return Object.keys(value).length > 0;
       return true;
     };
-    
+
     const basicFields = [
       profileData.firstName, profileData.lastName, profileData.name,
       profileData.gender, profileData.communicationLanguage, profileData.teachingLanguage,
       profileData.dateOfBirth, profileData.linkedIn, profileData.twitter,
       profileData.github, profileData.resumeURL, profileData.photoURL
     ];
-    
+
     basicFields.forEach(field => {
       totalFields++;
       if (isFieldFilled(field)) filledFields++;
@@ -212,7 +271,7 @@ export default function Home() {
 
     const missingFields = totalFields - filledFields;
     const percentage = totalFields > 0 ? Math.round((filledFields / totalFields) * 100) : 0;
-    
+
     return {
       isComplete: missingFields === 0,
       missingFields,
@@ -251,6 +310,29 @@ export default function Home() {
     }
   };
 
+  // ✅ NEW: Fetch practice completion data
+  const fetchPracticeProgress = async () => {
+    try {
+      const res = await fetch(`${API}/api/practice-progress`, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      });
+      const data = await res.json();
+      console.log('🔍 Practice progress API response:', data);
+
+      const normalizedPracticeCompleted = Array.isArray(data)
+        ? data.map(p => {
+            if (typeof p === 'string') return p;
+            return p.id || p.practiceId || p.progressId || p.completedId || "";
+          }).filter(Boolean)
+        : [];
+
+      setPracticeCompleted(normalizedPracticeCompleted);
+    } catch (err) {
+      console.warn('Error fetching practice progress:', err);
+      setPracticeCompleted([]);
+    }
+  };
+
   const fetchProfileData = useCallback(async (userId) => {
     try {
       const response = await fetch(`${API}/api/user/${userId}/profile`);
@@ -281,7 +363,7 @@ export default function Home() {
       const registeredStudents = getSafeArray(lab.registeredStudents);
       return registeredStudents.some(r => r.student === user?.id);
     });
-    
+
     if (lab) {
       const registeredStudents = getSafeArray(lab.registeredStudents);
       return registeredStudents.find(r => r.student === user?.id);
@@ -313,6 +395,7 @@ export default function Home() {
 
     (async () => {
       try {
+        // Fetch watched videos
         const watchedData = await fetchJSON(`${API}/api/progress`);
         // ✅ Normalize watched items to strings that match idOf(...) format
         const normalizedWatched = Array.isArray(watchedData)
@@ -322,6 +405,10 @@ export default function Home() {
             }).filter(Boolean)
           : [];
         setWatched(normalizedWatched);
+
+        // ✅ Fetch practice completion
+        await fetchPracticeProgress();
+
       } catch (err) {
         console.warn('Error fetching progress:', err);
         setWatched([]);
@@ -331,7 +418,7 @@ export default function Home() {
         const u = await fetchJSON(`${API}/api/user/homepage`);
         setUser(u);
         await fetchLabs(u.id);
-        
+
         if (u.id) {
           await fetchProfileData(u.id);
         }
@@ -352,14 +439,14 @@ export default function Home() {
 
         const coursesResponse = await fetchJSON(`${API}/api/courses`);
         console.log('🔍 Courses API response:', coursesResponse);
-        
+
         const allCourses = getSafeArray(coursesResponse, ['items', 'courses']);
         console.log('✅ Safe courses array:', allCourses);
-        
+
         const found = allCourses.find(
           (c) => c.id === u.course || c.title?.toLowerCase() === u.course?.toLowerCase()
         );
-        
+
         if (!found)
           return setNote(`No course titled "${u.course}" found. Please contact admin.`);
         setCourse(found);
@@ -431,13 +518,21 @@ export default function Home() {
     }
   }, [courseCompletion, user]);
 
-  // ✅ CERTIFICATE ISSUE EFFECT: consistent lab lookup + safe arrays
+  // ✅ IMPROVED CERTIFICATE ISSUE EFFECT: includes videos + practices + labs
   useEffect(() => {
     if (!user || !course || !course.subCourses) return;
 
     course.subCourses.forEach(async (sc, sIdx) => {
       const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-      let completed = videoIds.filter(id => watched.includes(id)).length;
+      const practiceIds = sc.videos?.map((_, vIdx) => practiceIdOf(course.id, sIdx, vIdx)) || [];
+
+      let completed = 0;
+
+      // Count completed videos
+      completed += videoIds.filter(id => watched.includes(id)).length;
+
+      // Count completed practices
+      completed += practiceIds.filter(id => practiceCompleted.includes(id)).length;
 
       // Include lab if applicable (consistent lookup)
       if (sc.lab === "Yes") {
@@ -451,7 +546,7 @@ export default function Home() {
         }
       }
 
-      const total = videoIds.length + (sc.lab === "Yes" ? 1 : 0);
+      const total = videoIds.length + practiceIds.length + (sc.lab === "Yes" ? 1 : 0);
       const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
       const alreadyIssued = issuedCertificates.includes(sc.title);
@@ -460,7 +555,7 @@ export default function Home() {
         setIssuedCertificates(prev => [...prev, sc.title]);
       }
     });
-  }, [watched, labs, course, user]);
+  }, [watched, practiceCompleted, labs, course, user]);
 
   const handleResumeClick = () => {
     if (!profileCompletion.isComplete) {
@@ -488,7 +583,7 @@ export default function Home() {
               <span>Excellence in Learning</span>
             </div>
           </div>
-          
+
           <nav className="lms-luxury-nav">
             <div className="lms-nav-section">
               <span className="lms-nav-section-title">MAIN</span>
@@ -505,7 +600,7 @@ export default function Home() {
                 </div>
                 <div className="lms-nav-glow-effect"></div>
               </button>
-              
+
               <button 
                 className={`lms-luxury-nav-btn ${isSidebarLocked(user) ? 'disabled' : ''}`} 
                 onClick={() => !isSidebarLocked(user) && hist.push("/certificates")}
@@ -520,7 +615,7 @@ export default function Home() {
                 </div>
                 <div className="lms-nav-glow-effect"></div>
               </button>
-              
+
               <button 
                 className={`lms-luxury-nav-btn ${isSidebarLocked(user) ? 'disabled' : ''}`} 
                 onClick={() => !isSidebarLocked(user) && hist.push("/sandbox")}
@@ -553,7 +648,7 @@ export default function Home() {
                 </div>
                 <div className="lms-nav-glow-effect"></div>
               </button>
-              
+
               <button 
                 className={`lms-luxury-nav-btn ${selectedSection === "saved-questions" ? "active" : ""} ${isSidebarLocked(user) ? 'disabled' : ''}`} 
                 onClick={() => !isSidebarLocked(user) && setSelectedSection("saved-questions")}
@@ -591,7 +686,7 @@ export default function Home() {
                 </div>
                 <div className="lms-nav-glow-effect"></div>
               </button>
-              
+
               <button 
                 className={`lms-luxury-nav-btn ${isSidebarLocked(user) ? 'disabled' : ''}`} 
                 onClick={() => !isSidebarLocked(user) && hist.push("/placement")}
@@ -668,7 +763,7 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="lms-menu-item" onClick={() => { hist.push("/contact"); setShowMenu(false); }}>
                   <div className="lms-menu-item-icon">
                     <FiPhone />
@@ -678,9 +773,9 @@ export default function Home() {
                     <span className="lms-menu-item-subtitle">Get help when you need it</span>
                   </div>
                 </div>
-                
+
                 <div className="lms-menu-divider"></div>
-                
+
                 <div className="lms-menu-item danger" onClick={() => { localStorage.clear(); hist.replace("/login"); }}>
                   <div className="lms-menu-item-icon">
                     <FiLogOut />
@@ -755,7 +850,7 @@ export default function Home() {
                   <div className="lms-hero-aurora lms-aurora-2"></div>
                   <div className="lms-hero-aurora lms-aurora-3"></div>
                 </div>
-                
+
                 <div className="lms-hero-content">
                   <div className="lms-hero-text">
                     <div className="lms-hero-badge">
@@ -765,7 +860,7 @@ export default function Home() {
                     <h1 className="lms-hero-title">{course.title}</h1>
                     <p className="lms-hero-subtitle">Continue your extraordinary journey to excellence</p>
                   </div>
-                  
+
                   <div className="lms-hero-progress">
                     <div className="lms-progress-card">
                       <div className="lms-progress-ring-container">
@@ -823,44 +918,21 @@ export default function Home() {
                 <div className="lms-luxury-content-grid">
                   <div className="lms-content-main">
                     {course.subCourses?.map((sc, sIdx) => {
-                      const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
-                      const completedVideos = videoIds.filter(id => watched.includes(id)).length;
-                      const totalVideos = videoIds.length;
-                      const hasLab = sc.lab === "Yes";
-                      
-                      let completed = completedVideos;
-                      let total = totalVideos;
-
-                      if (hasLab) {
-                        total += 1;
-                        const normalize = (s) => s?.trim().toLowerCase();
-                        
-                        const safeLabs = getSafeArray(labs);
-                        // find lab by title (consistent)
-                        const labEntry = safeLabs.find((lab) => lab.subCourseId === sc.title);
-                        
-                        if (labEntry) {
-                          const registeredStudents = getSafeArray(labEntry.registeredStudents);
-                          const regEntry = registeredStudents.find(r => r.student === user?.id);
-                          const labPassed = regEntry?.attendance === true && normalize(regEntry?.result) === "pass";
-                          if (labPassed) completed += 1;
-                        }
-                      }
-
-                      const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+                      // ✅ IMPROVED: Use the new subcourse completion calculation
+                      const percent = calculateSubcourseCompletion(sc, sIdx);
 
                       return (
-                        <div key={sIdx} className={`lms-luxury-course-module ${isSubcourseLocked(course, sIdx, watched) ? 'locked' : ''}`}>
+                        <div key={sIdx} className={`lms-luxury-course-module ${isSubcourseLocked(course, sIdx, watched, practiceCompleted) ? 'locked' : ''}`}>
                           <div className="lms-module-backdrop"></div>
-                          
-                          {isSubcourseLocked(course, sIdx, watched) && (
+
+                          {isSubcourseLocked(course, sIdx, watched, practiceCompleted) && (
                             <div className="lms-module-lock-overlay">
                               <FiLock className="lms-lock-icon" />
                               <h4>Module Locked</h4>
                               <p>Complete previous modules to unlock</p>
                             </div>
                           )}
-                          
+
                           <div className="lms-module-header">
                             <div className="lms-module-title-section">
                               <h3 className="lms-module-title">{sc.title}</h3>
@@ -879,11 +951,13 @@ export default function Home() {
                           <div className="lms-module-content">
                             {sc.videos?.map((v, vIdx) => {
                               const id = idOf(course.id, sIdx, vIdx);
+                              const practiceId = practiceIdOf(course.id, sIdx, vIdx);
                               const done = watched.includes(id);
-                              
+                              const practiceCompleted = isPracticeCompleted(course.id, sIdx, vIdx);
+
                               const unlockedCount = getUnlockedVideosCount(user, sIdx);
-                              const isLocked = vIdx >= unlockedCount || isSubcourseLocked(course, sIdx, watched);
-                              
+                              const isLocked = vIdx >= unlockedCount || isSubcourseLocked(course, sIdx, watched, practiceCompleted);
+
                               return (
                                 <React.Fragment key={id}>
                                   <div 
@@ -910,7 +984,7 @@ export default function Home() {
 
                                   {!isLocked && (
                                     <div 
-                                      className="lms-luxury-content-item practice"
+                                      className={`lms-luxury-content-item practice ${practiceCompleted ? 'completed' : ''}`}
                                       onClick={() => hist.push(`/practice/${course.id}/${sIdx}/${vIdx}`)}
                                     >
                                       <div className="lms-item-backdrop"></div>
@@ -921,6 +995,7 @@ export default function Home() {
                                         <h4 className="lms-item-title">Practice: {v.title}</h4>
                                         <span className="lms-item-meta">Interactive Quiz</span>
                                       </div>
+                                      {practiceCompleted && <FiCheckCircle className="lms-completion-icon" />}
                                     </div>
                                   )}
                                 </React.Fragment>
@@ -929,16 +1004,19 @@ export default function Home() {
 
                             {sc.lab === "Yes" && (() => {
   const videoIds = sc.videos?.map((_, vIdx) => idOf(course.id, sIdx, vIdx)) || [];
+  const practiceIds = sc.videos?.map((_, vIdx) => practiceIdOf(course.id, sIdx, vIdx)) || [];
+
   const allVideosCompleted = videoIds.every(id => watched.includes(id));
+  const allPracticesCompleted = practiceIds.every(id => practiceCompleted.includes(id));
   const normalize = s => s?.trim().toLowerCase();
-  
+
   // ✅ FIXED: Use sc.title for lab lookups
   const isRegisteredForSubcourse = isUserRegisteredForSubcourse(sc.title);
   const userRegistration = getUserRegistrationForSubcourse(sc.title);
   const showGreenTick = userRegistration?.attendance === true && normalize(userRegistration?.result) === "pass";
 
-  // LOCK logic: lock only until all videos are completed
-  const isLabLocked = !allVideosCompleted;
+  // ✅ IMPROVED LOCK logic: lock until all videos AND practices are completed
+  const isLabLocked = !(allVideosCompleted && allPracticesCompleted);
 
   return (
     <div 
@@ -966,10 +1044,10 @@ export default function Home() {
                 </span>
               )}
             </div>
-          ) : allVideosCompleted ? (
+          ) : (allVideosCompleted && allPracticesCompleted) ? (
             <span className="lms-status-badge available">Available</span>
           ) : (
-            <span className="lms-status-badge locked">Complete videos first</span>
+            <span className="lms-status-badge locked">Complete videos and practices first</span>
           )}
         </div>
       </div>
@@ -983,7 +1061,7 @@ export default function Home() {
                       );
                     })}
                   </div>
-                  
+
                   <div className="lms-content-sidebar">
                     <StreakWidget watched={watched} />
                   </div>
@@ -1201,7 +1279,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="lms-lab-detail-actions">
                   {isRegistered ? (
                     <>
