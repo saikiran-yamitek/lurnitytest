@@ -59,16 +59,16 @@ export default function Home() {
   const startDate = user.startDate ? new Date(user.startDate) : new Date();
   const currentDate = new Date();
   const dayDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
-  const maxVideos = getMaxVideosForDay(user.learningHours || 3);
+  
+  // 🔧 FIXED: Use learning hours directly as videos per day
+  const videosPerDay = user.learningHours || 3;
   
   if (subCourseIndex === 0) {
     // First subcourse: Standard time-based unlocking
-    return Math.min(maxVideos * (dayDiff + 1), 100);
+    return Math.min(videosPerDay * (dayDiff + 1), 100);
   } else {
-    // Other subcourses: If unlocked, apply same time-based logic
-    // but maybe with a bonus or accelerated unlocking
-    const acceleratedVideos = Math.min(maxVideos * (dayDiff + 1), 100);
-    return acceleratedVideos;
+    // Other subcourses: Same logic
+    return Math.min(videosPerDay * (dayDiff + 1), 100);
   }
 };
 
