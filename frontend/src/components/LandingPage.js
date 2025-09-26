@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { FaGraduationCap, FaLaptopCode, FaBriefcase, FaStar, FaCheckCircle, FaUsers, FaCalendarAlt, FaDownload, FaRocket, FaChalkboardTeacher, FaHandshake, FaCertificate, FaChevronDown, FaChevronUp, FaArrowRight, FaPlay, FaLinkedin, FaGithub, FaTwitter, FaInstagram, FaArrowUp, FaTrophy, FaChartLine, FaAward, FaBuilding, FaCrown, FaFire, FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaGlobe } from 'react-icons/fa';
+import { FaGraduationCap, FaLaptopCode, FaBriefcase, FaStar, FaCheckCircle, FaUsers, FaCalendarAlt, FaDownload, FaRocket, FaChalkboardTeacher, FaHandshake, FaCertificate, FaChevronDown, FaChevronUp, FaArrowRight, FaPlay, FaLinkedin, FaGithub, FaTwitter, FaInstagram, FaArrowUp, FaTrophy, FaChartLine, FaAward, FaBuilding, FaCrown, FaFire, FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaGlobe, FaShield, FaLightbulb, FaCode } from 'react-icons/fa';
 import './LandingPage.css'
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import HeroSection from './HeroSection';
 import FloatingActionButton from './FloatingActionButton';
-import NewChatBot from './NewChatBot';  // Gemini AI chatbot (side popup)
-import ChatBot from './ChatBot';        // Interactive demo form chatbot
+import NewChatBot from './NewChatBot';
+import ChatBot from './ChatBot';
 import WhyChooseLurnity from './WhyChooseLurnity';
 import LurnityPrograms from './LurnityPrograms';
 import UpcomingMasterclasses from './UpcomingMasterclasses';
@@ -16,41 +16,42 @@ import img2 from '../assets/img2.jpeg'
 import img3 from '../assets/img3.jpeg'
 import DemoForm from './DemoForm'
 
-export default class LuxuryLandingPage extends Component {
+export default class OktaInspiredLandingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showPopup: false,
       showDemoForm: false,
-      showNewChatBot: false,    // For Gemini AI chatbot (Chat with us)
-      showChatBot: false,       // For interactive demo form chatbot (Book Demo)
+      showNewChatBot: false,
+      showChatBot: false,
       testimonialIndex: 0,
       openFAQ: null,
       mousePosition: { x: 0, y: 0 },
       cohortCountdown: this.computeCountdown(new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 10)),
       popupHasBeenClosed: false,
       showScrollToTop: false,
-      activeOutcome: null
+      activeOutcome: null,
+      isVisible: {}
     };
 
     this.testimonials = [
       { 
-        text: 'Lurnity transformed my career trajectory — from intern to senior engineer in 8 months with unprecedented mentorship quality.', 
+        text: 'Lurnity transformed my career trajectory — from intern to senior engineer in just 8 months with unparalleled mentorship quality.', 
         author: 'Sneha Sharma', 
         role: 'Senior Data Scientist @ Google',
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff6b6b'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-family='sans-serif' font-size='30' fill='white'%3ES%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23007BFF'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-family='sans-serif' font-size='30' fill='white'%3ES%3C/text%3E%3C/svg%3E"
       },
       { 
-        text: 'The depth of technical mentorship and real-world project exposure exceeded every expectation. Industry-leading curriculum.', 
+        text: 'The depth of technical mentorship and real-world project exposure exceeded every expectation. Industry-leading curriculum design.', 
         author: 'Karthik Reddy', 
         role: 'IoT Architect @ Microsoft',
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%234ecdc4'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-family='sans-serif' font-size='30' fill='white'%3EK%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2328A745'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-family='sans-serif' font-size='30' fill='white'%3EK%3C/text%3E%3C/svg%3E"
       },
       { 
-        text: 'Exceptional career guidance and interview preparation. The placement team negotiated an offer 40% above market rate.', 
+        text: 'Exceptional career guidance and interview preparation. The placement team secured an offer 40% above market rate.', 
         author: 'Priya Nair', 
         role: 'Embedded Systems Lead @ Tesla',
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23a8e6cf'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-family='sans-serif' font-size='30' fill='white'%3EP%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FFC107'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-family='sans-serif' font-size='30' fill='white'%3EP%3C/text%3E%3C/svg%3E"
       },
     ];
 
@@ -90,13 +91,12 @@ export default class LuxuryLandingPage extends Component {
       { title: 'Career Fair: Connect with Top Tech Companies', date: 'September 28, 2025', speaker: 'Industry Partners', cta: 'Register Now' },
     ];
 
-    // Enhanced outcomes data
     this.outcomesData = [
       {
         id: 1,
         icon: FaUsers,
         number: "15,847+",
-        label: "Career Transformations",
+        label: "Students Transformed",
         detail: "Professionals successfully transitioned to tech roles",
         description: "From diverse backgrounds including finance, marketing, operations, and more - all now thriving in top tech companies worldwide.",
         stats: ["Healthcare → Tech: 2,340", "Finance → Tech: 3,120", "Marketing → Tech: 1,890"],
@@ -131,26 +131,24 @@ export default class LuxuryLandingPage extends Component {
         description: "Exclusive partnerships with unicorns, Fortune 500 companies, and innovative startups across multiple industries.",
         stats: ["FAANG: 25", "Unicorns: 87", "Fortune 500: 156", "Startups: 232"],
         trend: "New partners weekly"
+      }
+    ];
+
+    this.features = [
+      {
+        icon: FaShield,
+        title: "Industry-Leading Security",
+        description: "Enterprise-grade security protocols ensuring your learning data is protected"
       },
       {
-        id: 5,
-        icon: FaChartLine,
-        number: "340%",
-        label: "Average Salary Jump",
-        detail: "Career growth within first 2 years",
-        description: "Our graduates don't just get jobs - they build remarkable careers with rapid promotions and significant salary increases.",
-        stats: ["6 months: +45%", "1 year: +120%", "2 years: +340%"],
-        trend: "Exponential growth"
+        icon: FaLightbulb,
+        title: "AI-Powered Learning",
+        description: "Personalized learning paths adapted to your pace and learning style"
       },
       {
-        id: 6,
-        icon: FaCrown,
-        number: "4.94★",
-        label: "Excellence Rating",
-        detail: "Rated by 12,000+ verified graduates",
-        description: "Consistently rated as the premier technology education platform with unmatched student satisfaction and outcomes.",
-        stats: ["Teaching: 4.9★", "Support: 4.95★", "Outcomes: 4.98★"],
-        trend: "Industry's highest"
+        icon: FaCode,
+        title: "Hands-on Projects",
+        description: "Real-world projects that build your portfolio and practical skills"
       }
     ];
   }
@@ -160,6 +158,29 @@ export default class LuxuryLandingPage extends Component {
     window.addEventListener('mousemove', this.handleMouseMove);
     this.testimonialTimer = setInterval(this.nextTestimonial, 8000);
     this.countdownTimer = setInterval(this.updateCountdown, 1000);
+    
+    // Intersection Observer for animations
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.setState(prevState => ({
+              isVisible: {
+                ...prevState.isVisible,
+                [entry.target.id]: true
+              }
+            }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Observe all sections with animation
+    const animatedSections = document.querySelectorAll('[data-animate]');
+    animatedSections.forEach(section => {
+      this.observer.observe(section);
+    });
   }
 
   componentWillUnmount() {
@@ -167,6 +188,9 @@ export default class LuxuryLandingPage extends Component {
     window.removeEventListener('mousemove', this.handleMouseMove);
     clearInterval(this.testimonialTimer);
     clearInterval(this.countdownTimer);
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   handleMouseMove = (e) => {
@@ -221,16 +245,10 @@ export default class LuxuryLandingPage extends Component {
   goLogin = () => this.props.history && this.props.history.push('/login');
   goRegister = () => this.props.history && this.props.history.push('/register');
   
-  // Handler for regular demo booking (opens DemoForm)
   handleBookDemo = () => this.setState({ showDemoForm: true });
-  
-  // Handler for "Chat with us" (opens NewChatBot - Gemini AI)
   handleChatWithUs = () => this.setState({ showNewChatBot: true });
-  
-  // Handler for "Book Demo" from floating button (opens ChatBot - Interactive Form)
   handleInteractiveDemo = () => this.setState({ showChatBot: true });
   
-  // Close handlers
   closeDemoForm = () => this.setState({ showDemoForm: false });
   closeNewChatBot = () => this.setState({ showNewChatBot: false });
   closeChatBot = () => this.setState({ showChatBot: false });
@@ -249,317 +267,229 @@ export default class LuxuryLandingPage extends Component {
   }
 
   render() {
-    const { testimonialIndex, cohortCountdown, openFAQ, mousePosition, showScrollToTop, activeOutcome } = this.state;
+    const { testimonialIndex, cohortCountdown, openFAQ, showScrollToTop, activeOutcome, isVisible } = this.state;
 
     return (
-      <div className="luxury-landing-page">
-        <div className="luxury-wrapper">
-          {/* Luxury cursor */}
-          <div 
-            className="luxury-cursor" 
-            style={{
-              left: mousePosition.x,
-              top: mousePosition.y
-            }}
-          />
-
+      <div className="okta-landing-page">
+        <div className="okta-wrapper">
+          {/* Header */}
           <Header 
             onLogin={this.goLogin}
             onRegister={this.goRegister}
           />
 
-          <HeroSection 
-            onBookDemo={this.handleBookDemo}
-            cohortCountdown={cohortCountdown}
-          />
-
-          {/* Enhanced Recognition Section with Scrolling Partners */}
-          <section className="luxury-recognition">
-            <div className="recognition-content">
-              <div className="recognition-label">Trusted Partnerships</div>
-              <h3 className="partnership-title">
-                <a 
-                  href="https://www.coursera.org/about/partners" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="partnership-link"
-                >
-                  We collaborate with 350+ leading universities and companies
-                </a>
-              </h3>
+          {/* Hero Section */}
+          <section className="okta-hero" id="hero" data-animate>
+            <div className="hero-container">
+              <div className="hero-content">
+                <div className="hero-badge">
+                  <FaGraduationCap className="badge-icon" />
+                  <span>Transform Your Tech Career</span>
+                </div>
+                
+                <h1 className="hero-title">
+                  Secure Your Future in <br />
+                  <span className="gradient-text">Technology</span>
+                </h1>
+                
+                <p className="hero-description">
+                  Master cutting-edge technologies with industry-leading mentorship, 
+                  hands-on projects, and guaranteed placement support. Join 15,000+ 
+                  professionals who've transformed their careers with Lurnity.
+                </p>
+                
+                <div className="hero-actions">
+                  <button className="btn-primary" onClick={this.handleBookDemo}>
+                    <FaRocket className="btn-icon" />
+                    <span>Start Your Journey</span>
+                    <FaArrowRight className="arrow-icon" />
+                  </button>
+                  
+                  <button className="btn-secondary" onClick={this.handleChatWithUs}>
+                    <FaPlay className="btn-icon" />
+                    <span>Watch Demo</span>
+                  </button>
+                </div>
+                
+                <div className="hero-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">15,847+</span>
+                    <span className="stat-label">Graduates</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">97.2%</span>
+                    <span className="stat-label">Placement Rate</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">₹28.5L</span>
+                    <span className="stat-label">Highest Package</span>
+                  </div>
+                </div>
+              </div>
               
-              <div className="partners-scroll-container">
-                <div className="partners-scroll-track">
-                  {/* Company logos with duplicates for seamless scrolling */}
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google" />
+              <div className="hero-visual">
+                <div className="hero-card">
+                  <div className="card-header">
+                    <div className="card-dots">
+                      <span className="dot red"></span>
+                      <span className="dot yellow"></span>
+                      <span className="dot green"></span>
+                    </div>
+                    <span className="card-title">Lurnity Dashboard</span>
                   </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png" alt="Microsoft" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Amazon" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png" alt="Apple" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/1200px-Tesla_Motors.svg.png" alt="Tesla" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1200px-Netflix_2015_logo.svg.png" alt="Netflix" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/1200px-Uber_logo_2018.svg.png" alt="Uber" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_Bélo.svg/1200px-Airbnb_Logo_Bélo.svg.png" alt="Airbnb" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://logo.svgcdn.com/d/salesforce-original.png" alt="Salesforce" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://logos-world.net/wp-content/uploads/2020/09/IBM-Logo.png" alt="IBM" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png" alt="Oracle" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/1200px-Shopify_logo_2018.svg.png" alt="Shopify" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Zoom_Communications_Logo.svg/1200px-Zoom_Communications_Logo.svg.png" alt="Zoom" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/1200px-Stripe_Logo%2C_revised_2016.svg.png" alt="Stripe" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1200px-Notion-logo.svg.png" alt="Notion" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1200px-OpenAI_Logo.svg.png" alt="OpenAI" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://cdn.worldvectorlogo.com/logos/adobe-1.svg" alt="Adobe" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://cdn.worldvectorlogo.com/logos/nvidia.svg" alt="NVIDIA" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Intel_logo_%282006-2020%29.svg/1200px-Intel_logo_%282006-2020%29.svg.png" alt="Intel" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/1200px-Cisco_logo.svg.png" alt="Cisco" />
-                  </div>
-
-                  {/* Duplicate set for seamless scrolling */}
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png" alt="Microsoft" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Amazon" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png" alt="Apple" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/1200px-Tesla_Motors.svg.png" alt="Tesla" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1200px-Netflix_2015_logo.svg.png" alt="Netflix" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/1200px-Uber_logo_2018.svg.png" alt="Uber" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_Bélo.svg/1200px-Airbnb_Logo_Bélo.svg.png" alt="Airbnb" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://logo.svgcdn.com/d/salesforce-original.png" alt="Salesforce" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://logos-world.net/wp-content/uploads/2020/09/IBM-Logo.png" alt="IBM" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png" alt="Oracle" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/1200px-Shopify_logo_2018.svg.png" alt="Shopify" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Zoom_Communications_Logo.svg/1200px-Zoom_Communications_Logo.svg.png" alt="Zoom" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/1200px-Stripe_Logo%2C_revised_2016.svg.png" alt="Stripe" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1200px-Notion-logo.svg.png" alt="Notion" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1200px-OpenAI_Logo.svg.png" alt="OpenAI" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://cdn.worldvectorlogo.com/logos/adobe-1.svg" alt="Adobe" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://cdn.worldvectorlogo.com/logos/nvidia.svg" alt="NVIDIA" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Intel_logo_%282006-2020%29.svg/1200px-Intel_logo_%282006-2020%29.svg.png" alt="Intel" />
-                  </div>
-                  <div className="partner-logo-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/1200px-Cisco_logo.svg.png" alt="Cisco" />
+                  <div className="card-content">
+                    <div className="progress-item">
+                      <span>AI & Machine Learning</span>
+                      <div className="progress-bar">
+                        <div className="progress-fill" style={{width: '85%'}}></div>
+                      </div>
+                    </div>
+                    <div className="progress-item">
+                      <span>Embedded Systems</span>
+                      <div className="progress-bar">
+                        <div className="progress-fill" style={{width: '92%'}}></div>
+                      </div>
+                    </div>
+                    <div className="progress-item">
+                      <span>IoT Development</span>
+                      <div className="progress-bar">
+                        <div className="progress-fill" style={{width: '78%'}}></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Why Choose Luxury Component */}
-          <WhyChooseLurnity onBookDemo={this.handleBookDemo} />
-
-          {/* Premium Programs Component */}
-          <LurnityPrograms onBookDemo={this.handleBookDemo} />
-
-          {/* LIGHT THEME Career Outcomes Section */}
-          <section className="luxury-outcomes-light" id="outcomes">
-            <div className="outcomes-background-light">
-              <div className="bg-pattern-light"></div>
-              <div className="floating-elements-light">
-                <div className="float-element-light element-1"></div>
-                <div className="float-element-light element-2"></div>
-                <div className="float-element-light element-3"></div>
+          {/* Trust Indicators */}
+          <section className="trust-section" data-animate>
+            <div className="section-container">
+              <p className="trust-label">Trusted by professionals at</p>
+              <div className="trust-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Google" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png" alt="Microsoft" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Amazon" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png" alt="Apple" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/1200px-Tesla_Motors.svg.png" alt="Tesla" />
               </div>
             </div>
+          </section>
 
-            <div className="section-content-full">
-              <div className="outcomes-header-light">
-                <div className="section-badge-light">Our Impact</div>
-                <h2 className="section-title-light">
-                  Exceptional <span className="gradient-text-orange">Career Outcomes</span>
-                </h2>
-                <p className="section-subtitle-light">
-                  Our graduates consistently achieve remarkable career transformations and join the world's most innovative companies
+          {/* Features Section */}
+          <section className="features-section" id="features" data-animate>
+            <div className="section-container">
+              <div className="section-header">
+                <h2 className="section-title">Why Choose Lurnity</h2>
+                <p className="section-subtitle">
+                  Experience the difference with our comprehensive approach to tech education
                 </p>
               </div>
               
-              <div className="outcomes-grid-light">
+              <div className="features-grid">
+                {this.features.map((feature, index) => (
+                  <div key={index} className="feature-card">
+                    <div className="feature-icon">
+                      <feature.icon />
+                    </div>
+                    <h3 className="feature-title">{feature.title}</h3>
+                    <p className="feature-description">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Outcomes Section */}
+          <section className="outcomes-section" id="outcomes" data-animate>
+            <div className="section-container">
+              <div className="section-header">
+                <h2 className="section-title">Proven Results</h2>
+                <p className="section-subtitle">
+                  Our graduates consistently achieve remarkable career transformations
+                </p>
+              </div>
+              
+              <div className="outcomes-grid">
                 {this.outcomesData.map((outcome, index) => (
                   <div 
                     key={outcome.id} 
-                    className={`outcome-card-light ${activeOutcome === outcome.id ? 'active' : ''}`}
+                    className={`outcome-card ${activeOutcome === outcome.id ? 'active' : ''}`}
                     onMouseEnter={() => this.handleOutcomeHover(outcome.id)}
                     onMouseLeave={this.handleOutcomeLeave}
                   >
-                    <div className="card-background-light"></div>
-                    <div className="card-border-light"></div>
-                    
-                    <div className="outcome-icon-wrapper-light">
-                      <div className="outcome-icon-light">
-                        <outcome.icon />
-                      </div>
-                      <div className="icon-shadow-light"></div>
+                    <div className="outcome-icon">
+                      <outcome.icon />
                     </div>
-                    
-                    <div className="outcome-content-light">
-                      <div className="outcome-number-light">{outcome.number}</div>
-                      <div className="outcome-label-light">{outcome.label}</div>
-                      <div className="outcome-detail-light">{outcome.detail}</div>
-                      
-                      <div className="outcome-trend-light">
-                        <FaFire className="trend-icon-light" />
-                        <span>{outcome.trend}</span>
-                      </div>
-                    </div>
-
-                    <div className="outcome-expansion-light">
-                      <p className="outcome-description-light">{outcome.description}</p>
-                      <div className="outcome-stats-light">
-                        {outcome.stats.map((stat, i) => (
-                          <div key={i} className="stat-item-light">
-                            <span className="stat-bullet-light">•</span>
-                            <span className="stat-text-light">{stat}</span>
-                          </div>
-                        ))}
-                      </div>
+                    <div className="outcome-content">
+                      <div className="outcome-number">{outcome.number}</div>
+                      <div className="outcome-label">{outcome.label}</div>
+                      <div className="outcome-detail">{outcome.detail}</div>
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
+          </section>
 
-              <div className="outcomes-cta-light">
-                <div className="cta-content-light">
-                  <h3 className="cta-title-light">Ready to Join Our Success Stories?</h3>
-                  <p className="cta-subtitle-light">Transform your career with industry-leading outcomes</p>
-                  <button className="btn-outcomes-cta-light" onClick={this.handleBookDemo}>
-                    <FaRocket className="btn-icon" />
-                    <span>Start Your Journey</span>
-                    <FaArrowRight className="arrow-icon" />
+          {/* Testimonials Section */}
+          <section className="testimonials-section" data-animate>
+            <div className="section-container">
+              <div className="section-header">
+                <h2 className="section-title">Success Stories</h2>
+                <p className="section-subtitle">
+                  Hear from our graduates who've transformed their careers
+                </p>
+              </div>
+              
+              <div className="testimonial-container">
+                <div className="testimonial-card">
+                  <div className="testimonial-quote">
+                    <p>"{this.testimonials[testimonialIndex].text}"</p>
+                  </div>
+                  
+                  <div className="testimonial-author">
+                    <img 
+                      src={this.testimonials[testimonialIndex].image} 
+                      alt={this.testimonials[testimonialIndex].author}
+                      className="author-image" 
+                    />
+                    <div className="author-details">
+                      <div className="author-name">{this.testimonials[testimonialIndex].author}</div>
+                      <div className="author-role">{this.testimonials[testimonialIndex].role}</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="testimonial-controls">
+                  <button className="testimonial-btn" onClick={this.prevTestimonial}>
+                    <FaChevronDown style={{transform: 'rotate(90deg)'}} />
+                  </button>
+                  <div className="testimonial-indicators">
+                    {this.testimonials.map((_, index) => (
+                      <button 
+                        key={index}
+                        className={`indicator ${index === testimonialIndex ? 'active' : ''}`}
+                        onClick={() => this.setState({testimonialIndex: index})}
+                      />
+                    ))}
+                  </div>
+                  <button className="testimonial-btn" onClick={this.nextTestimonial}>
+                    <FaChevronDown style={{transform: 'rotate(-90deg)'}} />
                   </button>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Premium Testimonials */}
-          <section className="luxury-testimonials">
-            <div className="section-content">
-              <div className="section-header">
-                <h2 className="section-title">Success Stories</h2>
-                <p className="section-subtitle">Hear from our Lurnity graduates who've transformed their careers</p>
-              </div>
-              
-              <div className="testimonial-slider">
-                <button className="testimonial-nav prev" onClick={this.prevTestimonial}>
-                  <FaChevronDown style={{transform: 'rotate(90deg)'}} />
-                </button>
-                
-                <div className="testimonial-content">
-                  <div className="testimonial-card">
-                    <div className="testimonial-quote">
-                      <div className="quote-mark">"</div>
-                      <p className="quote-text">{this.testimonials[testimonialIndex].text}</p>
-                    </div>
-                    
-                    <div className="testimonial-author">
-                      <img src={this.testimonials[testimonialIndex].image} alt="Graduate" className="author-image" />
-                      <div className="author-details">
-                        <div className="author-name">{this.testimonials[testimonialIndex].author}</div>
-                        <div className="author-role">{this.testimonials[testimonialIndex].role}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <button className="testimonial-nav next" onClick={this.nextTestimonial}>
-                  <FaChevronDown style={{transform: 'rotate(-90deg)'}} />
-                </button>
-              </div>
-              
-              <div className="testimonial-indicators">
-                {this.testimonials.map((_, index) => (
-                  <button 
-                    key={index}
-                    className={`indicator ${index === testimonialIndex ? 'active' : ''}`}
-                    onClick={() => this.setState({testimonialIndex: index})}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Upcoming Masterclasses Component */}
-          <UpcomingMasterclasses onBookDemo={this.handleBookDemo} />
-
-          {/* Luxury FAQ */}
-          <section className="luxury-faq" id="faq">
-            <div className="section-content">
+          {/* FAQ Section */}
+          <section className="faq-section" id="faq" data-animate>
+            <div className="section-container">
               <div className="section-header">
                 <h2 className="section-title">Frequently Asked Questions</h2>
-                <p className="section-subtitle">Everything you need to know about our premium programs</p>
+                <p className="section-subtitle">
+                  Everything you need to know about our programs
+                </p>
               </div>
               
               <div className="faq-container">
@@ -587,299 +517,137 @@ export default class LuxuryLandingPage extends Component {
             </div>
           </section>
 
-          {/* Luxury Newsletter */}
-          <section className="luxury-newsletter">
-            <div className="newsletter-content">
-              <div className="newsletter-left">
-                <h3 className="newsletter-title">Join Our Lurnity Community</h3>
-                <p className="newsletter-description">
-                  Get exclusive access to industry insights, career opportunities, 
-                  and premium resources from our expert network.
+          {/* CTA Section */}
+          <section className="cta-section" data-animate>
+            <div className="section-container">
+              <div className="cta-content">
+                <h2 className="cta-title">Ready to Transform Your Career?</h2>
+                <p className="cta-description">
+                  Join thousands of professionals who've successfully transitioned into tech careers
                 </p>
-                
-                <div className="newsletter-features">
-                  <div className="newsletter-feature">
-                    <FaRocket className="feature-icon" />
-                    <span>Weekly industry insights</span>
-                  </div>
-                  <div className="newsletter-feature">
-                    <FaBriefcase className="feature-icon" />
-                    <span>Exclusive job opportunities</span>
-                  </div>
-                  <div className="newsletter-feature">
-                    <FaGraduationCap className="feature-icon" />
-                    <span>Premium learning resources</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="newsletter-right">
-                <div className="newsletter-form">
-                  <input 
-                    type="email" 
-                    placeholder="Enter your email address"
-                    className="newsletter-input"
-                  />
-                  <button className="btn-newsletter" onClick={this.handleBookDemo}>
-                    <span>Join Lurnity Community</span>
-                    <FaArrowRight className="btn-icon" />
-                  </button>
-                </div>
+                <button className="btn-primary large" onClick={this.handleBookDemo}>
+                  <FaRocket className="btn-icon" />
+                  <span>Start Your Journey Today</span>
+                  <FaArrowRight className="arrow-icon" />
+                </button>
               </div>
             </div>
           </section>
 
-          {/* REDESIGNED Premium Footer */}
-          <footer className="premium-footer">
-            <div className="footer-background">
-              <div className="footer-pattern"></div>
-            </div>
-            
-            <div className="footer-content-full">
-              {/* Main Footer Content */}
-              <div className="footer-main-section">
-                <div className="footer-left">
-                  <div className="footer-brand-section">
-                    <div className="brand-logo-wrapper">
-                      <img src={logo} alt="Lurnity" className="footer-logo" />
-                      <div className="brand-info">
-                        <h3 className="brand-name">LURNITY</h3>
-                        <p className="brand-tagline">Transform Your Future</p>
-                      </div>
-                    </div>
-                    
-                    <p className="brand-description">
-                      Empowering the next generation of tech professionals through industry-leading education, 
-                      personalized mentorship, and guaranteed career transformation.
-                    </p>
-                    
-                    <div className="footer-stats">
-                      <div className="footer-stat">
-                        <span className="stat-number">15,847+</span>
-                        <span className="stat-label">Alumni</span>
-                      </div>
-                      <div className="footer-stat">
-                        <span className="stat-number">97.2%</span>
-                        <span className="stat-label">Placement</span>
-                      </div>
-                      <div className="footer-stat">
-                        <span className="stat-number">500+</span>
-                        <span className="stat-label">Partners</span>
-                      </div>
+          {/* Footer */}
+          <footer className="okta-footer">
+            <div className="footer-container">
+              <div className="footer-content">
+                <div className="footer-brand">
+                  <div className="brand-logo">
+                    <img src={logo} alt="Lurnity" className="footer-logo" />
+                    <div className="brand-info">
+                      <h3 className="brand-name">LURNITY</h3>
+                      <p className="brand-tagline">Transform Your Future</p>
                     </div>
                   </div>
-                </div>
-                
-                <div className="footer-right">
-                  <div className="footer-links-grid">
-                    <div className="footer-column">
-                      <h4 className="footer-column-title">Programs</h4>
-                      <div className="footer-links">
-                        <a href="#programs" className="footer-link">
-                          <FaRocket className="link-icon" />
-                          <span>AI & Machine Learning</span>
-                        </a>
-                        <a href="#programs" className="footer-link">
-                          <FaLaptopCode className="link-icon" />
-                          <span>Embedded Systems</span>
-                        </a>
-                        <a href="#programs" className="footer-link">
-                          <FaGlobe className="link-icon" />
-                          <span>Internet of Things</span>
-                        </a>
-                        <a href="#programs" className="footer-link">
-                          <FaCrown className="link-icon" />
-                          <span>Robotics & Automation</span>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="footer-column">
-                      <h4 className="footer-column-title">Company</h4>
-                      <div className="footer-links">
-                        <a href="#about" className="footer-link">
-                          <FaUsers className="link-icon" />
-                          <span>About Lurnity</span>
-                        </a>
-                        <a href="#mentors" className="footer-link">
-                          <FaChalkboardTeacher className="link-icon" />
-                          <span>Expert Mentors</span>
-                        </a>
-                        <a href="#outcomes" className="footer-link">
-                          <FaTrophy className="link-icon" />
-                          <span>Success Stories</span>
-                        </a>
-                        <a href="/careers" className="footer-link">
-                          <FaBriefcase className="link-icon" />
-                          <span>Join Our Team</span>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="footer-column">
-                      <h4 className="footer-column-title">Resources</h4>
-                      <div className="footer-links">
-                        <a href="#blog" className="footer-link">
-                          <FaPlay className="link-icon" />
-                          <span>Learning Hub</span>
-                        </a>
-                        <a href="#events" className="footer-link">
-                          <FaCalendarAlt className="link-icon" />
-                          <span>Live Events</span>
-                        </a>
-                        <a href="#faq" className="footer-link">
-                          <FaCheckCircle className="link-icon" />
-                          <span>Help Center</span>
-                        </a>
-                        <a href="#support" className="footer-link">
-                          <FaHandshake className="link-icon" />
-                          <span>Student Support</span>
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="footer-column">
-                      <h4 className="footer-column-title">Connect</h4>
-                      <div className="contact-info">
-                        <div className="contact-item">
-                          <FaMapMarkerAlt className="contact-icon" />
-                          <div className="contact-details">
-                            <span className="contact-label">Headquarters</span>
-                            <span className="contact-value">Hyderabad, Telangana, India</span>
-                          </div>
-                        </div>
-                        <div className="contact-item">
-                          <FaEnvelope className="contact-icon" />
-                          <div className="contact-details">
-                            <span className="contact-label">Email</span>
-                            <span className="contact-value">admissions@lurnity.com</span>
-                          </div>
-                        </div>
-                        <div className="contact-item">
-                          <FaPhoneAlt className="contact-icon" />
-                          <div className="contact-details">
-                            <span className="contact-label">Phone</span>
-                            <span className="contact-value">+91 98765 43210</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Social Media Section */}
-              <div className="footer-social-section">
-                <div className="social-content">
-                  <h4 className="social-title">Follow Our Journey</h4>
+                  
+                  <p className="brand-description">
+                    Empowering the next generation of tech professionals through 
+                    industry-leading education and guaranteed career transformation.
+                  </p>
+                  
                   <div className="social-links">
-                    <a href="https://www.linkedin.com/" className="social-link linkedin" target="_blank" rel="noopener noreferrer">
+                    <a href="#" className="social-link">
                       <FaLinkedin />
-                      <span>LinkedIn</span>
                     </a>
-                    <a href="https://twitter.com/" className="social-link twitter" target="_blank" rel="noopener noreferrer">
+                    <a href="#" className="social-link">
                       <FaTwitter />
-                      <span>Twitter</span>
                     </a>
-                    <a href="https://instagram.com/" className="social-link instagram" target="_blank" rel="noopener noreferrer">
-                      <FaInstagram />
-                      <span>Instagram</span>
-                    </a>
-                    <a href="https://github.com/" className="social-link github" target="_blank" rel="noopener noreferrer">
+                    <a href="#" className="social-link">
                       <FaGithub />
-                      <span>GitHub</span>
+                    </a>
+                    <a href="#" className="social-link">
+                      <FaInstagram />
                     </a>
                   </div>
                 </div>
                 
-                <div className="newsletter-signup">
-                  <h4 className="newsletter-signup-title">Stay Updated</h4>
-                  <div className="newsletter-form-footer">
-                    <input 
-                      type="email" 
-                      placeholder="Enter your email"
-                      className="newsletter-input-footer"
-                    />
-                    <button className="btn-newsletter-footer" onClick={this.handleBookDemo}>
-                      <span>Subscribe</span>
-                      <FaArrowRight />
-                    </button>
+                <div className="footer-links">
+                  <div className="footer-column">
+                    <h4 className="footer-title">Programs</h4>
+                    <ul className="footer-list">
+                      <li><a href="#programs">AI & Machine Learning</a></li>
+                      <li><a href="#programs">Embedded Systems</a></li>
+                      <li><a href="#programs">Internet of Things</a></li>
+                      <li><a href="#programs">Robotics & Automation</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div className="footer-column">
+                    <h4 className="footer-title">Company</h4>
+                    <ul className="footer-list">
+                      <li><a href="#about">About Us</a></li>
+                      <li><a href="#instructors">Our Team</a></li>
+                      <li><a href="#careers">Careers</a></li>
+                      <li><a href="#contact">Contact</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div className="footer-column">
+                    <h4 className="footer-title">Resources</h4>
+                    <ul className="footer-list">
+                      <li><a href="#blog">Blog</a></li>
+                      <li><a href="#events">Events</a></li>
+                      <li><a href="#help">Help Center</a></li>
+                      <li><a href="#support">Support</a></li>
+                    </ul>
                   </div>
                 </div>
               </div>
               
-              {/* Bottom Footer */}
               <div className="footer-bottom">
                 <div className="footer-bottom-content">
-                  <div className="copyright">
-                    <span>© 2025 Lurnity Technologies Pvt Ltd. All rights reserved.</span>
-                  </div>
-                  <div className="footer-legal-links">
-                    <a href="/privacy" className="legal-link">Privacy Policy</a>
-                    <a href="/terms" className="legal-link">Terms of Service</a>
-                    <a href="/cookies" className="legal-link">Cookie Policy</a>
-                    <a href="/security" className="legal-link">Security</a>
+                  <p className="copyright">© 2025 Lurnity Technologies Pvt Ltd. All rights reserved.</p>
+                  <div className="footer-legal">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/cookies">Cookie Policy</a>
                   </div>
                 </div>
               </div>
             </div>
           </footer>
 
-          {/* Updated Floating Action Button with separate handlers */}
+          {/* Floating Action Button */}
           <FloatingActionButton 
-            onBookDemo={this.handleInteractiveDemo}  // Interactive demo form chatbot
-            onChatBot={this.handleChatWithUs}        // Gemini AI chatbot
+            onBookDemo={this.handleInteractiveDemo}
+            onChatBot={this.handleChatWithUs}
           />
 
-          {/* Custom Scroll to Top Button */}
+          {/* Scroll to Top Button */}
           {showScrollToTop && (
             <button 
-              className="scroll-to-top-btn"
+              className="scroll-to-top"
               onClick={this.scrollToTop}
               aria-label="Scroll to top"
             >
-              <FaArrowUp className="scroll-to-top-icon" />
+              <FaArrowUp />
             </button>
           )}
 
-          {/* Luxury Popup */}
+          {/* Modals */}
           {this.state.showPopup && (
-            <div className="luxury-popup-overlay">
-              <div className="luxury-popup">
-                <button className="popup-close-luxury" onClick={this.closePopup}>
-                  <span>×</span>
-                </button>
-                
-                <div className="popup-content-luxury">
-                  <div className="popup-header">
-                    <h4 className="popup-title">Book Your Demo</h4>
-                    <p className="popup-subtitle">
-                      Get personalized portfolio feedback and career guidance from our industry experts
-                    </p>
-                  </div>
-                  
-                  <div className="popup-features">
-                    <div className="popup-feature">
-                      <FaCheckCircle className="feature-check-popup" />
-                      <span>30-minute personalized session</span>
-                    </div>
-                    <div className="popup-feature">
-                      <FaCheckCircle className="feature-check-popup" />
-                      <span>Portfolio review & feedback</span>
-                    </div>
-                    <div className="popup-feature">
-                      <FaCheckCircle className="feature-check-popup" />
-                      <span>Career roadmap discussion</span>
-                    </div>
-                  </div>
-                  
+            <div className="popup-overlay">
+              <div className="popup">
+                <button className="popup-close" onClick={this.closePopup}>×</button>
+                <div className="popup-content">
+                  <h4 className="popup-title">Ready to Start?</h4>
+                  <p className="popup-description">
+                    Get personalized guidance from our career experts
+                  </p>
                   <div className="popup-actions">
-                    <button className="btn-popup-outline" onClick={this.closePopup}>
+                    <button className="btn-outline" onClick={this.closePopup}>
                       Maybe Later
                     </button>
-                    <button className="btn-popup-premium" onClick={this.handleBookDemo}>
+                    <button className="btn-primary" onClick={this.handleBookDemo}>
                       <FaRocket className="btn-icon" />
-                      Book Now - Free
+                      Book Free Demo
                     </button>
                   </div>
                 </div>
@@ -887,23 +655,20 @@ export default class LuxuryLandingPage extends Component {
             </div>
           )}
 
-          {/* Demo Form Modal - Traditional form */}
           {this.state.showDemoForm && (
-            <div className="demo-modal-overlay">
-              <div className="demo-modal">
+            <div className="modal-overlay">
+              <div className="modal">
                 <button className="modal-close" onClick={this.closeDemoForm}>×</button>
                 <DemoForm onClose={this.closeDemoForm} />
               </div>
             </div>
           )}
 
-          {/* Gemini AI Chatbot - Side popup for "Chat with us" */}
           <NewChatBot 
             isOpen={this.state.showNewChatBot} 
             onClose={this.closeNewChatBot} 
           />
 
-          {/* Interactive Demo Form Chatbot - Overlay for "Book Demo" */}
           <ChatBot 
             isOpen={this.state.showChatBot} 
             onClose={this.closeChatBot} 
