@@ -1,161 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaChevronDown, FaSearch, FaTimes, FaBars, FaBook, FaCode, FaRocket, FaMicrochip, FaWifi, FaCog, FaGraduationCap, FaUsers, FaBriefcase, FaChartLine, FaCertificate, FaLifeRing, FaQuestionCircle, FaFileAlt, FaPlay, FaVideo, FaBuilding, FaRobot, FaHandshake, FaStar } from 'react-icons/fa';
+import { FaChevronDown, FaSearch, FaTimes, FaBars } from 'react-icons/fa';
 import logo from '../assets/lurnity_original.jpg';
 import './Header.css';
 
 const Header = ({ onLogin, onRegister }) => {
-  const [isExploreOpen, setIsExploreOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState('programs');
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const [isLearningOpen, setIsLearningOpen] = useState(false);
+  const [isDevelopersOpen, setIsDevelopersOpen] = useState(false);
+  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   
-  const exploreRef = useRef(null);
-  const searchRef = useRef(null);
+  const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
-
-  // Enhanced navigation data with icons
-  const navigationData = {
-    programs: {
-      title: 'Programs',
-      icon: FaGraduationCap,
-      categories: [
-        {
-          title: 'Artificial Intelligence',
-          icon: FaRobot,
-          items: [
-            { name: 'AI & Machine Learning', icon: FaRobot },
-            { name: 'Deep Learning Specialization', icon: FaCode },
-            { name: 'Natural Language Processing', icon: FaBook },
-            { name: 'Computer Vision', icon: FaVideo }
-          ]
-        },
-        {
-          title: 'Software Engineering',
-          icon: FaCode,
-          items: [
-            { name: 'Full Stack Development', icon: FaCode },
-            { name: 'Cloud Computing', icon: FaWifi },
-            { name: 'DevOps & Infrastructure', icon: FaCog },
-            { name: 'Microservices Architecture', icon: FaMicrochip }
-          ]
-        },
-        {
-          title: 'Hardware & IoT',
-          icon: FaMicrochip,
-          items: [
-            { name: 'Embedded Systems', icon: FaMicrochip },
-            { name: 'Internet of Things', icon: FaWifi },
-            { name: 'Robotics & Automation', icon: FaRobot },
-            { name: 'Hardware Design', icon: FaCog }
-          ]
-        },
-        {
-          title: 'Data Science',
-          icon: FaChartLine,
-          items: [
-            { name: 'Data Analytics', icon: FaChartLine },
-            { name: 'Business Intelligence', icon: FaBriefcase },
-            { name: 'Statistical Modeling', icon: FaBook },
-            { name: 'Big Data Engineering', icon: FaCode }
-          ]
-        }
-      ]
-    },
-    resources: {
-      title: 'Resources',
-      icon: FaBook,
-      categories: [
-        {
-          title: 'Learning Hub',
-          icon: FaGraduationCap,
-          items: [
-            { name: 'Documentation Center', icon: FaFileAlt },
-            { name: 'Video Tutorials', icon: FaPlay },
-            { name: 'Interactive Labs', icon: FaCode },
-            { name: 'Quick Start Guides', icon: FaBook }
-          ]
-        },
-        {
-          title: 'Developer Tools',
-          icon: FaCode,
-          items: [
-            { name: 'SDK Downloads', icon: FaCode },
-            { name: 'API References', icon: FaBook },
-            { name: 'Code Examples', icon: FaFileAlt },
-            { name: 'Testing Frameworks', icon: FaCog }
-          ]
-        },
-        {
-          title: 'Community',
-          icon: FaUsers,
-          items: [
-            { name: 'Developer Forums', icon: FaUsers },
-            { name: 'Discord Community', icon: FaUsers },
-            { name: 'Study Groups', icon: FaGraduationCap },
-            { name: 'Live Sessions', icon: FaPlay }
-          ]
-        },
-        {
-          title: 'Support',
-          icon: FaLifeRing,
-          items: [
-            { name: 'Help Center', icon: FaQuestionCircle },
-            { name: 'Technical Support', icon: FaLifeRing },
-            { name: 'Contact Support', icon: FaUsers },
-            { name: 'Knowledge Base', icon: FaBook }
-          ]
-        }
-      ]
-    },
-    career: {
-      title: 'Career Services',
-      icon: FaBriefcase,
-      categories: [
-        {
-          title: 'Job Placement',
-          icon: FaBriefcase,
-          items: [
-            { name: 'Career Coaching', icon: FaBriefcase },
-            { name: 'Interview Preparation', icon: FaUsers },
-            { name: 'Resume Building', icon: FaFileAlt },
-            { name: 'Salary Negotiation', icon: FaChartLine }
-          ]
-        },
-        {
-          title: 'Industry Network',
-          icon: FaUsers,
-          items: [
-            { name: 'Partner Companies', icon: FaBuilding },
-            { name: 'Hiring Partners', icon: FaBriefcase },
-            { name: 'Networking Events', icon: FaUsers },
-            { name: 'Industry Meetups', icon: FaPlay }
-          ]
-        },
-        {
-          title: 'Professional Growth',
-          icon: FaChartLine,
-          items: [
-            { name: 'Certification Programs', icon: FaCertificate },
-            { name: 'Leadership Training', icon: FaGraduationCap },
-            { name: 'Skill Assessment', icon: FaCode },
-            { name: 'Career Counseling', icon: FaUsers }
-          ]
-        },
-        {
-          title: 'Alumni Success',
-          icon: FaCertificate,
-          items: [
-            { name: 'Alumni Directory', icon: FaUsers },
-            { name: 'Success Stories', icon: FaChartLine },
-            { name: 'Mentorship Program', icon: FaGraduationCap },
-            { name: 'Alumni Events', icon: FaPlay }
-          ]
-        }
-      ]
-    }
-  };
 
   // Handle scroll effect
   useEffect(() => {
@@ -170,11 +29,12 @@ const Header = ({ onLogin, onRegister }) => {
   // Handle click outside to close menus
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (exploreRef.current && !exploreRef.current.contains(event.target)) {
-        setIsExploreOpen(false);
-      }
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setIsSearchOpen(false);
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsProductsOpen(false);
+        setIsSolutionsOpen(false);
+        setIsLearningOpen(false);
+        setIsDevelopersOpen(false);
+        setIsCompanyOpen(false);
       }
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
         setIsMobileMenuOpen(false);
@@ -189,8 +49,11 @@ const Header = ({ onLogin, onRegister }) => {
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
-        setIsExploreOpen(false);
-        setIsSearchOpen(false);
+        setIsProductsOpen(false);
+        setIsSolutionsOpen(false);
+        setIsLearningOpen(false);
+        setIsDevelopersOpen(false);
+        setIsCompanyOpen(false);
         setIsMobileMenuOpen(false);
       }
     };
@@ -199,283 +62,238 @@ const Header = ({ onLogin, onRegister }) => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  const toggleExplore = () => {
-    setIsExploreOpen(!isExploreOpen);
-    setIsSearchOpen(false);
-  };
-
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-    setIsExploreOpen(false);
+  const toggleDropdown = (dropdown) => {
+    setIsProductsOpen(dropdown === 'products' ? !isProductsOpen : false);
+    setIsSolutionsOpen(dropdown === 'solutions' ? !isSolutionsOpen : false);
+    setIsLearningOpen(dropdown === 'learning' ? !isLearningOpen : false);
+    setIsDevelopersOpen(dropdown === 'developers' ? !isDevelopersOpen : false);
+    setIsCompanyOpen(dropdown === 'company' ? !isCompanyOpen : false);
   };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    setIsExploreOpen(false);
-    setIsSearchOpen(false);
-  };
-
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-  };
-
-  const handlePartnerClick = () => {
-    // You can customize this handler based on your requirements
-    console.log('Join as Partner clicked');
-    // Example: Navigate to partner page or open modal
-    // window.location.href = '/partners';
-    // or call a props function: onPartnerJoin();
   };
 
   return (
-    <div className="header-wrapper">
-      <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="header-content">
-          {/* Left Section */}
-          <div className="header-left">
-            <Link to="/" className="brand-logo">
-              <img src={logo} alt="Lurnity" className="logo-image" />
-              <div className="brand-text">
-                <span className="brand-name">LURNITY</span>
-                <span className="brand-tagline">Learn • Build • Excel</span>
-              </div>
-            </Link>
-
-            {/* Explore Dropdown */}
-            <div className="explore-container" ref={exploreRef}>
-              <button 
-                className={`explore-button ${isExploreOpen ? 'active' : ''}`}
-                onClick={toggleExplore}
-                aria-expanded={isExploreOpen}
-              >
-                <FaGraduationCap className="explore-icon" />
-                <span>Explore</span>
-                <FaChevronDown className={`chevron ${isExploreOpen ? 'rotated' : ''}`} />
-              </button>
-
-              {/* Mega Dropdown - 80% Width */}
-              {isExploreOpen && (
-                <div className="mega-dropdown">
-                  <div className="dropdown-container">
-                    {/* Left Sidebar */}
-                    <div className="dropdown-sidebar">
-                      <div className="sidebar-header">
-                        <h3>Discover</h3>
-                        <p>Explore our comprehensive programs</p>
-                      </div>
-                      
-                      {Object.entries(navigationData).map(([key, category]) => {
-                        const IconComponent = category.icon;
-                        return (
-                          <button
-                            key={key}
-                            className={`sidebar-item ${activeCategory === key ? 'active' : ''}`}
-                            onClick={() => handleCategoryChange(key)}
-                            onMouseEnter={() => handleCategoryChange(key)}
-                          >
-                            <IconComponent className="sidebar-icon" />
-                            <div className="sidebar-text">
-                              <span className="sidebar-title">{category.title}</span>
-                            </div>
-                            <FaChevronDown className="sidebar-arrow" />
-                          </button>
-                        );
-                      })}
-                      
-                      <div className="sidebar-footer">
-                        <div className="stats-card">
-                          <div className="stat-item">
-                            <strong>25K+</strong>
-                            <span>Students</span>
-                          </div>
-                          <div className="stat-item">
-                            <strong>4.9★</strong>
-                            <span>Rating</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Content Area */}
-                    <div className="dropdown-content">
-                      {navigationData[activeCategory] && (
-                        <div className="content-grid">
-                          {navigationData[activeCategory].categories.map((category, categoryIndex) => {
-                            const CategoryIcon = category.icon;
-                            return (
-                              <div key={categoryIndex} className="content-column">
-                                <div className="column-header">
-                                  <CategoryIcon className="column-icon" />
-                                  <h4 className="column-title">{category.title}</h4>
-                                </div>
-                                <ul className="column-items">
-                                  {category.items.map((item, itemIndex) => {
-                                    const ItemIcon = item.icon;
-                                    return (
-                                      <li key={itemIndex}>
-                                        <Link
-                                          to={`/${item.name.toLowerCase().replace(/\s+/g, '-')}`}
-                                          className="column-link"
-                                          onClick={() => setIsExploreOpen(false)}
-                                        >
-                                          <ItemIcon className="item-icon" />
-                                          <span>{item.name}</span>
-                                          <FaArrowRight className="link-arrow" />
-                                        </Link>
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                      
-                      {/* Bottom CTA */}
-                      <div className="content-footer">
-                        <div className="cta-banner">
-                          <div className="cta-content">
-                            <FaRocket className="cta-icon" />
-                            <div className="cta-text">
-                              <h4>Ready to start your journey?</h4>
-                              <p>Join thousands of students transforming their careers</p>
-                            </div>
-                          </div>
-                          <button className="cta-button" onClick={onRegister}>
-                            Get Started Free
-                            <FaArrowRight />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <nav className="header-nav">
-            <div className="nav-links">
-              <Link to="/careers" className="nav-link">
-                <FaBriefcase />
-                <span>Careers</span>
+    <div className="okta-header-wrapper">
+      <header className={`okta-header ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="okta-header-container">
+          {/* Main Navigation Container */}
+          <div className="okta-header-layout">
+            {/* Left Navigation Bar */}
+            <nav className="okta-nav-bar">
+              {/* Brand Logo */}
+              <Link to="/" className="okta-brand">
+                <img src={logo} alt="Lurnity" className="okta-logo" />
               </Link>
-              
-              <button className="search-button" onClick={toggleSearch}>
-                <FaSearch />
-              </button>
-            </div>
-            
-            <div className="auth-buttons">
-              {/* Join as Partner Button */}
-              <button className="btn-partner" onClick={handlePartnerClick}>
-                <FaHandshake />
-                <span>Join as Partner</span>
-              </button>
-              
-              <button className="btn-signin" onClick={onLogin}>
-                Sign In
-              </button>
-              
-              <button className="btn-signup" onClick={onRegister}>
-                <span>Join Lurnity</span>
-                <FaArrowRight />
-              </button>
-            </div>
-          </nav>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className={`mobile-toggle ${isMobileMenuOpen ? 'active' : ''}`}
-            onClick={toggleMobileMenu}
-          >
-            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
+              {/* Main Navigation */}
+              <div className="okta-nav-menu" ref={dropdownRef}>
+                <button 
+                  className={`okta-nav-item ${isProductsOpen ? 'active' : ''}`}
+                  onClick={() => toggleDropdown('products')}
+                >
+                  Products
+                </button>
 
-        {/* Search Overlay */}
-        {isSearchOpen && (
-          <div className="search-overlay" ref={searchRef}>
-            <div className="search-container">
-              <div className="search-box">
-                <FaSearch className="search-icon" />
-                <input 
-                  type="text" 
-                  placeholder="Search programs, resources, careers..." 
-                  className="search-input"
-                  autoFocus
-                />
-                <button className="search-close" onClick={() => setIsSearchOpen(false)}>
-                  <FaTimes />
+                <button 
+                  className={`okta-nav-item ${isSolutionsOpen ? 'active' : ''}`}
+                  onClick={() => toggleDropdown('solutions')}
+                >
+                  Solutions
+                </button>
+
+                <button 
+                  className={`okta-nav-item ${isLearningOpen ? 'active' : ''}`}
+                  onClick={() => toggleDropdown('learning')}
+                >
+                  Learning & Support
+                </button>
+
+                <button 
+                  className={`okta-nav-item ${isDevelopersOpen ? 'active' : ''}`}
+                  onClick={() => toggleDropdown('developers')}
+                >
+                  Developers
+                </button>
+
+                <button 
+                  className={`okta-nav-item ${isCompanyOpen ? 'active' : ''}`}
+                  onClick={() => toggleDropdown('company')}
+                >
+                  Company
                 </button>
               </div>
-              <div className="search-suggestions">
-                <div className="suggestion-category">
-                  <h4>Popular Searches</h4>
-                  <div className="suggestion-tags">
-                    <span className="tag">AI & Machine Learning</span>
-                    <span className="tag">Full Stack Development</span>
-                    <span className="tag">Data Science</span>
-                    <span className="tag">Career Services</span>
-                  </div>
+
+              {/* Mobile Menu Toggle */}
+              <button 
+                className={`okta-mobile-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+                onClick={toggleMobileMenu}
+              >
+                {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+              </button>
+            </nav>
+
+            {/* Right Actions Container - Separate Oval */}
+            <div className="okta-actions-container">
+              <button className="okta-btn-secondary" onClick={onLogin}>
+                contact us
+              </button>
+              <button className="okta-btn-primary" onClick={onRegister}>
+                Register
+              </button>
+            </div>
+          </div>
+
+          {/* Dropdown Menus */}
+          {isProductsOpen && (
+            <div className="okta-dropdown">
+              <div className="okta-dropdown-content">
+                <div className="okta-dropdown-section">
+                  <h3>Learning Management</h3>
+                  <ul>
+                    <li><Link to="/courses">Course Management</Link></li>
+                    <li><Link to="/assessments">Assessments & Quizzes</Link></li>
+                    <li><Link to="/certifications">Certifications</Link></li>
+                    <li><Link to="/analytics">Learning Analytics</Link></li>
+                  </ul>
+                </div>
+                <div className="okta-dropdown-section">
+                  <h3>Student Experience</h3>
+                  <ul>
+                    <li><Link to="/dashboard">Student Dashboard</Link></li>
+                    <li><Link to="/progress">Progress Tracking</Link></li>
+                    <li><Link to="/collaboration">Collaboration Tools</Link></li>
+                    <li><Link to="/mobile">Mobile Learning</Link></li>
+                  </ul>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="mobile-menu" ref={mobileMenuRef}>
-            <div className="mobile-content">
-              <div className="mobile-nav">
-                {Object.entries(navigationData).map(([key, category]) => {
-                  const IconComponent = category.icon;
-                  return (
-                    <div key={key} className="mobile-section">
-                      <h3 className="mobile-section-title">
-                        <IconComponent />
-                        {category.title}
-                      </h3>
-                      <div className="mobile-section-content">
-                        {category.categories.map((cat, catIndex) => (
-                          <div key={catIndex} className="mobile-category">
-                            <h4>{cat.title}</h4>
-                            {cat.items.map((item, itemIndex) => (
-                              <Link
-                                key={itemIndex}
-                                to={`/${item.name.toLowerCase().replace(/\s+/g, '-')}`}
-                                className="mobile-link"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                              >
-                                {item.name}
-                              </Link>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="mobile-auth">
-                <button className="mobile-partner" onClick={handlePartnerClick}>
-                  <FaHandshake />
-                  Join as Partner
-                </button>
-                <button className="mobile-signin" onClick={onLogin}>
-                  Sign In
-                </button>
-                <button className="mobile-signup" onClick={onRegister}>
-                  Join Lurnity
-                </button>
+          {isSolutionsOpen && (
+            <div className="okta-dropdown">
+              <div className="okta-dropdown-content">
+                <div className="okta-dropdown-section">
+                  <h3>By Industry</h3>
+                  <ul>
+                    <li><Link to="/education">Education</Link></li>
+                    <li><Link to="/corporate">Corporate Training</Link></li>
+                    <li><Link to="/healthcare">Healthcare</Link></li>
+                    <li><Link to="/technology">Technology</Link></li>
+                  </ul>
+                </div>
+                <div className="okta-dropdown-section">
+                  <h3>By Use Case</h3>
+                  <ul>
+                    <li><Link to="/onboarding">Employee Onboarding</Link></li>
+                    <li><Link to="/compliance">Compliance Training</Link></li>
+                    <li><Link to="/skills">Skills Development</Link></li>
+                    <li><Link to="/certification">Professional Certification</Link></li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+
+          {isLearningOpen && (
+            <div className="okta-dropdown">
+              <div className="okta-dropdown-content">
+                <div className="okta-dropdown-section">
+                  <h3>Resources</h3>
+                  <ul>
+                    <li><Link to="/documentation">Documentation</Link></li>
+                    <li><Link to="/tutorials">Video Tutorials</Link></li>
+                    <li><Link to="/webinars">Webinars</Link></li>
+                    <li><Link to="/blog">Blog</Link></li>
+                  </ul>
+                </div>
+                <div className="okta-dropdown-section">
+                  <h3>Support</h3>
+                  <ul>
+                    <li><Link to="/help">Help Center</Link></li>
+                    <li><Link to="/community">Community Forum</Link></li>
+                    <li><Link to="/contact">Contact Support</Link></li>
+                    <li><Link to="/status">System Status</Link></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {isDevelopersOpen && (
+            <div className="okta-dropdown">
+              <div className="okta-dropdown-content">
+                <div className="okta-dropdown-section">
+                  <h3>APIs & SDKs</h3>
+                  <ul>
+                    <li><Link to="/api">REST API</Link></li>
+                    <li><Link to="/sdk">JavaScript SDK</Link></li>
+                    <li><Link to="/webhooks">Webhooks</Link></li>
+                    <li><Link to="/integrations">Integrations</Link></li>
+                  </ul>
+                </div>
+                <div className="okta-dropdown-section">
+                  <h3>Developer Tools</h3>
+                  <ul>
+                    <li><Link to="/playground">API Playground</Link></li>
+                    <li><Link to="/samples">Code Samples</Link></li>
+                    <li><Link to="/postman">Postman Collection</Link></li>
+                    <li><Link to="/cli">CLI Tools</Link></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {isCompanyOpen && (
+            <div className="okta-dropdown">
+              <div className="okta-dropdown-content">
+                <div className="okta-dropdown-section">
+                  <h3>About</h3>
+                  <ul>
+                    <li><Link to="/about">About Lurnity</Link></li>
+                    <li><Link to="/team">Our Team</Link></li>
+                    <li><Link to="/careers">Careers</Link></li>
+                    <li><Link to="/press">Press & Media</Link></li>
+                  </ul>
+                </div>
+                <div className="okta-dropdown-section">
+                  <h3>Connect</h3>
+                  <ul>
+                    <li><Link to="/partners">Partners</Link></li>
+                    <li><Link to="/events">Events</Link></li>
+                    <li><Link to="/newsletter">Newsletter</Link></li>
+                    <li><Link to="/social">Social Media</Link></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="okta-mobile-menu" ref={mobileMenuRef}>
+              <div className="okta-mobile-content">
+                <div className="okta-mobile-nav">
+                  <Link to="/products" className="okta-mobile-link">Products</Link>
+                  <Link to="/solutions" className="okta-mobile-link">Solutions</Link>
+                  <Link to="/learning" className="okta-mobile-link">Learning & Support</Link>
+                  <Link to="/developers" className="okta-mobile-link">Developers</Link>
+                  <Link to="/company" className="okta-mobile-link">Company</Link>
+                </div>
+                <div className="okta-mobile-actions">
+                  <button className="okta-mobile-btn-secondary" onClick={onLogin}>
+                    Login
+                  </button>
+                  <button className="okta-mobile-btn-primary" onClick={onRegister}>
+                    Register
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </header>
     </div>
   );

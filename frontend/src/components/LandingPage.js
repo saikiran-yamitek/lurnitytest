@@ -279,7 +279,7 @@ export default class LuxuryLandingPage extends Component {
               <div className="recognition-label">Trusted Partnerships</div>
               <h3 className="partnership-title">
                 <a 
-                  href="https://www.coursera.org/about/partners" 
+                  
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="partnership-link"
