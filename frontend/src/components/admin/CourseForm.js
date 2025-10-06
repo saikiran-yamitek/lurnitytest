@@ -189,7 +189,7 @@ export default class CourseForm extends Component {
 
     const v = this.state.subCourses[sIdx].videos[vIdx];
     try {
-      const res = await fetch('https://0b2k8twmkf.execute-api.ap-south-1.amazonaws.com/dev', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: v.url })
