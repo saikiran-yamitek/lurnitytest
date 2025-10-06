@@ -103,8 +103,8 @@ export default function ForgotPassword({ onClose }) {
             required
           />
           <button type="submit" disabled={loading}>
-            {loading ? 'Sending…' : 'Send OTPs'}
-          </button>
+  {loading ? 'Sending…' : 'Send OTPs'}
+</button>
           {msg && <p className="error">{msg}</p>}
         </form>
       )}
