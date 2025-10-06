@@ -1,6 +1,7 @@
 // src/components/AuthForm.js
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import ForgotPassword from './ForgotPassword';
 import { login, register } from '../services/api';
 import './Login.css';
 import logo from '../assets/LURNITY.jpg';
@@ -9,6 +10,7 @@ import { GoogleLogin } from "@react-oauth/google";
 export default function AuthForm() {
   const history = useHistory();
   const [isSignUp, setIsSignUp] = useState(false);
+  const [showForgot, setShowForgot] = useState(false);
   
   // Login form state
   const [loginForm, setLoginForm] = useState({ 
@@ -244,7 +246,8 @@ export default function AuthForm() {
               required
             />
             
-            <Link to="#" className="forgot-password">Forgot your password?</Link>
+            <Link to="#" className="forgot-password" onClick={(e)=>{ e.preventDefault(); setShowForgot(true); }}>Forgot your password?</Link>
+{showForgot && <ForgotPassword onClose={()=>setShowForgot(false)} />}
             <button type="submit">Sign In</button>
             
             {loginMsg && (

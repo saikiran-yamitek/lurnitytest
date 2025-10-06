@@ -22,6 +22,20 @@ export const login = async ({ email, password }) => {
   return data;                                     // { token, user }
 };
 
+export async function requestReset(payload) {
+  const r = await fetch('/api/user/forgot-password/request', { method: 'POST', headers: { 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+export async function verifyReset(payload) {
+  const r = await fetch('/api/user/forgot-password/verify', { method: 'POST', headers: { 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+export async function finalizeReset(payload) {
+  const r = await fetch('/api/user/forgot-password/reset', { method: 'POST', headers: { 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+
+
 
 
 
