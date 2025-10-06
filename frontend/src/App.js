@@ -19,6 +19,7 @@ import StudentPlacementDrives from './components/StudentPlacementDrives'
 import PracticePage  from "./components/PracticePage";
 import CareersPage from './components/CareersPage'
 import AICoursePage from './components/AICoursePage';
+import ForgotPassword from './components/ForgotPassword'
 
 
 /* ── Admin ── */
@@ -69,7 +70,7 @@ function App() {
         <Route path="/watch/:courseId/:subIdx/:vidIdx" component={VideoPlayer} />
         <Route path="/sandbox" component={SandboxPlayground} />
         <Route path="/certificate/view/:certId" component={CertificateViewer} />
-        
+        <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/test/:courseId/:subCourseIdx" component={TestWorkshopsPage} />
         <Route path="/profile" component={StudentProfilePage} />
         <Route path="/resume" component={Resume}/>

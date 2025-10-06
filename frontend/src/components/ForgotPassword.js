@@ -1,8 +1,11 @@
 // src/components/ForgotPassword.js
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { requestReset, verifyReset, finalizeReset } from '../services/api';
+import './ForgotPassword.css'; // optional styling file
 
-export default function ForgotPassword({ onClose }) {
+export default function ForgotPassword() {
+  const history = useHistory();
   const [step, setStep] = useState('request');
   const [email, setEmail] = useState('');
   const [requestId, setRequestId] = useState(null);
@@ -18,9 +21,7 @@ export default function ForgotPassword({ onClose }) {
   // Countdown for OTP expiry
   useEffect(() => {
     if (step === 'verify') {
-      const timer = setInterval(() => {
-        setCountdown(c => Math.max(0, c - 1));
-      }, 1000);
+      const timer = setInterval(() => setCountdown(c => Math.max(0, c - 1)), 1000);
       return () => clearInterval(timer);
     }
   }, [step]);
@@ -91,9 +92,9 @@ export default function ForgotPassword({ onClose }) {
   };
 
   return (
-    <div className="forgot-modal">
+    <div className="forgot-page-wrapper">
       {step === 'request' && (
-        <form onSubmit={onReq} noValidate>
+        <form onSubmit={onReq} noValidate className="forgot-form">
           <h2>Reset Password</h2>
           <input
             type="email"
@@ -103,14 +104,17 @@ export default function ForgotPassword({ onClose }) {
             required
           />
           <button type="submit" disabled={loading}>
-  {loading ? 'Sending…' : 'Send OTPs'}
-</button>
+            {loading ? 'Sending…' : 'Send OTPs'}
+          </button>
           {msg && <p className="error">{msg}</p>}
+          <button type="button" className="back-btn" onClick={() => history.push('/')}>
+            Back to Sign In
+          </button>
         </form>
       )}
 
       {step === 'verify' && (
-        <form onSubmit={onVerify} noValidate>
+        <form onSubmit={onVerify} noValidate className="forgot-form">
           <h2>Enter OTPs</h2>
           <p>
             Sent to {masked.email} and {masked.phone}. Expires in{' '}
@@ -142,7 +146,7 @@ export default function ForgotPassword({ onClose }) {
       )}
 
       {step === 'reset' && (
-        <form onSubmit={onReset} noValidate>
+        <form onSubmit={onReset} noValidate className="forgot-form">
           <h2>Set New Password</h2>
           <input
             type="password"
@@ -166,9 +170,9 @@ export default function ForgotPassword({ onClose }) {
       )}
 
       {step === 'done' && (
-        <div>
+        <div className="forgot-form">
           <h2>Password Updated</h2>
-          <button onClick={onClose}>Back to Sign In</button>
+          <button onClick={() => history.push('/')}>Back to Sign In</button>
         </div>
       )}
     </div>
