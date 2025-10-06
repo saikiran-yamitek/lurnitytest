@@ -4,12 +4,14 @@ import { register } from '../services/api';
 import './Register.css';
 import logo from '../assets/LURNITY.jpg';
 
+// A simple country code list, you can expand this
 const countryCodes = [
-  { name: 'India', code: '+91' },
-  { name: 'USA', code: '+1' },
-  { name: 'UK', code: '+44' },
-  { name: 'Australia', code: '+61' },
-  // add more as needed
+  { code: '+1', country: 'USA' },
+  { code: '+91', country: 'India' },
+  { code: '+44', country: 'UK' },
+  { code: '+61', country: 'Australia' },
+  { code: '+81', country: 'Japan' },
+  // ...add more as needed
 ];
 
 export default class Register extends Component {
@@ -19,7 +21,7 @@ export default class Register extends Component {
     password: '',
     confirmPassword: '',
     phone: '',
-    countryCode: '+91', // default
+    countryCode: '+91', // default code
     msg: '',
     isSuccess: false
   };
@@ -35,34 +37,25 @@ export default class Register extends Component {
     e.preventDefault();
     const { name, email, password, confirmPassword, phone, countryCode } = this.state;
 
-    /* basic validations */
     if (password.length < 10) {
-      return this.setState({
-        msg: 'Password must be at least 10 characters.'
-      });
+      return this.setState({ msg: 'Password must be at least 10 characters.' });
     }
 
     if (password !== confirmPassword) {
       return this.setState({ msg: 'Passwords do not match.' });
     }
 
-    const fullPhone = `${countryCode}${phone.replace(/^0+/, '')}`; // remove leading 0 if exists
+    // Combine country code with phone
+    const fullPhone = `${countryCode}${phone}`;
 
-    /* 🔄  register */
     const res = await register({ name, email, password, phone: fullPhone });
 
-    /* success */
     if (res.msg === 'User registered successfully') {
-      this.setState({
-        msg: res.msg,
-        isSuccess: true
-      });
-
+      this.setState({ msg: res.msg, isSuccess: true });
       setTimeout(() => this.props.history.replace('/login'), 1500);
       return;
     }
 
-    /* failure */
     this.setState({ msg: res.msg || 'Registration failed.' });
   };
 
@@ -82,51 +75,20 @@ export default class Register extends Component {
         <form className="form-card" onSubmit={this.handleSubmit}>
           <h2>Create your Account</h2>
 
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-            placeholder="Full Name"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-            placeholder="Email"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-            placeholder="Password (min 10 chars)"
-            required
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={this.handleChange}
-            placeholder="Confirm Password"
-            required
-          />
+          <input type="text" name="name" value={name} onChange={this.handleChange} placeholder="Full Name" required />
+          <input type="email" name="email" value={email} onChange={this.handleChange} placeholder="Email" required />
+          <input type="password" name="password" value={password} onChange={this.handleChange} placeholder="Password (min 10 chars)" required />
+          <input type="password" name="confirmPassword" value={confirmPassword} onChange={this.handleChange} placeholder="Confirm Password" required />
 
-          {/* Country code + phone */}
-          <div className="phone-input-wrapper">
+          <div style={{ display: 'flex', marginBottom: '15px' }}>
             <select
               name="countryCode"
               value={countryCode}
               onChange={this.handleChange}
-              className="country-code-select"
+              style={{ marginRight: '10px', padding: '12px', borderRadius: '8px', border: '1px solid #ccc' }}
             >
               {countryCodes.map((c) => (
-                <option key={c.code} value={c.code}>
-                  {c.name} ({c.code})
-                </option>
+                <option key={c.code} value={c.code}>{`${c.country} (${c.code})`}</option>
               ))}
             </select>
             <input
@@ -136,15 +98,13 @@ export default class Register extends Component {
               onChange={this.handleChange}
               placeholder="Phone Number"
               required
-              className="phone-input"
+              style={{ flex: 1, padding: '12px', borderRadius: '8px', border: '1px solid #ccc' }}
             />
           </div>
 
           <button type="submit">Sign Up</button>
 
-          {msg && (
-            <p className={`form-msg ${isSuccess ? 'success' : 'error'}`}>{msg}</p>
-          )}
+          {msg && <p className={`form-msg ${isSuccess ? 'success' : 'error'}`}>{msg}</p>}
 
           <p className="switch-text">
             Already have an account? <a href="/login">Log in</a>
