@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://l0loygym39.execute-api.us-east-1.amazonaws.com/dev';
+const API_BASE_URL = 'https://0b2k8twmkf.execute-api.ap-south-1.amazonaws.com/dev';
 const API = `${API_BASE_URL}/api/admin`;
 const API_URL = `${API_BASE_URL}/api/employees`;
 
