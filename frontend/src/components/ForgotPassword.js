@@ -15,20 +15,19 @@ export default function ForgotPassword({ onClose }) {
   const [countdown, setCountdown] = useState(600);
   const [loading, setLoading] = useState(false);
 
+  // Countdown for OTP expiry
   useEffect(() => {
     if (step === 'verify') {
-      const t = setInterval(() => setCountdown(c => Math.max(0, c - 1)), 1000);
-      return () => clearInterval(t);
+      const timer = setInterval(() => {
+        setCountdown(c => Math.max(0, c - 1));
+      }, 1000);
+      return () => clearInterval(timer);
     }
   }, [step]);
 
-  const stopAll = (e) => {
-    if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
-  };
-
-  const onReq = async (e) => {
-    if (e && typeof e.preventDefault === 'function') e.preventDefault();
-    if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+  // Request OTPs
+  const onReq = async e => {
+    e.preventDefault();
     setMsg('');
     setLoading(true);
     try {
@@ -44,33 +43,36 @@ export default function ForgotPassword({ onClose }) {
       }
     } catch (err) {
       console.error('Forgot/request error', err);
-      setMsg('Request failed');
+      setMsg('Request failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
-  const onVerify = async (e) => {
-    if (e && typeof e.preventDefault === 'function') e.preventDefault();
-    if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+  // Verify OTPs
+  const onVerify = async e => {
+    e.preventDefault();
     setMsg('');
     setLoading(true);
     try {
       const res = await verifyReset({ requestId, emailOtp, smsOtp });
       console.log('Forgot/verify res:', res);
-      if (res.ok) setStep('reset');
-      else setMsg(res.msg || 'Invalid or expired codes');
+      if (res.ok) {
+        setStep('reset');
+      } else {
+        setMsg(res.msg || 'Invalid or expired OTPs');
+      }
     } catch (err) {
       console.error('Forgot/verify error', err);
-      setMsg('Verification failed');
+      setMsg('Verification failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
-  const onReset = async (e) => {
-    if (e && typeof e.preventDefault === 'function') e.preventDefault();
-    if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+  // Reset password
+  const onReset = async e => {
+    e.preventDefault();
     setMsg('');
     if (newPass.length < 10) return setMsg('Password must be at least 10 characters.');
     if (newPass !== confirmPass) return setMsg('Passwords do not match.');
@@ -79,28 +81,28 @@ export default function ForgotPassword({ onClose }) {
       const res = await finalizeReset({ requestId, newPassword: newPass });
       console.log('Forgot/reset res:', res);
       if (res.ok) setStep('done');
-      else setMsg(res.msg || 'Reset failed');
+      else setMsg(res.msg || 'Password reset failed.');
     } catch (err) {
       console.error('Forgot/reset error', err);
-      setMsg('Reset failed');
+      setMsg('Reset failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="forgot-modal" onClick={stopAll} onMouseDown={stopAll}>
+    <div className="forgot-modal">
       {step === 'request' && (
-        <form onSubmit={onReq} onClick={stopAll} noValidate>
-          <h2>Reset password</h2>
+        <form onSubmit={onReq} noValidate>
+          <h2>Reset Password</h2>
           <input
             type="email"
             value={email}
-            onChange={e=>setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             placeholder="Account email"
             required
           />
-          <button type="submit" onClick={stopAll} disabled={loading}>
+          <button type="submit" disabled={loading}>
             {loading ? 'Sending…' : 'Send OTPs'}
           </button>
           {msg && <p className="error">{msg}</p>}
@@ -108,15 +110,16 @@ export default function ForgotPassword({ onClose }) {
       )}
 
       {step === 'verify' && (
-        <form onSubmit={onVerify} onClick={stopAll} noValidate>
+        <form onSubmit={onVerify} noValidate>
           <h2>Enter OTPs</h2>
           <p>
-            Sent to {masked.email} and {masked.phone}. Expires in {Math.floor(countdown/60)}:{String(countdown%60).padStart(2,'0')}
+            Sent to {masked.email} and {masked.phone}. Expires in{' '}
+            {Math.floor(countdown / 60)}:{String(countdown % 60).padStart(2, '0')}
           </p>
           <input
             type="text"
             value={emailOtp}
-            onChange={e=>setEmailOtp(e.target.value)}
+            onChange={e => setEmailOtp(e.target.value)}
             placeholder="Email OTP"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -125,13 +128,13 @@ export default function ForgotPassword({ onClose }) {
           <input
             type="text"
             value={smsOtp}
-            onChange={e=>setSmsOtp(e.target.value)}
+            onChange={e => setSmsOtp(e.target.value)}
             placeholder="SMS OTP"
             inputMode="numeric"
             pattern="[0-9]*"
             required
           />
-          <button type="submit" onClick={stopAll} disabled={loading}>
+          <button type="submit" disabled={loading}>
             {loading ? 'Verifying…' : 'Verify'}
           </button>
           {msg && <p className="error">{msg}</p>}
@@ -139,32 +142,32 @@ export default function ForgotPassword({ onClose }) {
       )}
 
       {step === 'reset' && (
-        <form onSubmit={onReset} onClick={stopAll} noValidate>
-          <h2>Set new password</h2>
+        <form onSubmit={onReset} noValidate>
+          <h2>Set New Password</h2>
           <input
             type="password"
             value={newPass}
-            onChange={e=>setNewPass(e.target.value)}
+            onChange={e => setNewPass(e.target.value)}
             placeholder="New password (min 10 chars)"
             required
           />
           <input
             type="password"
             value={confirmPass}
-            onChange={e=>setConfirmPass(e.target.value)}
+            onChange={e => setConfirmPass(e.target.value)}
             placeholder="Confirm password"
             required
           />
-          <button type="submit" onClick={stopAll} disabled={loading}>
-            {loading ? 'Updating…' : 'Update password'}
+          <button type="submit" disabled={loading}>
+            {loading ? 'Updating…' : 'Update Password'}
           </button>
           {msg && <p className="error">{msg}</p>}
         </form>
       )}
 
       {step === 'done' && (
-        <div onClick={stopAll}>
-          <h2>Password updated</h2>
+        <div>
+          <h2>Password Updated</h2>
           <button onClick={onClose}>Back to Sign In</button>
         </div>
       )}
