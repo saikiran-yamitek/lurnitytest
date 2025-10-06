@@ -64,7 +64,7 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Account"
    }
   },
-  "LurnityLmsApiDeployment658DA5F2cdd197f779c7f258dec7b3d0196a6348": {
+  "LurnityLmsApiDeployment658DA5F2b3651201beb2864415600960d652051e": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
@@ -283,6 +283,17 @@
     "LurnityLmsApiapiuseralertOPTIONS57B43889",
     "LurnityLmsApiapiuseralertPUT6239F410",
     "LurnityLmsApiapiuseralertD10F5562",
+    "LurnityLmsApiapiuserforgotpasswordOPTIONSD14BBD7A",
+    "LurnityLmsApiapiuserforgotpasswordrequestOPTIONS3A847D32",
+    "LurnityLmsApiapiuserforgotpasswordrequestPOST73EC767E",
+    "LurnityLmsApiapiuserforgotpasswordrequest8A99602D",
+    "LurnityLmsApiapiuserforgotpasswordresetOPTIONS6827A7D8",
+    "LurnityLmsApiapiuserforgotpasswordresetPOST117279CB",
+    "LurnityLmsApiapiuserforgotpasswordresetDCEEB4B8",
+    "LurnityLmsApiapiuserforgotpassword750198DA",
+    "LurnityLmsApiapiuserforgotpasswordverifyOPTIONS4550D686",
+    "LurnityLmsApiapiuserforgotpasswordverifyPOSTF203F839",
+    "LurnityLmsApiapiuserforgotpasswordverify05D97B12",
     "LurnityLmsApiapiusergetkeyOPTIONS05CAA39C",
     "LurnityLmsApiapiusergetkeyPOST251E65CF",
     "LurnityLmsApiapiusergetkey935ACC18",
@@ -344,7 +355,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "LurnityLmsApiDeployment658DA5F2cdd197f779c7f258dec7b3d0196a6348"
+     "Ref": "LurnityLmsApiDeployment658DA5F2b3651201beb2864415600960d652051e"
     },
     "RestApiId": {
      "Ref": "LurnityLmsApi9DD8A13A"
@@ -13711,6 +13722,564 @@
     "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/saveQuestion/POST/Resource"
    }
   },
+  "LurnityLmsApiapiuserforgotpassword750198DA": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "LurnityLmsApiapiuser110D0A22"
+    },
+    "PathPart": "forgot-password",
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordOPTIONSD14BBD7A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuserforgotpassword750198DA"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/OPTIONS/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordrequest8A99602D": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "LurnityLmsApiapiuserforgotpassword750198DA"
+    },
+    "PathPart": "request",
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordrequestOPTIONS3A847D32": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuserforgotpasswordrequest8A99602D"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/OPTIONS/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordrequestPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordrequest1193A4BB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/",
+       {
+        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+       },
+       "/POST/api/user/forgot-password/request"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.request"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordrequestPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordrequestF462FD99": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/test-invoke-stage/POST/api/user/forgot-password/request"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.request"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordrequestPOST73EC767E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuserforgotpasswordrequest8A99602D"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/POST/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordverify05D97B12": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "LurnityLmsApiapiuserforgotpassword750198DA"
+    },
+    "PathPart": "verify",
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordverifyOPTIONS4550D686": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuserforgotpasswordverify05D97B12"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/OPTIONS/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordverifyPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordverify1CC5A89B": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/",
+       {
+        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+       },
+       "/POST/api/user/forgot-password/verify"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.verify"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordverifyPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordverify9404AD1D": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/test-invoke-stage/POST/api/user/forgot-password/verify"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.verify"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordverifyPOSTF203F839": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuserforgotpasswordverify05D97B12"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/POST/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordresetDCEEB4B8": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "LurnityLmsApiapiuserforgotpassword750198DA"
+    },
+    "PathPart": "reset",
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordresetOPTIONS6827A7D8": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuserforgotpasswordresetDCEEB4B8"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/OPTIONS/Resource"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordresetPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordresetB6CF86E1": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/",
+       {
+        "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+       },
+       "/POST/api/user/forgot-password/reset"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.reset"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordresetPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordreset08DF04A7": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LurnityLmsApi9DD8A13A"
+       },
+       "/test-invoke-stage/POST/api/user/forgot-password/reset"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.reset"
+   }
+  },
+  "LurnityLmsApiapiuserforgotpasswordresetPOST117279CB": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LurnityLmsApiapiuserforgotpasswordresetDCEEB4B8"
+    },
+    "RestApiId": {
+     "Ref": "LurnityLmsApi9DD8A13A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/POST/Resource"
+   }
+  },
   "LurnityLmsApiapiuserid20370AEA": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
@@ -16159,6 +16728,15 @@
    "Type": "String"
   },
   "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn": {
    "Type": "String"
   },
   "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": {

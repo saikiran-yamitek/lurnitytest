@@ -1,8 +1,16 @@
 // src/components/Register.js
 import React, { Component } from 'react';
-import { register } from '../services/api';          // ⬅️  only register call
+import { register } from '../services/api';
 import './Register.css';
 import logo from '../assets/LURNITY.jpg';
+
+const countryCodes = [
+  { name: 'India', code: '+91' },
+  { name: 'USA', code: '+1' },
+  { name: 'UK', code: '+44' },
+  { name: 'Australia', code: '+61' },
+  // add more as needed
+];
 
 export default class Register extends Component {
   state = {
@@ -11,6 +19,7 @@ export default class Register extends Component {
     password: '',
     confirmPassword: '',
     phone: '',
+    countryCode: '+91', // default
     msg: '',
     isSuccess: false
   };
@@ -24,7 +33,7 @@ export default class Register extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password, confirmPassword, phone } = this.state;
+    const { name, email, password, confirmPassword, phone, countryCode } = this.state;
 
     /* basic validations */
     if (password.length < 10) {
@@ -37,8 +46,10 @@ export default class Register extends Component {
       return this.setState({ msg: 'Passwords do not match.' });
     }
 
+    const fullPhone = `${countryCode}${phone.replace(/^0+/, '')}`; // remove leading 0 if exists
+
     /* 🔄  register */
-    const res = await register({ name, email, password, phone });
+    const res = await register({ name, email, password, phone: fullPhone });
 
     /* success */
     if (res.msg === 'User registered successfully') {
@@ -47,7 +58,6 @@ export default class Register extends Component {
         isSuccess: true
       });
 
-      /* small delay so the user can read the message */
       setTimeout(() => this.props.history.replace('/login'), 1500);
       return;
     }
@@ -57,15 +67,7 @@ export default class Register extends Component {
   };
 
   render() {
-    const {
-      name,
-      email,
-      password,
-      confirmPassword,
-      phone,
-      msg,
-      isSuccess
-    } = this.state;
+    const { name, email, password, confirmPassword, phone, countryCode, msg, isSuccess } = this.state;
 
     return (
       <div className="form-container">
@@ -112,14 +114,31 @@ export default class Register extends Component {
             placeholder="Confirm Password"
             required
           />
-          <input
-            type="tel"
-            name="phone"
-            value={phone}
-            onChange={this.handleChange}
-            placeholder="Phone Number"
-            required
-          />
+
+          {/* Country code + phone */}
+          <div className="phone-input-wrapper">
+            <select
+              name="countryCode"
+              value={countryCode}
+              onChange={this.handleChange}
+              className="country-code-select"
+            >
+              {countryCodes.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {c.name} ({c.code})
+                </option>
+              ))}
+            </select>
+            <input
+              type="tel"
+              name="phone"
+              value={phone}
+              onChange={this.handleChange}
+              placeholder="Phone Number"
+              required
+              className="phone-input"
+            />
+          </div>
 
           <button type="submit">Sign Up</button>
 

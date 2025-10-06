@@ -394,6 +394,33 @@
     "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Workshop/Resource"
    }
   },
+  "ForgotPassword42DE43E7": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "requestId",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "requestId",
+      "KeyType": "HASH"
+     }
+    ],
+    "TimeToLiveSpecification": {
+     "AttributeName": "expiresAt",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/ForgotPassword/Resource"
+   }
+  },
   "Demo34AD4DAD": {
    "Type": "AWS::DynamoDB::Table",
    "Properties": {
@@ -504,6 +531,11 @@
     "Ref": "Demo34AD4DAD"
    }
   },
+  "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref": {
+   "Value": {
+    "Ref": "ForgotPassword42DE43E7"
+   }
+  },
   "LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": {
    "Value": {
     "Fn::GetAtt": [
@@ -596,6 +628,14 @@
    "Value": {
     "Fn::GetAtt": [
      "Demo34AD4DAD",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ForgotPassword42DE43E7",
      "Arn"
     ]
    }

@@ -44,6 +44,7 @@ class LurnityLmsStack extends cdk.Stack {
       PLACEMENT_TABLE_NAME: databaseStack.placementTable.tableName,
       WORKSHOP_TABLE_NAME: databaseStack.workshopTable.tableName,
       DEMO_TABLE_NAME: databaseStack.demoTable.tableName,
+      FORGOT_TABLE_NAME: databaseStack.forgotPasswordTable.tableName,
       S3_BUCKET: assetBucket.bucketName,
       JWT_SECRET: process.env.JWT_SECRET,
       GEMINI_API_KEY: process.env.GEMINI_API_KEY,
@@ -52,6 +53,11 @@ class LurnityLmsStack extends cdk.Stack {
       NODE_ENV: process.env.NODE_ENV,
       LOG_LEVEL: process.env.LOG_LEVEL,
       ADMIN_JWT_SECRET: process.env.ADMIN_JWT_SECRET || "admin-secret-key",
+      SES_FROM: process.env.SES_FROM || "admin@lurnity.com",
+  SES_CONFIG_SET: process.env.SES_CONFIG_SET || "transactional-emails",
+  OTP_DIGITS: process.env.OTP_DIGITS || "6",
+  OTP_TTL_SECONDS: process.env.OTP_TTL_SECONDS || "600",
+  RESET_WINDOW_SECONDS: process.env.RESET_WINDOW_SECONDS || "600",
     };
 
     // Lambda nested stack
@@ -118,6 +124,34 @@ class LurnityLmsStack extends cdk.Stack {
       databaseStack.userTable.grantFullAccess(l);
       databaseStack.companyTable.grantFullAccess(l);
     });
+
+
+    // Forgot-password grants
+databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordRequestLambda);
+databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordVerifyLambda);
+databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordResetLambda);
+
+// User table access for forgot flow
+databaseStack.userTable.grantReadData(lambdaStack.forgotPasswordRequestLambda); // findUserByEmail
+databaseStack.userTable.grantWriteData(lambdaStack.forgotPasswordResetLambda);  // update password
+lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
+  effect: iam.Effect.ALLOW,
+  actions: ["dynamodb:Query"],
+  resources: [`${databaseStack.userTable.tableArn}/index/email-index`],
+}));
+
+// SES and SNS permissions for sending OTPs
+lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
+  effect: iam.Effect.ALLOW,
+  actions: ["ses:SendEmail", "ses:SendRawEmail"],
+  resources: ["*"], // optionally restrict to identity ARN(s)
+}));
+lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
+  effect: iam.Effect.ALLOW,
+  actions: ["sns:Publish"],
+  resources: ["*"],
+}));
+
 
     // New placement lambdas
 [

@@ -80,7 +80,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "13ec5bcc5489d6e734be69c6b88b98417e814a0f128e0eeab362e42ead53c682.zip"
+     "S3Key": "aa7c166b51d0af998fb1e305bb2eb0dfd52ffc10016bf515936d501eb1825f84.zip"
     },
     "Environment": {
      "Variables": {
@@ -124,6 +124,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -133,7 +136,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -153,7 +161,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListUsersLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.aa7c166b51d0af998fb1e305bb2eb0dfd52ffc10016bf515936d501eb1825f84",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -238,7 +246,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d1e91e00a4e6bf71b9a2d8f7b0f45ce3358c53c8aa401887e9dbf0f69c91397b.zip"
+     "S3Key": "ca19bea888be2a58923f90d13de6530a672a5c5d7018531241ed74ea4f2ab081.zip"
     },
     "Environment": {
      "Variables": {
@@ -282,6 +290,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -291,7 +302,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -311,7 +327,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateUserLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.ca19bea888be2a58923f90d13de6530a672a5c5d7018531241ed74ea4f2ab081",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -396,7 +412,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "0f1451c13d5623b7924392a5e3eaf32e5e52de5ae1c0fc71c1118af95f08b7c0.zip"
+     "S3Key": "9efb48dc11911d1b5974ebc6d53a7169dc7df7a8a7c9753fb3885c6bfce76468.zip"
     },
     "Environment": {
      "Variables": {
@@ -440,6 +456,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -449,7 +468,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -469,7 +493,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteUserLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.9efb48dc11911d1b5974ebc6d53a7169dc7df7a8a7c9753fb3885c6bfce76468",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -585,7 +609,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d88e8932b1d018261e4093050f79f73cd07747a9417755bb2f20cb0044778def.zip"
+     "S3Key": "d7aaf10dbd6d4077a8f0574f70244266dddc06889ed50dd70c6637bd3593d69f.zip"
     },
     "Environment": {
      "Variables": {
@@ -629,6 +653,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -638,7 +665,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -658,7 +690,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ExportUsersCsvLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.d7aaf10dbd6d4077a8f0574f70244266dddc06889ed50dd70c6637bd3593d69f",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -763,7 +795,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "2a6db87ca7be5da2eb35a53650f908bf281967d1e038074e3ec8172d2ede44f1.zip"
+     "S3Key": "cb5593a8b8d300311524e5e5b1d4d95ed25f177d1162c39d3b8ce50e1631ad00.zip"
     },
     "Environment": {
      "Variables": {
@@ -807,6 +839,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -816,7 +851,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -836,7 +876,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateTransactionLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.cb5593a8b8d300311524e5e5b1d4d95ed25f177d1162c39d3b8ce50e1631ad00",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -941,7 +981,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c38a03ee698763b3dd6bb67ce7412e33925833d423e3502bb6a27cd233f9ba8b.zip"
+     "S3Key": "0b08c0480207425e4507c4f404ffa4daa4a78ee01b88c7b03ea87f5f5c48c4ba.zip"
     },
     "Environment": {
      "Variables": {
@@ -985,6 +1025,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -994,7 +1037,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -1014,7 +1062,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListUserTransactionsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.0b08c0480207425e4507c4f404ffa4daa4a78ee01b88c7b03ea87f5f5c48c4ba",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1110,7 +1158,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3dc9b6a4f8674cd5798870624d68af759924094e42724039a7e11e2b7782ebae.zip"
+     "S3Key": "da50d0405561a15598d03d7791cf08fed0815a8bf1176c1eaf742ba3898316b5.zip"
     },
     "Environment": {
      "Variables": {
@@ -1154,6 +1202,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1163,7 +1214,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -1183,7 +1239,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GenerateReceiptLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.da50d0405561a15598d03d7791cf08fed0815a8bf1176c1eaf742ba3898316b5",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1260,7 +1316,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c88d6498147683e228f4130097c01266e50ce74cecbd5177e756c9a364f7886d.zip"
+     "S3Key": "56451ebad95fd3c5781cc279423b7487583a210406d9008d0098be47dceb7e82.zip"
     },
     "Environment": {
      "Variables": {
@@ -1304,6 +1360,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1313,7 +1372,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -1333,7 +1397,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCoursesLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.56451ebad95fd3c5781cc279423b7487583a210406d9008d0098be47dceb7e82",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1410,7 +1474,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8ed4d5f47d67cc4c2246d403f9be6298ed73abb5f81fd757b0b31ed88a7e3820.zip"
+     "S3Key": "50ce29cfa3eb7c20fc2ccaa5757939580430762d22ba2c472b8c9fb455dfb8a1.zip"
     },
     "Environment": {
      "Variables": {
@@ -1454,6 +1518,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1463,7 +1530,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -1483,7 +1555,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateCourseLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.50ce29cfa3eb7c20fc2ccaa5757939580430762d22ba2c472b8c9fb455dfb8a1",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1560,7 +1632,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "22f96a6180b1c879f1735322a20e799e315b0c164153a9eb7b7ae3db19370591.zip"
+     "S3Key": "8e8bc1dfda9ea76102aa607161c4d309ce003d4fd2ddfb106d75346d496c7390.zip"
     },
     "Environment": {
      "Variables": {
@@ -1604,6 +1676,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1613,7 +1688,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -1633,7 +1713,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCourseLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.8e8bc1dfda9ea76102aa607161c4d309ce003d4fd2ddfb106d75346d496c7390",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1710,7 +1790,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1496dfc48d080250c52347386d005358da567d1e638d92ec26faf8ec4acb9996.zip"
+     "S3Key": "e9db996278c7d476e23024b3bd7a06e0b0ff940025392c209b7f4f7ee4f1601b.zip"
     },
     "Environment": {
      "Variables": {
@@ -1754,6 +1834,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1763,7 +1846,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -1783,7 +1871,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteCourseLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.e9db996278c7d476e23024b3bd7a06e0b0ff940025392c209b7f4f7ee4f1601b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1829,7 +1917,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "50f46d616d4b95e5870d4fe306a2e701e4137cb423188aad74198c936dd228bf.zip"
+     "S3Key": "9c779ff54f87be9492e6ca9bd8ff5b3c98412fcc5c553bec4c626012db8d4483.zip"
     },
     "Environment": {
      "Variables": {
@@ -1873,6 +1961,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1882,7 +1973,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -1901,7 +1997,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetStatsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.9c779ff54f87be9492e6ca9bd8ff5b3c98412fcc5c553bec4c626012db8d4483",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1978,7 +2074,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d41f8c5bc335b8037e7fc5ed80b1f879b5fbcb595444740ff3bb86aeef01096f.zip"
+     "S3Key": "5fda8c3542fbc7522654b340ae6774076b9c2f51641bed5a6908d2c924386555.zip"
     },
     "Environment": {
      "Variables": {
@@ -2022,6 +2118,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2031,7 +2130,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -2051,7 +2155,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteTicketLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.5fda8c3542fbc7522654b340ae6774076b9c2f51641bed5a6908d2c924386555",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2136,7 +2240,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e2cb6b0207c9622441b0f7078c1376a8f3d66b541d4ddc0604a8e76ae1a9759d.zip"
+     "S3Key": "161f36d5f7adf6194a9bd7655947fb49b561bf5e966c0c0caa85c44bb39d0a32.zip"
     },
     "Environment": {
      "Variables": {
@@ -2180,6 +2284,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2189,7 +2296,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -2209,7 +2321,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SetUserLockLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.161f36d5f7adf6194a9bd7655947fb49b561bf5e966c0c0caa85c44bb39d0a32",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2286,7 +2398,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b27f6baa340aed73d31dee7bc77ab739db94b76a089cc65f02c39fd3320215c0.zip"
+     "S3Key": "da0c6347754821c7466799185a4a6a1320fccd93012b1c1573818fe0681034d9.zip"
     },
     "Environment": {
      "Variables": {
@@ -2330,6 +2442,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2339,7 +2454,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -2359,7 +2479,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AdminAuthLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.da0c6347754821c7466799185a4a6a1320fccd93012b1c1573818fe0681034d9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2436,7 +2556,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "88a99c8f53b397402e396908641be4d8b4907186a379021cbfa9fa6f01f9b0f1.zip"
+     "S3Key": "de61d823ff268eab63442c6041ece539f2cf1d122e5d9895580941fa7b10ad5e.zip"
     },
     "Environment": {
      "Variables": {
@@ -2480,6 +2600,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2489,7 +2612,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -2509,7 +2637,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCohortsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.de61d823ff268eab63442c6041ece539f2cf1d122e5d9895580941fa7b10ad5e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2586,7 +2714,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5f3abb938fb16e8103d2a079ad248489eb5396ecfc8bc0be1c0964912b1d493f.zip"
+     "S3Key": "9f78c752c0a26e2e6ae03c7af559ed7be2ddd407df98297ed38c7cae47856fe3.zip"
     },
     "Environment": {
      "Variables": {
@@ -2630,6 +2758,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2639,7 +2770,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -2659,7 +2795,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateCohortLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.9f78c752c0a26e2e6ae03c7af559ed7be2ddd407df98297ed38c7cae47856fe3",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2736,7 +2872,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4575473ecf4cb238397247df86bb001b37ba9f25ef73da2b4b008adc1ea11b0b.zip"
+     "S3Key": "13aefcb3fb8298099942e11095cedba16bea5b5c0ac038ae77be05315d6395fd.zip"
     },
     "Environment": {
      "Variables": {
@@ -2780,6 +2916,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2789,7 +2928,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -2809,7 +2953,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCohortLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.13aefcb3fb8298099942e11095cedba16bea5b5c0ac038ae77be05315d6395fd",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2886,7 +3030,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e67461454340d000effa5d143ef71b094384a5fbbd46a5b03d7bffa5649f0a07.zip"
+     "S3Key": "350af36e66b852bc5e91cd3f0ca1ff7cd86e8ff8bc1f8ad9ba04daa4ac100548.zip"
     },
     "Environment": {
      "Variables": {
@@ -2930,6 +3074,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2939,7 +3086,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -2959,7 +3111,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteCohortLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.350af36e66b852bc5e91cd3f0ca1ff7cd86e8ff8bc1f8ad9ba04daa4ac100548",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3091,7 +3243,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "159bca3547c7b306e8c7994b2717def0e907adcae073ef9005259dff185d4209.zip"
+     "S3Key": "25f3ad65128cbacbb39a9c4efbcf40c32db5b047320fb2498b1dcf398b2a4037.zip"
     },
     "Environment": {
      "Variables": {
@@ -3135,6 +3287,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3144,7 +3299,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -3164,7 +3324,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GenerateCertificateLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.25f3ad65128cbacbb39a9c4efbcf40c32db5b047320fb2498b1dcf398b2a4037",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3296,7 +3456,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3525eaf5b500e23a845b668a9f07a21e707d30449af19826d1ee3fa6448a6134.zip"
+     "S3Key": "1d21f9743d671d21cca90efd3ba9a7fe4e4bad3086c502901f2507f54a7ff572.zip"
     },
     "Environment": {
      "Variables": {
@@ -3340,6 +3500,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3349,7 +3512,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -3369,7 +3537,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCertificatesLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.1d21f9743d671d21cca90efd3ba9a7fe4e4bad3086c502901f2507f54a7ff572",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3501,7 +3669,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c3f94f813fedbf898d287442af3dfe38f90b4fe7008d9a3c4a444ec7e0de276b.zip"
+     "S3Key": "19265f4dc43b7efc6d7484885649c374d511e5252878feea5794d4f03470a58c.zip"
     },
     "Environment": {
      "Variables": {
@@ -3545,6 +3713,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3554,7 +3725,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -3574,7 +3750,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCertificateByIdLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.19265f4dc43b7efc6d7484885649c374d511e5252878feea5794d4f03470a58c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3706,7 +3882,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b560857a916c7456f8590beb07eaf6cf3cbe9c9e5890ca81b7f78faf6891075e.zip"
+     "S3Key": "5f5b27f9a936efdb6b7bd4d7e7677933163769d0ff3823aaf7d4f4566ca7ff97.zip"
     },
     "Environment": {
      "Variables": {
@@ -3750,6 +3926,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3759,7 +3938,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -3779,7 +3963,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCertificatesByUserLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.5f5b27f9a936efdb6b7bd4d7e7677933163769d0ff3823aaf7d4f4566ca7ff97",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3911,7 +4095,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8900f980a1415e4d73721b98dea0a1bb79307fc1206f2e2a105c8c30711ccf4e.zip"
+     "S3Key": "b7a6ba472389cae80fa9378062c8bc42f33d0853a9b0704f6ac31995614337c9.zip"
     },
     "Environment": {
      "Variables": {
@@ -3955,6 +4139,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3964,7 +4151,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -3984,7 +4176,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CheckCertificateExistsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.b7a6ba472389cae80fa9378062c8bc42f33d0853a9b0704f6ac31995614337c9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4061,7 +4253,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "76348411f0dc3206300218f179a002440ca1d9613141e48ed00b6ca06c1d1440.zip"
+     "S3Key": "319d0f200236c21235dd25ded3a49a0001ff0716094ef685026904b6d957c062.zip"
     },
     "Environment": {
      "Variables": {
@@ -4105,6 +4297,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4114,7 +4309,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -4134,7 +4334,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCompaniesLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.319d0f200236c21235dd25ded3a49a0001ff0716094ef685026904b6d957c062",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4211,7 +4411,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "6d95974454f71d5fdc393d82378c6520ec3331bce65fce5e7850616c9f9ace6e.zip"
+     "S3Key": "46e9cfa3d1d6e5a7bfbde7cf9a841824f65cda51eb015d6ef6f52ae0f440aa4e.zip"
     },
     "Environment": {
      "Variables": {
@@ -4255,6 +4455,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4264,7 +4467,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -4284,7 +4492,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateCompanyLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.46e9cfa3d1d6e5a7bfbde7cf9a841824f65cda51eb015d6ef6f52ae0f440aa4e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4361,7 +4569,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "cb4b5839358dc534ece6c75ba5946eafee33ea01785fcf9f6ea8ea0fd50a1fdf.zip"
+     "S3Key": "575a29b2a699c583f508e7d139413705e4485490006a6a8abc4382ad27167f2b.zip"
     },
     "Environment": {
      "Variables": {
@@ -4405,6 +4613,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4414,7 +4625,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -4434,7 +4650,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCompanyLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.575a29b2a699c583f508e7d139413705e4485490006a6a8abc4382ad27167f2b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4526,7 +4742,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8ab2248765355a48f12e73efca9a775a7248c863aec077683d8e834ad0b6db11.zip"
+     "S3Key": "51f534d16edddb5f10695d26ce2a43848bcad01b3456169f7b1759e1e205a257.zip"
     },
     "Environment": {
      "Variables": {
@@ -4570,6 +4786,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4579,7 +4798,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -4599,7 +4823,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateEmployeeLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.51f534d16edddb5f10695d26ce2a43848bcad01b3456169f7b1759e1e205a257",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4691,7 +4915,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1252090771d77b60cda5da5d93fa194e660a5ab648d71023b2f65357dfb3c7a9.zip"
+     "S3Key": "d1e4b2e0ac7c63fdb5d39558132f4af793a516dd1aea66e630204f480a3561b5.zip"
     },
     "Environment": {
      "Variables": {
@@ -4735,6 +4959,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4744,7 +4971,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -4764,7 +4996,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListEmployeesLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.d1e4b2e0ac7c63fdb5d39558132f4af793a516dd1aea66e630204f480a3561b5",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4856,7 +5088,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e208d80c03359b831dfe1960720694fc85b01a08f8db6f7828535cb76a3b2610.zip"
+     "S3Key": "c20883f5fb83ac5f54272cf457ad161665ca7cd557e37348a7c328a26c90834e.zip"
     },
     "Environment": {
      "Variables": {
@@ -4900,6 +5132,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4909,7 +5144,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -4929,7 +5169,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetEmployeeByIdLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.c20883f5fb83ac5f54272cf457ad161665ca7cd557e37348a7c328a26c90834e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5021,7 +5261,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7ed4290e8cef07c2997a0ddcea387356bfaab838ed77adbb6ffd61921f50ce60.zip"
+     "S3Key": "38cf1474f538becbab1eb257931acd054d61cf1b8b7f2ecd9da9d1d61621ed64.zip"
     },
     "Environment": {
      "Variables": {
@@ -5065,6 +5305,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5074,7 +5317,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -5094,7 +5342,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateEmployeeLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.38cf1474f538becbab1eb257931acd054d61cf1b8b7f2ecd9da9d1d61621ed64",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5186,7 +5434,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7848bd2da7a0fe407da445bb9acc6e2e7233821876794ef931905e8ea6272510.zip"
+     "S3Key": "862482d36554e6cf21b67071e87d7adbda0a7651b965d9a5f9ceda9b54df8b40.zip"
     },
     "Environment": {
      "Variables": {
@@ -5230,6 +5478,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5239,7 +5490,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -5259,7 +5515,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteEmployeeLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.862482d36554e6cf21b67071e87d7adbda0a7651b965d9a5f9ceda9b54df8b40",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5351,7 +5607,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "bfb8c3de3191abfc6ad10357824284916a2f8125e8ef619a0744486fa943017a.zip"
+     "S3Key": "29151c0c9a02e2da21ff7d2ff208ab1a127dcfc6e0e3e2691726191d3e6c5e4e.zip"
     },
     "Environment": {
      "Variables": {
@@ -5395,6 +5651,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5404,7 +5663,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -5424,7 +5688,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/EmployeeLoginLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.29151c0c9a02e2da21ff7d2ff208ab1a127dcfc6e0e3e2691726191d3e6c5e4e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5521,7 +5785,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "70cffa49a7ec5e609bc5008e182ea7f83896c4944d79b36c20fed94014b61f8b.zip"
+     "S3Key": "f04614355e6fe88a1bef5a861b86d7f52fa2b6466341dde821dcff70ba57c2e3.zip"
     },
     "Environment": {
      "Variables": {
@@ -5565,6 +5829,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5574,7 +5841,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -5594,7 +5866,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SubmitFeedbackLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.f04614355e6fe88a1bef5a861b86d7f52fa2b6466341dde821dcff70ba57c2e3",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5691,7 +5963,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a178fd7bf3467245ad0c6f987bb70e1daf8e5b95e6d85a3c1cc3d71913860281.zip"
+     "S3Key": "6012f719ecfaceeaad6c9d161610f7574b06bd6bef1c2f766e164544a94da82b.zip"
     },
     "Environment": {
      "Variables": {
@@ -5735,6 +6007,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5744,7 +6019,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -5764,7 +6044,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListFeedbacksLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.6012f719ecfaceeaad6c9d161610f7574b06bd6bef1c2f766e164544a94da82b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5861,7 +6141,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e065b52f6f05b6faff31accaee030f3624bae6adc0a1ca8390127a6b5180fa2c.zip"
+     "S3Key": "d239a8838380214395d8871b03382ac21bf9f9418c19de6f9cc9dfb3cfbd9a8c.zip"
     },
     "Environment": {
      "Variables": {
@@ -5905,6 +6185,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5914,7 +6197,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -5934,7 +6222,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteFeedbackLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.d239a8838380214395d8871b03382ac21bf9f9418c19de6f9cc9dfb3cfbd9a8c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6043,7 +6331,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7cbcd845dce90fb231e1ad3757937dd3f7436cfe0f43cb30e57a469b93c81e9c.zip"
+     "S3Key": "1d61a3fd7b630cc6510191af94443129548176d4f973786e8baa8f5dd2ff6673.zip"
     },
     "Environment": {
      "Variables": {
@@ -6087,6 +6375,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6096,7 +6387,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -6116,7 +6412,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreatePlacementLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.1d61a3fd7b630cc6510191af94443129548176d4f973786e8baa8f5dd2ff6673",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6225,7 +6521,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5823c447db8f9fde2dc8ec42ff0069e34fc8f3309cb729a6fbebfaf6d6d3e308.zip"
+     "S3Key": "771ff89e750e4db5fef981057a7f1296e387c903942054d9376be84ca9816f7c.zip"
     },
     "Environment": {
      "Variables": {
@@ -6269,6 +6565,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6278,7 +6577,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -6298,7 +6602,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListPlacementsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.771ff89e750e4db5fef981057a7f1296e387c903942054d9376be84ca9816f7c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6407,7 +6711,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8413fe877ee9417f27fc0021dfe8b1d1c2db7afb783aa06d94538a129e3435ce.zip"
+     "S3Key": "4e31cb312172e8809eca21c67c4cd083e386c66f2ae92ec93456d1620867745f.zip"
     },
     "Environment": {
      "Variables": {
@@ -6451,6 +6755,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6460,7 +6767,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -6480,7 +6792,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPlacementByIdLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.4e31cb312172e8809eca21c67c4cd083e386c66f2ae92ec93456d1620867745f",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6589,7 +6901,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8b502a6572b1fcb1fba3ed8747ce108ddbcfdf38362949c18f15e434cdb40339.zip"
+     "S3Key": "402c4482580f300c64d381c138dcba67e46b662e2a8a30312c39b0b85d4c6533.zip"
     },
     "Environment": {
      "Variables": {
@@ -6633,6 +6945,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6642,7 +6957,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -6662,7 +6982,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdatePlacementLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.402c4482580f300c64d381c138dcba67e46b662e2a8a30312c39b0b85d4c6533",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6771,7 +7091,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "993e4d920a9ec30baf648cf73218df8f67572efd04e5e73fd3dff0b76699af96.zip"
+     "S3Key": "eaa02c1fea2575d4e253b4c2e9e77bec2525a39ebf9f943b70049b3836698761.zip"
     },
     "Environment": {
      "Variables": {
@@ -6815,6 +7135,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6824,7 +7147,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -6844,7 +7172,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeletePlacementLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.eaa02c1fea2575d4e253b4c2e9e77bec2525a39ebf9f943b70049b3836698761",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6953,7 +7281,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a66775e3b0655fa48fc7a358f14079d4e19a435f1f2b1767b323f8ee271c53ef.zip"
+     "S3Key": "e11ab2d5a704dcf334c66a4d0a98c6e957f9ec4d7dee3ae2c518872852c76875.zip"
     },
     "Environment": {
      "Variables": {
@@ -6997,6 +7325,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7006,7 +7337,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -7026,7 +7362,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.e11ab2d5a704dcf334c66a4d0a98c6e957f9ec4d7dee3ae2c518872852c76875",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7135,7 +7471,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7b466c72c4b5eafd4fcec5ccf883b953385a7d520412e4f529c4ca637ff17078.zip"
+     "S3Key": "44ffde83555621ab1139d92304998339be3c9a7c4a8d01f4f489669446c15a16.zip"
     },
     "Environment": {
      "Variables": {
@@ -7179,6 +7515,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7188,7 +7527,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -7208,7 +7552,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.44ffde83555621ab1139d92304998339be3c9a7c4a8d01f4f489669446c15a16",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7317,7 +7661,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d8fdec0348db99ffb2b398d2dbded169054bd78a9a8a9c1581d79b692536f7f1.zip"
+     "S3Key": "3217022378e7327a44ee5650021ff5f84a303638b8cc0d9b3afe8c2245598b63.zip"
     },
     "Environment": {
      "Variables": {
@@ -7361,6 +7705,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7370,7 +7717,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -7390,7 +7742,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.3217022378e7327a44ee5650021ff5f84a303638b8cc0d9b3afe8c2245598b63",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7499,7 +7851,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "77c546aca24d66b44637856630b2a3efa28c5ab309eadebbdbae5e5697056281.zip"
+     "S3Key": "90526dc2524e1061531270323668fc30f747881c7718d10c64a8c89276d6f899.zip"
     },
     "Environment": {
      "Variables": {
@@ -7543,6 +7895,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7552,7 +7907,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -7572,7 +7932,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.90526dc2524e1061531270323668fc30f747881c7718d10c64a8c89276d6f899",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7681,7 +8041,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "28241cf7337cb896e15cbc15bd35c18df3f1e8ad99e2a53ebb70d08a5e913b2d.zip"
+     "S3Key": "d83f1bcb73c8ddea62575ec0aa020233fac886e43cbe6583195e37768fd4e1fe.zip"
     },
     "Environment": {
      "Variables": {
@@ -7725,6 +8085,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7734,7 +8097,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -7754,7 +8122,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.d83f1bcb73c8ddea62575ec0aa020233fac886e43cbe6583195e37768fd4e1fe",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7860,7 +8228,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "cbf2b3f4241e934e21c8ae2cf9379423d81c95d14e5a13c6df965651be511257.zip"
+     "S3Key": "18ca05ce1d4a268b5d3954433505b50d8ac286f3c3074ccd1c12611bb5a71f27.zip"
     },
     "Environment": {
      "Variables": {
@@ -7904,6 +8272,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7913,7 +8284,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -7933,7 +8309,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListWorkshopsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.18ca05ce1d4a268b5d3954433505b50d8ac286f3c3074ccd1c12611bb5a71f27",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8010,7 +8386,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c3bf5ddeb3485fcd9a250100899ec32621b3d0bdd730032fa60a306309115db4.zip"
+     "S3Key": "b1d19203d89998b322b9592c3b02ec27a6955541513bc3e61b0ad9a14547a378.zip"
     },
     "Environment": {
      "Variables": {
@@ -8054,6 +8430,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8063,7 +8442,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -8083,7 +8467,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateWorkshopLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.b1d19203d89998b322b9592c3b02ec27a6955541513bc3e61b0ad9a14547a378",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8160,7 +8544,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b8fd61dc4fee0fa010740d656ef93d19e5ef3aa71d0858a29d443efe033daded.zip"
+     "S3Key": "8241430c01abfd198231431e38a15ccd5ab9ef3fd4a8c3e48f01e7ca66cb44de.zip"
     },
     "Environment": {
      "Variables": {
@@ -8204,6 +8588,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8213,7 +8600,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -8233,7 +8625,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.8241430c01abfd198231431e38a15ccd5ab9ef3fd4a8c3e48f01e7ca66cb44de",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8339,7 +8731,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "fe0b17b5b3635326c31e6037c7896a7cb1ec22ebce163aa08c44922f0389f11f.zip"
+     "S3Key": "d6c21ecebb5cf0c7df98dbe105c03271c1ee302e8d36313b82aba3c9ca20d35c.zip"
     },
     "Environment": {
      "Variables": {
@@ -8383,6 +8775,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8392,7 +8787,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -8412,7 +8812,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetUserWorkshopsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.d6c21ecebb5cf0c7df98dbe105c03271c1ee302e8d36313b82aba3c9ca20d35c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8518,7 +8918,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b9c24103b5f422135ff702b8d1192a52737b6357317d6bc49f1bb21fc697c6e9.zip"
+     "S3Key": "7bcb5231494e78f05bbc8ccd8d6f6b161393d3ff181331bf3ad6d0a7addc48b1.zip"
     },
     "Environment": {
      "Variables": {
@@ -8562,6 +8962,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8571,7 +8974,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -8591,7 +8999,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetWorkshopStudentsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.7bcb5231494e78f05bbc8ccd8d6f6b161393d3ff181331bf3ad6d0a7addc48b1",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8668,7 +9076,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "abe65069a183f802f63835b59217ad853117a3f762c2b6fb69d46fb35edd66f4.zip"
+     "S3Key": "4789d829d110acaa624d5389772fb37ec55387b00a0fb35908c8c85f21672796.zip"
     },
     "Environment": {
      "Variables": {
@@ -8712,6 +9120,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8721,7 +9132,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -8741,7 +9157,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteWorkshopLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.4789d829d110acaa624d5389772fb37ec55387b00a0fb35908c8c85f21672796",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8818,7 +9234,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3af8c48dc1b96b40885d4de4a9492c15e50ac319212180a814b7d1b1dc2e34c3.zip"
+     "S3Key": "5defda2eafd8d2b0c5332fad808ef8585f39f2d578b402c930496d9c0fe79880.zip"
     },
     "Environment": {
      "Variables": {
@@ -8862,6 +9278,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8871,7 +9290,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -8891,7 +9315,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetWorkshopsByInchargeLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.5defda2eafd8d2b0c5332fad808ef8585f39f2d578b402c930496d9c0fe79880",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8968,7 +9392,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "37dc1148c78213e729ede85326ac43faac1748bb07663d81aae0d791412e814b.zip"
+     "S3Key": "fb0642afbdd43e7fe311ceac5783cd66fc9d8fecf267357433d00999b865fcaf.zip"
     },
     "Environment": {
      "Variables": {
@@ -9012,6 +9436,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9021,7 +9448,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -9041,7 +9473,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentAttendanceLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.fb0642afbdd43e7fe311ceac5783cd66fc9d8fecf267357433d00999b865fcaf",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9118,7 +9550,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "05c170aeb4677b27f6c3103e5e923c290a9316c14db32c53673dfe5e0f4a87c1.zip"
+     "S3Key": "7f7dbf2e52c04dc912061147a11046b2c8f7a6a36e22bd6846002379f76654cc.zip"
     },
     "Environment": {
      "Variables": {
@@ -9162,6 +9594,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9171,7 +9606,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -9191,7 +9631,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPutLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.7f7dbf2e52c04dc912061147a11046b2c8f7a6a36e22bd6846002379f76654cc",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9268,7 +9708,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7b708b7ae96fd27bf3c0bf5d6d3b725e2ea77f48fb14b34ce5a4d61297d63b28.zip"
+     "S3Key": "63ab0f9e7c3e69241325e76cbe64f9c350a2ae3ad61ef3f940b2b15e978973ee.zip"
     },
     "Environment": {
      "Variables": {
@@ -9312,6 +9752,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9321,7 +9764,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -9341,7 +9789,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateWorkshopLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.63ab0f9e7c3e69241325e76cbe64f9c350a2ae3ad61ef3f940b2b15e978973ee",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9418,7 +9866,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "be12276477de0b5ac251a3834b1a5365d3d49effc948095cc3808bc6b4c02f25.zip"
+     "S3Key": "a2690dda19903e7225f57fa551796e955569b3359d9b6d05771e56c0c1bc485d.zip"
     },
     "Environment": {
      "Variables": {
@@ -9462,6 +9910,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9471,7 +9922,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -9491,7 +9947,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateCoursePublicLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.a2690dda19903e7225f57fa551796e955569b3359d9b6d05771e56c0c1bc485d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9568,7 +10024,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1a249fefb35eff716f4f04da5f28999b9df2bacedb62af4ff9fc54ef4ed9ff7c.zip"
+     "S3Key": "f38eb0d30194603e5fcfddaf56a02e5a669dd1f8db7d7b2f79a1b7260ca581ce.zip"
     },
     "Environment": {
      "Variables": {
@@ -9612,6 +10068,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9621,7 +10080,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -9641,7 +10105,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCoursesPublicLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.f38eb0d30194603e5fcfddaf56a02e5a669dd1f8db7d7b2f79a1b7260ca581ce",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9718,7 +10182,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8a027778fe6118bd04c8599129f8256ea278adc9ec491c992dc6dad1f368040b.zip"
+     "S3Key": "ecbc3f9fd1d653ad60ce6109385aaee62a282e3fedef6bd6a94b189800433ece.zip"
     },
     "Environment": {
      "Variables": {
@@ -9762,6 +10226,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9771,7 +10238,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -9791,7 +10263,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCourseByIdPublicLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.ecbc3f9fd1d653ad60ce6109385aaee62a282e3fedef6bd6a94b189800433ece",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9868,7 +10340,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "39f80a059291942d51b9eaae3e36c59acf0ae645c325f3b169eed47b6fbc479e.zip"
+     "S3Key": "87bdfc6980a3d9c830faf0a49451651e0119d6c1957649ddcb62c54f97d106d0.zip"
     },
     "Environment": {
      "Variables": {
@@ -9912,6 +10384,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9921,7 +10396,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -9941,7 +10421,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCoursePublicLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.87bdfc6980a3d9c830faf0a49451651e0119d6c1957649ddcb62c54f97d106d0",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10018,7 +10498,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1c8403122f5d6af1ee622164cb939c07f2917ec711123fe4bd7c86320ee4d4fe.zip"
+     "S3Key": "a7ec7c97c8f8cddfb27c86843e40cd2ce7ab8906187ac8610ba181728d384daf.zip"
     },
     "Environment": {
      "Variables": {
@@ -10062,6 +10542,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10071,7 +10554,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -10091,7 +10579,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteCoursePublicLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.a7ec7c97c8f8cddfb27c86843e40cd2ce7ab8906187ac8610ba181728d384daf",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10168,7 +10656,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "2176858ce4d1d25569be5c806e687f0c8ee74b61719f30c2616ec83a95b0d4c3.zip"
+     "S3Key": "ed7f912e1214b9d6f8f45789fd8f1eaa87de7b6b9a9d065f63ae0fc880fd35eb.zip"
     },
     "Environment": {
      "Variables": {
@@ -10212,6 +10700,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10221,7 +10712,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -10241,7 +10737,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateDemoLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.ed7f912e1214b9d6f8f45789fd8f1eaa87de7b6b9a9d065f63ae0fc880fd35eb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10318,7 +10814,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5ba5e4aac1df7aaa419e1a1873b7463408bfd6af8d94430dbd57595d9b7f863b.zip"
+     "S3Key": "7805298b0e3a8fb9c03946bdd430099c460c3438cea2eca3d4ab59af04b89ca2.zip"
     },
     "Environment": {
      "Variables": {
@@ -10362,6 +10858,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10371,7 +10870,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -10391,7 +10895,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListDemosLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.7805298b0e3a8fb9c03946bdd430099c460c3438cea2eca3d4ab59af04b89ca2",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10468,7 +10972,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "6201c1b8135e77499365f1b1eca0d6eee75245800b4ce7544c7e7f1e4b2d0495.zip"
+     "S3Key": "c83b5a0d7c588b77f84fb82e035b23044f7b64f89f6aca7c9922ca5f4ced4cac.zip"
     },
     "Environment": {
      "Variables": {
@@ -10512,6 +11016,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10521,7 +11028,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -10541,7 +11053,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/MarkDemoBookedLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.c83b5a0d7c588b77f84fb82e035b23044f7b64f89f6aca7c9922ca5f4ced4cac",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10657,7 +11169,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d8136e45f4c398736c948841f5c75ec933c41d5699ed3fd6eb817256b73f1a5c.zip"
+     "S3Key": "501fff0c0729b0f0ba26dd481bc2168ae52c8ca5a4c45b9f579e1607c9efe4df.zip"
     },
     "Environment": {
      "Variables": {
@@ -10701,6 +11213,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10710,7 +11225,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -10730,7 +11250,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.501fff0c0729b0f0ba26dd481bc2168ae52c8ca5a4c45b9f579e1607c9efe4df",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10827,7 +11347,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "2cdbdeb008665446abf1992425bf398315dd64a26aed71f59c08fcfece69747a.zip"
+     "S3Key": "71351140535e1ceaa1a3e4da9861729be4e5f6109d2af5b4d35ca3ef79905955.zip"
     },
     "Environment": {
      "Variables": {
@@ -10871,6 +11391,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10880,7 +11403,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -10900,7 +11428,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateTicketLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.71351140535e1ceaa1a3e4da9861729be4e5f6109d2af5b4d35ca3ef79905955",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10997,7 +11525,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3a2b112f0cde286f50527ec71f76b3518fa2a25c420c00fe38f2d5de56fa5b8d.zip"
+     "S3Key": "65e38d9f5ede2171cd22a4b3ac1f91d1a23505028fc5b4206362abf6f8339293.zip"
     },
     "Environment": {
      "Variables": {
@@ -11041,6 +11569,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11050,7 +11581,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -11070,7 +11606,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListTicketsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.65e38d9f5ede2171cd22a4b3ac1f91d1a23505028fc5b4206362abf6f8339293",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11167,7 +11703,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "19715085dac382fd5080930887334baa7f4ac59ee48ee314ef79e4eb8e186e39.zip"
+     "S3Key": "4193e8c740c886ffc38fc4b395c3c88ebcd8f467566fb9f597b8cd50c77ab38c.zip"
     },
     "Environment": {
      "Variables": {
@@ -11211,6 +11747,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11220,7 +11759,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -11240,7 +11784,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateTicketLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.4193e8c740c886ffc38fc4b395c3c88ebcd8f467566fb9f597b8cd50c77ab38c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11349,7 +11893,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "43f438a256afcf67ebfbfbebed2f49ed41b5eb1ebeb8100de142ac9f7f35915a.zip"
+     "S3Key": "cbd2cb0f30a64e0ebb713867fdd6c571adc725c51a19a32ec1735878d14e6d8b.zip"
     },
     "Environment": {
      "Variables": {
@@ -11393,6 +11937,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11402,7 +11949,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -11422,7 +11974,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetRankingsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.cbd2cb0f30a64e0ebb713867fdd6c571adc725c51a19a32ec1735878d14e6d8b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11507,7 +12059,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "f3cdebda824096ed4172303a4315a11aaf9d217ddac589e4e881da29b43bd7bd.zip"
+     "S3Key": "b2175908336f865f39336a05ebbfe589a8ecd1d934ce0a58406e35bcb506ae8c.zip"
     },
     "Environment": {
      "Variables": {
@@ -11551,6 +12103,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11560,7 +12115,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -11580,7 +12140,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetProgressLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.b2175908336f865f39336a05ebbfe589a8ecd1d934ce0a58406e35bcb506ae8c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11665,7 +12225,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a78cb052c1f786f2b0e469f8b6b685544f5b06ed7098705a876b62884e8ac8d6.zip"
+     "S3Key": "fd06b0c3533b9dc86528e021eea5b74861a9c5863babfe68e8f5c1766b28101b.zip"
     },
     "Environment": {
      "Variables": {
@@ -11709,6 +12269,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11718,7 +12281,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -11738,7 +12306,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/WatchProgressLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.fd06b0c3533b9dc86528e021eea5b74861a9c5863babfe68e8f5c1766b28101b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11815,7 +12383,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1d30b41d643551e1e6914b03500153810ff9b9b10d42eb07864f6c2c2ea9312e.zip"
+     "S3Key": "e7cf9a6dcd0e53647c6a24623f1ee955cd2ddcbbd21f8071792dd4fd1473def5.zip"
     },
     "Environment": {
      "Variables": {
@@ -11859,6 +12427,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11868,7 +12439,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -11888,7 +12464,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetJobsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.e7cf9a6dcd0e53647c6a24623f1ee955cd2ddcbbd21f8071792dd4fd1473def5",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11965,7 +12541,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1250bc7bbf2953cc9f92ff9e79f4ce4d22497d9f48e5747590577f7e257015ca.zip"
+     "S3Key": "71dfa86275a812e3a38e73d312b850f1c52743fbbb552618852be410648e166e.zip"
     },
     "Environment": {
      "Variables": {
@@ -12009,6 +12585,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12018,7 +12597,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -12038,7 +12622,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateJobLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.71dfa86275a812e3a38e73d312b850f1c52743fbbb552618852be410648e166e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12115,7 +12699,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d86657a4e97b3e35a96445cc1c7c4b3ebeada6bdedddb7e5155caa2f328b76b5.zip"
+     "S3Key": "339e572fd94f023a43220a24b7db17b8a9556914673ec3475ece510a8af24528.zip"
     },
     "Environment": {
      "Variables": {
@@ -12159,6 +12743,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12168,7 +12755,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -12188,7 +12780,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateJobLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.339e572fd94f023a43220a24b7db17b8a9556914673ec3475ece510a8af24528",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12265,7 +12857,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b7cf647164cd60a0e1c817f64fdbb7d0c3aab682c8d3648861f7cf10bccabd4d.zip"
+     "S3Key": "4cc6451f66d275830340efb1c162d160c178fb29f0926c823db26da1b5aa31cb.zip"
     },
     "Environment": {
      "Variables": {
@@ -12309,6 +12901,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12318,7 +12913,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -12338,7 +12938,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateJobStatusLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.4cc6451f66d275830340efb1c162d160c178fb29f0926c823db26da1b5aa31cb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12415,7 +13015,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a696e672973198d5c2e32b501a6726b037fd272597ae56cb72ac80943a5b3ef9.zip"
+     "S3Key": "cf5b47da847402983967af15117fc04f42f524c2b90bffb93937c06dd5953e18.zip"
     },
     "Environment": {
      "Variables": {
@@ -12459,6 +13059,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12468,7 +13071,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -12488,7 +13096,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteJobLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.cf5b47da847402983967af15117fc04f42f524c2b90bffb93937c06dd5953e18",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12565,7 +13173,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "ef03596ad11164a7e3a21097dc65cc8d7dea7b76db2f93007f1cd13e171202f1.zip"
+     "S3Key": "e6586a4e06cdac2cb1a50d9f4fd344b7744fee24763e754e85458eaddfdb4436.zip"
     },
     "Environment": {
      "Variables": {
@@ -12609,6 +13217,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12618,7 +13229,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -12638,7 +13254,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ApplyForJobLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.e6586a4e06cdac2cb1a50d9f4fd344b7744fee24763e754e85458eaddfdb4436",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12715,7 +13331,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "34c4de2b8f4dca0e29c59276ebcb20d8e898668451d0248b0626a3170148c0ad.zip"
+     "S3Key": "0e230c0c0e00d31baa4a177ece8907fc97b0800ab8758218391fdb1e49cb89a9.zip"
     },
     "Environment": {
      "Variables": {
@@ -12759,6 +13375,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12768,7 +13387,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -12788,7 +13412,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetLatestLandingPageLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.0e230c0c0e00d31baa4a177ece8907fc97b0800ab8758218391fdb1e49cb89a9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12873,7 +13497,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "dc63e6b8d6631abe212431f3d7748a9ec560b278fe60f7b063263625e9c99de2.zip"
+     "S3Key": "f64d961f405ecb8a0a9956b493c3364f010f7f1fbd782a54bf603c6c58b43eeb.zip"
     },
     "Environment": {
      "Variables": {
@@ -12917,6 +13541,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12926,7 +13553,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -12946,7 +13578,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterUserLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.f64d961f405ecb8a0a9956b493c3364f010f7f1fbd782a54bf603c6c58b43eeb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13031,7 +13663,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b0a8700151dc18e32fc028bce388ad0f4138f8ac272e6110e28a601d3967d10c.zip"
+     "S3Key": "c98c52227ee259880235b3853e54d3fe640f828bac991bf999cb72f1a2df6b19.zip"
     },
     "Environment": {
      "Variables": {
@@ -13075,6 +13707,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13084,7 +13719,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -13104,7 +13744,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/HomepageUserLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.c98c52227ee259880235b3853e54d3fe640f828bac991bf999cb72f1a2df6b19",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13189,7 +13829,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5bd3fbb437555f02bf8815aef0cdb44d5b0d8a48cc6a7b53541a7cc7e4c92011.zip"
+     "S3Key": "56c5223762efc174edca6056888e65a68ab5330308dcd0545bf29a44f2646272.zip"
     },
     "Environment": {
      "Variables": {
@@ -13233,6 +13873,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13242,7 +13885,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -13262,7 +13910,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetResumeDataLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.56c5223762efc174edca6056888e65a68ab5330308dcd0545bf29a44f2646272",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13347,7 +13995,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "f33af3d240406951c9b1891677fada92baa607bde17d7401362b20d31eb1d712.zip"
+     "S3Key": "446352bff271683dd88b60b3feed930e329d6b42d8a028ffa9d315a114a32ebf.zip"
     },
     "Environment": {
      "Variables": {
@@ -13391,6 +14039,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13400,7 +14051,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -13420,7 +14076,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCompletedSubcoursesLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.446352bff271683dd88b60b3feed930e329d6b42d8a028ffa9d315a114a32ebf",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13505,7 +14161,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b4314697879d417e838b80aa59288cc392cb19a99e882dc75bd39c61aac1af57.zip"
+     "S3Key": "23ddc0b0a9f7f2f79e8b687aca1d6d3956c805753bc782540c4795ead2aab26d.zip"
     },
     "Environment": {
      "Variables": {
@@ -13549,6 +14205,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13558,7 +14217,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -13578,7 +14242,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SetAlertLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.23ddc0b0a9f7f2f79e8b687aca1d6d3956c805753bc782540c4795ead2aab26d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13663,7 +14327,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "98fdacce410362f426af98bedb0103629d4934eb74aff464fc3f3b96661f6850.zip"
+     "S3Key": "9ecdae12741a5c2f0d67dae36573575a41ebf7e6ac9e275cdf1c555a1640c715.zip"
     },
     "Environment": {
      "Variables": {
@@ -13707,6 +14371,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13716,7 +14383,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -13736,7 +14408,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProfileLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.9ecdae12741a5c2f0d67dae36573575a41ebf7e6ac9e275cdf1c555a1640c715",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13821,7 +14493,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "6b6ff4a5210ee3517d1fd0db0d9bae5ab7e2c454b339b66dbb27d5864b35da86.zip"
+     "S3Key": "dc488a86afc78acd2d13b45d75a6816554493eac6a305013565345842978deae.zip"
     },
     "Environment": {
      "Variables": {
@@ -13865,6 +14537,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13874,7 +14549,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -13894,7 +14574,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetProfileLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.dc488a86afc78acd2d13b45d75a6816554493eac6a305013565345842978deae",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13979,7 +14659,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3feb0a0a84d1ba321f79a8c089246bf00a9cacb01b0858cb578a1be890dc47ca.zip"
+     "S3Key": "74eae45f73ab5a9b8a89438195cd73ac1850d3d185674119f06cb7a62cc85297.zip"
     },
     "Environment": {
      "Variables": {
@@ -14023,6 +14703,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14032,7 +14715,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -14052,7 +14740,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProjectsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.74eae45f73ab5a9b8a89438195cd73ac1850d3d185674119f06cb7a62cc85297",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14137,7 +14825,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "0df29f7a215f7dadeb424b75c7487c4ad96ef4126bad326df39cd1272430867a.zip"
+     "S3Key": "5d7e08dddac51ea246cfb29201db3f874c25ef345e208f4f38a6172929361fa4.zip"
     },
     "Environment": {
      "Variables": {
@@ -14181,6 +14869,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14190,7 +14881,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -14210,7 +14906,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AddPracticeResultLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.5d7e08dddac51ea246cfb29201db3f874c25ef345e208f4f38a6172929361fa4",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14295,7 +14991,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "bb7beceb4c09403cb159814d94d3dc706467e34c15b5c574259b309b495520ab.zip"
+     "S3Key": "3b3102379966af1c998067dd820171d206d12048ec51bc10c75c49f955c425e0.zip"
     },
     "Environment": {
      "Variables": {
@@ -14339,6 +15035,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14348,7 +15047,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -14368,7 +15072,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPracticeHistoryLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.3b3102379966af1c998067dd820171d206d12048ec51bc10c75c49f955c425e0",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14453,7 +15157,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "9ab110988787200419954357b38a776378ff85a6284db419705669a8816192a3.zip"
+     "S3Key": "c0f5b76f1b4bf09f1e1567cdd10ab7103c536d0df7ae68497e56cbf10f777003.zip"
     },
     "Environment": {
      "Variables": {
@@ -14497,6 +15201,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14506,7 +15213,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -14526,7 +15238,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetStreakDataLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.c0f5b76f1b4bf09f1e1567cdd10ab7103c536d0df7ae68497e56cbf10f777003",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14611,7 +15323,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3898cb92bb3cc77d075ded491a0dbf22aed65ad4085b22a271c96ca1a5359bf8.zip"
+     "S3Key": "4d3753aebf4a6e7e2469db7485879dfeef1c1e25c809fb1a78786030b38495ad.zip"
     },
     "Environment": {
      "Variables": {
@@ -14655,6 +15367,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14664,7 +15379,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -14684,7 +15404,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStreakDataLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.4d3753aebf4a6e7e2469db7485879dfeef1c1e25c809fb1a78786030b38495ad",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14769,7 +15489,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e0c8d2a5a3b12898273617e159e5aef6e4abd74e0b35d5194246ac5b6bd20100.zip"
+     "S3Key": "b2f70fc403c209d02525770200e411f615561bc52b3cdf9f844afcf7eee4fcd0.zip"
     },
     "Environment": {
      "Variables": {
@@ -14813,6 +15533,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14822,7 +15545,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -14842,7 +15570,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCourseCompletionLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.b2f70fc403c209d02525770200e411f615561bc52b3cdf9f844afcf7eee4fcd0",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14927,7 +15655,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4c63f6f35e413aa2fdc43060fea95c4c65b2a334125bc1c75a1d645d0eed1c9a.zip"
+     "S3Key": "d9e3cb67dd99506d4b1ba6ae2451f895d2db46bd902c279e51e4ace5718c3618.zip"
     },
     "Environment": {
      "Variables": {
@@ -14971,6 +15699,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14980,7 +15711,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -15000,7 +15736,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SaveQuestionLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.d9e3cb67dd99506d4b1ba6ae2451f895d2db46bd902c279e51e4ace5718c3618",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15085,7 +15821,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1155704ee6758df3cebae2ec4f665c6c4b6d855090200ad1798336069fd7fa23.zip"
+     "S3Key": "a9b89f997c0c1650e6ba82ab682b29ac51b98a29097a548febe7f3b96feab8ff.zip"
     },
     "Environment": {
      "Variables": {
@@ -15129,6 +15865,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15138,7 +15877,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -15158,7 +15902,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetSavedQuestionsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.a9b89f997c0c1650e6ba82ab682b29ac51b98a29097a548febe7f3b96feab8ff",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15243,7 +15987,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "53259a9435f1dca2485e8d23e0dbf75b0be946680c327cc3df25c402d64102c4.zip"
+     "S3Key": "5770b5ed8b281705a755c90b9a4ab888e72cd60f832aa97f80675e07614bd1d1.zip"
     },
     "Environment": {
      "Variables": {
@@ -15287,6 +16031,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15296,7 +16043,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -15316,7 +16068,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetJudge0KeyLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.5770b5ed8b281705a755c90b9a4ab888e72cd60f832aa97f80675e07614bd1d1",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15401,7 +16153,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "849130272748b27a1d12351ed0c0d720bcd3167678a4ddbf46d357789843f199.zip"
+     "S3Key": "07bb8342a96304602bbe50317e713dea837840d10d8278619be5b5d2ec8df612.zip"
     },
     "Environment": {
      "Variables": {
@@ -15445,6 +16197,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15454,7 +16209,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -15474,7 +16234,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateJudge0KeyLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.07bb8342a96304602bbe50317e713dea837840d10d8278619be5b5d2ec8df612",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15559,7 +16319,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "0957c421b053f3eaa96ad25540d7798c1d5b186a8437d4bb84bd274144cd359f.zip"
+     "S3Key": "fc68df51ab02e5b97f50f2c1d991fbf69aefc5977ddbc971383ac5fb6e73631b.zip"
     },
     "Environment": {
      "Variables": {
@@ -15603,6 +16363,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15612,7 +16375,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -15632,7 +16400,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SaveKeyLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.fc68df51ab02e5b97f50f2c1d991fbf69aefc5977ddbc971383ac5fb6e73631b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15717,7 +16485,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a409e927063f636d843096beca7c6c485ad3bc44b5448ae628dc8ae3907d26fd.zip"
+     "S3Key": "9e9751293dffdb860ab8e53a36fdfb55d9fb5608e5b151eb8e148f1505030c81.zip"
     },
     "Environment": {
      "Variables": {
@@ -15761,6 +16529,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15770,7 +16541,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -15790,7 +16566,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetKeyLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.9e9751293dffdb860ab8e53a36fdfb55d9fb5608e5b151eb8e148f1505030c81",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15875,7 +16651,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3660b82b7bb2058eff826dd314666bd380576809bfe9d85ca7849f2fde15ec98.zip"
+     "S3Key": "7eb26744e402d2ab598fc1bf423cf6e4548f4000f32a98b77fb82493156f5a92.zip"
     },
     "Environment": {
      "Variables": {
@@ -15919,6 +16695,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15928,7 +16707,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -15948,7 +16732,603 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/MockQuestionsLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.7eb26744e402d2ab598fc1bf423cf6e4548f4000f32a98b77fb82493156f5a92",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ForgotPasswordRequestLambdaServiceRole08D08F3C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordRequestLambda/ServiceRole/Resource"
+   }
+  },
+  "ForgotPasswordRequestLambdaServiceRoleDefaultPolicy63F285E7": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+          },
+          "/index/email-index"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "ses:SendEmail",
+        "ses:SendRawEmail"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ForgotPasswordRequestLambdaServiceRoleDefaultPolicy63F285E7",
+    "Roles": [
+     {
+      "Ref": "ForgotPasswordRequestLambdaServiceRole08D08F3C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordRequestLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ForgotPasswordRequestLambda44F43ACD": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "c03684b312d8ea834ef945c5b9258970c9fd3a653dfaeb8c4c084de67153eccb.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ForgotPasswordRequestLambdaServiceRole08D08F3C",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ForgotPasswordRequestLambdaServiceRoleDefaultPolicy63F285E7",
+    "ForgotPasswordRequestLambdaServiceRole08D08F3C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordRequestLambda/Resource",
+    "aws:asset:path": "asset.c03684b312d8ea834ef945c5b9258970c9fd3a653dfaeb8c4c084de67153eccb",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ForgotPasswordVerifyLambdaServiceRoleC6101655": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordVerifyLambda/ServiceRole/Resource"
+   }
+  },
+  "ForgotPasswordVerifyLambdaServiceRoleDefaultPolicy37EBF020": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ForgotPasswordVerifyLambdaServiceRoleDefaultPolicy37EBF020",
+    "Roles": [
+     {
+      "Ref": "ForgotPasswordVerifyLambdaServiceRoleC6101655"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordVerifyLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ForgotPasswordVerifyLambdaC8AA40AB": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "98fc9d17def8b5c7496038fd680b711c4b80bae76ea8b56256f0f45034661127.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ForgotPasswordVerifyLambdaServiceRoleC6101655",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ForgotPasswordVerifyLambdaServiceRoleDefaultPolicy37EBF020",
+    "ForgotPasswordVerifyLambdaServiceRoleC6101655"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordVerifyLambda/Resource",
+    "aws:asset:path": "asset.98fc9d17def8b5c7496038fd680b711c4b80bae76ea8b56256f0f45034661127",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ForgotPasswordResetLambdaServiceRole2787559E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordResetLambda/ServiceRole/Resource"
+   }
+  },
+  "ForgotPasswordResetLambdaServiceRoleDefaultPolicy4496E83E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ForgotPasswordResetLambdaServiceRoleDefaultPolicy4496E83E",
+    "Roles": [
+     {
+      "Ref": "ForgotPasswordResetLambdaServiceRole2787559E"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordResetLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ForgotPasswordResetLambdaFB2148A4": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "c8f154afd04739c7b88cdd14e0aa8ec8bc07b095d78dcd14d2b8f363448b371b.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ForgotPasswordResetLambdaServiceRole2787559E",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ForgotPasswordResetLambdaServiceRoleDefaultPolicy4496E83E",
+    "ForgotPasswordResetLambdaServiceRole2787559E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordResetLambda/Resource",
+    "aws:asset:path": "asset.c8f154afd04739c7b88cdd14e0aa8ec8bc07b095d78dcd14d2b8f363448b371b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16033,7 +17413,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1147e025669c43b60f1e507552743b648728961314836c7df19717d829792338.zip"
+     "S3Key": "fdefaaad42927926d7b083c4d6e775e1ba582886bb00bac16f7889047d0643d0.zip"
     },
     "Environment": {
      "Variables": {
@@ -16077,6 +17457,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16086,7 +17469,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -16106,7 +17494,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AuthLoginLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.fdefaaad42927926d7b083c4d6e775e1ba582886bb00bac16f7889047d0643d0",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16191,7 +17579,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d2da9eb1c38a4d895b46c627f3c0b40ceac798caabe296c7db6264b6fd4e7173.zip"
+     "S3Key": "6346c3dfa015c470cbb6c38b1dbc1c1235ca98145f6443e9c9a948181e93c010.zip"
     },
     "Environment": {
      "Variables": {
@@ -16235,6 +17623,9 @@
       "DEMO_TABLE_NAME": {
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16244,7 +17635,12 @@
       "STAGE": "dev",
       "NODE_ENV": "development",
       "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key"
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
      }
     },
     "Handler": "index.handler",
@@ -16264,7 +17660,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AuthGoogleLoginLambda/Resource",
-    "aws:asset:path": "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra",
+    "aws:asset:path": "asset.6346c3dfa015c470cbb6c38b1dbc1c1235ca98145f6443e9c9a948181e93c010",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16322,6 +17718,9 @@
   "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref": {
    "Type": "String"
   },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref": {
+   "Type": "String"
+  },
   "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
    "Type": "String"
   },
@@ -16362,6 +17761,9 @@
    "Type": "String"
   },
   "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
    "Type": "String"
   }
  },
@@ -16994,6 +18396,30 @@
    "Value": {
     "Fn::GetAtt": [
      "SaveQuestionLambda9D7FBC23",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ForgotPasswordRequestLambda44F43ACD",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ForgotPasswordVerifyLambdaC8AA40AB",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ForgotPasswordResetLambdaFB2148A4",
      "Arn"
     ]
    }

@@ -219,6 +219,12 @@ this.createDemoLambda = makeLambda("CreateDemoLambda", "createDemo", demoLambdaP
     this.getKeyLambda = makeLambda("GetKeyLambda", "getKey", userLambdaPath);
     this.mockQuestionsLambda = makeLambda("MockQuestionsLambda", "mockQuestions", userLambdaPath);
 
+    // Forgot-password lambdas (dual OTP)
+this.forgotPasswordRequestLambda = makeLambda("ForgotPasswordRequestLambda", "forgotRequest", userLambdaPath);
+this.forgotPasswordVerifyLambda = makeLambda("ForgotPasswordVerifyLambda", "forgotVerify", userLambdaPath);
+this.forgotPasswordResetLambda = makeLambda("ForgotPasswordResetLambda", "forgotReset", userLambdaPath);
+
+
     // Auth lambdas
     this.authLoginLambda = makeLambda("AuthLoginLambda", "login", userLambdaPath);
     this.authGoogleLoginLambda = makeLambda("AuthGoogleLoginLambda", "googleLogin", userLambdaPath);

@@ -174,7 +174,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/5f58b7d10849f99815fd397866b88533144d61db5d2af95b1f210ac716c3787b.json"
+       "/a999d2e4c66c1fb259c23afd5dd244e44497d3170a5237e6fc9417bf52d3237d.json"
       ]
      ]
     }
@@ -275,6 +275,12 @@
        "Outputs.LurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
       ]
      },
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref": {
+      "Fn::GetAtt": [
+       "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+       "Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      ]
+     },
      "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
       "Ref": "lurnityassetsbucket1605654D"
      },
@@ -355,6 +361,12 @@
        "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
        "Outputs.LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn"
       ]
+     },
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
+      "Fn::GetAtt": [
+       "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+       "Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn"
+      ]
      }
     },
     "TemplateURL": {
@@ -369,7 +381,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/ebfd1a540592fbf241c9e5d39c965cd4a5f7a4f2d8c75d45372ae6a6f1446b00.json"
+       "/735500e95ad755bab9943fe033ba2a13e4f3d5c676f2842e156fcb3985be8f4f.json"
       ]
      ]
     }
@@ -860,6 +872,24 @@
        "Outputs.LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -951,7 +981,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/2ca87f8cede9bebf17447607eb8b8fa1a3bc30aa6b2631f7a67e7193c1b30b00.json"
+       "/54c38db277113b7ea0658e57ab4155f640ddad8f0cd7f7deea443e77768a8527.json"
       ]
      ]
     }

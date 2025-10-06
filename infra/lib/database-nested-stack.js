@@ -86,6 +86,15 @@ this.certificateTable.addGlobalSecondaryIndex({
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
+    // Forgot Password OTP table
+this.forgotPasswordTable = new dynamodb.Table(this, process.env.FORGOT_TABLE_NAME || "ForgotPassword", {
+  partitionKey: { name: "requestId", type: dynamodb.AttributeType.STRING },
+  billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+  timeToLiveAttribute: "expiresAt", // TTL in epoch seconds
+  removalPolicy: cdk.RemovalPolicy.DESTROY,
+});
+
+
     this.demoTable = new dynamodb.Table(this, process.env.DEMO_TABLE_NAME || "DemoTable", {
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
       removalPolicy: cdk.RemovalPolicy.DESTROY,

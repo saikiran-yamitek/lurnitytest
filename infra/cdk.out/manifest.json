@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/124a5789644f194931023f01fc346ff6372d3c2152a06c58880414bf52aae81b.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/4d14a8ed332512398b3c480c78ba732ebde5d06b866d1ec7db87f1981c7eec3c.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -136,6 +136,12 @@
             "data": "Workshop3A33C0B9"
           }
         ],
+        "/LurnityLmsStack/DatabaseNestedStack/ForgotPassword/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPassword42DE43E7"
+          }
+        ],
         "/LurnityLmsStack/DatabaseNestedStack/Demo/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -232,6 +238,12 @@
             "data": "LurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
           }
         ],
+        "/LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+          }
+        ],
         "/LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": [
           {
             "type": "aws:cdk:logicalId",
@@ -304,6 +316,12 @@
             "data": "LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn"
           }
         ],
+        "/LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn"
+          }
+        ],
         "/LurnityLmsStack/DatabaseNestedStack.NestedStack/DatabaseNestedStack.NestedStackResource": [
           {
             "type": "aws:cdk:logicalId",
@@ -322,7 +340,7 @@
               "new NodejsFunction (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\aws-lambda-nodejs\\lib\\function.js:1:2171)",
               "makeLambda (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:37:3)",
               "new LambdaNestedStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:85:28)",
-              "new LurnityLmsStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lurnitylms-stack.js:58:25)",
+              "new LurnityLmsStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lurnitylms-stack.js:64:25)",
               "file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/bin/lurnity.js:17:1",
               "ModuleJob.run (node:internal/modules/esm/module_job:194:25)"
             ]
@@ -2086,6 +2104,60 @@
             "data": "MockQuestionsLambdaC7905E9D"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordRequestLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordRequestLambdaServiceRole08D08F3C"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordRequestLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordRequestLambdaServiceRoleDefaultPolicy63F285E7"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordRequestLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordRequestLambda44F43ACD"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordVerifyLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordVerifyLambdaServiceRoleC6101655"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordVerifyLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordVerifyLambdaServiceRoleDefaultPolicy37EBF020"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordVerifyLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordVerifyLambdaC8AA40AB"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordResetLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordResetLambdaServiceRole2787559E"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordResetLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordResetLambdaServiceRoleDefaultPolicy4496E83E"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/ForgotPasswordResetLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ForgotPasswordResetLambdaFB2148A4"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/AuthLoginLambda/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -2212,6 +2284,12 @@
             "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStacklurnityassetsbucket5F02D0E5Ref": [
           {
             "type": "aws:cdk:logicalId",
@@ -2294,6 +2372,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn"
           }
         ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn": [
@@ -2770,6 +2854,24 @@
             "data": "LurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2857,7 +2959,7 @@
         "/LurnityLmsStack/ApiNestedStack": [
           {
             "type": "aws:cdk:info",
-            "data": "Number of resources: 470 is approaching allowed maximum of 500",
+            "data": "Number of resources: 487 is approaching allowed maximum of 500",
             "trace": [
               "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
               "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
@@ -2898,7 +3000,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F2cdd197f779c7f258dec7b3d0196a6348"
+            "data": "LurnityLmsApiDeployment658DA5F2b3651201beb2864415600960d652051e"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -5301,6 +5403,108 @@
             "data": "LurnityLmsApiapiusersaveQuestionPOSTF37BFD3D"
           }
         ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpassword750198DA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordOPTIONSD14BBD7A"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordrequest8A99602D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordrequestOPTIONS3A847D32"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.request": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordrequestPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordrequest1193A4BB"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.request": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordrequestPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordrequestF462FD99"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/request/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordrequestPOST73EC767E"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordverify05D97B12"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordverifyOPTIONS4550D686"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.verify": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordverifyPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordverify1CC5A89B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.verify": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordverifyPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordverify9404AD1D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/verify/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordverifyPOSTF203F839"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordresetDCEEB4B8"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordresetOPTIONS6827A7D8"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.reset": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordresetPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordresetB6CF86E1"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.user.forgot-password.reset": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordresetPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiuserforgotpasswordreset08DF04A7"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/forgot-password/reset/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiuserforgotpasswordresetPOST117279CB"
+          }
+        ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/user/{id}/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -6175,6 +6379,24 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSaveQuestionLambda9619DCF4Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordRequestLambdaA494D64BArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordVerifyLambdaA20351B2Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": [

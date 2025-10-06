@@ -233,7 +233,21 @@ placementId.addResource("students").addMethod("GET", new apigateway.LambdaIntegr
     userRes.addResource("get-key").addMethod("POST", new apigateway.LambdaIntegration(lambdas.getKeyLambda));
     userRes.addResource("mock-questions").addMethod("POST", new apigateway.LambdaIntegration(lambdas.mockQuestionsLambda));
     userRes.addResource("saveQuestion").addMethod("POST", new apigateway.LambdaIntegration(lambdas.saveQuestionLambda));
-    
+    // --- Forgot Password (dual OTP) ---
+const forgotRes = userRes.addResource("forgot-password");
+forgotRes.addResource("request").addMethod(
+  "POST",
+  new apigateway.LambdaIntegration(lambdas.forgotPasswordRequestLambda)
+);
+forgotRes.addResource("verify").addMethod(
+  "POST",
+  new apigateway.LambdaIntegration(lambdas.forgotPasswordVerifyLambda)
+);
+forgotRes.addResource("reset").addMethod(
+  "POST",
+  new apigateway.LambdaIntegration(lambdas.forgotPasswordResetLambda)
+);
+
     
 
     // ✅ FIXED: User-specific endpoints under /user/{id}/
