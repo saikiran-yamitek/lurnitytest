@@ -11,7 +11,6 @@ export default function AuthForm() {
   const history = useHistory();
   const [isSignUp, setIsSignUp] = useState(false);
   
-  
   // Login form state
   const [loginForm, setLoginForm] = useState({ 
     email: '', 
@@ -55,11 +54,8 @@ export default function AuthForm() {
     try {
       const res = await login(loginForm);
       
-      // Save token in localStorage
       localStorage.setItem('token', res.token);
       localStorage.setItem("userId", res.user.id);
-      
-      // Redirect to home page
       history.replace('/home');
     } catch (err) {
       setLoginMsg(err.message || 'Login failed');
@@ -71,7 +67,12 @@ export default function AuthForm() {
     e.preventDefault();
     const { name, email, password, confirmPassword, phone } = registerForm;
 
-    // Basic validations
+    // Phone must start with +
+    if (!phone.startsWith('+') || phone.length < 8) {
+      return setRegisterMsg('Phone number must include country code, e.g., +91xxxxxxxxxx');
+    }
+
+    // Password validations
     if (password.length < 10) {
       return setRegisterMsg('Password must be at least 10 characters.');
     }
@@ -80,19 +81,16 @@ export default function AuthForm() {
     }
 
     try {
-      // Register
       const res = await register({ name, email, password, phone });
 
       if (res.msg === 'User registered successfully') {
         setRegisterMsg(res.msg);
         setIsSuccess(true);
 
-        // Automatically switch to sign-in after successful registration
         setTimeout(() => {
           setIsSignUp(false);
           setRegisterMsg('');
           setIsSuccess(false);
-          // Clear register form
           setRegisterForm({
             name: '',
             email: '',
@@ -110,7 +108,6 @@ export default function AuthForm() {
     }
   };
 
-  // Toggle between sign in and sign up
   const toggleSignUp = () => {
     setIsSignUp(true);
     setLoginMsg('');
@@ -128,7 +125,6 @@ export default function AuthForm() {
   return (
     <div className="auth-page-wrapper">
       <div className={`auth-container ${isSignUp ? 'right-panel-active' : ''}`}>
-        {/* Logo inside the card */}
         <div className="auth-logo-container">
           <img
             src={logo}
@@ -142,8 +138,7 @@ export default function AuthForm() {
         <div className="auth-form-container sign-up-container">
           <form onSubmit={handleRegisterSubmit}>
             <h1>Create Account</h1>
-            
-            <span>Start carrer with Lurnity </span>
+            <span>Start career with Lurnity</span>
             
             <input
               type="text"
@@ -166,7 +161,9 @@ export default function AuthForm() {
               name="phone"
               value={registerForm.phone}
               onChange={handleRegisterChange}
-              placeholder="Phone Number"
+              placeholder="Phone Number (+countrycode)"
+              pattern="\+\d{7,15}"
+              title="Include country code, e.g., +911234567890"
               required
             />
             <input
@@ -200,35 +197,32 @@ export default function AuthForm() {
         <div className="auth-form-container sign-in-container">
           <form onSubmit={handleLoginSubmit}>
             <h1>Sign In</h1>
-            
             <span>or use your account</span>
             <div className="auth-social-container">
-  <GoogleLogin
-  onSuccess={(credentialResponse) => {
-    const token = credentialResponse.credential;
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  const token = credentialResponse.credential;
 
-    fetch("/api/google-login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("userId", data.user.id);
-          history.replace("/home");
-        } else {
-          alert("This email is not registered. Please sign up first.");
-        }
-      });
-  }}
-  onError={() => {
-    console.log("Login Failed");
-  }}
-/>
+                  fetch("/api/google-login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ token }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      if (data.success) {
+                        localStorage.setItem("token", data.token);
+                        localStorage.setItem("userId", data.user.id);
+                        history.replace("/home");
+                      } else {
+                        alert("This email is not registered. Please sign up first.");
+                      }
+                    });
+                }}
+                onError={() => console.log("Login Failed")}
+              />
+            </div>
 
-</div>
             <input
               type="email"
               name="email"
@@ -246,12 +240,9 @@ export default function AuthForm() {
               required
             />
             
-            <Link 
-  to="/forgot-password"
-  className="forgot-password"
->
-  Forgot your password?
-</Link>
+            <Link to="/forgot-password" className="forgot-password">
+              Forgot your password?
+            </Link>
             <button type="submit">Sign In</button>
             
             {loginMsg && (
