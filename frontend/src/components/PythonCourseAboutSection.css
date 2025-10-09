@@ -1,0 +1,328 @@
+/* ===== PYTHON ABOUT SECTION - 3 COLUMN LAYOUT ===== */
+.python-about-section {
+  padding: 3rem 3rem 4rem;
+  background: #d5dce6;
+}
+
+.python-about-container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* THREE COLUMN GRID: Left | Center Image | Right */
+.python-about-three-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* ===== LEFT & RIGHT COLUMNS (SYMMETRIC & ALIGNED) ===== */
+.python-about-left-content,
+.python-about-right-content {
+  padding: 0 1rem;
+}
+
+.python-about-section-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #192540;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  padding-top: 0;
+}
+
+.python-about-text {
+  font-size: 1.02rem;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+/* BEAUTIFUL HIGHLIGHTS */
+.python-about-highlights {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.python-highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: #192540;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.python-highlight-item:hover {
+  background: rgba(25, 37, 64, 0.05);
+  transform: translateX(5px);
+}
+
+.python-highlight-bullet {
+  width: 28px;
+  height: 28px;
+  background: #192540;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ===== CENTER COLUMN - PYTHON IMAGE ===== */
+.python-about-center-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  margin-top: 5rem;
+}
+
+.python-about-robot-image {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.18));
+}
+
+/* ===== SKILLS SECTION ===== */
+.python-skills-section {
+  margin: 3rem 0 2.5rem;
+  padding: 0 1rem;
+}
+
+.python-skills-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #192540;
+  margin-bottom: 1.5rem;
+}
+
+.python-skills-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.python-skill-tag {
+  background: #f0f4f8;
+  color: #192540;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #e0e6ed;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.python-skill-tag:hover {
+  background: #e5eaf1;
+  border-color: #192540;
+}
+
+.python-view-more-skills {
+  background: transparent;
+  color: #0066cc;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.python-view-more-skills:hover {
+  color: #004499;
+}
+
+/* ===== BOTTOM CTA BUTTONS ===== */
+.python-about-cta-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.8rem;
+  margin-top: 2.5rem;
+}
+
+.python-about-enroll-button,
+.python-about-curriculum-button {
+  padding: 1.1rem 2.8rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.python-about-enroll-button {
+  background: #192540;
+  color: #fff;
+  box-shadow: 0 5px 20px rgba(25, 37, 64, 0.22);
+}
+
+.python-about-enroll-button:hover {
+  background: #2a3d5f;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(25, 37, 64, 0.3);
+}
+
+.python-about-curriculum-button {
+  background: transparent;
+  color: #192540;
+  border: 2px solid #192540;
+}
+
+.python-about-curriculum-button:hover {
+  background: #192540;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1400px) {
+  .python-about-three-column-grid {
+    gap: 2.5rem;
+  }
+
+  .python-about-robot-image {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .python-about-three-column-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .python-about-left-content,
+  .python-about-right-content {
+    padding: 0;
+  }
+
+  .python-about-center-content {
+    order: -1;
+    margin-top: 0;
+  }
+
+  .python-about-robot-image {
+    max-width: 420px;
+  }
+
+  .python-about-highlights {
+    align-items: center;
+  }
+
+  .python-highlight-item:hover {
+    transform: translateX(0);
+  }
+
+  .python-skills-section {
+    text-align: left;
+  }
+
+  .python-skills-tags-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .python-about-section {
+    padding: 2.5rem 1.5rem 3rem;
+  }
+
+  .python-about-section-heading {
+    font-size: 1.8rem;
+  }
+
+  .python-about-text {
+    font-size: 0.95rem;
+  }
+
+  .python-about-robot-image {
+    max-width: 340px;
+  }
+
+  .python-about-cta-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .python-about-enroll-button,
+  .python-about-curriculum-button {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .python-highlight-item {
+    font-size: 0.95rem;
+  }
+
+  .python-highlight-bullet {
+    width: 26px;
+    height: 26px;
+    font-size: 0.9rem;
+  }
+
+  .python-skills-title {
+    font-size: 1.3rem;
+  }
+
+  .python-skill-tag {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .python-about-section {
+    padding: 2rem 1rem 2.5rem;
+  }
+
+  .python-about-section-heading {
+    font-size: 1.6rem;
+  }
+
+  .python-about-robot-image {
+    max-width: 280px;
+  }
+
+  .python-highlight-item {
+    font-size: 0.9rem;
+    gap: 0.8rem;
+  }
+
+  .python-highlight-bullet {
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+  }
+
+  .python-skills-title {
+    font-size: 1.2rem;
+  }
+
+  .python-skill-tag {
+    font-size: 0.8rem;
+    padding: 0.45rem 0.9rem;
+  }
+}

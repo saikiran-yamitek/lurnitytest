@@ -2,6 +2,9 @@
 
 // --------- Imports ---------
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
+import crypto from 'crypto';
 import {
   DynamoDBDocumentClient,
   GetCommand,
@@ -15,9 +18,19 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
 
+
 // --------- Config ---------
 const REGION = process.env.AWS_REGION || "us-east-1";
 const TABLE = process.env.USER_TABLE_NAME || "User"; // fallback to "User" like new.js
+const FORGOT_TABLE = process.env.FORGOT_TABLE_NAME || 'ForgotPassword';
+const OTP_DIGITS = parseInt(process.env.OTP_DIGITS || '6', 10);
+const OTP_TTL_SECONDS = parseInt(process.env.OTP_TTL_SECONDS || '600', 10);  // 10 min
+const RESET_WINDOW_SECONDS = parseInt(process.env.RESET_WINDOW_SECONDS || '600', 10);
+const SES_FROM = process.env.SES_FROM;
+const SES_CONFIG_SET = process.env.SES_CONFIG_SET; // optional
+
+const sesClient = new SESClient({ region: REGION });
+const snsClient = new SNSClient({ region: REGION });
 
 
 if (!TABLE) {
@@ -683,4 +696,153 @@ Content constraints:
     skillTag: q?.skillTag ? String(q.skillTag).slice(0, 60) : undefined,
     rationale: q?.rationale ? String(q.rationale).slice(0, 1200) : "",
   }));
+}
+
+
+// ===== Forgot-password OTP helpers (stored in the same models/User.js) =====
+
+function nowEpoch() { return Math.floor(Date.now() / 1000); }
+
+function genOtp(len = OTP_DIGITS) {
+  const n = crypto.randomInt(0, 10 ** len);
+  return n.toString().padStart(len, '0');
+}
+
+function hashOtp(code, salt) {
+  return crypto.createHmac('sha256', salt).update(code).digest('hex');
+}
+
+function timingEqHex(hexA, hexB) {
+  const a = Buffer.from(hexA, 'hex');
+  const b = Buffer.from(hexB, 'hex');
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
+
+/**
+ * Create an OTP bundle and store hashed values in ForgotPassword table.
+ */
+export async function fpCreateAndStoreOtps({ requestId, userId }) {
+  const emailCode = genOtp();
+  const emailSalt = crypto.randomBytes(16).toString('hex');
+  const emailHash = hashOtp(emailCode, emailSalt);
+
+  const smsCode = genOtp();
+  const smsSalt = crypto.randomBytes(16).toString('hex');
+  const smsHash = hashOtp(smsCode, smsSalt);
+
+  const exp = nowEpoch() + OTP_TTL_SECONDS;
+
+  const item = {
+    requestId,
+    userId,
+    emailHash,
+    emailSalt,
+    emailExpiresAt: exp,
+    emailVerified: false,
+    smsHash,
+    smsSalt,
+    smsExpiresAt: exp,
+    smsVerified: false,
+    attemptsEmail: 0,
+    attemptsSms: 0,
+    bothVerified: false,
+    expiresAt: Math.max(exp, exp) + RESET_WINDOW_SECONDS, // table TTL
+  };
+
+  await ddb.send(new PutCommand({ TableName: FORGOT_TABLE, Item: item }));
+
+  // Return raw codes for channel delivery
+  return { emailCode, smsCode };
+}
+
+export async function fpSendEmailOtp(to, code) {
+  const params = {
+    Source: SES_FROM,
+    Destination: { ToAddresses: [to] },
+    Message: {
+      Subject: { Data: 'Your Lurnity password reset code', Charset: 'UTF-8' },
+      Body: {
+        Text: {
+          Data: `Your OTP is ${code}. It expires in ${Math.floor(OTP_TTL_SECONDS/60)} minutes. If not requested, ignore this message.`,
+          Charset: 'UTF-8',
+        },
+      },
+    },
+    ...(SES_CONFIG_SET ? { ConfigurationSetName: SES_CONFIG_SET } : {}),
+  };
+  await sesClient.send(new SendEmailCommand(params));
+}
+
+export async function fpSendSmsOtp(phoneE164, code) {
+  const message = `Lurnity OTP: ${code}. Expires in ${Math.floor(OTP_TTL_SECONDS/60)} minutes.`;
+  await snsClient.send(new PublishCommand({ PhoneNumber: phoneE164, Message: message }));
+}
+
+export async function fpGetRequest(requestId) {
+  const res = await ddb.send(new GetCommand({ TableName: FORGOT_TABLE, Key: { requestId } }));
+  return res.Item;
+}
+
+export async function fpVerifyChannel({ request, channel, code }) {
+  const now = nowEpoch();
+  if (channel === 'email') {
+    if (request.emailVerified) return { ok: true };
+    if (now > request.emailExpiresAt) return { ok: false, reason: 'expired' };
+    const computed = hashOtp(code, request.emailSalt);
+    const ok = timingEqHex(request.emailHash, computed);
+    const attempts = (request.attemptsEmail || 0) + 1;
+    if (!ok && attempts >= 5) return { ok: false, reason: 'locked' };
+    await ddb.send(new UpdateCommand({
+      TableName: FORGOT_TABLE,
+      Key: { requestId: request.requestId },
+      UpdateExpression: ok ? 'SET emailVerified = :t' : 'SET attemptsEmail = :a',
+      ExpressionAttributeValues: ok ? { ':t': true } : { ':a': attempts },
+    }));
+    return { ok };
+  } else {
+    if (request.smsVerified) return { ok: true };
+    if (now > request.smsExpiresAt) return { ok: false, reason: 'expired' };
+    const computed = hashOtp(code, request.smsSalt);
+    const ok = timingEqHex(request.smsHash, computed);
+    const attempts = (request.attemptsSms || 0) + 1;
+    if (!ok && attempts >= 5) return { ok: false, reason: 'locked' };
+    await ddb.send(new UpdateCommand({
+      TableName: FORGOT_TABLE,
+      Key: { requestId: request.requestId },
+      UpdateExpression: ok ? 'SET smsVerified = :t' : 'SET attemptsSms = :a',
+      ExpressionAttributeValues: ok ? { ':t': true } : { ':a': attempts },
+    }));
+    return { ok };
+  }
+}
+
+export async function fpMarkBothVerified(requestId) {
+  const req = await fpGetRequest(requestId);
+  if (req?.emailVerified && req?.smsVerified) {
+    await ddb.send(new UpdateCommand({
+      TableName: FORGOT_TABLE,
+      Key: { requestId },
+      UpdateExpression: 'SET bothVerified = :t, expiresAt = :ttl',
+      ExpressionAttributeValues: { ':t': true, ':ttl': nowEpoch() + RESET_WINDOW_SECONDS },
+    }));
+    return true;
+  }
+  return false;
+}
+
+export async function fpClearRequest(requestId) {
+  await ddb.send(new DeleteCommand({ TableName: FORGOT_TABLE, Key: { requestId } }));
+}
+
+/**
+ * Bcryptjs-based password update consistent with createUser/login
+ */
+export async function updateUserPasswordWithPolicy(userId, newPassword) {
+  if (!newPassword || newPassword.length < 10) {
+    throw new Error('Password must be at least 10 characters.');
+  }
+  const hash = await bcrypt.hash(newPassword, 10); // same rounds as createUser
+  await updateUser(userId, { password: hash, passwordUpdatedAt: new Date().toISOString() });
+  return true;
 }

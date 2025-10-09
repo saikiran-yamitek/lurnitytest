@@ -1,0 +1,383 @@
+/* ===== WRAPPER - ISOLATES ALL STYLES ===== */
+.python-courses-wrapper {
+  width: 100%;
+  isolation: isolate;
+}
+
+/* ===== PYTHON COURSES SECTION ===== */
+.python-courses-wrapper .python-courses-section {
+  padding: 5rem 0;
+  background: #fff;
+}
+
+.python-courses-wrapper .python-courses-outer-container {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+/* ===== HEADER ===== */
+.python-courses-wrapper .python-courses-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.python-courses-wrapper .python-courses-main-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #192540;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.python-courses-wrapper .python-courses-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===== COURSE OVERVIEW CARD ===== */
+.python-courses-wrapper .python-course-overview {
+  background: linear-gradient(135deg, #192540 0%, #2a3d5f 100%);
+  border-radius: 25px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 40px rgba(25, 37, 64, 0.2);
+}
+
+.python-courses-wrapper .python-overview-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.python-courses-wrapper .python-overview-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+}
+
+.python-courses-wrapper .python-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.python-courses-wrapper .python-stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.python-courses-wrapper .python-stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+}
+
+.python-courses-wrapper .python-stat-divider {
+  width: 2px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== MODULES CONTAINER WITH BACKGROUND ===== */
+.python-courses-wrapper .python-modules-container {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 3rem 2.5rem;
+  border-radius: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.python-courses-wrapper .python-modules-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.70);
+  border-radius: 30px;
+  z-index: 0;
+}
+
+/* ===== MODULES GRID - 4 PER ROW ===== */
+.python-courses-wrapper .python-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== MODULE CARD ===== */
+.python-courses-wrapper .python-module-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e8ecf3;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.python-courses-wrapper .python-module-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: #192540;
+}
+
+/* ===== MODULE HEADER ===== */
+.python-courses-wrapper .python-module-header {
+  background: linear-gradient(135deg, #192540 0%, #2a3d5f 100%);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.python-courses-wrapper .python-module-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.python-courses-wrapper .python-level-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+.python-courses-wrapper .python-level-badge.beginner {
+  background: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.python-courses-wrapper .python-level-badge.intermediate {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffb74d;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.python-courses-wrapper .python-level-badge.advanced {
+  background: rgba(244, 67, 54, 0.2);
+  color: #e57373;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+/* ===== MODULE CONTENT ===== */
+.python-courses-wrapper .python-module-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ===== SKILLS SECTION ===== */
+.python-courses-wrapper .python-skills-section {
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+.python-courses-wrapper .python-skills-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #192540;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.python-courses-wrapper .python-skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.python-courses-wrapper .python-skill-tag {
+  background: #f0f4f8;
+  color: #192540;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid #e0e6ed;
+  transition: all 0.3s ease;
+}
+
+.python-courses-wrapper .python-skill-tag:hover {
+  background: #e5eaf1;
+  border-color: #192540;
+}
+
+/* ===== MODULE FOOTER ===== */
+.python-courses-wrapper .python-module-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e8ecf3;
+}
+
+.python-courses-wrapper .python-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.python-courses-wrapper .python-duration-icon {
+  font-size: 1rem;
+}
+
+/* ===== CTA BUTTON ===== */
+.python-courses-wrapper .python-courses-cta {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.python-courses-wrapper .python-enroll-btn {
+  padding: 1.2rem 3rem;
+  background: #192540;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(25, 37, 64, 0.22);
+  letter-spacing: 0.3px;
+}
+
+.python-courses-wrapper .python-enroll-btn:hover {
+  background: #2a3d5f;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(25, 37, 64, 0.3);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1400px) {
+  .python-courses-wrapper .python-modules-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .python-courses-wrapper .python-modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .python-courses-wrapper .python-modules-container {
+    padding: 2.5rem 2rem;
+  }
+
+  .python-courses-wrapper .python-overview-stats {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .python-courses-wrapper .python-stat-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .python-courses-wrapper .python-courses-section {
+    padding: 3rem 0;
+  }
+
+  .python-courses-wrapper .python-courses-outer-container {
+    padding: 0 1.5rem;
+  }
+
+  .python-courses-wrapper .python-courses-main-title {
+    font-size: 2.2rem;
+  }
+
+  .python-courses-wrapper .python-courses-subtitle {
+    font-size: 1rem;
+  }
+
+  .python-courses-wrapper .python-modules-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .python-courses-wrapper .python-modules-container {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .python-courses-wrapper .python-course-overview {
+    padding: 2rem;
+  }
+
+  .python-courses-wrapper .python-stat-number {
+    font-size: 1.8rem;
+  }
+
+  .python-courses-wrapper .python-enroll-btn {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .python-courses-wrapper .python-courses-outer-container {
+    padding: 0 1rem;
+  }
+
+  .python-courses-wrapper .python-courses-main-title {
+    font-size: 1.9rem;
+  }
+
+  .python-courses-wrapper .python-modules-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .python-courses-wrapper .python-module-content {
+    padding: 1.3rem;
+  }
+
+  .python-courses-wrapper .python-course-overview {
+    padding: 1.5rem;
+  }
+
+  .python-courses-wrapper .python-overview-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .python-courses-wrapper .python-module-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .python-courses-wrapper .python-module-title {
+    font-size: 1.1rem;
+  }
+}

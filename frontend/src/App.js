@@ -20,6 +20,7 @@ import PracticePage  from "./components/PracticePage";
 import CareersPage from './components/CareersPage'
 import AICoursePage from './components/AICoursePage';
 import ForgotPassword from './components/ForgotPassword'
+import PythonCoursePage from './components/PythonCoursePage'
 
 
 /* ── Admin ── */
@@ -78,6 +79,7 @@ function App() {
         <Route path="/practice/:courseId/:subIdx/:vidIdx" component={PracticePage} />
         <Route path="/careers" component={CareersPage} />
         <Route path="/course/ai" component={AICoursePage} />
+        <Route path="/course/python" component={PythonCoursePage} />
             
 
         {/* 🟡 Employee Auth */}

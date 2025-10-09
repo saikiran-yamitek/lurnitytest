@@ -1,0 +1,360 @@
+/* ===== PYTHON COURSE PAGE - PRODUCTION READY ===== */
+/* ===== SMOOTH SCROLLING ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== PYTHON COURSE PAGE - PRODUCTION READY ===== */
+.python-course-page {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #d5dce6;
+  color: #1a1a2e;
+  overflow-x: hidden;
+}
+
+/* ... rest of your CSS stays the same ... */
+
+
+.python-course-page {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #d5dce6;
+  color: #1a1a2e;
+  overflow-x: hidden;
+}
+
+.python-wrapper {
+  width: 100%;
+}
+
+/* ===== HEADER ===== */
+.python-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  position: relative;
+  z-index: 100;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.python-logo-section {
+  position: absolute;
+  left: 3rem;
+  flex-shrink: 0;
+}
+
+.python-brand-logo {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===== NAVIGATION ===== */
+.python-navigation {
+  display: flex;
+  justify-content: center;
+}
+
+.python-nav-pill {
+  display: flex;
+  background: #fff;
+  border: 2px solid #192540;
+  border-radius: 50px;
+  padding: 0.3rem 0.4rem;
+  gap: 0.2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.python-nav-link {
+  padding: 0.65rem 1.9rem;
+  text-decoration: none;
+  color: #0a0e1a;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.python-nav-link.active {
+  background: #192540;
+  color: #fff;
+}
+
+.python-nav-link:hover:not(.active) {
+  background: rgba(25, 37, 64, 0.06);
+}
+
+/* ===== MENU TOGGLE ===== */
+.python-menu-toggle {
+  position: absolute;
+  right: 3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+}
+
+.python-menu-icon {
+  width: 28px;
+  height: 3px;
+  background: #0a0e1a;
+  border-radius: 2px;
+}
+
+/* ===== HERO SECTION ===== */
+.python-hero-section {
+  padding: 1rem 0 2rem;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.python-hero-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}
+
+.python-hero-grid {
+  display: grid;
+  grid-template-columns: 35% 45% 20%;
+  gap: 0;
+  align-items: flex-start;
+  flex: 1;
+}
+
+/* ===== HERO LEFT ===== */
+.python-hero-left {
+  padding-top: 2rem;
+}
+
+.python-hero-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.python-hero-subtitle {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: #0a0e1a;
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+
+.python-hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #192540;
+  line-height: 0.95;
+  letter-spacing: -1.2px;
+  word-spacing: 100vw;
+}
+
+/* ===== HERO CENTER ===== */
+.python-hero-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 20%;
+  padding-right: 82px;
+  margin-right: 12px;
+}
+
+.python-hero-image {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.1));
+}
+
+/* ===== HERO RIGHT ===== */
+.python-hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.python-arrow-button {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #192540;
+  border: none;
+  color: #fff;
+  font-size: 3.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 18px rgba(25, 37, 64, 0.2);
+}
+
+.python-arrow-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(25, 37, 64, 0.3);
+  background: #2a3d5f;
+}
+
+.python-arrow-symbol {
+  line-height: 0.8;
+  margin-left: 4px;
+}
+
+/* ===== HERO BOTTOM ===== */
+.python-hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: flex-end;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.python-description-box {
+  position: absolute;
+  bottom: 1rem;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+  margin-bottom: 2rem;
+}
+
+.python-description {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #1a1a2e;
+  font-weight: 400;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: 0;
+  padding-left: 22%;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .python-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .python-hero-left {
+    padding-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .python-hero-center {
+    order: 2;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    padding-top: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  .python-hero-image {
+    max-width: 300px;
+  }
+
+  .python-hero-right {
+    order: 3;
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .python-hero-bottom {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.5rem;
+    position: static;
+  }
+
+  .python-description-box {
+    position: static;
+    left: auto;
+    right: auto;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .python-description {
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .python-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .python-logo-section {
+    left: 1.5rem;
+  }
+
+  .python-menu-toggle {
+    right: 1.5rem;
+  }
+
+  .python-navigation {
+    display: none;
+  }
+
+  .python-hero-wrapper {
+    padding: 0 1.5rem;
+  }
+
+  .python-hero-title {
+    font-size: 2.8rem;
+  }
+
+  .python-hero-subtitle {
+    font-size: 1.4rem;
+  }
+
+  .python-hero-image {
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .python-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .python-hero-image {
+    max-width: 200px;
+  }
+
+  .python-arrow-button {
+    width: 65px;
+    height: 65px;
+    font-size: 2.8rem;
+  }
+
+  .python-description {
+    font-size: 0.88rem;
+  }
+}

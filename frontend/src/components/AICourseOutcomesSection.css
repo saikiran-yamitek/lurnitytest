@@ -1,0 +1,171 @@
+/* ===== OUTCOMES SECTION ===== */
+.outcomes-section {
+  padding: 5rem 3rem;
+  background: #fff;
+}
+
+.outcomes-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* ===== LEFT CONTENT ===== */
+.outcomes-content {
+  padding-right: 2rem;
+}
+
+.outcomes-heading {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #192540;
+  margin-bottom: 1.8rem;
+  letter-spacing: -0.7px;
+  line-height: 1.2;
+}
+
+.outcomes-intro {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.outcomes-subtext {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.outcomes-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.outcomes-link:hover {
+  color: #004499;
+  text-decoration: underline;
+}
+
+/* ===== BULLET LIST ===== */
+.outcomes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.outcomes-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.bullet-dot {
+  color: #192540;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: -0.1rem;
+}
+
+/* ===== RIGHT IMAGE ===== */
+.outcomes-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outcomes-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .outcomes-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .outcomes-content {
+    padding-right: 0;
+  }
+
+  .outcomes-image-wrapper {
+    order: -1;
+  }
+
+  .outcomes-image {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .outcomes-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .outcomes-heading {
+    font-size: 2rem;
+  }
+
+  .outcomes-intro,
+  .outcomes-subtext,
+  .outcomes-item {
+    font-size: 0.95rem;
+  }
+
+  .outcomes-image {
+    max-width: 400px;
+  }
+
+  .outcomes-container {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .outcomes-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .outcomes-heading {
+    font-size: 1.7rem;
+  }
+
+  .outcomes-intro,
+  .outcomes-subtext,
+  .outcomes-item {
+    font-size: 0.9rem;
+  }
+
+  .outcomes-item {
+    gap: 0.8rem;
+  }
+
+  .bullet-dot {
+    font-size: 1.3rem;
+  }
+
+  .outcomes-image {
+    max-width: 100%;
+  }
+}
