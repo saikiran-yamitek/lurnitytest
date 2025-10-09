@@ -61,6 +61,18 @@ export const findUserByEmail = async (email) => {
   return res.Items?.[0] || null;
 };
 
+export const findUserByPhone = async (phoneE164) => {
+  const cmd = new QueryCommand({
+    TableName: TABLE,
+    IndexName: "phone-index",
+    KeyConditionExpression: "phone = :p",
+    ExpressionAttributeValues: { ":p": phoneE164 },
+    Limit: 1
+  });
+  const res = await ddb.send(cmd);
+  return res.Items?.[0] || null;
+};
+
 export const createUser = async (userData) => {
   const hashed = await bcrypt.hash(userData.password, 10);
   const item = {
