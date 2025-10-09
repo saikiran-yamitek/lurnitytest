@@ -297,6 +297,28 @@
      {
       "AttributeName": "id",
       "AttributeType": "S"
+     },
+     {
+      "AttributeName": "username",
+      "AttributeType": "S"
+     }
+    ],
+    "GlobalSecondaryIndexes": [
+     {
+      "IndexName": "username-index",
+      "KeySchema": [
+       {
+        "AttributeName": "username",
+        "KeyType": "HASH"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+       "ReadCapacityUnits": 5,
+       "WriteCapacityUnits": 5
+      }
      }
     ],
     "KeySchema": [

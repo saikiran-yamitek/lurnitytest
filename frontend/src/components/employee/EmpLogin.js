@@ -24,6 +24,7 @@ export default function EmpLogin() {
     try {
       const info = await empLogin(username, password);
       localStorage.setItem("empInfo", JSON.stringify(info));
+      localStorage.setItem("empToken", info.token);
       
       // Route based on role
       if (info.role === "content" || info.role === "super")

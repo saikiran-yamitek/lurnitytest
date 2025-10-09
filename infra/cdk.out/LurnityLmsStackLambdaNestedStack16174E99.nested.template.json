@@ -4702,7 +4702,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -4875,7 +4883,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -5048,7 +5064,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -5221,7 +5245,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -5394,7 +5426,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -5567,7 +5607,15 @@
          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
         },
         {
-         "Ref": "AWS::NoValue"
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDAArn"
+           },
+           "/index/*"
+          ]
+         ]
         }
        ]
       },
@@ -13497,7 +13545,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "f64d961f405ecb8a0a9956b493c3364f010f7f1fbd782a54bf603c6c58b43eeb.zip"
+     "S3Key": "f6f4d6fa103054e4ac0434e9303b4113e43d4fb8dd1df36eda81063c035963be.zip"
     },
     "Environment": {
      "Variables": {
@@ -13578,7 +13626,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterUserLambda/Resource",
-    "aws:asset:path": "asset.f64d961f405ecb8a0a9956b493c3364f010f7f1fbd782a54bf603c6c58b43eeb",
+    "aws:asset:path": "asset.f6f4d6fa103054e4ac0434e9303b4113e43d4fb8dd1df36eda81063c035963be",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

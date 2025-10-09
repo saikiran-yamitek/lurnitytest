@@ -63,6 +63,7 @@ export default function InchargeDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("empInfo");
+    localStorage.removeItem("empToken");
     history.push("/employee/login");
   };
 

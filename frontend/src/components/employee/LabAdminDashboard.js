@@ -170,6 +170,7 @@ payload.subCourseId = selectedSubCourse.title; // since no ID exists
 
   const doLogout = () => {
     localStorage.removeItem("empInfo");
+    localStorage.removeItem("empToken");
     history.replace("/employee/login");
   };
 

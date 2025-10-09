@@ -70,6 +70,11 @@ this.certificateTable.addGlobalSecondaryIndex({
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
+    this.employeeTable.addGlobalSecondaryIndex({
+  indexName: "username-index",
+  partitionKey: { name: "username", type: dynamodb.AttributeType.STRING },
+  projectionType: dynamodb.ProjectionType.ALL,
+});
 
     this.feedbackTable = new dynamodb.Table(this, process.env.FEEDBACK_TABLE_NAME || "FeedbackTable", {
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
