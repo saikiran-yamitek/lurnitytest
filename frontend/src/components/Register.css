@@ -1,6 +1,13 @@
 /* src/components/Register.css */
+/* Namespace all rules to avoid global bleed */
+.lurnity-register {
+  /* optional base reset for this island only */
+  font-family: inherit;
+  line-height: 1.4;
+}
 
-.form-container {
+/* Layout */
+.lurnity-register .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,76 +17,117 @@
   min-height: 100vh;
 }
 
-.form-logo {
+/* Logo */
+.lurnity-register .form-logo {
   width: 130px;
   margin-bottom: 20px;
+  display: block;
 }
 
-.form-card {
+/* Card */
+.lurnity-register .form-card {
   width: 100%;
   max-width: 400px;
-  background: white;
+  background: #ffffff;
   padding: 30px 25px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.form-card h2 {
+/* Headings */
+.lurnity-register .form-card h2 {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
+  font-weight: 600;
 }
 
-.form-card input {
+/* Inputs */
+.lurnity-register .form-card input {
   width: 100%;
   padding: 12px 14px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 15px;
+  background-color: #fff;
+  color: #2c3e50;
+  outline: none;
+  box-sizing: border-box;
 }
 
-.form-card button {
-  width: 100%;
+.lurnity-register .form-card input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* Button */
+.lurnity-register .form-card button {
+  width: 100%
+  ;
   padding: 12px;
   background-color: #4a90e2;
-  color: white;
+  color: #ffffff;
   font-size: 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 
-.form-card button:hover {
+.lurnity-register .form-card button:hover {
   background-color: #3a7dd8;
 }
 
-.form-msg {
+/* Messages */
+.lurnity-register .form-msg {
   text-align: center;
   font-size: 14px;
   margin-top: 10px;
 }
 
-.form-msg.success {
+.lurnity-register .form-msg.success {
   color: green;
 }
 
-.form-msg.error {
+.lurnity-register .form-msg.error {
   color: red;
 }
 
-.switch-text {
+/* Switch text */
+.lurnity-register .switch-text {
   text-align: center;
   margin-top: 12px;
   font-size: 14px;
 }
 
-.switch-text a {
+.lurnity-register .switch-text a {
   color: #4a90e2;
   text-decoration: none;
 }
 
-.switch-text a:hover {
+.lurnity-register .switch-text a:hover {
   text-decoration: underline;
+}
+
+/* Defensive specificity against global resets */
+.lurnity-register input,
+.lurnity-register button,
+.lurnity-register a,
+.lurnity-register h2,
+.lurnity-register p {
+  all: unset;
+  display: revert;
+  font: inherit;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+.lurnity-register .form-card input,
+.lurnity-register .form-card button,
+.lurnity-register .form-card a,
+.lurnity-register .form-card h2,
+.lurnity-register .form-card p {
+  all: revert;
+  box-sizing: border-box;
 }

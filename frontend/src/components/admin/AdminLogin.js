@@ -204,15 +204,16 @@ export default function AdminLogin() {
                   <h1 className="brand-title">Admin Portal</h1>
                   <p className="brand-subtitle">Welcome back! Please sign in to continue</p>
                 </div>
-              </div>
-              
-              <div className="security-indicator">
+                <div className="security-indicator">
                 <div className="security-icon">
                   <FiShield />
                 </div>
                 <span className="security-text">Secure Login</span>
               </div>
             </div>
+              </div>
+              
+              
 
             {/* Error Alert */}
             {msg && (

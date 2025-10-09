@@ -672,3 +672,20 @@
     max-width: min(7vw, 48px);
   }
 }
+/* === FIX TRANSPARENT HEADER OVERSTRETCH === */
+.okta-header-wrapper .okta-header-layout {
+  justify-content: center; /* centers both sections */
+  gap: 2rem; /* control space between nav and buttons */
+}
+
+.okta-header-wrapper .okta-nav-bar,
+.okta-header-wrapper .okta-actions-container {
+  flex: 0 0 auto; /* prevent them from stretching */
+  width: auto;
+}
+
+.okta-header-wrapper .okta-header-container {
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+}

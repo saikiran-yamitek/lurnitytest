@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/LURNITY.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <!-- GLOBAL CENTERING FIX FOR ALL PAGES -->
+    <!-- GLOBAL BASELINE (scoped to avoid breaking page layouts) -->
     <style>
       /* Root Reset */
       * {
@@ -20,25 +20,16 @@
         padding: 0;
         box-sizing: border-box;
       }
-      
-      /* Prevent horizontal scroll and center everything */
+
+      /* Root scrolling: only root suppresses horizontal overflow */
       html {
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden;
         scroll-behavior: smooth;
       }
-      
-      body {
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: hidden !important;
-        margin: 0;
-        padding: 0;
-        position: relative;
-      }
-      
-      #root {
+
+      body, #root {
         width: 100%;
         max-width: 100vw;
         overflow-x: hidden;
@@ -46,46 +37,29 @@
         padding: 0;
         position: relative;
       }
-      
-      /* Center all sections */
-      section {
+
+      /* Generic sections: do not clamp max-width on page-level components */
+      section, header, footer, nav, main {
         width: 100%;
-        max-width: 100vw;
         margin-left: auto;
         margin-right: auto;
         box-sizing: border-box;
-        overflow-x: hidden;
       }
-      
-      /* Center headers and footers */
-      header, footer, nav {
-        width: 100%;
-        max-width: 100vw;
-        box-sizing: border-box;
-      }
-      
-      /* Container centering */
-      [class*="container"],
-      [class*="-container"] {
+
+      /* Narrowed container helpers: avoid wildcard substring matches */
+      .container, .page-container, .site-container {
         width: 100%;
         max-width: 1600px;
         margin-left: auto;
         margin-right: auto;
         box-sizing: border-box;
       }
-      
-      /* Page wrapper fix */
-      [class*="-page"],
-      [class*="page-"],
-      main {
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: hidden;
-        margin: 0 auto;
-        position: relative;
-      }
+
+      /* Remove previous broad rules:
+         [class*="-page"], [class*="page-"] and overflow-x: hidden on them.
+         Pages manage their own width/overflow. */
     </style>
-    
+
     <title>Lurnity</title>
   </head>
   <body>

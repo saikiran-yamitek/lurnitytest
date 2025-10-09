@@ -106,12 +106,17 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgba(255, 255, 255, 0.95);
-  padding: 15px 25px;
+  padding: 10px 20px;
   border-radius: 50px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: fit-content;          /* ✅ ensures white box only wraps the logo */
+  height: auto;
 }
+
 
 .auth-logo-container:hover {
   transform: translateX(-50%) translateY(-2px);

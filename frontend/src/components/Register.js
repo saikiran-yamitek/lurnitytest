@@ -26,7 +26,7 @@ export default class Register extends Component {
     e.preventDefault();
     const { name, email, password, confirmPassword, phone } = this.state;
 
-    /* basic validations */
+    // basic validations
     if (password.length < 10) {
       return this.setState({ msg: 'Password must be at least 10 characters.' });
     }
@@ -35,12 +35,14 @@ export default class Register extends Component {
       return this.setState({ msg: 'Passwords do not match.' });
     }
 
-    /* check for country code in phone number */
+    // check for country code in phone number
     if (!/^\+\d{1,4}\d{6,15}$/.test(phone)) {
-      return this.setState({ msg: 'Please include a valid country code in your phone number, e.g., +91xxxxxxxxxx' });
+      return this.setState({
+        msg: 'Please include a valid country code in your phone number, e.g., +91xxxxxxxxxx'
+      });
     }
 
-    /* register */
+    // register
     const res = await register({ name, email, password, phone });
 
     if (res.msg === 'User registered successfully') {
@@ -56,67 +58,71 @@ export default class Register extends Component {
     const { name, email, password, confirmPassword, phone, msg, isSuccess } = this.state;
 
     return (
-      <div className="form-container">
-        <img
-          src={logo}
-          alt="Lurnity Logo"
-          className="form-logo"
-          onClick={() => this.props.history.push('/')}
-          style={{ cursor: 'pointer' }}
-        />
-
-        <form className="form-card" onSubmit={this.handleSubmit}>
-          <h2>Create your Account</h2>
-
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-            placeholder="Full Name"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-            placeholder="Email"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-            placeholder="Password (min 10 chars)"
-            required
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={this.handleChange}
-            placeholder="Confirm Password"
-            required
-          />
-          <input
-            type="tel"
-            name="phone"
-            value={phone}
-            onChange={this.handleChange}
-            placeholder="Phone Number (include country code, e.g., +91)"
-            required
+      <div className="lurnity-register">
+        <div className="form-container">
+          <img
+            src={logo}
+            alt="Lurnity Logo"
+            className="form-logo"
+            onClick={() => this.props.history.push('/')}
+            style={{ cursor: 'pointer' }}
           />
 
-          <button type="submit">Sign Up</button>
+          <form className="form-card" onSubmit={this.handleSubmit}>
+            <h2>Create your Account</h2>
 
-          {msg && <p className={`form-msg ${isSuccess ? 'success' : 'error'}`}>{msg}</p>}
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={this.handleChange}
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={this.handleChange}
+              placeholder="Password (min 10 chars)"
+              required
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={this.handleChange}
+              placeholder="Confirm Password"
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              value={phone}
+              onChange={this.handleChange}
+              placeholder="Phone Number (include country code, e.g., +91)"
+              required
+            />
 
-          <p className="switch-text">
-            Already have an account? <a href="/login">Log in</a>
-          </p>
-        </form>
+            <button type="submit">Sign Up</button>
+
+            {msg && (
+              <p className={`form-msg ${isSuccess ? 'success' : 'error'}`}>{msg}</p>
+            )}
+
+            <p className="switch-text">
+              Already have an account? <a href="/login">Log in</a>
+            </p>
+          </form>
+        </div>
       </div>
     );
   }

@@ -162,11 +162,16 @@
 
 /* Header Section */
 .admin-login-wrapper .login-header {
-  margin-bottom: 40px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 222px;
 }
 
 .admin-login-wrapper .logo-section {
   margin-bottom: 32px;
+  margin-left: 32px;
 }
 
 .admin-login-wrapper .logo-container {
@@ -220,6 +225,7 @@
   font-size: 14px;
   font-weight: 600;
   box-shadow: var(--admin-shadow-sm);
+  margin-top: 32px;
 }
 
 .admin-login-wrapper .security-icon {
@@ -278,6 +284,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-top: 12rem;
 }
 
 .admin-login-wrapper .form-field {
