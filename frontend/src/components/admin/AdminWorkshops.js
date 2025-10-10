@@ -17,6 +17,7 @@ import {
 import { listWorkshops } from "../../services/workshopApi";
 import { listEmployees } from "../../services/adminApi";
 import "./AdminWorkshops.css";
+import { apiFetch } from "../../services/apiFetch";
 const API = process.env.REACT_APP_API_URL;
 
 export default function AdminWorkshops() {
@@ -32,7 +33,7 @@ export default function AdminWorkshops() {
   useEffect(() => {
     (async () => {
       try {
-        const [w, e] = await Promise.all([listWorkshops(), listEmployees()]);
+        const [w, e] = await Promise.all([listWorkshops("admin"), listEmployees("admin")]);
         setIncharges(e.filter(emp => emp.role === "lab incharge"));
         setWorkshops(w);
       } catch (error) {
@@ -47,7 +48,7 @@ export default function AdminWorkshops() {
     if (!window.confirm("Are you sure you want to delete this workshop?")) return;
 
     try {
-      await fetch(`${API}/api/workshops/${id}`, { method: "DELETE" });
+      await apiFetch(`${API}/api/workshops/${id}`, { method: "DELETE" },"admin");
       setWorkshops(workshops.filter(w => w.id !== id));
     } catch (error) {
       console.error("Failed to delete workshop:", error);
@@ -62,28 +63,35 @@ export default function AdminWorkshops() {
     }
 
     try {
-      setSaving(true);
-      const res = await fetch(`${API}/api/workshops/${editWorkshop.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editWorkshop),
-      });
-      const updated = await res.json();
-      setWorkshops((prev) =>
-        prev.map((w) => (w.id === updated.id ? updated : w))
-      );
-      setEditWorkshop(null);
-    } catch (err) {
-      console.error("Failed to update workshop:", err);
-      alert("Failed to update workshop. Please try again.");
-    } finally {
-      setSaving(false);
-    }
+  setSaving(true);
+  const res = await apiFetch(
+    `/api/workshops/${editWorkshop.id}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(editWorkshop),
+    },
+    "admin" // role
+  );
+
+  if (!res.ok) throw new Error("Failed to update workshop");
+
+  const updated = await res.json();
+  setWorkshops((prev) =>
+    prev.map((w) => (w.id === updated.id ? updated : w))
+  );
+  setEditWorkshop(null);
+} catch (err) {
+  console.error("Failed to update workshop:", err);
+  alert("Failed to update workshop. Please try again.");
+} finally {
+  setSaving(false);
+}
+
   };
 
   const handleViewStudents = async (workshopId) => {
   try {
-    const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
+    const res = await apiFetch(`${API}/api/workshops/${workshopId}/students`, {}, "admin");
     const data = await res.json();
     setSelectedStudents(Array.isArray(data) ? data : []);
     setSelectedWorkshop(workshopId); // now safe

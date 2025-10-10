@@ -64,7 +64,7 @@ export default class CourseForm extends Component {
     if (id) {
       try {
         console.log('📚 Loading course with ID:', id);
-        const coursesResponse = await listCourses();
+        const coursesResponse = await listCourses("admin");
         console.log('📚 Courses API response:', coursesResponse);
         
         // ✅ FIXED: Extract courses array from response
@@ -103,7 +103,7 @@ export default class CourseForm extends Component {
 // Load all subcourses with error handling
   try {
   console.log('📚 Loading all subcourses...');
-  const allSubCoursesResponse = await listAllSubCourses();
+  const allSubCoursesResponse = await listAllSubCourses("admin");
 
   // ✅ Normalize to array of subcourses
   let allSubCourses = [];
@@ -135,7 +135,7 @@ export default class CourseForm extends Component {
     // Load employees/instructors with error handling
     try {
       console.log('👨‍💼 Loading employees...');
-      const employeesResponse = await listEmployees();
+      const employeesResponse = await listEmployees("admin");
       const employees = Array.isArray(employeesResponse) 
         ? employeesResponse 
         : employeesResponse.items || [];
@@ -225,10 +225,10 @@ export default class CourseForm extends Component {
       console.log('💾 Saving course...', { id, state: this.state });
       
       if (id) {
-        await updateCourse(id, this.state);
+        await updateCourse(id, this.state,"admin");
         console.log('✅ Course updated successfully');
       } else {
-        await createCourse(this.state);
+        await createCourse(this.state,"admin");
         console.log('✅ Course created successfully');
       }
 

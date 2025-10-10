@@ -26,7 +26,7 @@ export default function Courses() {
     const loadCourses = async () => {
       console.log('🚀 Loading courses...');
       try {
-        const response = await listCourses();
+        const response = await listCourses("admin");
         console.log('📚 Raw API response:', response);
         
         // ✅ FIXED: Extract items array from response
@@ -62,7 +62,7 @@ export default function Courses() {
   const handleDelete = async id => {
     if (!window.confirm('Are you sure you want to delete this course?')) return;
     try {
-      await deleteCourse(id);
+      await deleteCourse(id, "admin");
       // Safe filter with array check
       if (Array.isArray(courses)) {
         setCourses(courses.filter(c => c.id !== id)); // Note: using 'id' instead of '_id'

@@ -40,7 +40,7 @@ export default function EmployeeForm() {
   useEffect(() => {
     if (id) (async () => {
       try {
-        const employee = await getEmployee(id);
+        const employee = await getEmployee(id,"admin");
         setEmp(employee);
       } catch (error) {
         console.error("Failed to fetch employee:", error);
@@ -74,7 +74,7 @@ export default function EmployeeForm() {
     
     try {
       setSaving(true);
-      await saveEmployee(id, emp);
+      await saveEmployee(id, emp,"admin");
       hist.push("/admin/employees");
     } catch (error) {
       console.error("Failed to save employee:", error);

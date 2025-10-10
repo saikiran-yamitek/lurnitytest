@@ -28,7 +28,7 @@ class Users extends Component {
     
     // Load users with error handling
     try {
-      const usersResponse = await listUsers();
+      const usersResponse = await listUsers("admin");
       console.log('👥 Users response:', usersResponse);
       
       // ✅ FIXED: Extract users array from response.items
@@ -47,7 +47,7 @@ class Users extends Component {
 
     // Load courses independently (won't break users if it fails)
     try {
-      const coursesResponse = await listCourses();
+      const coursesResponse = await listCourses("admin");
       console.log('📚 Courses response:', coursesResponse);
       
       // ✅ FIXED: Extract courses array from response.items
@@ -87,7 +87,7 @@ class Users extends Component {
       
       console.log('🔍 Update data (excluding id):', updateData);
       
-      const up = await updateUser(id, updateData);
+      const up = await updateUser(id, updateData,"admin");
       console.log('✅ User updated successfully:', up);
       
       // Only log transaction if there's payment data and it's not empty
@@ -97,7 +97,7 @@ class Users extends Component {
             amount: updateData.amountPaid, 
             mode: updateData.paymentMode, 
             date: new Date() 
-          });
+          },"admin");
           console.log('✅ Transaction logged successfully');
         } catch (transactionError) {
           console.error('❌ Transaction logging failed (user still updated):', transactionError);
@@ -141,7 +141,7 @@ class Users extends Component {
     
     try {
       this.setState({ loading: true });
-      await deleteUser(id);
+      await deleteUser(id,"admin");
       
       this.setState(s => ({
         users: s.users.filter(u => u.id !== id),
@@ -195,7 +195,7 @@ class Users extends Component {
   downloadReceipt = async id => {
     try {
       this.setState({ loading: true });
-      const blob = await generateReceipt(id);
+      const blob = await generateReceipt(id,"admin");
       const url = URL.createObjectURL(blob);
 
       const a = document.createElement('a');
@@ -223,7 +223,7 @@ class Users extends Component {
       this.setState({ loading: true });
       console.log('🔍 Toggling profile lock for user:', user.id, 'to status:', newStatus);
       
-      const updated = await toggleProfileLock(user.id, newStatus);
+      const updated = await toggleProfileLock(user.id, newStatus,"admin");
       console.log('✅ Profile lock toggled successfully:', updated);
       
       this.setState(s => ({

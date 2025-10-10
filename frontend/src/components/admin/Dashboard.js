@@ -31,7 +31,7 @@ export default function Dashboard() {
       let employees = [];
 
       try {
-        const usersResponse = await listUsers();
+        const usersResponse = await listUsers("admin");
         console.log('👥 Users response:', usersResponse);
         users = Array.isArray(usersResponse?.items) ? usersResponse.items : [];
       } catch (error) {
@@ -40,7 +40,7 @@ export default function Dashboard() {
       }
 
       try {
-        const coursesResponse = await listCourses();
+        const coursesResponse = await listCourses("admin");
         console.log('📚 Courses response:', coursesResponse);
         courses = Array.isArray(coursesResponse?.items) ? coursesResponse.items : [];
       } catch (error) {
@@ -49,7 +49,7 @@ export default function Dashboard() {
       }
 
       try {
-        const employeesResponse = await listEmployees();
+        const employeesResponse = await listEmployees("admin");
         console.log('👨‍💼 Employees response:', employeesResponse);
         employees = Array.isArray(employeesResponse?.items)
           ? employeesResponse.items

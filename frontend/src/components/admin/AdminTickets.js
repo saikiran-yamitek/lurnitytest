@@ -31,7 +31,7 @@ export default function AdminTickets() {
   useEffect(() => {
     (async () => {
       try {
-        const ticketData = await listTickets();
+        const ticketData = await listTickets("admin");
         setTickets(ticketData);
       } catch (error) {
         console.error("Failed to fetch tickets:", error);
@@ -44,7 +44,7 @@ export default function AdminTickets() {
   const del = async (t) => {
     if (!window.confirm("Are you sure you want to delete this ticket permanently?")) return;
     try {
-      await deleteTicket(t.id);
+      await deleteTicket(t.id,"admin");
       setTickets((p) => p.filter((x) => x._id !== t.id));
     } catch (error) {
       console.error("Failed to delete ticket:", error);
@@ -53,7 +53,7 @@ export default function AdminTickets() {
 
   const reopen = async (t) => {
     try {
-      await updateTicket(t.id, { status: "Open", closedBy: "", resolutionNote: "" });
+      await updateTicket(t.id, { status: "Open", closedBy: "", resolutionNote: "" },"admin");
       setTickets((p) =>
         p.map((x) => (x._id === t.id ? { ...x, status: "Open" } : x))
       );

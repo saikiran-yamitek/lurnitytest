@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { apiFetch } from "../../services/apiFetch";
 import "../Certificates.css";
 import {
   FiArrowLeft,
@@ -14,30 +15,28 @@ const AdminCertificatesView = () => {
   const hist = useHistory();
 
   useEffect(() => {
-    fetch(`${API}/api/certificates/user/${userId}`)
+    apiFetch(`${API}/api/certificates/user/${userId}`, {}, 'admin')
       .then((res) => res.json())
       .then(setCertificates)
       .catch((err) => console.error("Failed to load certificates:", err));
   }, [userId]);
 
-  const handleDownload = (certId, title) => {
-    fetch(`${API}/api/certificates/${certId}/pdf`, {
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("File not found");
-        return res.blob();
-      })
-      .then((blob) => {
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = `${title}_Certificate.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      })
-      .catch((err) => alert("Download failed: " + err.message));
-  };
+  const handleDownload = async (certId, title) => {
+  try {
+    const res = await apiFetch(`/api/certificates/${certId}/pdf`, {}, 'admin'); // role='user'
+    if (!res.ok) throw new Error("File not found");
+
+    const blob = await res.blob();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${title}_Certificate.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (err) {
+    alert("Download failed: " + err.message);
+  }
+};
 
   return (
     <div className="page-wrapper">

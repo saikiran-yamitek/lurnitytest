@@ -22,7 +22,7 @@ export default function Employees() {
   useEffect(() => {
     (async () => {
       try {
-        const employees = await listEmployees();
+        const employees = await listEmployees("admin");
         setEmps(employees);
       } catch (error) {
         console.error("Failed to fetch employees:", error);
@@ -35,7 +35,7 @@ export default function Employees() {
   const remove = async id => {
     if (!window.confirm("Are you sure you want to delete this employee?")) return;
     try {
-      await deleteEmployee(id);
+      await deleteEmployee(id,"admin");
       setEmps(e => e.filter(v => v.id !== id));
     } catch (error) {
       console.error("Failed to delete employee:", error);

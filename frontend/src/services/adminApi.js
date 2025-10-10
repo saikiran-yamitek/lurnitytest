@@ -1,16 +1,12 @@
+// src/services/adminApi.js
+import { apiFetch } from "./apiFetch";
+
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 const API = `${API_BASE_URL}/api/admin`;
 const API_URL = `${API_BASE_URL}/api/employees`;
 
-
-// Utility to include Authorization header
-const authHeaders = () => ({
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
-});
-
-export async function listAllSubCourses() {
-  const courses = await listCourses();
+export async function listAllSubCourses(role) {
+  const courses = await listCourses(role);
   let subs = [];
   courses.forEach(c => {
     c.subCourses.forEach(sc => {
@@ -21,209 +17,92 @@ export async function listAllSubCourses() {
 }
 
 /* ---------- Dashboard ---------- */
-export const getStats = () =>
-  fetch(`${API}/stats`, {
-    headers: authHeaders(),
-  }).then(res => res.json());
+export const getStats = (role) =>
+  apiFetch(`${API}/stats`, { method: "GET" }, role).then(res => res.json());
 
 /* ---------- Users ---------- */
-export const listUsers = () =>
-  fetch(`${API}/users`, {
-    headers: authHeaders(),
-  }).then(res => res.json());
+export const listUsers = (role) =>
+  apiFetch(`${API}/users`, { method: "GET" }, role).then(res => res.json());
 
-export const updateUser = (id, data) =>
-  fetch(`${API}/users/${id}`, {
-    method: 'PUT',
-    headers: authHeaders(),
-    body: JSON.stringify(data),
-  }).then(res => res.json());
+export const updateUser = (id, data, role) =>
+  apiFetch(`${API}/users/${id}`, { method: 'PUT', body: JSON.stringify(data) }, role).then(res => res.json());
 
-export const deleteUser = (id) =>
-  fetch(`${API}/users/${id}`, {
-    method: 'DELETE',
-    headers: authHeaders(),
-  }).then(res => res.json());
+export const deleteUser = (id, role) =>
+  apiFetch(`${API}/users/${id}`, { method: 'DELETE' }, role).then(res => res.json());
 
 /* ---------- Courses ---------- */
-export const listCourses = () =>
-  fetch(`${API}/courses`, {
-    headers: authHeaders(),
-  }).then(res => res.json());
+export const listCourses = (role) =>
+  apiFetch(`${API}/courses`, { method: "GET" }, role).then(res => res.json());
 
-export const createCourse = (data) =>
-  fetch(`${API}/courses`, {
-    method: 'POST',
-    headers: authHeaders(),
-    body: JSON.stringify(data),
-  }).then(res => res.json());
+export const createCourse = (data, role) =>
+  apiFetch(`${API}/courses`, { method: 'POST', body: JSON.stringify(data) }, role).then(res => res.json());
 
-export const updateCourse = (id, data) =>
-  fetch(`${API}/courses/${id}`, {
-    method: 'PUT',
-    headers: authHeaders(),
-    body: JSON.stringify(data),
-  }).then(res => res.json());
+export const updateCourse = (id, data, role) =>
+  apiFetch(`${API}/courses/${id}`, { method: 'PUT', body: JSON.stringify(data) }, role).then(res => res.json());
 
-export const deleteCourse = (id) =>
-  fetch(`${API}/courses/${id}`, {
-    method: 'DELETE',
-    headers: authHeaders(),
-  }).then(res => res.json());
+export const deleteCourse = (id, role) =>
+  apiFetch(`${API}/courses/${id}`, { method: 'DELETE' }, role).then(res => res.json());
 
 /* ---------- CSV Export ---------- */
-export const exportCSV = () =>
-  fetch(`${API}/users/export/csv`, {
-    method: 'GET',
-    headers: authHeaders(),
-  }).then(res => res.blob());
+export const exportCSV = (role) =>
+  apiFetch(`${API}/users/export/csv`, { method: 'GET' }, role).then(res => res.blob());
 
 /* ---------- Log Transaction ---------- */
-export const logTransaction = (id, data) =>
-  fetch(`${API}/users/${id}/transactions`, {
-    method: 'POST',
-    headers: authHeaders(),
-    body: JSON.stringify(data),
-  }).then(res => res.json());
+export const logTransaction = (id, data, role) =>
+  apiFetch(`${API}/users/${id}/transactions`, { method: 'POST', body: JSON.stringify(data) }, role).then(res => res.json());
 
 /* ---------- Generate Receipt (PDF) ---------- */
-export const generateReceipt = async id => {
-  const res = await fetch(`${API}/users/${id}/receipt`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('adminToken')}`,
-      Accept: 'application/pdf'
-    }
-  });
+export const generateReceipt = async (id, role) => {
+  const res = await apiFetch(`${API}/users/${id}/receipt`, {
+    headers: { Accept: 'application/pdf' }
+  }, role);
   if (!res.ok) throw new Error(await res.text());
   return res.blob();
 };
 
 /* ---------- Employees ---------- */
-// Fetch all employees
-export const listEmployees = async () => {
-  const res = await fetch(API_URL, {
-    headers: authHeaders(),
-  });
-  if (!res.ok) throw new Error('Failed to fetch employees');
-  return await res.json();
-};
+export const listEmployees = (role) =>
+  apiFetch(API_URL, { method: 'GET' }, role).then(res => res.json());
 
-// Create a new employee
-export const createEmployee = async (data) => {
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: authHeaders(),
-    body: JSON.stringify(data)
-  });
-  if (!res.ok) throw new Error('Failed to create employee');
-  return await res.json();
-};
+export const createEmployee = (data, role) =>
+  apiFetch(API_URL, { method: 'POST', body: JSON.stringify(data) }, role).then(res => res.json());
 
-// Update an existing employee
-export const updateEmployee = async (id, data) => {
-  const res = await fetch(`${API_URL}/${id}`, {
-    method: 'PUT',
-    headers: authHeaders(),
-    body: JSON.stringify(data)
-  });
-  if (!res.ok) throw new Error('Failed to update employee');
-  return await res.json();
-};
+export const updateEmployee = (id, data, role) =>
+  apiFetch(`${API_URL}/${id}`, { method: 'PUT', body: JSON.stringify(data) }, role).then(res => res.json());
 
-// Delete an employee
-export const deleteEmployee = async (id) => {
-  const res = await fetch(`${API_URL}/${id}`, {
-    method: 'DELETE',
-    headers: authHeaders(),
-  });
-  if (!res.ok) throw new Error('Failed to delete employee');
-};
+export const deleteEmployee = (id, role) =>
+  apiFetch(`${API_URL}/${id}`, { method: 'DELETE' }, role).then(res => res.json());
 
-export const getEmployee = (id) => 
-  fetch(`${API_BASE_URL}/api/employees/${id}`, {
-    headers: authHeaders(),
-  }).then(r => r.json());
+export const getEmployee = (id, role) =>
+  apiFetch(`${API_BASE_URL}/api/employees/${id}`, { method: 'GET' }, role).then(res => res.json());
 
-export const saveEmployee = async (id, data) => {
-  const res = await fetch(`${API_URL}${id ? `/${id}` : ""}`, {
-    method: id ? "PUT" : "POST",
-    headers: authHeaders(),
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error(await res.text());
-  return await res.json();
-};
+export const saveEmployee = (id, data, role) =>
+  apiFetch(`${API_URL}${id ? `/${id}` : ""}`, { method: id ? 'PUT' : 'POST', body: JSON.stringify(data) }, role).then(res => res.json());
 
 /* ---------- Tickets ---------- */
-export const listTickets = () =>
-  fetch(`${API_BASE_URL}/api/tickets`, { headers: authHeaders() }).then((r) => r.json());
+export const listTickets = (role) =>
+  apiFetch(`${API_BASE_URL}/api/tickets`, { method: 'GET' }, role).then(res => res.json());
 
-export const updateTicket = (id, body) =>
-  fetch(`${API}/tickets/${id}`, {
-    method: "PATCH",
-    headers: authHeaders(),
-    body: JSON.stringify(body),
-  }).then((r) => r.json());
+export const updateTicket = (id, body, role) =>
+  apiFetch(`${API}/tickets/${id}`, { method: 'PATCH', body: JSON.stringify(body) }, role).then(res => res.json());
 
-export const deleteTicket = (id) =>
-  fetch(`${API_BASE_URL}/api/tickets/${id}`, {
-    method: "DELETE",
-    headers: authHeaders(),
-  }).then((r) => (r.status === 204 ? { ok: true } : r.json()));
+export const deleteTicket = (id, role) =>
+  apiFetch(`${API_BASE_URL}/api/tickets/${id}`, { method: 'DELETE' }, role).then(res => (res.status === 204 ? { ok: true } : res.json()));
 
 /* ---------- Profile Lock ---------- */
-export async function toggleProfileLock(id, status) {
-  const res = await fetch(`${API}/users/${id}`, {
-    method: "PATCH",
-    headers: authHeaders(),
-    body: JSON.stringify({ lockStatus: status })
-  });
-  if (!res.ok) throw new Error("Failed to update lock");
-  return await res.json();
-}
+export const toggleProfileLock = (id, status, role) =>
+  apiFetch(`${API}/users/${id}`, { method: 'PATCH', body: JSON.stringify({ lockStatus: status }) }, role)
+    .then(res => res.json());
 
 /* ---------- Cohorts ---------- */
-export const listCohorts = async () => {
-  const response = await fetch(`${API}/landingpage/cohorts`, {
-    headers: authHeaders(),
-  });
-  if (!response.ok) {
-    throw new Error('Failed to fetch cohorts');
-  }
-  return response.json();
-};
+export const listCohorts = (role) =>
+  apiFetch(`${API}/landingpage/cohorts`, { method: 'GET' }, role).then(res => res.json());
 
-export const createCohort = async (cohortData) => {
-  const response = await fetch(`${API}/landingpage/cohorts`, {
-    method: 'POST',
-    headers: authHeaders(),
-    body: JSON.stringify(cohortData)
-  });
-  if (!response.ok) {
-    throw new Error('Failed to create cohort');
-  }
-  return response.json();
-};
+export const createCohort = (cohortData, role) =>
+  apiFetch(`${API}/landingpage/cohorts`, { method: 'POST', body: JSON.stringify(cohortData) }, role).then(res => res.json());
 
-export const updateCohort = async (id, cohortData) => {
-  const response = await fetch(`${API}/landingpage/cohorts/${id}`, {
-    method: 'PUT',
-    headers: authHeaders(),
-    body: JSON.stringify(cohortData)
-  });
-  if (!response.ok) {
-    throw new Error('Failed to update cohort');
-  }
-  return response.json();
-};
+export const updateCohort = (id, cohortData, role) =>
+  apiFetch(`${API}/landingpage/cohorts/${id}`, { method: 'PUT', body: JSON.stringify(cohortData) }, role).then(res => res.json());
 
-export const deleteCohort = async (id) => {
-  const response = await fetch(`${API}/landingpage/cohorts/${id}`, {
-    method: 'DELETE',
-    headers: authHeaders(),
-  });
-  if (!response.ok) {
-    throw new Error('Failed to delete cohort');
-  }
-  return response.json();
-};
+export const deleteCohort = (id, role) =>
+  apiFetch(`${API}/landingpage/cohorts/${id}`, { method: 'DELETE' }, role).then(res => res.json());
