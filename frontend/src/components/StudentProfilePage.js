@@ -10,6 +10,7 @@ import {
 } from "react-icons/fi";
 import logo from "../assets/LURNITY.jpg";
 import "./StudentProfilePage.css";
+import { apiFetch } from "../services/apiFetch";
 const API = process.env.REACT_APP_API_URL;
 
 const sections = {
@@ -142,7 +143,7 @@ const StudentProfilePage = () => {
   useEffect(() => {
   const fetchProfile = async () => {
     try {
-      const res  = await fetch(`${API}/api/user/${userId}/profile`);
+      const res  = await apiFetch(`/api/user/${userId}/profile` ,{ method: "GET" }, "user");
       const data = await res.json();          // {msg, user:{…}}
 
       if (res.ok && data?.user) {
@@ -212,11 +213,11 @@ const StudentProfilePage = () => {
       };
       delete dataToSend.photoFile;
       
-      const response = await fetch(`${API}/api/user/${userId}/profile`, {
+      const response = await apiFetch(`/api/user/${userId}/profile`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataToSend),
-      });
+      },"user");
 
       const result = await response.json();
       if (!response.ok) throw new Error(result.message || "Save failed");

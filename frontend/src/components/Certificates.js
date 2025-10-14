@@ -8,6 +8,7 @@ import {
 } from "react-icons/fi";
 import logo from "../assets/LURNITY.jpg";
 import "./Certificates.css";
+import { apiFetch } from "../services/apiFetch";
 const API = process.env.REACT_APP_API_URL;
 
 const Certificates = () => {
@@ -27,15 +28,15 @@ const Certificates = () => {
     }
 
     setLoading(true);
-    fetch(`${API}/api/user/homepage`, {
+    apiFetch(`/api/user/homepage`, {
       headers: { Authorization: "Bearer " + token },
-    })
+    },"user")
       .then((res) => res.json())
       .then((user) => {
         setUser(user);
-        return fetch(`${API}/api/certificates/user/${user.id}`, {
+        return apiFetch(`/api/certificates/user/${user.id}`, {
           headers: { Authorization: "Bearer " + token },
-        });
+        },"user");
       })
       .then((res) => res.json())
       .then((certs) => {
@@ -66,9 +67,9 @@ const Certificates = () => {
   }, []);
 
   const handleDownload = (certId, title) => {
-    fetch(`${API}/api/certificates/${certId}/pdf`, {
+    apiFetch(`/api/certificates/${certId}/pdf`, {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    })
+    },"user")
       .then((res) => {
         if (!res.ok) throw new Error("File not found");
         return res.blob();

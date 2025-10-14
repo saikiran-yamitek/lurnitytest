@@ -15,7 +15,7 @@ const AdminCertificatesView = () => {
   const hist = useHistory();
 
   useEffect(() => {
-    apiFetch(`${API}/api/certificates/user/${userId}`, {}, 'admin')
+    apiFetch(`/api/certificates/user/${userId}`, {}, 'admin')
       .then((res) => res.json())
       .then(setCertificates)
       .catch((err) => console.error("Failed to load certificates:", err));

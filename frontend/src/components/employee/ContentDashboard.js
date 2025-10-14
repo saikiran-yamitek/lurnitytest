@@ -23,7 +23,7 @@ export default function ContentDashboard({ emp }) {
   const fetchCourses = async () => {
   setLoading(true);
   try {
-    const data = await listCourses();
+    const data = await listCourses("employee");
     setCourses(Array.isArray(data.items) ? data.items : []); // ✅ use items array
   } catch (error) {
     console.error("Failed to fetch courses:", error);

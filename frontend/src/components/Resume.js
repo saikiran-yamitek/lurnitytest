@@ -3,6 +3,7 @@ import "./Resume.css";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { useParams } from "react-router-dom";
+import { apiFetch } from "../services/apiFetch";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -19,11 +20,11 @@ const Resume = () => {
   useEffect(() => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("userId");
-  const url = `${API}/api/user/${id}/resume`;
+  const url = `/api/user/${id}/resume`;
 
-  fetch(url, {
+  apiFetch(url, {
     headers: { Authorization: `Bearer ${token}` },
-  })
+  },"user")
     .then((res) => res.json())
     .then((data) => {
       setUser(data);
@@ -142,14 +143,14 @@ Create a responsive design that adapts gracefully to different screen sizes.
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
     try {
-      const response = await fetch(`${API}/api/user/${id}/projects`, {
+      const response = await apiFetch(`/api/user/${id}/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ projects: formattedProjects }),
-      });
+      },"user");
 
       if (!response.ok) throw new Error("Failed to save projects");
     } catch (err) {

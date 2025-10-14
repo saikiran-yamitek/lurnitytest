@@ -10,6 +10,7 @@ import {
 import { useHistory } from "react-router-dom";
 import MockInterview from './MockInterview';
 import "./StudentPlacementDrives.css";
+import { apiFetch } from "../services/apiFetch";
 
 
 const API = process.env.REACT_APP_API_URL;
@@ -38,16 +39,16 @@ const StudentPlacementDrives = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`${API}/api/user/homepage`, {
+        const res = await apiFetch(`/api/user/homepage`, {
           headers: { Authorization: "Bearer " + localStorage.getItem("token") }
-        });
+        },"user");
         const data = await res.json();
         setUser(data);
 
         const studentId = localStorage.getItem("userId");
         
         if (studentId) {
-          const res2 = await fetch(`${API}/api/placements`);
+          const res2 = await apiFetch(`/api/placements`, { method: "GET" }, "user");
           const drivesData = await res2.json();
           console.log("Drives fetched:", drivesData);
 
@@ -111,7 +112,7 @@ const StudentPlacementDrives = () => {
   useEffect(() => {
     const fetchDrives = async () => {
       try {
-        const res = await fetch(`${API}/api/placements`);
+        const res = await apiFetch(`/api/placements` ,{ method: "GET" }, "user");
         const data = await res.json();
         setDrives(data);
       } catch (err) {
@@ -160,13 +161,13 @@ const StudentPlacementDrives = () => {
     }
 
     try {
-      const res = await fetch(`${API}/api/placements/${selectedDrive.id}/register`, {
+      const res = await apiFetch(`/api/placements/${selectedDrive.id}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ studentId })
-      });
+      },"user");
 
       const data = await res.json();
       if (res.ok) {

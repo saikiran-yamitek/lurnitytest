@@ -9,6 +9,7 @@ import {
 } from "react-icons/fi";
 import { listPlacements, createPlacementDrive, getStudentsForDrive, deletePlacementDrive } from "../../services/placementApi";
 import "./PlacementDashboard.css"
+import { apiFetch } from "../../services/apiFetch";
 
 export default function PlacementDashboard() {
   const [form, setForm] = useState({});
@@ -39,7 +40,7 @@ export default function PlacementDashboard() {
 
   const fetchCompanies = async () => {
     try {
-      const res = await fetch(`${API_URL}/api/companies`);
+      const res = await apiFetch(`/api/companies`, { method: "GET" }, "employee");
       if (!res.ok) throw new Error("Failed to load companies");
       const data = await res.json();
       setCompanies(data);
@@ -77,7 +78,7 @@ useEffect(() => {
   const fetchDrives = async () => {
     setLoading(true);
     try {
-      const all = await listPlacements();
+      const all = await listPlacements("employee");
       setScheduledDrives(all.filter((d) => d.status === 'SCHEDULED'));
       setCompletedDrives(all.filter((d) => d.status === 'COMPLETED'));
     } catch (error) {
@@ -96,14 +97,14 @@ useEffect(() => {
       const payload = { ...form, createdBy: emp.id };
 
       if (form.id) {
-        await fetch(`${API_URL}/api/placements/${form.id}`, {
+        await apiFetch(`/api/placements/${form.id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
-        });
+        }, "employee");
         setPopup("✅ Drive Updated Successfully");
       } else {
-        await createPlacementDrive(payload);
+        await createPlacementDrive(payload,"employee");
         setPopup("✅ Drive Created Successfully");
       }
 
@@ -122,7 +123,7 @@ useEffect(() => {
 
   const handleViewStudents = async (driveId) => {
     try {
-      const data = await getStudentsForDrive(driveId);
+      const data = await getStudentsForDrive(driveId,"employee");
       setStudents(data);
       setSelectedDrive(driveId);
       setShowStudentPopup(true);
@@ -135,7 +136,7 @@ useEffect(() => {
 
   const handleDelete = async () => {
     try {
-      await deletePlacementDrive(driveToDelete);
+      await deletePlacementDrive(driveToDelete,"employee");
       setPopup("🗑️ Drive deleted successfully");
       fetchDrives();
       setDriveToDelete(null);
@@ -163,7 +164,9 @@ useEffect(() => {
   };
 
   const fetchRankings = async (sortBy = "lab") => {
-    const res = await fetch(`${API_URL}/api/rankings?sortBy=${sortBy}`);
+    const res = await apiFetch(`/api/rankings?sortBy=${sortBy}`, {
+    method: "GET",
+  }, "employee");
     const data = await res.json();
     setRankings(data);
   };
@@ -857,7 +860,9 @@ useEffect(() => {
                           className="placement-btn placement-btn-success"
                           onClick={async () => {
                             try {
-                              const studentRes = await fetch(`${API_URL}/api/placements/${drive.id}/students`);
+                              const studentRes = await apiFetch(`/api/placements/${drive.id}/students`,
+  { method: "GET" },
+  "employee");
                               const studentList = await studentRes.json();
 
                               let hasError = false;
@@ -887,7 +892,7 @@ useEffect(() => {
                                 return;
                               }
 
-                              await fetch(`${API_URL}/api/placements/${drive.id}/complete`, { method: "PUT" });
+                              await apiFetch(`/api/placements/${drive.id}/complete`, { method: "PUT" },employee);
                               fetchDrives();
                               setPopup("✅ Drive marked as completed");
                               setTimeout(() => setPopup(""), 2000);
@@ -976,18 +981,18 @@ useEffect(() => {
                     onClick={async () => {
                       try {
                         if (newCompany.id) {
-                          await fetch(`${API_URL}/api/companies/${newCompany.id}`, {
+                          await apiFetch(`/api/companies/${newCompany.id}`, {
                             method: "PUT",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newCompany)
-                          });
+                          },"employee");
                           setPopup("✅ Company Updated Successfully");
                         } else {
-                          await fetch(`${API_URL}/api/companies`, {
+                          await apiFetch(`/api/companies`, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(newCompany)
-                          });
+                          },"employee");
                           setPopup("✅ Company Added Successfully");
                         }
 
@@ -1154,7 +1159,7 @@ useEffect(() => {
                         <button
                           className="placement-btn placement-btn-warning"
                           onClick={async () => {
-                            await fetch(`${API_URL}/api/placements/${drive.id}/revoke`, { method: "PUT" });
+                            await apiFetch(`/api/placements/${drive.id}/revoke`, { method: "PUT" },"employee");
                             fetchDrives();
                             setPopup("🔄 Drive status reverted to Scheduled");
                             setTimeout(() => setPopup(""), 2000);
@@ -1437,7 +1442,7 @@ useEffect(() => {
                                 className="placement-btn placement-btn-primary placement-btn-sm"
                                 onClick={async () => {
                                   try {
-                                    await fetch(`${API_URL}/api/placements/${selectedDrive}/status`, {
+                                    await apiFetch(`/api/placements/${selectedDrive}/status`, {
                                       method: "PUT",
                                       headers: {
                                         "Content-Type": "application/json",
@@ -1447,7 +1452,7 @@ useEffect(() => {
                                         status: student.status,
                                         remarks: student.remarks,
                                         offerLetterURL: student.offerLetterURL,
-                                      }),
+                                      },"employee"),
                                     });
                                     setPopup("✅ Student updated successfully");
                                     setTimeout(() => setPopup(""), 2000);

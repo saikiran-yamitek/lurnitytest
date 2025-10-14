@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { FiTrash2, FiBookmark, FiCheckCircle, FiAlertTriangle, FiHome, FiRefreshCw, } from "react-icons/fi";
 import "./SavedQuestions.css";
+import { apiFetch } from "../services/apiFetch";
 
 
 const API = process.env.REACT_APP_API_URL;
@@ -22,9 +23,9 @@ export default function SavedQuestions({ user }) {
       return;
     }
     try {
-      const res = await fetch(`${API}/api/user/${user.id}/savedQuestions`, {
+      const res = await apiFetch(`/api/user/${user.id}/savedQuestions`, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-      });
+      },"user");
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -54,10 +55,10 @@ export default function SavedQuestions({ user }) {
   const handleDeleteQuestion = async (questionId) => {
     setDeleting(true);
     try {
-      const res = await fetch(`${API}/api/user/${user.id}/saved-questions/${questionId}`, {
+      const res = await apiFetch(`/api/user/${user.id}/saved-questions/${questionId}`, {
         method: "DELETE",
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-      });
+      },"user");
 
       if (!res.ok) {
         throw new Error("Failed to delete question");

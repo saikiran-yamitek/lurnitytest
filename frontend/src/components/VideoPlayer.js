@@ -20,6 +20,7 @@ import {
   FiThumbsUp
 } from "react-icons/fi";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
+import { apiFetch } from "../services/apiFetch";
 
 
 const API = process.env.REACT_APP_API_URL;
@@ -48,19 +49,19 @@ export default function VideoPlayer() {
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    fetch(`${API}/api/courses/${courseId}`, {
+    apiFetch(`/api/courses/${courseId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    })
+    },"user")
       .then(r => r.json())
       .then(setCourse)
       .catch(e => setErr(e.message));
 
     if (userId) {
-      fetch(`${API}/api/user/get-key`, {
+      apiFetch(`/api/user/get-key`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId })
-      })
+      },"user")
         .then(res => res.json())
         .then(data => {
           if (data.geminiApiKey) {
@@ -78,7 +79,7 @@ export default function VideoPlayer() {
     }
 
     try {
-      await fetch(`${API}/api/feedback/submit`, {
+      await apiFetch(`/api/feedback/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -89,7 +90,7 @@ export default function VideoPlayer() {
           rating,
           comment: feedbackText.trim()
         })
-      });
+      },"user");
       alert("Feedback submitted successfully!");
       setRating(0);
       setFeedbackText("");
@@ -102,22 +103,22 @@ export default function VideoPlayer() {
   const markWatched = async () => {
     const videoId = idOf(courseId, sIdx, vIdx);
     try {
-      await fetch(`${API}/api/progress/watch`, {
+      await apiFetch(`/api/progress/watch`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({ videoId })
-      });
+      },"user");
     } catch (e) {
       console.warn("progress save failed:", e);
     }
 
     try {
-      const list = await (await fetch(`${API}/api/progress`, {
+      const list = await (await apiFetch(`/api/progress`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-      })).json();
+      },"user")).json();
       localStorage.setItem("watched_sync", JSON.stringify(list));
     } catch {}
   };
@@ -132,11 +133,11 @@ export default function VideoPlayer() {
 
   const saveGeminiKey = () => {
     if (!newKey.trim()) return;
-    fetch(`${API}/api/user/save-key`, {
+    apiFetch(`/api/user/save-key`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, geminiApiKey: newKey.trim() })
-    })
+    },"user")
       .then(res => res.json())
       .then(() => {
         setGeminiKey(newKey.trim());

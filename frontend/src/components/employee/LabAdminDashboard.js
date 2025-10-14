@@ -31,6 +31,7 @@ import {
   createWorkshop,
 } from "../../services/workshopApi";
 import "./LabAdminDashboard.css";
+import { apiFetch } from "../../services/apiFetch";
 const API = process.env.REACT_APP_API_URL;
 export default function LabAdminDashboard() {
   const [workshops, setWorkshops] = useState([]);
@@ -59,9 +60,9 @@ export default function LabAdminDashboard() {
 
   const fetchData = async () => {
   try {
-    const workshopRes = await listWorkshops();
-    const courseRes = await listCourses();
-    const empRes = await listEmployees(); // 👈 fetch employees
+    const workshopRes = await listWorkshops("employee");
+    const courseRes = await listCourses("employee");
+    const empRes = await listEmployees("employee"); // 👈 fetch employees
 
     setWorkshops(
       Array.isArray(workshopRes)
@@ -117,7 +118,7 @@ payload.labName = selectedSubCourse.title;
 payload.subCourseId = selectedSubCourse.title; // since no ID exists
 
 
-      await createWorkshop(payload);
+      await createWorkshop(payload,"employee");
       setPopup("✅ Workshop scheduled successfully");
       setForm({});
       await fetchData();
@@ -134,9 +135,9 @@ payload.subCourseId = selectedSubCourse.title; // since no ID exists
 
   const confirmDeleteWorkshop = async () => {
     try {
-      await fetch(`${API}/api/workshops/${workshopToDelete}`,{
+      await apiFetch(`/api/workshops/${workshopToDelete}`,{
         method: "DELETE",
-      });
+      },"employee");
       setPopup("🗑️ Workshop deleted successfully");
       await fetchData();
       setWorkshopToDelete(null);
@@ -150,7 +151,7 @@ payload.subCourseId = selectedSubCourse.title; // since no ID exists
 
   const handleViewStudents = async (workshopId) => {
     try {
-      const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
+      const res = await apiFetch(`/api/workshops/${workshopId}/students`,"employee");
       const data = await res.json();
 
       if (Array.isArray(data)) {

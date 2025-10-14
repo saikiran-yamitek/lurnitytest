@@ -27,6 +27,7 @@ import {
   FiChevronRight
 } from "react-icons/fi";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
+import { apiFetch } from "../services/apiFetch";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -62,17 +63,17 @@ export default function PracticePage() {
   // All your existing useEffect hooks remain the same
   useEffect(() => {
     // Fetch course data
-    fetch(`${API}/api/courses/${courseId}`, {
+    apiFetch(`/api/courses/${courseId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    })
+    },"user")
       .then(r => r.json())
       .then(setCourse)
       .catch(e => setErr(e.message));
 
     // Fetch user data
-    fetch(`${API}/api/user/homepage`, {
+    apiFetch(`/api/user/homepage`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    })
+    },"user")
       .then(r => r.json())
       .then(setUser)
       .catch(e => console.error("Error fetching user:", e));
@@ -82,14 +83,14 @@ export default function PracticePage() {
   const userId = JSON.parse(localStorage.getItem("userId"));
   const token = localStorage.getItem("token");
 
-  fetch(`${API}/api/user/${userId}/practiceHistory`, {
+  apiFetch(`/api/user/${userId}/practiceHistory`, {
     method: "POST",
     headers: { 
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
     body: JSON.stringify({ courseId, subIdx: sIdx, vidIdx: vIdx })
-  })
+  },"user")
     .then(r => r.json())
     .then(setAttempts)
     .catch(e => console.error("Failed to fetch attempts:", e));
@@ -493,7 +494,7 @@ Transcript: ${transcript}`;
     const wrongCount = Object.keys(answers).filter(i => answers[i] && answers[i] !== questions[i]?.correctAnswer).length;
     const timeSpent = 300 - timeRemaining;
 
-    const response = await fetch(`${API}/api/user/${user}/practiceResult`, {
+    const response = await apiFetch(`/api/user/${user}/practiceResult`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -512,7 +513,7 @@ Transcript: ${transcript}`;
         violationCount: violationCountRef.current,
         completedAt: new Date().toISOString()
       })
-    });
+    },"user");
 
     if (!response.ok) throw new Error('Failed to save practice result');
     const result = await response.json();
@@ -556,7 +557,7 @@ Transcript: ${transcript}`;
     const currentQuestion = questions[currentQuestionIndex];
     const userId = JSON.parse(localStorage.getItem("userId"));
     try {
-      const response = await fetch(`${API}/api/user/saveQuestion`, {
+      const response = await apiFetch(`/api/user/saveQuestion`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -568,7 +569,7 @@ Transcript: ${transcript}`;
           correctOption: currentQuestion.correctAnswer,
           options: currentQuestion.options
         })
-      });
+      },"user");
 
       if (!response.ok) throw new Error('Failed to save question');
       

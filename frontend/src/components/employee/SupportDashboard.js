@@ -9,6 +9,7 @@ import {
   FiTrash2, FiSearch, FiTrendingUp, FiActivity, FiDownload
 } from "react-icons/fi";
 import "./SupportDashboard.css";
+import { apiFetch } from "../../services/apiFetch";
 const API = process.env.REACT_APP_API_URL;
 export default function SupportDashboard({ emp }) {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -35,12 +36,12 @@ export default function SupportDashboard({ emp }) {
     console.log("🔄 Starting data fetch...");
     
     // Fetch tickets and demos
-    setTickets(await listTickets());
-    setDemos(await listDemos());
+    setTickets(await listTickets("employee"));
+    setDemos(await listDemos("employee"));
 
     // Fetch feedbacks
     console.log("🔄 Fetching feedbacks...");
-    const feedbackRes = await fetch(`${API}/api/feedback`);
+    const feedbackRes = await apiFetch(`/api/feedback`,"employee");
     console.log("📡 Feedback response status:", feedbackRes.status);
     
     if (!feedbackRes.ok) {
@@ -60,7 +61,8 @@ export default function SupportDashboard({ emp }) {
 
     // Fetch courses
     console.log("🔄 Fetching courses...");
-    const courseRes = await fetch(`${API}/api/courses`);
+    const courseRes = await apiFetch(`/api/courses`,{ method: "GET" },
+  "employee");
     console.log("📡 Course response status:", courseRes.status);
     
     if (!courseRes.ok) {
@@ -102,16 +104,16 @@ export default function SupportDashboard({ emp }) {
       status: "Resolved",
       closedBy: emp.name,
       resolutionNote: note.trim()
-    });
+    },"employee");
 
-    await fetch(`${API}/api/user/alert`, {
+    await apiFetch(`/api/user/alert`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: ticket.userEmail,
         alert: true
       })
-    });
+    },"employee");
 
     setTickets((prev) =>
       prev.map((x) =>
@@ -128,8 +130,8 @@ export default function SupportDashboard({ emp }) {
 
   const handleMarkBooked = async (id) => {
     try {
-      await markDemoAsBooked(id);
-      setDemos(await listDemos());
+      await markDemoAsBooked(id,"employee");
+      setDemos(await listDemos("employee"));
       setPopupMessage("✅ Demo marked as booked");
       setTimeout(() => setPopupMessage(""), 3000);
     } catch (err) {
@@ -195,9 +197,9 @@ export default function SupportDashboard({ emp }) {
   const confirmDeleteFeedback = async () => {
     const id = deleteModal.feedbackId;
     try {
-      const res = await fetch(`${API}/api/feedback/${id}`, {
+      const res = await apiFetch(`/api/feedback/${id}`, {
         method: "DELETE",
-      });
+      },"employee");
 
       const data = await res.json();
       if (res.ok) {

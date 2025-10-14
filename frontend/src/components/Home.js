@@ -12,6 +12,7 @@ import logo from "../assets/LURNITY.jpg";
 import "./Home.css";
 import StreakWidget from "./StreakWidget";
 import SavedQuestions from "./SavedQuestions";
+import { apiFetch } from "../services/apiFetch";
 
 const API = process.env.REACT_APP_API_URL;
 const idOf = (cId, sIdx, vIdx) => `${cId}|${sIdx}|${vIdx}`;
@@ -110,14 +111,14 @@ export default function Home() {
   const confirmRegister = async () => {
     if (!pendingLabToRegister) return;
     try {
-      const res = await fetch(`${API}/api/workshops/${pendingLabToRegister.id}/register`, {
+      const res = await apiFetch(`/api/workshops/${pendingLabToRegister.id}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
         body: JSON.stringify({ userId: user?.id }),
-      });
+      },"user");
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error");
       
@@ -198,7 +199,7 @@ export default function Home() {
 
   const generateSubcourseCertificate = async (subCourseTitle) => {
     try {
-      const res = await fetch(`${API}/api/certificates/generate`, {
+      const res = await apiFetch(`/api/certificates/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -209,7 +210,7 @@ export default function Home() {
           courseId: course.id,
           subCourseTitle,
         }),
-      });
+      },"user");
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Certificate generation failed");
@@ -227,7 +228,7 @@ export default function Home() {
     if (watched.includes(videoId)) return;
     
     try {
-      const res = await fetch(`${API}/api/progress`, {
+      const res = await apiFetch(`/api/progress`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -238,7 +239,7 @@ export default function Home() {
           userId: user?.id,
           completed: true
         }),
-      });
+      },"user");
       
       if (res.ok) {
         // Update local state
@@ -303,9 +304,9 @@ export default function Home() {
   // ✅ Safe fetchLabs function
   const fetchLabs = async (userId) => {
     try {
-      const res = await fetch(`${API}/api/workshops`, {
+      const res = await apiFetch(`/api/workshops`, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-      });
+      },"user");
       const data = await res.json();
       console.log('🔍 Labs API response:', data);
       
@@ -320,7 +321,8 @@ export default function Home() {
 
   const fetchProfileData = useCallback(async (userId) => {
     try {
-      const response = await fetch(`${API}/api/user/${userId}/profile`);
+      const response = await apiFetch(`/api/user/${userId}/profile`,{ method: "GET" },
+  "user");
       const data = await response.json();
       if (response.ok && data) {
         const completion = checkProfileCompletion(data.user);
@@ -373,7 +375,7 @@ export default function Home() {
     window.history.pushState(null, null, window.location.href);
 
     const fetchJSON = (url) =>
-      fetch(url, { headers: { Authorization: "Bearer " + token } })
+      apiFetch(url, { headers: { Authorization: "Bearer " + token } },"user")
         .then((r) => {
           if (!r.ok) throw new Error(r.statusText);
           return r.json();
@@ -381,12 +383,12 @@ export default function Home() {
 
     (async () => {
       try {
-        const watchedData = await fetchJSON(`${API}/api/progress`);
+        const watchedData = await fetchJSON(`/api/progress`);
         setWatched(Array.isArray(watchedData) ? watchedData : []);
       } catch {}
 
       try {
-        const u = await fetchJSON(`${API}/api/user/homepage`);
+        const u = await fetchJSON(`/api/user/homepage`);
         setUser(u);
         await fetchLabs(u.id);
         
@@ -397,18 +399,18 @@ export default function Home() {
         if (u.alertAvailable) {
           setPopupMessage("✅ Your ticket has been resolved.");
           setTimeout(() => setPopupMessage(""), 3000);
-          await fetch(`${API}/api/user/alert`, {
+          await apiFetch(`/api/user/alert`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: u.email, alert: false }),
-          });
+          },"user");
         }
 
         if (u.status === "banned") return setNote("This account has been permanently banned.");
         if (u.status === "suspended") return setNote("Your account is suspended. Please contact your mentor.");
         if (!u.course) return setNote("Course yet to be decided. Please wait for admin enrolment.");
 
-        const coursesResponse = await fetchJSON(`${API}/api/courses`);
+        const coursesResponse = await fetchJSON(`/api/courses`);
         console.log('🔍 Courses API response:', coursesResponse);
         
         const allCourses = getSafeArray(coursesResponse, ['items', 'courses']);
@@ -472,14 +474,14 @@ export default function Home() {
     if (user?.id && courseCompletion >= 0) {
       const updateCourseCompletion = async () => {
         try {
-          await fetch(`${API}/api/user/${user.id}/courseCompletion`, {
+          await apiFetch(`/api/user/${user.id}/courseCompletion`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem("token")}`
             },
             body: JSON.stringify({ courseCompletion })
-          });
+          },"user");
         } catch (err) {
           console.error("Error updating course completion:", err);
         }
@@ -1172,14 +1174,14 @@ export default function Home() {
 
                     const handleRegister = async () => {
                       try {
-                        const res = await fetch(`${API}/api/workshops/${lab.id}/register`, {
+                        const res = await apiFetch(`/api/workshops/${lab.id}/register`, {
                           method: "POST",
                           headers: {
                             "Content-Type": "application/json",
                             Authorization: "Bearer " + localStorage.getItem("token"),
                           },
                           body: JSON.stringify({ userId }),
-                        });
+                        },"user");
                         const data = await res.json();
                         if (!res.ok) throw new Error(data.error || "Error");
                         setRegistrationMessage("Registration Successful!");
@@ -1194,14 +1196,14 @@ export default function Home() {
 
                     const handleDeregister = async () => {
                       try {
-                        const res = await fetch(`${API}/api/workshops/${lab.id}/deregister`, {
+                        const res = await apiFetch(`/api/workshops/${lab.id}/deregister`, {
                           method: "POST",
                           headers: {
                             "Content-Type": "application/json",
                             Authorization: "Bearer " + localStorage.getItem("token"),
                           },
                           body: JSON.stringify({ userId }),
-                        });
+                        },"user");
                         const data = await res.json();
                         if (!res.ok) throw new Error(data.error || "Error");
                         alert("Successfully deregistered from lab session");

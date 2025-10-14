@@ -1,28 +1,39 @@
+// src/services/employeeApi.js
+import { apiFetch } from "./apiFetch";
 
-const API = `${process.env.REACT_APP_API_URL}/api`;
+const API_BASE = `${process.env.REACT_APP_API_URL}/api`;
 
-/* ---------------- employee auth ---------------- */
+/* ---------------- Employee Auth ---------------- */
 export const empLogin = async (username, password) => {
-  const r = await fetch(`${API}/employees/login`, {
+  const r = await fetch(`${API_BASE}/employees/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify({ username, password }),
   });
   if (!r.ok) throw new Error((await r.json()).error || "Login failed");
-  return r.json();   // → { name, role }
+  return r.json(); // → { name, role }
 };
 
-/* ---------------- courses (content managers) ---- */
-export const listCourses = () =>
-  fetch(`${API}/courses`).then(r => r.json());
+/* ---------------- Courses ---------------- */
+export const listCourses = async (role) => {
+  const res = await apiFetch(`/api/courses`, {}, role);
+  return res.json();
+};
 
-/* ---------------- tickets (support staff) ------- */
-export const listTickets = () =>
-  fetch(`${API}/tickets`).then(r => r.json());
+/* ---------------- Tickets ---------------- */
+export const listTickets = async (role) => {
+  const res = await apiFetch(`/api/tickets`, {}, role);
+  return res.json();
+};
 
-export const closeTicket = (id, empName) =>
-  fetch(`${API}/tickets/${id}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ status: "closed", closedBy: empName })
-  });
+export const closeTicket = async (id, empName, role) => {
+  const res = await apiFetch(
+    `/api/tickets/${id}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ status: "closed", closedBy: empName }),
+    },
+    role
+  );
+  return res.json();
+};

@@ -29,7 +29,7 @@ export default function HelpTicketForm({ user, onClose }) {
       ...form,
       userId: uid,
       userEmail: user.email
-    });
+    },"user");
     setShowSuccess(true);
     setSaving(false);
     setTimeout(() => {

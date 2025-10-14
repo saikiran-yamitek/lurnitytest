@@ -32,16 +32,16 @@ export default function TestWorkshopsPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch(`${API}/api/homepage`, {
+    apiFetch(`/api/homepage`, {
       headers: { Authorization: "Bearer " + token },
-    })
+    },"user")
       .then((res) => res.json())
       .then((u) => {
         setUser(u);
 
-        fetch(`${API}/api/workshops`, {
+        apiFetch(`/api/workshops`, {
           headers: { Authorization: "Bearer " + token },
-        })
+        },"user")
           .then((res) => res.json())
           .then((data) => {
             setWorkshops(data);
@@ -82,14 +82,14 @@ export default function TestWorkshopsPage() {
     setLoadingIds((prev) => [...prev, id]);
 
     const token = localStorage.getItem("token");
-    const res = await fetch(`${API}/api/workshops/${id}/register`, {
+    const res = await apiFetch(`/api/workshops/${id}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
       body: JSON.stringify({ userId: user.id }),
-    });
+    },"user");
 
     setLoadingIds((prev) => prev.filter((item) => item !== id));
 

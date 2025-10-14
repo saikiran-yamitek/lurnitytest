@@ -48,7 +48,7 @@ export default function AdminWorkshops() {
     if (!window.confirm("Are you sure you want to delete this workshop?")) return;
 
     try {
-      await apiFetch(`${API}/api/workshops/${id}`, { method: "DELETE" },"admin");
+      await apiFetch(`/api/workshops/${id}`, { method: "DELETE" },"admin");
       setWorkshops(workshops.filter(w => w.id !== id));
     } catch (error) {
       console.error("Failed to delete workshop:", error);
@@ -91,7 +91,7 @@ export default function AdminWorkshops() {
 
   const handleViewStudents = async (workshopId) => {
   try {
-    const res = await apiFetch(`${API}/api/workshops/${workshopId}/students`, {}, "admin");
+    const res = await apiFetch(`/api/workshops/${workshopId}/students`, {}, "admin");
     const data = await res.json();
     setSelectedStudents(Array.isArray(data) ? data : []);
     setSelectedWorkshop(workshopId); // now safe

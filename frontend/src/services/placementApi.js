@@ -1,24 +1,39 @@
+// src/services/placementApi.js
+import { apiFetch } from "./apiFetch";
+
 const API_BASE = `${process.env.REACT_APP_API_URL}/api`;
 
-export const listPlacements = async () => {
-  const res = await fetch(`${API_BASE}/placements`);
+/* ---------------- List all placement drives ---------------- */
+export const listPlacements = async (role) => {
+  const res = await apiFetch(`/api/placements`, {}, role);
   return res.json();
 };
 
-export const createPlacementDrive = async (payload) => {
-  const res = await fetch(`${API_BASE}/placements`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+/* ---------------- Create a new placement drive --------------- */
+export const createPlacementDrive = async (payload, role) => {
+  const res = await apiFetch(
+    `/api/placements`,
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
+    role
+  );
   return res.json();
 };
 
-export const getStudentsForDrive = async (id) => {
-  const res = await fetch(`${API_BASE}/placements/${id}/students`);
+/* ---------------- Get students for a specific drive ---------- */
+export const getStudentsForDrive = async (id, role) => {
+  const res = await apiFetch(`/api/placements/${id}/students`, {}, role);
   return res.json();
 };
 
-export const deletePlacementDrive = async (id) => {
-  await fetch(`${API_BASE}/placements/${id}`, { method: "DELETE" });
+/* ---------------- Delete a placement drive ------------------- */
+export const deletePlacementDrive = async (id, role) => {
+  const res = await apiFetch(
+    `/api/placements/${id}`,
+    { method: "DELETE" },
+    role
+  );
+  return res.json();
 };

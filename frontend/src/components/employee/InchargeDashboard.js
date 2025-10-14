@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { apiFetch } from "../services/apiFetch";
 import { useHistory } from "react-router-dom";
 import logo from "../../assets/LURNITY.jpg";
 import { 
@@ -49,7 +50,7 @@ export default function InchargeDashboard() {
   const fetchWorkshops = async (employee) => {
     setLoading(true);
     try {
-      const response = await fetch(`${API}/api/workshops/incharge/${employee.id}`);
+      const response = await apiFetch(`/api/workshops/incharge/${employee.id}`,"employee");
       const data = await response.json();
       setWorkshops(data);
     } catch (err) {
@@ -70,7 +71,7 @@ export default function InchargeDashboard() {
   const handleViewStudents = async (workshopId) => {
     setLoading(true);
     try {
-      const res = await fetch(`${API}/api/workshops/${workshopId}/students`);
+      const res = await apiFetch(`/api/workshops/${workshopId}/students`,"employee");
       const data = await res.json();
       setRegisteredStudents(Array.isArray(data) ? data : []);
       setSelectedWorkshop(workshopId);
@@ -130,13 +131,13 @@ for (const [studentId, fields] of updates) {
 
 
       for (const [studentId, fields] of updates) {
-        const res = await fetch(`${API}/api/workshops/${selectedWorkshop}/attendance`,
+        const res = await apiFetch(`/api/workshops/${selectedWorkshop}/attendance`,
           
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ studentId, ...fields }),
-          }
+          },"employee"
         );
         if (!res.ok) throw new Error("Update failed");
       }

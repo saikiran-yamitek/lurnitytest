@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fi';
 import { FaLightbulb ,FaBrain} from "react-icons/fa";
 import "./MockInterview.css";
+import { apiFetch } from '../services/apiFetch';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -125,9 +126,9 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
       try {
         setLoading(true);
         const token = localStorage.getItem('token');
-        const userRes = await fetch(`${API}/api/user/homepage`, {
+        const userRes = await apiFetch(`/api/user/homepage`, {
           headers: { Authorization: "Bearer " + token }
-        });
+        },"user");
         const userData = await userRes.json();
         const geminiApiKey = userData?.geminiApiKey || user?.geminiApiKey;
 
@@ -141,11 +142,11 @@ export default function MockInterview({ companyName, user, onExit, skills = [] }
           userName: userData?.name || 'Candidate',
           geminiApiKey
         };
-        const res = await fetch(`${API}/api/user/mock-questions`, {
+        const res = await apiFetch(`/api/user/mock-questions`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
-        });
+        },"user");
         const data = await res.json();
         if (!res.ok) {
           setLoading(false);

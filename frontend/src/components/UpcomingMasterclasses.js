@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FaCalendarAlt, FaClock, FaUser, FaArrowRight, FaBuilding, FaPlay, FaStar, FaUsers, FaGraduationCap, FaCheckCircle, FaRocket, FaMapMarkerAlt, FaVideo, FaMicrophone, FaChalkboardTeacher,FaCertificate } from 'react-icons/fa';
 import './UpcomingMasterclasses.css';
+import { apiFetch } from '../services/apiFetch';
 const API_BASE = process.env.REACT_APP_API_URL;
 class UpcomingMasterclasses extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class UpcomingMasterclasses extends Component {
   };
 
   fetchMasterclasses = () => {
-    fetch(`${API_BASE}/api/landingpage/cohorts`)
+    apiFetch(`/api/landingpage/cohorts`, { method: "GET" }, "user")
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch masterclasses");
         return res.json();
