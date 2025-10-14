@@ -892,7 +892,7 @@ useEffect(() => {
                                 return;
                               }
 
-                              await apiFetch(`/api/placements/${drive.id}/complete`, { method: "PUT" },employee);
+                              await apiFetch(`/api/placements/${drive.id}/complete`, { method: "PUT" },"employee");
                               fetchDrives();
                               setPopup("✅ Drive marked as completed");
                               setTimeout(() => setPopup(""), 2000);

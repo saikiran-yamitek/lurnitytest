@@ -18,6 +18,7 @@ import {
   FiLoader
 } from "react-icons/fi";
 import { FaRocket } from "react-icons/fa";
+import { apiFetch } from "../services/apiFetch";
 
 const API = process.env.REACT_APP_API_URL;
 
