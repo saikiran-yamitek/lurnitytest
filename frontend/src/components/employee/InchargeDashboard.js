@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apiFetch } from "../services/apiFetch";
+import { apiFetch } from "../../services/apiFetch";
 import { useHistory } from "react-router-dom";
 import logo from "../../assets/LURNITY.jpg";
 import { 
