@@ -42,7 +42,7 @@ export const handler = async (event) => {
 
     const token = jwt.sign(
       { id: admin.id || admin._id },
-      process.env.ADMIN_JWT_SECRET || "admin-secret-key",
+      process.env.JWT_SECRET ,
       { expiresIn: "1d" }
     );
 

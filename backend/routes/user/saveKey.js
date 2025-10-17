@@ -1,5 +1,6 @@
 import { saveUserGeminiKey } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ token verification
 
 export const handler = async (event) => {
   // Handle preflight OPTIONS request
@@ -8,6 +9,9 @@ export const handler = async (event) => {
   }
 
   try {
+    // ✅ Verify token from headers
+    verifyToken(event);
+
     const body = JSON.parse(event.body || "{}");
     const { userId, geminiApiKey } = body;
 
@@ -16,9 +20,16 @@ export const handler = async (event) => {
     }
 
     const result = await saveUserGeminiKey(userId, geminiApiKey);
-    return createResponse(200, result);
+    return createResponse(200, { message: "Gemini key saved successfully", result });
+
   } catch (err) {
     console.error("❌ Error saving Gemini key:", err);
-    return createResponse(500, { error: "Failed to save key" });
+
+    // Handle token/authorization errors
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: "Unauthorized: Invalid or missing token" });
+    }
+
+    return createResponse(500, { error: "Failed to save key", detail: err.message });
   }
 };

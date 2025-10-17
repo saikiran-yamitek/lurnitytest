@@ -1,20 +1,36 @@
 import { updateStudentStatus } from "../../models/Placement.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ Import token verifier
 
 export const handler = async (event) => {
   // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
+  if (event.httpMethod === "OPTIONS") {
     return handleOptionsRequest();
   }
 
   try {
-    const { id } = event.pathParameters; // keep driveId in path
-    const body = JSON.parse(event.body);      // parse body
-    const { studentId, ...statusData } = body; // get studentId from body and rest as statusData
+    // ✅ Verify token before proceeding
+    verifyToken(event);
+
+    const { id } = event.pathParameters; // driveId
+    const body = JSON.parse(event.body || "{}");
+    const { studentId, ...statusData } = body;
+
+    if (!studentId) {
+      return createResponse(400, { message: "Student ID is required" });
+    }
 
     const result = await updateStudentStatus(id, studentId, statusData);
+
     return createResponse(200, result);
   } catch (err) {
-    return createResponse(500, { message: err.message });
+    console.error("❌ Error updating student status:", err);
+
+    // ✅ Handle unauthorized access cleanly
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: "Unauthorized: Invalid or missing token" });
+    }
+
+    return createResponse(500, { message: "Server error updating student status", error: err.message });
   }
 };

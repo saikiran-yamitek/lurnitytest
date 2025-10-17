@@ -2,16 +2,20 @@ import { listPlacements } from "../../models/Placement.js";
 import { listWorkshops } from "../../models/Workshop.js";
 import { getUserById } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ Import token verifier
 
 const gradeOrder = { S: 7, A: 6, B: 5, C: 4, D: 3, E: 2, F: 1 };
 
 export const handler = async (event) => {
   // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
+  if (event.httpMethod === "OPTIONS") {
     return handleOptionsRequest();
   }
 
   try {
+    // ✅ Token verification
+    verifyToken(event);
+
     const sortBy = event.queryStringParameters?.sortBy || "lab";
 
     // 1️⃣ Get placed students
@@ -73,7 +77,13 @@ export const handler = async (event) => {
 
     return createResponse(200, students);
   } catch (err) {
-    console.error("Error fetching rankings:", err);
-    return createResponse(500, { error: "Failed to fetch rankings" });
+    console.error("❌ Error fetching rankings:", err);
+
+    // ✅ Return 401 for missing/invalid token
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: "Unauthorized: Invalid or missing token" });
+    }
+
+    return createResponse(500, { error: "Failed to fetch rankings", details: err.message });
   }
 };

@@ -48,15 +48,24 @@ export default function DemoForm({ onClose }) {
       setForm((prev) => ({ ...prev, city: "" }));
     }
 
-    if (name === "phone") {
-      const phonePattern = /^\d{10}$/;
-      setErrors({
-        ...errors,
-        phone: !phonePattern.test(value)
-          ? "Phone number must be exactly 10 digits"
-          : ""
-      });
-    }
+    // In handleChange
+if (name === "phone") {
+  const phonePattern = /^\+\d{1,3}\d{10}$/; // country code + 10-digit number
+  if (!value.startsWith("+")) {
+    setErrors({
+      ...errors,
+      phone: "Phone number must include country code (e.g., +91xxxxxxxxxx)"
+    });
+  } else if (!phonePattern.test(value)) {
+    setErrors({
+      ...errors,
+      phone: "Phone number must include valid country code and 10 digits"
+    });
+  } else {
+    setErrors({ ...errors, phone: "" });
+  }
+}
+
   };
 
   const handleSubmit = async (e) => {
@@ -66,6 +75,12 @@ export default function DemoForm({ onClose }) {
       setMsg("❌ Please fix form errors before submitting.");
       return;
     }
+
+    const phonePattern = /^\+\d{1,3}\d{10}$/;
+if (!phonePattern.test(form.phone)) {
+  setMsg("❌ Phone number must include valid country code and 10 digits.");
+  return;
+}
 
     setIsSubmitting(true);
     setMsg("");

@@ -1,5 +1,6 @@
 import { updateCourseCompletion } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ token verification
 
 export const handler = async (event) => {
   console.log('🚀 courseCompletion handler called');
@@ -11,9 +12,11 @@ export const handler = async (event) => {
   }
 
   try {
-    // ✅ FIXED: Get userId from path parameters (new API structure)
+    // ✅ Verify token from headers
+    verifyToken(event);
+
+    // ✅ Get userId from path parameters
     const userId = event.pathParameters?.id;
-    
     if (!userId) {
       console.error('❌ Missing user ID in path parameters');
       return createResponse(400, { 
@@ -22,7 +25,6 @@ export const handler = async (event) => {
       });
     }
 
-    // ✅ FIXED: Only get courseCompletion from request body
     if (!event.body) {
       return createResponse(400, { 
         msg: "Error updating course completion", 
@@ -41,7 +43,6 @@ export const handler = async (event) => {
     }
 
     const { courseCompletion } = body;
-
     if (courseCompletion === undefined || courseCompletion === null) {
       return createResponse(400, { 
         msg: "Error updating course completion", 
@@ -59,7 +60,7 @@ export const handler = async (event) => {
 
     console.log(`🔍 Updating course completion for user ${userId} to ${courseCompletion}%`);
 
-    // Call your existing model function
+    // Update in DB
     const updated = await updateCourseCompletion(userId, courseCompletion);
     
     console.log('✅ Course completion updated successfully:', updated);
@@ -70,6 +71,12 @@ export const handler = async (event) => {
 
   } catch (err) {
     console.error('❌ courseCompletion error:', err);
+
+    // Handle token errors separately
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: "Unauthorized: Invalid or missing token" });
+    }
+
     return createResponse(500, { 
       msg: "Error updating course completion", 
       error: err.message 

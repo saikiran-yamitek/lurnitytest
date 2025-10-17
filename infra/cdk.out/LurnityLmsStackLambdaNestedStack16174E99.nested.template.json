@@ -80,7 +80,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "aa7c166b51d0af998fb1e305bb2eb0dfd52ffc10016bf515936d501eb1825f84.zip"
+     "S3Key": "97847c821f83cd4fd0c1fb3b2e8999520724dfddb7f8bd7eecf703f55e372c34.zip"
     },
     "Environment": {
      "Variables": {
@@ -161,7 +161,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListUsersLambda/Resource",
-    "aws:asset:path": "asset.aa7c166b51d0af998fb1e305bb2eb0dfd52ffc10016bf515936d501eb1825f84",
+    "aws:asset:path": "asset.97847c821f83cd4fd0c1fb3b2e8999520724dfddb7f8bd7eecf703f55e372c34",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -246,7 +246,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "ca19bea888be2a58923f90d13de6530a672a5c5d7018531241ed74ea4f2ab081.zip"
+     "S3Key": "9159ec5416b061ac3e33f22912c78be8ad063e3158d0d17209bf99927ac14be9.zip"
     },
     "Environment": {
      "Variables": {
@@ -327,7 +327,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateUserLambda/Resource",
-    "aws:asset:path": "asset.ca19bea888be2a58923f90d13de6530a672a5c5d7018531241ed74ea4f2ab081",
+    "aws:asset:path": "asset.9159ec5416b061ac3e33f22912c78be8ad063e3158d0d17209bf99927ac14be9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -412,7 +412,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "9efb48dc11911d1b5974ebc6d53a7169dc7df7a8a7c9753fb3885c6bfce76468.zip"
+     "S3Key": "237dbcaac08b2792c4bb8c2381cff0e8c30f6e169d641e8412c273e05fcec834.zip"
     },
     "Environment": {
      "Variables": {
@@ -493,7 +493,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteUserLambda/Resource",
-    "aws:asset:path": "asset.9efb48dc11911d1b5974ebc6d53a7169dc7df7a8a7c9753fb3885c6bfce76468",
+    "aws:asset:path": "asset.237dbcaac08b2792c4bb8c2381cff0e8c30f6e169d641e8412c273e05fcec834",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -795,7 +795,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "cb5593a8b8d300311524e5e5b1d4d95ed25f177d1162c39d3b8ce50e1631ad00.zip"
+     "S3Key": "11378ac352d4610195afa89373c4e9af0b3c1de02d6a88d4e84164eb6546a155.zip"
     },
     "Environment": {
      "Variables": {
@@ -876,7 +876,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateTransactionLambda/Resource",
-    "aws:asset:path": "asset.cb5593a8b8d300311524e5e5b1d4d95ed25f177d1162c39d3b8ce50e1631ad00",
+    "aws:asset:path": "asset.11378ac352d4610195afa89373c4e9af0b3c1de02d6a88d4e84164eb6546a155",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -981,7 +981,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "0b08c0480207425e4507c4f404ffa4daa4a78ee01b88c7b03ea87f5f5c48c4ba.zip"
+     "S3Key": "35d00d14fd8a16c3ced7415d36459b3af96fc5a8f83e06576fb8dcfca1706d5a.zip"
     },
     "Environment": {
      "Variables": {
@@ -1062,7 +1062,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListUserTransactionsLambda/Resource",
-    "aws:asset:path": "asset.0b08c0480207425e4507c4f404ffa4daa4a78ee01b88c7b03ea87f5f5c48c4ba",
+    "aws:asset:path": "asset.35d00d14fd8a16c3ced7415d36459b3af96fc5a8f83e06576fb8dcfca1706d5a",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1316,7 +1316,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "56451ebad95fd3c5781cc279423b7487583a210406d9008d0098be47dceb7e82.zip"
+     "S3Key": "1adde147737769738962e6c389d3c56e0f987fedbfee6daa88d1e2caa159fc13.zip"
     },
     "Environment": {
      "Variables": {
@@ -1397,7 +1397,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCoursesLambda/Resource",
-    "aws:asset:path": "asset.56451ebad95fd3c5781cc279423b7487583a210406d9008d0098be47dceb7e82",
+    "aws:asset:path": "asset.1adde147737769738962e6c389d3c56e0f987fedbfee6daa88d1e2caa159fc13",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1474,7 +1474,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "50ce29cfa3eb7c20fc2ccaa5757939580430762d22ba2c472b8c9fb455dfb8a1.zip"
+     "S3Key": "9ab5ddba15736b645331ec98865482fbdf6e6373f78212775f14042824c78e7e.zip"
     },
     "Environment": {
      "Variables": {
@@ -1555,7 +1555,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateCourseLambda/Resource",
-    "aws:asset:path": "asset.50ce29cfa3eb7c20fc2ccaa5757939580430762d22ba2c472b8c9fb455dfb8a1",
+    "aws:asset:path": "asset.9ab5ddba15736b645331ec98865482fbdf6e6373f78212775f14042824c78e7e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1632,7 +1632,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8e8bc1dfda9ea76102aa607161c4d309ce003d4fd2ddfb106d75346d496c7390.zip"
+     "S3Key": "11b469065d1836e3afbec3718784d5d4474378e5e44c8da66cd8a4d0a444183b.zip"
     },
     "Environment": {
      "Variables": {
@@ -1713,7 +1713,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCourseLambda/Resource",
-    "aws:asset:path": "asset.8e8bc1dfda9ea76102aa607161c4d309ce003d4fd2ddfb106d75346d496c7390",
+    "aws:asset:path": "asset.11b469065d1836e3afbec3718784d5d4474378e5e44c8da66cd8a4d0a444183b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1790,7 +1790,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e9db996278c7d476e23024b3bd7a06e0b0ff940025392c209b7f4f7ee4f1601b.zip"
+     "S3Key": "255e66b894a1319453937b7c7fddf5b4c56cd5f39d37aac6a0aa3f5306f52586.zip"
     },
     "Environment": {
      "Variables": {
@@ -1871,7 +1871,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteCourseLambda/Resource",
-    "aws:asset:path": "asset.e9db996278c7d476e23024b3bd7a06e0b0ff940025392c209b7f4f7ee4f1601b",
+    "aws:asset:path": "asset.255e66b894a1319453937b7c7fddf5b4c56cd5f39d37aac6a0aa3f5306f52586",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1917,7 +1917,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "9c779ff54f87be9492e6ca9bd8ff5b3c98412fcc5c553bec4c626012db8d4483.zip"
+     "S3Key": "0455346d51271f4978f6d560cc6a4e58e9ed459e5542243a01e67fe40b55588e.zip"
     },
     "Environment": {
      "Variables": {
@@ -1997,7 +1997,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetStatsLambda/Resource",
-    "aws:asset:path": "asset.9c779ff54f87be9492e6ca9bd8ff5b3c98412fcc5c553bec4c626012db8d4483",
+    "aws:asset:path": "asset.0455346d51271f4978f6d560cc6a4e58e9ed459e5542243a01e67fe40b55588e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2074,7 +2074,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5fda8c3542fbc7522654b340ae6774076b9c2f51641bed5a6908d2c924386555.zip"
+     "S3Key": "d877b8594128471cafcdb08dc949a02456a73331d37c670f3ca5febf8364f21c.zip"
     },
     "Environment": {
      "Variables": {
@@ -2155,7 +2155,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteTicketLambda/Resource",
-    "aws:asset:path": "asset.5fda8c3542fbc7522654b340ae6774076b9c2f51641bed5a6908d2c924386555",
+    "aws:asset:path": "asset.d877b8594128471cafcdb08dc949a02456a73331d37c670f3ca5febf8364f21c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2240,7 +2240,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "161f36d5f7adf6194a9bd7655947fb49b561bf5e966c0c0caa85c44bb39d0a32.zip"
+     "S3Key": "78719e24faf368ebc2f7b548ce6e270bb695ad80a3da31510b316d6d3780545a.zip"
     },
     "Environment": {
      "Variables": {
@@ -2321,7 +2321,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SetUserLockLambda/Resource",
-    "aws:asset:path": "asset.161f36d5f7adf6194a9bd7655947fb49b561bf5e966c0c0caa85c44bb39d0a32",
+    "aws:asset:path": "asset.78719e24faf368ebc2f7b548ce6e270bb695ad80a3da31510b316d6d3780545a",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2398,7 +2398,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "da0c6347754821c7466799185a4a6a1320fccd93012b1c1573818fe0681034d9.zip"
+     "S3Key": "1400fd3e788c21e2c5e356f85d5fb5fca1791bcac6f5df1bb420512f1d4ee608.zip"
     },
     "Environment": {
      "Variables": {
@@ -2479,7 +2479,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AdminAuthLambda/Resource",
-    "aws:asset:path": "asset.da0c6347754821c7466799185a4a6a1320fccd93012b1c1573818fe0681034d9",
+    "aws:asset:path": "asset.1400fd3e788c21e2c5e356f85d5fb5fca1791bcac6f5df1bb420512f1d4ee608",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3456,7 +3456,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1d21f9743d671d21cca90efd3ba9a7fe4e4bad3086c502901f2507f54a7ff572.zip"
+     "S3Key": "07440bc77f8bbaebac0f2bfed313b7e53075def2e8f1c0eba3990c309af27c1c.zip"
     },
     "Environment": {
      "Variables": {
@@ -3537,7 +3537,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCertificatesLambda/Resource",
-    "aws:asset:path": "asset.1d21f9743d671d21cca90efd3ba9a7fe4e4bad3086c502901f2507f54a7ff572",
+    "aws:asset:path": "asset.07440bc77f8bbaebac0f2bfed313b7e53075def2e8f1c0eba3990c309af27c1c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3669,7 +3669,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "19265f4dc43b7efc6d7484885649c374d511e5252878feea5794d4f03470a58c.zip"
+     "S3Key": "abd26c924a2bb293b829260b880ca20caceffc136125d9c50861aeca214a9baf.zip"
     },
     "Environment": {
      "Variables": {
@@ -3750,7 +3750,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCertificateByIdLambda/Resource",
-    "aws:asset:path": "asset.19265f4dc43b7efc6d7484885649c374d511e5252878feea5794d4f03470a58c",
+    "aws:asset:path": "asset.abd26c924a2bb293b829260b880ca20caceffc136125d9c50861aeca214a9baf",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -3882,7 +3882,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5f5b27f9a936efdb6b7bd4d7e7677933163769d0ff3823aaf7d4f4566ca7ff97.zip"
+     "S3Key": "542fd374b894f2b8ddde9a150050f4e6d65aeef87292c86f44d30657d6200fb5.zip"
     },
     "Environment": {
      "Variables": {
@@ -3963,7 +3963,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCertificatesByUserLambda/Resource",
-    "aws:asset:path": "asset.5f5b27f9a936efdb6b7bd4d7e7677933163769d0ff3823aaf7d4f4566ca7ff97",
+    "aws:asset:path": "asset.542fd374b894f2b8ddde9a150050f4e6d65aeef87292c86f44d30657d6200fb5",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4095,7 +4095,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b7a6ba472389cae80fa9378062c8bc42f33d0853a9b0704f6ac31995614337c9.zip"
+     "S3Key": "3d10d5a05522d3449697c7ec1ca7ec3581afb9c63839572388ee0e6bbbfcf238.zip"
     },
     "Environment": {
      "Variables": {
@@ -4176,7 +4176,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CheckCertificateExistsLambda/Resource",
-    "aws:asset:path": "asset.b7a6ba472389cae80fa9378062c8bc42f33d0853a9b0704f6ac31995614337c9",
+    "aws:asset:path": "asset.3d10d5a05522d3449697c7ec1ca7ec3581afb9c63839572388ee0e6bbbfcf238",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4253,7 +4253,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "319d0f200236c21235dd25ded3a49a0001ff0716094ef685026904b6d957c062.zip"
+     "S3Key": "20c89fb2abd7d8cdc6ade4e0b62c4d131a9730584370ebf82030748ea45f71a9.zip"
     },
     "Environment": {
      "Variables": {
@@ -4334,7 +4334,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCompaniesLambda/Resource",
-    "aws:asset:path": "asset.319d0f200236c21235dd25ded3a49a0001ff0716094ef685026904b6d957c062",
+    "aws:asset:path": "asset.20c89fb2abd7d8cdc6ade4e0b62c4d131a9730584370ebf82030748ea45f71a9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4411,7 +4411,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "46e9cfa3d1d6e5a7bfbde7cf9a841824f65cda51eb015d6ef6f52ae0f440aa4e.zip"
+     "S3Key": "bbef33ace5207411f5e46979b69e16c3ed5d1eeb02c7a5c15b125500d0ef15fc.zip"
     },
     "Environment": {
      "Variables": {
@@ -4492,7 +4492,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateCompanyLambda/Resource",
-    "aws:asset:path": "asset.46e9cfa3d1d6e5a7bfbde7cf9a841824f65cda51eb015d6ef6f52ae0f440aa4e",
+    "aws:asset:path": "asset.bbef33ace5207411f5e46979b69e16c3ed5d1eeb02c7a5c15b125500d0ef15fc",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4569,7 +4569,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "575a29b2a699c583f508e7d139413705e4485490006a6a8abc4382ad27167f2b.zip"
+     "S3Key": "54cba38198cbe1d7ca121fe7cb479c03a64db9d106551d7aa29aa639c886293d.zip"
     },
     "Environment": {
      "Variables": {
@@ -4650,7 +4650,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCompanyLambda/Resource",
-    "aws:asset:path": "asset.575a29b2a699c583f508e7d139413705e4485490006a6a8abc4382ad27167f2b",
+    "aws:asset:path": "asset.54cba38198cbe1d7ca121fe7cb479c03a64db9d106551d7aa29aa639c886293d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4750,7 +4750,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "51f534d16edddb5f10695d26ce2a43848bcad01b3456169f7b1759e1e205a257.zip"
+     "S3Key": "0e146ac70d185c80e342d7c17c97fd2d416029664ffd08b0a2379b69ff279d6e.zip"
     },
     "Environment": {
      "Variables": {
@@ -4831,7 +4831,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateEmployeeLambda/Resource",
-    "aws:asset:path": "asset.51f534d16edddb5f10695d26ce2a43848bcad01b3456169f7b1759e1e205a257",
+    "aws:asset:path": "asset.0e146ac70d185c80e342d7c17c97fd2d416029664ffd08b0a2379b69ff279d6e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4931,7 +4931,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d1e4b2e0ac7c63fdb5d39558132f4af793a516dd1aea66e630204f480a3561b5.zip"
+     "S3Key": "329176b4b8e55e88f13f0944b4ca541832dbfcd18c749ed0378aea4f974e17d3.zip"
     },
     "Environment": {
      "Variables": {
@@ -5012,7 +5012,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListEmployeesLambda/Resource",
-    "aws:asset:path": "asset.d1e4b2e0ac7c63fdb5d39558132f4af793a516dd1aea66e630204f480a3561b5",
+    "aws:asset:path": "asset.329176b4b8e55e88f13f0944b4ca541832dbfcd18c749ed0378aea4f974e17d3",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5112,7 +5112,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c20883f5fb83ac5f54272cf457ad161665ca7cd557e37348a7c328a26c90834e.zip"
+     "S3Key": "7043c010d2792ac52083e391fcef344725ad8ef63b88284dd94c83c32894f258.zip"
     },
     "Environment": {
      "Variables": {
@@ -5193,7 +5193,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetEmployeeByIdLambda/Resource",
-    "aws:asset:path": "asset.c20883f5fb83ac5f54272cf457ad161665ca7cd557e37348a7c328a26c90834e",
+    "aws:asset:path": "asset.7043c010d2792ac52083e391fcef344725ad8ef63b88284dd94c83c32894f258",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5293,7 +5293,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "38cf1474f538becbab1eb257931acd054d61cf1b8b7f2ecd9da9d1d61621ed64.zip"
+     "S3Key": "15bbe39e8256e7f03036b462e2663f7b320f7b46c58678d80a451808ccc29fa4.zip"
     },
     "Environment": {
      "Variables": {
@@ -5374,7 +5374,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateEmployeeLambda/Resource",
-    "aws:asset:path": "asset.38cf1474f538becbab1eb257931acd054d61cf1b8b7f2ecd9da9d1d61621ed64",
+    "aws:asset:path": "asset.15bbe39e8256e7f03036b462e2663f7b320f7b46c58678d80a451808ccc29fa4",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5474,7 +5474,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "862482d36554e6cf21b67071e87d7adbda0a7651b965d9a5f9ceda9b54df8b40.zip"
+     "S3Key": "122f3282d2721771053f9fe0d9cbaca8f778d8f49ccd9c8ee5bfbf4a1bc79b45.zip"
     },
     "Environment": {
      "Variables": {
@@ -5555,7 +5555,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteEmployeeLambda/Resource",
-    "aws:asset:path": "asset.862482d36554e6cf21b67071e87d7adbda0a7651b965d9a5f9ceda9b54df8b40",
+    "aws:asset:path": "asset.122f3282d2721771053f9fe0d9cbaca8f778d8f49ccd9c8ee5bfbf4a1bc79b45",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -5833,7 +5833,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "f04614355e6fe88a1bef5a861b86d7f52fa2b6466341dde821dcff70ba57c2e3.zip"
+     "S3Key": "8ed4c7543258af22b5330116b9f67f59d6783a3f52ffb597588b10a5b32504f3.zip"
     },
     "Environment": {
      "Variables": {
@@ -5914,7 +5914,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SubmitFeedbackLambda/Resource",
-    "aws:asset:path": "asset.f04614355e6fe88a1bef5a861b86d7f52fa2b6466341dde821dcff70ba57c2e3",
+    "aws:asset:path": "asset.8ed4c7543258af22b5330116b9f67f59d6783a3f52ffb597588b10a5b32504f3",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6011,7 +6011,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "6012f719ecfaceeaad6c9d161610f7574b06bd6bef1c2f766e164544a94da82b.zip"
+     "S3Key": "ced15583f356409cc11a3e71a8ff80ee6ed04368d876641d7126cd1b9f5f9cc8.zip"
     },
     "Environment": {
      "Variables": {
@@ -6092,7 +6092,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListFeedbacksLambda/Resource",
-    "aws:asset:path": "asset.6012f719ecfaceeaad6c9d161610f7574b06bd6bef1c2f766e164544a94da82b",
+    "aws:asset:path": "asset.ced15583f356409cc11a3e71a8ff80ee6ed04368d876641d7126cd1b9f5f9cc8",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6189,7 +6189,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d239a8838380214395d8871b03382ac21bf9f9418c19de6f9cc9dfb3cfbd9a8c.zip"
+     "S3Key": "54fcba58f545afbb37bdc7f4e0e7bd8feb80fe57f22145b6e847ba8de99087c9.zip"
     },
     "Environment": {
      "Variables": {
@@ -6270,7 +6270,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteFeedbackLambda/Resource",
-    "aws:asset:path": "asset.d239a8838380214395d8871b03382ac21bf9f9418c19de6f9cc9dfb3cfbd9a8c",
+    "aws:asset:path": "asset.54fcba58f545afbb37bdc7f4e0e7bd8feb80fe57f22145b6e847ba8de99087c9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6379,7 +6379,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1d61a3fd7b630cc6510191af94443129548176d4f973786e8baa8f5dd2ff6673.zip"
+     "S3Key": "7e02e58d56932ea35fb709a927183843b581cbee63e87dc1453362f2d47af3f9.zip"
     },
     "Environment": {
      "Variables": {
@@ -6460,7 +6460,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreatePlacementLambda/Resource",
-    "aws:asset:path": "asset.1d61a3fd7b630cc6510191af94443129548176d4f973786e8baa8f5dd2ff6673",
+    "aws:asset:path": "asset.7e02e58d56932ea35fb709a927183843b581cbee63e87dc1453362f2d47af3f9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6569,7 +6569,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "771ff89e750e4db5fef981057a7f1296e387c903942054d9376be84ca9816f7c.zip"
+     "S3Key": "004c5144f6808e29529f99285c3b23eba01feb230d8a24c150cbf74d8e0b8174.zip"
     },
     "Environment": {
      "Variables": {
@@ -6650,7 +6650,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListPlacementsLambda/Resource",
-    "aws:asset:path": "asset.771ff89e750e4db5fef981057a7f1296e387c903942054d9376be84ca9816f7c",
+    "aws:asset:path": "asset.004c5144f6808e29529f99285c3b23eba01feb230d8a24c150cbf74d8e0b8174",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6759,7 +6759,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4e31cb312172e8809eca21c67c4cd083e386c66f2ae92ec93456d1620867745f.zip"
+     "S3Key": "057b23bebc5789fe39bb73c1f44bec092883956dd3f18d7aaf5b3891f1b49297.zip"
     },
     "Environment": {
      "Variables": {
@@ -6840,7 +6840,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPlacementByIdLambda/Resource",
-    "aws:asset:path": "asset.4e31cb312172e8809eca21c67c4cd083e386c66f2ae92ec93456d1620867745f",
+    "aws:asset:path": "asset.057b23bebc5789fe39bb73c1f44bec092883956dd3f18d7aaf5b3891f1b49297",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6949,7 +6949,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "402c4482580f300c64d381c138dcba67e46b662e2a8a30312c39b0b85d4c6533.zip"
+     "S3Key": "70426e8f6b3c69b47596e431adf31a532f9c0f3867c0d1db8d11d1d007a3da57.zip"
     },
     "Environment": {
      "Variables": {
@@ -7030,7 +7030,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdatePlacementLambda/Resource",
-    "aws:asset:path": "asset.402c4482580f300c64d381c138dcba67e46b662e2a8a30312c39b0b85d4c6533",
+    "aws:asset:path": "asset.70426e8f6b3c69b47596e431adf31a532f9c0f3867c0d1db8d11d1d007a3da57",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7139,7 +7139,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "eaa02c1fea2575d4e253b4c2e9e77bec2525a39ebf9f943b70049b3836698761.zip"
+     "S3Key": "b5b8f31ad08fc6d4681c55a0c602ef4d4692fe746027c5c278b56406ac6aed84.zip"
     },
     "Environment": {
      "Variables": {
@@ -7220,7 +7220,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeletePlacementLambda/Resource",
-    "aws:asset:path": "asset.eaa02c1fea2575d4e253b4c2e9e77bec2525a39ebf9f943b70049b3836698761",
+    "aws:asset:path": "asset.b5b8f31ad08fc6d4681c55a0c602ef4d4692fe746027c5c278b56406ac6aed84",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7329,7 +7329,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e11ab2d5a704dcf334c66a4d0a98c6e957f9ec4d7dee3ae2c518872852c76875.zip"
+     "S3Key": "9c1cd1b175a6dc003c872691b13150928c89db0735cf369d35f2cfe8fbca1c89.zip"
     },
     "Environment": {
      "Variables": {
@@ -7410,7 +7410,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentStatusLambda/Resource",
-    "aws:asset:path": "asset.e11ab2d5a704dcf334c66a4d0a98c6e957f9ec4d7dee3ae2c518872852c76875",
+    "aws:asset:path": "asset.9c1cd1b175a6dc003c872691b13150928c89db0735cf369d35f2cfe8fbca1c89",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7519,7 +7519,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "44ffde83555621ab1139d92304998339be3c9a7c4a8d01f4f489669446c15a16.zip"
+     "S3Key": "7af679cba966fbcada830181116a8614c0bfae353c645c035e3815e8f0271cad.zip"
     },
     "Environment": {
      "Variables": {
@@ -7600,7 +7600,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RevokePlacementLambda/Resource",
-    "aws:asset:path": "asset.44ffde83555621ab1139d92304998339be3c9a7c4a8d01f4f489669446c15a16",
+    "aws:asset:path": "asset.7af679cba966fbcada830181116a8614c0bfae353c645c035e3815e8f0271cad",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7709,7 +7709,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3217022378e7327a44ee5650021ff5f84a303638b8cc0d9b3afe8c2245598b63.zip"
+     "S3Key": "db46a8adfa57685ac3d4d6c2a7968e48d6a7a56a6a53478e806b75c4718cdfec.zip"
     },
     "Environment": {
      "Variables": {
@@ -7790,7 +7790,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPlacementLambda/Resource",
-    "aws:asset:path": "asset.3217022378e7327a44ee5650021ff5f84a303638b8cc0d9b3afe8c2245598b63",
+    "aws:asset:path": "asset.db46a8adfa57685ac3d4d6c2a7968e48d6a7a56a6a53478e806b75c4718cdfec",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -7899,7 +7899,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "90526dc2524e1061531270323668fc30f747881c7718d10c64a8c89276d6f899.zip"
+     "S3Key": "4e6bc3ba235cb193750b66cd0ee84d28f998836b13a0bc212ddb0aa8e3cf43d3.zip"
     },
     "Environment": {
      "Variables": {
@@ -7980,7 +7980,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Resource",
-    "aws:asset:path": "asset.90526dc2524e1061531270323668fc30f747881c7718d10c64a8c89276d6f899",
+    "aws:asset:path": "asset.4e6bc3ba235cb193750b66cd0ee84d28f998836b13a0bc212ddb0aa8e3cf43d3",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8089,7 +8089,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d83f1bcb73c8ddea62575ec0aa020233fac886e43cbe6583195e37768fd4e1fe.zip"
+     "S3Key": "5cd20d5a122f1dea4bbb981c4b219a2f9d7174aad0f7f0605ba3230c13d5b17b.zip"
     },
     "Environment": {
      "Variables": {
@@ -8170,7 +8170,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CompletePlacementLambda/Resource",
-    "aws:asset:path": "asset.d83f1bcb73c8ddea62575ec0aa020233fac886e43cbe6583195e37768fd4e1fe",
+    "aws:asset:path": "asset.5cd20d5a122f1dea4bbb981c4b219a2f9d7174aad0f7f0605ba3230c13d5b17b",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8276,7 +8276,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "18ca05ce1d4a268b5d3954433505b50d8ac286f3c3074ccd1c12611bb5a71f27.zip"
+     "S3Key": "6582b8bf2539b194cb6273625cf46f382f9714d47d86d829e7a46b1d8af14b29.zip"
     },
     "Environment": {
      "Variables": {
@@ -8357,7 +8357,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListWorkshopsLambda/Resource",
-    "aws:asset:path": "asset.18ca05ce1d4a268b5d3954433505b50d8ac286f3c3074ccd1c12611bb5a71f27",
+    "aws:asset:path": "asset.6582b8bf2539b194cb6273625cf46f382f9714d47d86d829e7a46b1d8af14b29",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8434,7 +8434,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b1d19203d89998b322b9592c3b02ec27a6955541513bc3e61b0ad9a14547a378.zip"
+     "S3Key": "1777fcfd85f13ec0a8efb913c5ee9dbd3c3375a663ceae04236cf2b77469c481.zip"
     },
     "Environment": {
      "Variables": {
@@ -8515,7 +8515,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateWorkshopLambda/Resource",
-    "aws:asset:path": "asset.b1d19203d89998b322b9592c3b02ec27a6955541513bc3e61b0ad9a14547a378",
+    "aws:asset:path": "asset.1777fcfd85f13ec0a8efb913c5ee9dbd3c3375a663ceae04236cf2b77469c481",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8592,7 +8592,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "8241430c01abfd198231431e38a15ccd5ab9ef3fd4a8c3e48f01e7ca66cb44de.zip"
+     "S3Key": "053766fdfe809ac7cbd48a1051e2962123483b313994bc584ff7d587d2b4dc7f.zip"
     },
     "Environment": {
      "Variables": {
@@ -8673,7 +8673,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentLambda/Resource",
-    "aws:asset:path": "asset.8241430c01abfd198231431e38a15ccd5ab9ef3fd4a8c3e48f01e7ca66cb44de",
+    "aws:asset:path": "asset.053766fdfe809ac7cbd48a1051e2962123483b313994bc584ff7d587d2b4dc7f",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8779,7 +8779,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d6c21ecebb5cf0c7df98dbe105c03271c1ee302e8d36313b82aba3c9ca20d35c.zip"
+     "S3Key": "2aad40d39957c1d501ffc2725688838409217cf596eb77c1aed8ea8d7056b14d.zip"
     },
     "Environment": {
      "Variables": {
@@ -8860,7 +8860,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetUserWorkshopsLambda/Resource",
-    "aws:asset:path": "asset.d6c21ecebb5cf0c7df98dbe105c03271c1ee302e8d36313b82aba3c9ca20d35c",
+    "aws:asset:path": "asset.2aad40d39957c1d501ffc2725688838409217cf596eb77c1aed8ea8d7056b14d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8966,7 +8966,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7bcb5231494e78f05bbc8ccd8d6f6b161393d3ff181331bf3ad6d0a7addc48b1.zip"
+     "S3Key": "2721b520e7f63211cb16c6bee749c192252ed9b3638a9ea81ba37f56bee7e4c7.zip"
     },
     "Environment": {
      "Variables": {
@@ -9047,7 +9047,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetWorkshopStudentsLambda/Resource",
-    "aws:asset:path": "asset.7bcb5231494e78f05bbc8ccd8d6f6b161393d3ff181331bf3ad6d0a7addc48b1",
+    "aws:asset:path": "asset.2721b520e7f63211cb16c6bee749c192252ed9b3638a9ea81ba37f56bee7e4c7",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9124,7 +9124,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4789d829d110acaa624d5389772fb37ec55387b00a0fb35908c8c85f21672796.zip"
+     "S3Key": "bac47f1de7d413295e966d230f8c6886de3a5da252d7331ec593441a22e64972.zip"
     },
     "Environment": {
      "Variables": {
@@ -9205,7 +9205,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteWorkshopLambda/Resource",
-    "aws:asset:path": "asset.4789d829d110acaa624d5389772fb37ec55387b00a0fb35908c8c85f21672796",
+    "aws:asset:path": "asset.bac47f1de7d413295e966d230f8c6886de3a5da252d7331ec593441a22e64972",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9282,7 +9282,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5defda2eafd8d2b0c5332fad808ef8585f39f2d578b402c930496d9c0fe79880.zip"
+     "S3Key": "66592f9e1d0c29af30e87956366c95b0fdefef5af0b4cdab5e1e820059d2ecdf.zip"
     },
     "Environment": {
      "Variables": {
@@ -9363,7 +9363,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetWorkshopsByInchargeLambda/Resource",
-    "aws:asset:path": "asset.5defda2eafd8d2b0c5332fad808ef8585f39f2d578b402c930496d9c0fe79880",
+    "aws:asset:path": "asset.66592f9e1d0c29af30e87956366c95b0fdefef5af0b4cdab5e1e820059d2ecdf",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9440,7 +9440,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "fb0642afbdd43e7fe311ceac5783cd66fc9d8fecf267357433d00999b865fcaf.zip"
+     "S3Key": "b2aeaf01de94009c0288c01dadbba775dc3053e534ce16b2a65a48c7790337ef.zip"
     },
     "Environment": {
      "Variables": {
@@ -9521,7 +9521,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentAttendanceLambda/Resource",
-    "aws:asset:path": "asset.fb0642afbdd43e7fe311ceac5783cd66fc9d8fecf267357433d00999b865fcaf",
+    "aws:asset:path": "asset.b2aeaf01de94009c0288c01dadbba775dc3053e534ce16b2a65a48c7790337ef",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9598,7 +9598,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7f7dbf2e52c04dc912061147a11046b2c8f7a6a36e22bd6846002379f76654cc.zip"
+     "S3Key": "c97f855f65f0ed538d4a032a980d4e727c9f8312f965093ec94a70b4e0cd9630.zip"
     },
     "Environment": {
      "Variables": {
@@ -9679,7 +9679,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPutLambda/Resource",
-    "aws:asset:path": "asset.7f7dbf2e52c04dc912061147a11046b2c8f7a6a36e22bd6846002379f76654cc",
+    "aws:asset:path": "asset.c97f855f65f0ed538d4a032a980d4e727c9f8312f965093ec94a70b4e0cd9630",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9756,7 +9756,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "63ab0f9e7c3e69241325e76cbe64f9c350a2ae3ad61ef3f940b2b15e978973ee.zip"
+     "S3Key": "0b8d9044e5199478362b1c32a9f75451777b59d2c37a97b8243240cd0cbeced6.zip"
     },
     "Environment": {
      "Variables": {
@@ -9837,7 +9837,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateWorkshopLambda/Resource",
-    "aws:asset:path": "asset.63ab0f9e7c3e69241325e76cbe64f9c350a2ae3ad61ef3f940b2b15e978973ee",
+    "aws:asset:path": "asset.0b8d9044e5199478362b1c32a9f75451777b59d2c37a97b8243240cd0cbeced6",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9914,7 +9914,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a2690dda19903e7225f57fa551796e955569b3359d9b6d05771e56c0c1bc485d.zip"
+     "S3Key": "c0b77d90a9a818445958fc4f2dc7ced72a1d3242ed8a69f90175b06018d07a43.zip"
     },
     "Environment": {
      "Variables": {
@@ -9995,7 +9995,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateCoursePublicLambda/Resource",
-    "aws:asset:path": "asset.a2690dda19903e7225f57fa551796e955569b3359d9b6d05771e56c0c1bc485d",
+    "aws:asset:path": "asset.c0b77d90a9a818445958fc4f2dc7ced72a1d3242ed8a69f90175b06018d07a43",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10072,7 +10072,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "f38eb0d30194603e5fcfddaf56a02e5a669dd1f8db7d7b2f79a1b7260ca581ce.zip"
+     "S3Key": "114bddd55f17ea8c243c3dd6a0307e6e5adbe45028eb0d3d8e62bc67926b85ae.zip"
     },
     "Environment": {
      "Variables": {
@@ -10153,7 +10153,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListCoursesPublicLambda/Resource",
-    "aws:asset:path": "asset.f38eb0d30194603e5fcfddaf56a02e5a669dd1f8db7d7b2f79a1b7260ca581ce",
+    "aws:asset:path": "asset.114bddd55f17ea8c243c3dd6a0307e6e5adbe45028eb0d3d8e62bc67926b85ae",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10230,7 +10230,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "ecbc3f9fd1d653ad60ce6109385aaee62a282e3fedef6bd6a94b189800433ece.zip"
+     "S3Key": "4f6650a95e1c9131facfa09c6f718698159a8c5b6dab56e3e324febe04ea0221.zip"
     },
     "Environment": {
      "Variables": {
@@ -10311,7 +10311,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCourseByIdPublicLambda/Resource",
-    "aws:asset:path": "asset.ecbc3f9fd1d653ad60ce6109385aaee62a282e3fedef6bd6a94b189800433ece",
+    "aws:asset:path": "asset.4f6650a95e1c9131facfa09c6f718698159a8c5b6dab56e3e324febe04ea0221",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10388,7 +10388,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "87bdfc6980a3d9c830faf0a49451651e0119d6c1957649ddcb62c54f97d106d0.zip"
+     "S3Key": "935900ced03d06401e1965da21360781e57dff36c2a5604ad3007371233a9418.zip"
     },
     "Environment": {
      "Variables": {
@@ -10469,7 +10469,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCoursePublicLambda/Resource",
-    "aws:asset:path": "asset.87bdfc6980a3d9c830faf0a49451651e0119d6c1957649ddcb62c54f97d106d0",
+    "aws:asset:path": "asset.935900ced03d06401e1965da21360781e57dff36c2a5604ad3007371233a9418",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10546,7 +10546,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a7ec7c97c8f8cddfb27c86843e40cd2ce7ab8906187ac8610ba181728d384daf.zip"
+     "S3Key": "57c7d490c9fef8029f604f8d11ebc5b447b53f1c900bbdf30fce526f9cdc95d9.zip"
     },
     "Environment": {
      "Variables": {
@@ -10627,7 +10627,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteCoursePublicLambda/Resource",
-    "aws:asset:path": "asset.a7ec7c97c8f8cddfb27c86843e40cd2ce7ab8906187ac8610ba181728d384daf",
+    "aws:asset:path": "asset.57c7d490c9fef8029f604f8d11ebc5b447b53f1c900bbdf30fce526f9cdc95d9",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10704,7 +10704,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "ed7f912e1214b9d6f8f45789fd8f1eaa87de7b6b9a9d065f63ae0fc880fd35eb.zip"
+     "S3Key": "89414a35356dee147002794e4b440869da053c165e590b336aee5e5a772b6fa6.zip"
     },
     "Environment": {
      "Variables": {
@@ -10785,7 +10785,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateDemoLambda/Resource",
-    "aws:asset:path": "asset.ed7f912e1214b9d6f8f45789fd8f1eaa87de7b6b9a9d065f63ae0fc880fd35eb",
+    "aws:asset:path": "asset.89414a35356dee147002794e4b440869da053c165e590b336aee5e5a772b6fa6",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11395,7 +11395,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "71351140535e1ceaa1a3e4da9861729be4e5f6109d2af5b4d35ca3ef79905955.zip"
+     "S3Key": "1334b93301bf5605fbef9b9c9b241a32d9b04503716d5179b001dfab2841a074.zip"
     },
     "Environment": {
      "Variables": {
@@ -11476,7 +11476,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateTicketLambda/Resource",
-    "aws:asset:path": "asset.71351140535e1ceaa1a3e4da9861729be4e5f6109d2af5b4d35ca3ef79905955",
+    "aws:asset:path": "asset.1334b93301bf5605fbef9b9c9b241a32d9b04503716d5179b001dfab2841a074",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11573,7 +11573,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "65e38d9f5ede2171cd22a4b3ac1f91d1a23505028fc5b4206362abf6f8339293.zip"
+     "S3Key": "8904581c116b6a154b4437dbe26ff09292c9ce78c8f4e764c6a5544d4282dbd4.zip"
     },
     "Environment": {
      "Variables": {
@@ -11654,7 +11654,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListTicketsLambda/Resource",
-    "aws:asset:path": "asset.65e38d9f5ede2171cd22a4b3ac1f91d1a23505028fc5b4206362abf6f8339293",
+    "aws:asset:path": "asset.8904581c116b6a154b4437dbe26ff09292c9ce78c8f4e764c6a5544d4282dbd4",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11751,7 +11751,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4193e8c740c886ffc38fc4b395c3c88ebcd8f467566fb9f597b8cd50c77ab38c.zip"
+     "S3Key": "45a6c40f5e956a3d79a8927db0c737f600eae12a42a1c8a871807b832e331675.zip"
     },
     "Environment": {
      "Variables": {
@@ -11832,7 +11832,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateTicketLambda/Resource",
-    "aws:asset:path": "asset.4193e8c740c886ffc38fc4b395c3c88ebcd8f467566fb9f597b8cd50c77ab38c",
+    "aws:asset:path": "asset.45a6c40f5e956a3d79a8927db0c737f600eae12a42a1c8a871807b832e331675",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -11941,7 +11941,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "cbd2cb0f30a64e0ebb713867fdd6c571adc725c51a19a32ec1735878d14e6d8b.zip"
+     "S3Key": "311e8e056a360ba185923bccd70ce573d41691f5af1d40628eaf95df714d6477.zip"
     },
     "Environment": {
      "Variables": {
@@ -12022,7 +12022,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetRankingsLambda/Resource",
-    "aws:asset:path": "asset.cbd2cb0f30a64e0ebb713867fdd6c571adc725c51a19a32ec1735878d14e6d8b",
+    "aws:asset:path": "asset.311e8e056a360ba185923bccd70ce573d41691f5af1d40628eaf95df714d6477",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14043,7 +14043,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "446352bff271683dd88b60b3feed930e329d6b42d8a028ffa9d315a114a32ebf.zip"
+     "S3Key": "e6b0a32b49d8f7afcb9ce0c83723158c5038e4ad085a6f9d389536680a7e38a3.zip"
     },
     "Environment": {
      "Variables": {
@@ -14124,7 +14124,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCompletedSubcoursesLambda/Resource",
-    "aws:asset:path": "asset.446352bff271683dd88b60b3feed930e329d6b42d8a028ffa9d315a114a32ebf",
+    "aws:asset:path": "asset.e6b0a32b49d8f7afcb9ce0c83723158c5038e4ad085a6f9d389536680a7e38a3",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14375,7 +14375,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "9ecdae12741a5c2f0d67dae36573575a41ebf7e6ac9e275cdf1c555a1640c715.zip"
+     "S3Key": "c823bde4c241feaec4eaa4123d539ece5d285a756f473a962883b55ad86859ac.zip"
     },
     "Environment": {
      "Variables": {
@@ -14456,7 +14456,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProfileLambda/Resource",
-    "aws:asset:path": "asset.9ecdae12741a5c2f0d67dae36573575a41ebf7e6ac9e275cdf1c555a1640c715",
+    "aws:asset:path": "asset.c823bde4c241feaec4eaa4123d539ece5d285a756f473a962883b55ad86859ac",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14541,7 +14541,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "dc488a86afc78acd2d13b45d75a6816554493eac6a305013565345842978deae.zip"
+     "S3Key": "0a25d63620b0d9ed4371ebb717c0ce3baac61a66378f724acc5f3b697363760d.zip"
     },
     "Environment": {
      "Variables": {
@@ -14622,7 +14622,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetProfileLambda/Resource",
-    "aws:asset:path": "asset.dc488a86afc78acd2d13b45d75a6816554493eac6a305013565345842978deae",
+    "aws:asset:path": "asset.0a25d63620b0d9ed4371ebb717c0ce3baac61a66378f724acc5f3b697363760d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14707,7 +14707,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "74eae45f73ab5a9b8a89438195cd73ac1850d3d185674119f06cb7a62cc85297.zip"
+     "S3Key": "66f62943d6856d1ca55ea470245066ff984d52d7b08ddfb9f756d5949c692baa.zip"
     },
     "Environment": {
      "Variables": {
@@ -14788,7 +14788,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProjectsLambda/Resource",
-    "aws:asset:path": "asset.74eae45f73ab5a9b8a89438195cd73ac1850d3d185674119f06cb7a62cc85297",
+    "aws:asset:path": "asset.66f62943d6856d1ca55ea470245066ff984d52d7b08ddfb9f756d5949c692baa",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14873,7 +14873,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5d7e08dddac51ea246cfb29201db3f874c25ef345e208f4f38a6172929361fa4.zip"
+     "S3Key": "17185e7145e97d8763630585b1194a71b91e6c965d061c32553fe0bf40d740fb.zip"
     },
     "Environment": {
      "Variables": {
@@ -14954,7 +14954,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AddPracticeResultLambda/Resource",
-    "aws:asset:path": "asset.5d7e08dddac51ea246cfb29201db3f874c25ef345e208f4f38a6172929361fa4",
+    "aws:asset:path": "asset.17185e7145e97d8763630585b1194a71b91e6c965d061c32553fe0bf40d740fb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15039,7 +15039,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3b3102379966af1c998067dd820171d206d12048ec51bc10c75c49f955c425e0.zip"
+     "S3Key": "80bf5fdc4593b3c7453ad5f201b33f40b91f636fdcd2db9bea27d2a72f7f72a4.zip"
     },
     "Environment": {
      "Variables": {
@@ -15120,7 +15120,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPracticeHistoryLambda/Resource",
-    "aws:asset:path": "asset.3b3102379966af1c998067dd820171d206d12048ec51bc10c75c49f955c425e0",
+    "aws:asset:path": "asset.80bf5fdc4593b3c7453ad5f201b33f40b91f636fdcd2db9bea27d2a72f7f72a4",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15205,7 +15205,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c0f5b76f1b4bf09f1e1567cdd10ab7103c536d0df7ae68497e56cbf10f777003.zip"
+     "S3Key": "087e581163ee45054e27397508b06391ffb996534daab9e155eec23e46207e82.zip"
     },
     "Environment": {
      "Variables": {
@@ -15286,7 +15286,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetStreakDataLambda/Resource",
-    "aws:asset:path": "asset.c0f5b76f1b4bf09f1e1567cdd10ab7103c536d0df7ae68497e56cbf10f777003",
+    "aws:asset:path": "asset.087e581163ee45054e27397508b06391ffb996534daab9e155eec23e46207e82",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15537,7 +15537,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b2f70fc403c209d02525770200e411f615561bc52b3cdf9f844afcf7eee4fcd0.zip"
+     "S3Key": "3e2b6a12cf03f010a4252a03237d642bccf4c19adc6fcdbf1154cb0ab0a7e09d.zip"
     },
     "Environment": {
      "Variables": {
@@ -15618,7 +15618,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCourseCompletionLambda/Resource",
-    "aws:asset:path": "asset.b2f70fc403c209d02525770200e411f615561bc52b3cdf9f844afcf7eee4fcd0",
+    "aws:asset:path": "asset.3e2b6a12cf03f010a4252a03237d642bccf4c19adc6fcdbf1154cb0ab0a7e09d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15703,7 +15703,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d9e3cb67dd99506d4b1ba6ae2451f895d2db46bd902c279e51e4ace5718c3618.zip"
+     "S3Key": "35ee76bcab47ae741b99e158c90a363d63b386c787cc052a8a84b644f82dd8a6.zip"
     },
     "Environment": {
      "Variables": {
@@ -15784,7 +15784,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SaveQuestionLambda/Resource",
-    "aws:asset:path": "asset.d9e3cb67dd99506d4b1ba6ae2451f895d2db46bd902c279e51e4ace5718c3618",
+    "aws:asset:path": "asset.35ee76bcab47ae741b99e158c90a363d63b386c787cc052a8a84b644f82dd8a6",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15869,7 +15869,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "a9b89f997c0c1650e6ba82ab682b29ac51b98a29097a548febe7f3b96feab8ff.zip"
+     "S3Key": "d23d5507a9ac255201be6e2ac7ec58634f81a18bf1b86dcbd55fa2071c2d11fb.zip"
     },
     "Environment": {
      "Variables": {
@@ -15950,7 +15950,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetSavedQuestionsLambda/Resource",
-    "aws:asset:path": "asset.a9b89f997c0c1650e6ba82ab682b29ac51b98a29097a548febe7f3b96feab8ff",
+    "aws:asset:path": "asset.d23d5507a9ac255201be6e2ac7ec58634f81a18bf1b86dcbd55fa2071c2d11fb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16367,7 +16367,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "fc68df51ab02e5b97f50f2c1d991fbf69aefc5977ddbc971383ac5fb6e73631b.zip"
+     "S3Key": "049051986fe3039154aabe02fb02caf2d01dfcb29265bd8eda905228f9156c9c.zip"
     },
     "Environment": {
      "Variables": {
@@ -16448,7 +16448,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SaveKeyLambda/Resource",
-    "aws:asset:path": "asset.fc68df51ab02e5b97f50f2c1d991fbf69aefc5977ddbc971383ac5fb6e73631b",
+    "aws:asset:path": "asset.049051986fe3039154aabe02fb02caf2d01dfcb29265bd8eda905228f9156c9c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16533,7 +16533,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "9e9751293dffdb860ab8e53a36fdfb55d9fb5608e5b151eb8e148f1505030c81.zip"
+     "S3Key": "1489037c519773b6e0d261c9a073f9e20107ef7c8ed6cac0a6a107b9792aa934.zip"
     },
     "Environment": {
      "Variables": {
@@ -16614,7 +16614,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetKeyLambda/Resource",
-    "aws:asset:path": "asset.9e9751293dffdb860ab8e53a36fdfb55d9fb5608e5b151eb8e148f1505030c81",
+    "aws:asset:path": "asset.1489037c519773b6e0d261c9a073f9e20107ef7c8ed6cac0a6a107b9792aa934",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16699,7 +16699,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "7eb26744e402d2ab598fc1bf423cf6e4548f4000f32a98b77fb82493156f5a92.zip"
+     "S3Key": "9344bb8f731e6d4611aa685ff1b06e482f0985043ca9105adc6722fc0a330723.zip"
     },
     "Environment": {
      "Variables": {
@@ -16780,7 +16780,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/MockQuestionsLambda/Resource",
-    "aws:asset:path": "asset.7eb26744e402d2ab598fc1bf423cf6e4548f4000f32a98b77fb82493156f5a92",
+    "aws:asset:path": "asset.9344bb8f731e6d4611aa685ff1b06e482f0985043ca9105adc6722fc0a330723",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }

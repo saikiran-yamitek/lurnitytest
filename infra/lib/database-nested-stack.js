@@ -59,6 +59,11 @@ this.certificateTable.addGlobalSecondaryIndex({
   sortKey: { name: "subCourseTitle", type: dynamodb.AttributeType.STRING },
   projectionType: dynamodb.ProjectionType.ALL,
 });
+this.certificateTable.addGlobalSecondaryIndex({
+  indexName: "userId-index",                 // ✅ This is what your Lambda expects
+  partitionKey: { name: "userId", type: dynamodb.AttributeType.STRING },
+  projectionType: dynamodb.ProjectionType.ALL,  // Projects all attributes
+});
 
 
     this.companyTable = new dynamodb.Table(this, process.env.COMPANY_TABLE_NAME || "CompanyTable", {

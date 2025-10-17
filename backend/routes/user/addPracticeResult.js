@@ -1,12 +1,17 @@
 import { addPracticeResult } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ added token verification
 
 export const handler = async (event) => {
+  // Handle preflight OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
     return handleOptionsRequest();
   }
 
   try {
+    // ✅ Verify the request token
+    verifyToken(event);
+
     const userId = event.pathParameters?.id;
     if (!userId) return createResponse(400, { error: "user id required" });
 
@@ -24,7 +29,13 @@ export const handler = async (event) => {
 
     return createResponse(200, { practiceHistory: updated });
   } catch (err) {
-    console.error("Error saving practice result:", err);
+    console.error("❌ Error adding practice result:", err);
+
+    // Handle token errors specifically
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: "Unauthorized: Invalid or missing token" });
+    }
+
     return createResponse(500, { msg: "Error adding practice result", error: err.message });
   }
 };

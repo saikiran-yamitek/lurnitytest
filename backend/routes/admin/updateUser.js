@@ -1,6 +1,7 @@
 // backend/routes/admin/updateUser.js
 import { updateUser } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ Import token verification
 
 export const handler = async (event) => {
   console.log('🚀 updateUser handler called');
@@ -12,6 +13,9 @@ export const handler = async (event) => {
   }
 
   try {
+    // ✅ Verify JWT token
+    verifyToken(event);
+
     const userId = event.pathParameters?.id;
     if (!userId) {
       console.error('❌ Missing user ID in path parameters');
@@ -21,18 +25,17 @@ export const handler = async (event) => {
     const body = event.body ? JSON.parse(event.body) : {};
     console.log('📝 Original request body:', body);
     
-    // ✅ FIXED: Remove 'id' from update data to avoid DynamoDB primary key error
+    // Remove 'id' from update data to avoid DynamoDB primary key errors
     const { id, ...updateData } = body;
     
     console.log('🔍 Update data (excluding id):', updateData);
     console.log('🔍 User ID from path:', userId);
     
-    // Validate that we have data to update
     if (Object.keys(updateData).length === 0) {
       console.error('❌ No data to update');
       return createResponse(400, { error: "No data to update" });
     }
-    
+
     const updated = await updateUser(userId, updateData);
     if (!updated) {
       console.error('❌ User not found or update failed');
@@ -41,11 +44,16 @@ export const handler = async (event) => {
 
     console.log('✅ User updated successfully:', updated);
     return createResponse(200, updated);
-    
+
   } catch (err) {
     console.error("❌ updateUser error:", err);
-    
-    // Better error handling based on error type
+
+    // Return 401 if token issue
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: err.message });
+    }
+
+    // Better error handling for DynamoDB exceptions
     if (err.name === 'ValidationException') {
       return createResponse(400, { error: `Validation error: ${err.message}` });
     } else if (err.name === 'ConditionalCheckFailedException') {

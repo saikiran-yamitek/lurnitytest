@@ -1,20 +1,38 @@
 import { registerStudent } from "../../models/Workshop.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // your token verification utility
 
 export const handler = async (event) => {
   // Handle preflight OPTIONS request
-  if (event.httpMethod === 'OPTIONS') {
-    return handleOptionsRequest();
-  }
+  if (event.httpMethod === 'OPTIONS') return handleOptionsRequest();
 
   try {
-    const { id } = event.pathParameters;
-    const { userId } = JSON.parse(event.body);
+    // ✅ Verify token
+    verifyToken(event);
 
-    const updated = await registerStudent(id, userId);
+    const workshopId = event.pathParameters?.id;
+    if (!workshopId) {
+      return createResponse(400, { error: "Workshop ID is required in path parameters" });
+    }
+
+    const body = event.body ? JSON.parse(event.body) : {};
+    const userId = body.userId;
+    if (!userId) {
+      return createResponse(400, { error: "userId is required in request body" });
+    }
+
+    console.log(`🔍 Registering user ${userId} to workshop ${workshopId}`);
+    const updated = await registerStudent(workshopId, userId);
+
     return createResponse(200, { message: "Registered successfully", updated });
+
   } catch (err) {
-    console.error("Registration error:", err);
-    return createResponse(400, { error: err.message });
+    console.error("❌ Workshop registration error:", err);
+
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: "Unauthorized: Invalid or missing token" });
+    }
+
+    return createResponse(500, { error: "Failed to register student", details: err.message });
   }
 };

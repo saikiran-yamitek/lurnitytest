@@ -1,6 +1,7 @@
 // routes/certificates/listCertificates.js
 import { listCertificates } from "../../models/Certificate.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ import token verification
 
 export const handler = async (event) => {
   // Handle preflight OPTIONS request
@@ -9,10 +10,20 @@ export const handler = async (event) => {
   }
 
   try {
+    // ✅ Verify JWT token before processing
+    verifyToken(event);
+
     const certs = await listCertificates();
     return createResponse(200, certs);
+
   } catch (err) {
     console.error("Get cert error:", err);
+
+    // Return 401 if token issue
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: err.message });
+    }
+
     return createResponse(500, { message: "Failed to fetch certificates." });
   }
 };

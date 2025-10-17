@@ -1,6 +1,7 @@
 // backend/routes/admin/deleteUser.js
 import { deleteUser } from "../../models/User.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js";
 
 export const handler = async (event) => {
   // Handle preflight OPTIONS request
@@ -9,6 +10,7 @@ export const handler = async (event) => {
   }
 
   try {
+    verifyToken(event);
     const userId = event.pathParameters?.id;
     if (!userId) return createResponse(400, { error: "user id required" });
 
@@ -16,6 +18,11 @@ export const handler = async (event) => {
     return createResponse(200, { success: true });
   } catch (err) {
     console.error("deleteUser error:", err);
-    return createResponse(500, { error: err.message });
+    const statusCode =
+      err.message.includes("token") || err.message.includes("Authorization")
+        ? 401
+        : 500;
+
+    return createResponse(statusCode, { error: err.message });
   }
 };

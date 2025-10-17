@@ -1,5 +1,6 @@
 import { createEmployee } from "../../models/Employee.js";
 import { handleOptionsRequest, createResponse } from "../../utils/cors.js";
+import { verifyToken } from "../../utils/authe.js"; // ✅ import token verification
 
 export const handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
@@ -7,6 +8,9 @@ export const handler = async (event) => {
   }
 
   try {
+    // ✅ Verify JWT token before processing
+    verifyToken(event);
+
     console.log("📨 Create employee request");
     
     const body = JSON.parse(event.body || "{}");
@@ -35,6 +39,12 @@ export const handler = async (event) => {
     return createResponse(201, responseEmployee);
   } catch (err) {
     console.error("❌ Error creating employee:", err);
+
+    // Return 401 if token is missing or invalid
+    if (err.message.includes("token") || err.message.includes("Authorization")) {
+      return createResponse(401, { error: err.message });
+    }
+
     return createResponse(500, { 
       message: "Server error creating employee",
       error: err.message 
