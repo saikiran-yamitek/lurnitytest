@@ -942,6 +942,54 @@
                   "version": "2.151.0"
                 }
               },
+              "DemoOTPTable": {
+                "id": "DemoOTPTable",
+                "path": "LurnityLmsStack/DatabaseNestedStack/DemoOTPTable",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/DatabaseNestedStack/DemoOTPTable/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                      "aws:cdk:cloudformation:props": {
+                        "attributeDefinitions": [
+                          {
+                            "attributeName": "sessionId",
+                            "attributeType": "S"
+                          }
+                        ],
+                        "billingMode": "PAY_PER_REQUEST",
+                        "keySchema": [
+                          {
+                            "attributeName": "sessionId",
+                            "keyType": "HASH"
+                          }
+                        ],
+                        "timeToLiveSpecification": {
+                          "attributeName": "ttl",
+                          "enabled": true
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "ScalingRole": {
+                    "id": "ScalingRole",
+                    "path": "LurnityLmsStack/DatabaseNestedStack/DemoOTPTable/ScalingRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+                  "version": "2.151.0"
+                }
+              },
               "CDKMetadata": {
                 "id": "CDKMetadata",
                 "path": "LurnityLmsStack/DatabaseNestedStack/CDKMetadata",
@@ -1080,6 +1128,14 @@
                   "version": "2.151.0"
                 }
               },
+              "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": {
+                "id": "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref",
+                "path": "LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
               "LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": {
                 "id": "LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn",
                 "path": "LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn",
@@ -1176,6 +1232,14 @@
                   "version": "2.151.0"
                 }
               },
+              "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn": {
+                "id": "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn",
+                "path": "LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
               "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
                 "id": "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn",
                 "path": "LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn",
@@ -1212,7 +1276,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/861eebfe05e7db034e29eba4c477671d5caf21ab9b0951d536919faa8be2efad.json"
+                          "/9e40451f72f378f223b6080dd9667075a28596343906270e4ce5075a334c1b6b.json"
                         ]
                       ]
                     }
@@ -1431,6 +1495,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -1669,6 +1737,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -1907,6 +1979,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -2176,6 +2252,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -2434,6 +2514,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -2692,6 +2776,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -2941,6 +3029,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -3171,6 +3263,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -3401,6 +3497,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -3631,6 +3731,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -3861,6 +3965,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -4045,6 +4153,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -4275,6 +4387,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -4513,6 +4629,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -4743,6 +4863,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -4973,6 +5097,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -5203,6 +5331,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -5433,6 +5565,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -5663,6 +5799,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -5948,6 +6088,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -6233,6 +6377,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -6518,6 +6666,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -6803,6 +6955,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -7088,6 +7244,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -7318,6 +7478,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -7548,6 +7712,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -7778,6 +7946,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -8031,6 +8203,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -8284,6 +8460,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -8537,6 +8717,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -8790,6 +8974,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -9043,6 +9231,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -9296,6 +9488,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -9546,6 +9742,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -9796,6 +9996,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -10046,6 +10250,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -10308,6 +10516,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -10570,6 +10782,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -10832,6 +11048,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -11094,6 +11314,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -11356,6 +11580,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -11618,6 +11846,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -11880,6 +12112,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -12142,6 +12378,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -12404,6 +12644,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -12666,6 +12910,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -12925,6 +13173,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -13155,6 +13407,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -13385,6 +13641,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -13644,6 +13904,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -13903,6 +14167,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -14133,6 +14401,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -14363,6 +14635,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -14593,6 +14869,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -14823,6 +15103,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -15053,6 +15337,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -15283,6 +15571,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -15513,6 +15805,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -15743,6 +16039,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -15973,6 +16273,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -16203,6 +16507,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -16386,7 +16694,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "ed7f912e1214b9d6f8f45789fd8f1eaa87de7b6b9a9d065f63ae0fc880fd35eb.zip"
+                          "s3Key": "1fe246505551975b30219fd0b968020b10ed2a85b187333498816650feb71bb5.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16433,6 +16741,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -16616,7 +16928,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "7805298b0e3a8fb9c03946bdd430099c460c3438cea2eca3d4ab59af04b89ca2.zip"
+                          "s3Key": "08a1fe82c565106fbb351105da82c0efc3cd97e0a614bf80d2323c742bccfe37.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16663,6 +16975,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -16846,7 +17162,7 @@
                           "s3Bucket": {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "s3Key": "c83b5a0d7c588b77f84fb82e035b23044f7b64f89f6aca7c9922ca5f4ced4cac.zip"
+                          "s3Key": "3ede06170ac66d4a411167f0b71b715a4219866148ee3a107a52b47f78e320f0.zip"
                         },
                         "environment": {
                           "variables": {
@@ -16893,6 +17209,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -16915,6 +17235,510 @@
                         "role": {
                           "Fn::GetAtt": [
                             "MarkDemoBookedLambdaServiceRoleCFA5BA61",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs18.x",
+                        "timeout": 30
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.151.0"
+                }
+              },
+              "SendDemoOTPLambda": {
+                "id": "SendDemoOTPLambda",
+                "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "dynamodb:BatchGetItem",
+                                        "dynamodb:GetRecords",
+                                        "dynamodb:GetShardIterator",
+                                        "dynamodb:Query",
+                                        "dynamodb:GetItem",
+                                        "dynamodb:Scan",
+                                        "dynamodb:ConditionCheckItem",
+                                        "dynamodb:BatchWriteItem",
+                                        "dynamodb:PutItem",
+                                        "dynamodb:UpdateItem",
+                                        "dynamodb:DeleteItem",
+                                        "dynamodb:DescribeTable"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "sns:Publish",
+                                      "Effect": "Allow",
+                                      "Resource": "*"
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "SendDemoOTPLambdaServiceRoleDefaultPolicy77D39596",
+                                "roles": [
+                                  {
+                                    "Ref": "SendDemoOTPLambdaServiceRoleC1594B22"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.151.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+                          },
+                          "s3Key": "d8359cf17ad4a7e9d6f062a347f12664989bead6e419a529beb260573cda709d.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "REGION": "ap-south-1",
+                            "USER_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+                            },
+                            "COURSE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+                            },
+                            "TRANSACTION_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+                            },
+                            "TICKET_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+                            },
+                            "LANDING_PAGE_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+                            },
+                            "CERTIFICATE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+                            },
+                            "ADMIN_LOGIN_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+                            },
+                            "COMPANY_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+                            },
+                            "EMPLOYEE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+                            },
+                            "FEEDBACK_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+                            },
+                            "PLACEMENT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+                            },
+                            "WORKSHOP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+                            },
+                            "DEMO_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+                            },
+                            "FORGOT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+                            },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
+                            "S3_BUCKET": {
+                              "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+                            },
+                            "JWT_SECRET": "super-secret-dev-key",
+                            "GEMINI_API_KEY": "your-gemini-api-key",
+                            "JUDGE0_API_KEY": "your-judge0-api-key",
+                            "STAGE": "dev",
+                            "NODE_ENV": "development",
+                            "LOG_LEVEL": "info",
+                            "ADMIN_JWT_SECRET": "admin-secret-key",
+                            "SES_FROM": "admin@lurnity.com",
+                            "SES_CONFIG_SET": "transactional-emails",
+                            "OTP_DIGITS": "6",
+                            "OTP_TTL_SECONDS": "600",
+                            "RESET_WINDOW_SECONDS": "600"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "SendDemoOTPLambdaServiceRoleC1594B22",
+                            "Arn"
+                          ]
+                        },
+                        "runtime": "nodejs18.x",
+                        "timeout": 30
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+                  "version": "2.151.0"
+                }
+              },
+              "VerifyDemoOTPLambda": {
+                "id": "VerifyDemoOTPLambda",
+                "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "dynamodb:BatchGetItem",
+                                        "dynamodb:GetRecords",
+                                        "dynamodb:GetShardIterator",
+                                        "dynamodb:Query",
+                                        "dynamodb:GetItem",
+                                        "dynamodb:Scan",
+                                        "dynamodb:ConditionCheckItem",
+                                        "dynamodb:BatchWriteItem",
+                                        "dynamodb:PutItem",
+                                        "dynamodb:UpdateItem",
+                                        "dynamodb:DeleteItem",
+                                        "dynamodb:DescribeTable"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
+                                        },
+                                        {
+                                          "Ref": "AWS::NoValue"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "sns:Publish",
+                                      "Effect": "Allow",
+                                      "Resource": "*"
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "VerifyDemoOTPLambdaServiceRoleDefaultPolicy6407C0DA",
+                                "roles": [
+                                  {
+                                    "Ref": "VerifyDemoOTPLambdaServiceRole46625110"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.151.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.151.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.151.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.151.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+                          },
+                          "s3Key": "62cb8832256526bec79cb6419c106b12e05e8af782aa2be2f7290622d91a61e1.zip"
+                        },
+                        "environment": {
+                          "variables": {
+                            "REGION": "ap-south-1",
+                            "USER_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+                            },
+                            "COURSE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+                            },
+                            "TRANSACTION_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+                            },
+                            "TICKET_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+                            },
+                            "LANDING_PAGE_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+                            },
+                            "CERTIFICATE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+                            },
+                            "ADMIN_LOGIN_TABLE": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+                            },
+                            "COMPANY_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+                            },
+                            "EMPLOYEE_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+                            },
+                            "FEEDBACK_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+                            },
+                            "PLACEMENT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+                            },
+                            "WORKSHOP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+                            },
+                            "DEMO_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+                            },
+                            "FORGOT_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+                            },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
+                            "S3_BUCKET": {
+                              "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+                            },
+                            "JWT_SECRET": "super-secret-dev-key",
+                            "GEMINI_API_KEY": "your-gemini-api-key",
+                            "JUDGE0_API_KEY": "your-judge0-api-key",
+                            "STAGE": "dev",
+                            "NODE_ENV": "development",
+                            "LOG_LEVEL": "info",
+                            "ADMIN_JWT_SECRET": "admin-secret-key",
+                            "SES_FROM": "admin@lurnity.com",
+                            "SES_CONFIG_SET": "transactional-emails",
+                            "OTP_DIGITS": "6",
+                            "OTP_TTL_SECONDS": "600",
+                            "RESET_WINDOW_SECONDS": "600"
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 512,
+                        "role": {
+                          "Fn::GetAtt": [
+                            "VerifyDemoOTPLambdaServiceRole46625110",
                             "Arn"
                           ]
                         },
@@ -17162,6 +17986,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -17412,6 +18240,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -17662,6 +18494,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -17912,6 +18748,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -18174,6 +19014,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -18412,6 +19256,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -18650,6 +19498,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -18880,6 +19732,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -19110,6 +19966,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -19340,6 +20200,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -19570,6 +20434,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -19800,6 +20668,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -20030,6 +20902,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -20260,6 +21136,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -20498,6 +21378,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -20736,6 +21620,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -20974,6 +21862,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -21212,6 +22104,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -21450,6 +22346,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -21688,6 +22588,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -21926,6 +22830,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -22164,6 +23072,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -22402,6 +23314,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -22640,6 +23556,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -22878,6 +23798,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -23116,6 +24040,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -23354,6 +24282,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -23592,6 +24524,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -23830,6 +24766,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -24068,6 +25008,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -24306,6 +25250,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -24544,6 +25492,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -24782,6 +25734,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -25020,6 +25976,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -25320,6 +26280,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -25563,6 +26527,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -25832,6 +26800,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -26070,6 +27042,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -26308,6 +27284,10 @@
                             "FORGOT_TABLE_NAME": {
                               "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                             },
+                            "DEMO_OTP_TABLE_NAME": {
+                              "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                            },
+                            "SNS_SENDER_ID": "LURNTY",
                             "S3_BUCKET": {
                               "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
                             },
@@ -26486,6 +27466,14 @@
                   "version": "2.151.0"
                 }
               },
+              "reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": {
+                "id": "reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref",
+                "path": "LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
               "reference-to-LurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
                 "id": "reference-to-LurnityLmsStacklurnityassetsbucket5F02D0E5Ref",
                 "path": "LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStacklurnityassetsbucket5F02D0E5Ref",
@@ -26593,6 +27581,14 @@
               "reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn": {
                 "id": "reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn",
                 "path": "LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn": {
+                "id": "reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnParameter",
                   "version": "2.151.0"
@@ -27102,6 +28098,22 @@
                   "version": "2.151.0"
                 }
               },
+              "LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn": {
+                "id": "LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn",
+                "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
               "LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
                 "id": "LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn",
                 "path": "LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn",
@@ -27473,6 +28485,12 @@
                           "Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
                         ]
                       },
+                      "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": {
+                        "Fn::GetAtt": [
+                          "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+                          "Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+                        ]
+                      },
                       "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
                         "Ref": "lurnityassetsbucket1605654D"
                       },
@@ -27554,6 +28572,12 @@
                           "Outputs.LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn"
                         ]
                       },
+                      "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn": {
+                        "Fn::GetAtt": [
+                          "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+                          "Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
+                        ]
+                      },
                       "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
                         "Fn::GetAtt": [
                           "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
@@ -27573,7 +28597,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/53f05fdc24786ebdd189f95b1f12e1898e56fd49eb722385df4eeffc6fd8c7c4.json"
+                          "/15c569770b260d98d7a81aba6097354ff9f9d614f164c29e4a3dd4cdc1152320.json"
                         ]
                       ]
                     }
@@ -27726,7 +28750,7 @@
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                           "aws:cdk:cloudformation:props": {
                             "deploymentId": {
-                              "Ref": "LurnityLmsApiDeployment658DA5F2b3651201beb2864415600960d652051e"
+                              "Ref": "LurnityLmsApiDeployment658DA5F20843afdeae9712f1d05543d978a99ec8"
                             },
                             "restApiId": {
                               "Ref": "LurnityLmsApi9DD8A13A"
@@ -41570,6 +42594,448 @@
                                   "fqn": "aws-cdk-lib.aws_apigateway.Resource",
                                   "version": "2.151.0"
                                 }
+                              },
+                              "send-otp": {
+                                "id": "send-otp",
+                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                      "aws:cdk:cloudformation:props": {
+                                        "parentId": {
+                                          "Ref": "LurnityLmsApiapidemosAF208642"
+                                        },
+                                        "pathPart": "send-otp",
+                                        "restApiId": {
+                                          "Ref": "LurnityLmsApi9DD8A13A"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "OPTIONS": {
+                                    "id": "OPTIONS",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/OPTIONS",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/OPTIONS/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "apiKeyRequired": false,
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "OPTIONS",
+                                            "integration": {
+                                              "type": "MOCK",
+                                              "requestTemplates": {
+                                                "application/json": "{ statusCode: 200 }"
+                                              },
+                                              "integrationResponses": [
+                                                {
+                                                  "statusCode": "204",
+                                                  "responseParameters": {
+                                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                    "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                    "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "methodResponses": [
+                                              {
+                                                "statusCode": "204",
+                                                "responseParameters": {
+                                                  "method.response.header.Access-Control-Allow-Headers": true,
+                                                  "method.response.header.Access-Control-Allow-Origin": true,
+                                                  "method.response.header.Access-Control-Allow-Methods": true,
+                                                  "method.response.header.Access-Control-Max-Age": true
+                                                }
+                                              }
+                                            ],
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapidemossendotp9E05BB47"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "POST": {
+                                    "id": "POST",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/POST",
+                                    "children": {
+                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp": {
+                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/",
+                                                  {
+                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                  },
+                                                  "/POST/api/demos/send-otp"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp": {
+                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/test-invoke-stage/POST/api/demos/send-otp"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/POST/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "POST",
+                                            "integration": {
+                                              "type": "AWS_PROXY",
+                                              "uri": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                    {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn"
+                                                    },
+                                                    "/invocations"
+                                                  ]
+                                                ]
+                                              },
+                                              "integrationHttpMethod": "POST"
+                                            },
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapidemossendotp9E05BB47"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                  "version": "2.151.0"
+                                }
+                              },
+                              "verify-otp": {
+                                "id": "verify-otp",
+                                "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                                      "aws:cdk:cloudformation:props": {
+                                        "parentId": {
+                                          "Ref": "LurnityLmsApiapidemosAF208642"
+                                        },
+                                        "pathPart": "verify-otp",
+                                        "restApiId": {
+                                          "Ref": "LurnityLmsApi9DD8A13A"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "OPTIONS": {
+                                    "id": "OPTIONS",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/OPTIONS",
+                                    "children": {
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/OPTIONS/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "apiKeyRequired": false,
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "OPTIONS",
+                                            "integration": {
+                                              "type": "MOCK",
+                                              "requestTemplates": {
+                                                "application/json": "{ statusCode: 200 }"
+                                              },
+                                              "integrationResponses": [
+                                                {
+                                                  "statusCode": "204",
+                                                  "responseParameters": {
+                                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                                    "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+                                                    "method.response.header.Access-Control-Max-Age": "'86400'"
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "methodResponses": [
+                                              {
+                                                "statusCode": "204",
+                                                "responseParameters": {
+                                                  "method.response.header.Access-Control-Allow-Headers": true,
+                                                  "method.response.header.Access-Control-Allow-Origin": true,
+                                                  "method.response.header.Access-Control-Allow-Methods": true,
+                                                  "method.response.header.Access-Control-Max-Age": true
+                                                }
+                                              }
+                                            ],
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapidemosverifyotp1884BED1"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  },
+                                  "POST": {
+                                    "id": "POST",
+                                    "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/POST",
+                                    "children": {
+                                      "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp": {
+                                        "id": "ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/",
+                                                  {
+                                                    "Ref": "LurnityLmsApiDeploymentStagedev4EDE8F2E"
+                                                  },
+                                                  "/POST/api/demos/verify-otp"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp": {
+                                        "id": "ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                          "aws:cdk:cloudformation:props": {
+                                            "action": "lambda:InvokeFunction",
+                                            "functionName": {
+                                              "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
+                                            },
+                                            "principal": "apigateway.amazonaws.com",
+                                            "sourceArn": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":execute-api:ap-south-1:",
+                                                  {
+                                                    "Ref": "AWS::AccountId"
+                                                  },
+                                                  ":",
+                                                  {
+                                                    "Ref": "LurnityLmsApi9DD8A13A"
+                                                  },
+                                                  "/test-invoke-stage/POST/api/demos/verify-otp"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                          "version": "2.151.0"
+                                        }
+                                      },
+                                      "Resource": {
+                                        "id": "Resource",
+                                        "path": "LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/POST/Resource",
+                                        "attributes": {
+                                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                          "aws:cdk:cloudformation:props": {
+                                            "authorizationType": "NONE",
+                                            "httpMethod": "POST",
+                                            "integration": {
+                                              "type": "AWS_PROXY",
+                                              "uri": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+                                                    {
+                                                      "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
+                                                    },
+                                                    "/invocations"
+                                                  ]
+                                                ]
+                                              },
+                                              "integrationHttpMethod": "POST"
+                                            },
+                                            "resourceId": {
+                                              "Ref": "LurnityLmsApiapidemosverifyotp1884BED1"
+                                            },
+                                            "restApiId": {
+                                              "Ref": "LurnityLmsApi9DD8A13A"
+                                            }
+                                          }
+                                        },
+                                        "constructInfo": {
+                                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                          "version": "2.151.0"
+                                        }
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                                      "version": "2.151.0"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                                  "version": "2.151.0"
+                                }
                               }
                             },
                             "constructInfo": {
@@ -49507,6 +50973,22 @@
                   "version": "2.151.0"
                 }
               },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
+              "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn": {
+                "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn",
+                "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.151.0"
+                }
+              },
               "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
                 "id": "reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn",
                 "path": "LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn",
@@ -50160,6 +51642,18 @@
                           "Outputs.LurnityLmsStackLambdaNestedStackMarkDemoBookedLambda907F733EArn"
                         ]
                       },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn"
+                        ]
+                      },
+                      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn": {
+                        "Fn::GetAtt": [
+                          "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+                          "Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
+                        ]
+                      },
                       "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
                         "Fn::GetAtt": [
                           "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -50371,7 +51865,7 @@
                           {
                             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
                           },
-                          "/54c38db277113b7ea0658e57ab4155f640ddad8f0cd7f7deea443e77768a8527.json"
+                          "/373ba5555e23b503fb655ec5da82b2206595ebb2c35d33ee3e912e0378e4a1ea.json"
                         ]
                       ]
                     }

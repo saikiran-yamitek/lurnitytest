@@ -485,6 +485,33 @@
     "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/Demo/Resource"
    }
   },
+  "DemoOTPTable59B84F9C": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "sessionId",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "sessionId",
+      "KeyType": "HASH"
+     }
+    ],
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/DemoOTPTable/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
@@ -572,6 +599,11 @@
   "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref": {
    "Value": {
     "Ref": "ForgotPassword42DE43E7"
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": {
+   "Value": {
+    "Ref": "DemoOTPTable59B84F9C"
    }
   },
   "LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": {
@@ -666,6 +698,14 @@
    "Value": {
     "Fn::GetAtt": [
      "Demo34AD4DAD",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DemoOTPTable59B84F9C",
      "Arn"
     ]
    }

@@ -174,7 +174,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/861eebfe05e7db034e29eba4c477671d5caf21ab9b0951d536919faa8be2efad.json"
+       "/9e40451f72f378f223b6080dd9667075a28596343906270e4ce5075a334c1b6b.json"
       ]
      ]
     }
@@ -281,6 +281,12 @@
        "Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
       ]
      },
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": {
+      "Fn::GetAtt": [
+       "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+       "Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      ]
+     },
      "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
       "Ref": "lurnityassetsbucket1605654D"
      },
@@ -362,6 +368,12 @@
        "Outputs.LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn"
       ]
      },
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn": {
+      "Fn::GetAtt": [
+       "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+       "Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
+      ]
+     },
      "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
       "Fn::GetAtt": [
        "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
@@ -381,7 +393,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/53f05fdc24786ebdd189f95b1f12e1898e56fd49eb722385df4eeffc6fd8c7c4.json"
+       "/15c569770b260d98d7a81aba6097354ff9f9d614f164c29e4a3dd4cdc1152320.json"
       ]
      ]
     }
@@ -770,6 +782,18 @@
        "Outputs.LurnityLmsStackLambdaNestedStackMarkDemoBookedLambda907F733EArn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -981,7 +1005,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/54c38db277113b7ea0658e57ab4155f640ddad8f0cd7f7deea443e77768a8527.json"
+       "/373ba5555e23b503fb655ec5da82b2206595ebb2c35d33ee3e912e0378e4a1ea.json"
       ]
      ]
     }

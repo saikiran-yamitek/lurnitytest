@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/71dc0dd8f7fb5dbafd0ea99c19448829609d1fc24fe912abdd34288000fe8498.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/3799afc6532e348465ad522740353230ef3477fbc85daf9f809e7e973d64b064.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -148,6 +148,12 @@
             "data": "Demo34AD4DAD"
           }
         ],
+        "/LurnityLmsStack/DatabaseNestedStack/DemoOTPTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoOTPTable59B84F9C"
+          }
+        ],
         "/LurnityLmsStack/DatabaseNestedStack/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
@@ -244,6 +250,12 @@
             "data": "LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
           }
         ],
+        "/LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+          }
+        ],
         "/LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": [
           {
             "type": "aws:cdk:logicalId",
@@ -316,6 +328,12 @@
             "data": "LurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn"
           }
         ],
+        "/LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
+          }
+        ],
         "/LurnityLmsStack/DatabaseNestedStack/LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -340,7 +358,7 @@
               "new NodejsFunction (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\aws-lambda-nodejs\\lib\\function.js:1:2171)",
               "makeLambda (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:37:3)",
               "new LambdaNestedStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:85:28)",
-              "new LurnityLmsStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lurnitylms-stack.js:64:25)",
+              "new LurnityLmsStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lurnitylms-stack.js:66:25)",
               "file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/bin/lurnity.js:17:1",
               "ModuleJob.run (node:internal/modules/esm/module_job:194:25)"
             ]
@@ -1492,6 +1510,42 @@
             "data": "MarkDemoBookedLambdaE6FE5C81"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SendDemoOTPLambdaServiceRoleC1594B22"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SendDemoOTPLambdaServiceRoleDefaultPolicy77D39596"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/SendDemoOTPLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SendDemoOTPLambda8A029DC1"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VerifyDemoOTPLambdaServiceRole46625110"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VerifyDemoOTPLambdaServiceRoleDefaultPolicy6407C0DA"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VerifyDemoOTPLambdaD55BB0CF"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/TranscribeLambda/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -2290,6 +2344,12 @@
             "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStacklurnityassetsbucket5F02D0E5Ref": [
           {
             "type": "aws:cdk:logicalId",
@@ -2372,6 +2432,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
           }
         ],
         "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": [
@@ -2752,6 +2818,18 @@
             "data": "LurnityLmsStackLambdaNestedStackMarkDemoBookedLambda907F733EArn"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2959,7 +3037,7 @@
         "/LurnityLmsStack/ApiNestedStack": [
           {
             "type": "aws:cdk:info",
-            "data": "Number of resources: 487 is approaching allowed maximum of 500",
+            "data": "Number of resources: 497 is approaching allowed maximum of 500",
             "trace": [
               "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
               "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
@@ -3000,7 +3078,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F2b3651201beb2864415600960d652051e"
+            "data": "LurnityLmsApiDeployment658DA5F20843afdeae9712f1d05543d978a99ec8"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -4893,6 +4971,66 @@
             "data": "LurnityLmsApiapidemosbookPOSTC02106BA"
           }
         ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemossendotp9E05BB47"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemossendotpOPTIONS7114592F"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemossendotpPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapidemossendotpDB291073"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.send-otp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemossendotpPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapidemossendotp9B9F5D8A"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/send-otp/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemossendotpPOST214F07F9"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemosverifyotp1884BED1"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemosverifyotpOPTIONSD8CBFD80"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemosverifyotpPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapidemosverifyotp2F11364B"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.demos.verify-otp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemosverifyotpPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapidemosverifyotpD3EF7C86"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/demos/verify-otp/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapidemosverifyotpPOST4E7C9725"
+          }
+        ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/transcribe/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -6277,6 +6415,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackMarkDemoBookedLambda907F733EArn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSendDemoOTPLambdaC19322E5Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": [

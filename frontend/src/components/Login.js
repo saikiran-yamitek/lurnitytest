@@ -137,7 +137,7 @@ export default function AuthForm() {
         {/* Sign Up Form */}
         <div className="auth-form-container sign-up-container">
           <form onSubmit={handleRegisterSubmit}>
-            <h1>Create Account</h1>
+            <h1>Create Accoun</h1>
             <span>Start career with Lurnity</span>
             
             <input
