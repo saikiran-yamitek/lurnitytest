@@ -42,45 +42,48 @@ export default function DemoForm({ onClose }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+
+    // Update form
+    setForm((prev) => ({ ...prev, [name]: value }));
 
     if (name === "state") {
       setForm((prev) => ({ ...prev, city: "" }));
     }
 
-    // In handleChange
-if (name === "phone") {
-  const phonePattern = /^\+\d{1,3}\d{10}$/; // country code + 10-digit number
-  if (!value.startsWith("+")) {
-    setErrors({
-      ...errors,
-      phone: "Phone number must include country code (e.g., +91xxxxxxxxxx)"
-    });
-  } else if (!phonePattern.test(value)) {
-    setErrors({
-      ...errors,
-      phone: "Phone number must include valid country code and 10 digits"
-    });
-  } else {
-    setErrors({ ...errors, phone: "" });
-  }
-}
-
+    // Phone validation
+    if (name === "phone") {
+      const phonePattern = /^\+\d{1,3}\d{10}$/; // +countrycode + 10 digits
+      if (!value.startsWith("+")) {
+        setErrors({
+          ...errors,
+          phone: "Phone number must include country code (e.g., +91xxxxxxxxxx)"
+        });
+      } else if (!phonePattern.test(value)) {
+        setErrors({
+          ...errors,
+          phone: "Phone number must include valid country code and 10 digits"
+        });
+      } else {
+        setErrors({ ...errors, phone: "" });
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // Check errors
     if (errors.phone) {
       setMsg("❌ Please fix form errors before submitting.");
       return;
     }
 
+    // Validate phone again before submit
     const phonePattern = /^\+\d{1,3}\d{10}$/;
-if (!phonePattern.test(form.phone)) {
-  setMsg("❌ Phone number must include valid country code and 10 digits.");
-  return;
-}
+    if (!phonePattern.test(form.phone)) {
+      setMsg("❌ Phone number must include valid country code and 10 digits.");
+      return;
+    }
 
     setIsSubmitting(true);
     setMsg("");
@@ -114,242 +117,105 @@ if (!phonePattern.test(form.phone)) {
           <button className="lurnity-close-btn" onClick={onClose}>
             <FaTimes />
           </button>
-          
-          {/* Premium Header */}
+
+          {/* Header and Benefits */}
           <div className="lurnity-demo-header">
-            <div className="lurnity-demo-icon">
-              <FaRocket />
-            </div>
+            <div className="lurnity-demo-icon"><FaRocket /></div>
             <h2 className="lurnity-demo-title">
               Book Your <span className="lurnity-gradient-text">Exclusive</span> Demo
             </h2>
             <p className="lurnity-demo-subtitle">
               Experience premium mentorship and see how Lurnity can transform your career
             </p>
-            
-            {/* Premium Benefits */}
+
             <div className="lurnity-benefits">
-              <div className="lurnity-benefit">
-                <FaStar className="benefit-icon" />
-                <span>30-min personalized session</span>
-              </div>
-              <div className="lurnity-benefit">
-                <FaCheckCircle className="benefit-icon" />
-                <span>Portfolio review & feedback</span>
-              </div>
-              <div className="lurnity-benefit">
-                <FaGraduationCap className="benefit-icon" />
-                <span>Career roadmap discussion</span>
-              </div>
+              <div className="lurnity-benefit"><FaStar className="benefit-icon" /><span>30-min personalized session</span></div>
+              <div className="lurnity-benefit"><FaCheckCircle className="benefit-icon" /><span>Portfolio review & feedback</span></div>
+              <div className="lurnity-benefit"><FaGraduationCap className="benefit-icon" /><span>Career roadmap discussion</span></div>
             </div>
           </div>
 
-          {/* Premium Form */}
+          {/* Form */}
           <form onSubmit={handleSubmit} className="lurnity-demo-form">
             <div className="lurnity-form-grid">
-              
-              {/* Name Field */}
+              {/* Name */}
               <div className="lurnity-form-group">
-                <label className="lurnity-label">
-                  <FaUser className="label-icon" />
-                  Full Name
-                </label>
-                <div className="lurnity-input-container">
-                  <input
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    className="lurnity-input"
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
+                <label className="lurnity-label"><FaUser className="label-icon" />Full Name</label>
+                <input name="name" value={form.name} onChange={handleChange} className="lurnity-input" placeholder="Enter your full name" required />
               </div>
 
-              {/* Email Field */}
+              {/* Email */}
               <div className="lurnity-form-group">
-                <label className="lurnity-label">
-                  <FaEnvelope className="label-icon" />
-                  Email Address
-                </label>
-                <div className="lurnity-input-container">
-                  <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    className="lurnity-input"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
+                <label className="lurnity-label"><FaEnvelope className="label-icon" />Email Address</label>
+                <input name="email" type="email" value={form.email} onChange={handleChange} className="lurnity-input" placeholder="your.email@example.com" required />
               </div>
 
-              {/* Phone Field */}
+              {/* Phone */}
               <div className="lurnity-form-group">
-                <label className="lurnity-label">
-                  <FaPhone className="label-icon" />
-                  Phone Number
-                </label>
-                <div className="lurnity-input-container">
-                  <input
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    className={`lurnity-input ${errors.phone ? 'lurnity-input-error' : ''}`}
-                    placeholder="10-digit phone number"
-                    maxLength="10"
-                    required
-                  />
-                </div>
+                <label className="lurnity-label"><FaPhone className="label-icon" />Phone Number</label>
+                <input
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  className={`lurnity-input ${errors.phone ? 'lurnity-input-error' : ''}`}
+                  placeholder="+91xxxxxxxxxx"
+                  required
+                />
                 {errors.phone && <span className="lurnity-error-text">{errors.phone}</span>}
               </div>
 
-              {/* Education Field */}
+              {/* Education */}
               <div className="lurnity-form-group">
-                <label className="lurnity-label">
-                  <FaGraduationCap className="label-icon" />
-                  Education Level
-                </label>
-                <div className="lurnity-input-container">
-                  <select
-                    name="education"
-                    value={form.education}
-                    onChange={handleChange}
-                    className="lurnity-select"
-                    required
-                  >
-                    <option value="">Select Education Level</option>
-                    <option value="High School">High School</option>
-                    <option value="Diploma">Diploma</option>
-                    <option value="Bachelor's">Bachelor's Degree</option>
-                    <option value="Master's">Master's Degree</option>
-                    <option value="PhD">PhD</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+                <label className="lurnity-label"><FaGraduationCap className="label-icon" />Education Level</label>
+                <select name="education" value={form.education} onChange={handleChange} className="lurnity-select" required>
+                  <option value="">Select Education Level</option>
+                  <option value="High School">High School</option>
+                  <option value="Diploma">Diploma</option>
+                  <option value="Bachelor's">Bachelor's Degree</option>
+                  <option value="Master's">Master's Degree</option>
+                  <option value="PhD">PhD</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
 
-              {/* Current Education Field */}
+              {/* Current Education */}
               <div className="lurnity-form-group">
-                <label className="lurnity-label">
-                  <FaGraduationCap className="label-icon" />
-                  Current Field of Study
-                </label>
-                <div className="lurnity-input-container">
-                  <input
-                    name="currentEducation"
-                    value={form.currentEducation}
-                    onChange={handleChange}
-                    className="lurnity-input"
-                    placeholder="e.g., Computer Science, Engineering"
-                    required
-                  />
-                </div>
+                <label className="lurnity-label"><FaGraduationCap className="label-icon" />Current Field of Study</label>
+                <input name="currentEducation" value={form.currentEducation} onChange={handleChange} className="lurnity-input" placeholder="e.g., Computer Science, Engineering" required />
               </div>
 
-              {/* State Field */}
+              {/* State */}
               <div className="lurnity-form-group">
-                <label className="lurnity-label">
-                  <FaMapMarkerAlt className="label-icon" />
-                  State
-                </label>
-                <div className="lurnity-input-container">
-                  <select
-                    name="state"
-                    value={form.state}
-                    onChange={handleChange}
-                    className="lurnity-select"
-                    required
-                  >
-                    <option value="">Select State</option>
-                    {states.map((s) => (
-                      <option key={s.isoCode} value={s.name}>{s.name}</option>
-                    ))}
-                  </select>
-                </div>
+                <label className="lurnity-label"><FaMapMarkerAlt className="label-icon" />State</label>
+                <select name="state" value={form.state} onChange={handleChange} className="lurnity-select" required>
+                  <option value="">Select State</option>
+                  {states.map((s) => <option key={s.isoCode} value={s.name}>{s.name}</option>)}
+                </select>
               </div>
 
-              {/* City Field */}
+              {/* City */}
               <div className="lurnity-form-group">
-                <label className="lurnity-label">
-                  <FaMapMarkerAlt className="label-icon" />
-                  City
-                </label>
-                <div className="lurnity-input-container">
-                  <select
-                    name="city"
-                    value={form.city}
-                    onChange={handleChange}
-                    className="lurnity-select"
-                    required
-                  >
-                    <option value="">Select City</option>
-                    {cities.map((c) => (
-                      <option key={c.name} value={c.name}>{c.name}</option>
-                    ))}
-                  </select>
-                </div>
+                <label className="lurnity-label"><FaMapMarkerAlt className="label-icon" />City</label>
+                <select name="city" value={form.city} onChange={handleChange} className="lurnity-select" required>
+                  <option value="">Select City</option>
+                  {cities.map((c) => <option key={c.name} value={c.name}>{c.name}</option>)}
+                </select>
               </div>
 
-              {/* College Field */}
+              {/* College */}
               <div className="lurnity-form-group lurnity-form-group-full">
-                <label className="lurnity-label">
-                  <FaUniversity className="label-icon" />
-                  College/University
-                </label>
-                <div className="lurnity-input-container">
-                  <input
-                    name="college"
-                    value={form.college}
-                    onChange={handleChange}
-                    className="lurnity-input"
-                    placeholder="Enter your college/university name"
-                    required
-                  />
-                </div>
+                <label className="lurnity-label"><FaUniversity className="label-icon" />College/University</label>
+                <input name="college" value={form.college} onChange={handleChange} className="lurnity-input" placeholder="Enter your college/university name" required />
               </div>
             </div>
 
-            {/* Submit Button */}
-            <button 
-              type="submit" 
-              className="lurnity-submit-btn"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
-                  <FaSpinner className="btn-spinner" />
-                  Booking Your Demo...
-                </>
-              ) : (
-                <>
-                  <FaRocket className="btn-icon" />
-                  Book My Free Demo
-                </>
-              )}
+            {/* Submit */}
+            <button type="submit" className="lurnity-submit-btn" disabled={isSubmitting}>
+              {isSubmitting ? <><FaSpinner className="btn-spinner" />Booking Your Demo...</> : <><FaRocket className="btn-icon" />Book My Free Demo</>}
             </button>
 
             {msg && <p className="lurnity-form-message">{msg}</p>}
           </form>
-
-          {/* Trust Indicators */}
-          <div className="lurnity-trust-indicators">
-            <div className="trust-item">
-              <span className="trust-number">15,847+</span>
-              <span className="trust-label">Students Placed</span>
-            </div>
-            <div className="trust-divider"></div>
-            <div className="trust-item">
-              <span className="trust-number">4.94★</span>
-              <span className="trust-label">Student Rating</span>
-            </div>
-            <div className="trust-divider"></div>
-            <div className="trust-item">
-              <span className="trust-number">100%</span>
-              <span className="trust-label">Free Session</span>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -357,27 +223,9 @@ if (!phonePattern.test(form.phone)) {
       {showSuccessPopup && (
         <div className="lurnity-success-overlay">
           <div className="lurnity-success-container">
-            <div className="lurnity-success-icon">
-              <FaCheckCircle />
-            </div>
+            <div className="lurnity-success-icon"><FaCheckCircle /></div>
             <h3 className="lurnity-success-title">Demo Booked Successfully!</h3>
-            <p className="lurnity-success-message">
-              Our premium career advisor will contact you within 24 hours to schedule your exclusive demo session.
-            </p>
-            <div className="lurnity-success-benefits">
-              <div className="success-benefit">
-                <FaCheckCircle className="success-check" />
-                <span>Personalized curriculum review</span>
-              </div>
-              <div className="success-benefit">
-                <FaCheckCircle className="success-check" />
-                <span>Career roadmap discussion</span>
-              </div>
-              <div className="success-benefit">
-                <FaCheckCircle className="success-check" />
-                <span>Live coding session</span>
-              </div>
-            </div>
+            <p className="lurnity-success-message">Our premium career advisor will contact you within 24 hours to schedule your exclusive demo session.</p>
           </div>
         </div>
       )}
