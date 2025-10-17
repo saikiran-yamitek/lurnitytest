@@ -194,7 +194,8 @@ placementId.addResource("students").addMethod("GET", new apigateway.LambdaIntegr
     const demoBook = demos.addResource("book");
     demoBook.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listDemosLambda));
     demoBook.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createDemoLambda));
-
+    demos.addResource("send-otp").addMethod("POST", new apigateway.LambdaIntegration(lambdas.sendDemoOTPLambda));
+    demos.addResource("verify-otp").addMethod("POST", new apigateway.LambdaIntegration(lambdas.verifyDemoOTPLambda));
     // --- Transcribe ---
     const transcribe = apiResource.addResource("transcribe");
     transcribe.addMethod("POST", new apigateway.LambdaIntegration(lambdas.transcribeLambda));

@@ -109,6 +109,12 @@ this.forgotPasswordTable = new dynamodb.Table(this, process.env.FORGOT_TABLE_NAM
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
+    this.demoOTPTable = new dynamodb.Table(this, process.env.DEMO_OTP_TABLE_NAME || "DemoOTPTable", {
+  partitionKey: { name: "sessionId", type: dynamodb.AttributeType.STRING },
+  billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+  timeToLiveAttribute: "ttl", // Automatically deletes expired OTPs
+  removalPolicy: cdk.RemovalPolicy.DESTROY,
+});
   }
 }
 

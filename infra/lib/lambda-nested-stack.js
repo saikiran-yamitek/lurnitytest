@@ -168,7 +168,8 @@ this.createDemoLambda = makeLambda("CreateDemoLambda", "createDemo", demoLambdaP
 
     this.listDemosLambda = makeLambda("ListDemosLambda", "listDemos", demoLambdaPath);
     this.markDemoBookedLambda = makeLambda("MarkDemoBookedLambda", "markDemoBooked", demoLambdaPath);
-
+this.sendDemoOTPLambda = makeLambda("SendDemoOTPLambda", "sendDemoOTP", demoLambdaPath);
+this.verifyDemoOTPLambda = makeLambda("VerifyDemoOTPLambda", "verifyDemoOTP", demoLambdaPath);
     // Transcribe lambda
     this.transcribeLambda = makeLambda("TranscribeLambda", "transcribe", transcribeLambdaPath);
 
