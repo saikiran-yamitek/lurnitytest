@@ -80,7 +80,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "97847c821f83cd4fd0c1fb3b2e8999520724dfddb7f8bd7eecf703f55e372c34.zip"
+     "S3Key": "68d0b04fd5b145ea51c26eedb04c4b6714557115abc0b88870f278eb5e4dcf00.zip"
     },
     "Environment": {
      "Variables": {
@@ -131,6 +131,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -165,7 +168,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListUsersLambda/Resource",
-    "aws:asset:path": "asset.97847c821f83cd4fd0c1fb3b2e8999520724dfddb7f8bd7eecf703f55e372c34",
+    "aws:asset:path": "asset.68d0b04fd5b145ea51c26eedb04c4b6714557115abc0b88870f278eb5e4dcf00",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -250,7 +253,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "9159ec5416b061ac3e33f22912c78be8ad063e3158d0d17209bf99927ac14be9.zip"
+     "S3Key": "56dbc36804c9606231bae61adbbb4ca1ab03189bca4309ba4abd215783b3a824.zip"
     },
     "Environment": {
      "Variables": {
@@ -301,6 +304,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -335,7 +341,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateUserLambda/Resource",
-    "aws:asset:path": "asset.9159ec5416b061ac3e33f22912c78be8ad063e3158d0d17209bf99927ac14be9",
+    "aws:asset:path": "asset.56dbc36804c9606231bae61adbbb4ca1ab03189bca4309ba4abd215783b3a824",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -420,7 +426,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "237dbcaac08b2792c4bb8c2381cff0e8c30f6e169d641e8412c273e05fcec834.zip"
+     "S3Key": "acbe91e20e7312d1e2f6561f46a4a912b1ee2853f178bb0b7a1af8df3294a4f2.zip"
     },
     "Environment": {
      "Variables": {
@@ -471,6 +477,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -505,7 +514,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteUserLambda/Resource",
-    "aws:asset:path": "asset.237dbcaac08b2792c4bb8c2381cff0e8c30f6e169d641e8412c273e05fcec834",
+    "aws:asset:path": "asset.acbe91e20e7312d1e2f6561f46a4a912b1ee2853f178bb0b7a1af8df3294a4f2",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -621,7 +630,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d7aaf10dbd6d4077a8f0574f70244266dddc06889ed50dd70c6637bd3593d69f.zip"
+     "S3Key": "3b57731c5520db141faa8b1405fe6b43706a1cfce28c75cc8203fde4b162d618.zip"
     },
     "Environment": {
      "Variables": {
@@ -672,6 +681,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -706,7 +718,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ExportUsersCsvLambda/Resource",
-    "aws:asset:path": "asset.d7aaf10dbd6d4077a8f0574f70244266dddc06889ed50dd70c6637bd3593d69f",
+    "aws:asset:path": "asset.3b57731c5520db141faa8b1405fe6b43706a1cfce28c75cc8203fde4b162d618",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -811,7 +823,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "11378ac352d4610195afa89373c4e9af0b3c1de02d6a88d4e84164eb6546a155.zip"
+     "S3Key": "59eb236e53d92c62f6806ba18491f598c49c2e7f5ec2796f89988e9d1da3ebb6.zip"
     },
     "Environment": {
      "Variables": {
@@ -862,6 +874,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -896,7 +911,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateTransactionLambda/Resource",
-    "aws:asset:path": "asset.11378ac352d4610195afa89373c4e9af0b3c1de02d6a88d4e84164eb6546a155",
+    "aws:asset:path": "asset.59eb236e53d92c62f6806ba18491f598c49c2e7f5ec2796f89988e9d1da3ebb6",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1052,6 +1067,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1182,7 +1200,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "da50d0405561a15598d03d7791cf08fed0815a8bf1176c1eaf742ba3898316b5.zip"
+     "S3Key": "5243ad46515a5eefd92655069c957d1e4b05470adf95119d51120e147e3fabaf.zip"
     },
     "Environment": {
      "Variables": {
@@ -1233,6 +1251,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1267,7 +1288,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GenerateReceiptLambda/Resource",
-    "aws:asset:path": "asset.da50d0405561a15598d03d7791cf08fed0815a8bf1176c1eaf742ba3898316b5",
+    "aws:asset:path": "asset.5243ad46515a5eefd92655069c957d1e4b05470adf95119d51120e147e3fabaf",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -1395,6 +1416,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1557,6 +1581,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1719,6 +1746,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1881,6 +1911,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -1961,7 +1994,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "0455346d51271f4978f6d560cc6a4e58e9ed459e5542243a01e67fe40b55588e.zip"
+     "S3Key": "66bdd9ebdc4f0d95e922150db8943253408c6ecfc60fce43cad3007617e5649e.zip"
     },
     "Environment": {
      "Variables": {
@@ -2012,6 +2045,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2045,7 +2081,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetStatsLambda/Resource",
-    "aws:asset:path": "asset.0455346d51271f4978f6d560cc6a4e58e9ed459e5542243a01e67fe40b55588e",
+    "aws:asset:path": "asset.66bdd9ebdc4f0d95e922150db8943253408c6ecfc60fce43cad3007617e5649e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2173,6 +2209,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2292,7 +2331,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "78719e24faf368ebc2f7b548ce6e270bb695ad80a3da31510b316d6d3780545a.zip"
+     "S3Key": "5547f50051e3dd40687de5fabb2894f19fbacb3b6c973ebf252f00d6059a6b26.zip"
     },
     "Environment": {
      "Variables": {
@@ -2343,6 +2382,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2377,7 +2419,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SetUserLockLambda/Resource",
-    "aws:asset:path": "asset.78719e24faf368ebc2f7b548ce6e270bb695ad80a3da31510b316d6d3780545a",
+    "aws:asset:path": "asset.5547f50051e3dd40687de5fabb2894f19fbacb3b6c973ebf252f00d6059a6b26",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -2505,6 +2547,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2667,6 +2712,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2829,6 +2877,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -2991,6 +3042,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3153,6 +3207,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3370,6 +3427,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3587,6 +3647,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3753,7 +3816,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "abd26c924a2bb293b829260b880ca20caceffc136125d9c50861aeca214a9baf.zip"
+     "S3Key": "edf663e79218f862db411562e7aabf3d59cc14757615c79035067899ce03dea7.zip"
     },
     "Environment": {
      "Variables": {
@@ -3804,6 +3867,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -3838,7 +3904,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetCertificateByIdLambda/Resource",
-    "aws:asset:path": "asset.abd26c924a2bb293b829260b880ca20caceffc136125d9c50861aeca214a9baf",
+    "aws:asset:path": "asset.edf663e79218f862db411562e7aabf3d59cc14757615c79035067899ce03dea7",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -4021,6 +4087,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4238,6 +4307,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4400,6 +4472,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4562,6 +4637,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4724,6 +4802,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -4909,6 +4990,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5094,6 +5178,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5279,6 +5366,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5464,6 +5554,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5649,6 +5742,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -5834,6 +5930,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6016,6 +6115,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6147,7 +6249,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "ced15583f356409cc11a3e71a8ff80ee6ed04368d876641d7126cd1b9f5f9cc8.zip"
+     "S3Key": "7106edf29ecd65414b4afd10653e2d8037a0111524d53680009647ce0bc175df.zip"
     },
     "Environment": {
      "Variables": {
@@ -6198,6 +6300,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6232,7 +6337,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListFeedbacksLambda/Resource",
-    "aws:asset:path": "asset.ced15583f356409cc11a3e71a8ff80ee6ed04368d876641d7126cd1b9f5f9cc8",
+    "aws:asset:path": "asset.7106edf29ecd65414b4afd10653e2d8037a0111524d53680009647ce0bc175df",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -6380,6 +6485,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6574,6 +6682,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6768,6 +6879,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -6962,6 +7076,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7156,6 +7273,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7350,6 +7470,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7544,6 +7667,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7738,6 +7864,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -7932,6 +8061,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8075,7 +8207,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4e6bc3ba235cb193750b66cd0ee84d28f998836b13a0bc212ddb0aa8e3cf43d3.zip"
+     "S3Key": "53210a7b2c73dfa7aa8fddd6f09a1873be6f317717e9e395e136033374df55f6.zip"
     },
     "Environment": {
      "Variables": {
@@ -8126,6 +8258,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8160,7 +8295,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPlacementStudentsLambda/Resource",
-    "aws:asset:path": "asset.4e6bc3ba235cb193750b66cd0ee84d28f998836b13a0bc212ddb0aa8e3cf43d3",
+    "aws:asset:path": "asset.53210a7b2c73dfa7aa8fddd6f09a1873be6f317717e9e395e136033374df55f6",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8320,6 +8455,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8460,7 +8598,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "6582b8bf2539b194cb6273625cf46f382f9714d47d86d829e7a46b1d8af14b29.zip"
+     "S3Key": "bebb729588eb6f02195db9aa2cfa7509c06a1f500f8a95eca05a401eddab8a56.zip"
     },
     "Environment": {
      "Variables": {
@@ -8511,6 +8649,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8545,7 +8686,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ListWorkshopsLambda/Resource",
-    "aws:asset:path": "asset.6582b8bf2539b194cb6273625cf46f382f9714d47d86d829e7a46b1d8af14b29",
+    "aws:asset:path": "asset.bebb729588eb6f02195db9aa2cfa7509c06a1f500f8a95eca05a401eddab8a56",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8622,7 +8763,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1777fcfd85f13ec0a8efb913c5ee9dbd3c3375a663ceae04236cf2b77469c481.zip"
+     "S3Key": "0f3dce2afa0414ab4b83097e995105fdaa8050a6a44f841d7a799d1ba3bc9c9c.zip"
     },
     "Environment": {
      "Variables": {
@@ -8673,6 +8814,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8707,7 +8851,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateWorkshopLambda/Resource",
-    "aws:asset:path": "asset.1777fcfd85f13ec0a8efb913c5ee9dbd3c3375a663ceae04236cf2b77469c481",
+    "aws:asset:path": "asset.0f3dce2afa0414ab4b83097e995105fdaa8050a6a44f841d7a799d1ba3bc9c9c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8784,7 +8928,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "053766fdfe809ac7cbd48a1051e2962123483b313994bc584ff7d587d2b4dc7f.zip"
+     "S3Key": "9f4ddeafd1707fafc4babbddbdc198bd3c4b03545ad75d6342d2b51439c42a23.zip"
     },
     "Environment": {
      "Variables": {
@@ -8835,6 +8979,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -8869,7 +9016,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentLambda/Resource",
-    "aws:asset:path": "asset.053766fdfe809ac7cbd48a1051e2962123483b313994bc584ff7d587d2b4dc7f",
+    "aws:asset:path": "asset.9f4ddeafd1707fafc4babbddbdc198bd3c4b03545ad75d6342d2b51439c42a23",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -8975,7 +9122,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "2aad40d39957c1d501ffc2725688838409217cf596eb77c1aed8ea8d7056b14d.zip"
+     "S3Key": "ecacfde0d89bbb3b27b6fe7063efc6dea44ca43fdc11a52a47a249afce115a23.zip"
     },
     "Environment": {
      "Variables": {
@@ -9026,6 +9173,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9060,7 +9210,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetUserWorkshopsLambda/Resource",
-    "aws:asset:path": "asset.2aad40d39957c1d501ffc2725688838409217cf596eb77c1aed8ea8d7056b14d",
+    "aws:asset:path": "asset.ecacfde0d89bbb3b27b6fe7063efc6dea44ca43fdc11a52a47a249afce115a23",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9166,7 +9316,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "2721b520e7f63211cb16c6bee749c192252ed9b3638a9ea81ba37f56bee7e4c7.zip"
+     "S3Key": "c3db009b7dbcfe6fea83606247e46b0830048322181bf8770b98dd27e5b54f4a.zip"
     },
     "Environment": {
      "Variables": {
@@ -9217,6 +9367,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9251,7 +9404,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetWorkshopStudentsLambda/Resource",
-    "aws:asset:path": "asset.2721b520e7f63211cb16c6bee749c192252ed9b3638a9ea81ba37f56bee7e4c7",
+    "aws:asset:path": "asset.c3db009b7dbcfe6fea83606247e46b0830048322181bf8770b98dd27e5b54f4a",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9328,7 +9481,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "bac47f1de7d413295e966d230f8c6886de3a5da252d7331ec593441a22e64972.zip"
+     "S3Key": "92d320fed3f0763234d9e485ec34f89eceaca062661e782043aa3c3d061c3cb0.zip"
     },
     "Environment": {
      "Variables": {
@@ -9379,6 +9532,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9413,7 +9569,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/DeleteWorkshopLambda/Resource",
-    "aws:asset:path": "asset.bac47f1de7d413295e966d230f8c6886de3a5da252d7331ec593441a22e64972",
+    "aws:asset:path": "asset.92d320fed3f0763234d9e485ec34f89eceaca062661e782043aa3c3d061c3cb0",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9490,7 +9646,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "66592f9e1d0c29af30e87956366c95b0fdefef5af0b4cdab5e1e820059d2ecdf.zip"
+     "S3Key": "577c15e2276d08850b0c49fb9c5adc2dd9fd69e290a02df3b8fa15edd4340ecb.zip"
     },
     "Environment": {
      "Variables": {
@@ -9541,6 +9697,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9575,7 +9734,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetWorkshopsByInchargeLambda/Resource",
-    "aws:asset:path": "asset.66592f9e1d0c29af30e87956366c95b0fdefef5af0b4cdab5e1e820059d2ecdf",
+    "aws:asset:path": "asset.577c15e2276d08850b0c49fb9c5adc2dd9fd69e290a02df3b8fa15edd4340ecb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9652,7 +9811,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b2aeaf01de94009c0288c01dadbba775dc3053e534ce16b2a65a48c7790337ef.zip"
+     "S3Key": "5330520c9a6ef5c52b4a656bb8025d5df8801b21c0599284a10f25dbc987c1c4.zip"
     },
     "Environment": {
      "Variables": {
@@ -9703,6 +9862,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9737,7 +9899,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStudentAttendanceLambda/Resource",
-    "aws:asset:path": "asset.b2aeaf01de94009c0288c01dadbba775dc3053e534ce16b2a65a48c7790337ef",
+    "aws:asset:path": "asset.5330520c9a6ef5c52b4a656bb8025d5df8801b21c0599284a10f25dbc987c1c4",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9814,7 +9976,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c97f855f65f0ed538d4a032a980d4e727c9f8312f965093ec94a70b4e0cd9630.zip"
+     "S3Key": "ab85c926300c571398e0179c0fceb304357f5ee948ebdfd81b39b4621ba6bf4f.zip"
     },
     "Environment": {
      "Variables": {
@@ -9865,6 +10027,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -9899,7 +10064,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterStudentPutLambda/Resource",
-    "aws:asset:path": "asset.c97f855f65f0ed538d4a032a980d4e727c9f8312f965093ec94a70b4e0cd9630",
+    "aws:asset:path": "asset.ab85c926300c571398e0179c0fceb304357f5ee948ebdfd81b39b4621ba6bf4f",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -9976,7 +10141,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "0b8d9044e5199478362b1c32a9f75451777b59d2c37a97b8243240cd0cbeced6.zip"
+     "S3Key": "2253895935c4cdd3e7ebaacf7361ed1fea49cff951e3d41608e76e4b33363cd6.zip"
     },
     "Environment": {
      "Variables": {
@@ -10027,6 +10192,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10061,7 +10229,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateWorkshopLambda/Resource",
-    "aws:asset:path": "asset.0b8d9044e5199478362b1c32a9f75451777b59d2c37a97b8243240cd0cbeced6",
+    "aws:asset:path": "asset.2253895935c4cdd3e7ebaacf7361ed1fea49cff951e3d41608e76e4b33363cd6",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -10189,6 +10357,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10351,6 +10522,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10513,6 +10687,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10675,6 +10852,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10837,6 +11017,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -10999,6 +11182,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11161,6 +11347,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11323,6 +11512,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11503,6 +11695,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11683,6 +11878,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -11718,207 +11916,6 @@
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/Resource",
     "aws:asset:path": "asset.62cb8832256526bec79cb6419c106b12e05e8af782aa2be2f7290622d91a61e1",
-    "aws:asset:is-bundled": true,
-    "aws:asset:property": "Code"
-   }
-  },
-  "TranscribeLambdaServiceRoleB69EE5C9": {
-   "Type": "AWS::IAM::Role",
-   "Properties": {
-    "AssumeRolePolicyDocument": {
-     "Statement": [
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "Service": "lambda.amazonaws.com"
-       }
-      }
-     ],
-     "Version": "2012-10-17"
-    },
-    "ManagedPolicyArns": [
-     {
-      "Fn::Join": [
-       "",
-       [
-        "arn:",
-        {
-         "Ref": "AWS::Partition"
-        },
-        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-       ]
-      ]
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/ServiceRole/Resource"
-   }
-  },
-  "TranscribeLambdaServiceRoleDefaultPolicy9493EE72": {
-   "Type": "AWS::IAM::Policy",
-   "Properties": {
-    "PolicyDocument": {
-     "Statement": [
-      {
-       "Action": [
-        "s3:GetObject*",
-        "s3:GetBucket*",
-        "s3:List*",
-        "s3:DeleteObject*",
-        "s3:PutObject",
-        "s3:PutObjectLegalHold",
-        "s3:PutObjectRetention",
-        "s3:PutObjectTagging",
-        "s3:PutObjectVersionTagging",
-        "s3:Abort*"
-       ],
-       "Effect": "Allow",
-       "Resource": [
-        {
-         "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn"
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           {
-            "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn"
-           },
-           "/*"
-          ]
-         ]
-        }
-       ]
-      },
-      {
-       "Action": "dynamodb:*",
-       "Effect": "Allow",
-       "Resource": [
-        {
-         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           {
-            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
-           },
-           "/index/*"
-          ]
-         ]
-        }
-       ]
-      }
-     ],
-     "Version": "2012-10-17"
-    },
-    "PolicyName": "TranscribeLambdaServiceRoleDefaultPolicy9493EE72",
-    "Roles": [
-     {
-      "Ref": "TranscribeLambdaServiceRoleB69EE5C9"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/ServiceRole/DefaultPolicy/Resource"
-   }
-  },
-  "TranscribeLambda9461F407": {
-   "Type": "AWS::Lambda::Function",
-   "Properties": {
-    "Code": {
-     "S3Bucket": {
-      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
-     },
-     "S3Key": "501fff0c0729b0f0ba26dd481bc2168ae52c8ca5a4c45b9f579e1607c9efe4df.zip"
-    },
-    "Environment": {
-     "Variables": {
-      "REGION": "ap-south-1",
-      "USER_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
-      },
-      "COURSE_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
-      },
-      "TRANSACTION_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
-      },
-      "TICKET_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
-      },
-      "LANDING_PAGE_TABLE": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
-      },
-      "CERTIFICATE_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
-      },
-      "ADMIN_LOGIN_TABLE": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
-      },
-      "COMPANY_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
-      },
-      "EMPLOYEE_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
-      },
-      "FEEDBACK_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
-      },
-      "PLACEMENT_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
-      },
-      "WORKSHOP_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
-      },
-      "DEMO_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
-      },
-      "FORGOT_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
-      },
-      "DEMO_OTP_TABLE_NAME": {
-       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
-      },
-      "SNS_SENDER_ID": "LURNTY",
-      "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
-      },
-      "JWT_SECRET": "super-secret-dev-key",
-      "GEMINI_API_KEY": "your-gemini-api-key",
-      "JUDGE0_API_KEY": "your-judge0-api-key",
-      "STAGE": "dev",
-      "NODE_ENV": "development",
-      "LOG_LEVEL": "info",
-      "ADMIN_JWT_SECRET": "admin-secret-key",
-      "SES_FROM": "admin@lurnity.com",
-      "SES_CONFIG_SET": "transactional-emails",
-      "OTP_DIGITS": "6",
-      "OTP_TTL_SECONDS": "600",
-      "RESET_WINDOW_SECONDS": "600"
-     }
-    },
-    "Handler": "index.handler",
-    "MemorySize": 512,
-    "Role": {
-     "Fn::GetAtt": [
-      "TranscribeLambdaServiceRoleB69EE5C9",
-      "Arn"
-     ]
-    },
-    "Runtime": "nodejs18.x",
-    "Timeout": 30
-   },
-   "DependsOn": [
-    "TranscribeLambdaServiceRoleDefaultPolicy9493EE72",
-    "TranscribeLambdaServiceRoleB69EE5C9"
-   ],
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/Resource",
-    "aws:asset:path": "asset.501fff0c0729b0f0ba26dd481bc2168ae52c8ca5a4c45b9f579e1607c9efe4df",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12015,7 +12012,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1334b93301bf5605fbef9b9c9b241a32d9b04503716d5179b001dfab2841a074.zip"
+     "S3Key": "71f75572562f60d951193bb35804ecc61e2850bc2b110a9697fa8662c005ed62.zip"
     },
     "Environment": {
      "Variables": {
@@ -12066,6 +12063,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12100,7 +12100,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/CreateTicketLambda/Resource",
-    "aws:asset:path": "asset.1334b93301bf5605fbef9b9c9b241a32d9b04503716d5179b001dfab2841a074",
+    "aws:asset:path": "asset.71f75572562f60d951193bb35804ecc61e2850bc2b110a9697fa8662c005ed62",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12248,6 +12248,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12379,7 +12382,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "45a6c40f5e956a3d79a8927db0c737f600eae12a42a1c8a871807b832e331675.zip"
+     "S3Key": "2acc9750838b09a8ba092799a5dc74006d83e24bf211f26713e22b3a9eae85c6.zip"
     },
     "Environment": {
      "Variables": {
@@ -12430,6 +12433,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12464,7 +12470,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateTicketLambda/Resource",
-    "aws:asset:path": "asset.45a6c40f5e956a3d79a8927db0c737f600eae12a42a1c8a871807b832e331675",
+    "aws:asset:path": "asset.2acc9750838b09a8ba092799a5dc74006d83e24bf211f26713e22b3a9eae85c6",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12573,7 +12579,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "311e8e056a360ba185923bccd70ce573d41691f5af1d40628eaf95df714d6477.zip"
+     "S3Key": "2b868984b2c87ad9c895bedfaf4d8d4c60406b034584164abbcf6a3d2e09beb1.zip"
     },
     "Environment": {
      "Variables": {
@@ -12624,6 +12630,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12658,7 +12667,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetRankingsLambda/Resource",
-    "aws:asset:path": "asset.311e8e056a360ba185923bccd70ce573d41691f5af1d40628eaf95df714d6477",
+    "aws:asset:path": "asset.2b868984b2c87ad9c895bedfaf4d8d4c60406b034584164abbcf6a3d2e09beb1",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12743,7 +12752,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "b2175908336f865f39336a05ebbfe589a8ecd1d934ce0a58406e35bcb506ae8c.zip"
+     "S3Key": "272179881fba62c8af557f86848378027df1fee507d699d8c8cc5735b731c13c.zip"
     },
     "Environment": {
      "Variables": {
@@ -12794,6 +12803,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12828,7 +12840,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetProgressLambda/Resource",
-    "aws:asset:path": "asset.b2175908336f865f39336a05ebbfe589a8ecd1d934ce0a58406e35bcb506ae8c",
+    "aws:asset:path": "asset.272179881fba62c8af557f86848378027df1fee507d699d8c8cc5735b731c13c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12913,7 +12925,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "fd06b0c3533b9dc86528e021eea5b74861a9c5863babfe68e8f5c1766b28101b.zip"
+     "S3Key": "5be276d5e3e0e2ee1ee4a8e2a772423d6667bad2e3130ac6127d16e44b83b0ec.zip"
     },
     "Environment": {
      "Variables": {
@@ -12964,6 +12976,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -12998,7 +13013,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/WatchProgressLambda/Resource",
-    "aws:asset:path": "asset.fd06b0c3533b9dc86528e021eea5b74861a9c5863babfe68e8f5c1766b28101b",
+    "aws:asset:path": "asset.5be276d5e3e0e2ee1ee4a8e2a772423d6667bad2e3130ac6127d16e44b83b0ec",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -13126,6 +13141,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13288,6 +13306,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13450,6 +13471,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13612,6 +13636,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13774,6 +13801,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -13936,6 +13966,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14098,6 +14131,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14217,7 +14253,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "f6f4d6fa103054e4ac0434e9303b4113e43d4fb8dd1df36eda81063c035963be.zip"
+     "S3Key": "d30e32cb76a454f3907ef44084062a6e5734f8d27a0ae8541982fe959943ff7a.zip"
     },
     "Environment": {
      "Variables": {
@@ -14268,6 +14304,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14302,7 +14341,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/RegisterUserLambda/Resource",
-    "aws:asset:path": "asset.f6f4d6fa103054e4ac0434e9303b4113e43d4fb8dd1df36eda81063c035963be",
+    "aws:asset:path": "asset.d30e32cb76a454f3907ef44084062a6e5734f8d27a0ae8541982fe959943ff7a",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14387,7 +14426,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c98c52227ee259880235b3853e54d3fe640f828bac991bf999cb72f1a2df6b19.zip"
+     "S3Key": "d7d08ea23f031fc098d87d70fc9c0d027402b54648ab77309f80e1b897a2a115.zip"
     },
     "Environment": {
      "Variables": {
@@ -14438,6 +14477,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14472,7 +14514,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/HomepageUserLambda/Resource",
-    "aws:asset:path": "asset.c98c52227ee259880235b3853e54d3fe640f828bac991bf999cb72f1a2df6b19",
+    "aws:asset:path": "asset.d7d08ea23f031fc098d87d70fc9c0d027402b54648ab77309f80e1b897a2a115",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14557,7 +14599,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "56c5223762efc174edca6056888e65a68ab5330308dcd0545bf29a44f2646272.zip"
+     "S3Key": "310b8c8f1f0d1a091835360d317eff9b42893300962563cc332d73b81d29f7d5.zip"
     },
     "Environment": {
      "Variables": {
@@ -14608,6 +14650,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14642,7 +14687,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetResumeDataLambda/Resource",
-    "aws:asset:path": "asset.56c5223762efc174edca6056888e65a68ab5330308dcd0545bf29a44f2646272",
+    "aws:asset:path": "asset.310b8c8f1f0d1a091835360d317eff9b42893300962563cc332d73b81d29f7d5",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14727,7 +14772,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "e6b0a32b49d8f7afcb9ce0c83723158c5038e4ad085a6f9d389536680a7e38a3.zip"
+     "S3Key": "58d064eace8f7d72de1ccb303fed5bad5d9c21f9e05c1cf57885fef3c8d0b4ea.zip"
     },
     "Environment": {
      "Variables": {
@@ -14778,6 +14823,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14812,7 +14860,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCompletedSubcoursesLambda/Resource",
-    "aws:asset:path": "asset.e6b0a32b49d8f7afcb9ce0c83723158c5038e4ad085a6f9d389536680a7e38a3",
+    "aws:asset:path": "asset.58d064eace8f7d72de1ccb303fed5bad5d9c21f9e05c1cf57885fef3c8d0b4ea",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -14897,7 +14945,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "23ddc0b0a9f7f2f79e8b687aca1d6d3956c805753bc782540c4795ead2aab26d.zip"
+     "S3Key": "32e40abd8c033b27c8aa0f0bb166436e867c436ca53d2ed1dfc10045b0b813a7.zip"
     },
     "Environment": {
      "Variables": {
@@ -14948,6 +14996,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -14982,7 +15033,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SetAlertLambda/Resource",
-    "aws:asset:path": "asset.23ddc0b0a9f7f2f79e8b687aca1d6d3956c805753bc782540c4795ead2aab26d",
+    "aws:asset:path": "asset.32e40abd8c033b27c8aa0f0bb166436e867c436ca53d2ed1dfc10045b0b813a7",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15067,7 +15118,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c823bde4c241feaec4eaa4123d539ece5d285a756f473a962883b55ad86859ac.zip"
+     "S3Key": "68f138abd3bf7566dbb9fc503b3f82604734120893111a11fcf8948b98b17900.zip"
     },
     "Environment": {
      "Variables": {
@@ -15118,6 +15169,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15152,7 +15206,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProfileLambda/Resource",
-    "aws:asset:path": "asset.c823bde4c241feaec4eaa4123d539ece5d285a756f473a962883b55ad86859ac",
+    "aws:asset:path": "asset.68f138abd3bf7566dbb9fc503b3f82604734120893111a11fcf8948b98b17900",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15237,7 +15291,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "0a25d63620b0d9ed4371ebb717c0ce3baac61a66378f724acc5f3b697363760d.zip"
+     "S3Key": "af23e9884f286aee6eacc9f23da6a3d9aee1f1497e3123cc5c313477ef968892.zip"
     },
     "Environment": {
      "Variables": {
@@ -15288,6 +15342,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15322,7 +15379,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetProfileLambda/Resource",
-    "aws:asset:path": "asset.0a25d63620b0d9ed4371ebb717c0ce3baac61a66378f724acc5f3b697363760d",
+    "aws:asset:path": "asset.af23e9884f286aee6eacc9f23da6a3d9aee1f1497e3123cc5c313477ef968892",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15407,7 +15464,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "66f62943d6856d1ca55ea470245066ff984d52d7b08ddfb9f756d5949c692baa.zip"
+     "S3Key": "ed52bd61d5ae512e4a514a94db34d984b57ded064791254ff83bf5fa8decf6bb.zip"
     },
     "Environment": {
      "Variables": {
@@ -15458,6 +15515,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15492,7 +15552,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProjectsLambda/Resource",
-    "aws:asset:path": "asset.66f62943d6856d1ca55ea470245066ff984d52d7b08ddfb9f756d5949c692baa",
+    "aws:asset:path": "asset.ed52bd61d5ae512e4a514a94db34d984b57ded064791254ff83bf5fa8decf6bb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15577,7 +15637,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "17185e7145e97d8763630585b1194a71b91e6c965d061c32553fe0bf40d740fb.zip"
+     "S3Key": "58416765e38ca9f4846d51c4ddec3e80fd22b655bfd208ae748b2430cdef753d.zip"
     },
     "Environment": {
      "Variables": {
@@ -15628,6 +15688,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15662,7 +15725,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AddPracticeResultLambda/Resource",
-    "aws:asset:path": "asset.17185e7145e97d8763630585b1194a71b91e6c965d061c32553fe0bf40d740fb",
+    "aws:asset:path": "asset.58416765e38ca9f4846d51c4ddec3e80fd22b655bfd208ae748b2430cdef753d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15747,7 +15810,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "80bf5fdc4593b3c7453ad5f201b33f40b91f636fdcd2db9bea27d2a72f7f72a4.zip"
+     "S3Key": "4c868947b3c514043cb251957120609b2705898da0fb1ef32512621c8e177a3c.zip"
     },
     "Environment": {
      "Variables": {
@@ -15798,6 +15861,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -15832,7 +15898,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetPracticeHistoryLambda/Resource",
-    "aws:asset:path": "asset.80bf5fdc4593b3c7453ad5f201b33f40b91f636fdcd2db9bea27d2a72f7f72a4",
+    "aws:asset:path": "asset.4c868947b3c514043cb251957120609b2705898da0fb1ef32512621c8e177a3c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -15917,7 +15983,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "087e581163ee45054e27397508b06391ffb996534daab9e155eec23e46207e82.zip"
+     "S3Key": "fa6ee7d28b06ed1245151f54b621b3b62d43926512ccd9d579e1b8639142c607.zip"
     },
     "Environment": {
      "Variables": {
@@ -15968,6 +16034,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16002,7 +16071,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetStreakDataLambda/Resource",
-    "aws:asset:path": "asset.087e581163ee45054e27397508b06391ffb996534daab9e155eec23e46207e82",
+    "aws:asset:path": "asset.fa6ee7d28b06ed1245151f54b621b3b62d43926512ccd9d579e1b8639142c607",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16087,7 +16156,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4d3753aebf4a6e7e2469db7485879dfeef1c1e25c809fb1a78786030b38495ad.zip"
+     "S3Key": "39ab61698648a71f246192698ebae2986352aaade78d818df754d43992dbe9de.zip"
     },
     "Environment": {
      "Variables": {
@@ -16138,6 +16207,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16172,7 +16244,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateStreakDataLambda/Resource",
-    "aws:asset:path": "asset.4d3753aebf4a6e7e2469db7485879dfeef1c1e25c809fb1a78786030b38495ad",
+    "aws:asset:path": "asset.39ab61698648a71f246192698ebae2986352aaade78d818df754d43992dbe9de",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16257,7 +16329,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "3e2b6a12cf03f010a4252a03237d642bccf4c19adc6fcdbf1154cb0ab0a7e09d.zip"
+     "S3Key": "32e01d8278630e0f9628674d5ecdc121f2c1502f95f3c8b76f419f5cbffc79e3.zip"
     },
     "Environment": {
      "Variables": {
@@ -16308,6 +16380,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16342,7 +16417,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateCourseCompletionLambda/Resource",
-    "aws:asset:path": "asset.3e2b6a12cf03f010a4252a03237d642bccf4c19adc6fcdbf1154cb0ab0a7e09d",
+    "aws:asset:path": "asset.32e01d8278630e0f9628674d5ecdc121f2c1502f95f3c8b76f419f5cbffc79e3",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16427,7 +16502,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "35ee76bcab47ae741b99e158c90a363d63b386c787cc052a8a84b644f82dd8a6.zip"
+     "S3Key": "781bb81a76a190fcb0809f68e601f52d465e5d021a2b6ebd9b0a17468644d74d.zip"
     },
     "Environment": {
      "Variables": {
@@ -16478,6 +16553,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16512,7 +16590,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SaveQuestionLambda/Resource",
-    "aws:asset:path": "asset.35ee76bcab47ae741b99e158c90a363d63b386c787cc052a8a84b644f82dd8a6",
+    "aws:asset:path": "asset.781bb81a76a190fcb0809f68e601f52d465e5d021a2b6ebd9b0a17468644d74d",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16597,7 +16675,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "d23d5507a9ac255201be6e2ac7ec58634f81a18bf1b86dcbd55fa2071c2d11fb.zip"
+     "S3Key": "5594594299f0fd5b347dd4bcf228133bd77ed6789c17beca8a0868c3d9285526.zip"
     },
     "Environment": {
      "Variables": {
@@ -16648,6 +16726,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16682,7 +16763,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetSavedQuestionsLambda/Resource",
-    "aws:asset:path": "asset.d23d5507a9ac255201be6e2ac7ec58634f81a18bf1b86dcbd55fa2071c2d11fb",
+    "aws:asset:path": "asset.5594594299f0fd5b347dd4bcf228133bd77ed6789c17beca8a0868c3d9285526",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16767,7 +16848,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "5770b5ed8b281705a755c90b9a4ab888e72cd60f832aa97f80675e07614bd1d1.zip"
+     "S3Key": "4a842174bddc5dd0bc3ea6b81e7734b1d5050b16a14e3295a70e4c7b4607d32f.zip"
     },
     "Environment": {
      "Variables": {
@@ -16818,6 +16899,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -16852,7 +16936,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetJudge0KeyLambda/Resource",
-    "aws:asset:path": "asset.5770b5ed8b281705a755c90b9a4ab888e72cd60f832aa97f80675e07614bd1d1",
+    "aws:asset:path": "asset.4a842174bddc5dd0bc3ea6b81e7734b1d5050b16a14e3295a70e4c7b4607d32f",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -16937,7 +17021,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "07bb8342a96304602bbe50317e713dea837840d10d8278619be5b5d2ec8df612.zip"
+     "S3Key": "d8da0f25070016941068d88a12f9a586b6060192267cc33d62ea2a74de3d3756.zip"
     },
     "Environment": {
      "Variables": {
@@ -16988,6 +17072,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -17022,7 +17109,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateJudge0KeyLambda/Resource",
-    "aws:asset:path": "asset.07bb8342a96304602bbe50317e713dea837840d10d8278619be5b5d2ec8df612",
+    "aws:asset:path": "asset.d8da0f25070016941068d88a12f9a586b6060192267cc33d62ea2a74de3d3756",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -17107,7 +17194,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "049051986fe3039154aabe02fb02caf2d01dfcb29265bd8eda905228f9156c9c.zip"
+     "S3Key": "a2d322dc3d9ccd9a3001e4eda05ef1e0ebe9f1bc5ab8fbf741ba9a69da6a501c.zip"
     },
     "Environment": {
      "Variables": {
@@ -17158,6 +17245,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -17192,7 +17282,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SaveKeyLambda/Resource",
-    "aws:asset:path": "asset.049051986fe3039154aabe02fb02caf2d01dfcb29265bd8eda905228f9156c9c",
+    "aws:asset:path": "asset.a2d322dc3d9ccd9a3001e4eda05ef1e0ebe9f1bc5ab8fbf741ba9a69da6a501c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -17277,7 +17367,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "1489037c519773b6e0d261c9a073f9e20107ef7c8ed6cac0a6a107b9792aa934.zip"
+     "S3Key": "257ced1f3be37536a4b2a76d54416eb1346e550724ddc2e983db116c2c1f97fb.zip"
     },
     "Environment": {
      "Variables": {
@@ -17328,6 +17418,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -17362,7 +17455,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/GetKeyLambda/Resource",
-    "aws:asset:path": "asset.1489037c519773b6e0d261c9a073f9e20107ef7c8ed6cac0a6a107b9792aa934",
+    "aws:asset:path": "asset.257ced1f3be37536a4b2a76d54416eb1346e550724ddc2e983db116c2c1f97fb",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -17447,7 +17540,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "9344bb8f731e6d4611aa685ff1b06e482f0985043ca9105adc6722fc0a330723.zip"
+     "S3Key": "34eccba8b175be6b97ffcaa869a1b788c6c444736d4f6ea30fa26975f9de21c4.zip"
     },
     "Environment": {
      "Variables": {
@@ -17498,6 +17591,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -17532,7 +17628,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/MockQuestionsLambda/Resource",
-    "aws:asset:path": "asset.9344bb8f731e6d4611aa685ff1b06e482f0985043ca9105adc6722fc0a330723",
+    "aws:asset:path": "asset.34eccba8b175be6b97ffcaa869a1b788c6c444736d4f6ea30fa26975f9de21c4",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -17679,7 +17775,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c03684b312d8ea834ef945c5b9258970c9fd3a653dfaeb8c4c084de67153eccb.zip"
+     "S3Key": "86e4a721fb75b35cd689b028b991860ca87bbf59a1ccbdab8ed4ffd3e5e47cc8.zip"
     },
     "Environment": {
      "Variables": {
@@ -17730,6 +17826,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -17764,7 +17863,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordRequestLambda/Resource",
-    "aws:asset:path": "asset.c03684b312d8ea834ef945c5b9258970c9fd3a653dfaeb8c4c084de67153eccb",
+    "aws:asset:path": "asset.86e4a721fb75b35cd689b028b991860ca87bbf59a1ccbdab8ed4ffd3e5e47cc8",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -17854,7 +17953,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "98fc9d17def8b5c7496038fd680b711c4b80bae76ea8b56256f0f45034661127.zip"
+     "S3Key": "ff6403aec44cbf1ae3d6b5a8893e1cd426c13a0a26fb909ff19de1a193435a58.zip"
     },
     "Environment": {
      "Variables": {
@@ -17905,6 +18004,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -17939,7 +18041,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordVerifyLambda/Resource",
-    "aws:asset:path": "asset.98fc9d17def8b5c7496038fd680b711c4b80bae76ea8b56256f0f45034661127",
+    "aws:asset:path": "asset.ff6403aec44cbf1ae3d6b5a8893e1cd426c13a0a26fb909ff19de1a193435a58",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -18055,7 +18157,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "c8f154afd04739c7b88cdd14e0aa8ec8bc07b095d78dcd14d2b8f363448b371b.zip"
+     "S3Key": "afbe1c81f3c66a4f83717f5941270efdf6901c32b0c20ad441dc217593be06f5.zip"
     },
     "Environment": {
      "Variables": {
@@ -18106,6 +18208,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -18140,7 +18245,454 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/ForgotPasswordResetLambda/Resource",
-    "aws:asset:path": "asset.c8f154afd04739c7b88cdd14e0aa8ec8bc07b095d78dcd14d2b8f363448b371b",
+    "aws:asset:path": "asset.afbe1c81f3c66a4f83717f5941270efdf6901c32b0c20ad441dc217593be06f5",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "SendRegisterOTPLambdaServiceRole88FCAA07": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SendRegisterOTPLambda/ServiceRole/Resource"
+   }
+  },
+  "SendRegisterOTPLambdaServiceRoleDefaultPolicyB8702567": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "dynamodb:Scan",
+        "dynamodb:Query"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "SendRegisterOTPLambdaServiceRoleDefaultPolicyB8702567",
+    "Roles": [
+     {
+      "Ref": "SendRegisterOTPLambdaServiceRole88FCAA07"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SendRegisterOTPLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "SendRegisterOTPLambdaC43FC3F0": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "d3c535a930d385ce2c1da22f01ebea7b297c49477a85c156ef84fee4762da572.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "SendRegisterOTPLambdaServiceRole88FCAA07",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "SendRegisterOTPLambdaServiceRoleDefaultPolicyB8702567",
+    "SendRegisterOTPLambdaServiceRole88FCAA07"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/SendRegisterOTPLambda/Resource",
+    "aws:asset:path": "asset.d3c535a930d385ce2c1da22f01ebea7b297c49477a85c156ef84fee4762da572",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "VerifyRegisterOTPLambdaServiceRole1EA4FDC3": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/VerifyRegisterOTPLambda/ServiceRole/Resource"
+   }
+  },
+  "VerifyRegisterOTPLambdaServiceRoleDefaultPolicyFBEB89C1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "VerifyRegisterOTPLambdaServiceRoleDefaultPolicyFBEB89C1",
+    "Roles": [
+     {
+      "Ref": "VerifyRegisterOTPLambdaServiceRole1EA4FDC3"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/VerifyRegisterOTPLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "VerifyRegisterOTPLambda64C5CE01": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "db439cff506bffebf2e1dbe0dff700cfd03942b300c81bb353289137b8664a3c.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "VerifyRegisterOTPLambdaServiceRole1EA4FDC3",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "VerifyRegisterOTPLambdaServiceRoleDefaultPolicyFBEB89C1",
+    "VerifyRegisterOTPLambdaServiceRole1EA4FDC3"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/VerifyRegisterOTPLambda/Resource",
+    "aws:asset:path": "asset.db439cff506bffebf2e1dbe0dff700cfd03942b300c81bb353289137b8664a3c",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -18225,7 +18777,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "fdefaaad42927926d7b083c4d6e775e1ba582886bb00bac16f7889047d0643d0.zip"
+     "S3Key": "bcb04c88ecb9107901821f6f87d118929ce536d38853e1fd69e85c5fbbf48d02.zip"
     },
     "Environment": {
      "Variables": {
@@ -18276,6 +18828,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -18310,7 +18865,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AuthLoginLambda/Resource",
-    "aws:asset:path": "asset.fdefaaad42927926d7b083c4d6e775e1ba582886bb00bac16f7889047d0643d0",
+    "aws:asset:path": "asset.bcb04c88ecb9107901821f6f87d118929ce536d38853e1fd69e85c5fbbf48d02",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -18395,7 +18950,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "6346c3dfa015c470cbb6c38b1dbc1c1235ca98145f6443e9c9a948181e93c010.zip"
+     "S3Key": "da78684b6d2019bde26c648244d8793dd26400c6f88b70e52c2bc1ae49ad3297.zip"
     },
     "Environment": {
      "Variables": {
@@ -18446,6 +19001,9 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       },
       "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
       "S3_BUCKET": {
        "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
       },
@@ -18480,7 +19038,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/AuthGoogleLoginLambda/Resource",
-    "aws:asset:path": "asset.6346c3dfa015c470cbb6c38b1dbc1c1235ca98145f6443e9c9a948181e93c010",
+    "aws:asset:path": "asset.da78684b6d2019bde26c648244d8793dd26400c6f88b70e52c2bc1ae49ad3297",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -18544,6 +19102,9 @@
   "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": {
    "Type": "String"
   },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref": {
+   "Type": "String"
+  },
   "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
    "Type": "String"
   },
@@ -18590,6 +19151,9 @@
    "Type": "String"
   },
   "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Arn": {
    "Type": "String"
   }
  },
@@ -19106,14 +19670,6 @@
     ]
    }
   },
-  "LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "TranscribeLambda9461F407",
-     "Arn"
-    ]
-   }
-  },
   "LurnityLmsStackLambdaNestedStackCreateTicketLambda75BD1DEAArn": {
    "Value": {
     "Fn::GetAtt": [
@@ -19262,6 +19818,22 @@
    "Value": {
     "Fn::GetAtt": [
      "ForgotPasswordResetLambdaFB2148A4",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackSendRegisterOTPLambdaDE4CAA91Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "SendRegisterOTPLambdaC43FC3F0",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackVerifyRegisterOTPLambda19136FA5Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "VerifyRegisterOTPLambda64C5CE01",
      "Arn"
     ]
    }

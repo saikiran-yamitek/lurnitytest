@@ -1,0 +1,13 @@
+{
+ "Resources": {
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzQ11DNQTCwv1k1OydbNyUzSq/ZLLS5JTQkuSUzO1nFOywtKLc4vLUpOrdXJy09J1csq1i8ztNADIiPFrOLMTN2i0rySzNxUvSAIDQDHK2Z/UwAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiNestedStack/ApiUserStack/CDKMetadata/Default"
+   }
+  }
+ }
+}

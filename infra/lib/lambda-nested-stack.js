@@ -29,7 +29,7 @@ class LambdaNestedStack extends cdk.NestedStack {
     const rankingsLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "rankings");
     const progressLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "progress");
     const userLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "user");
-    const transcribeLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "transcribe");
+
 
     // Unified makeLambda function for consistent Lambda creation
     // Unified makeLambda function for consistent Lambda creation
@@ -75,12 +75,6 @@ class LambdaNestedStack extends cdk.NestedStack {
       }
     },
   });
-
-
-
-
-
-
     // Admin lambdas
     this.listUsersLambda = makeLambda("ListUsersLambda", "listUsers", adminLambdaPath);
     this.updateUserLambda = makeLambda("UpdateUserLambda", "updateUser", adminLambdaPath);
@@ -97,25 +91,21 @@ class LambdaNestedStack extends cdk.NestedStack {
     this.deleteTicketLambda = makeLambda("DeleteTicketLambda", "deleteTicket", adminLambdaPath);
     this.setUserLockLambda = makeLambda("SetUserLockLambda", "setUserLock", adminLambdaPath);
     this.adminAuthLambda = makeLambda("AdminAuthLambda", "adminAuth", adminAuthLambdaPath);
-
     // Landing page lambdas
     this.getCohortsLambda = makeLambda("GetCohortsLambda", "getCohorts", landingPageLambdaPath);
     this.createCohortLambda = makeLambda("CreateCohortLambda", "createCohort", landingPageLambdaPath);
     this.updateCohortLambda = makeLambda("UpdateCohortLambda", "updateCohort", landingPageLambdaPath);
     this.deleteCohortLambda = makeLambda("DeleteCohortLambda", "deleteCohort", landingPageLambdaPath);
-
     // Certificate lambdas
     this.generateCertificateLambda = makeLambda("GenerateCertificateLambda", "generateCertificate", certificatesLambdaPath);
     this.listCertificatesLambda = makeLambda("ListCertificatesLambda", "listCertificates", certificatesLambdaPath);
     this.getCertificateByIdLambda = makeLambda("GetCertificateByIdLambda", "getCertificateById", certificatesLambdaPath);
     this.listCertificatesByUserLambda = makeLambda("ListCertificatesByUserLambda", "listCertificatesByUser", certificatesLambdaPath);
     this.checkCertificateExistsLambda = makeLambda("CheckCertificateExistsLambda", "checkCertificateExists", certificatesLambdaPath);
-
     // Company lambdas
     this.getCompaniesLambda = makeLambda("GetCompaniesLambda", "getCompanies", companiesLambdaPath);
     this.createCompanyLambda = makeLambda("CreateCompanyLambda", "createCompany", companiesLambdaPath);
     this.updateCompanyLambda = makeLambda("UpdateCompanyLambda", "updateCompany", companiesLambdaPath);
-
     // Employee lambdas
     this.createEmployeeLambda = makeLambda("CreateEmployeeLambda", "createEmployee", employeesLambdaPath);
     this.listEmployeesLambda = makeLambda("ListEmployeesLambda", "getAllEmployees", employeesLambdaPath);
@@ -123,12 +113,10 @@ class LambdaNestedStack extends cdk.NestedStack {
     this.updateEmployeeLambda = makeLambda("UpdateEmployeeLambda", "updateEmployee", employeesLambdaPath);
     this.deleteEmployeeLambda = makeLambda("DeleteEmployeeLambda", "deleteEmployee", employeesLambdaPath);
     this.employeeLoginLambda = makeLambda("EmployeeLoginLambda", "login", employeesLambdaPath);
-
     // Feedback lambdas
     this.submitFeedbackLambda = makeLambda("SubmitFeedbackLambda", "submitFeedback", feedbackLambdaPath);
     this.listFeedbacksLambda = makeLambda("ListFeedbacksLambda", "listFeedbacks", feedbackLambdaPath);
     this.deleteFeedbackLambda = makeLambda("DeleteFeedbackLambda", "deleteFeedback", feedbackLambdaPath);
-
     // Placement lambdas
     this.createPlacementLambda = makeLambda("CreatePlacementLambda", "createPlacement", placementLambdaPath);
     this.listPlacementsLambda = makeLambda("ListPlacementsLambda", "listPlacements", placementLambdaPath);
@@ -141,8 +129,6 @@ this.revokePlacementLambda = makeLambda("RevokePlacementLambda", "revokePlacemen
 this.registerStudentPlacementLambda = makeLambda("RegisterStudentPlacementLambda", "registerStudent", placementLambdaPath);
 this.getPlacementStudentsLambda = makeLambda("GetPlacementStudentsLambda", "getPlacementStudents", placementLambdaPath);
 this.completePlacementLambda = makeLambda("CompletePlacementLambda", "completePlacement", placementLambdaPath);
-
-
     // Workshop lambdas
     this.listWorkshopsLambda = makeLambda("ListWorkshopsLambda", "listWorkshops", workshopLambdaPath);
     this.createWorkshopLambda = makeLambda("CreateWorkshopLambda", "createWorkshop", workshopLambdaPath);
@@ -154,37 +140,29 @@ this.completePlacementLambda = makeLambda("CompletePlacementLambda", "completePl
     this.updateStudentAttendanceLambda = makeLambda("UpdateStudentAttendanceLambda", "updateStudentAttendance", workshopLambdaPath);
     this.registerStudentPutLambda = makeLambda("RegisterStudentPutLambda", "registerStudentPut", workshopLambdaPath);
     this.updateWorkshopLambda = makeLambda("UpdateWorkshopLambda", "updateWorkshop", workshopLambdaPath);
-
     // Course lambdas
     this.createCoursePublicLambda = makeLambda("CreateCoursePublicLambda", "createCourse", coursesLambdaPath);
     this.listCoursesPublicLambda = makeLambda("ListCoursesPublicLambda", "listCourses", coursesLambdaPath);
     this.getCourseByIdPublicLambda = makeLambda("GetCourseByIdPublicLambda", "getCourseById", coursesLambdaPath);
     this.updateCoursePublicLambda = makeLambda("UpdateCoursePublicLambda", "updateCourse", coursesLambdaPath);
     this.deleteCoursePublicLambda = makeLambda("DeleteCoursePublicLambda", "deleteCourse", coursesLambdaPath);
-
     // Demo lambdas - NOW USING UNIFIED APPROACH
     // Replace raw lambda.Function with NodejsFunction bundling (ESM)
 this.createDemoLambda = makeLambda("CreateDemoLambda", "createDemo", demoLambdaPath);
-
     this.listDemosLambda = makeLambda("ListDemosLambda", "listDemos", demoLambdaPath);
     this.markDemoBookedLambda = makeLambda("MarkDemoBookedLambda", "markDemoBooked", demoLambdaPath);
 this.sendDemoOTPLambda = makeLambda("SendDemoOTPLambda", "sendDemoOTP", demoLambdaPath);
 this.verifyDemoOTPLambda = makeLambda("VerifyDemoOTPLambda", "verifyDemoOTP", demoLambdaPath);
     // Transcribe lambda
-    this.transcribeLambda = makeLambda("TranscribeLambda", "transcribe", transcribeLambdaPath);
 
-    // Ticket lambdas
     this.createTicketLambda = makeLambda("CreateTicketLambda", "createTicket", ticketsLambdaPath);
     this.listTicketsLambda = makeLambda("ListTicketsLambda", "listTickets", ticketsLambdaPath);
     this.updateTicketLambda = makeLambda("UpdateTicketLambda", "updateTicket", ticketsLambdaPath);
-
     // Rankings lambda
     this.getRankingsLambda = makeLambda("GetRankingsLambda", "getRankings", rankingsLambdaPath);
-
     // Progress lambdas
     this.getProgressLambda = makeLambda("GetProgressLambda", "getProgress", progressLambdaPath);
     this.watchProgressLambda = makeLambda("WatchProgressLambda", "watch", progressLambdaPath);
-
     // Landing page jobs lambdas
     this.getJobsLambda = makeLambda("GetJobsLambda", "getJobs", landingPageLambdaPath);
     this.createJobLambda = makeLambda("CreateJobLambda", "createJob", landingPageLambdaPath);
@@ -193,7 +171,6 @@ this.verifyDemoOTPLambda = makeLambda("VerifyDemoOTPLambda", "verifyDemoOTP", de
     this.deleteJobLambda = makeLambda("DeleteJobLambda", "deleteJob", landingPageLambdaPath);
     this.applyForJobLambda = makeLambda("ApplyForJobLambda", "applyForJob", landingPageLambdaPath);
     this.getLatestLandingPageLambda = makeLambda("GetLatestLandingPageLambda", "getLatestLandingPage", landingPageLambdaPath);
-
     // User lambdas
     this.registerUserLambda = makeLambda("RegisterUserLambda", "register", userLambdaPath);
     this.homepageUserLambda = makeLambda("HomepageUserLambda", "homepage", userLambdaPath);
@@ -210,25 +187,19 @@ this.verifyDemoOTPLambda = makeLambda("VerifyDemoOTPLambda", "verifyDemoOTP", de
     this.updateCourseCompletionLambda = makeLambda("UpdateCourseCompletionLambda", "updateCourseCompletion", userLambdaPath);
     this.saveQuestionLambda = makeLambda("SaveQuestionLambda", "saveQuestion", userLambdaPath);
     this.getSavedQuestionsLambda = makeLambda("GetSavedQuestionsLambda", "getSavedQuestions", userLambdaPath);
-
     // Judge0 lambdas
     this.getJudge0KeyLambda = makeLambda("GetJudge0KeyLambda", "getJudge0Key", userLambdaPath);
     this.updateJudge0KeyLambda = makeLambda("UpdateJudge0KeyLambda", "updateJudge0Key", userLambdaPath);
-
     // Key and mock lambdas
     this.saveKeyLambda = makeLambda("SaveKeyLambda", "saveKey", userLambdaPath);
     this.getKeyLambda = makeLambda("GetKeyLambda", "getKey", userLambdaPath);
     this.mockQuestionsLambda = makeLambda("MockQuestionsLambda", "mockQuestions", userLambdaPath);
-
     // Forgot-password lambdas (dual OTP)
 this.forgotPasswordRequestLambda = makeLambda("ForgotPasswordRequestLambda", "forgotRequest", userLambdaPath);
 this.forgotPasswordVerifyLambda = makeLambda("ForgotPasswordVerifyLambda", "forgotVerify", userLambdaPath);
 this.forgotPasswordResetLambda = makeLambda("ForgotPasswordResetLambda", "forgotReset", userLambdaPath);
-
-
 this.sendRegisterOTPLambda = makeLambda("SendRegisterOTPLambda", "sendRegisterOTP", userLambdaPath);
 this.verifyRegisterOTPLambda = makeLambda("VerifyRegisterOTPLambda", "verifyRegisterOTP", userLambdaPath);
-
     // Auth lambdas
     this.authLoginLambda = makeLambda("AuthLoginLambda", "login", userLambdaPath);
     this.authGoogleLoginLambda = makeLambda("AuthGoogleLoginLambda", "googleLogin", userLambdaPath);

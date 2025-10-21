@@ -1,18 +1,16 @@
 import path from "path";
-import { fileURLToPath } from "url"; // <-- required for ES module __dirname
+import { fileURLToPath } from "url";
 import * as cdk from "aws-cdk-lib";
 import * as s3 from "aws-cdk-lib/aws-s3";
-import * as iam from "aws-cdk-lib/aws-iam"; // 👈 added
+import * as iam from "aws-cdk-lib/aws-iam";
 import dotenv from "dotenv";
 import { DatabaseNestedStack } from "./database-nested-stack.js";
 import { LambdaNestedStack } from "./lambda-nested-stack.js";
 import { ApiNestedStack } from "./api-nested-stack.js";
 
-// Recreate __dirname in ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load backend .env file
 dotenv.config({ path: path.join(__dirname, "../../backend/.env") });
 
 class LurnityLmsStack extends cdk.Stack {
@@ -57,10 +55,10 @@ class LurnityLmsStack extends cdk.Stack {
       LOG_LEVEL: process.env.LOG_LEVEL,
       ADMIN_JWT_SECRET: process.env.ADMIN_JWT_SECRET || "admin-secret-key",
       SES_FROM: process.env.SES_FROM || "admin@lurnity.com",
-  SES_CONFIG_SET: process.env.SES_CONFIG_SET || "transactional-emails",
-  OTP_DIGITS: process.env.OTP_DIGITS || "6",
-  OTP_TTL_SECONDS: process.env.OTP_TTL_SECONDS || "600",
-  RESET_WINDOW_SECONDS: process.env.RESET_WINDOW_SECONDS || "600",
+      SES_CONFIG_SET: process.env.SES_CONFIG_SET || "transactional-emails",
+      OTP_DIGITS: process.env.OTP_DIGITS || "6",
+      OTP_TTL_SECONDS: process.env.OTP_TTL_SECONDS || "600",
+      RESET_WINDOW_SECONDS: process.env.RESET_WINDOW_SECONDS || "600",
     };
 
     // Lambda nested stack
@@ -68,12 +66,12 @@ class LurnityLmsStack extends cdk.Stack {
       lambdaEnv
     });
 
-    // API nested stack
+    // API nested stack - permissions are handled inside with allowTestInvoke: false
     const apiStack = new ApiNestedStack(this, 'ApiNestedStack', {
       lambdas: lambdaStack
     });
 
-    // Grant permissions (same as original code)
+    // ✅ ONLY DATABASE PERMISSIONS HERE (no API Gateway permissions)
     [lambdaStack.listUsersLambda, lambdaStack.updateUserLambda, lambdaStack.deleteUserLambda, lambdaStack.exportUsersCsvLambda, lambdaStack.setUserLockLambda].forEach(l => databaseStack.userTable.grantFullAccess(l));
     [lambdaStack.createTransactionLambda, lambdaStack.listUserTransactionsLambda].forEach(l => { databaseStack.transactionTable.grantFullAccess(l); databaseStack.userTable.grantFullAccess(l); });
     [lambdaStack.listCoursesLambda, lambdaStack.createCourseLambda, lambdaStack.updateCourseLambda, lambdaStack.deleteCourseLambda].forEach(l => databaseStack.courseTable.grantFullAccess(l));
@@ -81,24 +79,20 @@ class LurnityLmsStack extends cdk.Stack {
     [lambdaStack.exportUsersCsvLambda, lambdaStack.generateReceiptLambda].forEach(l => assetBucket.grantReadWrite(l));
     databaseStack.adminLoginTable.grantFullAccess(lambdaStack.adminAuthLambda);
     [lambdaStack.getCohortsLambda, lambdaStack.createCohortLambda, lambdaStack.updateCohortLambda, lambdaStack.deleteCohortLambda, lambdaStack.getJobsLambda, lambdaStack.createJobLambda, lambdaStack.updateJobLambda, lambdaStack.updateJobStatusLambda, lambdaStack.deleteJobLambda, lambdaStack.applyForJobLambda, lambdaStack.getLatestLandingPageLambda].forEach(l => databaseStack.landingPageTable.grantFullAccess(l));
+    
     [lambdaStack.generateCertificateLambda, lambdaStack.listCertificatesLambda, lambdaStack.getCertificateByIdLambda, lambdaStack.listCertificatesByUserLambda, lambdaStack.checkCertificateExistsLambda].forEach(l => {
-  databaseStack.certificateTable.grantFullAccess(l);
-  databaseStack.userTable.grantFullAccess(l);
-  databaseStack.courseTable.grantFullAccess(l);
-
-  // ✅ Add GSI query permission
-  l.addToRolePolicy(new iam.PolicyStatement({
-    effect: iam.Effect.ALLOW,
-    actions: ["dynamodb:Query"],
-    resources: [
-      `${databaseStack.certificateTable.tableArn}/index/*`  // allow all GSIs
-    ]
-  }));
-});
+      databaseStack.certificateTable.grantFullAccess(l);
+      databaseStack.userTable.grantFullAccess(l);
+      databaseStack.courseTable.grantFullAccess(l);
+      l.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ["dynamodb:Query"],
+        resources: [`${databaseStack.certificateTable.tableArn}/index/*`]
+      }));
+    });
 
     [lambdaStack.getCompaniesLambda, lambdaStack.createCompanyLambda, lambdaStack.updateCompanyLambda].forEach(l => databaseStack.companyTable.grantFullAccess(l));
 
-    // ✅ Employee Lambdas - add index permissions
     [
       lambdaStack.createEmployeeLambda,
       lambdaStack.listEmployeesLambda,
@@ -111,9 +105,7 @@ class LurnityLmsStack extends cdk.Stack {
       l.addToRolePolicy(new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         actions: ["dynamodb:Query"],
-        resources: [
-          `${databaseStack.employeeTable.tableArn}/index/*`
-        ]
+        resources: [`${databaseStack.employeeTable.tableArn}/index/*`]
       }));
     });
 
@@ -128,73 +120,59 @@ class LurnityLmsStack extends cdk.Stack {
       databaseStack.companyTable.grantFullAccess(l);
     });
 
+    databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordRequestLambda);
+    databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordVerifyLambda);
+    databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordResetLambda);
 
-    // Forgot-password grants
-databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordRequestLambda);
-databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordVerifyLambda);
-databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordResetLambda);
+    databaseStack.userTable.grantReadData(lambdaStack.forgotPasswordRequestLambda);
+    databaseStack.userTable.grantWriteData(lambdaStack.forgotPasswordResetLambda);
+    lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      actions: ["dynamodb:Query"],
+      resources: [`${databaseStack.userTable.tableArn}/index/email-index`],
+    }));
 
-// User table access for forgot flow
-databaseStack.userTable.grantReadData(lambdaStack.forgotPasswordRequestLambda); // findUserByEmail
-databaseStack.userTable.grantWriteData(lambdaStack.forgotPasswordResetLambda);  // update password
-lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
-  effect: iam.Effect.ALLOW,
-  actions: ["dynamodb:Query"],
-  resources: [`${databaseStack.userTable.tableArn}/index/email-index`],
-}));
+    lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      actions: ["ses:SendEmail", "ses:SendRawEmail"],
+      resources: ["*"],
+    }));
+    lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      actions: ["sns:Publish"],
+      resources: ["*"],
+    }));
 
-// SES and SNS permissions for sending OTPs
-lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
-  effect: iam.Effect.ALLOW,
-  actions: ["ses:SendEmail", "ses:SendRawEmail"],
-  resources: ["*"], // optionally restrict to identity ARN(s)
-}));
-lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
-  effect: iam.Effect.ALLOW,
-  actions: ["sns:Publish"],
-  resources: ["*"],
-}));
+    [lambdaStack.sendRegisterOTPLambda, lambdaStack.verifyRegisterOTPLambda].forEach(l => {
+      databaseStack.registerOTPTable.grantReadWriteData(l);
+      databaseStack.userTable.grantReadData(l);
+      l.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ["sns:Publish"],
+        resources: ["*"],
+      }));
+    });
 
+    lambdaStack.sendRegisterOTPLambda.addToRolePolicy(new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      actions: ["dynamodb:Scan", "dynamodb:Query"],
+      resources: [
+        databaseStack.userTable.tableArn,
+        `${databaseStack.userTable.tableArn}/index/*`
+      ],
+    }));
 
-[lambdaStack.sendRegisterOTPLambda, lambdaStack.verifyRegisterOTPLambda].forEach(l => {
-  // Grant DynamoDB OTP table access
-  databaseStack.registerOTPTable.grantReadWriteData(l);
-  
-  // Grant user table read access (to check if phone exists)
-  databaseStack.userTable.grantReadData(l);
-  
-  // Grant SNS publish permissions for SMS
-  l.addToRolePolicy(new iam.PolicyStatement({
-    effect: iam.Effect.ALLOW,
-    actions: ["sns:Publish"],
-    resources: ["*"],
-  }));
-});
-
-// Grant scan permission for phone number check
-lambdaStack.sendRegisterOTPLambda.addToRolePolicy(new iam.PolicyStatement({
-  effect: iam.Effect.ALLOW,
-  actions: ["dynamodb:Scan", "dynamodb:Query"],
-  resources: [
-    databaseStack.userTable.tableArn,
-    `${databaseStack.userTable.tableArn}/index/*`
-  ],
-}));
-
-
-    // New placement lambdas
-[
-  lambdaStack.updateStudentStatusLambda,
-  lambdaStack.revokePlacementLambda,
-  lambdaStack.registerStudentPlacementLambda,
-  lambdaStack.getPlacementStudentsLambda,
-  lambdaStack.completePlacementLambda
-].forEach(l => {
-  databaseStack.placementTable.grantFullAccess(l);
-  databaseStack.userTable.grantFullAccess(l);
-  databaseStack.companyTable.grantFullAccess(l); // only if needed
-});
-
+    [
+      lambdaStack.updateStudentStatusLambda,
+      lambdaStack.revokePlacementLambda,
+      lambdaStack.registerStudentPlacementLambda,
+      lambdaStack.getPlacementStudentsLambda,
+      lambdaStack.completePlacementLambda
+    ].forEach(l => {
+      databaseStack.placementTable.grantFullAccess(l);
+      databaseStack.userTable.grantFullAccess(l);
+      databaseStack.companyTable.grantFullAccess(l);
+    });
 
     [
       lambdaStack.listWorkshopsLambda,
@@ -216,24 +194,18 @@ lambdaStack.sendRegisterOTPLambda.addToRolePolicy(new iam.PolicyStatement({
       databaseStack.courseTable.grantFullAccess(l);
     });
 
-    // Demo lambdas permissions
-[lambdaStack.createDemoLambda, lambdaStack.listDemosLambda, lambdaStack.markDemoBookedLambda].forEach(l => {
-  databaseStack.demoTable.grantFullAccess(l);
-});
+    [lambdaStack.createDemoLambda, lambdaStack.listDemosLambda, lambdaStack.markDemoBookedLambda].forEach(l => {
+      databaseStack.demoTable.grantFullAccess(l);
+    });
 
-// Demo OTP lambdas permissions (send and verify OTP)
-[lambdaStack.sendDemoOTPLambda, lambdaStack.verifyDemoOTPLambda].forEach(l => {
-  // Grant DynamoDB OTP table access
-  databaseStack.demoOTPTable.grantReadWriteData(l);
-  
-  // Grant SNS publish permissions for SMS
-  l.addToRolePolicy(new iam.PolicyStatement({
-    effect: iam.Effect.ALLOW,
-    actions: ["sns:Publish"],
-    resources: ["*"],
-  }));
-});
-
+    [lambdaStack.sendDemoOTPLambda, lambdaStack.verifyDemoOTPLambda].forEach(l => {
+      databaseStack.demoOTPTable.grantReadWriteData(l);
+      l.addToRolePolicy(new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ["sns:Publish"],
+        resources: ["*"],
+      }));
+    });
 
     [lambdaStack.createTicketLambda, lambdaStack.listTicketsLambda, lambdaStack.updateTicketLambda].forEach(l => {
       databaseStack.ticketTable.grantFullAccess(l);
@@ -274,11 +246,6 @@ lambdaStack.sendRegisterOTPLambda.addToRolePolicy(new iam.PolicyStatement({
       lambdaStack.getKeyLambda,
       lambdaStack.mockQuestionsLambda,
     ].forEach(l => databaseStack.userTable.grantFullAccess(l));
-
-    [lambdaStack.transcribeLambda].forEach(l => {
-      assetBucket.grantReadWrite(l);
-      databaseStack.userTable.grantFullAccess(l);
-    });
   }
 }
 

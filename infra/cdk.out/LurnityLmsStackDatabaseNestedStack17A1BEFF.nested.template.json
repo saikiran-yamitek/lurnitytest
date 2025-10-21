@@ -459,6 +459,33 @@
     "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/ForgotPassword/Resource"
    }
   },
+  "RegisterOTPTable38EEB294": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "sessionId",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "sessionId",
+      "KeyType": "HASH"
+     }
+    ],
+    "TimeToLiveSpecification": {
+     "AttributeName": "ttl",
+     "Enabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/DatabaseNestedStack/RegisterOTPTable/Resource"
+   }
+  },
   "Demo34AD4DAD": {
    "Type": "AWS::DynamoDB::Table",
    "Properties": {
@@ -606,6 +633,11 @@
     "Ref": "DemoOTPTable59B84F9C"
    }
   },
+  "LurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref": {
+   "Value": {
+    "Ref": "RegisterOTPTable38EEB294"
+   }
+  },
   "LurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": {
    "Value": {
     "Fn::GetAtt": [
@@ -714,6 +746,14 @@
    "Value": {
     "Fn::GetAtt": [
      "ForgotPassword42DE43E7",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RegisterOTPTable38EEB294",
      "Arn"
     ]
    }

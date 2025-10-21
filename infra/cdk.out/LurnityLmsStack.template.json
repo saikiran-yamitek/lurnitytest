@@ -174,7 +174,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/9e40451f72f378f223b6080dd9667075a28596343906270e4ce5075a334c1b6b.json"
+       "/6a7b27339e5e4864bbc2f3a42f0e015023c7d927189e390e2b2a0dcbe64c7df6.json"
       ]
      ]
     }
@@ -287,6 +287,12 @@
        "Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
       ]
      },
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref": {
+      "Fn::GetAtt": [
+       "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+       "Outputs.LurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      ]
+     },
      "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
       "Ref": "lurnityassetsbucket1605654D"
      },
@@ -379,6 +385,12 @@
        "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
        "Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn"
       ]
+     },
+     "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Arn": {
+      "Fn::GetAtt": [
+       "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
+       "Outputs.LurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Arn"
+      ]
      }
     },
     "TemplateURL": {
@@ -393,7 +405,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/15c569770b260d98d7a81aba6097354ff9f9d614f164c29e4a3dd4cdc1152320.json"
+       "/5684ac5c79824cd13b5f325408e0b0ec15abe88ac8f9a6477fdab18a431eb6ad.json"
       ]
      ]
     }
@@ -794,12 +806,6 @@
        "Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
       ]
      },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn"
-      ]
-     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTicketLambda75BD1DEAArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -914,6 +920,18 @@
        "Outputs.LurnityLmsStackLambdaNestedStackForgotPasswordResetLambdaDAC6AE86Arn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSendRegisterOTPLambdaDE4CAA91Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackSendRegisterOTPLambdaDE4CAA91Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackVerifyRegisterOTPLambda19136FA5Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackVerifyRegisterOTPLambda19136FA5Arn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCourseCompletionLambda21D6370EArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -1005,7 +1023,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/373ba5555e23b503fb655ec5da82b2206595ebb2c35d33ee3e912e0378e4a1ea.json"
+       "/2f92a6c057a8452755020bc8b765ff9ea9113470fe7384bcbd21d163c33510c5.json"
       ]
      ]
     }
