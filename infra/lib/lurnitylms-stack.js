@@ -47,6 +47,7 @@ class LurnityLmsStack extends cdk.Stack {
       FORGOT_TABLE_NAME: databaseStack.forgotPasswordTable.tableName,
       DEMO_OTP_TABLE_NAME: databaseStack.demoOTPTable.tableName,
       SNS_SENDER_ID: process.env.SNS_SENDER_ID || "LURNTY",
+      REGISTER_OTP_TABLE_NAME: databaseStack.registerOTPTable.tableName,
       S3_BUCKET: assetBucket.bucketName,
       JWT_SECRET: process.env.JWT_SECRET,
       GEMINI_API_KEY: process.env.GEMINI_API_KEY,
@@ -152,6 +153,32 @@ lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement(
   effect: iam.Effect.ALLOW,
   actions: ["sns:Publish"],
   resources: ["*"],
+}));
+
+
+[lambdaStack.sendRegisterOTPLambda, lambdaStack.verifyRegisterOTPLambda].forEach(l => {
+  // Grant DynamoDB OTP table access
+  databaseStack.registerOTPTable.grantReadWriteData(l);
+  
+  // Grant user table read access (to check if phone exists)
+  databaseStack.userTable.grantReadData(l);
+  
+  // Grant SNS publish permissions for SMS
+  l.addToRolePolicy(new iam.PolicyStatement({
+    effect: iam.Effect.ALLOW,
+    actions: ["sns:Publish"],
+    resources: ["*"],
+  }));
+});
+
+// Grant scan permission for phone number check
+lambdaStack.sendRegisterOTPLambda.addToRolePolicy(new iam.PolicyStatement({
+  effect: iam.Effect.ALLOW,
+  actions: ["dynamodb:Scan", "dynamodb:Query"],
+  resources: [
+    databaseStack.userTable.tableArn,
+    `${databaseStack.userTable.tableArn}/index/*`
+  ],
 }));
 
 

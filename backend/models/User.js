@@ -28,6 +28,7 @@ const OTP_TTL_SECONDS = parseInt(process.env.OTP_TTL_SECONDS || '600', 10);  // 
 const RESET_WINDOW_SECONDS = parseInt(process.env.RESET_WINDOW_SECONDS || '600', 10);
 const SES_FROM = process.env.SES_FROM;
 const SES_CONFIG_SET = process.env.SES_CONFIG_SET; // optional
+const REGISTER_OTP_TABLE = process.env.REGISTER_OTP_TABLE_NAME || `${TABLE}_register_otp`;
 
 const sesClient = new SESClient({ region: REGION });
 const snsClient = new SNSClient({ region: REGION });
@@ -857,4 +858,130 @@ export async function updateUserPasswordWithPolicy(userId, newPassword) {
   const hash = await bcrypt.hash(newPassword, 10); // same rounds as createUser
   await updateUser(userId, { password: hash, passwordUpdatedAt: new Date().toISOString() });
   return true;
+}
+
+export function generateOTP() {
+  return genOtp(6); // Reuse your existing genOtp function
+}
+
+/**
+ * Store OTP for registration verification
+ */
+export async function storeRegisterOTP(phone, otp, email = null) {
+  const sessionId = crypto.randomUUID();
+  const now = new Date();
+  const expiryTime = new Date(now.getTime() + 10 * 60 * 1000); // 10 minutes
+  const ttl = Math.floor(expiryTime.getTime() / 1000); // Unix timestamp
+
+  const item = {
+    sessionId,
+    phone,
+    email,
+    otp,
+    attempts: 3,
+    createdAt: now.toISOString(),
+    expiresAt: expiryTime.toISOString(),
+    ttl,
+    verified: false
+  };
+
+  await ddb.send(new PutCommand({ 
+    TableName: REGISTER_OTP_TABLE, 
+    Item: item 
+  }));
+
+  return { sessionId, expiresAt: expiryTime.toISOString() };
+}
+
+/**
+ * Verify registration OTP
+ */
+export async function verifyRegisterOTP(phone, otpEntered, sessionId) {
+  try {
+    const result = await ddb.send(
+      new GetCommand({
+        TableName: REGISTER_OTP_TABLE,
+        Key: { sessionId }
+      })
+    );
+
+    const item = result.Item;
+
+    if (!item) {
+      return { valid: false, message: "Invalid session or OTP expired" };
+    }
+
+    if (item.phone !== phone) {
+      return { valid: false, message: "Phone number mismatch" };
+    }
+
+    if (item.verified) {
+      return { valid: false, message: "OTP already used" };
+    }
+
+    // Check if OTP expired
+    const now = new Date();
+    const expiresAt = new Date(item.expiresAt);
+    if (now > expiresAt) {
+      await ddb.send(new DeleteCommand({
+        TableName: REGISTER_OTP_TABLE,
+        Key: { sessionId }
+      }));
+      return { valid: false, message: "OTP expired. Please request a new one." };
+    }
+
+    // Check attempts
+    if (item.attempts <= 0) {
+      return { 
+        valid: false, 
+        message: "Maximum attempts exceeded. Please request a new OTP.",
+        attemptsLeft: 0 
+      };
+    }
+
+    // Verify OTP
+    if (item.otp !== otpEntered) {
+      // Decrement attempts
+      const newAttempts = item.attempts - 1;
+      await ddb.send(
+        new UpdateCommand({
+          TableName: REGISTER_OTP_TABLE,
+          Key: { sessionId },
+          UpdateExpression: "SET attempts = :attempts",
+          ExpressionAttributeValues: {
+            ":attempts": newAttempts
+          }
+        })
+      );
+
+      return { 
+        valid: false, 
+        message: `Invalid OTP. ${newAttempts} attempt(s) remaining.`,
+        attemptsLeft: newAttempts 
+      };
+    }
+
+    // OTP is valid - mark as verified
+    await ddb.send(
+      new UpdateCommand({
+        TableName: REGISTER_OTP_TABLE,
+        Key: { sessionId },
+        UpdateExpression: "SET verified = :verified",
+        ExpressionAttributeValues: {
+          ":verified": true
+        }
+      })
+    );
+
+    // Delete the OTP record after successful verification
+    await ddb.send(new DeleteCommand({
+      TableName: REGISTER_OTP_TABLE,
+      Key: { sessionId }
+    }));
+
+    return { valid: true, message: "OTP verified successfully" };
+  } catch (error) {
+    console.error("Error verifying registration OTP:", error);
+    throw new Error("Failed to verify OTP");
+  }
 }

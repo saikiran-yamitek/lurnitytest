@@ -249,6 +249,9 @@ forgotRes.addResource("reset").addMethod(
   new apigateway.LambdaIntegration(lambdas.forgotPasswordResetLambda)
 );
 
+userRes.addResource("send-register-otp").addMethod("POST", new apigateway.LambdaIntegration(lambdas.sendRegisterOTPLambda));
+userRes.addResource("verify-register-otp").addMethod("POST", new apigateway.LambdaIntegration(lambdas.verifyRegisterOTPLambda));
+
     
 
     // ✅ FIXED: User-specific endpoints under /user/{id}/

@@ -104,6 +104,13 @@ this.forgotPasswordTable = new dynamodb.Table(this, process.env.FORGOT_TABLE_NAM
   removalPolicy: cdk.RemovalPolicy.DESTROY,
 });
 
+this.registerOTPTable = new dynamodb.Table(this, process.env.REGISTER_OTP_TABLE_NAME || "RegisterOTPTable", {
+  partitionKey: { name: "sessionId", type: dynamodb.AttributeType.STRING },
+  billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+  timeToLiveAttribute: "ttl",
+  removalPolicy: cdk.RemovalPolicy.DESTROY,
+});
+
 
     this.demoTable = new dynamodb.Table(this, process.env.DEMO_TABLE_NAME || "DemoTable", {
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },

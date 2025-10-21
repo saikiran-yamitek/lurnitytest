@@ -1,8 +1,6 @@
-// src/components/AuthForm.js
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-
-import { login, register } from '../services/api';
+import { login, register, sendRegisterOTP, verifyRegisterOTP } from '../services/api';
 import './Login.css';
 import logo from '../assets/LURNITY.jpg';
 import { GoogleLogin } from "@react-oauth/google";
@@ -25,6 +23,13 @@ export default function AuthForm() {
     confirmPassword: '',
     phone: ''
   });
+  
+  // OTP states for registration
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [sessionId, setSessionId] = useState('');
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpVerified, setOtpVerified] = useState(false);
   
   const [loginMsg, setLoginMsg] = useState('');
   const [registerMsg, setRegisterMsg] = useState('');
@@ -62,8 +67,8 @@ export default function AuthForm() {
     }
   };
 
-  // Handle register submit
-  const handleRegisterSubmit = async (e) => {
+  // Handle "Register" button - sends OTP
+  const handleSendOTP = async (e) => {
     e.preventDefault();
     const { name, email, password, confirmPassword, phone } = registerForm;
 
@@ -80,17 +85,76 @@ export default function AuthForm() {
       return setRegisterMsg('Passwords do not match.');
     }
 
-    try {
-      const res = await register({ name, email, password, phone });
+    setOtpLoading(true);
+    setRegisterMsg('');
 
-      if (res.msg === 'User registered successfully') {
-        setRegisterMsg(res.msg);
+    try {
+      // Send OTP - backend will check if phone is already used
+      const res = await sendRegisterOTP({ phone, email });
+
+      if (res.sessionId) {
+        setSessionId(res.sessionId);
+        setOtpSent(true);
+        setRegisterMsg('✅ OTP sent to your phone number. Please enter it below.');
+        setIsSuccess(true);
+      } else {
+        setRegisterMsg(res.message || 'Failed to send OTP');
+      }
+    } catch (err) {
+      setRegisterMsg(err.message || 'Failed to send OTP');
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  // Handle final submit with OTP verification and registration
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!otp || otp.length !== 6) {
+      return setRegisterMsg('❌ Please enter a valid 6-digit OTP.');
+    }
+
+    setOtpLoading(true);
+    setRegisterMsg('');
+
+    try {
+      // Step 1: Verify OTP
+      const verifyRes = await verifyRegisterOTP({
+        phone: registerForm.phone,
+        otp: otp,
+        sessionId: sessionId
+      });
+
+      if (!verifyRes.verified) {
+        setRegisterMsg('❌ ' + (verifyRes.message || 'Invalid OTP'));
+        setOtpLoading(false);
+        return;
+      }
+
+      // Step 2: Register user
+      const { name, email, password, phone } = registerForm;
+      const registerRes = await register({ 
+        name, 
+        email, 
+        password, 
+        phone,
+        otpVerified: true,
+        sessionId: sessionId 
+      });
+
+      if (registerRes.msg === 'User registered successfully') {
+        setRegisterMsg('✅ ' + registerRes.msg);
         setIsSuccess(true);
 
         setTimeout(() => {
           setIsSignUp(false);
           setRegisterMsg('');
           setIsSuccess(false);
+          setOtpSent(false);
+          setOtp('');
+          setSessionId('');
+          setOtpVerified(false);
           setRegisterForm({
             name: '',
             email: '',
@@ -102,9 +166,11 @@ export default function AuthForm() {
         return;
       }
 
-      setRegisterMsg(res.msg || 'Registration failed.');
+      setRegisterMsg('❌ ' + (registerRes.msg || 'Registration failed.'));
     } catch (err) {
-      setRegisterMsg(err.message || 'Registration failed.');
+      setRegisterMsg('❌ ' + (err.message || 'Registration failed.'));
+    } finally {
+      setOtpLoading(false);
     }
   };
 
@@ -113,6 +179,9 @@ export default function AuthForm() {
     setLoginMsg('');
     setRegisterMsg('');
     setIsSuccess(false);
+    setOtpSent(false);
+    setOtp('');
+    setSessionId('');
   };
 
   const toggleSignIn = () => {
@@ -120,6 +189,9 @@ export default function AuthForm() {
     setLoginMsg('');
     setRegisterMsg('');
     setIsSuccess(false);
+    setOtpSent(false);
+    setOtp('');
+    setSessionId('');
   };
 
   return (
@@ -136,8 +208,8 @@ export default function AuthForm() {
 
         {/* Sign Up Form */}
         <div className="auth-form-container sign-up-container">
-          <form onSubmit={handleRegisterSubmit}>
-            <h1>Create Accoun</h1>
+          <form onSubmit={otpSent ? handleRegisterSubmit : handleSendOTP}>
+            <h1>Create Account</h1>
             <span>Start career with Lurnity</span>
             
             <input
@@ -147,6 +219,7 @@ export default function AuthForm() {
               onChange={handleRegisterChange}
               placeholder="Full Name"
               required
+              disabled={otpSent}
             />
             <input
               type="email"
@@ -155,6 +228,7 @@ export default function AuthForm() {
               onChange={handleRegisterChange}
               placeholder="Email"
               required
+              disabled={otpSent}
             />
             <input
               type="tel"
@@ -165,6 +239,7 @@ export default function AuthForm() {
               pattern="\+\d{7,15}"
               title="Include country code, e.g., +911234567890"
               required
+              disabled={otpSent}
             />
             <input
               type="password"
@@ -173,6 +248,7 @@ export default function AuthForm() {
               onChange={handleRegisterChange}
               placeholder="Password (min 10 chars)"
               required
+              disabled={otpSent}
             />
             <input
               type="password"
@@ -181,9 +257,41 @@ export default function AuthForm() {
               onChange={handleRegisterChange}
               placeholder="Confirm Password"
               required
+              disabled={otpSent}
             />
             
-            <button type="submit">Register</button>
+            {/* Register Button - sends OTP */}
+            {!otpSent && (
+              <button type="submit" disabled={otpLoading}>
+                {otpLoading ? 'Sending OTP...' : 'Register'}
+              </button>
+            )}
+
+            {/* OTP Input Section */}
+            {otpSent && (
+              <>
+                <input
+                  type="text"
+                  value={otp}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 6) setOtp(value);
+                  }}
+                  placeholder="Enter 6-digit OTP"
+                  maxLength="6"
+                  required
+                  style={{ marginTop: '10px' }}
+                />
+                <p style={{ fontSize: '12px', color: '#666', marginTop: '5px' }}>
+                  OTP sent to {registerForm.phone}. Valid for 10 minutes.
+                </p>
+
+                {/* Submit Button - verifies OTP and registers */}
+                <button type="submit" disabled={otpLoading}>
+                  {otpLoading ? 'Verifying...' : 'Submit'}
+                </button>
+              </>
+            )}
             
             {registerMsg && (
               <p className={`auth-form-msg ${isSuccess ? 'success' : 'error'}`}>
@@ -193,7 +301,7 @@ export default function AuthForm() {
           </form>
         </div>
 
-        {/* Sign In Form */}
+        {/* Sign In Form - unchanged */}
         <div className="auth-form-container sign-in-container">
           <form onSubmit={handleLoginSubmit}>
             <h1>Sign In</h1>
@@ -203,7 +311,7 @@ export default function AuthForm() {
                 onSuccess={(credentialResponse) => {
                   const token = credentialResponse.credential;
 
-                  fetch("/api/google-login", {
+                  fetch("/api/auth/google-login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ token }),
@@ -251,7 +359,7 @@ export default function AuthForm() {
           </form>
         </div>
 
-        {/* Overlay */}
+        {/* Overlay - unchanged */}
         <div className="auth-overlay-container">
           <div className="auth-overlay">
             <div className="auth-overlay-panel overlay-left">

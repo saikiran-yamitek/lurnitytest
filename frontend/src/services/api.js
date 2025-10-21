@@ -35,6 +35,31 @@ export async function finalizeReset(payload) {
   return r.json();
 }
 
+// Add to your existing api.js file
+
+export const sendRegisterOTP = async (data) => {
+  const res = await fetch(`${API}/api/user/send-register-otp`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message || 'Failed to send OTP');
+  return json;
+};
+
+export const verifyRegisterOTP = async (data) => {
+  const res = await fetch(`${API}/api/user/verify-register-otp`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message || 'Failed to verify OTP');
+  return json;
+};
 
 
 

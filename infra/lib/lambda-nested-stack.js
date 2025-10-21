@@ -226,6 +226,9 @@ this.forgotPasswordVerifyLambda = makeLambda("ForgotPasswordVerifyLambda", "forg
 this.forgotPasswordResetLambda = makeLambda("ForgotPasswordResetLambda", "forgotReset", userLambdaPath);
 
 
+this.sendRegisterOTPLambda = makeLambda("SendRegisterOTPLambda", "sendRegisterOTP", userLambdaPath);
+this.verifyRegisterOTPLambda = makeLambda("VerifyRegisterOTPLambda", "verifyRegisterOTP", userLambdaPath);
+
     // Auth lambdas
     this.authLoginLambda = makeLambda("AuthLoginLambda", "login", userLambdaPath);
     this.authGoogleLoginLambda = makeLambda("AuthGoogleLoginLambda", "googleLogin", userLambdaPath);
