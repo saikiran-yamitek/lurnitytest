@@ -135,7 +135,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -308,7 +308,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -481,7 +481,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -594,14 +594,14 @@
        "Effect": "Allow",
        "Resource": [
         {
-         "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn"
+         "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Arn"
         },
         {
          "Fn::Join": [
           "",
           [
            {
-            "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn"
+            "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Arn"
            },
            "/*"
           ]
@@ -685,7 +685,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -878,7 +878,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -1071,7 +1071,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -1164,14 +1164,14 @@
        "Effect": "Allow",
        "Resource": [
         {
-         "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn"
+         "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Arn"
         },
         {
          "Fn::Join": [
           "",
           [
            {
-            "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn"
+            "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Arn"
            },
            "/*"
           ]
@@ -1255,7 +1255,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -1420,7 +1420,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -1585,7 +1585,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -1750,7 +1750,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -1915,7 +1915,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -2049,7 +2049,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -2213,7 +2213,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -2386,7 +2386,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -2551,7 +2551,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -2716,7 +2716,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -2881,7 +2881,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -3046,7 +3046,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -3211,7 +3211,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -3431,7 +3431,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -3651,7 +3651,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -3871,7 +3871,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -4091,7 +4091,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -4311,7 +4311,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -4476,7 +4476,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -4641,7 +4641,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -4806,7 +4806,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -4994,7 +4994,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -5182,7 +5182,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -5370,7 +5370,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -5558,7 +5558,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -5746,7 +5746,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -5934,7 +5934,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -6119,7 +6119,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -6304,7 +6304,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -6489,7 +6489,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -6686,7 +6686,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -6883,7 +6883,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -7080,7 +7080,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -7277,7 +7277,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -7474,7 +7474,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -7671,7 +7671,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -7868,7 +7868,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -8065,7 +8065,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -8262,7 +8262,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -8459,7 +8459,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -8653,7 +8653,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -8818,7 +8818,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -8983,7 +8983,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -9177,7 +9177,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -9371,7 +9371,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -9536,7 +9536,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -9701,7 +9701,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -9866,7 +9866,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -10031,7 +10031,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -10196,7 +10196,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -10361,7 +10361,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -10526,7 +10526,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -10691,7 +10691,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -10856,7 +10856,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -11021,7 +11021,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -11186,7 +11186,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -11351,7 +11351,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -11516,7 +11516,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -11699,7 +11699,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -11882,7 +11882,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -11916,6 +11916,210 @@
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/VerifyDemoOTPLambda/Resource",
     "aws:asset:path": "asset.62cb8832256526bec79cb6419c106b12e05e8af782aa2be2f7290622d91a61e1",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "TranscribeLambdaServiceRoleB69EE5C9": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/ServiceRole/Resource"
+   }
+  },
+  "TranscribeLambdaServiceRoleDefaultPolicy9493EE72": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Arn"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TranscribeLambdaServiceRoleDefaultPolicy9493EE72",
+    "Roles": [
+     {
+      "Ref": "TranscribeLambdaServiceRoleB69EE5C9"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "TranscribeLambda9461F407": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "501fff0c0729b0f0ba26dd481bc2168ae52c8ca5a4c45b9f579e1607c9efe4df.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "TranscribeLambdaServiceRoleB69EE5C9",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "TranscribeLambdaServiceRoleDefaultPolicy9493EE72",
+    "TranscribeLambdaServiceRoleB69EE5C9"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/TranscribeLambda/Resource",
+    "aws:asset:path": "asset.501fff0c0729b0f0ba26dd481bc2168ae52c8ca5a4c45b9f579e1607c9efe4df",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -12067,7 +12271,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -12252,7 +12456,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -12437,7 +12641,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -12634,7 +12838,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -12807,7 +13011,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -12980,7 +13184,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -13145,7 +13349,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -13310,7 +13514,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -13475,7 +13679,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -13640,7 +13844,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -13805,7 +14009,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -13970,7 +14174,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -14135,7 +14339,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -14308,7 +14512,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -14481,7 +14685,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -14654,7 +14858,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -14827,7 +15031,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -15000,7 +15204,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -15173,7 +15377,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -15346,7 +15550,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -15519,7 +15723,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -15692,7 +15896,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -15865,7 +16069,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -16038,7 +16242,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -16211,7 +16415,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -16384,7 +16588,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -16557,7 +16761,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -16730,7 +16934,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -16903,7 +17107,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -17076,7 +17280,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -17249,7 +17453,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -17422,7 +17626,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -17595,7 +17799,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -17830,7 +18034,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -18008,7 +18212,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -18212,7 +18416,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -18447,7 +18651,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -18659,7 +18863,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -18832,7 +19036,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -19005,7 +19209,7 @@
        "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       },
       "S3_BUCKET": {
-       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
       },
       "JWT_SECRET": "super-secret-dev-key",
       "GEMINI_API_KEY": "your-gemini-api-key",
@@ -19105,10 +19309,10 @@
   "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref": {
    "Type": "String"
   },
-  "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
+  "referencetoLurnityLmsStackLurnityBucketD0083579Ref": {
    "Type": "String"
   },
-  "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn": {
+  "referencetoLurnityLmsStackLurnityBucketD0083579Arn": {
    "Type": "String"
   },
   "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DArn": {
@@ -19242,54 +19446,6 @@
    "Value": {
     "Fn::GetAtt": [
      "DeleteCoursePublicLambda9344C01D",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "ListEmployeesLambda0B3516A4",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackCreateEmployeeLambda97C1AC61Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "CreateEmployeeLambdaD439CE14",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackEmployeeLoginLambdaA066672AArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "EmployeeLoginLambda86CBDAC9",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackGetEmployeeByIdLambdaD71A13C2Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "GetEmployeeByIdLambda256E5937",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackUpdateEmployeeLambda3AA49EFEArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "UpdateEmployeeLambda64547483",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackDeleteEmployeeLambdaFEA767A0Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "DeleteEmployeeLambda8C83366D",
      "Arn"
     ]
    }
@@ -19670,6 +19826,14 @@
     ]
    }
   },
+  "LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "TranscribeLambda9461F407",
+     "Arn"
+    ]
+   }
+  },
   "LurnityLmsStackLambdaNestedStackCreateTicketLambda75BD1DEAArn": {
    "Value": {
     "Fn::GetAtt": [
@@ -19938,6 +20102,54 @@
    "Value": {
     "Fn::GetAtt": [
      "UpdateJudge0KeyLambdaA2A7DE16",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListEmployeesLambda0B3516A4",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackCreateEmployeeLambda97C1AC61Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CreateEmployeeLambdaD439CE14",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackEmployeeLoginLambdaA066672AArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "EmployeeLoginLambda86CBDAC9",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackGetEmployeeByIdLambdaD71A13C2Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetEmployeeByIdLambda256E5937",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackUpdateEmployeeLambda3AA49EFEArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateEmployeeLambda64547483",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackDeleteEmployeeLambdaFEA767A0Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteEmployeeLambda8C83366D",
      "Arn"
     ]
    }

@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import { DatabaseNestedStack } from "./database-nested-stack.js";
 import { LambdaNestedStack } from "./lambda-nested-stack.js";
 import { ApiNestedStack } from "./api-nested-stack.js";
+import { ApiEmployeeStack } from "./api-employee-stack.js";  // ✅ NEW IMPORT
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +19,7 @@ class LurnityLmsStack extends cdk.Stack {
     super(scope, id, props);
 
     // S3 Bucket
-    const assetBucket = new s3.Bucket(this, process.env.S3_BUCKET, {
+    const assetBucket = new s3.Bucket(this, 'LurnityBucket', process.env.S3_BUCKET, {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
@@ -66,12 +67,17 @@ class LurnityLmsStack extends cdk.Stack {
       lambdaEnv
     });
 
-    // API nested stack - permissions are handled inside with allowTestInvoke: false
+    // Main API nested stack (WITHOUT employees)
     const apiStack = new ApiNestedStack(this, 'ApiNestedStack', {
       lambdas: lambdaStack
     });
 
-    // ✅ ONLY DATABASE PERMISSIONS HERE (no API Gateway permissions)
+    // ✅ NEW: Separate Employee API nested stack
+    const employeeApiStack = new ApiEmployeeStack(this, 'ApiEmployeeStack', {
+      lambdas: lambdaStack
+    });
+
+    // Grant permissions (same as before - ALL your existing permission grants stay here)
     [lambdaStack.listUsersLambda, lambdaStack.updateUserLambda, lambdaStack.deleteUserLambda, lambdaStack.exportUsersCsvLambda, lambdaStack.setUserLockLambda].forEach(l => databaseStack.userTable.grantFullAccess(l));
     [lambdaStack.createTransactionLambda, lambdaStack.listUserTransactionsLambda].forEach(l => { databaseStack.transactionTable.grantFullAccess(l); databaseStack.userTable.grantFullAccess(l); });
     [lambdaStack.listCoursesLambda, lambdaStack.createCourseLambda, lambdaStack.updateCourseLambda, lambdaStack.deleteCourseLambda].forEach(l => databaseStack.courseTable.grantFullAccess(l));
@@ -123,9 +129,9 @@ class LurnityLmsStack extends cdk.Stack {
     databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordRequestLambda);
     databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordVerifyLambda);
     databaseStack.forgotPasswordTable.grantReadWriteData(lambdaStack.forgotPasswordResetLambda);
-
     databaseStack.userTable.grantReadData(lambdaStack.forgotPasswordRequestLambda);
     databaseStack.userTable.grantWriteData(lambdaStack.forgotPasswordResetLambda);
+    
     lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
       actions: ["dynamodb:Query"],
@@ -137,6 +143,7 @@ class LurnityLmsStack extends cdk.Stack {
       actions: ["ses:SendEmail", "ses:SendRawEmail"],
       resources: ["*"],
     }));
+    
     lambdaStack.forgotPasswordRequestLambda.addToRolePolicy(new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
       actions: ["sns:Publish"],
@@ -188,6 +195,7 @@ class LurnityLmsStack extends cdk.Stack {
     ].forEach(l => {
       databaseStack.workshopTable.grantFullAccess(l);
     });
+    
     [lambdaStack.listWorkshopsLambda, lambdaStack.getUserWorkshopsLambda, lambdaStack.getWorkshopStudentsLambda].forEach(l => databaseStack.userTable.grantReadData(l));
 
     [lambdaStack.createCoursePublicLambda, lambdaStack.listCoursesPublicLambda, lambdaStack.getCourseByIdPublicLambda, lambdaStack.updateCoursePublicLambda, lambdaStack.deleteCoursePublicLambda].forEach(l => {
@@ -246,6 +254,11 @@ class LurnityLmsStack extends cdk.Stack {
       lambdaStack.getKeyLambda,
       lambdaStack.mockQuestionsLambda,
     ].forEach(l => databaseStack.userTable.grantFullAccess(l));
+
+    [lambdaStack.transcribeLambda].forEach(l => {
+      assetBucket.grantReadWrite(l);
+      databaseStack.userTable.grantFullAccess(l);
+    });
   }
 }
 

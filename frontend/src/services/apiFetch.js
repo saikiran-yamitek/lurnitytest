@@ -1,7 +1,9 @@
 // src/services/apiFetch.js
-const API_BASE =
-  process.env.REACT_APP_API_URL ||
-  "https://0b2k8twmkf.execute-api.ap-south-1.amazonaws.com/dev";
+const MAIN_API =
+  process.env.REACT_APP_MAIN_API_URL ;
+
+const EMPLOYEES_API =
+  process.env.REACT_APP_EMPLOYEES_API_URL ;
 
 /**
  * Unified fetch helper for all roles.
@@ -10,21 +12,23 @@ const API_BASE =
 export async function apiFetch(endpoint, options = {}, role = null) {
   let token = "";
 
-  // Pick token based on role
-  if (role === 'admin') token = localStorage.getItem("adminToken");
-  else if (role === 'employee') token = localStorage.getItem("empToken");
-  else if (role === 'user') token = localStorage.getItem("token");
-  // if role is null or not specified, no token is sent (public API)
+  if (role === "admin") token = localStorage.getItem("adminToken");
+  else if (role === "employee") token = localStorage.getItem("empToken");
+  else if (role === "user") token = localStorage.getItem("token");
 
-  // Merge headers
   const headers = {
     "Content-Type": "application/json",
     ...(options.headers || {}),
     ...(token && { Authorization: `Bearer ${token}` }),
   };
 
-  // Make the request
-  const response = await fetch(`${API_BASE}${endpoint}`, {
+  // 🧠 Automatically decide which API to call
+  // Anything starting with /api/employees goes to employees API
+  const baseURL = endpoint.startsWith("/api/employees")
+    ? EMPLOYEES_API
+    : MAIN_API;
+
+  const response = await fetch(`${baseURL}${endpoint}`, {
     ...options,
     headers,
   });

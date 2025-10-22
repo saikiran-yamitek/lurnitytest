@@ -1,162 +1,11 @@
 {
  "Resources": {
-  "lurnityassetsbucket1605654D": {
+  "LurnityBucket94F6CA69": {
    "Type": "AWS::S3::Bucket",
-   "Properties": {
-    "Tags": [
-     {
-      "Key": "aws-cdk:auto-delete-objects",
-      "Value": "true"
-     }
-    ]
-   },
-   "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete",
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/lurnity-assets-bucket/Resource"
-   }
-  },
-  "lurnityassetsbucketPolicyB31CB0AC": {
-   "Type": "AWS::S3::BucketPolicy",
-   "Properties": {
-    "Bucket": {
-     "Ref": "lurnityassetsbucket1605654D"
-    },
-    "PolicyDocument": {
-     "Statement": [
-      {
-       "Action": [
-        "s3:PutBucketPolicy",
-        "s3:GetBucket*",
-        "s3:List*",
-        "s3:DeleteObject*"
-       ],
-       "Effect": "Allow",
-       "Principal": {
-        "AWS": {
-         "Fn::GetAtt": [
-          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-          "Arn"
-         ]
-        }
-       },
-       "Resource": [
-        {
-         "Fn::GetAtt": [
-          "lurnityassetsbucket1605654D",
-          "Arn"
-         ]
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           {
-            "Fn::GetAtt": [
-             "lurnityassetsbucket1605654D",
-             "Arn"
-            ]
-           },
-           "/*"
-          ]
-         ]
-        }
-       ]
-      }
-     ],
-     "Version": "2012-10-17"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/lurnity-assets-bucket/Policy/Resource"
-   }
-  },
-  "lurnityassetsbucketAutoDeleteObjectsCustomResourceDBBF5783": {
-   "Type": "Custom::S3AutoDeleteObjects",
-   "Properties": {
-    "ServiceToken": {
-     "Fn::GetAtt": [
-      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
-      "Arn"
-     ]
-    },
-    "BucketName": {
-     "Ref": "lurnityassetsbucket1605654D"
-    }
-   },
-   "DependsOn": [
-    "lurnityassetsbucketPolicyB31CB0AC"
-   ],
-   "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete",
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/lurnity-assets-bucket/AutoDeleteObjectsCustomResource/Default"
-   }
-  },
-  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
-   "Type": "AWS::IAM::Role",
-   "Properties": {
-    "AssumeRolePolicyDocument": {
-     "Version": "2012-10-17",
-     "Statement": [
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "Service": "lambda.amazonaws.com"
-       }
-      }
-     ]
-    },
-    "ManagedPolicyArns": [
-     {
-      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
-   }
-  },
-  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
-   "Type": "AWS::Lambda::Function",
-   "Properties": {
-    "Code": {
-     "S3Bucket": {
-      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
-     },
-     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
-    },
-    "Timeout": 900,
-    "MemorySize": 128,
-    "Handler": "index.handler",
-    "Role": {
-     "Fn::GetAtt": [
-      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-      "Arn"
-     ]
-    },
-    "Runtime": "nodejs20.x",
-    "Description": {
-     "Fn::Join": [
-      "",
-      [
-       "Lambda function for auto-deleting objects in ",
-       {
-        "Ref": "lurnityassetsbucket1605654D"
-       },
-       " S3 bucket."
-      ]
-     ]
-    }
-   },
-   "DependsOn": [
-    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
-   ],
-   "Metadata": {
-    "aws:cdk:path": "LurnityLmsStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
-    "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
-    "aws:asset:property": "Code"
+    "aws:cdk:path": "LurnityLmsStack/LurnityBucket/Resource"
    }
   },
   "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB": {
@@ -293,12 +142,12 @@
        "Outputs.LurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
       ]
      },
-     "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
-      "Ref": "lurnityassetsbucket1605654D"
+     "referencetoLurnityLmsStackLurnityBucketD0083579Ref": {
+      "Ref": "LurnityBucket94F6CA69"
      },
-     "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Arn": {
+     "referencetoLurnityLmsStackLurnityBucketD0083579Arn": {
       "Fn::GetAtt": [
-       "lurnityassetsbucket1605654D",
+       "LurnityBucket94F6CA69",
        "Arn"
       ]
      },
@@ -405,7 +254,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/5684ac5c79824cd13b5f325408e0b0ec15abe88ac8f9a6477fdab18a431eb6ad.json"
+       "/43d1a8e1045c22a6537718eeaf4b97c770798599d832253471a84d4da5dc233c.json"
       ]
      ]
     }
@@ -486,42 +335,6 @@
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
        "Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateEmployeeLambda97C1AC61Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackCreateEmployeeLambda97C1AC61Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackEmployeeLoginLambdaA066672AArn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackEmployeeLoginLambdaA066672AArn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetEmployeeByIdLambdaD71A13C2Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackGetEmployeeByIdLambdaD71A13C2Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateEmployeeLambda3AA49EFEArn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackUpdateEmployeeLambda3AA49EFEArn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteEmployeeLambdaFEA767A0Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackDeleteEmployeeLambdaFEA767A0Arn"
       ]
      },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn": {
@@ -806,6 +619,12 @@
        "Outputs.LurnityLmsStackLambdaNestedStackVerifyDemoOTPLambda96E21CC6Arn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTicketLambda75BD1DEAArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -1023,7 +842,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/2f92a6c057a8452755020bc8b765ff9ea9113470fe7384bcbd21d163c33510c5.json"
+       "/a76b3af54cfcfe624931ce1be6a02c22b9a7268d79c8230aedae1da1a6837963.json"
       ]
      ]
     }
@@ -1036,10 +855,76 @@
     "aws:asset:property": "TemplateURL"
    }
   },
+  "ApiEmployeeStackNestedStackApiEmployeeStackNestedStackResource7BDECAA4": {
+   "Type": "AWS::CloudFormation::Stack",
+   "Properties": {
+    "Parameters": {
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackListEmployeesLambda1ED69624Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateEmployeeLambda97C1AC61Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackCreateEmployeeLambda97C1AC61Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackEmployeeLoginLambdaA066672AArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackEmployeeLoginLambdaA066672AArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetEmployeeByIdLambdaD71A13C2Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackGetEmployeeByIdLambdaD71A13C2Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateEmployeeLambda3AA49EFEArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackUpdateEmployeeLambda3AA49EFEArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteEmployeeLambdaFEA767A0Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackDeleteEmployeeLambdaFEA767A0Arn"
+      ]
+     }
+    },
+    "TemplateURL": {
+     "Fn::Join": [
+      "",
+      [
+       "https://s3.ap-south-1.",
+       {
+        "Ref": "AWS::URLSuffix"
+       },
+       "/",
+       {
+        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+       },
+       "/96904af471bedf74d386a7c0bf4baecca3f7cbdb590321bd8bee80344b131a8f.json"
+      ]
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiEmployeeStack.NestedStack/ApiEmployeeStack.NestedStackResource",
+    "aws:asset:path": "LurnityLmsStackApiEmployeeStackBC957FF2.nested.template.json",
+    "aws:asset:property": "TemplateURL"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VO0QqDMBD7Ft/b23QM9jr9AXEfMLp6k7PaQq91DPHfp+tABoHkEkKugPycwzFTL5a6NXKgB8y3oLQRq3XnE8xl1AaDqJ72pxLVbiD93u10L6KKHNzYILvoNW75rv+i2ruJWvSlYhRXZgzrbke22zrfFxZhXYvQ82HKL7CiyHomkj7aQCNCk/gDtT88ysQAAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzQ11DNQTCwv1k1OydbNyUzSqw4uSUzO1gEKxRcb61U7lSZnp5boOKflQVi1ICZECZARlFqcX1qUnFqrk5efkqqXVaxfZmihB0RGilnFmZm6RaV5JZm5qXpBEBoAzGM4s3AAAAA="
    },
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/CDKMetadata/Default"

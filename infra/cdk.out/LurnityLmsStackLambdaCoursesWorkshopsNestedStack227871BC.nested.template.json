@@ -1,0 +1,3902 @@
+{
+ "Resources": {
+  "CreateCoursePublicLambdaServiceRole604745B1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CreateCoursePublicLambda/ServiceRole/Resource"
+   }
+  },
+  "CreateCoursePublicLambdaServiceRoleDefaultPolicyB48824DA": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CreateCoursePublicLambdaServiceRoleDefaultPolicyB48824DA",
+    "Roles": [
+     {
+      "Ref": "CreateCoursePublicLambdaServiceRole604745B1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CreateCoursePublicLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "CreateCoursePublicLambdaC1FE1D16": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "c0b77d90a9a818445958fc4f2dc7ced72a1d3242ed8a69f90175b06018d07a43.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "CreateCoursePublicLambdaServiceRole604745B1",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "CreateCoursePublicLambdaServiceRoleDefaultPolicyB48824DA",
+    "CreateCoursePublicLambdaServiceRole604745B1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CreateCoursePublicLambda/Resource",
+    "aws:asset:path": "asset.c0b77d90a9a818445958fc4f2dc7ced72a1d3242ed8a69f90175b06018d07a43",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ListCoursesPublicLambdaServiceRole2258C448": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCoursesPublicLambda/ServiceRole/Resource"
+   }
+  },
+  "ListCoursesPublicLambdaServiceRoleDefaultPolicy3A9F3C9B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ListCoursesPublicLambdaServiceRoleDefaultPolicy3A9F3C9B",
+    "Roles": [
+     {
+      "Ref": "ListCoursesPublicLambdaServiceRole2258C448"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCoursesPublicLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ListCoursesPublicLambda96B78432": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "114bddd55f17ea8c243c3dd6a0307e6e5adbe45028eb0d3d8e62bc67926b85ae.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ListCoursesPublicLambdaServiceRole2258C448",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ListCoursesPublicLambdaServiceRoleDefaultPolicy3A9F3C9B",
+    "ListCoursesPublicLambdaServiceRole2258C448"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCoursesPublicLambda/Resource",
+    "aws:asset:path": "asset.114bddd55f17ea8c243c3dd6a0307e6e5adbe45028eb0d3d8e62bc67926b85ae",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "GetCourseByIdPublicLambdaServiceRole358617F5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetCourseByIdPublicLambda/ServiceRole/Resource"
+   }
+  },
+  "GetCourseByIdPublicLambdaServiceRoleDefaultPolicyCFBC0CCA": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GetCourseByIdPublicLambdaServiceRoleDefaultPolicyCFBC0CCA",
+    "Roles": [
+     {
+      "Ref": "GetCourseByIdPublicLambdaServiceRole358617F5"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetCourseByIdPublicLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "GetCourseByIdPublicLambda979F28C0": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "4f6650a95e1c9131facfa09c6f718698159a8c5b6dab56e3e324febe04ea0221.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "GetCourseByIdPublicLambdaServiceRole358617F5",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "GetCourseByIdPublicLambdaServiceRoleDefaultPolicyCFBC0CCA",
+    "GetCourseByIdPublicLambdaServiceRole358617F5"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetCourseByIdPublicLambda/Resource",
+    "aws:asset:path": "asset.4f6650a95e1c9131facfa09c6f718698159a8c5b6dab56e3e324febe04ea0221",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "UpdateCoursePublicLambdaServiceRoleE67DB525": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateCoursePublicLambda/ServiceRole/Resource"
+   }
+  },
+  "UpdateCoursePublicLambdaServiceRoleDefaultPolicyAA2AD29B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "UpdateCoursePublicLambdaServiceRoleDefaultPolicyAA2AD29B",
+    "Roles": [
+     {
+      "Ref": "UpdateCoursePublicLambdaServiceRoleE67DB525"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateCoursePublicLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "UpdateCoursePublicLambdaF9F9A29C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "935900ced03d06401e1965da21360781e57dff36c2a5604ad3007371233a9418.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "UpdateCoursePublicLambdaServiceRoleE67DB525",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "UpdateCoursePublicLambdaServiceRoleDefaultPolicyAA2AD29B",
+    "UpdateCoursePublicLambdaServiceRoleE67DB525"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateCoursePublicLambda/Resource",
+    "aws:asset:path": "asset.935900ced03d06401e1965da21360781e57dff36c2a5604ad3007371233a9418",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "DeleteCoursePublicLambdaServiceRole6C94F187": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/DeleteCoursePublicLambda/ServiceRole/Resource"
+   }
+  },
+  "DeleteCoursePublicLambdaServiceRoleDefaultPolicy9A11650C": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "DeleteCoursePublicLambdaServiceRoleDefaultPolicy9A11650C",
+    "Roles": [
+     {
+      "Ref": "DeleteCoursePublicLambdaServiceRole6C94F187"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/DeleteCoursePublicLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "DeleteCoursePublicLambda9344C01D": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "57c7d490c9fef8029f604f8d11ebc5b447b53f1c900bbdf30fce526f9cdc95d9.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "DeleteCoursePublicLambdaServiceRole6C94F187",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "DeleteCoursePublicLambdaServiceRoleDefaultPolicy9A11650C",
+    "DeleteCoursePublicLambdaServiceRole6C94F187"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/DeleteCoursePublicLambda/Resource",
+    "aws:asset:path": "asset.57c7d490c9fef8029f604f8d11ebc5b447b53f1c900bbdf30fce526f9cdc95d9",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ListWorkshopsLambdaServiceRoleD32FE6D4": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListWorkshopsLambda/ServiceRole/Resource"
+   }
+  },
+  "ListWorkshopsLambdaServiceRoleDefaultPolicyEE7D7DF0": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ListWorkshopsLambdaServiceRoleDefaultPolicyEE7D7DF0",
+    "Roles": [
+     {
+      "Ref": "ListWorkshopsLambdaServiceRoleD32FE6D4"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListWorkshopsLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ListWorkshopsLambdaF2B18A43": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "bebb729588eb6f02195db9aa2cfa7509c06a1f500f8a95eca05a401eddab8a56.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ListWorkshopsLambdaServiceRoleD32FE6D4",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ListWorkshopsLambdaServiceRoleDefaultPolicyEE7D7DF0",
+    "ListWorkshopsLambdaServiceRoleD32FE6D4"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListWorkshopsLambda/Resource",
+    "aws:asset:path": "asset.bebb729588eb6f02195db9aa2cfa7509c06a1f500f8a95eca05a401eddab8a56",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CreateWorkshopLambdaServiceRole49CC8A2B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CreateWorkshopLambda/ServiceRole/Resource"
+   }
+  },
+  "CreateWorkshopLambdaServiceRoleDefaultPolicyE2F3CFEC": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CreateWorkshopLambdaServiceRoleDefaultPolicyE2F3CFEC",
+    "Roles": [
+     {
+      "Ref": "CreateWorkshopLambdaServiceRole49CC8A2B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CreateWorkshopLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "CreateWorkshopLambda2DEAF661": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "0f3dce2afa0414ab4b83097e995105fdaa8050a6a44f841d7a799d1ba3bc9c9c.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "CreateWorkshopLambdaServiceRole49CC8A2B",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "CreateWorkshopLambdaServiceRoleDefaultPolicyE2F3CFEC",
+    "CreateWorkshopLambdaServiceRole49CC8A2B"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CreateWorkshopLambda/Resource",
+    "aws:asset:path": "asset.0f3dce2afa0414ab4b83097e995105fdaa8050a6a44f841d7a799d1ba3bc9c9c",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "RegisterStudentLambdaServiceRole10081893": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/RegisterStudentLambda/ServiceRole/Resource"
+   }
+  },
+  "RegisterStudentLambdaServiceRoleDefaultPolicy4BFDCE75": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RegisterStudentLambdaServiceRoleDefaultPolicy4BFDCE75",
+    "Roles": [
+     {
+      "Ref": "RegisterStudentLambdaServiceRole10081893"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/RegisterStudentLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "RegisterStudentLambdaB69EC25F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "9f4ddeafd1707fafc4babbddbdc198bd3c4b03545ad75d6342d2b51439c42a23.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "RegisterStudentLambdaServiceRole10081893",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "RegisterStudentLambdaServiceRoleDefaultPolicy4BFDCE75",
+    "RegisterStudentLambdaServiceRole10081893"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/RegisterStudentLambda/Resource",
+    "aws:asset:path": "asset.9f4ddeafd1707fafc4babbddbdc198bd3c4b03545ad75d6342d2b51439c42a23",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "GetUserWorkshopsLambdaServiceRoleFE5FB858": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetUserWorkshopsLambda/ServiceRole/Resource"
+   }
+  },
+  "GetUserWorkshopsLambdaServiceRoleDefaultPolicy910EBFA1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GetUserWorkshopsLambdaServiceRoleDefaultPolicy910EBFA1",
+    "Roles": [
+     {
+      "Ref": "GetUserWorkshopsLambdaServiceRoleFE5FB858"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetUserWorkshopsLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "GetUserWorkshopsLambdaB239D96F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "ecacfde0d89bbb3b27b6fe7063efc6dea44ca43fdc11a52a47a249afce115a23.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "GetUserWorkshopsLambdaServiceRoleFE5FB858",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "GetUserWorkshopsLambdaServiceRoleDefaultPolicy910EBFA1",
+    "GetUserWorkshopsLambdaServiceRoleFE5FB858"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetUserWorkshopsLambda/Resource",
+    "aws:asset:path": "asset.ecacfde0d89bbb3b27b6fe7063efc6dea44ca43fdc11a52a47a249afce115a23",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "GetWorkshopStudentsLambdaServiceRoleA26C64EA": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetWorkshopStudentsLambda/ServiceRole/Resource"
+   }
+  },
+  "GetWorkshopStudentsLambdaServiceRoleDefaultPolicy3AB269A2": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:Scan",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GetWorkshopStudentsLambdaServiceRoleDefaultPolicy3AB269A2",
+    "Roles": [
+     {
+      "Ref": "GetWorkshopStudentsLambdaServiceRoleA26C64EA"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetWorkshopStudentsLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "GetWorkshopStudentsLambdaED7934D4": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "c3db009b7dbcfe6fea83606247e46b0830048322181bf8770b98dd27e5b54f4a.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "GetWorkshopStudentsLambdaServiceRoleA26C64EA",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "GetWorkshopStudentsLambdaServiceRoleDefaultPolicy3AB269A2",
+    "GetWorkshopStudentsLambdaServiceRoleA26C64EA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetWorkshopStudentsLambda/Resource",
+    "aws:asset:path": "asset.c3db009b7dbcfe6fea83606247e46b0830048322181bf8770b98dd27e5b54f4a",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "DeleteWorkshopLambdaServiceRoleAD5D290C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/DeleteWorkshopLambda/ServiceRole/Resource"
+   }
+  },
+  "DeleteWorkshopLambdaServiceRoleDefaultPolicy6FAC3CF1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "DeleteWorkshopLambdaServiceRoleDefaultPolicy6FAC3CF1",
+    "Roles": [
+     {
+      "Ref": "DeleteWorkshopLambdaServiceRoleAD5D290C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/DeleteWorkshopLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "DeleteWorkshopLambda896A43DB": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "92d320fed3f0763234d9e485ec34f89eceaca062661e782043aa3c3d061c3cb0.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "DeleteWorkshopLambdaServiceRoleAD5D290C",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "DeleteWorkshopLambdaServiceRoleDefaultPolicy6FAC3CF1",
+    "DeleteWorkshopLambdaServiceRoleAD5D290C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/DeleteWorkshopLambda/Resource",
+    "aws:asset:path": "asset.92d320fed3f0763234d9e485ec34f89eceaca062661e782043aa3c3d061c3cb0",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "GetWorkshopsByInchargeLambdaServiceRoleBD1DF0BC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetWorkshopsByInchargeLambda/ServiceRole/Resource"
+   }
+  },
+  "GetWorkshopsByInchargeLambdaServiceRoleDefaultPolicy64A968B1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GetWorkshopsByInchargeLambdaServiceRoleDefaultPolicy64A968B1",
+    "Roles": [
+     {
+      "Ref": "GetWorkshopsByInchargeLambdaServiceRoleBD1DF0BC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetWorkshopsByInchargeLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "GetWorkshopsByInchargeLambdaF1441168": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "577c15e2276d08850b0c49fb9c5adc2dd9fd69e290a02df3b8fa15edd4340ecb.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "GetWorkshopsByInchargeLambdaServiceRoleBD1DF0BC",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "GetWorkshopsByInchargeLambdaServiceRoleDefaultPolicy64A968B1",
+    "GetWorkshopsByInchargeLambdaServiceRoleBD1DF0BC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetWorkshopsByInchargeLambda/Resource",
+    "aws:asset:path": "asset.577c15e2276d08850b0c49fb9c5adc2dd9fd69e290a02df3b8fa15edd4340ecb",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "UpdateStudentAttendanceLambdaServiceRoleCEA600FF": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateStudentAttendanceLambda/ServiceRole/Resource"
+   }
+  },
+  "UpdateStudentAttendanceLambdaServiceRoleDefaultPolicy347DC48E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "UpdateStudentAttendanceLambdaServiceRoleDefaultPolicy347DC48E",
+    "Roles": [
+     {
+      "Ref": "UpdateStudentAttendanceLambdaServiceRoleCEA600FF"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateStudentAttendanceLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "UpdateStudentAttendanceLambdaB3DA31AF": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "5330520c9a6ef5c52b4a656bb8025d5df8801b21c0599284a10f25dbc987c1c4.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "UpdateStudentAttendanceLambdaServiceRoleCEA600FF",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "UpdateStudentAttendanceLambdaServiceRoleDefaultPolicy347DC48E",
+    "UpdateStudentAttendanceLambdaServiceRoleCEA600FF"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateStudentAttendanceLambda/Resource",
+    "aws:asset:path": "asset.5330520c9a6ef5c52b4a656bb8025d5df8801b21c0599284a10f25dbc987c1c4",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "RegisterStudentPutLambdaServiceRoleEAA17171": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/RegisterStudentPutLambda/ServiceRole/Resource"
+   }
+  },
+  "RegisterStudentPutLambdaServiceRoleDefaultPolicyD96A0509": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RegisterStudentPutLambdaServiceRoleDefaultPolicyD96A0509",
+    "Roles": [
+     {
+      "Ref": "RegisterStudentPutLambdaServiceRoleEAA17171"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/RegisterStudentPutLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "RegisterStudentPutLambda2C53F25C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "ab85c926300c571398e0179c0fceb304357f5ee948ebdfd81b39b4621ba6bf4f.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "RegisterStudentPutLambdaServiceRoleEAA17171",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "RegisterStudentPutLambdaServiceRoleDefaultPolicyD96A0509",
+    "RegisterStudentPutLambdaServiceRoleEAA17171"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/RegisterStudentPutLambda/Resource",
+    "aws:asset:path": "asset.ab85c926300c571398e0179c0fceb304357f5ee948ebdfd81b39b4621ba6bf4f",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "UpdateWorkshopLambdaServiceRole2365D112": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateWorkshopLambda/ServiceRole/Resource"
+   }
+  },
+  "UpdateWorkshopLambdaServiceRoleDefaultPolicy19D17ADC": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "UpdateWorkshopLambdaServiceRoleDefaultPolicy19D17ADC",
+    "Roles": [
+     {
+      "Ref": "UpdateWorkshopLambdaServiceRole2365D112"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateWorkshopLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "UpdateWorkshopLambda888622A6": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "2253895935c4cdd3e7ebaacf7361ed1fea49cff951e3d41608e76e4b33363cd6.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "UpdateWorkshopLambdaServiceRole2365D112",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "UpdateWorkshopLambdaServiceRoleDefaultPolicy19D17ADC",
+    "UpdateWorkshopLambdaServiceRole2365D112"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/UpdateWorkshopLambda/Resource",
+    "aws:asset:path": "asset.2253895935c4cdd3e7ebaacf7361ed1fea49cff951e3d41608e76e4b33363cd6",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "GenerateCertificateLambdaServiceRole0BD98416": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GenerateCertificateLambda/ServiceRole/Resource"
+   }
+  },
+  "GenerateCertificateLambdaServiceRoleDefaultPolicy400CB34D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GenerateCertificateLambdaServiceRoleDefaultPolicy400CB34D",
+    "Roles": [
+     {
+      "Ref": "GenerateCertificateLambdaServiceRole0BD98416"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GenerateCertificateLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "GenerateCertificateLambda0B2FC737": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "25f3ad65128cbacbb39a9c4efbcf40c32db5b047320fb2498b1dcf398b2a4037.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "GenerateCertificateLambdaServiceRole0BD98416",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "GenerateCertificateLambdaServiceRoleDefaultPolicy400CB34D",
+    "GenerateCertificateLambdaServiceRole0BD98416"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GenerateCertificateLambda/Resource",
+    "aws:asset:path": "asset.25f3ad65128cbacbb39a9c4efbcf40c32db5b047320fb2498b1dcf398b2a4037",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ListCertificatesLambdaServiceRole28DC2FEC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCertificatesLambda/ServiceRole/Resource"
+   }
+  },
+  "ListCertificatesLambdaServiceRoleDefaultPolicy42761E58": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ListCertificatesLambdaServiceRoleDefaultPolicy42761E58",
+    "Roles": [
+     {
+      "Ref": "ListCertificatesLambdaServiceRole28DC2FEC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCertificatesLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ListCertificatesLambdaDE3225D3": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "07440bc77f8bbaebac0f2bfed313b7e53075def2e8f1c0eba3990c309af27c1c.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ListCertificatesLambdaServiceRole28DC2FEC",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ListCertificatesLambdaServiceRoleDefaultPolicy42761E58",
+    "ListCertificatesLambdaServiceRole28DC2FEC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCertificatesLambda/Resource",
+    "aws:asset:path": "asset.07440bc77f8bbaebac0f2bfed313b7e53075def2e8f1c0eba3990c309af27c1c",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "GetCertificateByIdLambdaServiceRole2A12BF2D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetCertificateByIdLambda/ServiceRole/Resource"
+   }
+  },
+  "GetCertificateByIdLambdaServiceRoleDefaultPolicy5CC34940": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "GetCertificateByIdLambdaServiceRoleDefaultPolicy5CC34940",
+    "Roles": [
+     {
+      "Ref": "GetCertificateByIdLambdaServiceRole2A12BF2D"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetCertificateByIdLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "GetCertificateByIdLambda9445131E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "edf663e79218f862db411562e7aabf3d59cc14757615c79035067899ce03dea7.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "GetCertificateByIdLambdaServiceRole2A12BF2D",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "GetCertificateByIdLambdaServiceRoleDefaultPolicy5CC34940",
+    "GetCertificateByIdLambdaServiceRole2A12BF2D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/GetCertificateByIdLambda/Resource",
+    "aws:asset:path": "asset.edf663e79218f862db411562e7aabf3d59cc14757615c79035067899ce03dea7",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ListCertificatesByUserLambdaServiceRoleF3B81969": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCertificatesByUserLambda/ServiceRole/Resource"
+   }
+  },
+  "ListCertificatesByUserLambdaServiceRoleDefaultPolicy146F9650": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ListCertificatesByUserLambdaServiceRoleDefaultPolicy146F9650",
+    "Roles": [
+     {
+      "Ref": "ListCertificatesByUserLambdaServiceRoleF3B81969"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCertificatesByUserLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ListCertificatesByUserLambda181FD00B": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "542fd374b894f2b8ddde9a150050f4e6d65aeef87292c86f44d30657d6200fb5.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ListCertificatesByUserLambdaServiceRoleF3B81969",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ListCertificatesByUserLambdaServiceRoleDefaultPolicy146F9650",
+    "ListCertificatesByUserLambdaServiceRoleF3B81969"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/ListCertificatesByUserLambda/Resource",
+    "aws:asset:path": "asset.542fd374b894f2b8ddde9a150050f4e6d65aeef87292c86f44d30657d6200fb5",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CheckCertificateExistsLambdaServiceRole0B915901": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CheckCertificateExistsLambda/ServiceRole/Resource"
+   }
+  },
+  "CheckCertificateExistsLambdaServiceRoleDefaultPolicyD781C455": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn"
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:*",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn"
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": "dynamodb:Query",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn"
+          },
+          "/index/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CheckCertificateExistsLambdaServiceRoleDefaultPolicyD781C455",
+    "Roles": [
+     {
+      "Ref": "CheckCertificateExistsLambdaServiceRole0B915901"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CheckCertificateExistsLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "CheckCertificateExistsLambdaA5B32262": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "3d10d5a05522d3449697c7ec1ca7ec3581afb9c63839572388ee0e6bbbfcf238.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "CheckCertificateExistsLambdaServiceRole0B915901",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "CheckCertificateExistsLambdaServiceRoleDefaultPolicyD781C455",
+    "CheckCertificateExistsLambdaServiceRole0B915901"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CheckCertificateExistsLambda/Resource",
+    "aws:asset:path": "asset.3d10d5a05522d3449697c7ec1ca7ec3581afb9c63839572388ee0e6bbbfcf238",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zWO3QrCMAyFn8X7LLqJ4K0TvBwyH2B0bRzduhaWVpGxd7frFAJfDic/p8D8lONhJ96cSTVkRrc4V8Se1MMLOUA0mtmIsVWisU5Rz1gl3IKVXjsLWow4184QXJ828e6Mlp9Vbt0CfGwEM3nGy4qosQxyIF8KJtjOY5z/H12gJnZhkgRpIWbptO3Sh5+xwBoHe96/8jPGKnY9a51NwXo9EtYbv1TuQjzhAAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaCoursesWorkshopsNestedStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStacklurnityassetsbucket5F02D0E5Ref": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Arn": {
+   "Type": "String"
+  }
+ },
+ "Outputs": {
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackListCoursesPublicLambda0860780FArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListCoursesPublicLambda96B78432",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackCreateCoursePublicLambda5C07535CArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CreateCoursePublicLambdaC1FE1D16",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackGetCourseByIdPublicLambda4D464672Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetCourseByIdPublicLambda979F28C0",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackUpdateCoursePublicLambda6963BB04Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateCoursePublicLambdaF9F9A29C",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackDeleteCoursePublicLambdaBD6296C4Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteCoursePublicLambda9344C01D",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackListCertificatesLambdaDB14287CArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListCertificatesLambdaDE3225D3",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackGenerateCertificateLambdaEA87F955Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GenerateCertificateLambda0B2FC737",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackCheckCertificateExistsLambda1A64BBB3Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CheckCertificateExistsLambdaA5B32262",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackGetCertificateByIdLambda2E8BF2E6Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetCertificateByIdLambda9445131E",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackListCertificatesByUserLambdaCD78C80BArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListCertificatesByUserLambda181FD00B",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackListWorkshopsLambda430C8A2BArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListWorkshopsLambdaF2B18A43",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackCreateWorkshopLambda837DC6B7Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CreateWorkshopLambda2DEAF661",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackGetUserWorkshopsLambdaA386891EArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetUserWorkshopsLambdaB239D96F",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackGetWorkshopsByInchargeLambda5A18FF39Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetWorkshopsByInchargeLambdaF1441168",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackGetWorkshopStudentsLambdaA7BB3503Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetWorkshopStudentsLambdaED7934D4",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackRegisterStudentLambdaC7995454Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RegisterStudentLambdaB69EC25F",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackRegisterStudentPutLambda9DC51BE8Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RegisterStudentPutLambda2C53F25C",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackUpdateStudentAttendanceLambda63FE5A36Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateStudentAttendanceLambdaB3DA31AF",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackUpdateWorkshopLambda8A12ABBFArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateWorkshopLambda888622A6",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaCoursesWorkshopsNestedStackDeleteWorkshopLambdaCB02A06FArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteWorkshopLambda896A43DB",
+     "Arn"
+    ]
+   }
+  }
+ }
+}
