@@ -6,7 +6,7 @@ const EMPLOYEE_BASE = `${process.env.REACT_APP_EMPLOYEES_API_URL}/api`
 
 /* ---------------- Employee Auth ---------------- */
 export const empLogin = async (username, password) => {
-  const r = await fetch(`${API_BASE}/employees/login`, {
+  const r = await fetch(`${EMPLOYEE_BASE}/employees/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
