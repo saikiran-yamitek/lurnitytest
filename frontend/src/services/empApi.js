@@ -2,6 +2,7 @@
 import { apiFetch } from "./apiFetch";
 
 const API_BASE = `${process.env.REACT_APP_API_URL}/api`;
+const EMPLOYEE_BASE = `${process.env.REACT_APP_EMPLOYEES_API_URL}/api`
 
 /* ---------------- Employee Auth ---------------- */
 export const empLogin = async (username, password) => {
