@@ -1,9 +1,10 @@
 // src/services/apiFetch.js
 const MAIN_API =
-  process.env.REACT_APP_MAIN_API_URL ;
+  process.env.REACT_APP_API_URL || "https://qh5me238u3.execute-api.ap-south-1.amazonaws.com/dev" ;
 
 const EMPLOYEES_API =
-  process.env.REACT_APP_EMPLOYEES_API_URL ;
+  process.env.REACT_APP_EMPLOYEES_API_URL ||
+  "https://z4k5arnlg4.execute-api.ap-south-1.amazonaws.com/dev";
 
 /**
  * Unified fetch helper for all roles.
