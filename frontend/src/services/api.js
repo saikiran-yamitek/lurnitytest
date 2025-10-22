@@ -38,7 +38,7 @@ export async function finalizeReset(payload) {
 // Add to your existing api.js file
 
 export const sendRegisterOTP = async (data) => {
-  const res = await fetch(`${API}/api/user/send-register-otp`, {
+  const res = await fetch(`${API}/user/send-register-otp`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -50,7 +50,7 @@ export const sendRegisterOTP = async (data) => {
 };
 
 export const verifyRegisterOTP = async (data) => {
-  const res = await fetch(`${API}/api/user/verify-register-otp`, {
+  const res = await fetch(`${API}/user/verify-register-otp`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
