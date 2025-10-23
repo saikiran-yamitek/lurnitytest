@@ -15,15 +15,12 @@ import {
   FiStar,
   FiCheckCircle,
   FiX,
-  
   FiBookmark,
   FiThumbsUp
 } from "react-icons/fi";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import { apiFetch } from "../services/apiFetch";
-import { getVideoPlaybackUrl } from "./admin/s3Upload";
-
-
+import { getVideoPlaybackUrl } from "../components/admin/s3Upload";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -33,7 +30,6 @@ export default function VideoPlayer() {
   const { courseId, subIdx, vidIdx } = useParams();
   const sIdx = Number(subIdx), vIdx = Number(vidIdx);
   const history = useHistory();
-  
 
   const [course, setCourse] = useState(null);
   const [err, setErr] = useState(null);
@@ -49,30 +45,68 @@ export default function VideoPlayer() {
   const [isVideoBookmarked, setIsVideoBookmarked] = useState(false);
   const [videoProgress, setVideoProgress] = useState(0);
   const [videoUrl, setVideoUrl] = useState(null);
-const [loadingVideo, setLoadingVideo] = useState(true);
-
+  const [loadingVideo, setLoadingVideo] = useState(true);
 
   const userId = localStorage.getItem("userId");
 
-  // Load video playback URL whenever video changes
-useEffect(() => {
-  if (!course || !sub || !vid) return;
-  
-  setLoadingVideo(true);
-  setVideoUrl(null);
-  
-  getVideoPlaybackUrl(vid.url, "user")
-    .then(url => {
-      setVideoUrl(url);
-      setLoadingVideo(false);
-    })
-    .catch(err => {
-      console.error("Failed to load video:", err);
-      setErr("Failed to load video playback URL");
-      setLoadingVideo(false);
-    });
-}, [courseId, sIdx, vIdx, course, sub, vid]);
+  // First useEffect: Load course data
+  useEffect(() => {
+    apiFetch(`/api/courses/${courseId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    }, "user")
+      .then(r => r.json())
+      .then(setCourse)
+      .catch(e => setErr(e.message));
 
+    if (userId) {
+      apiFetch(`/api/user/get-key`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId })
+      }, "user")
+        .then(res => res.json())
+        .then(data => {
+          if (data.geminiApiKey) {
+            setGeminiKey(data.geminiApiKey);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [courseId, userId]);
+
+  // ✅ FIXED: Second useEffect - Load video playback URL
+  useEffect(() => {
+    // Safety checks - wait until course is loaded
+    if (!course || !course.subCourses) {
+      return;
+    }
+
+    const sub = course.subCourses[sIdx];
+    if (!sub || !sub.videos) {
+      return;
+    }
+
+    const vid = sub.videos[vIdx];
+    if (!vid || !vid.url) {
+      return;
+    }
+
+    // Reset loading state
+    setLoadingVideo(true);
+    setVideoUrl(null);
+
+    // Load video playback URL
+    getVideoPlaybackUrl(vid.url, "user")
+      .then(url => {
+        setVideoUrl(url);
+        setLoadingVideo(false);
+      })
+      .catch(err => {
+        console.error("Failed to load video:", err);
+        setErr("Failed to load video playback URL");
+        setLoadingVideo(false);
+      });
+  }, [course, sIdx, vIdx]); // ✅ Dependencies are correct
 
   const submitFeedback = async () => {
     if (!rating || !feedbackText.trim()) {
@@ -92,7 +126,7 @@ useEffect(() => {
           rating,
           comment: feedbackText.trim()
         })
-      },"user");
+      }, "user");
       alert("Feedback submitted successfully!");
       setRating(0);
       setFeedbackText("");
@@ -112,7 +146,7 @@ useEffect(() => {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({ videoId })
-      },"user");
+      }, "user");
     } catch (e) {
       console.warn("progress save failed:", e);
     }
@@ -120,7 +154,7 @@ useEffect(() => {
     try {
       const list = await (await apiFetch(`/api/progress`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-      },"user")).json();
+      }, "user")).json();
       localStorage.setItem("watched_sync", JSON.stringify(list));
     } catch {}
   };
@@ -139,7 +173,7 @@ useEffect(() => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, geminiApiKey: newKey.trim() })
-    },"user")
+    }, "user")
       .then(res => res.json())
       .then(() => {
         setGeminiKey(newKey.trim());
@@ -170,7 +204,6 @@ useEffect(() => {
   };
 
   const toggleBookmark = async () => {
-    // Implement bookmark functionality
     setIsVideoBookmarked(!isVideoBookmarked);
   };
 
@@ -212,6 +245,7 @@ useEffect(() => {
     </div>
   );
 
+  // ✅ FIXED: Declare sub and vid AFTER checking if course exists
   const sub = course.subCourses[sIdx];
   const vid = sub.videos[vIdx];
 
@@ -350,30 +384,29 @@ useEffect(() => {
               <div className="vp-video-container">
                 <div className="vp-video-backdrop"></div>
                 {loadingVideo ? (
-  <div className="vp-video-loading" style={{ padding: '40px', textAlign: 'center' }}>
-    <div className="vp-loading-spinner">
-      <div className="vp-spinner-ring"></div>
-      <div className="vp-spinner-ring"></div>
-      <div className="vp-spinner-ring"></div>
-    </div>
-    <p style={{ marginTop: '20px', color: '#fff' }}>Loading video...</p>
-  </div>
-) : videoUrl ? (
-  <video
-    src={videoUrl}
-    controls
-    className="vp-luxury-video"
-    onEnded={markWatched}
-    onPause={handlePause}
-    onPlay={handlePlay}
-    onTimeUpdate={handleVideoProgress}
-  />
-) : (
-  <div className="vp-video-error" style={{ padding: '40px', textAlign: 'center', color: '#e74c3c' }}>
-    <p>Unable to load video</p>
-  </div>
-)}
-
+                  <div className="vp-video-loading" style={{ padding: '40px', textAlign: 'center' }}>
+                    <div className="vp-loading-spinner">
+                      <div className="vp-spinner-ring"></div>
+                      <div className="vp-spinner-ring"></div>
+                      <div className="vp-spinner-ring"></div>
+                    </div>
+                    <p style={{ marginTop: '20px', color: '#fff' }}>Loading video...</p>
+                  </div>
+                ) : videoUrl ? (
+                  <video
+                    src={videoUrl}
+                    controls
+                    className="vp-luxury-video"
+                    onEnded={markWatched}
+                    onPause={handlePause}
+                    onPlay={handlePlay}
+                    onTimeUpdate={handleVideoProgress}
+                  />
+                ) : (
+                  <div className="vp-video-error" style={{ padding: '40px', textAlign: 'center', color: '#e74c3c' }}>
+                    <p>Unable to load video</p>
+                  </div>
+                )}
                 <div className="vp-video-overlay">
                   <div className="vp-video-gradient"></div>
                 </div>
