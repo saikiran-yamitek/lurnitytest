@@ -8,6 +8,188 @@
     "aws:cdk:path": "LurnityLmsStack/LurnityBucket/Resource"
    }
   },
+  "LurnityVideoBucket847E76CA": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketName": "lurnity-videos-bucket",
+    "CorsConfiguration": {
+     "CorsRules": [
+      {
+       "AllowedHeaders": [
+        "*"
+       ],
+       "AllowedMethods": [
+        "GET",
+        "PUT",
+        "POST",
+        "HEAD"
+       ],
+       "AllowedOrigins": [
+        "*"
+       ],
+       "ExposedHeaders": [
+        "ETag"
+       ],
+       "MaxAge": 3000
+      }
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LurnityVideoBucket/Resource"
+   }
+  },
+  "LurnityVideoBucketPolicy4499103D": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "LurnityVideoBucket847E76CA"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutBucketPolicy",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "LurnityVideoBucket847E76CA",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "LurnityVideoBucket847E76CA",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LurnityVideoBucket/Policy/Resource"
+   }
+  },
+  "LurnityVideoBucketAutoDeleteObjectsCustomResource4BD41F8C": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "LurnityVideoBucket847E76CA"
+    }
+   },
+   "DependsOn": [
+    "LurnityVideoBucketPolicy4499103D"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LurnityVideoBucket/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "LurnityVideoBucket847E76CA"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+    "aws:asset:property": "Code"
+   }
+  },
   "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB": {
    "Type": "AWS::CloudFormation::Stack",
    "Properties": {
@@ -145,6 +327,9 @@
      "referencetoLurnityLmsStackLurnityBucketD0083579Ref": {
       "Ref": "LurnityBucket94F6CA69"
      },
+     "referencetoLurnityLmsStackLurnityVideoBucket9A7D1F7BRef": {
+      "Ref": "LurnityVideoBucket847E76CA"
+     },
      "referencetoLurnityLmsStackLurnityBucketD0083579Arn": {
       "Fn::GetAtt": [
        "LurnityBucket94F6CA69",
@@ -229,6 +414,12 @@
        "Outputs.LurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
       ]
      },
+     "referencetoLurnityLmsStackLurnityVideoBucket9A7D1F7BArn": {
+      "Fn::GetAtt": [
+       "LurnityVideoBucket847E76CA",
+       "Arn"
+      ]
+     },
      "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": {
       "Fn::GetAtt": [
        "DatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource48188ECB",
@@ -254,7 +445,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/43d1a8e1045c22a6537718eeaf4b97c770798599d832253471a84d4da5dc233c.json"
+       "/1b0a133f69d2dcdb221072c2b74b987f263eb0d2576165cc7cd4b05ddcaa3480.json"
       ]
      ]
     }
@@ -335,6 +526,12 @@
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
        "Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
       ]
      },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn": {
@@ -625,6 +822,12 @@
        "Outputs.LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedPlaybackUrlLambdaB3F6CFD9Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackGetPresignedPlaybackUrlLambdaB3F6CFD9Arn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTicketLambda75BD1DEAArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -842,7 +1045,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/a76b3af54cfcfe624931ce1be6a02c22b9a7268d79c8230aedae1da1a6837963.json"
+       "/739e0c74519a995f54a62a53445f27db86a016248fdd8a4653c564e2f55f56ee.json"
       ]
      ]
     }
@@ -924,7 +1127,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzQ11DNQTCwv1k1OydbNyUzSqw4uSUzO1gEKxRcb61U7lSZnp5boOKflQVi1ICZECZARlFqcX1qUnFqrk5efkqqXVaxfZmihB0RGilnFmZm6RaV5JZm5qXpBEBoAzGM4s3AAAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VO0QqDMBD7Ft/b23QM9jr9AXEfMLp6k7PaQq91DPHfp+tABoHkEkKugPycwzFTL5a6NXKgB8y3oLQRq3XnE8xl1AaDqJ72pxLVbiD93u10L6KKHNzYILvoNW75rv+i2ruJWvSlYhRXZgzrbke22zrfFxZhXYvQ82HKL7CiyHomkj7aQCNCk/gDtT88ysQAAAA="
    },
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/CDKMetadata/Default"

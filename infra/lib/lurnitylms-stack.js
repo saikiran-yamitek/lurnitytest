@@ -24,6 +24,26 @@ class LurnityLmsStack extends cdk.Stack {
       autoDeleteObjects: true,
     });
 
+    const videoBucket = new s3.Bucket(this, 'LurnityVideoBucket', {
+  bucketName: process.env.VIDEO_BUCKET_NAME,
+  removalPolicy: cdk.RemovalPolicy.DESTROY,
+  autoDeleteObjects: true,
+  cors: [
+    {
+      allowedMethods: [
+        s3.HttpMethods.GET,
+        s3.HttpMethods.PUT,
+        s3.HttpMethods.POST,
+        s3.HttpMethods.HEAD,
+      ],
+      allowedOrigins: ['*'],
+      allowedHeaders: ['*'],
+      exposedHeaders: ['ETag'],
+      maxAge: 3000,
+    },
+  ],
+});
+
     // Database nested stack
     const databaseStack = new DatabaseNestedStack(this, 'DatabaseNestedStack');
 
@@ -48,6 +68,7 @@ class LurnityLmsStack extends cdk.Stack {
       SNS_SENDER_ID: process.env.SNS_SENDER_ID || "LURNTY",
       REGISTER_OTP_TABLE_NAME: databaseStack.registerOTPTable.tableName,
       S3_BUCKET: assetBucket.bucketName,
+        VIDEO_BUCKET_NAME: videoBucket.bucketName,
       JWT_SECRET: process.env.JWT_SECRET,
       GEMINI_API_KEY: process.env.GEMINI_API_KEY,
       JUDGE0_API_KEY: process.env.JUDGE0_API_KEY,
@@ -259,6 +280,19 @@ class LurnityLmsStack extends cdk.Stack {
       assetBucket.grantReadWrite(l);
       databaseStack.userTable.grantFullAccess(l);
     });
+
+    // ✅ NEW: Video Lambda S3 Permissions
+videoBucket.grantPut(lambdaStack.getPresignedUploadUrlLambda);
+videoBucket.grantRead(lambdaStack.getPresignedPlaybackUrlLambda);
+
+[lambdaStack.getPresignedUploadUrlLambda, lambdaStack.getPresignedPlaybackUrlLambda].forEach(l => {
+  l.addToRolePolicy(new iam.PolicyStatement({
+    effect: iam.Effect.ALLOW,
+    actions: ["s3:PutObject", "s3:GetObject"],
+    resources: [`${videoBucket.bucketArn}/*`],
+  }));
+});
+
   }
 }
 

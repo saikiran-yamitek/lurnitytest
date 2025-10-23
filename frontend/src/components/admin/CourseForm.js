@@ -7,7 +7,8 @@ import {
   listEmployees,
   listAllSubCourses,
 } from "../../services/adminApi";
-import { uploadVideoToCloudinary } from "./cloudinaryUpload";
+import { uploadVideoToS3, getVideoPlaybackUrl } from "./s3Upload";
+// import { uploadVideoToCloudinary } from "./cloudinaryUpload";
 
 
 import {
@@ -504,18 +505,20 @@ export default class CourseForm extends Component {
                                       accept="video/*" 
                                       className="file-input"
                                       onChange={async e => {
-                                        const file = e.target.files[0];
-                                        if (!file) return;
-                                        try {
-                                          this.setState({ uploading: true });
-                                          const url = await uploadVideoToCloudinary(file);
-                                          this.handleVideoChange(sIdx, vIdx, "url", url);
-                                        } catch (err) {
-                                          alert("Upload failed: " + err.message);
-                                        } finally {
-                                          this.setState({ uploading: false });
-                                        }
-                                      }} 
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    this.setState({ uploading: true });
+    const fileKey = await uploadVideoToS3(file, "admin");
+    this.handleVideoChange(sIdx, vIdx, "url", fileKey);
+    alert("Video uploaded successfully!");
+  } catch (err) {
+    alert("Upload failed: " + err.message);
+  } finally {
+    this.setState({ uploading: false });
+  }
+}}
+
                                     />
                                     <div className="upload-placeholder">
                                       <FiUpload className="upload-icon" />
@@ -523,11 +526,12 @@ export default class CourseForm extends Component {
                                     </div>
                                   </div>
                                   
-                                  {v.url && (
-                                    <div className="video-preview">
-                                      <video src={v.url} controls className="video-player" />
-                                    </div>
-                                  )}
+                                 {v.url && (
+  <div className="video-preview">
+    <VideoPreview fileKey={v.url} />
+  </div>
+)}
+
                                 </div>
 
                                 {/* Transcript Section */}
@@ -669,6 +673,61 @@ export default class CourseForm extends Component {
     );
   }
 }
+
+
+// Video preview component - converts S3 file key to playable URL
+class VideoPreview extends Component {
+  state = { playbackUrl: null, loading: true, error: null };
+
+  async componentDidMount() {
+    this.loadVideo();
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (prevProps.fileKey !== this.props.fileKey) {
+      this.loadVideo();
+    }
+  }
+
+  loadVideo = async () => {
+    this.setState({ loading: true, error: null });
+    try {
+      const url = await getVideoPlaybackUrl(this.props.fileKey, "admin");
+      this.setState({ playbackUrl: url, loading: false });
+    } catch (err) {
+      console.error("Failed to load video preview:", err);
+      this.setState({ error: err.message, loading: false });
+    }
+  };
+
+  render() {
+    const { playbackUrl, loading, error } = this.state;
+    
+    if (loading) {
+      return (
+        <div className="video-loading" style={{ padding: '20px', textAlign: 'center' }}>
+          <div className="saving-spinner"></div>
+          <p>Loading video preview...</p>
+        </div>
+      );
+    }
+    
+    if (error) {
+      return (
+        <div className="video-error" style={{ padding: '20px', color: '#e74c3c' }}>
+          Failed to load video: {error}
+        </div>
+      );
+    }
+    
+    if (!playbackUrl) return null;
+    
+    return <video src={playbackUrl} controls className="video-player" />;
+  }
+}
+
+
+
 
 function setNested(state, path, value) {
   const clone = structuredClone(state);

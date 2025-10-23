@@ -167,7 +167,11 @@ class ApiNestedStack extends cdk.NestedStack {
     // --- Transcribe ---
     const transcribe = apiResource.addResource("transcribe");
     transcribe.addMethod("POST", new apigateway.LambdaIntegration(lambdas.transcribeLambda));
+    const videos = apiResource.addResource("videos");
+videos.addResource("playback-url").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getPresignedPlaybackUrlLambda));
 
+const adminVideos = adminRes.addResource("videos");
+adminVideos.addResource("presigned-url").addMethod("POST", new apigateway.LambdaIntegration(lambdas.getPresignedUploadUrlLambda));
     // --- Tickets ---
     const tickets = apiResource.addResource("tickets");
     tickets.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createTicketLambda));

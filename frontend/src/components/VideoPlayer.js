@@ -21,6 +21,8 @@ import {
 } from "react-icons/fi";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import { apiFetch } from "../services/apiFetch";
+import { getVideoPlaybackUrl } from "./admin/s3Upload";
+
 
 
 const API = process.env.REACT_APP_API_URL;
@@ -31,6 +33,7 @@ export default function VideoPlayer() {
   const { courseId, subIdx, vidIdx } = useParams();
   const sIdx = Number(subIdx), vIdx = Number(vidIdx);
   const history = useHistory();
+  
 
   const [course, setCourse] = useState(null);
   const [err, setErr] = useState(null);
@@ -45,32 +48,31 @@ export default function VideoPlayer() {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [isVideoBookmarked, setIsVideoBookmarked] = useState(false);
   const [videoProgress, setVideoProgress] = useState(0);
+  const [videoUrl, setVideoUrl] = useState(null);
+const [loadingVideo, setLoadingVideo] = useState(true);
+
 
   const userId = localStorage.getItem("userId");
 
-  useEffect(() => {
-    apiFetch(`/api/courses/${courseId}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    },"user")
-      .then(r => r.json())
-      .then(setCourse)
-      .catch(e => setErr(e.message));
+  // Load video playback URL whenever video changes
+useEffect(() => {
+  if (!course || !sub || !vid) return;
+  
+  setLoadingVideo(true);
+  setVideoUrl(null);
+  
+  getVideoPlaybackUrl(vid.url, "user")
+    .then(url => {
+      setVideoUrl(url);
+      setLoadingVideo(false);
+    })
+    .catch(err => {
+      console.error("Failed to load video:", err);
+      setErr("Failed to load video playback URL");
+      setLoadingVideo(false);
+    });
+}, [courseId, sIdx, vIdx, course, sub, vid]);
 
-    if (userId) {
-      apiFetch(`/api/user/get-key`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId })
-      },"user")
-        .then(res => res.json())
-        .then(data => {
-          if (data.geminiApiKey) {
-            setGeminiKey(data.geminiApiKey);
-          }
-        })
-        .catch(() => {});
-    }
-  }, [courseId, userId]);
 
   const submitFeedback = async () => {
     if (!rating || !feedbackText.trim()) {
@@ -347,15 +349,31 @@ export default function VideoPlayer() {
               {/* Premium Video Container */}
               <div className="vp-video-container">
                 <div className="vp-video-backdrop"></div>
-                <video
-                  src={vid.url}
-                  controls
-                  className="vp-luxury-video"
-                  onEnded={markWatched}
-                  onPause={handlePause}
-                  onPlay={handlePlay}
-                  onTimeUpdate={handleVideoProgress}
-                />
+                {loadingVideo ? (
+  <div className="vp-video-loading" style={{ padding: '40px', textAlign: 'center' }}>
+    <div className="vp-loading-spinner">
+      <div className="vp-spinner-ring"></div>
+      <div className="vp-spinner-ring"></div>
+      <div className="vp-spinner-ring"></div>
+    </div>
+    <p style={{ marginTop: '20px', color: '#fff' }}>Loading video...</p>
+  </div>
+) : videoUrl ? (
+  <video
+    src={videoUrl}
+    controls
+    className="vp-luxury-video"
+    onEnded={markWatched}
+    onPause={handlePause}
+    onPlay={handlePlay}
+    onTimeUpdate={handleVideoProgress}
+  />
+) : (
+  <div className="vp-video-error" style={{ padding: '40px', textAlign: 'center', color: '#e74c3c' }}>
+    <p>Unable to load video</p>
+  </div>
+)}
+
                 <div className="vp-video-overlay">
                   <div className="vp-video-gradient"></div>
                 </div>

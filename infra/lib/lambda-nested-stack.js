@@ -30,7 +30,7 @@ class LambdaNestedStack extends cdk.NestedStack {
     const progressLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "progress");
     const userLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "user");
     const transcribeLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "transcribe");
-
+    const videoLambdaPath = path.join(__dirname, "..", "..", "backend", "routes", "video"); 
     // Unified makeLambda function for consistent Lambda creation
     // Unified makeLambda function for consistent Lambda creation
   const makeLambda = (idSuffix, filename, assetPath) =>
@@ -47,7 +47,8 @@ class LambdaNestedStack extends cdk.NestedStack {
       target: "es2020",
       format: "esm",                // produce ESM bundle
       mainFields: ["module", "main"],
-      externalModules: ["aws-sdk"], // keep AWS SDK external (Lambda provides it)
+      externalModules: ["aws-sdk",
+        "@aws-sdk/*", ], // keep AWS SDK external (Lambda provides it)
       // Inject a banner that creates a require() for dynamic requires (async_hooks etc.)
       esbuildArgs: {
         "--banner:js": "import { createRequire } from 'module'; globalThis.require = createRequire(import.meta.url);"
@@ -172,7 +173,8 @@ this.sendDemoOTPLambda = makeLambda("SendDemoOTPLambda", "sendDemoOTP", demoLamb
 this.verifyDemoOTPLambda = makeLambda("VerifyDemoOTPLambda", "verifyDemoOTP", demoLambdaPath);
     // Transcribe lambda
     this.transcribeLambda = makeLambda("TranscribeLambda", "transcribe", transcribeLambdaPath);
-
+    this.getPresignedUploadUrlLambda = makeLambda("GetPresignedUploadUrlLambda", "getPresignedUploadUrl", videoLambdaPath);
+this.getPresignedPlaybackUrlLambda = makeLambda("GetPresignedPlaybackUrlLambda", "getPresignedPlaybackUrl", videoLambdaPath);
     // Ticket lambdas
     this.createTicketLambda = makeLambda("CreateTicketLambda", "createTicket", ticketsLambdaPath);
     this.listTicketsLambda = makeLambda("ListTicketsLambda", "listTickets", ticketsLambdaPath);

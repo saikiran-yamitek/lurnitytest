@@ -100,3 +100,4 @@ export const updateCohort = (id, cohortData, role) =>
 
 export const deleteCohort = (id, role) =>
   apiFetch(`/api/admin/landingpage/cohorts/${id}`, { method: 'DELETE' }, role).then(res => res.json());
+

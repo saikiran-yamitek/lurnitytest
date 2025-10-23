@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-ap-south-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-ap-south-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/afc050152a411ee6cfc1e0940073102ea562e5830815815b990fe216e3520024.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1/65617c902711bfb255638dfa4b8eeb3c275efd2dc1fac051433a62b472fbbdd7.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -38,6 +38,36 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityBucket94F6CA69"
+          }
+        ],
+        "/LurnityLmsStack/LurnityVideoBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityVideoBucket847E76CA"
+          }
+        ],
+        "/LurnityLmsStack/LurnityVideoBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityVideoBucketPolicy4499103D"
+          }
+        ],
+        "/LurnityLmsStack/LurnityVideoBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityVideoBucketAutoDeleteObjectsCustomResource4BD41F8C"
+          }
+        ],
+        "/LurnityLmsStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/LurnityLmsStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
           }
         ],
         "/LurnityLmsStack/DatabaseNestedStack/User/Resource": [
@@ -351,10 +381,31 @@
               "Bundling.bundle (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\aws-lambda-nodejs\\lib\\bundling.js:1:991)",
               "new NodejsFunction (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\aws-lambda-nodejs\\lib\\function.js:1:2171)",
               "makeLambda (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:37:3)",
-              "new LambdaNestedStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:85:28)",
-              "new LurnityLmsStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lurnitylms-stack.js:66:25)",
+              "new LambdaNestedStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lambda-nested-stack.js:86:28)",
+              "new LurnityLmsStack (file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/lib/lurnitylms-stack.js:87:25)",
               "file:///C:/Users/MEGHARAJU%20SAIKIRAN/Desktop/my-lms/infra/bin/lurnity.js:17:1",
               "ModuleJob.run (node:internal/modules/esm/module_job:194:25)"
+            ]
+          },
+          {
+            "type": "aws:cdk:warning",
+            "data": "Template size is approaching limit: 813307/1000000. Split resources into multiple stacks or set suppressTemplateIndentation to reduce template size. [ack: @aws-cdk/core:Stack.templateSize]",
+            "trace": [
+              "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
+              "Annotations.addWarningV2 (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:825)",
+              "LambdaNestedStack._synthesizeTemplate (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stack.js:1:15200)",
+              "NestedStackSynthesizer.synthesizeTemplate (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stack-synthesizers\\stack-synthesizer.js:1:2161)",
+              "NestedStackSynthesizer.synthesize (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stack-synthesizers\\nested.js:1:1697)",
+              "C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:2:3394",
+              "visit (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:372)",
+              "visit (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:334)",
+              "visit (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:334)",
+              "synthesizeTree (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:2:3236)",
+              "synthesize (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:1696)",
+              "App.synth (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\stage.js:1:2263)",
+              "process.<anonymous> (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\app.js:1:1745)",
+              "Object.onceWrapper (node:events:632:26)",
+              "process.emit (node:events:517:28)"
             ]
           }
         ],
@@ -1558,6 +1609,42 @@
             "data": "TranscribeLambda9461F407"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPresignedUploadUrlLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPresignedUploadUrlLambdaServiceRole2A392B56"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPresignedUploadUrlLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPresignedUploadUrlLambdaServiceRoleDefaultPolicyC4AEA736"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPresignedUploadUrlLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPresignedUploadUrlLambda5192239C"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPresignedPlaybackUrlLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPresignedPlaybackUrlLambdaServiceRole7CE181E1"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPresignedPlaybackUrlLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPresignedPlaybackUrlLambdaServiceRoleDefaultPolicyC9233788"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/GetPresignedPlaybackUrlLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetPresignedPlaybackUrlLambda0DAE4B4E"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/CreateTicketLambda/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -2392,6 +2479,12 @@
             "data": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackLurnityVideoBucket9A7D1F7BRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLurnityVideoBucket9A7D1F7BRef"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackLurnityBucketD0083579Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2476,6 +2569,12 @@
             "data": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Arn"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackLurnityVideoBucket9A7D1F7BArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLurnityVideoBucket9A7D1F7BArn"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/reference-to-LurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86Outputs.LurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Arn": [
           {
             "type": "aws:cdk:logicalId",
@@ -2552,6 +2651,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+          }
+        ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
           }
         ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn": [
@@ -2842,6 +2947,12 @@
             "data": "LurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn"
           }
         ],
+        "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackGetPresignedPlaybackUrlLambdaB3F6CFD9Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsStackLambdaNestedStackGetPresignedPlaybackUrlLambdaB3F6CFD9Arn"
+          }
+        ],
         "/LurnityLmsStack/LambdaNestedStack/LurnityLmsStackLambdaNestedStackCreateTicketLambda75BD1DEAArn": [
           {
             "type": "aws:cdk:logicalId",
@@ -3091,7 +3202,7 @@
         "/LurnityLmsStack/ApiNestedStack": [
           {
             "type": "aws:cdk:info",
-            "data": "Number of resources: 483 is approaching allowed maximum of 500",
+            "data": "Number of resources: 497 is approaching allowed maximum of 500",
             "trace": [
               "Annotations.addMessage (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
               "Annotations.addInfo (C:\\Users\\MEGHARAJU SAIKIRAN\\Desktop\\my-lms\\infra\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1015)",
@@ -3132,7 +3243,7 @@
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LurnityLmsApiDeployment658DA5F24fb5ff3193def0f012d54819d9bd6124"
+            "data": "LurnityLmsApiDeployment658DA5F2bbcda2b4ca055a793abeb7a26459c1d9"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/DeploymentStage.dev/Resource": [
@@ -3445,6 +3556,48 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "LurnityLmsApiapiadmincoursesidDELETEF4BB975D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/videos/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadminvideosF34B3A4D"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/videos/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadminvideosOPTIONS4418D35A"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/videos/presigned-url/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadminvideospresignedurl17B3CF85"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/videos/presigned-url/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadminvideospresignedurlOPTIONSA649797E"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/videos/presigned-url/POST/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.videos.presigned-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadminvideospresignedurlPOSTApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiadminvideospresignedurlA4F08E7C"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/videos/presigned-url/POST/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.POST..api.admin.videos.presigned-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadminvideospresignedurlPOSTApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DPOSTapiadminvideospresignedurl1424C067"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/admin/videos/presigned-url/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapiadminvideospresignedurlPOST805CB604"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/landingpage/Resource": [
@@ -4971,6 +5124,48 @@
             "data": "LurnityLmsApiapitranscribePOSTD21C2A3C"
           }
         ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/videos/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapivideosB75CF2EA"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/videos/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapivideosOPTIONS0C8539F2"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/videos/playback-url/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapivideosplaybackurl9FEDD949"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/videos/playback-url/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapivideosplaybackurlOPTIONSD761E2AB"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/videos/playback-url/GET/ApiPermission.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.videos.playback-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapivideosplaybackurlGETApiPermissionLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapivideosplaybackurl2E465073"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/videos/playback-url/GET/ApiPermission.Test.LurnityLmsStackApiNestedStackLurnityLmsApi1173CB4D.GET..api.videos.playback-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapivideosplaybackurlGETApiPermissionTestLurnityLmsStackApiNestedStackLurnityLmsApi1173CB4DGETapivideosplaybackurlD7AF9534"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/videos/playback-url/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LurnityLmsApiapivideosplaybackurlGETDF068A1D"
+          }
+        ],
         "/LurnityLmsStack/ApiNestedStack/LurnityLmsApi/Default/api/tickets/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -6081,6 +6276,12 @@
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
           }
         ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
+          }
+        ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn": [
           {
             "type": "aws:cdk:logicalId",
@@ -6367,6 +6568,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackTranscribeLambda15A962C8Arn"
+          }
+        ],
+        "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackGetPresignedPlaybackUrlLambdaB3F6CFD9Arn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedPlaybackUrlLambdaB3F6CFD9Arn"
           }
         ],
         "/LurnityLmsStack/ApiNestedStack/reference-to-LurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9Outputs.LurnityLmsStackLambdaNestedStackCreateTicketLambda75BD1DEAArn": [
