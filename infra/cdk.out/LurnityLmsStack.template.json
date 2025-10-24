@@ -93,6 +93,27 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "LurnityVideoBucket847E76CA",
+            "Arn"
+           ]
+          },
+          "/profile-images/*"
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -445,7 +466,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/1b0a133f69d2dcdb221072c2b74b987f263eb0d2576165cc7cd4b05ddcaa3480.json"
+       "/9690a7bae7926df05f40114e866f5d19240e75277df784669f77685084ba1d65.json"
       ]
      ]
     }
@@ -462,78 +483,6 @@
    "Type": "AWS::CloudFormation::Stack",
    "Properties": {
     "Parameters": {
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
-      ]
-     },
-     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": {
-      "Fn::GetAtt": [
-       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
-       "Outputs.LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
-      ]
-     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -786,6 +735,36 @@
        "Outputs.LurnityLmsStackLambdaNestedStackDeleteWorkshopLambda8E0EB5A2Arn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateDemoLambda019E6998Arn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -1020,6 +999,12 @@
        "Outputs.LurnityLmsStackLambdaNestedStackGetResumeDataLambda6783F30AArn"
       ]
      },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUploadProfileImageLambdaE4849EB8Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackUploadProfileImageLambdaE4849EB8Arn"
+      ]
+     },
      "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetJudge0KeyLambda5174CACCArn": {
       "Fn::GetAtt": [
        "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
@@ -1045,7 +1030,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
        },
-       "/739e0c74519a995f54a62a53445f27db86a016248fdd8a4653c564e2f55f56ee.json"
+       "/697712b0e73b39eda3c4b05aa4a96330945bbdd9031483cdb5bb949887b510b0.json"
       ]
      ]
     }
@@ -1121,6 +1106,108 @@
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/ApiEmployeeStack.NestedStack/ApiEmployeeStack.NestedStackResource",
     "aws:asset:path": "LurnityLmsStackApiEmployeeStackBC957FF2.nested.template.json",
+    "aws:asset:property": "TemplateURL"
+   }
+  },
+  "ApiAdminStackNestedStackApiAdminStackNestedStackResourceF9BEB613": {
+   "Type": "AWS::CloudFormation::Stack",
+   "Properties": {
+    "Parameters": {
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+      ]
+     },
+     "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": {
+      "Fn::GetAtt": [
+       "LambdaNestedStackNestedStackLambdaNestedStackNestedStackResourceC6639C81",
+       "Outputs.LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
+      ]
+     }
+    },
+    "TemplateURL": {
+     "Fn::Join": [
+      "",
+      [
+       "https://s3.ap-south-1.",
+       {
+        "Ref": "AWS::URLSuffix"
+       },
+       "/",
+       {
+        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+       },
+       "/8b7921d8e5fdeba7d7286ba2aa185e6e20f336e6338f065f64d50db32ead45ff.json"
+      ]
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack.NestedStack/ApiAdminStack.NestedStackResource",
+    "aws:asset:path": "LurnityLmsStackApiAdminStackABCB4F95.nested.template.json",
     "aws:asset:property": "TemplateURL"
    }
   },

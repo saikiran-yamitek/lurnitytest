@@ -50,27 +50,7 @@ class ApiNestedStack extends cdk.NestedStack {
     const apiResource = this.api.root.addResource("api");
 
     // --- Admin Routes ---
-    const adminRes = apiResource.addResource("admin");
-    adminRes.addResource("auth").addMethod("POST", new apigateway.LambdaIntegration(lambdas.adminAuthLambda));
-
-    const usersRes = adminRes.addResource("users");
-    usersRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listUsersLambda));
-    const userIdRes = usersRes.addResource("{id}");
-    userIdRes.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateUserLambda));
-    userIdRes.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteUserLambda));
-    userIdRes.addMethod("PATCH", new apigateway.LambdaIntegration(lambdas.setUserLockLambda));
-    const transactionsRes = userIdRes.addResource("transactions");
-    transactionsRes.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createTransactionLambda));
-    
-    // Admin Courses Resource
-    const adminCoursesRes = adminRes.addResource("courses");
-    adminCoursesRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.listCoursesPublicLambda));
-    adminCoursesRes.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createCoursePublicLambda));
-    const adminCoursesIdRes = adminCoursesRes.addResource("{id}");
-    adminCoursesIdRes.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getCourseByIdPublicLambda));
-    adminCoursesIdRes.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateCoursePublicLambda));
-    adminCoursesIdRes.addMethod("DELETE", new apigateway.LambdaIntegration(lambdas.deleteCoursePublicLambda));
-
+ 
     // ❌ REMOVED: Employee routes moved to ApiEmployeeStack
 
     // --- LandingPage ---
@@ -170,8 +150,7 @@ class ApiNestedStack extends cdk.NestedStack {
     const videos = apiResource.addResource("videos");
 videos.addResource("playback-url").addMethod("GET", new apigateway.LambdaIntegration(lambdas.getPresignedPlaybackUrlLambda));
 
-const adminVideos = adminRes.addResource("videos");
-adminVideos.addResource("presigned-url").addMethod("POST", new apigateway.LambdaIntegration(lambdas.getPresignedUploadUrlLambda));
+
     // --- Tickets ---
     const tickets = apiResource.addResource("tickets");
     tickets.addMethod("POST", new apigateway.LambdaIntegration(lambdas.createTicketLambda));

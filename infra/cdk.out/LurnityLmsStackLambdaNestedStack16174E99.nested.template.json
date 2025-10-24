@@ -12719,6 +12719,199 @@
     "aws:asset:property": "Code"
    }
   },
+  "UploadProfileImageLambdaServiceRole84375EFD": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UploadProfileImageLambda/ServiceRole/Resource"
+   }
+  },
+  "UploadProfileImageLambdaServiceRoleDefaultPolicy055502A5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackLurnityVideoBucket9A7D1F7BArn"
+          },
+          "/*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "s3:PutObject",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Ref": "referencetoLurnityLmsStackLurnityVideoBucket9A7D1F7BArn"
+          },
+          "/profile-images/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "UploadProfileImageLambdaServiceRoleDefaultPolicy055502A5",
+    "Roles": [
+     {
+      "Ref": "UploadProfileImageLambdaServiceRole84375EFD"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UploadProfileImageLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "UploadProfileImageLambdaE46CA5C0": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
+     },
+     "S3Key": "2078ee96cf55996cf8f146b1e8ad342feb7ff175be68962941dfbaebfca95ee9.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "REGION": "ap-south-1",
+      "USER_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackUserEB52E8E3Ref"
+      },
+      "COURSE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCourse654EB038Ref"
+      },
+      "TRANSACTION_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTransactionD853F59DRef"
+      },
+      "TICKET_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackTicket2098D3B8Ref"
+      },
+      "LANDING_PAGE_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackLandingPage8052BF21Ref"
+      },
+      "CERTIFICATE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCertificateA6927C98Ref"
+      },
+      "ADMIN_LOGIN_TABLE": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackadminLoginTable6AB9EF19Ref"
+      },
+      "COMPANY_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackCompany72221DCERef"
+      },
+      "EMPLOYEE_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackEmployee21A6EFDARef"
+      },
+      "FEEDBACK_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackFeedbackFE3A4A11Ref"
+      },
+      "PLACEMENT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackPlacement598293F4Ref"
+      },
+      "WORKSHOP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackWorkshop34449AE4Ref"
+      },
+      "DEMO_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemo94CD32E3Ref"
+      },
+      "FORGOT_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackForgotPassword4ECCB020Ref"
+      },
+      "DEMO_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackDemoOTPTable494F7322Ref"
+      },
+      "SNS_SENDER_ID": "LURNTY",
+      "REGISTER_OTP_TABLE_NAME": {
+       "Ref": "referencetoLurnityLmsStackDatabaseNestedStackNestedStackDatabaseNestedStackNestedStackResource67DB4F86OutputsLurnityLmsStackDatabaseNestedStackRegisterOTPTableD9128CE0Ref"
+      },
+      "S3_BUCKET": {
+       "Ref": "referencetoLurnityLmsStackLurnityBucketD0083579Ref"
+      },
+      "VIDEO_BUCKET_NAME": {
+       "Ref": "referencetoLurnityLmsStackLurnityVideoBucket9A7D1F7BRef"
+      },
+      "JWT_SECRET": "super-secret-dev-key",
+      "GEMINI_API_KEY": "your-gemini-api-key",
+      "JUDGE0_API_KEY": "your-judge0-api-key",
+      "STAGE": "dev",
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "info",
+      "ADMIN_JWT_SECRET": "admin-secret-key",
+      "SES_FROM": "admin@lurnity.com",
+      "SES_CONFIG_SET": "transactional-emails",
+      "OTP_DIGITS": "6",
+      "OTP_TTL_SECONDS": "600",
+      "RESET_WINDOW_SECONDS": "600"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "UploadProfileImageLambdaServiceRole84375EFD",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "UploadProfileImageLambdaServiceRoleDefaultPolicy055502A5",
+    "UploadProfileImageLambdaServiceRole84375EFD"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UploadProfileImageLambda/Resource",
+    "aws:asset:path": "asset.2078ee96cf55996cf8f146b1e8ad342feb7ff175be68962941dfbaebfca95ee9",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
   "CreateTicketLambdaServiceRole915FBFE6": {
    "Type": "AWS::IAM::Role",
    "Properties": {
@@ -15971,7 +16164,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-ap-south-1"
      },
-     "S3Key": "4be67d1139ba56d3211cc8b6eafe0ac1dff82586b91462cdb66b4d5200829c83.zip"
+     "S3Key": "bf91a99611402c08465b6b20244c7c8dbca4e9f7cdcf18f017460fd95270c31e.zip"
     },
     "Environment": {
      "Variables": {
@@ -16062,7 +16255,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "LurnityLmsStack/LambdaNestedStack/UpdateProfileLambda/Resource",
-    "aws:asset:path": "asset.4be67d1139ba56d3211cc8b6eafe0ac1dff82586b91462cdb66b4d5200829c83",
+    "aws:asset:path": "asset.bf91a99611402c08465b6b20244c7c8dbca4e9f7cdcf18f017460fd95270c31e",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
    }
@@ -20083,102 +20276,6 @@
   }
  },
  "Outputs": {
-  "LurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "AdminAuthLambda2FF0F77C",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "ListUsersLambdaA3428352",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "UpdateUserLambda9D1E8B10",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "DeleteUserLambdaF75E2C54",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "SetUserLockLambda37081D85",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "CreateTransactionLambda3C03D874",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "ListCoursesPublicLambda96B78432",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "CreateCoursePublicLambdaC1FE1D16",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "GetCourseByIdPublicLambda979F28C0",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "UpdateCoursePublicLambdaF9F9A29C",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "DeleteCoursePublicLambda9344C01D",
-     "Arn"
-    ]
-   }
-  },
-  "LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": {
-   "Value": {
-    "Fn::GetAtt": [
-     "GetPresignedUploadUrlLambda5192239C",
-     "Arn"
-    ]
-   }
-  },
   "LurnityLmsStackLambdaNestedStackGetLatestLandingPageLambdaB1E48E7FArn": {
    "Value": {
     "Fn::GetAtt": [
@@ -20515,6 +20612,46 @@
     ]
    }
   },
+  "LurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListCoursesPublicLambda96B78432",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CreateCoursePublicLambdaC1FE1D16",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetCourseByIdPublicLambda979F28C0",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateCoursePublicLambdaF9F9A29C",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteCoursePublicLambda9344C01D",
+     "Arn"
+    ]
+   }
+  },
   "LurnityLmsStackLambdaNestedStackCreateDemoLambda019E6998Arn": {
    "Value": {
     "Fn::GetAtt": [
@@ -20827,6 +20964,14 @@
     ]
    }
   },
+  "LurnityLmsStackLambdaNestedStackUploadProfileImageLambdaE4849EB8Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UploadProfileImageLambdaE46CA5C0",
+     "Arn"
+    ]
+   }
+  },
   "LurnityLmsStackLambdaNestedStackGetJudge0KeyLambda5174CACCArn": {
    "Value": {
     "Fn::GetAtt": [
@@ -20887,6 +21032,62 @@
    "Value": {
     "Fn::GetAtt": [
      "DeleteEmployeeLambda8C83366D",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AdminAuthLambda2FF0F77C",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ListUsersLambdaA3428352",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "UpdateUserLambda9D1E8B10",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DeleteUserLambdaF75E2C54",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "SetUserLockLambda37081D85",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "CreateTransactionLambda3C03D874",
+     "Arn"
+    ]
+   }
+  },
+  "LurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "GetPresignedUploadUrlLambda5192239C",
      "Arn"
     ]
    }

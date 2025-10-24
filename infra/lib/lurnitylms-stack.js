@@ -8,6 +8,7 @@ import { DatabaseNestedStack } from "./database-nested-stack.js";
 import { LambdaNestedStack } from "./lambda-nested-stack.js";
 import { ApiNestedStack } from "./api-nested-stack.js";
 import { ApiEmployeeStack } from "./api-employee-stack.js";  // ✅ NEW IMPORT
+import { ApiAdminStack } from "./api-admin-stack.js"; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -50,6 +51,7 @@ videoBucket.addToResourcePolicy(new iam.PolicyStatement({
   actions: ['s3:GetObject'],
   resources: [`${videoBucket.bucketArn}/profile-images/*`],
 }));
+
 
     // Database nested stack
     const databaseStack = new DatabaseNestedStack(this, 'DatabaseNestedStack');
@@ -104,6 +106,10 @@ videoBucket.addToResourcePolicy(new iam.PolicyStatement({
     const employeeApiStack = new ApiEmployeeStack(this, 'ApiEmployeeStack', {
       lambdas: lambdaStack
     });
+
+    const adminApiStack = new ApiAdminStack(this, 'ApiAdminStack', {
+  lambdas: lambdaStack
+});
 
     // Grant permissions (same as before - ALL your existing permission grants stay here)
     [lambdaStack.listUsersLambda, lambdaStack.updateUserLambda, lambdaStack.deleteUserLambda, lambdaStack.exportUsersCsvLambda, lambdaStack.setUserLockLambda].forEach(l => databaseStack.userTable.grantFullAccess(l));

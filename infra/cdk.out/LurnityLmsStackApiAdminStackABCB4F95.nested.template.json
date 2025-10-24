@@ -1,0 +1,2186 @@
+{
+ "Resources": {
+  "AdminApi059A0912": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Name": "AdminApi"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Resource"
+   }
+  },
+  "AdminApiCloudWatchRoleA5DF5664": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "apigateway.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+       ]
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/CloudWatchRole/Resource"
+   }
+  },
+  "AdminApiAccount52E312F9": {
+   "Type": "AWS::ApiGateway::Account",
+   "Properties": {
+    "CloudWatchRoleArn": {
+     "Fn::GetAtt": [
+      "AdminApiCloudWatchRoleA5DF5664",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "AdminApi059A0912"
+   ],
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Account"
+   }
+  },
+  "AdminApiDeployment829E440Db758f5f28b891f556f34099183f9a94d": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Automatically created by the RestApi construct",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "DependsOn": [
+    "AdminApiapiadminauthOPTIONSFB0DAC60",
+    "AdminApiapiadminauthPOSTD68A938E",
+    "AdminApiapiadminauth012ED369",
+    "AdminApiapiadmincoursesidDELETE851C50A7",
+    "AdminApiapiadmincoursesidGET9EB6E9FA",
+    "AdminApiapiadmincoursesidOPTIONSE9C70321",
+    "AdminApiapiadmincoursesidPUTEE5BC2F5",
+    "AdminApiapiadmincoursesid2A43A0F3",
+    "AdminApiapiadmincoursesGET326E7AF3",
+    "AdminApiapiadmincoursesOPTIONS80C657DC",
+    "AdminApiapiadmincoursesPOSTF697A16E",
+    "AdminApiapiadmincourses01109477",
+    "AdminApiapiadminOPTIONSE00334A8",
+    "AdminApiapiadmin532315FB",
+    "AdminApiapiadminusersidDELETE0CA4DEA0",
+    "AdminApiapiadminusersidOPTIONSB1D28A4F",
+    "AdminApiapiadminusersidPATCHAC454C94",
+    "AdminApiapiadminusersidPUT77CD65B6",
+    "AdminApiapiadminusersidAE0F5A07",
+    "AdminApiapiadminusersidtransactionsOPTIONSE0AEC391",
+    "AdminApiapiadminusersidtransactionsPOST98746C13",
+    "AdminApiapiadminusersidtransactions4ED6A277",
+    "AdminApiapiadminusersGET9F4AB4CB",
+    "AdminApiapiadminusersOPTIONS74877716",
+    "AdminApiapiadminusers70876D84",
+    "AdminApiapiadminvideosOPTIONSBDEF91DC",
+    "AdminApiapiadminvideospresignedurlOPTIONSDB63F264",
+    "AdminApiapiadminvideospresignedurlPOST7E3DA648",
+    "AdminApiapiadminvideospresignedurlB1706311",
+    "AdminApiapiadminvideos9CA952CF",
+    "AdminApiapiOPTIONS0DFFB8FD",
+    "AdminApiapi53D275A4",
+    "AdminApiOPTIONSB8E35064",
+    "AdminApiDefault4XX87034F2F",
+    "AdminApiDefault5XXDE61B5BC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Deployment/Resource"
+   }
+  },
+  "AdminApiDeploymentStagedev36C9B195": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "AdminApiDeployment829E440Db758f5f28b891f556f34099183f9a94d"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    },
+    "StageName": "dev"
+   },
+   "DependsOn": [
+    "AdminApiAccount52E312F9"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/DeploymentStage.dev/Resource"
+   }
+  },
+  "AdminApiOPTIONSB8E35064": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "AdminApi059A0912",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapi53D275A4": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "AdminApi059A0912",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "api",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/Resource"
+   }
+  },
+  "AdminApiapiOPTIONS0DFFB8FD": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapi53D275A4"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadmin532315FB": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapi53D275A4"
+    },
+    "PathPart": "admin",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/Resource"
+   }
+  },
+  "AdminApiapiadminOPTIONSE00334A8": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadmin532315FB"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadminauth012ED369": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadmin532315FB"
+    },
+    "PathPart": "auth",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/auth/Resource"
+   }
+  },
+  "AdminApiapiadminauthOPTIONSFB0DAC60": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadminauth012ED369"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/auth/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadminauthPOSTApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadminauth1E5B127C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/POST/api/admin/auth"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/auth/POST/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.auth"
+   }
+  },
+  "AdminApiapiadminauthPOSTApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadminauth64944770": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/POST/api/admin/auth"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/auth/POST/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.auth"
+   }
+  },
+  "AdminApiapiadminauthPOSTD68A938E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadminauth012ED369"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/auth/POST/Resource"
+   }
+  },
+  "AdminApiapiadminusers70876D84": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadmin532315FB"
+    },
+    "PathPart": "users",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/Resource"
+   }
+  },
+  "AdminApiapiadminusersOPTIONS74877716": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusers70876D84"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadminusersGETApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DGETapiadminusers5603AC84": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/GET/api/admin/users"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/GET/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.GET..api.admin.users"
+   }
+  },
+  "AdminApiapiadminusersGETApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DGETapiadminusers9A239453": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/GET/api/admin/users"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/GET/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.GET..api.admin.users"
+   }
+  },
+  "AdminApiapiadminusersGET9F4AB4CB": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusers70876D84"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/GET/Resource"
+   }
+  },
+  "AdminApiapiadminusersidAE0F5A07": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadminusers70876D84"
+    },
+    "PathPart": "{id}",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/Resource"
+   }
+  },
+  "AdminApiapiadminusersidOPTIONSB1D28A4F": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusersidAE0F5A07"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadminusersidPUTApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DPUTapiadminusersidBD36B73B": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/PUT/api/admin/users/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/PUT/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.PUT..api.admin.users.{id}"
+   }
+  },
+  "AdminApiapiadminusersidPUTApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DPUTapiadminusersid0972ECF2": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/PUT/api/admin/users/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/PUT/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.PUT..api.admin.users.{id}"
+   }
+  },
+  "AdminApiapiadminusersidPUT77CD65B6": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusersidAE0F5A07"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/PUT/Resource"
+   }
+  },
+  "AdminApiapiadminusersidDELETEApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DDELETEapiadminusersidAAA45077": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/DELETE/api/admin/users/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/DELETE/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.DELETE..api.admin.users.{id}"
+   }
+  },
+  "AdminApiapiadminusersidDELETEApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DDELETEapiadminusersid304DAAFB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/DELETE/api/admin/users/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/DELETE/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.DELETE..api.admin.users.{id}"
+   }
+  },
+  "AdminApiapiadminusersidDELETE0CA4DEA0": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "DELETE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusersidAE0F5A07"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/DELETE/Resource"
+   }
+  },
+  "AdminApiapiadminusersidPATCHApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DPATCHapiadminusersid291228C8": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/PATCH/api/admin/users/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/PATCH/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.PATCH..api.admin.users.{id}"
+   }
+  },
+  "AdminApiapiadminusersidPATCHApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DPATCHapiadminusersidFC6A836A": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/PATCH/api/admin/users/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/PATCH/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.PATCH..api.admin.users.{id}"
+   }
+  },
+  "AdminApiapiadminusersidPATCHAC454C94": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "PATCH",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusersidAE0F5A07"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/PATCH/Resource"
+   }
+  },
+  "AdminApiapiadminusersidtransactions4ED6A277": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadminusersidAE0F5A07"
+    },
+    "PathPart": "transactions",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/transactions/Resource"
+   }
+  },
+  "AdminApiapiadminusersidtransactionsOPTIONSE0AEC391": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusersidtransactions4ED6A277"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/transactions/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadminusersidtransactionsPOSTApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadminusersidtransactions4B2F45E3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/POST/api/admin/users/*/transactions"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/transactions/POST/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.users.{id}.transactions"
+   }
+  },
+  "AdminApiapiadminusersidtransactionsPOSTApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadminusersidtransactions68242A84": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/POST/api/admin/users/*/transactions"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/transactions/POST/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.users.{id}.transactions"
+   }
+  },
+  "AdminApiapiadminusersidtransactionsPOST98746C13": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadminusersidtransactions4ED6A277"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/users/{id}/transactions/POST/Resource"
+   }
+  },
+  "AdminApiapiadmincourses01109477": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadmin532315FB"
+    },
+    "PathPart": "courses",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesOPTIONS80C657DC": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadmincourses01109477"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesGETApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DGETapiadmincourses6FA32EB7": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/GET/api/admin/courses"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/GET/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.GET..api.admin.courses"
+   }
+  },
+  "AdminApiapiadmincoursesGETApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DGETapiadmincourses53615A33": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/GET/api/admin/courses"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/GET/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.GET..api.admin.courses"
+   }
+  },
+  "AdminApiapiadmincoursesGET326E7AF3": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadmincourses01109477"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/GET/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesPOSTApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadmincourses3FD6F73B": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/POST/api/admin/courses"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/POST/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.courses"
+   }
+  },
+  "AdminApiapiadmincoursesPOSTApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadmincourses871FE2D6": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/POST/api/admin/courses"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/POST/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.courses"
+   }
+  },
+  "AdminApiapiadmincoursesPOSTF697A16E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadmincourses01109477"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/POST/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesid2A43A0F3": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadmincourses01109477"
+    },
+    "PathPart": "{id}",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesidOPTIONSE9C70321": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadmincoursesid2A43A0F3"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesidGETApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DGETapiadmincoursesid40E38670": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/GET/api/admin/courses/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/GET/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.GET..api.admin.courses.{id}"
+   }
+  },
+  "AdminApiapiadmincoursesidGETApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DGETapiadmincoursesid92D42610": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/GET/api/admin/courses/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/GET/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.GET..api.admin.courses.{id}"
+   }
+  },
+  "AdminApiapiadmincoursesidGET9EB6E9FA": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadmincoursesid2A43A0F3"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/GET/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesidPUTApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DPUTapiadmincoursesid21E2EAFB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/PUT/api/admin/courses/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/PUT/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.PUT..api.admin.courses.{id}"
+   }
+  },
+  "AdminApiapiadmincoursesidPUTApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DPUTapiadmincoursesid347827FB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/PUT/api/admin/courses/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/PUT/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.PUT..api.admin.courses.{id}"
+   }
+  },
+  "AdminApiapiadmincoursesidPUTEE5BC2F5": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadmincoursesid2A43A0F3"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/PUT/Resource"
+   }
+  },
+  "AdminApiapiadmincoursesidDELETEApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DDELETEapiadmincoursesid9FD4833D": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/DELETE/api/admin/courses/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/DELETE/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.DELETE..api.admin.courses.{id}"
+   }
+  },
+  "AdminApiapiadmincoursesidDELETEApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DDELETEapiadmincoursesidA8F6AF61": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/DELETE/api/admin/courses/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/DELETE/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.DELETE..api.admin.courses.{id}"
+   }
+  },
+  "AdminApiapiadmincoursesidDELETE851C50A7": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "DELETE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadmincoursesid2A43A0F3"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/courses/{id}/DELETE/Resource"
+   }
+  },
+  "AdminApiapiadminvideos9CA952CF": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadmin532315FB"
+    },
+    "PathPart": "videos",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/videos/Resource"
+   }
+  },
+  "AdminApiapiadminvideosOPTIONSBDEF91DC": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadminvideos9CA952CF"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/videos/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadminvideospresignedurlB1706311": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "AdminApiapiadminvideos9CA952CF"
+    },
+    "PathPart": "presigned-url",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/videos/presigned-url/Resource"
+   }
+  },
+  "AdminApiapiadminvideospresignedurlOPTIONSDB63F264": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "AdminApiapiadminvideospresignedurlB1706311"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/videos/presigned-url/OPTIONS/Resource"
+   }
+  },
+  "AdminApiapiadminvideospresignedurlPOSTApiPermissionLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadminvideospresignedurlD8CFF639": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/",
+       {
+        "Ref": "AdminApiDeploymentStagedev36C9B195"
+       },
+       "/POST/api/admin/videos/presigned-url"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/videos/presigned-url/POST/ApiPermission.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.videos.presigned-url"
+   }
+  },
+  "AdminApiapiadminvideospresignedurlPOSTApiPermissionTestLurnityLmsStackApiAdminStackAdminApiAD1F726DPOSTapiadminvideospresignedurl3D0BC052": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:ap-south-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "AdminApi059A0912"
+       },
+       "/test-invoke-stage/POST/api/admin/videos/presigned-url"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/videos/presigned-url/POST/ApiPermission.Test.LurnityLmsStackApiAdminStackAdminApiAD1F726D.POST..api.admin.videos.presigned-url"
+   }
+  },
+  "AdminApiapiadminvideospresignedurlPOST7E3DA648": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:ap-south-1:lambda:path/2015-03-31/functions/",
+        {
+         "Ref": "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn"
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "AdminApiapiadminvideospresignedurlB1706311"
+    },
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default/api/admin/videos/presigned-url/POST/Resource"
+   }
+  },
+  "AdminApiDefault4XX87034F2F": {
+   "Type": "AWS::ApiGateway::GatewayResponse",
+   "Properties": {
+    "ResponseParameters": {
+     "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
+     "gatewayresponse.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+     "gatewayresponse.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+    },
+    "ResponseType": "DEFAULT_4XX",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default4XX/Resource"
+   }
+  },
+  "AdminApiDefault5XXDE61B5BC": {
+   "Type": "AWS::ApiGateway::GatewayResponse",
+   "Properties": {
+    "ResponseParameters": {
+     "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
+     "gatewayresponse.header.Access-Control-Allow-Methods": "'GET,POST,PUT,PATCH,DELETE,OPTIONS'",
+     "gatewayresponse.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+    },
+    "ResponseType": "DEFAULT_5XX",
+    "RestApiId": {
+     "Ref": "AdminApi059A0912"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/AdminApi/Default5XX/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11P2wrCMAz9Ft+76gTBVy/gkxf0AyS2UaPrhbVzjLF/N1qFKQRyLiQnGct8ksvRAOqQKX3PCjrJdoMhoj5EUHfBxrEFTxeIWEMj2z2bM09icbY9OFPKVTaKJfrCNQYZstpjvO2CLy0BHnVVqXAOAcUa49Xpl/lBX/cTkvAqXcDcOxve3p/UCQLDF7oiTXLvRAHmpEEy32FpKARytvtJ2FbRV7Gf1QnrNMpbGD7yqeQaD26BKCv5RTIo96k/AfCmgjc9AQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LurnityLmsStack/ApiAdminStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "AdminApiEndpointACFD5967": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "AdminApi059A0912"
+      },
+      ".execute-api.ap-south-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "AdminApiDeploymentStagedev36C9B195"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "AdminApiUrl": {
+   "Description": "Admin API Gateway URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "AdminApi059A0912"
+      },
+      ".execute-api.ap-south-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "AdminApiDeploymentStagedev36C9B195"
+      },
+      "/"
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackAdminAuthLambda1C2E6D18Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListUsersLambdaE38355ECArn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateUserLambdaE6053AA3Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteUserLambda44518767Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackSetUserLockLambda1EE49DA2Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateTransactionLambda2BD4B10AArn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackListCoursesPublicLambda4EDDA092Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackCreateCoursePublicLambdaE82E155DArn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetCourseByIdPublicLambda1027C05EArn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackUpdateCoursePublicLambda689F0709Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackDeleteCoursePublicLambda3686FB77Arn": {
+   "Type": "String"
+  },
+  "referencetoLurnityLmsStackLambdaNestedStackNestedStackLambdaNestedStackNestedStackResource263FE4F9OutputsLurnityLmsStackLambdaNestedStackGetPresignedUploadUrlLambdaA6D35B5DArn": {
+   "Type": "String"
+  }
+ }
+}
