@@ -32,6 +32,8 @@ export const handler = async (event) => {
     }
 
     console.log('🔍 Comparing passwords...');
+    console.log("🔍 Admin object before bcrypt:", JSON.stringify(admin, null, 2));
+console.log("🔍 Password from admin:", admin.password);
     const isMatch = await bcrypt.compare(password, admin.password);
     console.log('🔍 Password match:', isMatch);
 
