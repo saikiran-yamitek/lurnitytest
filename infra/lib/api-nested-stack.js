@@ -219,6 +219,7 @@ adminVideos.addResource("presigned-url").addMethod("POST", new apigateway.Lambda
     const profileResource = userSpecificRes.addResource("profile");
     profileResource.addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateProfileLambda));
     profileResource.addMethod("GET", new apigateway.LambdaIntegration(lambdas.getProfileLambda));
+    userRes.addResource("upload-profile-image").addMethod("POST", new apigateway.LambdaIntegration(lambdas.uploadProfileImageLambda));
     userSpecificRes.addResource("completedSubcourses").addMethod("PUT", new apigateway.LambdaIntegration(lambdas.updateCompletedSubcoursesLambda));
     userSpecificRes.addResource("projects").addMethod("POST", new apigateway.LambdaIntegration(lambdas.updateProjectsLambda));
     userSpecificRes.addResource("practiceResult").addMethod("POST", new apigateway.LambdaIntegration(lambdas.addPracticeResultLambda));

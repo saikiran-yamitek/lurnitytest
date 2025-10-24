@@ -44,6 +44,13 @@ class LurnityLmsStack extends cdk.Stack {
   ],
 });
 
+videoBucket.addToResourcePolicy(new iam.PolicyStatement({
+  effect: iam.Effect.ALLOW,
+  principals: [new iam.AnyPrincipal()],
+  actions: ['s3:GetObject'],
+  resources: [`${videoBucket.bucketArn}/profile-images/*`],
+}));
+
     // Database nested stack
     const databaseStack = new DatabaseNestedStack(this, 'DatabaseNestedStack');
 
@@ -292,6 +299,14 @@ videoBucket.grantRead(lambdaStack.getPresignedPlaybackUrlLambda);
     resources: [`${videoBucket.bucketArn}/*`],
   }));
 });
+
+
+videoBucket.grantPut(lambdaStack.uploadProfileImageLambda);
+lambdaStack.uploadProfileImageLambda.addToRolePolicy(new iam.PolicyStatement({
+  effect: iam.Effect.ALLOW,
+  actions: ["s3:PutObject"],
+  resources: [`${videoBucket.bucketArn}/profile-images/*`],
+}));
 
   }
 }

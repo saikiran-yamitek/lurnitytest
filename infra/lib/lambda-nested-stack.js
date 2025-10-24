@@ -176,6 +176,7 @@ this.verifyDemoOTPLambda = makeLambda("VerifyDemoOTPLambda", "verifyDemoOTP", de
     this.getPresignedUploadUrlLambda = makeLambda("GetPresignedUploadUrlLambda", "getPresignedUploadUrl", videoLambdaPath);
 this.getPresignedPlaybackUrlLambda = makeLambda("GetPresignedPlaybackUrlLambda", "getPresignedPlaybackUrl", videoLambdaPath);
     // Ticket lambdas
+    this.uploadProfileImageLambda = makeLambda("UploadProfileImageLambda", "uploadProfileImage", userLambdaPath);
     this.createTicketLambda = makeLambda("CreateTicketLambda", "createTicket", ticketsLambdaPath);
     this.listTicketsLambda = makeLambda("ListTicketsLambda", "listTickets", ticketsLambdaPath);
     this.updateTicketLambda = makeLambda("UpdateTicketLambda", "updateTicket", ticketsLambdaPath);

@@ -985,3 +985,24 @@ export async function verifyRegisterOTP(phone, otpEntered, sessionId) {
     throw new Error("Failed to verify OTP");
   }
 }
+
+
+/**
+ * Update user profile image with public S3 URL
+ */
+export async function updateUserProfileImage(userId, publicUrl) {
+  const res = await ddb.send(
+    new UpdateCommand({
+      TableName: TABLE,
+      Key: { id: userId },
+      UpdateExpression: "SET photoURL = :url, updatedAt = :u",
+      ExpressionAttributeValues: {
+        ":url": publicUrl,
+        ":u": new Date().toISOString()
+      },
+      ReturnValues: "ALL_NEW",
+    })
+  );
+  return res.Attributes;
+}
+

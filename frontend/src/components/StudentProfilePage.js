@@ -143,28 +143,37 @@ const StudentProfilePage = () => {
   useEffect(() => {
   const fetchProfile = async () => {
     try {
-      const res  = await apiFetch(`/api/user/${userId}/profile` ,{ method: "GET" }, "user");
-      const data = await res.json();          // {msg, user:{…}}
+      const res = await apiFetch(`/api/user/${userId}/profile`, { method: "GET" }, "user");
+      const data = await res.json();
 
       if (res.ok && data?.user) {
-        const rawPhoto = data.user.photoURL;  // may be undefined/null
+        const rawPhoto = data.user.photoURL;
+
+        // ✅ Handle photo URLs properly
+        let photoURLForDisplay = "";
+        if (rawPhoto) {
+          if (rawPhoto.startsWith("https://")) {
+            // Already a public S3 URL - use directly! ✅
+            photoURLForDisplay = rawPhoto;
+          } else if (rawPhoto.startsWith("profile-images/")) {
+            // Old S3 key format - convert to public URL
+            const BUCKET = process.env.REACT_APP_S3_BUCKET || "lurnity-videos-bucket";
+            photoURLForDisplay = `https://${BUCKET}.s3.ap-south-1.amazonaws.com/${rawPhoto}`;
+          } else if (rawPhoto.startsWith("data:image")) {
+            // Old base64 format (backward compatibility)
+            photoURLForDisplay = rawPhoto;
+          }
+        }
+
+        console.log('📸 Profile photo URL:', photoURLForDisplay);
 
         setFormData(prev => ({
           ...prev,
-          ...data.user,                       // put every profile field in state
-          name:        data.user.ircName || data.user.name || "",
+          ...data.user,
+          name: data.user.ircName || data.user.name || "",
           geminiApiKey: data.user.geminiApiKey || "",
-
-          /* photo fields */
-          photo:    rawPhoto,
-          photoURL:
-            typeof rawPhoto === "string" && rawPhoto.startsWith
-              ? rawPhoto.startsWith("data:image")
-                ? rawPhoto
-                : `data:image/jpeg;base64,${rawPhoto}`
-              : "",
-
-          /* nested object – rebuild each level */
+          photo: rawPhoto,           // Original value from DB
+          photoURL: photoURLForDisplay, // Display URL ✅
           parentGuardian: {
             ...prev.parentGuardian,
             ...data.user.parentGuardian,
@@ -173,12 +182,13 @@ const StudentProfilePage = () => {
         }));
       }
     } catch (err) {
-      console.error("Fetch error:", err);
+      console.error("❌ Fetch error:", err);
     }
   };
 
   if (userId) fetchProfile();
 }, [userId]);
+
 // Remove formData from dependency array
 
 
@@ -187,60 +197,136 @@ const StudentProfilePage = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePhotoUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const tempUrl = URL.createObjectURL(file);
-        
-        setFormData(prev => ({
-          ...prev,
-          photo: event.target.result,
-          photoFile: file,
-          photoURL: tempUrl
-        }));
-      };
-      reader.readAsDataURL(file);
+  const handlePhotoUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  // Validate file size (max 5MB)
+  if (file.size > 5 * 1024 * 1024) {
+    setNotification({
+      type: 'error',
+      title: 'Error',
+      message: 'Image size must be less than 5MB',
+      icon: '❌'
+    });
+    setTimeout(() => setNotification(null), 3000);
+    return;
+  }
+
+  try {
+    setNotification({
+      type: 'info',
+      title: 'Uploading',
+      message: 'Uploading your profile image...',
+      icon: '⏳'
+    });
+
+    // Step 1: Get presigned upload URL from backend
+    const presignResponse = await apiFetch('/api/user/upload-profile-image', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fileName: file.name,
+        fileType: file.type,
+        userId: userId
+      }),
+    }, 'user');
+
+    if (!presignResponse.ok) {
+      const error = await presignResponse.json();
+      throw new Error(error.error || 'Failed to get upload URL');
     }
-  };
+
+    const { uploadUrl, fileKey, publicUrl } = await presignResponse.json();
+
+    console.log('📤 Uploading to S3...');
+
+    // Step 2: Upload file directly to S3
+    const uploadResponse = await fetch(uploadUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': file.type },
+      body: file,
+    });
+
+    if (!uploadResponse.ok) {
+      throw new Error('S3 upload failed');
+    }
+
+    console.log('✅ Upload successful!');
+    console.log('🔗 Public URL:', publicUrl);
+
+    // Step 3: Update form with permanent public URL
+    setFormData(prev => ({
+      ...prev,
+      photo: publicUrl,      // Store public URL
+      photoURL: publicUrl    // Display public URL (never expires!)
+    }));
+
+    setNotification({
+      type: 'success',
+      title: 'Success',
+      message: 'Profile image uploaded successfully!',
+      icon: '✅'
+    });
+    
+    setTimeout(() => setNotification(null), 3000);
+
+  } catch (err) {
+    console.error('❌ Photo upload error:', err);
+    setNotification({
+      type: 'error',
+      title: 'Error',
+      message: err.message || 'Failed to upload image. Please try again.',
+      icon: '❌'
+    });
+    setTimeout(() => setNotification(null), 3000);
+  }
+};
+
 
   const handleSave = async () => {
-    try {
-      const dataToSend = {
-        ...formData,
-        photoURL: formData.photo,
-      };
-      delete dataToSend.photoFile;
-      
-      const response = await apiFetch(`/api/user/${userId}/profile`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dataToSend),
-      },"user");
+  try {
+    const dataToSend = {
+      ...formData,
+      // ✅ Send the public URL (stored in photo field)
+      photoURL: formData.photo,
+    };
+    
+    // Clean up unnecessary fields
+    delete dataToSend.photoFile;
+    delete dataToSend.photo;
+    
+    console.log('💾 Saving profile with photo URL:', dataToSend.photoURL);
+    
+    const response = await apiFetch(`/api/user/${userId}/profile`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dataToSend),
+    }, "user");
 
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.message || "Save failed");
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message || "Save failed");
 
-      setNotification({
-        type: 'success',
-        title: 'Success',
-        message: 'Profile saved successfully!',
-        icon: '🎉'
-      });
-      
-      setTimeout(() => setNotification(null), 3000);
-    } catch (err) {
-      console.error("Save Error:", err);
-      setNotification({
-        type: 'error',
-        title: 'Error',
-        message: 'Failed to save profile. Please try again.',
-        icon: '❌'
-      });
-      setTimeout(() => setNotification(null), 3000);
-    }
-  };
+    setNotification({
+      type: 'success',
+      title: 'Success',
+      message: 'Profile saved successfully!',
+      icon: '🎉'
+    });
+    
+    setTimeout(() => setNotification(null), 3000);
+  } catch (err) {
+    console.error("❌ Save Error:", err);
+    setNotification({
+      type: 'error',
+      title: 'Error',
+      message: err.message || 'Failed to save profile. Please try again.',
+      icon: '❌'
+    });
+    setTimeout(() => setNotification(null), 3000);
+  }
+};
+
 
   const handleCropMouseDown = (e) => {
     setIsDragging(true);
