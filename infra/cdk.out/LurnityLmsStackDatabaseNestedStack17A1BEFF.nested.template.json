@@ -11,6 +11,10 @@
      {
       "AttributeName": "email",
       "AttributeType": "S"
+     },
+     {
+      "AttributeName": "phone",
+      "AttributeType": "S"
      }
     ],
     "GlobalSecondaryIndexes": [
@@ -19,6 +23,22 @@
       "KeySchema": [
        {
         "AttributeName": "email",
+        "KeyType": "HASH"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+       "ReadCapacityUnits": 5,
+       "WriteCapacityUnits": 5
+      }
+     },
+     {
+      "IndexName": "phone-index",
+      "KeySchema": [
+       {
+        "AttributeName": "phone",
         "KeyType": "HASH"
        }
       ],

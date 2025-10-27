@@ -15,6 +15,11 @@ class DatabaseNestedStack extends cdk.NestedStack {
       partitionKey: { name: "email", type: dynamodb.AttributeType.STRING },
       projectionType: dynamodb.ProjectionType.ALL,
     });
+    this.userTable.addGlobalSecondaryIndex({
+  indexName: "phone-index",
+  partitionKey: { name: "phone", type: dynamodb.AttributeType.STRING },
+  projectionType: dynamodb.ProjectionType.ALL,
+});
 
     this.courseTable = new dynamodb.Table(this, process.env.COURSE_TABLE_NAME, {
       partitionKey: { name: "id", type: dynamodb.AttributeType.STRING },
