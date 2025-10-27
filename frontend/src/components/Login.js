@@ -1,9 +1,7 @@
-"use client"
-
 import { useState } from "react"
 import { useHistory, Link } from "react-router-dom"
 import { login, register, sendRegisterOTP, verifyRegisterOTP } from "../services/api"
-import "./AuthForm.css"
+import "./Login.css"
 import logo from "../assets/LURNITY.jpg"
 import { GoogleLogin } from "@react-oauth/google"
 
